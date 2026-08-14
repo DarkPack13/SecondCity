@@ -7697,7 +7697,6 @@
 #include "modular_darkpack\modules\masquerade\code\word_checker.dm"
 #include "modular_darkpack\modules\masquerade\code\components\masquerade_hud.dm"
 #include "modular_darkpack\modules\masquerade\code\components\violation_observer.dm"
-#include "modular_darkpack\modules\masquerade\code\fields\violation_check_aoe.dm"
 #include "modular_darkpack\modules\masquerade\code\subsystem\bloodhunt.dm"
 #include "modular_darkpack\modules\masquerade\code\subsystem\masquerade.dm"
 #include "modular_darkpack\modules\matrix\code\job.dm"

@@ -45,11 +45,10 @@ SUBSYSTEM_DEF(masquerade)
  * player_breacher - The player which caused the masquerade breach.
  * reason - Optional, the reason for the breach. For example,
  */
-/datum/controller/subsystem/masquerade/proc/masquerade_reinforce(atom/source, mob/living/player_breacher, reason)
+/datum/controller/subsystem/masquerade/proc/masquerade_reinforce(atom/source, mob/living/player_breacher)
 	. = FALSE
 	for(var/masquerade_breach in masquerade_breachers)
 		var/breach_sources = masquerade_breach[2]
-		var/breach_reasons = masquerade_breach[3]
 
 		var/source_matches = FALSE
 		// breach_sources can be a list if there is more than one blood skull, handle for that
@@ -58,17 +57,12 @@ SUBSYSTEM_DEF(masquerade)
 		else
 			source_matches = (source == breach_sources)
 
-		if(source_matches || reason == "debug")
-			if(!reason || (reason in masquerade_breach) || (reason == MASQUERADE_REASON_PREFERENCES) || (reason == "debug"))
-				// Only require blood hunt skull for "Preferences" (round-persistent) breaches
-				if(breach_reasons == MASQUERADE_REASON_PREFERENCES && !istype(source, /obj/item/blood_hunt))
-					continue
-
-				masquerade_breachers -= list(masquerade_breach)
-				masquerade_level = min(MASQUERADE_MAX_LEVEL, masquerade_level + 1)
-				player_breacher.masquerade_score = min(5, player_breacher.masquerade_score + 1)
-				. = TRUE
-				break
+		if(source_matches)
+			masquerade_breachers -= list(masquerade_breach)
+			masquerade_level = min(MASQUERADE_MAX_LEVEL, masquerade_level + 1)
+			player_breacher.masquerade_score = min(5, player_breacher.masquerade_score + 1)
+			. = TRUE
+			break
 	if(player_breacher.masquerade_score == 5) //Doesn't matter if they weren't in one of these lists.
 		GLOB.veil_breakers_list -= player_breacher
 		GLOB.masquerade_breakers_list -= player_breacher

@@ -2,14 +2,11 @@
 // Usually NPCs or cameras.
 /datum/component/violation_observer
 	dupe_mode = COMPONENT_DUPE_UNIQUE
-	var/datum/proximity_monitor/advanced/violation_check_aoe/area_of_effect
 	/// Time between us checking for violations
 	COOLDOWN_DECLARE(scan_cooldown)
 	var/list/breached_players
 
 /datum/component/violation_observer/Initialize(add_area_of_effect) //Only add the AOE checker for NPCs and camera objects.
-	if(add_area_of_effect)
-		area_of_effect = new(parent, 7, TRUE, src)
 	breached_players = new()
 
 /datum/component/violation_observer/RegisterWithParent()
@@ -18,15 +15,8 @@
 	RegisterSignals(parent, list(COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE), PROC_REF(on_death))
 
 /datum/component/violation_observer/UnregisterFromParent(force, silent)
-	QDEL_NULL(area_of_effect)
 	breached_players = null
 	UnregisterSignal(parent, list(COMSIG_SEEN_MASQUERADE_VIOLATION, COMSIG_MASQUERADE_REINFORCE, COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE))
-
-/datum/component/violation_observer/proc/toggle_area_of_effect(origin = parent)
-	if(area_of_effect)
-		QDEL_NULL(area_of_effect)
-	else
-		area_of_effect = new(origin, 7, TRUE, src)
 
 /datum/component/violation_observer/proc/on_observed_violation(atom/source, mob/living/player_breacher)
 	SIGNAL_HANDLER
