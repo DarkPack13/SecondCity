@@ -1,4 +1,4 @@
-/datum/preference/choiced/subsplat/zulo_form
+/datum/preference/choiced/zulo_form
 	savefile_key = "zulo_form"
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_FEATURES
@@ -8,7 +8,7 @@
 	must_have_relevant_trait = TRUE
 	should_generate_icons = TRUE
 
-/datum/preference/choiced/subsplat/zulo_form/has_relevant_feature(datum/preferences/preferences)
+/datum/preference/choiced/zulo_form/has_relevant_feature(datum/preferences/preferences)
 	. = ..()
 	if(!.) // Make sure we acctually can select clan in the first place
 		return FALSE
@@ -20,18 +20,18 @@
 		if(ispath(discipline, /datum/discipline/vicissitude))
 			return TRUE
 	return FALSE
-// Sabby: below was orginially used in basicmob code to add sprite selection to character screen UI..
-/datum/preference/choiced/subsplat/zulo_form/init_possible_values()
+
+/datum/preference/choiced/zulo_form/init_possible_values()
 	var/list/values = list()
 	for(var/name in GLOB.zulo_forms)
 		values[name] = GLOB.zulo_forms[name]
 	return values
 
-/datum/preference/choiced/subsplat/zulo_form/icon_for(value)
+/datum/preference/choiced/zulo_form/icon_for(value)
 	var/icon_state = GLOB.zulo_forms[value]
 	var/datum/universal_icon/zulo_icon = uni_icon('modular_darkpack/modules/powers/icons/zulo_forms.dmi', icon_state)
 	zulo_icon.scale(32, 32)
 	return zulo_icon
 
-/datum/preference/choiced/subsplat/zulo_form/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/choiced/zulo_form/apply_to_human(mob/living/carbon/human/target, value)
 	return
