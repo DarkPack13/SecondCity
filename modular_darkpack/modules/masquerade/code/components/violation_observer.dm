@@ -18,7 +18,7 @@
 	breached_players = null
 	UnregisterSignal(parent, list(COMSIG_SEEN_MASQUERADE_VIOLATION, COMSIG_MASQUERADE_REINFORCE, COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE))
 
-/datum/component/violation_observer/proc/on_observed_violation(atom/source, mob/living/player_breacher)
+/atom/proc/on_observed_violation(atom/source, mob/living/player_breacher)
 	SIGNAL_HANDLER
 
 	if(!source || !player_breacher || ismundane(player_breacher)) //Humans cant break the masquerade. Because reasons.
@@ -44,7 +44,7 @@
 
 	return TRUE
 
-/datum/component/violation_observer/proc/on_masquerade_violation_reinforced(atom/source, mob/living/player_breacher)
+/atom/proc/on_masquerade_violation_reinforced(atom/source, mob/living/player_breacher)
 	SIGNAL_HANDLER
 
 	if(player_breacher in breached_players)
@@ -56,7 +56,7 @@
 
 		return TRUE
 
-/datum/component/violation_observer/proc/on_death(atom/source)
+/atom/proc/on_death(atom/source)
 	SIGNAL_HANDLER
 
 	for(var/player_breacher in breached_players)
@@ -66,7 +66,7 @@
 		breached_players -= player_breacher
 		UnregisterSignal(player_breacher, COMSIG_LIVING_DEATH)
 
-/datum/component/violation_observer/proc/on_breacher_death(mob/living/dead_breacher, gibbed)
+/atom/proc/on_breacher_death(mob/living/dead_breacher, gibbed)
 	SIGNAL_HANDLER
 
 	if(dead_breacher in breached_players)

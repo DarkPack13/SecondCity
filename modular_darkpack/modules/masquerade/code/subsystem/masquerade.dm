@@ -84,13 +84,13 @@ SUBSYSTEM_DEF(masquerade)
  * player_breacher - The player which caused the masquerade breach.
  * reason - The reason for the breach. For example,
  */
-/datum/controller/subsystem/masquerade/proc/masquerade_breach(atom/source, mob/living/player_breacher, reason)
-	log_game("[player_breacher] has caused a masquerade breach in front of [source] by [reason]")
+/datum/controller/subsystem/masquerade/proc/masquerade_breach(atom/source, mob/living/player_breacher)
+	log_game("[player_breacher] has caused a masquerade breach in front of [source]")
 	var/pre_breach_score = player_breacher.masquerade_score
 	if(pre_breach_score == 0)
 		return
 	player_breacher.masquerade_score = max(0, player_breacher.masquerade_score - 1)
-	masquerade_breachers += list(list(player_breacher, source, reason))
+	masquerade_breachers += list(list(player_breacher, source))
 	if(get_vampire_splat(player_breacher))
 		GLOB.masquerade_breakers_list |= player_breacher
 		GLOB.supernatural_breakers_list |= player_breacher
@@ -155,7 +155,7 @@ SUBSYSTEM_DEF(masquerade)
 		var/list/masquerade_breach_list = masquerade_breach
 		if(islist(masquerade_breach_list[2])) //If its the skull list, then its a long term masq breach. Clear it.
 			for(var/atom/list_object as anything in masquerade_breach_list[2])
-				SSmasquerade.masquerade_reinforce(list_object, masquerade_breach_list[1], MASQUERADE_REASON_PREFERENCES)
+				SSmasquerade.masquerade_reinforce(list_object, masquerade_breach_list[1])
 				return
 		else
 			var/atom/object = masquerade_breach_list[2]
@@ -177,7 +177,7 @@ SUBSYSTEM_DEF(masquerade)
 		var/list/masquerade_breach_list = masquerade_breach
 		if(islist(masquerade_breach_list[2])) //If its the skull list, then its a long term masq breach. Clear it.
 			for(var/atom/list_object as anything in masquerade_breach_list[2])
-				SSmasquerade.masquerade_reinforce(list_object, masquerade_breach_list[1], MASQUERADE_REASON_PREFERENCES)
+				SSmasquerade.masquerade_reinforce(list_object, masquerade_breach_list[1])
 		else
 			var/atom/object = masquerade_breach_list[2]
 			SEND_SIGNAL(object, COMSIG_ALL_MASQUERADE_REINFORCE)
