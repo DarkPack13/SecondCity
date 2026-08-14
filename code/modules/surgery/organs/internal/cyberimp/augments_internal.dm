@@ -469,8 +469,10 @@
 		/datum/surgery_operation/limb/bioware/nerve_splicing/mechanic,
 		/datum/surgery_operation/limb/bioware/vein_threading,
 		/datum/surgery_operation/limb/bioware/vein_threading/mechanic,
+/* // DARKPACK EDIT REMOVAL START - Removes /tg/ Brainwashing
 		/datum/surgery_operation/organ/brainwash,
 		/datum/surgery_operation/organ/brainwash/mechanic,
+*/ // DARKPACK EDIT REMOVAL END - Removes /tg/ Brainwashing
 		/datum/surgery_operation/organ/pacify,
 		/datum/surgery_operation/organ/pacify/mechanic,
 	)

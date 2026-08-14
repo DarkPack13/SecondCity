@@ -41,7 +41,7 @@
 			As a consequence, this item became an antique to many collectors - \
 			though some back alley surgeons still seek one out for its now uncommon knowledge." \
 	)
-
+/* // DARKPACK EDIT REMOVAL START - Removes /tg/ Brainwashing
 /obj/item/disk/surgery/brainwashing
 	name = "brainwashing surgery disk"
 	desc = "Provides instructions on how to impress an order on a brain, making it the primary objective of the patient."
@@ -57,3 +57,4 @@
 		/datum/surgery_operation/organ/brainwash/sleeper,
 		/datum/surgery_operation/organ/brainwash/sleeper/mechanic,
 	)
+*/ // DARKPACK EDIT REMOVAL END - Removes /tg/ Brainwashing
