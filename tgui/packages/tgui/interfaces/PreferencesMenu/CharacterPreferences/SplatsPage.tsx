@@ -1,8 +1,8 @@
 // THIS IS A DARKPACK UI FILE
 
-import { useState } from 'react'; // DARKPACK EDIT ADD
+import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { ConfirmModal } from '../components/ConfirmModal'; // DARKPACK EDIT ADD
+import { ConfirmModal } from '../components/ConfirmModal';
 import {
   BlockQuote,
   Box,
@@ -114,10 +114,10 @@ type SplatsPageInnerProps = {
 function SplatsPageInner(props: SplatsPageInnerProps) {
   const { act, data } = useBackend<PreferencesMenuData>();
   const setSplats = createSetPreference(act, 'splats');
-  // DARKPACK EDIT START
-  const [pendingConfirm, setPendingConfirm] = useState<(() => void) | null>(null,);
+  const [pendingConfirm, setPendingConfirm] = useState<(() => void) | null>(
+    null,
+  );
   const whitelistSet = new Set(data.player_whitelists || []);
-  // DARKPACK EDIT END
 
   const splats: [string, Splats][] = Object.entries(props.splats).map(
     ([splats, data]) => {
@@ -152,20 +152,25 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
                 return (
                   <Button
                     key={splatsKey}
-                    // DARKPACK EDIT START - warn + clear disciplines when switching splats
+                    // warn + clear disciplines when switching splats
                     onClick={() => {
-                      if ( splatsKey !== data.character_preferences.misc.splats ) {
+                      if (
+                        splatsKey !== data.character_preferences.misc.splats
+                      ) {
                         setPendingConfirm(() => () => {
                           act('clear_discipline_levels');
                           setSplats(splatsKey);
                         });
                       }
                     }}
-                    // DARKPACK EDIT END
                     selected={
                       data.character_preferences.misc.splats === splatsKey
                     }
-                    tooltip={ isLocked ? `${splats.name} (Whitelisted, apply for it  on Discord!)` : splats.name } // DARKPACK EDIT ADD
+                    tooltip={
+                      isLocked
+                        ? `${splats.name} (Not whitelisted!)`
+                        : splats.name
+                    }
                     style={{
                       display: 'block',
                       height: '64px',
@@ -178,7 +183,6 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
                       ml={-1}
                       style={{ opacity: isLocked ? 0.4 : 1 }}
                     />
-                    {/* DARKPACK EDIT START */}
                     {isLocked && (
                       <Icon
                         name="lock"
@@ -192,7 +196,6 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
                         }}
                       />
                     )}
-                    {/* DARKPACK EDIT END */}
                   </Button>
                 );
               })}
@@ -247,7 +250,7 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
           </Stack.Item>
         </Stack>
       </Stack.Item>
-      {/* DARKPACK EDIT START - confirm dialog for splat changes */}
+      {/* confirm dialog for splat changes */}
       {pendingConfirm !== null && (
         <ConfirmModal
           onConfirm={() => {
@@ -257,7 +260,6 @@ function SplatsPageInner(props: SplatsPageInnerProps) {
           onCancel={() => setPendingConfirm(null)}
         />
       )}
-      {/* DARKPACK EDIT END */}
     </Stack>
   );
 }

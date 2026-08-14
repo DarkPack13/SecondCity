@@ -5,18 +5,7 @@ import {
   type FeatureToggle,
   type FeatureValueProps,
 } from '../base';
-/* DARKPACK REMOVAL START
-// vampire_clan is exported from darkpack_trusted_whitelist.tsx now to add lock icons for whitelisted clans, so this is commented out
-import { FeatureIconnedDropdownInput } from '../dropdowns';
 
-export const vampire_clan: FeatureChoiced = {
-  name: 'Clan',
-  component: (props: FeatureValueProps<string, string>) => {
-    return <FeatureIconnedDropdownInput {...props} />;
-  },
-};
-
-*/ // DARKPACK REMOVAL END
 export const clan_mark: FeatureChoiced = {
   name: 'Marks',
   component: (props: FeatureValueProps<string, string>) => {

@@ -7,12 +7,12 @@ import {
   Box,
   Button,
   Floating,
+  Icon, // DARKPACK EDIT ADD
   Input,
   LabeledList,
   NumberInput, // DARKPACK EDIT
   Section,
   Stack,
-  Icon, // DARKPACK EDIT ADD
 } from 'tgui-core/components';
 import { exhaustiveCheck } from 'tgui-core/exhaustive'; // DARKPACK EDIT ADD
 import { classes } from 'tgui-core/react';
@@ -36,9 +36,8 @@ import {
 import { useRandomToggleState } from '../useRandomToggleState';
 import { useServerPrefs } from '../useServerPrefs';
 import { DeleteCharacterPopup } from './DeleteCharacterPopup';
-import { MultiNameInput, NameInput } from './names';
 import { VocalsInput, VoiceInput } from './darkpack_vocals'; // DARKPACK EDIT ADDITION
-import { TRUSTED_CLAN_WHITELIST_IDS } from '../preferences/features/character_preferences/darkpack_trusted_whitelist'; // DARKPACK EDIT ADD
+import { MultiNameInput, NameInput } from './names';
 
 const CLOTHING_CELL_SIZE = 48;
 const CLOTHING_SIDEBAR_ROWS = 12; // DARKPACK EDIT CHANGE - ORIGINAL: 9;
@@ -166,7 +165,11 @@ function ChoicedSelection(props: ChoicedSelectionProps) {
                         props.onSelect(name);
                       }}
                       selected={name === props.selected}
-                      tooltip={locked ? `${name} (Whitelisted, apply on Discord!)` : name} // DARKPACK EDIT ADD
+                      tooltip={
+                        locked
+                          ? `${name} (Not whitelisted!)`
+                          : name
+                      } // DARKPACK EDIT ADD
                       tooltipPosition="right"
                       style={{
                         height: `${CLOTHING_SELECTION_CELL_SIZE}px`,
@@ -186,7 +189,7 @@ function ChoicedSelection(props: ChoicedSelectionProps) {
                           opacity: locked ? 0.4 : 1, // DARKPACK EDIT ADD
                         }}
                       />
-{/* DARKPACK EDIT START */}
+                      {/* DARKPACK EDIT START */}
                       {locked && (
                         <Box
                           style={{
@@ -201,7 +204,7 @@ function ChoicedSelection(props: ChoicedSelectionProps) {
                           <Icon name="lock" color="label" />
                         </Box>
                       )}
-{/* DARKPACK EDIT END */}
+                      {/* DARKPACK EDIT END */}
                     </Button>
                   );
                 },
@@ -439,7 +442,7 @@ export function PreferenceList(props: PreferenceListProps) {
                         value={value}
                       />
                     )}
-                  {/*DARKPACK EDIT END */}
+                    {/*DARKPACK EDIT END */}
                   </Stack.Item>
                 </Stack>
               </LabeledList.Item>
@@ -489,7 +492,9 @@ export function MainPage(props: MainPageProps) {
   const [multiNameInputOpen, setMultiNameInputOpen] = useState(false);
   const [vocalsInputOpen, setVocalsInputOpen] = useState(false); // DARKPACK EDIT ADDITION
   const [randomToggleEnabled] = useRandomToggleState();
-  const [pendingConfirm, setPendingConfirm] = useState<(() => void) | null>(null); // DARKPACK EDIT ADD - for popups
+  const [pendingConfirm, setPendingConfirm] = useState<(() => void) | null>(
+    null,
+  ); // DARKPACK EDIT ADD - for popups
   // DARKPACK EDIT START
   const whitelistSet = new Set(data.player_whitelists || []);
   const isTrusted = whitelistSet.has('trusted');
@@ -522,8 +527,12 @@ export function MainPage(props: MainPageProps) {
     ...data.character_preferences.non_contextual,
   };
   // DARKPACK EDIT ADD START - tracking age changes
-  const immortalAgeValue = nonContextualPreferences.immortal_age as number | undefined;
-  const immortalAgeServerData = serverData?.immortal_age as { minimum: number; maximum: number; step: number } | undefined;
+  const immortalAgeValue = nonContextualPreferences.immortal_age as
+    | number
+    | undefined;
+  const immortalAgeServerData = serverData?.immortal_age as
+    | { minimum: number; maximum: number; step: number }
+    | undefined;
   // DARKPACK EDIT ADD END
 
   if (randomBodyEnabled) {
@@ -570,18 +579,21 @@ export function MainPage(props: MainPageProps) {
           maxHeight="auto"
           // DARKPACK EDIT ADD START
           overrides={{
-            immortal_age: immortalAgeValue !== undefined ? (
-              <NumberInput
-                value={immortalAgeValue}
-                minValue={immortalAgeServerData?.minimum ?? 0}
-                maxValue={immortalAgeServerData?.maximum ?? 1000}
-                step={immortalAgeServerData?.step ?? 1}
-                onChange={(value) => setPendingConfirm(() => () => {
-                  createSetPreference(act, 'immortal_age')(value);
-                  act('clear_discipline_levels');
-                })}
-              />
-            ) : undefined,
+            immortal_age:
+              immortalAgeValue !== undefined ? (
+                <NumberInput
+                  value={immortalAgeValue}
+                  minValue={immortalAgeServerData?.minimum ?? 0}
+                  maxValue={immortalAgeServerData?.maximum ?? 1000}
+                  step={immortalAgeServerData?.step ?? 1}
+                  onChange={(value) =>
+                    setPendingConfirm(() => () => {
+                      createSetPreference(act, 'immortal_age')(value);
+                      act('clear_discipline_levels');
+                    })
+                  }
+                />
+              ) : undefined,
           }}
           // DARKPACK EDIT ADD END
         />
@@ -676,15 +688,15 @@ export function MainPage(props: MainPageProps) {
                 }}
               />
 
-            {/* DARKPACK EDIT ADDITION START */}
-            <Stack.Item position="relative">
-              <VoiceInput
-                openVocalsInput={() => {
-                  setVocalsInputOpen(true);
-                }}
-              />
-            </Stack.Item>
-            {/* DARKPACK EDIT ADDITION END */}
+              {/* DARKPACK EDIT ADDITION START */}
+              <Stack.Item position="relative">
+                <VoiceInput
+                  openVocalsInput={() => {
+                    setVocalsInputOpen(true);
+                  }}
+                />
+              </Stack.Item>
+              {/* DARKPACK EDIT ADDITION END */}
             </Stack.Item>
           </Stack>
         </Stack.Item>
@@ -716,12 +728,17 @@ export function MainPage(props: MainPageProps) {
                   : baseSelect;
               // DARKPACK EDIT END
               // DARKPACK EDIT START - lock icons for whitelisted clans
-              const isChoiceLocked = clothingKey === 'vampire_clan'
-                ? (choice: string) => {
-                    const whitelistId = TRUSTED_CLAN_WHITELIST_IDS[choice];
-                    return !!whitelistId && !isTrusted && !whitelistSet.has(whitelistId);
-                  }
-                : undefined;
+              const isChoiceLocked =
+                clothingKey === 'vampire_clan'
+                  ? (choice: string) => {
+                      const whitelistId = data.clan_names_to_key[choice];
+                      return (
+                        !!whitelistId &&
+                        !isTrusted &&
+                        !whitelistSet.has(whitelistId)
+                      );
+                    }
+                  : undefined;
               // DARKPACK EDIT END
               return (
                 <Stack.Item key={clothingKey}>

@@ -6,15 +6,6 @@ import { capitalizeFirst } from 'tgui-core/string';
 import type { PreferencesMenuData } from '../../../types';
 import type { FeatureChoiced, FeatureValueProps } from '../base';
 
-export const TRUSTED_CLAN_WHITELIST_IDS: Record<string, string> = {
-  Baali: 'baali',
-  Salubri: 'healer_salubri',
-  'Warrior Salubri': 'warrior_salubri',
-  'True Brujah': 'true_brujah',
-  Cappadocian: 'cappadocian',
-  'Harbinger of Skulls': 'harbinger_of_skulls',
-};
-
 type ClanServerData = {
   choices: string[];
   icons: Record<string, string>;
@@ -28,6 +19,7 @@ export const vampire_clan: FeatureChoiced = {
     const { serverData, handleSetValue, value } = props;
     const whitelistSet = new Set(data.player_whitelists || []);
     const isTrusted = whitelistSet.has('trusted');
+    const names_to_key = data.clan_names_to_key;
 
     if (!serverData) {
       return null;
@@ -36,7 +28,7 @@ export const vampire_clan: FeatureChoiced = {
     const { choices, icons } = serverData;
 
     const options = choices.map((choice) => {
-      const whitelistId = TRUSTED_CLAN_WHITELIST_IDS[choice];
+      const whitelistId = names_to_key[choice];
       const isLocked =
         !!whitelistId && !isTrusted && !whitelistSet.has(whitelistId);
 
@@ -77,9 +69,11 @@ export const vampire_clan: FeatureChoiced = {
       return { displayText, value: choice };
     });
 
-    const selectedWhitelistId = TRUSTED_CLAN_WHITELIST_IDS[value];
+    const selectedWhitelistId = names_to_key[value];
     const selectedIsLocked =
-      !!selectedWhitelistId && !isTrusted && !whitelistSet.has(selectedWhitelistId);
+      !!selectedWhitelistId &&
+      !isTrusted &&
+      !whitelistSet.has(selectedWhitelistId);
 
     return (
       <Dropdown

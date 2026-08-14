@@ -86,14 +86,16 @@ GLOBAL_LIST_EMPTY(default_player_whitelists)
 
 			defs[splat_id] = !splat.requires_whitelist()
 
+		var/list/clan_whitelist_values = CONFIG_GET(keyed_list/whitelisted_clans)
 		for(var/clan_name in GLOB.vampire_clan_list)
 			var/datum/subsplat/vampire_clan/clan = get_vampire_clan(clan_name)
 			if(!clan)
 				continue
 
-			if(clan.id in CONFIG_GET(keyed_list/whitelisted_clans))
+			if(clan.id in clan_whitelist_values)
 				defs[clan.id] = FALSE
-			// defs[clan.id] = !(clan.id in CONFIG_GET(keyed_list/whitelisted_clans))
+			else
+				defs[clan.id] = TRUE
 
 		GLOB.default_player_whitelists = defs
 

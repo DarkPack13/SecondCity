@@ -86,7 +86,7 @@
 
 	for(var/clan_name in GLOB.vampire_clan_list)
 		var/datum/subsplat/vampire_clan/clan = get_vampire_clan(clan_name)
-		if(!clan || !defaults[clan.id])
+		if(!clan)
 			continue
 		defs[clan.id] = list(
 			"name" = clan.name,
