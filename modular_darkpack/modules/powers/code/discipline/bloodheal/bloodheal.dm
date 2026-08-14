@@ -86,6 +86,8 @@
 
 		for (var/i in 1 to min(vitae_cost, length(brain.get_traumas_type())))
 			var/datum/brain_trauma/healing_trauma = pick(brain.get_traumas_type())
+			if(HAS_TRAIT(owner, TRAIT_DIABLERIE) && istype(healing_trauma, /datum/brain_trauma/special/imaginary_friend))
+				continue
 			brain.cure_trauma_type(healing_trauma, resilience = TRAUMA_RESILIENCE_WOUND)
 
 	// Let core species logic handle restoring/healing organs so missing eyes are rebuilt correctly.
