@@ -2812,11 +2812,11 @@
 /turf/open/misc/dirt,
 /area/vtm/interior/cog/caern)
 "aKM" = (
-/obj/effect/turf_decal/siding/white/end{
+/obj/structure/chair/comfy/black,
+/obj/effect/turf_decal/siding/grey/end{
 	dir = 1
 	},
-/obj/structure/chair/comfy/black,
-/turf/open/floor/carpet/cyan,
+/turf/open/floor/carpet/darkpack/bluegold,
 /area/vtm/interior/clinic)
 "aKN" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -6241,11 +6241,11 @@
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/police)
 "bHr" = (
-/obj/effect/turf_decal/siding/white/end,
 /obj/structure/chair/comfy/black{
 	dir = 1
 	},
-/turf/open/floor/carpet/cyan,
+/obj/effect/turf_decal/siding/grey/end,
+/turf/open/floor/carpet/darkpack/bluegold,
 /area/vtm/interior/clinic)
 "bHt" = (
 /obj/structure/railing{
@@ -21140,14 +21140,14 @@
 /turf/open/floor/wood/ornate,
 /area/vtm/interior/millennium_tower/f3)
 "fDY" = (
-/obj/effect/turf_decal/siding/white{
+/obj/structure/table,
+/obj/effect/turf_decal/siding/grey{
 	dir = 8
 	},
-/obj/effect/turf_decal/siding/white{
+/obj/effect/turf_decal/siding/grey{
 	dir = 4
 	},
-/obj/structure/table,
-/turf/open/floor/carpet/cyan,
+/turf/open/floor/carpet/darkpack/bluegold,
 /area/vtm/interior/clinic)
 "fDZ" = (
 /turf/closed/wall/vampwall/brick_old,
@@ -53665,7 +53665,7 @@
 "oHi" = (
 /obj/structure/vampdoor{
 	dir = 8;
-	name = "\Foyer"
+	name = "Foyer"
 	},
 /obj/effect/mapping_helpers/door/bash_difficulty/six,
 /obj/effect/mapping_helpers/door/access/clinic,
