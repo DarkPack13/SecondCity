@@ -35,7 +35,7 @@
 		},
 		{
 			"Down": -1,
-			"Baseturf": "/turf/open/openspace"
+			"Baseturf": "/turf/open/floor/plating/rough/cave"
 		}
 	],
 	"max_npcs": 60,
