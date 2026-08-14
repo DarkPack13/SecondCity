@@ -4226,7 +4226,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/graveyard)
 "FR" = (
-/obj/structure/chair/sofa/corp/right{
+/obj/structure/chair/sofa/corp/left{
 	dir = 1
 	},
 /turf/open/floor/carpet/green,
@@ -5733,7 +5733,7 @@
 "Qe" = (
 /obj/machinery/light/directional/south,
 /obj/structure/chair/sofa/corp/corner{
-	dir = 1
+	dir = 8
 	},
 /turf/open/floor/carpet/green,
 /area/vtm/interior/wyrm_corrupted)
@@ -6346,8 +6346,8 @@
 /turf/closed/wall/vampwall/rock,
 /area/vtm/graveyard)
 "UZ" = (
-/obj/structure/chair/sofa/corp/left{
-	dir = 4
+/obj/structure/chair/sofa/corp/right{
+	dir = 8
 	},
 /turf/open/floor/carpet/green,
 /area/vtm/interior/wyrm_corrupted)
