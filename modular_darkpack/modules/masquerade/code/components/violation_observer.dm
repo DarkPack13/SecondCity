@@ -38,7 +38,6 @@
 	animate(exclamation, pixel_z = 32, alpha = 255, time = 0.5 SECONDS, easing = ELASTIC_EASING)
 
 	source.AddComponent(/datum/component/masquerade_hud, player_breacher)
-	breached_players += player_breacher
 	SSmasquerade.masquerade_breach(source, player_breacher, (isliving(source) ? MASQUERADE_REASON_NPC : MASQUERADE_REASON_OBJECT))
 	RegisterSignal(player_breacher, COMSIG_LIVING_DEATH, PROC_REF(on_breacher_death))
 
@@ -47,34 +46,40 @@
 /atom/proc/on_masquerade_violation_reinforced(atom/source, mob/living/player_breacher)
 	SIGNAL_HANDLER
 
-	if(player_breacher in breached_players)
-		SEND_SIGNAL(source, COMSIG_MASQUERADE_HUD_DELETE, player_breacher)
-		SSmasquerade.masquerade_reinforce(source, player_breacher)
-		source.observe_masquerade_reinforce(player_breacher)
-		breached_players -= player_breacher
+	for(var/breach in SSmasquerade.masquerade_breachers)
+		if(breach[1] != player_breacher)
+			continue
+		if(breach[2] != src)
+			continue
+		SEND_SIGNAL(src, COMSIG_MASQUERADE_HUD_DELETE, player_breacher)
+		SSmasquerade.masquerade_reinforce(src, player_breacher)
+		src.observe_masquerade_reinforce(player_breacher)
 		UnregisterSignal(player_breacher, COMSIG_LIVING_DEATH)
 
 		return TRUE
 
-/atom/proc/on_death(atom/source)
+/atom/proc/on_death()
 	SIGNAL_HANDLER
 
-	for(var/player_breacher in breached_players)
-		SEND_SIGNAL(source, COMSIG_MASQUERADE_HUD_DELETE, player_breacher)
-		SSmasquerade.masquerade_reinforce(source, player_breacher)
-		source.observe_masquerade_reinforce(player_breacher)
-		breached_players -= player_breacher
+	for(var/breach in SSmasquerade.masquerade_breachers)
+		var/mob/living/player_breacher = breach[1]
+		var/atom/breach_witness = breach[2]
+		if(breach_witness != src)
+			continue
+		SEND_SIGNAL(src, COMSIG_MASQUERADE_HUD_DELETE, player_breacher)
+		SSmasquerade.masquerade_reinforce(src, player_breacher)
+		observe_masquerade_reinforce(player_breacher)
 		UnregisterSignal(player_breacher, COMSIG_LIVING_DEATH)
 
 /atom/proc/on_breacher_death(mob/living/dead_breacher, gibbed)
 	SIGNAL_HANDLER
 
-	if(dead_breacher in breached_players)
-		var/atom/parent_atom = parent
-		SEND_SIGNAL(parent, COMSIG_MASQUERADE_HUD_DELETE, dead_breacher)
-		SSmasquerade.masquerade_reinforce(parent, dead_breacher)
-		parent_atom.observe_masquerade_reinforce(dead_breacher)
-		breached_players -= dead_breacher
+	for(var/breach in SSmasquerade.masquerade_breachers)
+		if(breach[1] != dead_breacher)
+			continue
+		SEND_SIGNAL(src, COMSIG_MASQUERADE_HUD_DELETE, dead_breacher)
+		SSmasquerade.masquerade_reinforce(src, dead_breacher)
+		observe_masquerade_reinforce(dead_breacher)
 		UnregisterSignal(dead_breacher, COMSIG_LIVING_DEATH)
 
 /atom/proc/observe_masquerade_violation(player_breacher)
