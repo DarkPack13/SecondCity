@@ -1,0 +1,4 @@
+author: "Uristthedorf"
+delete-after: True
+changes:
+  - rscadd: "You can now put boots and lockpicks inside of boots now."

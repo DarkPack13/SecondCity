@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - code_imp: "Optimizes walls by not rendering frills when they aren't visible"

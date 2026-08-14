@@ -1,0 +1,5 @@
+author: "Dangerlurking"
+delete-after: True
+changes:
+  - rscadd: "Adds path of Asakku along with its V20 book description."
+  - rscadd: "Adds the otherworldly bearing in the morality defines.\n:cl:"

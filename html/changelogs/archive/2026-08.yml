@@ -110,3 +110,38 @@
   - rscadd: submarine sandwiches (4 types)
   flleeppyy:
   - admin: Removed Darkpack Ban Options and moved LOOC ban to the Abstract category.
+2026-08-11:
+  FalloutFalcon:
+  - rscadd: Hub displays more information about server
+  - config: Server tagline config to be displayed in hub
+  breadcrombs:
+  - rscadd: The lever action rifle alongside the double barrel shotgun can now be
+      purchased from the supply console.
+  - rscadd: 45 ACP can now be bought from the supply console.
+  - balance: The lever action rifle can now be stored in the belt slot.
+2026-08-12:
+  chazzyjazzy:
+  - bugfix: auspex 5 ghosts can no longer talk, grab, emote, or be seein from Auspex
+      3
+2026-08-13:
+  FalloutFalcon:
+  - balance: Basic mob bosses take aggrevated damage
+  buffyuwu:
+  - rscadd: Adds 2 new jackets, 2 new shawls, and 2 new dresses made by @Major00 and
+      @Imaginos16
+  cornercube:
+  - rscadd: consistency in naming convention
+  - bugfix: deagle .50AE crate
+  - rscadd: obtainable mac-10
+2026-08-14:
+  Marshmellow105:
+  - rscadd: adds bodycams for police officers, when worn, police dispatchers can watch
+      their camera feed from the police station from a security console, and vampires
+      using disciplines get an un-restorable breach when in front of a police officer
+      with the bodycamera on
+  TheTrueSilverRat:
+  - rscadd: add a feature to be wyrm tainted
+  - code_imp: added the needed back-end tgui files for it.
+  chazzyjazzy:
+  - bugfix: auspex 5 ghosts cant enter cars
+  - bugfix: fixes sabbat war party totem

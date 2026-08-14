@@ -1,0 +1,6 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - bugfix: "pouring gas works on all turf with real ground (not water or open space)"
+  - admin: "adds extra logging for important combat interactions"
+  - admin: "frenzy logging shows the proper target of the frenzy instead of themselves"

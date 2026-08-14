@@ -1,0 +1,4 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - bugfix: "bite attacks no longer count as eating food"

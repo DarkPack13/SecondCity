@@ -1,0 +1,4 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - admin: "vampire bites are now logged in attack.log"
