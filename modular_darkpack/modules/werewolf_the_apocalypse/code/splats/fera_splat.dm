@@ -96,6 +96,7 @@
 /datum/splat/werewolf/shifter
 	abstract_type = /datum/splat/werewolf/shifter
 	splat_traits = list(
+		TRAIT_POSSIBLE_WYRM,
 		TRAIT_FERA_FORMS,
 		TRAIT_FERA_FUR,
 		TRAIT_FERA_RENOWN,
@@ -254,6 +255,7 @@
 	name = "Corax"
 	id = SPLAT_CORAX
 	splat_traits = list(
+		TRAIT_POSSIBLE_WYRM,
 		TRAIT_FERA_FORMS,
 		TRAIT_FERA_FUR,
 		TRAIT_FERA_RENOWN,
