@@ -29945,6 +29945,15 @@
 /obj/effect/landmark/start/darkpack/pentex/employee,
 /turf/open/floor/city/plating,
 /area/vtm/interior/endron_facility/restricted)
+"ify" = (
+/obj/effect/decal/wallpaper/stone/low{
+	pixel_y = 16
+	},
+/obj/effect/decal/wallpaper/stone/low{
+	pixel_y = 24
+	},
+/turf/open/umbra,
+/area/vtm)
 "ifB" = (
 /obj/structure/chair/plastic{
 	dir = 8
@@ -75186,6 +75195,16 @@
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/city/toilet,
 /area/vtm/interior/setite)
+"uzE" = (
+/obj/effect/decal/wallpaper/stone/low{
+	pixel_y = 16
+	},
+/obj/effect/decal/wallpaper/stone/low{
+	pixel_y = 24;
+	pixel_x = 0
+	},
+/turf/open/umbra,
+/area/vtm)
 "uzI" = (
 /obj/effect/decal/wallpaper/blue,
 /turf/closed/wall/vampwall/rich/old,
@@ -363444,7 +363463,7 @@ eQD
 eQD
 eQD
 eQD
-tFB
+ify
 tFB
 tFB
 tFB
@@ -363701,7 +363720,7 @@ bCc
 tAX
 pLj
 eQD
-tFB
+ify
 tFB
 tFB
 tFB
@@ -363958,7 +363977,7 @@ leG
 tqH
 yfG
 eQD
-tFB
+ify
 tFB
 tFB
 tFB
@@ -364215,7 +364234,7 @@ tsb
 vDQ
 vDQ
 eQD
-tFB
+ify
 tFB
 tFB
 tFB
@@ -364472,7 +364491,7 @@ wDJ
 vDQ
 iay
 eQD
-tFB
+ify
 tFB
 tFB
 tFB
@@ -364732,7 +364751,7 @@ cCQ
 cCQ
 cCQ
 cCQ
-tFB
+ify
 tFB
 tFB
 tFB
@@ -364989,7 +365008,7 @@ rZV
 lnC
 lVM
 cCQ
-tFB
+ify
 tFB
 tFB
 tFB
@@ -365260,7 +365279,7 @@ okh
 okh
 okh
 kNs
-tFB
+ify
 tFB
 tFB
 tFB
@@ -365518,7 +365537,7 @@ eyh
 pHc
 fWC
 kNs
-tFB
+ify
 tFB
 tFB
 tFB
@@ -365775,7 +365794,7 @@ kno
 kno
 wDg
 kVm
-tFB
+ify
 tFB
 tFB
 tFB
@@ -366032,7 +366051,7 @@ kno
 kno
 foR
 kVm
-tFB
+ify
 tFB
 tFB
 tFB
@@ -366289,7 +366308,7 @@ kno
 kno
 foR
 kVm
-tFB
+ify
 tFB
 tFB
 tFB
@@ -366546,7 +366565,7 @@ kno
 kno
 foR
 kVm
-tFB
+ify
 tFB
 tFB
 tFB
@@ -366803,7 +366822,7 @@ kno
 kno
 foR
 kVm
-tFB
+ify
 tFB
 tFB
 tFB
@@ -367060,7 +367079,7 @@ kno
 bEh
 rYl
 kVm
-tFB
+ify
 tFB
 tFB
 tFB
@@ -367317,7 +367336,7 @@ laI
 dXY
 fWC
 xqC
-tFB
+ify
 tFB
 tFB
 tFB
@@ -367573,7 +367592,7 @@ scE
 scE
 scE
 xqC
-tFB
+ify
 tFB
 tFB
 tFB
@@ -367816,7 +367835,7 @@ iiA
 jbr
 awR
 cCQ
-tFB
+uzE
 tFB
 tFB
 tFB
@@ -368073,7 +368092,7 @@ cCQ
 krG
 krG
 cCQ
-tFB
+ify
 tFB
 tFB
 tFB
@@ -378340,7 +378359,7 @@ uyr
 uyr
 uyr
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -378608,7 +378627,7 @@ uyr
 uyr
 uyr
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -378865,7 +378884,7 @@ unx
 unx
 unx
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -379122,7 +379141,7 @@ unx
 unx
 unx
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -379379,7 +379398,7 @@ unx
 unx
 unx
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -379636,7 +379655,7 @@ unx
 unx
 unx
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -379893,7 +379912,7 @@ unx
 unx
 unx
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -380153,7 +380172,7 @@ uyr
 uyr
 uyr
 gZL
-tFB
+ify
 tFB
 tFB
 tFB
@@ -380411,7 +380430,7 @@ pOm
 pOm
 uyr
 klT
-tFB
+ify
 tFB
 tFB
 tFB
@@ -380668,7 +380687,7 @@ qYc
 qYc
 qAn
 gZL
-tFB
+ify
 tFB
 tFB
 tFB
@@ -380925,7 +380944,7 @@ cIk
 ttp
 qYc
 fbY
-tFB
+ify
 tFB
 tFB
 tFB
@@ -381182,7 +381201,7 @@ aYA
 mlK
 qYc
 fbY
-tFB
+ify
 tFB
 tFB
 tFB
@@ -381439,7 +381458,7 @@ aYA
 oVh
 bId
 fbY
-tFB
+ify
 tFB
 tFB
 tFB
@@ -381696,7 +381715,7 @@ aYA
 mlK
 qYc
 fbY
-tFB
+ify
 tFB
 tFB
 tFB
@@ -381953,7 +381972,7 @@ fLJ
 uhH
 qYc
 fbY
-tFB
+ify
 tFB
 tFB
 tFB
@@ -382210,7 +382229,7 @@ qYc
 qYc
 qAn
 gZL
-tFB
+ify
 tFB
 tFB
 tFB
@@ -382467,7 +382486,7 @@ pco
 qYc
 uyr
 klT
-tFB
+ify
 tFB
 tFB
 tFB
@@ -382723,7 +382742,7 @@ uyr
 uyr
 uyr
 gZL
-tFB
+ify
 tFB
 tFB
 tFB
@@ -382977,7 +382996,7 @@ xFi
 mAL
 qzi
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -383234,7 +383253,7 @@ mAL
 xkF
 wih
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -383491,7 +383510,7 @@ mAL
 mAL
 snZ
 qnA
-tFB
+ify
 tFB
 tFB
 tFB
@@ -383748,7 +383767,7 @@ mAL
 kwy
 moV
 qnA
-tFB
+ify
 tFB
 tFB
 tFB
@@ -384005,7 +384024,7 @@ qnA
 qnA
 qnA
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -384257,7 +384276,7 @@ unx
 unx
 unx
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -384514,7 +384533,7 @@ unx
 unx
 unx
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -384771,7 +384790,7 @@ unx
 unx
 unx
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -385028,7 +385047,7 @@ unx
 unx
 unx
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -385285,7 +385304,7 @@ uyr
 uyr
 uyr
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -385535,7 +385554,7 @@ uyr
 uyr
 kXx
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -385792,7 +385811,7 @@ qND
 qND
 oJS
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -386049,7 +386068,7 @@ qND
 qND
 qND
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -386306,7 +386325,7 @@ xYN
 mqA
 pvC
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -386563,7 +386582,7 @@ cqC
 qvV
 wvc
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -386820,7 +386839,7 @@ pAw
 cTG
 cTG
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
@@ -387077,7 +387096,7 @@ uyr
 uyr
 uyr
 uyr
-tFB
+ify
 tFB
 tFB
 tFB
