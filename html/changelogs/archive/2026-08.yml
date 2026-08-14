@@ -98,3 +98,15 @@
   - rscadd: consistency in naming convention
   - bugfix: deagle .50AE crate
   - rscadd: obtainable mac-10
+2026-08-14:
+  Marshmellow105:
+  - rscadd: adds bodycams for police officers, when worn, police dispatchers can watch
+      their camera feed from the police station from a security console, and vampires
+      using disciplines get an un-restorable breach when in front of a police officer
+      with the bodycamera on
+  TheTrueSilverRat:
+  - rscadd: add a feature to be wyrm tainted
+  - code_imp: added the needed back-end tgui files for it.
+  chazzyjazzy:
+  - bugfix: auspex 5 ghosts cant enter cars
+  - bugfix: fixes sabbat war party totem
