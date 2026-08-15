@@ -8050,6 +8050,13 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
+"cgT" = (
+/obj/structure/railing{
+	dir = 1;
+	pixel_y = 3
+	},
+/turf/open/floor/wood/smooth/old,
+/area/vtm/interior)
 "cgX" = (
 /obj/effect/turf_decal/bordur{
 	dir = 8
@@ -8461,10 +8468,6 @@
 /obj/item/folder/red,
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/millennium_tower)
-"cmA" = (
-/obj/structure/sign/warning/chem_diamond/directional/south,
-/turf/open/floor/plating/canal,
-/area/vtm/interior/endron_facility/plant)
 "cmC" = (
 /obj/effect/turf_decal/siding/white{
 	pixel_y = -1
@@ -22579,6 +22582,14 @@
 	},
 /turf/open/floor/plating/roofwalk,
 /area/vtm)
+"gdA" = (
+/obj/machinery/button/door{
+	id = "pentexhq_exec";
+	pixel_y = -1;
+	pixel_x = 23
+	},
+/turf/open/floor/carpet/green,
+/area/vtm/interior/wyrm_corrupted)
 "gdC" = (
 /obj/machinery/light/directional/east,
 /obj/effect/turf_decal/trimline/dark_green/warning,
@@ -51829,13 +51840,6 @@
 /area/vtm/interior/graveyard)
 "okd" = (
 /obj/structure/stairs/east,
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 1;
-	pixel_y = 12
-	},
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior)
 "okh" = (
@@ -55558,13 +55562,6 @@
 	dir = 4
 	},
 /area/vtm/interior)
-"pje" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/cardboard,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior)
 "pjf" = (
 /obj/effect/turf_decal/bordur{
 	dir = 10
@@ -56326,6 +56323,11 @@
 /obj/structure/table/wood/fancy/green,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/giovanni)
+"puZ" = (
+/obj/machinery/light/directional/south,
+/obj/structure/sign/warning/chem_diamond/directional/south,
+/turf/open/floor/plating/canal,
+/area/vtm/interior/endron_facility/plant)
 "pvb" = (
 /obj/effect/decal/pallet,
 /obj/item/clothing/head/cone,
@@ -65088,17 +65090,6 @@
 /obj/machinery/light/small/directional/south,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/anarch/basement)
-"rJS" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 1;
-	pixel_y = 12
-	},
-/obj/effect/decal/cleanable/cardboard,
-/turf/open/floor/wood/smooth/old,
-/area/vtm/interior)
 "rJV" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 5
@@ -65562,9 +65553,6 @@
 /turf/open/floor/wood/old,
 /area/vtm/outside/pacificheights/forest)
 "rQP" = (
-/obj/structure/railing{
-	dir = 4
-	},
 /obj/structure/railing{
 	dir = 1;
 	pixel_y = 3
@@ -167916,7 +167904,7 @@ vEB
 wcC
 hXm
 cOQ
-kEi
+wDe
 hXm
 qLs
 vwv
@@ -168173,7 +168161,7 @@ vEB
 kiL
 hXm
 sut
-wDe
+kEi
 hXm
 qLs
 wCd
@@ -181031,7 +181019,7 @@ atu
 sba
 atu
 uYT
-rJS
+tqA
 uYT
 tMU
 qBk
@@ -246310,7 +246298,7 @@ ntq
 ntq
 uYT
 iHq
-pje
+tqA
 dFt
 uYT
 pkO
@@ -246568,7 +246556,7 @@ ntq
 uYT
 iHq
 rQP
-iHq
+cgT
 uYT
 dpF
 jJA
@@ -246825,7 +246813,7 @@ ntq
 uYT
 dFt
 rQP
-iHq
+cgT
 uYT
 ofB
 kpA
@@ -354620,7 +354608,7 @@ dLJ
 mQz
 ndl
 unF
-aPk
+gdA
 aPk
 aPk
 aPk
@@ -362837,7 +362825,7 @@ tZR
 tZR
 jJZ
 jJZ
-eCX
+puZ
 qWP
 iiu
 rcG
@@ -363351,7 +363339,7 @@ dLJ
 sBF
 bcx
 iiu
-cmA
+iiu
 stf
 stf
 iBe
