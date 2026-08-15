@@ -52,7 +52,7 @@ export const ContactElement = (props: {
               fontSize={1.5}
             >
               <Stack fill align="center" justify="center">
-                <Stack.Item>{contact?.name?.[0] || '?'}</Stack.Item>
+                <Stack.Item>{contact.name ? contact.name[0] : '?'}</Stack.Item>
               </Stack>
             </Box>
           </Stack.Item>
