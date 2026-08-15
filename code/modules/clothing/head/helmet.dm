@@ -500,31 +500,26 @@
 	desc = "A classic metal helmet."
 	icon_state = "knight_green"
 	inhand_icon_state = "knight_helmet"
-	armor_type = null //DARKPACK EDIT ADDITION (Soak) - Removing normal armour for soak mechanics instead, but preserving for reference. Overriding existing armour value. Previous: /datum/armor/helmet_knight
+	armor_type = /datum/armor/helmet_knight
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDESNOUT|HIDEFACIALHAIR // DARKPACK EDIT CHANGE
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	resistance_flags = NONE
 	strip_delay = 8 SECONDS
 	dog_fashion = null
 	clothing_traits = list(TRAIT_HEAD_INJURY_BLOCKED)
-	bashing_soak = 4
-	lethal_melee_soak = 4
-	lethal_bullet_soak = 1
-	agg_supernatural_soak = 1
 
 /obj/item/clothing/head/helmet/knight/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/adjust_fishing_difficulty, 3)
 
-/*/datum/armor/helmet_knight
+/datum/armor/helmet_knight
 	melee = 75 // DARKPACK EDIT CHANGE
 	bullet = 50 // DARKPACK EDIT CHANGE
 	laser = 10
 	energy = 10
 	fire = 80
 	acid = 80
-	wound = 25 // DARKPACK EDIT CHANGE 
-*/
+	wound = 25 // DARKPACK EDIT CHANGE
 
 /obj/item/clothing/head/helmet/knight/blue
 	icon_state = "knight_blue"
