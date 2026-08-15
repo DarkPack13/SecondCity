@@ -70,8 +70,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		return
 	spans |= speech_span
 	language ||= get_selected_language()
-	if(!message_mods[SAY_MOD_VERB])
-		message_mods[SAY_MOD_VERB] = say_mod(message, message_mods)
+	message_mods[SAY_MOD_VERB] ||= say_mod(message, message_mods)
 	send_speech(message, message_range, src, bubble_type, spans, language, message_mods, forced = forced)
 
 /// Called when this movable hears a message from a source.
@@ -163,6 +162,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 			listened += hearing_movable
 
 	do_tts_message(tts_message_to_use, message_language, message_mods, tts_filter, listened)
+
 /atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), visible_name = FALSE, source) // DARKPACK EDIT CHANGE - ORIGINAL: /atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), visible_name = FALSE)
 	//This proc uses [] because it is faster than continually appending strings. Thanks BYOND.
 	//Basic span
@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	//Speaker name
 	var/namepart = message_mods[MODE_SPEAKER_NAME_OVERRIDE] || speaker.get_message_voice(visible_name)
 
-	// DARKPACK EDIT START
+	// DARKPACK EDIT ADD START - GUESTBOOK
 	var/atom/movable/reliable_narrator = speaker
 	if(istype(reliable_narrator, /atom/movable/virtualspeaker))
 		var/atom/movable/virtualspeaker/fakespeaker = reliable_narrator
@@ -190,11 +190,12 @@ GLOBAL_LIST_INIT(freqtospan, list(
 			else
 				var/mob/living/living_narrator = reliable_narrator
 				namepart = "[living_narrator.get_generic_name(prefixed = TRUE, lowercase = TRUE)]"
-
+	// DARKPACK EDIT ADD END
+	// DARKPACK EDIT ADD START - PHONES
 	if(text2num(radio_freq) >= USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE)
 		var/icon/phone_icon = icon('modular_darkpack/modules/phones/icons/chat_icon.dmi', "phone")
 		freqpart = icon2html(phone_icon, src)
-	// DARKPACK EDIT END
+	// DARKPACK EDIT ADD END
 
 	//End name span.
 	var/endspanpart = "</span>"
@@ -203,8 +204,10 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/languageicon = ""
 	if(!message_mods[MODE_CUSTOM_SAY_ERASE_INPUT])
 		var/datum/language/dialect = GLOB.language_datum_instances[message_language]
-		if(istype(dialect) && dialect.display_icon(src))
-			languageicon = "[dialect.get_icon()] "
+		var/dialect_icon_type = dialect?.display_icon_type(src, message_mods) || DISPLAY_LANGUAGE_ICON_NONE
+		if(dialect_icon_type != DISPLAY_LANGUAGE_ICON_NONE)
+			var/datum/asset/spritesheet_batched/sheet = get_asset_datum(/datum/asset/spritesheet_batched/chat)
+			languageicon = sheet.icon_tag("language-[dialect.icon_state][dialect_icon_type == DISPLAY_LANGUAGE_ICON_PARTIAL ? "-partial" : ""]") + " "
 
 	// The actual message part.
 	var/messagepart = speaker.generate_messagepart(raw_message, spans, message_mods)

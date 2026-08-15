@@ -45,6 +45,8 @@
 	cold_protection = CHEST | GROIN | ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	//armor_type = /datum/armor/chemical_costume
+	clothing_flags = THICKMATERIAL
+	resistance_flags = ACID_PROOF
 	hoodtype = /obj/item/clothing/head/hooded/heisenberg_hood
 
 /*/datum/armor/chemical_costume
@@ -57,7 +59,7 @@
 
 /obj/item/clothing/head/hooded/heisenberg_hood
 	name = "chemical hood"
-	desc = "A hood attached to a cchemical costume."
+	desc = "A hood attached to a chemical costume."
 	icon_state = "heisenberg_helm"
 	icon = 'modular_darkpack/modules/clothes/icons/clothing.dmi'
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
@@ -67,6 +69,8 @@
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	flags_inv = HIDEHAIR | HIDEEARS
 	//armor_type = /datum/armor/chemical_costume
+	clothing_flags = THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | SNUG_FIT | STACKABLE_HELMET_EXEMPT | HEADINTERNALS
+	resistance_flags = ACID_PROOF
 
 //** SPOOOOKY ROBES FROM THE CAPPADOCIAN UPDATE **//
 /obj/item/clothing/suit/hooded/robes
@@ -225,6 +229,11 @@
 	name = "leopard coat"
 	desc = "A coat made from synthetic fur."
 	icon_state = "leopard_coat"
+
+/obj/item/clothing/suit/vampire/coat/milparka
+	name = "military parka"
+	desc = "A thick parka in desert night camoflague."
+	icon_state = "desertnightparka"
 
 
 /obj/item/clothing/suit/hooded/hoodie
@@ -431,22 +440,24 @@
 	desc = "Probably spanish. Provides good protection."
 	icon_state = "medieval"
 
-/obj/item/clothing/suit/vampire/vest/police/fbivest
-	name = "FBI duty vest"
-	icon_state = "fbivest"
-	desc = "Lightweight, bulletproof vest with yellow FBI markings, tailored for active duty. This one has special agent insignia on it."
-
 //Police + Army
 
 /obj/item/clothing/suit/vampire/coat/police
 	name = "police raincoat"
 	icon_state = "policecoat"
 	desc = "A sturdy and reflective raincoat tailored for wet weather patrols."
+	custom_price = 20
 
 /obj/item/clothing/suit/vampire/vest/police
 	name = "police duty vest"
 	icon_state = "pdvest"
 	desc = "Lightweight, bulletproof vest with SFPD markings, tailored for active duty."
+	custom_price = 50
+
+/obj/item/clothing/suit/vampire/vest/police/fbivest
+	name = "FBI duty vest"
+	icon_state = "fbivest"
+	desc = "Lightweight, bulletproof vest with yellow FBI markings, tailored for active duty. This one has special agent insignia on it."
 
 /obj/item/clothing/suit/vampire/vest/police/sergeant
 	name = "police sergeant vest"
@@ -605,3 +616,23 @@
 	desc = "A crisp white labcoat. This one has a green trim and the " + MAIN_EVIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_labcoat_alt"
 	//armor_type = /datum/armor/labcoat
+
+/obj/item/clothing/suit/vampire/bomber_jacket_classic
+	name = "classic bomber jacket"
+	desc = "A classic bomber jacket."
+	icon_state = "bomber_classic"
+
+/obj/item/clothing/suit/vampire/bomber_jacket_gray
+	name = "gray bomber jacket"
+	desc = "A gray bomber jacket."
+	icon_state = "bomber_gray"
+
+/obj/item/clothing/suit/vampire/shawl_black
+	name = "black shawl"
+	desc = "A black shawl."
+	icon_state = "shawl_black"
+
+/obj/item/clothing/suit/vampire/shawl_white
+	name = "white shawl"
+	desc = "A white shawl."
+	icon_state = "shawl_white"

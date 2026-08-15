@@ -103,6 +103,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_BOND_WITHIN_THE_MOUNTAIN "bond_within_the_mountain"
 // Is the mob unable to be cuffed? (For Tzimisce zulo form and others)
 #define TRAIT_NO_CUFF "no_cuff" //Used for uncuffable forms such as Tenebrous and Blood form.
+#define TRAIT_SCARRING_RESISTANT "scarring_resistant"// Temporal scars wont save
 /// Stepping on glass shards immunity. Currently used for a couple Garou forms but could be used elsewhere.
 #define TRAIT_HARDENED_SOLES "hardened_soles"
 
@@ -138,6 +139,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_FERA_RENOWN "wta_fera_renown"
 // This mob has fur!
 #define TRAIT_FERA_FUR "fera_fur"
+// This mob has a possible wyrm taint sprite
+#define TRAIT_POSSIBLE_WYRM "possible_wyrm"
 /// If the fera is wyrm tainted.
 #define TRAIT_WYRMTAINTED "wyrm_tainted"
 /// If the fera is wyrm tainted. Affects their sprite.
@@ -199,5 +202,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_DISFIGURED_APPEARANCE "disfigured_appearance"
 #define TRAIT_GRAVE_SMELL "grave_smell"
 #define TRAIT_GLOWING_EYES "glowing_eyes"
+#define TRAIT_PROMETHEAN_CLAY "promethean_clay"
+#define TRAIT_UNCONTROLLABLE "uncontrollable"
+
+// Below are traits given by items/clothing being equiped or worn
+#define TRAIT_BRASSKNUCKLES "brassknuckles"
 
 // END TRAIT DEFINES

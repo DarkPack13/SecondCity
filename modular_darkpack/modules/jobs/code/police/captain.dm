@@ -9,7 +9,6 @@
 	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_POLICE_CAPTAIN
 	exp_required_type_department = EXP_TYPE_POLICE
-	department_for_prefs = /datum/job_department/police
 	departments_list = list(
 		/datum/job_department/police,
 	)
@@ -17,7 +16,7 @@
 	allowed_splats = list(SPLAT_NONE)
 
 	description = "Underpaid, overworked, and understrength. Do your best to keep the order in " + CITY_NAME + ". Keep the officers in line."
-	minimal_masquerade = 0
+	minimum_masquerade = 0
 
 /datum/outfit/job/vampire/police_captain
 	name = "Police Captain"
@@ -36,7 +35,8 @@
 		/obj/item/ammo_box/darkpack/c9mm = 1,
 		/obj/item/restraints/handcuffs = 1,
 		/obj/item/melee/baton/vamp = 1,
-		/obj/item/storage/medkit/darkpack/ifak = 1
+		/obj/item/storage/medkit/darkpack/ifak = 1,
+		/obj/item/bodycam_upgrade = 1
 	)
 
 /datum/outfit/job/vampire/police_captain/post_equip(mob/living/carbon/human/H)

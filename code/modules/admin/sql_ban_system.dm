@@ -320,9 +320,9 @@
 		output += "<div class='row'>"
 
 		for(var/datum/job_department/department as anything in SSjob.joinable_departments)
-			var/label_class = department.label_class
+			var/label_class = department.get_label_class()
 			var/department_name = department.department_name
-			output += "<div class='column'><label class='rolegroup [label_class]'><input type='checkbox' name='[label_class]' class='hidden' onClick='header_click_all_checkboxes(this)'> \
+			output += "<div class='column'><label class='rolegroup [label_class]' style='background-color: [department.ui_color];'><input type='checkbox' name='[label_class]' class='hidden' onClick='header_click_all_checkboxes(this)'> \
 			[department_name]</label><div class='content'>"
 			for(var/datum/job/job_datum as anything in department.get_jobban_jobs())
 				if(break_counter > 0 && (break_counter % 3 == 0))
@@ -348,7 +348,7 @@
 			break_counter = 0
 
 		var/list/other_job_lists = list(
-			"Abstract" = list("Appearance", "Emote", "Deadchat", "OOC", "Urgent Adminhelp"),
+			"Abstract" = list("Appearance", "Emote", "Deadchat", "OOC", "Urgent Adminhelp", BAN_LOOC), // DARKPACK EDIT ADD - LOOC
 			)
 		for(var/department in other_job_lists)
 			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' onClick='header_click_all_checkboxes(this)'>[department]</label><div class='content'>"
@@ -405,11 +405,6 @@
 				ROLE_VOIDWALKER,
 				ROLE_WIZARD,
 			),
-			// DARKPACK EDIT ADD START
-			"Darkpack Ban Options" = list(
-				BAN_LOOC,
-			),
-			// DARKPACK EDIT ADD END
 		)
 		for(var/department in long_job_lists)
 			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' onClick='header_click_all_checkboxes(this)'>[department]</label><div class='content'>"

@@ -21,7 +21,3 @@
 #define LETHAL "lethal"
 // exists in code/__DEFINES/~darkpack/aggravated_damage.dm
 //#define AGGRAVATED
-
-// To convert a measure of yards into tiles/range
-#define YARDS / 5
-#define YARDS_TO_TILES * 5

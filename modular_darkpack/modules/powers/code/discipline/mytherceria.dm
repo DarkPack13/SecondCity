@@ -1,6 +1,11 @@
 /datum/discipline/mytherceria
 	name = "Mytherceria"
-	desc = "Mytherceria is a Discipline that manifests in faerie-blooded vampires such as the Kiasyd and Maeghar. It grants the vampire mystical senses, the ability to steal knowledge, and other powers attributed to fae."
+	desc = {"Mytherceria is a Discipline that manifests in faerie-blooded vampires such as the Kiasyd and Maeghar. It grants the vampire mystical senses, the ability to steal knowledge, and other powers attributed to fae.
+● Fey Sight: Passive
+●● Darkling Trickery: Passive
+●●● Goblinism: Passive
+●●●● Chanjelin Ward: Passive
+●●●●● Riddle Phantastique: Passive"}
 	icon_state = "mytherceria"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/mytherceria
@@ -104,35 +109,34 @@
 		return
 	. = ..()
 
-/obj/item/clothing/mask/facehugger/kiasyd/Die()
+/obj/item/clothing/mask/facehugger/kiasyd/die()
 	qdel(src)
 
-/obj/item/clothing/mask/facehugger/kiasyd/Leap(mob/living/M)
-	if(iscarbon(M))
-		var/mob/living/carbon/target = M
-		if(target.wear_mask && istype(target.wear_mask, /obj/item/clothing/mask/facehugger/kiasyd))
-			return FALSE
-	M.visible_message(span_danger("[src] leaps at [M]'s face!"), \
+/obj/item/clothing/mask/facehugger/kiasyd/leap_to(mob/living/hit_mob)
+	var/mob/living/carbon/human/target = astype(hit_mob)
+	if(target)
+		return FALSE
+	if(target.wear_mask && istype(target.wear_mask, /obj/item/clothing/mask/facehugger/kiasyd))
+		return FALSE
+	target.visible_message(span_danger("[src] leaps at [target]'s face!"), \
 		span_userdanger("[src] leaps at your face!"))
-	if(iscarbon(M))
-		var/mob/living/carbon/target = M
 
-		if(target.head)
-			var/obj/item/clothing/W = target.head
-			target.dropItemToGround(W, TRUE)
+	if(target.head)
+		var/obj/item/clothing/W = target.head
+		target.dropItemToGround(W, TRUE)
 
-		if(target.wear_mask)
-			var/obj/item/clothing/W = target.wear_mask
-			if(target.dropItemToGround(W, TRUE))
-				target.visible_message(
-					span_danger("[src] tears [W] off of [target]'s face!"), \
-					span_userdanger("[src] tears [W] off of your face!"))
-		target.equip_to_slot_if_possible(src, ITEM_SLOT_MASK, 0, 1, 1)
-		var/datum/cb = CALLBACK(src,/obj/item/clothing/mask/facehugger/kiasyd/proc/eat_head)
-		for(var/i in 1 to 10)
-			addtimer(cb, (i - 1) * 1.5 SECONDS)
-		spawn(16 SECONDS)
-			qdel(src)
+	if(target.wear_mask)
+		var/obj/item/clothing/W = target.wear_mask
+		if(target.dropItemToGround(W, TRUE))
+			target.visible_message(
+				span_danger("[src] tears [W] off of [target]'s face!"), \
+				span_userdanger("[src] tears [W] off of your face!"))
+	target.equip_to_slot_if_possible(src, ITEM_SLOT_MASK, 0, 1, 1)
+	var/datum/cb = CALLBACK(src,/obj/item/clothing/mask/facehugger/kiasyd/proc/eat_head)
+	for(var/i in 1 to 10)
+		addtimer(cb, (i - 1) * 1.5 SECONDS)
+	spawn(16 SECONDS)
+		qdel(src)
 	return TRUE
 
 /obj/item/clothing/mask/facehugger/kiasyd/proc/eat_head()

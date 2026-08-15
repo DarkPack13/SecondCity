@@ -52,6 +52,8 @@
 	. = ..()
 	if(HAS_TRAIT(roller, TRAIT_RAZOR_CLAWS)) // Your still using claws. A bit homebrew tho.
 		. += 1
+	if(HAS_TRAIT(roller, TRAIT_BRASSKNUCKLES))	// Method for giving brass knuckles bonus punch damage. It's blunt, and punch damage is naturally low, so equals out.
+		. += 2
 
 /datum/storyteller_roll/damage/bite
 	bumper_text = "damage (bite)"
@@ -151,3 +153,9 @@
 	numerical = TRUE
 	spammy_roll = TRUE
 	difficulty = 6
+
+/datum/storyteller_roll/restraint_break
+	bumper_text = "breaking restraints"
+	applicable_stats = list(STAT_PERMANENT_WILLPOWER)
+	reroll_cooldown = 1 TURNS
+	difficulty = 9

@@ -124,6 +124,7 @@
 	icon_state = "law"
 	//armor_type = /datum/armor/armored_hat
 	bashing_soak = 1
+	custom_price = 20
 
 /*/datum/armor/armored_hat
 	melee = 20
@@ -181,6 +182,7 @@
 	lethal_melee_soak = 2
 	lethal_bullet_soak = 3
 	agg_supernatural_soak = 2
+	custom_price = 50
 
 /*/datum/armor/police_helmet
 	melee = 40
