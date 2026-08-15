@@ -1320,7 +1320,7 @@
 	desc = "The ultimate in wound treatment operations, treating both bruises and burns simultaneous and faster than their individual counterparts."
 	surgery = /datum/surgery_operation/basic/tend_wounds/combo/upgraded/master
 	id = "surgery_heal_combo_upgrade_femto"
-/* // DARKPACK EDIT REMOVAL START - Removes /tg/ Brainwashing
+
 /datum/design/surgery/brainwashing
 	id = "surgery_brainwashing"
 	surgery = /datum/surgery_operation/organ/brainwash
@@ -1329,7 +1329,6 @@
 /datum/design/surgery/brainwashing/mechanic
 	id = "surgery_brainwashing_mechanic"
 	surgery = /datum/surgery_operation/organ/brainwash/mechanic
-*/ // DARKPACK EDIT REMOVAL END - Removes /tg/ Brainwashing
 
 /datum/design/surgery/nerve_splicing
 	desc = "A surgical procedure which splices the patient's nerves, making them more resistant to stuns."
