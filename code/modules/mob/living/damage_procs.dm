@@ -606,16 +606,16 @@
 					roll_used = soak_dice_bashing //Kindred take bullets as bashing unless they're to the head.
 				else
 					roll_used = soak_dice_lethal //Otherwise it's lethal damage.
-				roll_used += getsoak(def_zone, lethal_bullet_soak)
+				roll_used += getsoak(def_zone, "lethal_bullet_soak")
 			else if(!sharpness == NONE)
 				roll_used = soak_dice_lethal //Sharp or piercing objects deal lethal to every splat.
-				roll_used += getsoak(def_zone, lethal_melee_soak)
+				roll_used += getsoak(def_zone, "lethal_melee_soak")
 			else
 				roll_used = soak_dice_bashing //Everything else should take Bashing.
-				roll_used += getsoak(def_zone, bashing_soak)
+				roll_used += getsoak(def_zone, "bashing_soak")
 		if(BURN)
 			roll_used = soak_dice_aggravated //Burning is always Agg.
-			roll_used += getsoak(def_zone, agg_fire_soak)
+			roll_used += getsoak(def_zone, "agg_fire_soak")
 		if(TOX)
 			roll_used = soak_dice_lethal //Poisons can vary from Bashing to Lethal, but the vast majority are Lethal.
 		if(OXY)
@@ -626,7 +626,7 @@
 			roll_used = soak_dice_lethal //Not many situations where you'd take direct brain damage really, but it'd be lethal in this case.
 		if(AGGRAVATED)
 			roll_used = soak_dice_aggravated //Well, obviously.
-			roll_used += getsoak(def_zone, agg_supernatural_soak)
+			roll_used += getsoak(def_zone, "agg_supernatural_soak")
 
 	if(roll_used < 1)
 		return damage //Skip the roll if it can't be soaked. Covers negative numbers too, in case of edge cases.
