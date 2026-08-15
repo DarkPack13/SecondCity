@@ -5829,10 +5829,10 @@
 /obj/structure/rack,
 /obj/effect/decal/graffiti,
 /obj/item/gun/ballistic/automatic/darkpack/mac10/super,
-/obj/item/ammo_box/magazine/darkpack45smg,
-/obj/item/ammo_box/magazine/darkpack45smg,
-/obj/item/ammo_box/magazine/darkpack45smg,
-/obj/item/ammo_box/magazine/darkpack45smg,
+/obj/item/ammo_box/magazine/darkpack45custom,
+/obj/item/ammo_box/magazine/darkpack45custom,
+/obj/item/ammo_box/magazine/darkpack45custom,
+/obj/item/ammo_box/magazine/darkpack45custom,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/anarch/basement)
 "bBO" = (
