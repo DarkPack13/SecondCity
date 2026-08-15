@@ -96,6 +96,13 @@
 	contains = list(/obj/item/gun/ballistic/revolver/darkpack/magnum)
 	crate_name = "weapon crate"
 
+/datum/supply_pack/weapons/weaponlever
+	name = "Weapon (lever action rifle)"
+	desc = "Contains a lever action rifle."
+	cost = 1500
+	contains = list(/obj/item/gun/ballistic/rifle/darkpack/lever)
+	crate_name = "weapon crate"
+
 /datum/supply_pack/weapons/weapondeagle
 	name = "Weapon (desert eagle)"
 	desc = "Contains a desert eagle."
@@ -104,10 +111,10 @@
 	crate_name = "weapon crate"
 
 /datum/supply_pack/weapons/weapondeagle50
-	name = "Weapon (desert eagle 50AE)"
+	name = "Weapon (Mclusky Special)"
 	desc = "Contains a .50 caliber desert eagle."
-	cost = 2000
-	contains = list(/obj/item/gun/ballistic/automatic/pistol/deagle, /obj/item/ammo_box/magazine/m50)
+	cost = 3000
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle/c50, /obj/item/ammo_box/magazine/m50)
 
 /datum/supply_pack/weapons/glock
 	name = "Weapon (Brokk19)"
@@ -130,11 +137,25 @@
 	contains = list(/obj/item/gun/ballistic/automatic/darkpack/uzi, /obj/item/ammo_box/magazine/darkpack9mm)
 	crate_name = "weapon crate"
 
+/datum/supply_pack/weapons/weaponmac10
+	name = "Weapon (Braddock .45)"
+	desc = "Contains a Braddock .45 submachine gun."
+	cost = 800
+	contains = list(/obj/item/gun/ballistic/automatic/darkpack/mac10, /obj/item/ammo_box/magazine/darkpack45smg)
+	crate_name = "weapon crate"
+
 /datum/supply_pack/weapons/weaponshotgun
 	name = "Weapon (pump shotgun)"
 	desc = "Contains a pump shotgun."
 	cost = 800
 	contains = list(/obj/item/gun/ballistic/shotgun/vampire)
+	crate_name = "weapon crate"
+
+/datum/supply_pack/weapons/weapondbshotgun
+	name = "Weapon (double barrel shotgun)"
+	desc = "Contains a double barrel shotgun."
+	cost = 1000
+	contains = list(/obj/item/gun/ballistic/shotgun/vampire/doublebarrel)
 	crate_name = "weapon crate"
 
 /datum/supply_pack/weapons/thompson
@@ -159,8 +180,8 @@
 	crate_name = "weapon crate"
 
 /datum/supply_pack/weapons/weaponrifle
-	name = "Weapon (AR-15)"
-	desc = "Contains an AR-15 assault rifle."
+	name = "Weapon (CAR-15)"
+	desc = "Contains a CAR-15 assault rifle."
 	cost = 2500
 	contains = list(/obj/item/gun/ballistic/automatic/darkpack/ar15, /obj/item/ammo_box/magazine/darkpack556)
 	crate_name = "weapon crate"
@@ -240,6 +261,13 @@
 	desc = "Contains a box of .44 ammunition."
 	cost = 600
 	contains = list(/obj/item/ammo_box/darkpack/c44, /obj/item/ammo_box/darkpack/c44)
+	crate_name = "ammo crate"
+
+/datum/supply_pack/weapons/ammo45
+	name = "Ammo (.45 ACP ammo)"
+	desc = "Contains a box of .45 ACP ammo"
+	cost = 700
+	contains = list(/obj/item/ammo_box/darkpack/c45acp, /obj/item/ammo_box/darkpack/c45acp)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/weapons/ammo556

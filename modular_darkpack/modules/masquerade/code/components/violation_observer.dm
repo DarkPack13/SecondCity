@@ -9,7 +9,7 @@
 
 /datum/component/violation_observer/Initialize(add_area_of_effect) //Only add the AOE checker for NPCs and camera objects.
 	if(add_area_of_effect)
-		area_of_effect = new(parent, 7)
+		area_of_effect = new(parent, 7, TRUE, src)
 	breached_players = new()
 
 /datum/component/violation_observer/RegisterWithParent()
@@ -21,6 +21,12 @@
 	QDEL_NULL(area_of_effect)
 	breached_players = null
 	UnregisterSignal(parent, list(COMSIG_SEEN_MASQUERADE_VIOLATION, COMSIG_MASQUERADE_REINFORCE, COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE))
+
+/datum/component/violation_observer/proc/toggle_area_of_effect(origin = parent)
+	if(area_of_effect)
+		QDEL_NULL(area_of_effect)
+	else
+		area_of_effect = new(origin, 7, TRUE, src)
 
 /datum/component/violation_observer/proc/on_observed_violation(atom/source, mob/living/player_breacher)
 	SIGNAL_HANDLER
