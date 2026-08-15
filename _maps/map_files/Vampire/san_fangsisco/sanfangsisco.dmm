@@ -40537,6 +40537,12 @@
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/hotel)
+"lcU" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/rough,
+/area/vtm/interior/anarch)
 "lcY" = (
 /obj/item/clothing/suit/vampire/slickbackcoat,
 /obj/item/clothing/suit/vampire/fancy_gray,
@@ -69277,6 +69283,10 @@
 /obj/item/storage/fancy/coffee_condi_display,
 /turf/open/floor/carpet/blue,
 /area/vtm/interior/clinic)
+"sKo" = (
+/obj/effect/turf_decal/siding/white/corner,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/anarch)
 "sKq" = (
 /obj/structure/table,
 /obj/item/reagent_containers/cup/glass/bottle/beer/vampire,
@@ -172203,7 +172213,7 @@ wsX
 wsX
 wsX
 wsX
-wsX
+lcU
 rza
 rza
 rza
@@ -173746,7 +173756,7 @@ fkk
 kGg
 jmc
 wsX
-wsX
+sKo
 vRT
 vRT
 vRT
