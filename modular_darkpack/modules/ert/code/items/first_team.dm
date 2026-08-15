@@ -64,7 +64,7 @@
 	lethal_melee_soak = 4
 	lethal_bullet_soak = 4
 	agg_fire_soak = 2
-	agg_supernatural_soak = 0
+	agg_supernatural_soak = 2
 
 //------------ARMOR------------
 
@@ -102,7 +102,7 @@
 	lethal_melee_soak = 4
 	lethal_bullet_soak = 4
 	agg_fire_soak = 2
-	agg_supernatural_soak = 0
+	agg_supernatural_soak = 2
 
 //------------SUIT------------
 
