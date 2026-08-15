@@ -60,11 +60,11 @@
 	visor_flags_inv = HIDEFACE|HIDESNOUT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
-	bashing_soak = 4
-	lethal_melee_soak = 4
+	bashing_soak = 5
+	lethal_melee_soak = 5
 	lethal_bullet_soak = 4
 	agg_fire_soak = 2
-	agg_supernatural_soak = 2
+	agg_supernatural_soak = 3
 
 //------------ARMOR------------
 
@@ -98,11 +98,11 @@
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	clothing_traits = list(TRAIT_BRAWLING_KNOCKDOWN_BLOCKED)
-	bashing_soak = 4
-	lethal_melee_soak = 4
+	bashing_soak = 5
+	lethal_melee_soak = 5
 	lethal_bullet_soak = 4
 	agg_fire_soak = 2
-	agg_supernatural_soak = 2
+	agg_supernatural_soak = 3
 
 //------------SUIT------------
 
