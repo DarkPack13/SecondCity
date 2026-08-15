@@ -533,12 +533,6 @@
 		/obj/item/tank/internals/emergency_oxygen,
 		/obj/item/tank/internals/plasmaman,
 		)
-	armor_type = null //DARKPACK EDIT ADDITION (Soak) - Removing normal armour for soak mechanics instead, but preserving for reference.
-	bashing_soak = 4
-	lethal_melee_soak = 4
-	lethal_bullet_soak = 1
-	agg_supernatural_soak = 2
-
 /obj/item/clothing/suit/armor/riot/knight/init_rustle_component()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_PLATE_ARMOR_RUSTLE, 8)
 
@@ -560,9 +554,9 @@
 	icon_state = "knight_greyscale"
 	inhand_icon_state = null
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS // Can change color and add prefix
-	//armor_type = /datum/armor/knight_greyscale  //DARKPACK EDIT (Soak) - Removing these for soak mechanics instead, but preserving for reference.
+	armor_type = /datum/armor/knight_greyscale
 
-/*/datum/armor/knight_greyscale
+/datum/armor/knight_greyscale
 	melee = 35
 	bullet = 10
 	laser = 10
@@ -570,7 +564,7 @@
 	bomb = 10
 	bio = 10
 	fire = 40
-	acid = 40*/
+	acid = 40
 
 /obj/item/clothing/suit/armor/vest/durathread
 	name = "durathread vest"
