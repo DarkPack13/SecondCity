@@ -760,13 +760,13 @@
 			switch(damage_type)
 				if("bashing_soak")
 					soaked += clothing_item.bashing_soak
-				else if("lethal_melee_soak")
+				if("lethal_melee_soak")
 					soaked += clothing_item.lethal_melee_soak
-				else if("lethal_bullet_soak")
+				if("lethal_bullet_soak")
 					soaked += clothing_item.lethal_bullet_soak
-				else if("agg_fire_soak")
+				if("agg_fire_soak")
 					soaked += clothing_item.agg_fire_soak
-				else if("agg_supernatural_soak")
+				if("agg_supernatural_soak")
 					soaked += clothing_item.agg_supernatural_soak
 				else
 					return
