@@ -7392,6 +7392,7 @@
 #include "modular_darkpack\modules\blood_drinking\code\overfeeding\handle_drink_dry.dm"
 #include "modular_darkpack\modules\blood_drinking\code\overfeeding\handle_overfeeding.dm"
 #include "modular_darkpack\modules\blood_drinking\code\overfeeding\diablerie\adjust_generation.dm"
+#include "modular_darkpack\modules\blood_drinking\code\overfeeding\diablerie\diablerie_trauma.dm"
 #include "modular_darkpack\modules\blood_drinking\code\overfeeding\diablerie\handle_diablerie.dm"
 #include "modular_darkpack\modules\blood_drinking\code\overfeeding\diablerie\make_diablerist.dm"
 #include "modular_darkpack\modules\blooper\code\blooper.dm"
