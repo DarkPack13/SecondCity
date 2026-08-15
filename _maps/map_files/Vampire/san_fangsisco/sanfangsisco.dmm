@@ -2120,6 +2120,13 @@
 	},
 /turf/open/floor/city/saint,
 /area/vtm/interior/setite/basement)
+"aCx" = (
+/obj/effect/turf_decal/bordur{
+	dir = 8
+	},
+/obj/effect/landmark/npcbeacon,
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/unionsquare)
 "aCM" = (
 /obj/effect/turf_decal/asphaltline/alt,
 /turf/open/floor/plating/asphalt,
@@ -2167,10 +2174,10 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/outside/forest)
 "aDy" = (
-/obj/effect/turf_decal/bordur/corner{
-	dir = 4
-	},
 /obj/structure/roadsign,
+/obj/effect/turf_decal/bordur/corner{
+	dir = 1
+	},
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/unionsquare)
 "aDz" = (
@@ -2344,17 +2351,6 @@
 "aFB" = (
 /turf/closed/wall/vampwall/brick_old,
 /area/vtm/interior/setite/basement)
-"aFM" = (
-/obj/structure/lamppost/one{
-	dir = 4
-	},
-/obj/structure/trafficlight{
-	dir = 10
-	},
-/obj/structure/trafficlight,
-/obj/effect/landmark/npcability,
-/turf/open/floor/plating/sidewalk,
-/area/vtm/outside/unionsquare)
 "aFO" = (
 /obj/structure/dresser,
 /turf/open/floor/wood/smooth/old,
@@ -7651,9 +7647,7 @@
 /area/vtm/interior/police)
 "caP" = (
 /obj/effect/landmark/npcability,
-/obj/effect/turf_decal/bordur{
-	dir = 1
-	},
+/obj/effect/landmark/npcbeacon,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/unionsquare)
 "caS" = (
@@ -8638,14 +8632,6 @@
 /obj/structure/roadsign/speedlimit25,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/fishermanswharf)
-"coF" = (
-/obj/effect/turf_decal/bordur{
-	dir = 8
-	},
-/obj/structure/barrels/rand,
-/obj/effect/landmark/npcability,
-/turf/open/floor/plating/sidewalk,
-/area/vtm/outside/unionsquare)
 "coK" = (
 /obj/structure/chair/office/darkpack,
 /turf/open/floor/iron/small,
@@ -11270,10 +11256,10 @@
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/bianchiBank)
 "cZZ" = (
-/obj/effect/turf_decal/bordur/corner{
-	dir = 1
-	},
 /obj/structure/roadsign/fourway,
+/obj/effect/turf_decal/bordur{
+	dir = 4
+	},
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/unionsquare)
 "daa" = (
@@ -14727,6 +14713,14 @@
 /obj/machinery/camera/directional/east,
 /turf/open/floor/city/plating,
 /area/vtm/interior/techshop)
+"dXX" = (
+/obj/effect/turf_decal/bordur{
+	dir = 8
+	},
+/obj/effect/landmark/npcability,
+/obj/effect/landmark/npcbeacon,
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/unionsquare)
 "dXY" = (
 /obj/structure/railing{
 	pixel_y = -2
@@ -16574,10 +16568,10 @@
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/fishermanswharf/ghetto)
 "eyp" = (
-/obj/structure/railing{
-	dir = 4
-	},
 /obj/effect/turf_decal/siding/wood,
+/obj/structure/railing{
+	pixel_y = -2
+	},
 /turf/open/floor/wood/old,
 /area/vtm/outside/northbeach)
 "eyq" = (
@@ -16822,6 +16816,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/npcability,
+/obj/effect/landmark/npcbeacon,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/unionsquare)
 "eCL" = (
@@ -17837,12 +17832,6 @@
 /obj/effect/turf_decal/siding/wood/dark/corner,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/clinic)
-"ePx" = (
-/obj/effect/turf_decal/bordur,
-/obj/effect/landmark/npcbeacon,
-/obj/effect/landmark/npcability,
-/turf/open/floor/plating/sidewalk,
-/area/vtm/outside/unionsquare)
 "ePz" = (
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/sepia,
@@ -20764,6 +20753,10 @@
 /obj/effect/landmark/npcbeacon,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/ghetto)
+"fEj" = (
+/obj/effect/turf_decal/crosswalk,
+/turf/open/floor/plating/asphalt,
+/area/vtm/outside/unionsquare)
 "fEr" = (
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/carpet/black,
@@ -25762,6 +25755,13 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/banu/haven)
+"gWI" = (
+/obj/effect/turf_decal/bordur/corner{
+	dir = 8
+	},
+/obj/structure/roadsign/speedlimit25,
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/unionsquare)
 "gWN" = (
 /obj/structure/flora/bush/fullgrass/style_random,
 /obj/structure/flora/bush/fullgrass/style_random,
@@ -26947,7 +26947,6 @@
 /area/vtm/interior/bianchiBank)
 "hno" = (
 /obj/effect/turf_decal/bordur/corner,
-/obj/effect/landmark/npcbeacon,
 /obj/structure/roadsign/street,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/unionsquare)
@@ -30383,13 +30382,6 @@
 /mob/living/basic/pet/dog/darkpack/red,
 /turf/open/floor/plating/sidewalkalt,
 /area/vtm/interior/library)
-"ini" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/open/floor/wood/old,
-/area/vtm/outside/northbeach)
 "inm" = (
 /obj/structure/vampipe{
 	icon_state = "piping43"
@@ -30670,12 +30662,6 @@
 /obj/item/smartphone/payphone,
 /turf/open/floor/plating/sidewalkalt,
 /area/vtm/interior/library)
-"irp" = (
-/obj/effect/turf_decal/asphaltline/alt{
-	pixel_x = -14
-	},
-/turf/open/floor/plating/asphalt,
-/area/vtm/outside/unionsquare)
 "irD" = (
 /obj/structure/table/wood/fancy/red,
 /obj/vampire_computer,
@@ -32544,6 +32530,7 @@
 /obj/structure/lamppost/three{
 	dir = 4
 	},
+/obj/effect/landmark/npcbeacon,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/unionsquare)
 "iTB" = (
@@ -38224,13 +38211,6 @@
 /obj/item/pen,
 /turf/open/floor/carpet/green,
 /area/vtm/interior/millennium_tower/f3)
-"kzt" = (
-/mob/living/carbon/human/npc/hobo,
-/obj/effect/turf_decal/bordur{
-	dir = 5
-	},
-/turf/open/floor/plating/sidewalk,
-/area/vtm/outside/unionsquare)
 "kzw" = (
 /obj/structure/vampfence/rich,
 /obj/structure/vampfence/corner/rich,
@@ -44146,6 +44126,7 @@
 "mfJ" = (
 /obj/effect/turf_decal/bordur,
 /obj/effect/landmark/npcability,
+/obj/effect/landmark/npcbeacon,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/unionsquare)
 "mfK" = (
@@ -50225,6 +50206,12 @@
 /obj/structure/flora/bush/flowers_pp/style_random,
 /turf/open/floor/mineral/plastitanium,
 /area/vtm/interior/tzimisce_manor)
+"nMx" = (
+/obj/effect/turf_decal/stock{
+	dir = 4
+	},
+/turf/open/floor/plating/asphalt,
+/area/vtm/outside/unionsquare)
 "nMC" = (
 /obj/structure/closet/crate/dumpster,
 /turf/open/floor/plating/sidewalkalt,
@@ -50807,6 +50794,13 @@
 /obj/structure/rack/clothing_hanger,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/giovanni)
+"nUk" = (
+/obj/effect/turf_decal/bordur{
+	dir = 1
+	},
+/obj/structure/roadsign/crosswalk,
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/unionsquare)
 "nUp" = (
 /obj/structure/vampdoor/old{
 	dir = 4
@@ -51457,6 +51451,12 @@
 /obj/structure/cable/layer1,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/glasswalker)
+"oeJ" = (
+/obj/effect/turf_decal/bordur/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/unionsquare)
 "oeN" = (
 /obj/effect/decal/cleanable/garbage,
 /obj/effect/decal/cleanable/trash,
@@ -53323,6 +53323,14 @@
 /obj/effect/mapping_helpers/door/bash_difficulty/nine,
 /turf/open/floor/carpet/green,
 /area/vtm/interior/bianchiBank)
+"oEI" = (
+/obj/effect/turf_decal/bordur{
+	dir = 4
+	},
+/obj/effect/landmark/npcability,
+/obj/effect/landmark/npcbeacon,
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/unionsquare)
 "oEK" = (
 /obj/machinery/light/small/directional/east,
 /obj/item/kirbyplants/random,
@@ -54941,6 +54949,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 4
 	},
+/obj/effect/landmark/npcbeacon,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/unionsquare)
 "paa" = (
@@ -59819,14 +59828,6 @@
 	},
 /turf/open/misc/grass,
 /area/vtm/interior/cog/caern)
-"qsj" = (
-/obj/effect/turf_decal/bordur{
-	dir = 4
-	},
-/obj/effect/landmark/npcbeacon,
-/obj/effect/landmark/npcability,
-/turf/open/floor/plating/sidewalk,
-/area/vtm/outside/unionsquare)
 "qsr" = (
 /obj/structure/flora/bush/sparsegrass/style_random,
 /obj/effect/landmark/npcwall,
@@ -66621,6 +66622,18 @@
 	},
 /turf/open/floor/plating/asphalt,
 /area/vtm/outside/financialdistrict)
+"sdW" = (
+/obj/structure/lamppost/one{
+	dir = 4
+	},
+/obj/structure/trafficlight{
+	dir = 10
+	},
+/obj/structure/trafficlight,
+/obj/effect/landmark/npcability,
+/obj/effect/landmark/npcbeacon,
+/turf/open/floor/plating/sidewalk,
+/area/vtm/outside/unionsquare)
 "sel" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -68206,13 +68219,6 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/baali)
-"syu" = (
-/obj/effect/landmark/npcbeacon,
-/obj/effect/turf_decal/bordur{
-	dir = 1
-	},
-/turf/open/floor/plating/sidewalk,
-/area/vtm/outside/unionsquare)
 "syD" = (
 /obj/effect/turf_decal/bordur{
 	dir = 1
@@ -70451,13 +70457,6 @@
 	dir = 4
 	},
 /obj/effect/landmark/npcbeacon,
-/turf/open/floor/plating/sidewalk,
-/area/vtm/outside/unionsquare)
-"the" = (
-/obj/effect/turf_decal/bordur{
-	dir = 4
-	},
-/obj/effect/landmark/npcability,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/unionsquare)
 "thi" = (
@@ -73704,8 +73703,10 @@
 /area/vtm/outside/ghetto)
 "udT" = (
 /obj/structure/table,
-/obj/machinery/computer/order_console/mining/restricted/police,
 /obj/structure/platform/lowwall/market,
+/obj/structure/retail/police_equipment{
+	dir = 8
+	},
 /turf/open/floor/plating/rough,
 /area/vtm/interior/police)
 "udU" = (
@@ -83280,11 +83281,6 @@
 /obj/effect/turf_decal/siding/thinplating/dark,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm)
-"wNC" = (
-/obj/effect/turf_decal/bordur,
-/obj/structure/roadsign/speedlimit25,
-/turf/open/floor/plating/sidewalk,
-/area/vtm/outside/unionsquare)
 "wNE" = (
 /obj/structure/table/wood/poker,
 /turf/open/floor/wood/smooth/old,
@@ -85650,6 +85646,7 @@
 "xsJ" = (
 /obj/structure/roadsign/crosswalk,
 /obj/effect/landmark/npcability,
+/obj/effect/landmark/npcbeacon,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/unionsquare)
 "xsP" = (
@@ -86689,13 +86686,6 @@
 	},
 /turf/open/floor/city/toilet,
 /area/vtm/interior/baali)
-"xIj" = (
-/obj/effect/turf_decal/bordur{
-	dir = 8
-	},
-/obj/effect/landmark/npcability,
-/turf/open/floor/plating/sidewalk,
-/area/vtm/outside/unionsquare)
 "xIk" = (
 /obj/effect/turf_decal/bordur,
 /turf/open/floor/plating/sidewalk,
@@ -173166,7 +173156,7 @@ wBd
 ybH
 dnj
 dnj
-ini
+eyp
 bRI
 ixM
 aUi
@@ -173423,7 +173413,7 @@ wBd
 ybH
 dnj
 dnj
-ini
+eyp
 mPD
 xeV
 ixM
@@ -181636,9 +181626,9 @@ lKL
 lKL
 rgv
 fLI
-wrJ
-wrJ
-wrJ
+lKL
+lKL
+lKL
 rgv
 vxB
 gxL
@@ -181893,9 +181883,9 @@ epJ
 lKL
 vCa
 ajK
-lKL
-epJ
-lKL
+wrJ
+wrJ
+wrJ
 vCa
 fhc
 vYB
@@ -187036,8 +187026,8 @@ gcq
 fQP
 bVK
 fQP
-ulm
-kzt
+rFS
+pQs
 bUt
 xrv
 gkM
@@ -187291,10 +187281,10 @@ kWN
 eJh
 gcq
 fQP
+bVK
 fQP
-fQP
-irp
 rFS
+iog
 vWq
 jcx
 jcx
@@ -187548,10 +187538,10 @@ kWN
 kWN
 obg
 fQP
-fQP
-fQP
+bVK
 fQP
 rFS
+iog
 bUt
 eyY
 jcx
@@ -187805,10 +187795,10 @@ fQP
 kWN
 kWN
 fQP
-fQP
-fQP
+bVK
 fQP
 rFS
+iog
 bUt
 bUt
 mZZ
@@ -188062,10 +188052,10 @@ fQP
 fQP
 kWN
 fQP
-fQP
-fQP
+bVK
 fQP
 rFS
+iog
 bUt
 jcx
 jcx
@@ -188319,10 +188309,10 @@ eQa
 kWN
 fQP
 fQP
+bVK
 fQP
-fQP
-aCM
-rFS
+ulm
+mHu
 bUt
 nBR
 eQw
@@ -188576,10 +188566,10 @@ bXP
 eQa
 kWN
 fQP
+bVK
 fQP
 fQP
 fQP
-ulm
 ipA
 ojU
 ojU
@@ -188833,7 +188823,7 @@ rFS
 poQ
 wqu
 fQP
-fQP
+bVK
 fQP
 fQP
 fQP
@@ -189088,9 +189078,9 @@ gWy
 qtG
 rFS
 iog
-poQ
-eQa
+mXC
 fQP
+bVK
 fQP
 fQP
 fQP
@@ -189345,9 +189335,9 @@ wsZ
 gWy
 rFS
 iog
-iog
-poQ
-eQa
+mXC
+fQP
+bVK
 fQP
 fQP
 fQP
@@ -189602,12 +189592,12 @@ kdy
 kdy
 dml
 iog
-iog
-iog
-poQ
-eQa
+mXC
 fQP
+bVK
 fQP
+gWI
+kdy
 bUt
 oFL
 rpt
@@ -189859,12 +189849,12 @@ iog
 iog
 iog
 iog
-iog
-iog
-iog
-poQ
-eQa
+mXC
 fQP
+bVK
+fQP
+rFS
+iog
 bUt
 bUt
 fbW
@@ -190116,12 +190106,12 @@ mHu
 mHu
 mHu
 iCs
-iog
-iog
-iog
-iog
-wNC
+mXC
 fQP
+bVK
+fQP
+rFS
+iog
 fLC
 bUt
 bUt
@@ -190373,12 +190363,12 @@ gWy
 gWy
 gWy
 rFS
-iog
-iog
-iog
-iog
 mXC
 fQP
+bVK
+fQP
+rFS
+iog
 cMt
 mJy
 bUt
@@ -190630,12 +190620,12 @@ oBA
 qtG
 gWy
 rFS
-iog
-iog
-iog
-iog
 mXC
 fQP
+bVK
+fQP
+rFS
+iog
 bfR
 qtG
 bUt
@@ -190887,12 +190877,12 @@ jhd
 gWy
 gWy
 rFS
-iog
-iog
-iog
-iog
 mXC
 fQP
+bVK
+fQP
+rFS
+iog
 cMt
 qtG
 qtG
@@ -191144,12 +191134,12 @@ qtG
 gWy
 oBA
 rFS
-iog
-iog
-iog
-iog
 mXC
 fQP
+bVK
+fQP
+rFS
+iog
 nMc
 gWy
 gWy
@@ -191401,12 +191391,12 @@ kdy
 kdy
 kdy
 dml
-iog
-iog
-iog
-iog
 mXC
 fQP
+bVK
+fQP
+rFS
+iog
 cMt
 hcX
 dCy
@@ -191658,15 +191648,15 @@ iog
 iog
 iog
 iog
-iog
-iog
-iog
-pwV
 mXC
 fQP
 bVK
 fQP
-syu
+nUk
+iog
+iog
+iog
+iog
 iog
 iog
 iog
@@ -191896,33 +191886,33 @@ dvN
 fFq
 iog
 lDt
-wOR
+caP
 iog
 iog
 iog
 iog
 qZP
 iog
+iog
+iog
+iog
+iog
+iog
+iog
+qZP
+iog
+iog
+iog
+sdW
+lDt
+mfJ
+fEj
+fEj
+fEj
+rFS
 fvY
 iog
 iog
-iog
-iog
-iog
-qZP
-iog
-iog
-iog
-iog
-iog
-iog
-iog
-aFM
-lDt
-ePx
-bpO
-bpO
-bpO
 caP
 lDt
 iTx
@@ -192152,9 +192142,10 @@ fFq
 fFq
 fFq
 sgx
-the
+oEI
 oiz
 wzR
+thc
 mHu
 mHu
 mHu
@@ -192166,20 +192157,19 @@ mHu
 mHu
 mHu
 mHu
+thc
 mHu
 mHu
 mHu
-mHu
-mHu
-mHu
-mHu
-mHu
-mHu
-qsj
+oEI
+oeJ
+fQP
+fQP
+fQP
 aDy
-fQP
-fQP
-fQP
+mHu
+mHu
+mHu
 cZZ
 oZz
 mHu
@@ -192408,8 +192398,6 @@ xtV
 xtV
 xtV
 xtV
-fQP
-fQP
 sbD
 fQP
 fQP
@@ -192430,15 +192418,17 @@ fQP
 fQP
 fQP
 fQP
-fQP
-fQP
-fQP
 aRW
 fQP
 fQP
 fQP
-aRW
 fQP
+fQP
+uTC
+fQP
+fQP
+fQP
+aRW
 fQP
 uTC
 fQP
@@ -192685,17 +192675,17 @@ fQP
 fQP
 fQP
 fQP
+aRW
+fQP
+fQP
+fQP
+fQP
 fQP
 fQP
 fQP
 fQP
 fQP
 aRW
-fQP
-fQP
-fQP
-aRW
-fQP
 fQP
 fQP
 fQP
@@ -192942,17 +192932,17 @@ vcM
 vcM
 vcM
 vcM
-vcM
-vcM
-vcM
-vcM
-vcM
 aRW
 fQP
 fQP
 fQP
+fQP
+fQP
+fQP
+fQP
+fQP
+fQP
 aRW
-vcM
 vcM
 vcM
 vcM
@@ -193199,17 +193189,17 @@ fQP
 fQP
 fQP
 fQP
+aRW
+fQP
+fQP
+fQP
+fQP
 fQP
 fQP
 fQP
 fQP
 fQP
 aRW
-fQP
-fQP
-fQP
-aRW
-fQP
 fQP
 fQP
 fQP
@@ -193436,8 +193426,6 @@ xtV
 xtV
 xtV
 xtV
-fQP
-fQP
 sbD
 fQP
 fQP
@@ -193458,15 +193446,17 @@ fQP
 fQP
 fQP
 fQP
+aRW
+fQP
+fQP
+nMx
+fQP
+fQP
+fQP
 fQP
 fQP
 fQP
 aRW
-fQP
-fQP
-fQP
-aRW
-fQP
 fQP
 fQP
 fQP
@@ -193694,33 +193684,33 @@ fFq
 fFq
 fFq
 jku
-coF
+dXX
 kdy
 lDr
-kdy
+aCx
 kdy
 rGM
 kdy
 kdy
+aCx
 kdy
 kdy
 kdy
 kdy
 kdy
 kdy
+aCx
+kdy
+kdy
+kdy
+dXX
 kdy
 kdy
 kdy
 kdy
-kdy
-kdy
-kdy
-kdy
-kdy
-xIj
 hno
 fQP
-bVK
+fQP
 fQP
 unD
 jnp
@@ -193952,7 +193942,7 @@ dvN
 fFq
 vci
 lDt
-wOR
+caP
 iog
 iog
 iog
@@ -193969,16 +193959,16 @@ dur
 iog
 iog
 iog
-iog
-iog
-iog
+caP
+lDt
+caP
 iog
 eCH
-eLP
+lDt
 mfJ
-fQP
-bVK
-fQP
+fEj
+fEj
+fEj
 fNo
 lDt
 iog
@@ -194208,7 +194198,7 @@ dvN
 dvN
 qGw
 iog
-wOR
+caP
 iog
 iog
 iog
