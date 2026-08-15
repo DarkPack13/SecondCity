@@ -2,8 +2,16 @@
 	name = "dead skin flakes"
 	desc = "Disgusting."
 	beauty = -50
-	icon = 'modular_darkpack/modules/fomori/icons/fomori_abilities.dmi'
-	icon_state = "crusties"
+	icon = 'modular_darkpack/modules/fomori/icons/the_crusties.dmi'
+	icon_state = "crustie"
+	/// The mob we use for DNA
+	var/mob/living/living_source
+
+/obj/effect/decal/cleanable/crustie/Initialize(mapload)
+	. = ..()
+	var/matrix/M = matrix()
+	M.Turn(rand(0, 360))
+	transform = M
 
 /datum/action/cooldown/power/fomori_power/crusties // Freak Legion pg. 42
 	name = "The Crusties"
@@ -17,3 +25,22 @@
 
 /datum/action/cooldown/power/fomori_power/crusties/Grant(mob/granted_to)
 	. = ..()
+	granted_to.AddElement(/datum/element/relay_attackers)
+//	RegisterSignal(granted_to, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(on_attacked))
+
+/datum/action/cooldown/power/fomori_power/crusties/Remove(mob/removed_from)
+	. = ..()
+	removed_from.RemoveElement(/datum/element/relay_attackers)
+//	UnregisterSignal(removed_from, COMSIG_ATOM_WAS_ATTACKED)
+/*
+/datum/action/cooldown/power/fomori_power/crusties/proc/on_attacked(atom/attacker, attack_flags, direction)
+	switch(attack_flags)
+		if(ATTACKER_STAMINA_ATTACK)
+			create_crust(list(list(WEST, NORTHWEST, SOUTHWEST, NORTH), list(EAST, NORTHEAST, SOUTHEAST, SOUTH), list()))
+		if(ATTACKER_SHOVING)
+			create_crust(list(direction))
+		if(ATTACKER_DAMAGING_ATTACK)
+			create_crust(list(list(WEST, NORTHWEST, SOUTHWEST, NORTH), list(EAST, NORTHEAST, SOUTHEAST, SOUTH), list()))
+		if(ATTACK_RANGED)
+			create_crust(list(direction))
+*/
