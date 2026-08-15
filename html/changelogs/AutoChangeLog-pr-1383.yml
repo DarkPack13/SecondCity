@@ -1,5 +1,0 @@
-author: "TheTrueSilverRat"
-delete-after: True
-changes:
-  - rscadd: "add a feature to be wyrm tainted"
-  - code_imp: "added the needed back-end tgui files for it."
