@@ -1,4 +1,3 @@
-/* // DARKPACK EDIT REMOVAL START - Removes /tg/ Brainwashing
 #define OPERATION_OBJECTIVE "objective"
 
 /datum/surgery_operation/organ/brainwash
@@ -149,4 +148,3 @@
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC
 
 #undef OPERATION_OBJECTIVE
-*/ // DARKPACK EDIT REMOVAL END - Removes /tg/ Brainwashing
