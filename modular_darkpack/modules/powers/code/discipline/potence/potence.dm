@@ -44,12 +44,12 @@
 
 	UnregisterSignal(owner, COMSIG_LIVING_UNARMED_ATTACK)
 
-/datum/discipline_power/potence/proc/potence_strike(mob/living/owner, atom/attack_target, proximity)
+/datum/discipline_power/potence/proc/potence_strike(mob/living/owner)
 	SIGNAL_HANDLER
 	if(owner.combat_mode)
-		return potence_act(owner, attack_target)
+		return potence_act(owner)
 
-/datum/discipline_power/potence/proc/potence_act(mob/living/owner, atom/attack_target)
+/datum/discipline_power/potence/proc/potence_act(mob/living/owner)
 	if(!(owner.bloodpool >= vitae_cost))
 		deactivate()
 		return FALSE
