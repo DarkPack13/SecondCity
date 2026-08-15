@@ -89,7 +89,6 @@
 		tzimisce_operations += /datum/surgery_operation/basic/tend_wounds/combo/upgraded/master
 		tzimisce_operations += /datum/surgery_operation/limb/add_plastic
 		tzimisce_operations += typesof(/datum/surgery_operation/limb/bioware)
-		tzimisce_operations += typesof(/datum/surgery_operation/organ/brainwash)
 		tzimisce_operations += typesof(/datum/surgery_operation/organ/lobotomy)
 		tzimisce_operations += typesof(/datum/surgery_operation/organ/pacify)
 		tzimisce_operations += /datum/surgery_operation/organ/eye_color_surgery
