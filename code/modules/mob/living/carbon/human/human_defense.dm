@@ -748,7 +748,7 @@
 	for(var/obj/item/bodypart/BP as anything in get_bodyparts())
 		soakval += check_soak(BP, type)
 		organnum++
-	return (max((armorval/max(organnum, 1)), 0))
+	return (max((soakval/max(organnum, 1)), 0))
 
 
 /mob/living/carbon/human/proc/check_soak(obj/item/bodypart/def_zone, damage_type)
@@ -759,14 +759,16 @@
 	for(var/obj/item/clothing/clothing_item in covering_clothing)
 		if(clothing_item.body_parts_covered & def_zone.body_part)
 			switch(damage_type)
-				if(bashing_soak)
+				if("bashing_soak")
 					soaked = clothing_item.bashing_soak
-				if(lethal_melee_soak)
+				else if("lethal_melee_soak")
 					soaked = clothing_item.lethal_melee_soak
-				if(lethal_bullet_soak)
+				else if("lethal_bullet_soak")
 					soaked = clothing_item.lethal_bullet_soak
-				if(agg_fire_soak)
+				else if("agg_fire_soak")
 					soaked = clothing_item.agg_fire_soak
-				if(agg_supernatural_soak)
+				else if("agg_supernatural_soak")
 					soaked = clothing_item.agg_supernatural_soak
+				else
+					return
 	return soaked
