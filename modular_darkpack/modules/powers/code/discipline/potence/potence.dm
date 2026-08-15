@@ -20,7 +20,7 @@
 	check_flags = DISC_CHECK_CAPABLE
 
 	toggled = TRUE
-	duration_length = 1 TURNS
+	duration_length = 0		//We consume on hit instead of by turn.
 
 /datum/discipline_power/potence/post_gain()
 	owner.st_add_stat_mod(STAT_STRENGTH, level, "Potence")
@@ -35,11 +35,25 @@
 		var/max_level = min(discipline.level, 5)
 		owner.apply_status_effect(/datum/status_effect/potence, max_level)
 
+	RegisterSignal(owner, COMSIG_LIVING_UNARMED_ATTACK, PROC_REF(potence_strike))
+
 /datum/discipline_power/potence/deactivate()
 	. = ..()
 	if(level <= 5)
 		owner.remove_status_effect(/datum/status_effect/potence)
 
+	UnregisterSignal(owner, COMSIG_LIVING_UNARMED_ATTACK)
+
+/datum/discipline_power/potence/proc/potence_strike(mob/living/owner, atom/attack_target, proximity)
+	SIGNAL_HANDLER
+	if(owner.combat_mode)
+		return potence_act(owner, attack_target)
+
+/datum/discipline_power/potence/proc/potence_act(mob/living/owner, atom/attack_target)
+	if(!(owner.bloodpool >= vitae_cost))
+		deactivate()
+		return FALSE
+	owner.adjust_blood_pool(-vitae_cost)
 
 //POTENCE 1
 /datum/discipline_power/potence/one
