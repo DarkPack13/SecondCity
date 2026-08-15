@@ -20,6 +20,7 @@
 		new /datum/data/vending_product("chainsaw", /obj/item/chainsaw/vamp),
 		new /datum/data/vending_product("hunting rifle", /obj/item/gun/ballistic/automatic/darkpack/huntrifle),
 		new /datum/data/vending_product("5.56 ammo", /obj/item/ammo_box/darkpack/c556),
+		new /datum/data/vending_product("military parka", /obj/item/clothing/suit/vampire/coat/milparka,	90),
 	)
 	product_types = list(
 		/obj/item/fishing_rod,
