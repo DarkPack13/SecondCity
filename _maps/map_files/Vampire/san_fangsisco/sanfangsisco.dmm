@@ -71679,6 +71679,10 @@
 	},
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/chinatown)
+"tvh" = (
+/obj/machinery/logging_machine,
+/turf/open/floor/wood/ornate,
+/area/vtm/interior/police/upstairs)
 "tvi" = (
 /obj/structure/table/wood,
 /obj/item/gun/ballistic/automatic/darkpack/sniper,
@@ -271417,7 +271421,7 @@ pPQ
 aSu
 xKN
 mhF
-mhF
+tvh
 pwI
 ntq
 ntq
