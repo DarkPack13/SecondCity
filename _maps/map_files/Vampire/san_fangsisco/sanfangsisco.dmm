@@ -67842,10 +67842,6 @@
 /obj/machinery/light/prince/directional/east,
 /turf/open/floor/mineral/plastitanium,
 /area/vtm/interior/tzimisce_manor)
-"suR" = (
-/obj/structure/roofstuff,
-/turf/open/openspace,
-/area/vtm)
 "suV" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -260294,9 +260290,9 @@ ntq
 ntq
 ntq
 hpg
-suR
-ntq
-suR
+pEQ
+kno
+pEQ
 kno
 pEQ
 foR
@@ -260551,11 +260547,11 @@ ntq
 ntq
 ntq
 hpg
-ntq
-ntq
-ntq
 kno
-ntq
+kno
+kno
+kno
+kno
 foR
 ntq
 ntq
@@ -260812,7 +260808,7 @@ kno
 kno
 kno
 kno
-ntq
+kno
 foR
 ntq
 ntq
@@ -261069,7 +261065,7 @@ kno
 kno
 kno
 kno
-ntq
+kno
 foR
 ntq
 ntq
@@ -261579,10 +261575,10 @@ ntq
 ntq
 ntq
 hpg
-ntq
-ntq
-ntq
-ntq
+kno
+kno
+kno
+kno
 kno
 foR
 ntq
@@ -261836,10 +261832,10 @@ ntq
 ntq
 ntq
 hpg
-ntq
-ntq
-ntq
-ntq
+kno
+kno
+kno
+kno
 kno
 foR
 ntq
@@ -262093,10 +262089,10 @@ ntq
 ntq
 ntq
 hpg
-suR
-ntq
-suR
-ntq
+pEQ
+kno
+pEQ
+kno
 pEQ
 foR
 ntq
