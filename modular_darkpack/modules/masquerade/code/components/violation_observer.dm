@@ -1,23 +1,14 @@
-// Used for things that detect masquerade violations.
-// Usually NPCs or cameras.
-/datum/component/violation_observer
-	dupe_mode = COMPONENT_DUPE_UNIQUE
-	/// Time between us checking for violations
-	COOLDOWN_DECLARE(scan_cooldown)
-	var/list/breached_players
+/atom
+	var/violation_observer = FALSE
 
-/datum/component/violation_observer/Initialize(add_area_of_effect) //Only add the AOE checker for NPCs and camera objects.
-	breached_players = new()
-
-/datum/component/violation_observer/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_SEEN_MASQUERADE_VIOLATION, PROC_REF(on_observed_violation))
-	RegisterSignal(parent, COMSIG_MASQUERADE_REINFORCE, PROC_REF(on_masquerade_violation_reinforced))
-	RegisterSignals(parent, list(COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE), PROC_REF(on_death))
-
-/datum/component/violation_observer/UnregisterFromParent(force, silent)
-	breached_players = null
-	UnregisterSignal(parent, list(COMSIG_SEEN_MASQUERADE_VIOLATION, COMSIG_MASQUERADE_REINFORCE, COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE))
-
+/atom/proc/toggle_masquerade_sensitivity()
+	violation_observer = !violation_observer
+	if(violation_observer)
+		RegisterSignal(src, COMSIG_SEEN_MASQUERADE_VIOLATION, PROC_REF(on_observed_violation))
+		RegisterSignal(src, COMSIG_MASQUERADE_REINFORCE, PROC_REF(on_masquerade_violation_reinforced))
+		RegisterSignals(src, list(COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE), PROC_REF(on_masquerade_witness_death))
+	else
+		UnregisterSignal(src, list(COMSIG_SEEN_MASQUERADE_VIOLATION, COMSIG_MASQUERADE_REINFORCE, COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE))
 
 // violate. sent by comsig_masquerade_violation, checks for mob/living/carbon/human/npc
 /atom/proc/on_observed_violation(atom/source, mob/living/player_breacher)
@@ -60,7 +51,7 @@
 
 		return TRUE
 
-/atom/proc/on_death()
+/atom/proc/on_masquerade_witness_death()
 	SIGNAL_HANDLER
 
 	for(var/breach in SSmasquerade.masquerade_breachers)
