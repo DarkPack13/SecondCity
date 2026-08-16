@@ -1,7 +1,7 @@
 /datum/quirk/darkpack/thirst_of_ages
 	name = "Thirst Of Ages"
 	desc = "Some particularly old vampires find themselves unable to subsist off of mortal blood. You are only capable of feeding off of supernaturals."
-	ttrpg_sources = list(/datum/source_book/GtTMR = 177)	//Referred to as Methuselah's Thirst.
+	ttrpg_sources = list(/datum/source_book/gt_tmr = 177)	//Referred to as Methuselah's Thirst.
 	value = -7
 	mob_trait = TRAIT_THIRST_OF_AGES
 	allowed_splats = list(SPLAT_KINDRED)
