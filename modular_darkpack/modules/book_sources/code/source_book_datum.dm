@@ -27,7 +27,7 @@ GLOBAL_LIST_INIT(source_book_priority, list(
 	name = "Werewolf The Apocalypse 20th Anniversary Edition"
 	offical_status = SOURCE_OFFICAL
 	
-/datum/source_book/GtTMR
+/datum/source_book/gt_tmr
 	name = "The Black Hand Guide to The Tal'Mahe'Ra"
 	offical_status = SOURCE_OFFICAL
 
