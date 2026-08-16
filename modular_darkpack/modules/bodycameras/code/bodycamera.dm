@@ -21,6 +21,8 @@
 	///The camera itself, made when we need it and deleted on Destroy. Installed into the clothing item directly.
 	var/obj/machinery/camera/bodycamera/builtin_bodycamera
 	var/static/mutable_appearance/equipped_overlay = mutable_appearance('modular_darkpack/modules/bodycameras/icons/bodycamera_overlay.dmi', "bodycamera")
+	// the guy wearing it , temporary var until i figure out something better
+	var/mob/living/carbon/wearer
 
 /obj/item/bodycam_upgrade/examine_more(mob/user)
 	. = ..()
@@ -105,7 +107,9 @@
 	builtin_bodycamera.network = network //sync the network of the camera to us, the upgrade.
 	builtin_bodycamera.camera_enabled = TRUE
 	var/obj/item/clothing = loc
-	var/mob/living/carbon/wearer = iscarbon(clothing.loc) // interacting_with_atom forces us to be on an /obj/item/clothing on a mob
+	if(!iscarbon(clothing.loc))
+		return
+	wearer = clothing.loc // interacting_with_atom forces us to be on an /obj/item/clothing on a mob
 	wearer.toggle_masquerade_sensitivity()
 	log_game("BODYCAM TOGGLE: [(user ? key_name(user) : "SYSTEM")] turned ON [src] ([builtin_bodycamera.c_tag]) at [loc_name(src)].")
 
@@ -117,6 +121,7 @@
 	if(builtin_bodycamera)
 		builtin_bodycamera.camera_enabled = FALSE
 	wearer.toggle_masquerade_sensitivity()
+	wearer = null
 	log_game("BODYCAM TOGGLE: [(user ? key_name(user) : "SYSTEM")] turned OFF [src] at [loc_name(src)].")
 
 /**
