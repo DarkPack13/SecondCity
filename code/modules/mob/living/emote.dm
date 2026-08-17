@@ -691,10 +691,10 @@
 
 		// DARKPACK EDIT CHANGE START
 		var/yawn_chance = YAWN_PROPAGATE_CHANCE_BASE
-		var/willpower_stat = astype(user, /mob/living)?.st_get_stat(STAT_TEMPORARY_WILLPOWER)
+		var/willpower_stat = astype(iter_living, /mob/living)?.st_get_stat(STAT_PERMANENT_WILLPOWER)
 		if(!isnull(willpower_stat))
-			yawn_chance = ((10 - willpower_stat) * 10) - 20
-			yawn_chance = clamp(yawn_chance, 5, 50)
+			yawn_chance = (10 - willpower_stat) * 10
+			yawn_chance = clamp(yawn_chance, 5, YAWN_PROPAGATE_CHANCE_BASE)
 
 		if(!recently_examined && !prob(yawn_chance - (YAWN_PROPAGATE_CHANCE_DECAY * dist_between)))
 			continue
