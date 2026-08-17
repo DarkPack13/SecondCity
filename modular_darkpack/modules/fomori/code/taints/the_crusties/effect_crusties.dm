@@ -76,8 +76,14 @@
 */
 /obj/effect/particle_effect/crusties/proc/crusties_touched(datum/source, atom/crusted)
 	SIGNAL_HANDLER
-	if(!isturf(crusted)) // no turfs because we're already handling that in affect_location()
-		crusted.add_blood_DNA(living_source.get_blood_dna_list(), FALSE)
+
+	var/datum/component/crusties/crust_keeper = crusted.GetComponent(/datum/component/crusties)
+	var/list/living_source_blood_DNA = living_source.get_blood_dna_list()
+	if(crust_keeper && !(living_source_blood_DNA in crust_keeper.dna_sequences))
+		crust_keeper.dna_sequences += living_source_blood_DNA
+	else
+		AddComponent(/datum/component/crusties, living_source_blood_DNA)
+
 	if(ishuman(crusted))
 		var/mob/living/carbon/human/crusted_human = crusted
 		for(var/obj/item/anything in crusted_human.get_visible_items())
