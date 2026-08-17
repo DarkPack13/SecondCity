@@ -694,6 +694,8 @@
 
 #undef YAWN_PROPAGATE_CHANCE_BASE
 #undef YAWN_PROPAGATE_CHANCE_DECAY
+
+/// Commented out due to abuse of this mechanic
 */
 
 /datum/emote/living/gurgle
