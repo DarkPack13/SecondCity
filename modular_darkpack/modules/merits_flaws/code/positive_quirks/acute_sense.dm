@@ -84,5 +84,5 @@ acuity.*/
 
 	return /datum/quirk/darkpack/acute_sense::name in preferences.all_quirks
 
-/datum/preference/choiced/acute_sense/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/choiced/acute_sense/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return

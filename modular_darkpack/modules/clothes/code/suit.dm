@@ -229,6 +229,11 @@
 	desc = "A coat made from synthetic fur."
 	icon_state = "leopard_coat"
 
+/obj/item/clothing/suit/vampire/coat/milparka
+	name = "military parka"
+	desc = "A thick parka in desert night camoflague."
+	icon_state = "desertnightparka"
+
 
 /obj/item/clothing/suit/hooded/hoodie
 	name = "hoodie"
