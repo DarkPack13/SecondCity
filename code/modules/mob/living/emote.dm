@@ -673,7 +673,7 @@
 			continue
 
 		// DARKPACK EDIT ADD START
-		if(prob(75)) // Propigation is a not a garanuteed one. Keeps it fun when it happens.
+		if(prob(50)) // Propigation is a not a garanuteed one. Keeps it fun when it happens.
 			continue
 		if(TIMER_COOLDOWN_RUNNING(iter_living, COOLDOWN_YAWN_WITNESSED))
 			continue
