@@ -642,7 +642,7 @@
 /// The base chance for your yawn to propagate to someone else if they're on the same tile as you
 /// #define YAWN_PROPAGATE_CHANCE_BASE 20 DARKPACK EDIT REMOVAL - Yawning No Longer Spreads to Bystanders
 /// The amount the base chance to propagate yawns falls for each tile of distance
-/// #define YAWN_PROPAGATE_CHANCE_DECAY 4 DARKPACK EDIT REMOVAL - Yawning No Longer Spreads to Bystanders
+// #define YAWN_PROPAGATE_CHANCE_DECAY 4 DARKPACK EDIT REMOVAL - Yawning No Longer Spreads to Bystanders
 
 /datum/emote/living/yawn
 	key = "yawn"
