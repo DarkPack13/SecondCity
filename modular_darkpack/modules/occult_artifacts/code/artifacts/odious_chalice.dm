@@ -84,7 +84,7 @@
 	if(target_mob.bloodpool >= target_mob.maxbloodpool)
 		return
 
-	var/amount_to_spend = clamp(target_mob.maxbloodpool - target_mob.bloodpool, 0, blood_cap)
+	var/amount_to_spend = clamp(target_mob.maxbloodpool - target_mob.bloodpool, 0, stored_blood)
 
 	target_mob.adjust_blood_pool(amount_to_spend)
 	stored_blood -= amount_to_spend
