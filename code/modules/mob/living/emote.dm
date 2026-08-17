@@ -654,7 +654,7 @@
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	cooldown = 5 SECONDS
 
-/*
+/* // DARKPACK EDIT REMOVE START
 /datum/emote/living/yawn/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
 	if(!isliving(user))
@@ -695,8 +695,7 @@
 #undef YAWN_PROPAGATE_CHANCE_BASE
 #undef YAWN_PROPAGATE_CHANCE_DECAY
 
-/// Commented out due to abuse of this mechanic
-*/
+*/ // DARKPACK EDIT REMOVE END
 
 /datum/emote/living/gurgle
 	key = "gurgle"
