@@ -1,0 +1,6 @@
+author: "Stutternov"
+delete-after: True
+changes:
+  - bugfix: "Fixes the sawn AK74's sprite overlays. Has proper mag now and belt sprite placeholder. (Looks like normal AK on belt.)"
+  - bugfix: "Fixes lever action not having updating sprite overlays when you cycle its bolt."
+  - bugfix: "Fixes musket to be capable of being sawn down as intended."

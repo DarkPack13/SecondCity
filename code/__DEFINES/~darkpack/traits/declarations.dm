@@ -199,6 +199,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_STILLNESS_OF_DEATH "stillness_of_death"
 #define TRAIT_THE_LARGEST_MAW "the_largest_maw"
 #define TRAIT_THIRD_EYE "third_eye"
+#define TRAIT_THIRST_OF_AGES "thirst_of_ages"
 #define TRAIT_TIME_SENSE "time_sense"
 #define TRAIT_UNCONTROLLABLE "uncontrollable"
 #define TRAIT_VAMPIRE_TERRITORIAL "territorial"

@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscadd: "Map votes are now automatically started at roundend, if a next map has not already been selected."
