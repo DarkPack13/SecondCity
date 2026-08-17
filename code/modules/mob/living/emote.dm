@@ -640,9 +640,9 @@
 	message = "smiles weakly."
 
 /// The base chance for your yawn to propagate to someone else if they're on the same tile as you
-#define YAWN_PROPAGATE_CHANCE_BASE 20
+/// #define YAWN_PROPAGATE_CHANCE_BASE 20
 /// The amount the base chance to propagate yawns falls for each tile of distance
-#define YAWN_PROPAGATE_CHANCE_DECAY 4
+/// #define YAWN_PROPAGATE_CHANCE_DECAY 4
 
 /datum/emote/living/yawn
 	key = "yawn"
@@ -654,6 +654,7 @@
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	cooldown = 5 SECONDS
 
+/*
 /datum/emote/living/yawn/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
 	if(!isliving(user))
@@ -693,6 +694,7 @@
 
 #undef YAWN_PROPAGATE_CHANCE_BASE
 #undef YAWN_PROPAGATE_CHANCE_DECAY
+*/
 
 /datum/emote/living/gurgle
 	key = "gurgle"
