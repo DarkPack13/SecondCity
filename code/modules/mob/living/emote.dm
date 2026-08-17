@@ -693,7 +693,7 @@
 		var/yawn_chance = YAWN_PROPAGATE_CHANCE_BASE
 		var/willpower_stat = astype(iter_living, /mob/living)?.st_get_stat(STAT_PERMANENT_WILLPOWER)
 		if(!isnull(willpower_stat))
-			if(willpower <= 1)
+			if(willpower_stat <= 1)
 				yawn_chance = 75
 			else
 				yawn_chance = (10 - willpower_stat) * 2.5
