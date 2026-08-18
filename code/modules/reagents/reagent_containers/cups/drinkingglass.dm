@@ -2,6 +2,7 @@
 	name = "drinking glass"
 	desc = "Your standard drinking glass."
 	icon_state = "glass_empty"
+	worn_icon_state = "bottle"
 	base_icon_state = "glass_empty"
 	amount_per_transfer_from_this = 10
 	fill_icon_thresholds = list(0)
@@ -22,14 +23,22 @@
 	/// This allows subtypes to utilize parent styles.
 	var/base_container_type = null
 
+	// DARKPACK EDIT ADD START - Fixing invisible glass sprites
+	/// use /tg/ custom sprites for filled glasses?
+	var/custom_reagent_sprites = TRUE
+	// DARKPACK EDIT ADD END - Fixing invisible glass sprites
+
 /obj/item/reagent_containers/cup/glass/drinkingglass/Initialize(mapload, vol)
 	. = ..()
-	AddComponent( \
-		/datum/component/takes_reagent_appearance, \
-		CALLBACK(src, PROC_REF(on_cup_change)), \
-		CALLBACK(src, PROC_REF(on_cup_reset)), \
-		base_container_type = base_container_type, \
-	)
+// DARKPACK EDIT START - glass sprites
+	if(custom_reagent_sprites)
+		AddComponent( \
+			/datum/component/takes_reagent_appearance, \
+			CALLBACK(src, PROC_REF(on_cup_change)), \
+			CALLBACK(src, PROC_REF(on_cup_reset)), \
+			base_container_type = base_container_type, \
+		)
+// DARKPACK EDIT END
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(on_cleaned))
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/on_reagent_change(datum/reagents/holder, ...)

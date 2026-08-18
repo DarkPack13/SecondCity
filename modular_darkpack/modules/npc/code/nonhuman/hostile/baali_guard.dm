@@ -1,5 +1,5 @@
 /mob/living/basic/baali_guard
-	name = "Infernal Creature"
+	name = "infernal creature"
 	desc = "The peak of abominations armor. Unbelievably undamagable..."
 	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
 	icon_state = "baali"
@@ -10,7 +10,7 @@
 	maxHealth = 1500
 	health = 1500
 
-	guaranteed_butcher_results = list(/obj/item/stack/human_flesh = 20)
+	guaranteed_butcher_results = list(/obj/item/stack/sheet/meat = 20)
 
 	combat_mode = TRUE
 	melee_damage_type = AGGRAVATED

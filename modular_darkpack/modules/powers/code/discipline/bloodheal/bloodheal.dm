@@ -3,16 +3,23 @@
 
 /datum/discipline/bloodheal
 	name = "Bloodheal"
-	desc = "Use the power of your Vitae to mend your flesh."
+	desc = {"Use the power of your Vitae to mend your flesh.
+● Bloodheal: Stamina + Survival (difficulty 8) - roll only on interrupted cast"}
 	icon_state = "bloodheal"
 	power_type = /datum/discipline_power/bloodheal
 	selectable = FALSE
+
+/datum/storyteller_roll/bloodheal
+	bumper_text = "Bloodheal"
+	difficulty = 8
+	applicable_stats = list(STAT_STAMINA, STAT_SURVIVAL)
+	roll_output_type = ROLL_PRIVATE
 
 /datum/discipline_power/bloodheal
 	name = "Bloodheal power name"
 	desc = "Bloodheal power description"
 
-	activate_sound = 'modular_darkpack/modules/deprecated/sounds/bloodhealing.ogg'
+	activate_sound = 'modular_darkpack/modules/vampire_the_masquerade/sounds/bloodhealing.ogg'
 
 	level = 1
 	check_flags = DISC_CHECK_TORPORED
@@ -34,6 +41,29 @@
 		/datum/discipline_power/bloodheal/nine,
 		/datum/discipline_power/bloodheal/ten
 	)
+
+	var/datum/storyteller_roll/bloodheal/bloodheal_roll
+
+/datum/discipline_power/bloodheal/pre_activation_checks(atom/target)
+	. = ..()
+	if(do_after(owner, 1 TURNS, timed_action_flags = DO_AFTER_CHECK_NEXT_MOVE | IGNORE_INCAPACITATED))
+		return TRUE
+	if(!bloodheal_roll)
+		bloodheal_roll = new()
+	var/roll_result = bloodheal_roll.st_roll(owner, src)
+	to_chat(owner, span_warning("You break your concentration..."))
+	switch(roll_result)
+		if(ROLL_SUCCESS)
+			to_chat(owner, span_notice("But you succeed in mending your wounds."))
+			return TRUE
+		if(ROLL_FAILURE)
+			to_chat(owner, span_warning("And fail to harness your blood."))
+			return FALSE
+		if(ROLL_BOTCH)
+			to_chat(owner, span_danger("And worsen your wounds."))
+			owner.adjust_blood_pool(-1)
+			owner.apply_damage(1 TTRPG_DAMAGE, BRUTE)
+			return FALSE
 
 /datum/discipline_power/bloodheal/activate()
 	. = ..()
@@ -58,13 +88,29 @@
 			var/datum/brain_trauma/healing_trauma = pick(brain.get_traumas_type())
 			brain.cure_trauma_type(healing_trauma, resilience = TRAUMA_RESILIENCE_WOUND)
 
-	//miscellaneous organ damage healing
+	// Let core species logic handle restoring/healing organs so missing eyes are rebuilt correctly.
+	owner.regenerate_organs()
 	var/obj/item/organ/eyes/eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
+	if (!eyes)
+		var/eyes_type = owner.dna?.species?.get_mutant_organ_type_for_slot(ORGAN_SLOT_EYES) || /obj/item/organ/eyes
+		eyes = new eyes_type()
+		eyes.Insert(owner, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+	owner.cure_blind(NO_EYES)
+	if(!owner.has_quirk(/datum/quirk/item_quirk/blindness))
+		owner.cure_blind(QUIRK_TRAIT)
+	owner.cure_blind(EYE_DAMAGE)
+	owner.cure_blind(EYE_SCARRING_TRAIT)
+	owner.cure_nearsighted(QUIRK_TRAIT)
+	owner.cure_nearsighted(EYE_DAMAGE)
 	if (eyes)
-		eyes.apply_organ_damage(-HEAL_BASHING_LETHAL_DAMAGE * vitae_cost)
+		eyes.fix_scar(LEFT_EYE_SCAR)
+		eyes.fix_scar(RIGHT_EYE_SCAR)
+	owner.remove_status_effect(/datum/status_effect/temporary_blindness)
+	owner.remove_status_effect(/datum/status_effect/eye_blur)
 
-		owner.adjust_temp_blindness(-HEAL_AGGRAVATED_DAMAGE * vitae_cost)
-		owner.adjust_eye_blur(-HEAL_AGGRAVATED_DAMAGE * vitae_cost)
+	if(get_kindred_splat(owner) && length(owner.get_missing_limbs()))
+		owner.regenerate_limbs()
+		violates_masquerade = TRUE
 
 	//healing too quickly attracts attention
 	if (violates_masquerade)
@@ -85,8 +131,8 @@
 /datum/discipline_power/bloodheal/proc/adjust_vitae_cost()
 	vitae_cost = initial(vitae_cost)
 	//tally up damage
-	var/total_bashing_lethal_damage = owner.getBruteLoss() + owner.getToxLoss() + owner.getOxyLoss()
-	var/total_aggravated_damage = owner.getAggLoss() + owner.getFireLoss()
+	var/total_bashing_lethal_damage = owner.get_brute_loss() + owner.get_tox_loss() + owner.get_oxy_loss()
+	var/total_aggravated_damage = owner.get_agg_loss() + owner.get_fire_loss()
 
 	//lower blood expenditure to what's necessary
 	var/vitae_to_heal_bashing_lethal = ceil(total_bashing_lethal_damage / HEAL_BASHING_LETHAL_DAMAGE)

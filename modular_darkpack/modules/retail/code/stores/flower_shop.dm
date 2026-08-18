@@ -3,7 +3,7 @@
 	desc = "The only 24hr flower shop in SanFran."
 	products_list = list(
 		new /datum/data/vending_product("Gardening Gloves", /obj/item/clothing/gloves/botanic_leather, 45),
-		new /datum/data/vending_product("Respirator", /obj/item/clothing/mask/vampire, 35),
+		new /datum/data/vending_product("respirator", /obj/item/clothing/mask/gas/vampire),
 		new /datum/data/vending_product("Plant Bag", /obj/item/storage/bag/plants, 45),
 		new /datum/data/vending_product("Basic Fertilizer", /obj/item/reagent_containers/cup/bottle/nutrient/ez, 100),
 		new /datum/data/vending_product("Herbicide", /obj/item/reagent_containers/spray/weedspray, 25),

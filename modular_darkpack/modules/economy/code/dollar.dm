@@ -1,5 +1,5 @@
 /obj/item/stack/dollar
-	name = "dollars"
+	name = MONEY_NAME // Prob overkill to use the define here.
 	desc = "Wow! With enough of these, you could buy a lot! ...Pssh, yeah right."
 	singular_name = "dollar"
 	icon_state = "money1"
@@ -8,6 +8,7 @@
 	righthand_file = null
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	w_class = WEIGHT_CLASS_TINY
+	full_w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 	max_amount = 1000
 	merge_type = /obj/item/stack/dollar
@@ -56,9 +57,17 @@
 /obj/item/stack/dollar/thousand
 	amount = 1000
 
+
 /obj/item/stack/dollar/rand
+	amount = 15
 
 /obj/item/stack/dollar/rand/Initialize(mapload, new_amount, merge = TRUE, list/mat_override = null, mat_amt = 1)
+	amount = round(gaussian(amount, amount * 0.2))
 	. = ..()
-	amount = rand(5, 30)
 	update_appearance()
+
+/obj/item/stack/dollar/rand/ten
+	amount = 10
+
+/obj/item/stack/dollar/rand/hundred
+	amount = 100

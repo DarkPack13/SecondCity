@@ -7,9 +7,9 @@
 /datum/pet_command/good_boy/dog
 	speech_commands = list("good dog")
 
-// Set correct attack behaviour
+// Use dog-specific melee attack (paws harmlessly when BB_DOG_HARASS_HARM is false)
 /datum/pet_command/attack/dog
-	attack_behaviour = /datum/ai_behavior/basic_melee_attack/dog
+	attack_subtree = /datum/bt_node/subtree/pet_command/attack/dog
 
 /datum/pet_command/attack/dog/set_command_active(mob/living/parent, mob/living/commander)
 	. = ..()
@@ -27,7 +27,6 @@
 	response_harm_simple = "kick"
 	speak_emote = list("barks", "woofs")
 	faction = list(FACTION_NEUTRAL)
-	can_be_held = TRUE
 	ai_controller = /datum/ai_controller/basic_controller/dog
 	// The dog attack pet command can raise melee attack above 0
 	attack_verb_continuous = "bites"
@@ -35,19 +34,23 @@
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	melee_attack_cooldown = 0.8 SECONDS
+	melee_damage_lower = 5
+	melee_damage_upper = 10
 	/// Instructions you can give to dogs
+	/* // DARKPACK EDIT REMOVAL START - NPC - (Moving this into a proc so we can have subtypes with different commands)
 	var/static/list/pet_commands = list(
 		/datum/pet_command/idle,
 		/datum/pet_command/free,
 		/datum/pet_command/move,
 		/datum/pet_command/good_boy/dog,
 		/datum/pet_command/follow/dog,
-//		/datum/pet_command/perform_trick_sequence // DARKPACK EDIT REMOVE - Might be usable later - NPC
+//		/datum/pet_command/perform_trick_sequence // DARKPACK EDIT REMOVAL - Might be usable later - NPC
 		/datum/pet_command/attack/dog,
 		/datum/pet_command/fetch,
 		/datum/pet_command/play_dead,
 		/datum/pet_command/protect_owner, // DARKPACK EDIT ADD - NPC
 	)
+	*/
 	///icon state of the collar we can wear
 	var/collar_icon_state
 	///icon state of our cult icon
@@ -64,32 +67,15 @@
 	bloodpool = 5
 	maxbloodpool = 5
 
-	var/can_hold_item = TRUE // for gathering food
-
 /mob/living/basic/pet/dog/update_resting()
 	. = ..()
 	if(stat == DEAD)
 		return
 	update_appearance(UPDATE_ICON_STATE)
-
-
-/datum/ai_planning_subtree/find_and_hunt_target/find_dog_food
-	hunting_behavior = /datum/ai_behavior/hunt_target/interact_with_target/find_dog_food
-	hunt_targets = list(
-		/obj/item/food/deadmouse,
-		/obj/item/food/meat/slab,
-		/obj/item/food/meat/rawbacon,
-		/obj/item/food/meat/bacon,
-		/obj/item/food/meat/rawcutlet,
-		)
-	hunt_chance = 75
-	hunt_range = 18
-
-/datum/ai_behavior/hunt_target/interact_with_target/find_dog_food
-	always_reset_target = TRUE
 // DARKPACK EDIT ADD END
 
 /datum/emote/dog
+	abstract_type = /datum/emote/dog
 	mob_type_allowed_typecache = /mob/living/basic/pet/dog
 	mob_type_blacklist_typecache = list()
 
@@ -108,32 +94,64 @@
 	AddElement(/datum/element/pet_bonus, "woof")
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_CLAW)
 	AddElement(/datum/element/unfriend_attacker, untamed_reaction = "%SOURCE% fixes %TARGET% with a look of betrayal.")
+	AddElement(/datum/element/can_be_held)
 	var/static/list/food_types = list(
 		/obj/item/food/meat/slab/human/mutant/skeleton,
 		/obj/item/stack/sheet/bone,
-// DARKPACK EDIT ADD START - NPC
+		// DARKPACK EDIT ADD START - NPC
 		/obj/item/food/meat/slab,
 		/obj/item/food/meat/rawbacon,
 		/obj/item/food/meat/bacon,
 		/obj/item/food/meat/rawcutlet,
-// DARKPACK EDIT ADD END
+		// DARKPACK EDIT ADD END
 	)
 	AddElement(/datum/element/ai_flee_while_injured) // DARKPACK EDIT ADD - NPC
 	AddComponent(/datum/component/tameable, food_types = food_types, tame_chance = 30, bonus_tame_chance = 15, unique = FALSE)
-	AddComponent(/datum/component/obeys_commands, pet_commands)
+	// AddComponent(/datum/component/obeys_commands, pet_commands) // DARKPACK EDIT REMOVAL - NPC
+	add_obey_commands()
 	var/dog_area = get_area(src)
 	for(var/obj/structure/bed/dogbed/dog_bed in dog_area)
 		if(dog_bed.update_owner(src)) //No muscling in on my turf you fucking parrot
 			break
+	ai_controller.set_blackboard_key(BB_HUNT_TARGET_LIST, typecacheof(food_types)) // DARKPACK EDIT ADD
+
+// DARKPACK EDIT ADD START - NPC - (snowflake obeys_commands abstraction proc)
+/mob/living/basic/pet/dog/proc/add_obey_commands()
+	var/static/list/pet_commands = list(
+	/datum/pet_command/idle,
+	/datum/pet_command/free,
+	/datum/pet_command/move,
+	/datum/pet_command/good_boy/dog,
+	/datum/pet_command/follow/dog,
+	/datum/pet_command/perform_trick_sequence,
+	/datum/pet_command/attack/dog,
+	/datum/pet_command/fetch,
+	/datum/pet_command/play_dead,
+	/datum/pet_command/protect_owner,)
+
+	AddComponent(/datum/component/obeys_commands, pet_commands)
+// DARKPACK EDIT ADD END - npc
 
 ///Updates dog speech and emotes
-/mob/living/basic/pet/dog/proc/update_dog_speech(datum/ai_planning_subtree/random_speech/speech)
-	speech.speak = string_list(list("YAP", "Woof!", "Bark!", "AUUUUUU"))
-	speech.emote_hear = string_list(list("barks!", "woofs!", "yaps.","pants."))
-	speech.emote_see = string_list(list("shakes [p_their()] head.", "chases [p_their()] tail.","shivers."))
+/mob/living/basic/pet/dog/proc/update_dog_speech(list/speech_data)
+	speech_data[BB_EMOTE_SAY] = string_list(list("YAP", "Woof!", "Bark!", "AUUUUUU"))
+	speech_data[BB_EMOTE_HEAR] = string_list(list("barks!", "woofs!", "yaps.","pants."))
+	speech_data[BB_EMOTE_SEE] = string_list(list("shakes [p_their()] head.", "chases [p_their()] tail.","shivers."))
+
+
+/// Populates BB_BASIC_MOB_SPEAK_LINES with the dog's current speech data for BT random speech.
+/// Subtypes override this to apply fashion accessories or variant speech.
+/mob/living/basic/pet/dog/proc/update_dog_speak_blackboard(datum/ai_controller/controller)
+	var/list/speech_data = list()
+	speech_data[BB_EMOTE_SAY] = list("YAP", "Woof!", "Bark!", "AUUUUUU")
+	speech_data[BB_EMOTE_HEAR] = list("barks!", "woofs!", "yaps.", "pants.")
+	speech_data[BB_EMOTE_SEE] = list("shakes [p_their()] head.", "chases [p_their()] tail.", "shivers.")
+	speech_data[BB_SPEAK_CHANCE] = 1
+	controller.override_blackboard_key(BB_BASIC_MOB_SPEAK_LINES, speech_data)
 
 ///Proc to run on a successful taming attempt
 /mob/living/basic/pet/dog/tamed(mob/living/tamer, atom/food)
+	. = ..()
 	visible_message(span_notice("[src] licks at [tamer] in a friendly manner!"))
 
 /// A dog bone fully heals a dog, and befriends it if it's not your friend.
@@ -153,7 +171,7 @@
 	if (!isdog(target) || user.combat_mode)
 		return ..()
 	var/mob/living/basic/pet/dog/dog_target = target
-	if (dog_target.stat != CONSCIOUS)
+	if (IS_UNCONSCIOUS_OR_CRIT(dog_target))
 		return ..()
 	dog_target.emote("spin")
 	dog_target.fully_heal()

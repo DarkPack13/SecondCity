@@ -4,7 +4,7 @@
 		{
 			"type": "byond",
 			"request": "launch",
-			"name": "Launch DreamSeeker",
+			"name": "Launch DreamSeeker (With selected flags)",
 			"preLaunchTask": "Build All",
 			"dmb": "${workspaceFolder}/${command:CurrentDMB}"
 		},
@@ -46,7 +46,7 @@
 		{
 			"type": "byond",
 			"request": "launch",
-			"name": "Launch DreamDaemon",
+			"name": "Launch DreamDaemon (With selected flags)",
 			"preLaunchTask": "Build All",
 			"dmb": "${workspaceFolder}/${command:CurrentDMB}",
 			"dreamDaemon": true
@@ -56,6 +56,14 @@
 			"request": "launch",
 			"name": "Launch DreamDaemon (low memory mode)",
 			"preLaunchTask": "Build All (low memory mode)",
+			"dmb": "${workspaceFolder}/${command:CurrentDMB}",
+			"dreamDaemon": true
+		},
+		{
+			"type": "byond",
+			"request": "launch",
+			"name": "Launch DreamDaemon (absolute minimum)",
+			"preLaunchTask": "Build All (absolute minimum)",
 			"dmb": "${workspaceFolder}/${command:CurrentDMB}",
 			"dreamDaemon": true
 		},

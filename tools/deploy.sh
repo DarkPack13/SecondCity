@@ -11,6 +11,7 @@ fi
 
 mkdir -p \
     $1/_maps \
+    $1/build/behavior_trees \
     $1/code/datums/greyscale/json_configs \
     $1/data/spritesheets \
     $1/icons \
@@ -23,12 +24,12 @@ if [ -d ".git" ]; then
   mkdir -p $1/.git/logs
   cp -r .git/logs/* $1/.git/logs/
 fi
-# DARKPACK EDIT ADDITION START - Get all the .dmis from modular_darkpack
+# DARKPACK EDIT ADD START - Get all the .dmis from modular_darkpack
 mkdir -p \
 		$1/modular_darkpack \
 
 find modular_darkpack/ -name \*.dmi -exec cp --parents {} $1 \;
-# DARKPACK EDIT ADDITION END
+# DARKPACK EDIT ADD END
 
 # DOWNSTREAM EDIT ADD START
 mkdir -p \
@@ -39,6 +40,7 @@ find modular_downstream/ -name \*.dmi -exec cp --parents {} $1 \;
 
 cp tgstation.dmb tgstation.rsc $1/
 cp -r _maps/* $1/_maps/
+cp -r build/behavior_trees/* $1/build/behavior_trees/
 cp -r code/datums/greyscale/json_configs/* $1/code/datums/greyscale/json_configs/
 cp -r icons/* $1/icons/
 cp -r sound/runtime/* $1/sound/runtime/

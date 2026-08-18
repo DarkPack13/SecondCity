@@ -1,11 +1,12 @@
 /obj/item/mod/core
-	name = "MOD core"
+	name = "\improper MOD core"
 	desc = "A non-functional MOD core. Inform the admins if you see this."
 	icon = 'icons/obj/clothing/modsuit/mod_construction.dmi'
 	icon_state = "mod-core"
 	inhand_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.05, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.05)
 	/// MOD unit we are powering.
 	var/obj/item/mod/control/mod
 
@@ -51,7 +52,7 @@
 
 /// Returns what icon state to display on the HUD for the charge level of this core
 /obj/item/mod/core/proc/get_charge_icon_state()
-	return "0"
+	return SPACESUIT_NO_ICON
 
 /// Gets what the UI should use for the charge bar color.
 /obj/item/mod/core/proc/get_chargebar_color()
@@ -65,7 +66,7 @@
 		([round((100 * charge_amount) / max_charge_amount, 1)]%)"
 
 /obj/item/mod/core/infinite
-	name = "MOD infinite core"
+	name = "\improper MOD infinite core"
 	icon_state = "mod-core-infinite"
 	desc = "A fusion core using the rare Fixium to sustain enough energy for the lifetime of the MOD's user. \
 		This might be because of the slowly killing poison inside, but those are just rumors."
@@ -89,7 +90,7 @@
 	return TRUE
 
 /obj/item/mod/core/infinite/get_charge_icon_state()
-	return "high"
+	return SPACESUIT_CELL_HIGH
 
 /obj/item/mod/core/infinite/get_chargebar_color()
 	return "teal"
@@ -98,7 +99,7 @@
 	return "Infinite"
 
 /obj/item/mod/core/standard
-	name = "MOD standard core"
+	name = "\improper MOD standard core"
 	icon_state = "mod-core-standard"
 	desc = "Growing in the most lush, fertile areas of the planet Sprout, there is a crystal known as the Heartbloom. \
 		These rare, organic piezoelectric crystals are of incredible cultural significance to the artist castes of the \
@@ -170,19 +171,19 @@
 
 /obj/item/mod/core/standard/get_charge_icon_state()
 	if(isnull(charge_source()))
-		return "missing"
+		return SPACESUIT_CELL_MISSING
 
 	switch(round(charge_amount() / max_charge_amount(), 0.01))
 		if(0.75 to INFINITY)
-			return "high"
+			return SPACESUIT_CELL_HIGH
 		if(0.5 to 0.75)
-			return "mid"
+			return SPACESUIT_CELL_MID
 		if(0.25 to 0.5)
-			return "low"
+			return SPACESUIT_CELL_LOW
 		if(0.02 to 0.25)
-			return "very_low"
+			return SPACESUIT_CELL_VERY_LOW
 
-	return "empty"
+	return SPACESUIT_CELL_EMPTY
 
 /obj/item/mod/core/standard/get_chargebar_color()
 	if(isnull(charge_source()))
@@ -226,7 +227,7 @@
 /obj/item/mod/core/standard/proc/on_attack_hand(datum/source, mob/living/user)
 	SIGNAL_HANDLER
 
-	if(mod.seconds_electrified && charge_amount() && mod.shock(user))
+	if(mod.seconds_electrified && charge_amount() && mod.shock(user, 100))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	if(mod.open && mod.loc == user)
 		INVOKE_ASYNC(src, PROC_REF(mod_uninstall_cell), user)
@@ -294,13 +295,14 @@
 		mod.update_charge_alert()
 
 /obj/item/mod/core/ethereal
-	name = "MOD ethereal core"
+	name = "\improper MOD ethereal core"
 	icon_state = "mod-core-ethereal"
 	desc = "A reverse engineered core of a Modular Outerwear Device. Using natural liquid electricity from Ethereals, \
 		preventing the need to use external sources to convert electric charge. As the suits are naturally charged by \
 		liquid electricity, this core makes it much more efficient, running all soft, hard, and wetware with several \
 		times less energy usage."
 	/// A modifier to all charge we use, ethereals don't need to spend as much energy as normal suits.
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.05, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.05)
 	var/charge_modifier = 0.1
 
 /obj/item/mod/core/ethereal/charge_source()
@@ -333,7 +335,7 @@
 	return charge_amount() >= amount * charge_modifier
 
 /obj/item/mod/core/ethereal/get_charge_icon_state()
-	return isnull(charge_source()) ? "missing" : "0"
+	return isnull(charge_source()) ? SPACESUIT_CELL_MISSING : SPACESUIT_NO_ICON
 
 /obj/item/mod/core/ethereal/get_chargebar_color()
 	if(isnull(charge_source()))
@@ -358,7 +360,7 @@
 #define PLASMA_CORE_SHEET_CHARGE (2 * STANDARD_CELL_CHARGE)
 
 /obj/item/mod/core/plasma
-	name = "MOD plasma core"
+	name = "\improper MOD plasma core"
 	icon_state = "mod-core-plasma"
 	desc = "Nanotrasen's attempt at capitalizing on their plasma research. These plasma cores are refueled \
 		through plasma fuel, allowing for easy continued use by their mining squads."
@@ -403,15 +405,15 @@
 /obj/item/mod/core/plasma/get_charge_icon_state()
 	switch(round(charge_amount() / max_charge_amount(), 0.01))
 		if(0.75 to INFINITY)
-			return "high"
+			return SPACESUIT_CELL_HIGH
 		if(0.5 to 0.75)
-			return "mid"
+			return SPACESUIT_CELL_MID
 		if(0.25 to 0.5)
-			return "low"
+			return SPACESUIT_CELL_LOW
 		if(0.02 to 0.25)
-			return "very_low"
+			return SPACESUIT_CELL_VERY_LOW
 
-	return "empty"
+	return SPACESUIT_CELL_EMPTY
 
 /obj/item/mod/core/plasma/get_chargebar_color()
 	switch(round(charge_amount() / max_charge_amount(), 0.01))
@@ -443,7 +445,7 @@
 #undef PLASMA_CORE_SHEET_CHARGE
 
 /obj/item/mod/core/plasma/lavaland
-	name = "MOD plasma flower core"
+	name = "\improper MOD plasma flower core"
 	icon_state = "mod-core-plasma-flower"
 	desc = "A strange flower from the desolate wastes of lavaland. It pulses with a strange purple glow.  \
 		The wires coming out of it could be hooked into a MODsuit."
@@ -455,18 +457,11 @@
 	// Not super sure if this should just be the same, but will see.
 	maxcharge = 15 * STANDARD_CELL_CHARGE
 	charge = 15 * STANDARD_CELL_CHARGE
-	/// The mob to be spawned by the core
-	var/mob/living/spawned_mob_type = /mob/living/basic/butterfly/lavaland/temporary
-	/// Max number of mobs it can spawn
-	var/max_spawns = 3
-	/// Mob spawner for the core
-	var/datum/component/spawner/mob_spawner
 	/// Particle holder for pollen particles
 	var/obj/effect/abstract/particle_holder/particle_effect
 
 /obj/item/mod/core/plasma/lavaland/Destroy()
 	QDEL_NULL(particle_effect)
-	QDEL_NULL(mob_spawner)
 	return ..()
 
 /obj/item/mod/core/plasma/lavaland/install(obj/item/mod/control/mod_unit)
@@ -480,28 +475,12 @@
 /obj/item/mod/core/plasma/lavaland/proc/on_toggle()
 	SIGNAL_HANDLER
 	if(mod.active)
-		particle_effect = new(mod.wearer, /particles/pollen, PARTICLE_ATTACH_MOB)
-		mob_spawner = mod.wearer.AddComponent(/datum/component/spawner, \
-			spawn_types = list(spawned_mob_type), \
-			spawn_time = 5 SECONDS, \
-			max_spawned = 3, \
-			faction = mod.wearer.faction, \
-		)
-		RegisterSignal(mob_spawner, COMSIG_SPAWNER_SPAWNED, PROC_REF(new_mob))
+		particle_effect = new(mod.wearer, /particles/pollen/modsuit, PARTICLE_ATTACH_MOB)
 		RegisterSignal(mod.wearer, COMSIG_MOVABLE_MOVED, PROC_REF(spread_flowers))
 		return
 
 	QDEL_NULL(particle_effect)
-	UnregisterSignal(mob_spawner, COMSIG_SPAWNER_SPAWNED)
 	UnregisterSignal(mod.wearer, COMSIG_MOVABLE_MOVED)
-	for(var/datum/mob in mob_spawner.spawned_things)
-		qdel(mob)
-	QDEL_NULL(mob_spawner)
-
-/obj/item/mod/core/plasma/lavaland/proc/new_mob(spawner, mob/living/basic/butterfly/lavaland/temporary/spawned)
-	SIGNAL_HANDLER
-	if(spawned)
-		spawned.source = src
 
 /obj/item/mod/core/plasma/lavaland/proc/spread_flowers(atom/source, atom/oldloc, dir, forced)
 	SIGNAL_HANDLER
@@ -520,7 +499,7 @@
 	QDEL_IN(flower_boots, 1 SECONDS)
 
 /obj/item/mod/core/soul
-	name = "MOD soul shard core"
+	name = "\improper MOD soul shard core"
 	desc = "A soul shard haphazardly jammed into a hand-crafted MOD core frame."
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/mod/core/soul"
@@ -646,15 +625,15 @@
 /obj/item/mod/core/soul/get_charge_icon_state()
 	switch(round(charge_amount() / max_charge_amount(), 0.01))
 		if(0.75 to INFINITY)
-			return "high"
+			return SPACESUIT_CELL_HIGH
 		if(0.5 to 0.75)
-			return "mid"
+			return SPACESUIT_CELL_MID
 		if(0.25 to 0.5)
-			return "low"
+			return SPACESUIT_CELL_LOW
 		if(0.02 to 0.25)
-			return "very_low"
+			return SPACESUIT_CELL_VERY_LOW
 
-	return "empty"
+	return SPACESUIT_CELL_EMPTY
 
 /obj/item/mod/core/soul/vv_edit_var(vname, vval)
 	. = ..()

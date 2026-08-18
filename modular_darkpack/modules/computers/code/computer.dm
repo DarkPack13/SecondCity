@@ -51,6 +51,17 @@ GLOBAL_LIST_EMPTY(vampire_computers)
 
 /obj/vampire_computer/attack_hand(mob/user)
 	. = ..()
+	/* I cant verify the lore accuracy of "rejection past your embrace age" and we dont have a invention date for tech to represent it either
+	var/bad_at_computers = FALSE
+	if(isliving(user))
+		var/mob/living/living_user = user
+		bad_at_computers = (living_user.st_get_stat(STAT_COMPUTER) < 1) || HAS_TRAIT(user, TRAIT_REJECTED_BY_TECHNOLOGY)
+	if(bad_at_computers)
+		to_chat(user, span_warning("You start interacting with [src]. Confounded machine..."))
+		if(!do_after(user, 1 TURNS, src))
+			to_chat(user, span_warning("Bah! You didn't need the machine anyways."))
+			return
+	*/
 	ui_interact(user)
 
 /obj/vampire_computer/Destroy()

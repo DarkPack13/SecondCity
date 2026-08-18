@@ -11,8 +11,11 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	flags_cover = MASKCOVERSMOUTH | PEPPERPROOF
 	resistance_flags = NONE
+	custom_price = 30
 
 /obj/item/clothing/mask/vampire
+	// This USED to be the default resperatior for wod13 moved that to /obj/item/clothing/mask/gas/vampire
+	abstract_type = /obj/item/clothing/mask/vampire
 	flags_inv = HIDEFACE | HIDEFACIALHAIR | HIDESNOUT
 	icon = 'modular_darkpack/modules/clothes/icons/clothing.dmi'
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
@@ -86,3 +89,7 @@
 	flags_inv = HIDEFACE
 	flags_cover = NONE
 
+/obj/item/clothing/mask/vampire/fomori_chaser
+	name = "scary mask"
+	desc = "Do you like scary movies?"
+	icon_state = "chaser"

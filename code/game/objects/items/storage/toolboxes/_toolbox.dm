@@ -13,7 +13,7 @@
 	throw_range = 7
 	demolition_mod = 1.25
 	w_class = WEIGHT_CLASS_BULKY
-	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*5)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.5)
 	attack_verb_continuous = list("robusts")
 	attack_verb_simple = list("robust")
 	hitsound = 'sound/items/weapons/smash.ogg'
@@ -149,13 +149,15 @@
 		/obj/item/storage/toolbox/crafter = "#9D3282",
 		/obj/item/storage/toolbox/syndicate = "#3d3d3d",
 	)
-	var/obj/item/bot_assembly/repairbot/repair = new
+	var/obj/item/bot_assembly/repairbot/repair = new(drop_location())
 	repair.toolbox = type
 	var/new_color = toolbox_colors[type] || "#445eb3"
 	repair.set_color(new_color)
-	user.put_in_hands(repair)
 	repair.update_appearance()
 	repair.balloon_alert(user, "sensor added!")
 	qdel(tool)
+	var/held_index = user.is_holding(src)
 	qdel(src)
+	if (held_index)
+		user.put_in_hand(repair, held_index)
 	return ITEM_INTERACT_SUCCESS

@@ -10,7 +10,7 @@
 	var/datum/looping_sound/logging_machine/clearing_sound
 	COOLDOWN_DECLARE(printing_noise)
 
-/obj/machinery/logging_machine/Initialize()
+/obj/machinery/logging_machine/Initialize(mapload)
 	. = ..()
 	saved_logs = new()
 	clearing_sound = new(src,  FALSE)
@@ -92,7 +92,8 @@
 			stop_sound()
 			break
 		var/obj/phone = saved_logs[1][2]
-		SEND_SIGNAL(phone, COMSIG_ALL_MASQUERADE_REINFORCE)
+		if(phone)
+			SEND_SIGNAL(phone, COMSIG_ALL_MASQUERADE_REINFORCE)
 		saved_logs -= list(saved_logs[1]) //Clear the oldest logs first.
 	stop_sound()
 

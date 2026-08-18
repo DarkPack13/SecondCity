@@ -1,31 +1,18 @@
 /datum/discipline/animalism
 	name = "Animalism"
-	desc = "Summons spectral animals over your targets. Violates Masquerade."
+	desc = {"Summons spectral animals over your targets. Violates Masquerade.
+● Summon Rat: Passive
+●● Summon Cat: Passive
+●●● Summon Wolf: Passive
+●●●● Summon Bat: Passive
+●●●●● Skitter: Passive"}
 	icon_state = "animalism"
 	power_type = /datum/discipline_power/animalism
 
 /datum/discipline_power/animalism
 	name = "Animalism power name"
 	desc = "Animalism power description"
-	effect_sound = 'modular_darkpack/modules/deprecated/sounds/wolves.ogg'
-
-/datum/discipline_power/animalism/activate()
-	. = ..()
-
-	if(!ishuman(owner))
-		return
-
-	for(var/mob/living/minion in owner.beastmaster_minions)
-		if(QDELETED(minion) || minion.stat == DEAD)
-			owner.beastmaster_minions -= minion
-
-	var/max_minions = owner.st_get_stat(STAT_LEADERSHIP) + 1
-	if(length(owner.beastmaster_minions) >= max_minions)
-		var/mob/living/oldest = owner.beastmaster_minions[1]
-		if(oldest)
-			owner.remove_beastmaster_minion(oldest)
-			qdel(oldest)
-
+	effect_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/wolves.ogg'
 
 //SUMMON RAT
 /datum/discipline_power/animalism/summon_rat
@@ -38,7 +25,7 @@
 
 /datum/discipline_power/animalism/summon_rat/activate()
 	. = ..()
-	owner.add_beastmaster_minion(/mob/living/basic/mouse/rat/summoned)
+	owner.add_beastmaster_minion(/mob/living/basic/mouse/vampire/summoned)
 
 //SUMMON CAT
 /datum/discipline_power/animalism/summon_cat
@@ -64,7 +51,7 @@
 
 /datum/discipline_power/animalism/summon_wolf/activate()
 	. = ..()
-	owner.add_beastmaster_minion(/mob/living/basic/pet/dog/darkpack/summoned)
+	owner.add_beastmaster_minion(/mob/living/basic/pet/dog/wolf/summoned)
 
 //SUMMON BAT
 /datum/discipline_power/animalism/summon_bat
@@ -77,7 +64,7 @@
 
 /datum/discipline_power/animalism/summon_bat/activate()
 	. = ..()
-	owner.add_beastmaster_minion(/mob/living/basic/bat/vampire/summoned)
+	owner.add_beastmaster_minion(/mob/living/basic/bat/summoned)
 
 /datum/action/cooldown/spell/shapeshift/animalism
 	name = "Animalism Form"
@@ -131,20 +118,18 @@
 		shapeshift_spell.cast(owner)
 		owner.Stun(1.5 SECONDS)
 
-/mob/living/basic/mouse/rat/summoned
+/mob/living/basic/mouse/vampire/summoned
 	name = "rat"
 	desc = "A rat bound to its master's will."
 	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
 	melee_damage_lower = 3
 	melee_damage_upper = 8
 	obj_damage = 10
+	bloodpool = 2
 
-/mob/living/basic/mouse/rat/summoned/Initialize(mapload)
+/mob/living/basic/mouse/vampire/summoned/Initialize(mapload)
 	AddElement(/datum/element/ai_retaliate)
 	. = ..()
-	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
-	if(old)
-		qdel(old)
 
 /mob/living/basic/pet/cat/darkpack/summoned
 	name = "cat"
@@ -153,14 +138,9 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 12
 	obj_damage = 15
+	bloodpool = 2
 
-/mob/living/basic/pet/cat/darkpack/summoned/Initialize(mapload)
-	. = ..()
-	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
-	if(old)
-		qdel(old)
-
-/mob/living/basic/pet/dog/darkpack/summoned
+/mob/living/basic/pet/dog/wolf/summoned
 	name = "wolf"
 	desc = "A wolf bound to its master's will."
 	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
@@ -175,15 +155,10 @@
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'modular_darkpack/modules/deprecated/sounds/dog.ogg'
-	random_dog_color = FALSE
+	random_wolf_color = FALSE
+	bloodpool = 2
 
-/mob/living/basic/pet/dog/darkpack/summoned/Initialize(mapload)
-	. = ..()
-	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
-	if(old)
-		qdel(old)
-
-/mob/living/basic/bat/vampire/summoned
+/mob/living/basic/bat/summoned
 	name = "bat"
 	desc = "A bat bound to its master's will."
 	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
@@ -192,9 +167,4 @@
 	obj_damage = 10
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
-
-/mob/living/basic/bat/vampire/summoned/Initialize(mapload)
-	. = ..()
-	var/datum/component/obeys_commands/old = GetComponent(/datum/component/obeys_commands)
-	if(old)
-		qdel(old)
+	bloodpool = 2

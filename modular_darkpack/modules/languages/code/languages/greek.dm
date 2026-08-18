@@ -2,7 +2,7 @@
 	name = "Greek"
 	desc = "The language from the land of marble and philosophy."
 	key = "k"
-	flags = TONGUELESS_SPEECH
+	flags = LANGUAGE_TONGUELESS_SPEECH
 	space_chance = 40
 	syllables = list(
 		"αι","αν","απ","ας","εί","ει","ης","ια","κα","να","ου","πο","στ","τα","τη","το","ου","αι","τα","κα","να","στ","σε","από","και","δ","γ","φ","ψ","του","προ","μέν",
@@ -10,6 +10,8 @@
 	)
 	icon_state = "greek" //Courtesy of Agate. I had made my own but lost it while shuffling files around. F
 	default_priority = 90
+	always_use_default_namelist = TRUE
+
 	//But Mci, why do you have some letters in here more than once? Becuase they have a frequency level of fucking /ten/ percent across the /whole/ language. It's gonna be a common letter.
 	//Or, you know. I pasted it more than once by accident and since I'm dumb and doing this in DM I can't tell.
 	//Seriously it looks like a barcode.

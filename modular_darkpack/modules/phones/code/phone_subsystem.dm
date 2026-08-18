@@ -4,7 +4,7 @@
  */
 SUBSYSTEM_DEF(phones)
 	name = "Phones"
-	flags = SS_NO_FIRE|SS_NO_INIT
+	ss_flags = SS_NO_FIRE|SS_NO_INIT
 
 	// Seven digits, always start with 5
 	var/list/assigned_phone_numbers = list()
@@ -12,6 +12,14 @@ SUBSYSTEM_DEF(phones)
 	var/list/frequencies_in_use = list()
 	// Published phone numbers, with the key being what the user named the number.
 	var/list/published_phone_numbers = list()
+	// Posts for the endpost feed
+	var/list/endpost_posts = list()
+
+/datum/controller/subsystem/phones/Recover()
+	assigned_phone_numbers = SSphones.assigned_phone_numbers
+	frequencies_in_use = SSphones.frequencies_in_use
+	published_phone_numbers = SSphones.published_phone_numbers
+	endpost_posts = SSphones.endpost_posts
 
 // Generates a random phone number from the available ranges, ten digits, starts with a 415 or 628.
 /datum/controller/subsystem/phones/proc/random_number()
@@ -39,6 +47,9 @@ SUBSYSTEM_DEF(phones)
 /datum/controller/subsystem/phones/proc/establish_secure_frequency()
 	var/frequency_to_use = USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE
 	while(frequency_to_use in frequencies_in_use)
+		if(frequency_to_use >= MAX_RADIO_FREQUENCY_FOR_PHONE_RANGE)
+			stack_trace("Phones have somehow connected over [MAX_RADIO_FREQUENCY_FOR_PHONE_RANGE - USABLE_RADIO_FREQUENCY_FOR_PHONE_RANGE] connections without being freed up. Something is wrong.")
+			break
 		frequency_to_use++
 	frequencies_in_use += frequency_to_use
 	return frequency_to_use
@@ -54,5 +65,4 @@ SUBSYSTEM_DEF(phones)
 	for(var/obj/item/sim_card/sim_card as anything in assigned_phone_numbers)
 		if(sim_card.phone_number == phone_number)
 			gotten_sim_card = sim_card
-	var/gotten_phone = gotten_sim_card?.phone_weakref?.resolve()
-	return gotten_phone
+	return gotten_sim_card?.phone_weakref?.resolve()

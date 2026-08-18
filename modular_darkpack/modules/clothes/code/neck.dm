@@ -13,7 +13,7 @@
 
 /obj/item/clothing/neck/vampire/Initialize(mapload)
 	.=..()
-	AddComponent(/datum/component/selling, 15, "neck", FALSE)
+	AddComponent(/datum/component/selling, 5, "neck", FALSE)
 
 /obj/item/clothing/neck/vampire/scarf
 	name = "black scarf"

@@ -15,11 +15,15 @@ import {
   NumberInput,
   Slider,
   Stack,
-  TextArea, // DARKPACK EDIT ADDITION
+  TextArea, // DARKPACK EDIT ADD
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
-import { createSetPreference, type PreferencesMenuData } from '../../types';
+import {
+  type CharacterPreferencesData,
+  createSetPreference,
+  type PreferencesMenuData,
+} from '../../types';
 import { useServerPrefs } from '../../useServerPrefs';
 
 export function sortChoices(array: [string, ReactNode][]) {
@@ -59,6 +63,7 @@ export type FeatureValueProps<
   serverData: TServerData | undefined;
   shrink?: boolean;
   value: TReceiving;
+  character_preferences: CharacterPreferencesData;
 }>;
 
 export function FeatureColorInput(props: FeatureValueProps<string>) {
@@ -238,6 +243,7 @@ export function FeatureValueInput(props: FeatureValueInputProps) {
     shrink: props.shrink,
     handleSetValue: changeValue,
     value: predictedValue,
+    character_preferences: data.character_preferences,
   });
 }
 
@@ -261,15 +267,11 @@ export function FeatureShortTextInput(
   );
 }
 
-// DARKPACK EDIT ADDITION START - FLAVOR TEXT
+// DARKPACK EDIT ADD START - FLAVOR TEXT
 export const FeatureTextInput = (
   props: FeatureValueProps<string, string, FeatureShortTextData>,
 ) => {
   const { serverData, handleSetValue, value } = props;
-
-  if (!serverData) {
-    return <Box>Loading...</Box>;
-  }
 
   return (
     <TextArea
@@ -282,4 +284,22 @@ export const FeatureTextInput = (
     />
   );
 };
-// DARKPACK EDIT ADDITION END
+// DARKPACK EDIT ADD END
+
+export const FeatureExternalInput = (props: FeatureValueProps<string, string>,) => {
+  const {featureId, value } = props;
+  const {act} = useBackend<PreferencesMenuData>();
+
+  return (
+    <Button
+      onClick={() => {
+        act('open_external_input_list',
+          {
+            preference: featureId
+          }
+        )
+      }}>
+        {value}
+    </Button>
+  );
+};

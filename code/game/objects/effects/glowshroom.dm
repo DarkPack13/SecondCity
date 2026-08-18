@@ -60,6 +60,12 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 /obj/structure/glowshroom/single/Spread()
 	return
 
+/obj/structure/glowshroom/brownshroom
+	name = "brownshroom"
+	desc = "Not technically a single species, but a cluster of various mushroom flora amalgamated into a single mycological patch."
+	icon_state = "brownshroom"
+	myseed = /obj/item/seeds/reishi //Just to have something since these aren't a new growable mushroom.
+
 /obj/structure/glowshroom/examine(mob/user)
 	. = ..()
 	. += "This is a [generation]\th generation [name]!"
@@ -110,7 +116,10 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 	AddElement(/datum/element/atmos_sensitive, mapload)
 	COOLDOWN_START(src, spread_cooldown, rand(min_delay_spread, max_delay_spread))
 
-	START_PROCESSING(SSobj, src)
+	// DARKPACK EDIT CHANGE START
+	if(!mapload)
+		START_PROCESSING(SSobj, src)
+	// DARKPACK EDIT CHANGE END
 
 	var/static/list/hovering_item_typechecks = list(
 		/obj/item/plant_analyzer = list(

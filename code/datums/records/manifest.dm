@@ -36,6 +36,10 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		var/name = target.name
 		var/rank = target.rank // user-visible job
 		var/trim = target.trim // internal jobs by trim type
+		// DARKPACK EDIT ADD START - bare minimum data the station records need to possess to show up on the crew manifest
+		if((name == "Unknown") || (rank == "Unassigned" || rank == "Unknown")) // records are unassigned by default, but if edited without input becomes unknown
+			continue
+		// DARKPACK EDIT ADD END
 		var/datum/job/job = SSjob.get_job(trim)
 		if(!job || !(job.job_flags & JOB_CREW_MANIFEST) || !LAZYLEN(job.departments_list)) // In case an unlawful custom rank is added.
 			var/list/misc_list = manifest_out[DEPARTMENT_UNASSIGNED]
@@ -121,16 +125,21 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 	var/datum/dna/stored/record_dna = new()
 	person.dna.copy_dna(record_dna)
 
+	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
+	// The alt job title is set to the ID's assignment before we inject
+	var/chosen_assignment = id_card?.assignment || assignment
+	// DARKPACK EDIT ADD END
+
 	var/datum/record/locked/lockfile = new(
 		age = person.age,
 		blood_type = person.get_bloodtype()?.name || "UNKNOWN",
 		character_appearance = character_appearance,
 		dna_string = record_dna.unique_enzymes,
 		fingerprint = md5(record_dna.unique_identity),
-		gender = person_gender,
+		gender = person.gender,
 		initial_rank = assignment,
 		name = person.real_name,
-		rank = assignment,
+		rank = chosen_assignment, // DARKPACK EDIT - ALTERNATIVE_JOB_TITLES - ORIGINAL: rank = assignment,
 		species = record_dna.species.name,
 		trim = assignment,
 		// Locked specifics
@@ -147,7 +156,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		gender = person_gender,
 		initial_rank = assignment,
 		name = person.real_name,
-		rank = assignment,
+		rank = chosen_assignment, // DARKPACK EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: rank = assignment,
 		species = record_dna.species.name,
 		trim = assignment,
 		// Crew specific
@@ -223,7 +232,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 			if(open_slots < 1)
 				continue
 			open += open_slots
-		positions[department.department_name] = list("exceptions" = exceptions, "open" = open)
+		positions[department.department_name] = list("exceptions" = exceptions, "open" = open, "color" = department.ui_color)
 
 	return list(
 		"manifest" = get_manifest(),

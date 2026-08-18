@@ -1,8 +1,7 @@
 /datum/job/shaft_miner
 	title = JOB_SHAFT_MINER
-	description = "Travel to strange lands. Mine ores. \
-		Meet strange creatures. Kill them for their gold."
-	department_head = list(JOB_QUARTERMASTER)
+	description = "Travel to strange lands, mine ores, \
+		meet strange creatures, kill them for their gold."
 	faction = FACTION_STATION
 	total_positions = 3
 	spawn_positions = 3
@@ -58,6 +57,8 @@
 	box = /obj/item/storage/box/survival/mining
 	chameleon_extras = /obj/item/gun/energy/recharge/kinetic_accelerator
 
+	wintercoat = /obj/item/clothing/suit/hooded/wintercoat/miner
+
 /datum/outfit/job/miner/equipped
 	name = "Shaft Miner (Equipment)"
 
@@ -97,6 +98,7 @@
 	l_pocket = /obj/item/modular_computer/pda/shaftminer
 	r_pocket = /obj/item/extinguisher/mini
 	belt = /obj/item/storage/belt/mining/healing
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/miner/equipped/combat/post_equip(mob/living/carbon/human/miner, visuals_only = FALSE)
 	. = ..()

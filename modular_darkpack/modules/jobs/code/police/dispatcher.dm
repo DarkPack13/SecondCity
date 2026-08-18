@@ -7,29 +7,27 @@
 	config_tag = "DISPATCHER"
 	outfit = /datum/outfit/job/vampire/dispatcher
 	job_flags = CITY_JOB_FLAGS
-	display_order = JOB_DISPLAY_ORDER_POLICE
+	display_order = JOB_DISPLAY_ORDER_DISPATCHER
 	exp_required_type_department = EXP_TYPE_POLICE
-	department_for_prefs = /datum/job_department/police
 	departments_list = list(
 		/datum/job_department/police,
 		/datum/job_department/clinic,
 	)
 
-	allowed_species = list(SPECIES_GHOUL, SPECIES_HUMAN)
-	species_slots = list(SPECIES_GHOUL = 1)
+	allowed_splats = list(SPLAT_GHOUL, SPLAT_KINFOLK, SPLAT_NONE)
+	splat_slots = list(SPLAT_GHOUL = 1, SPLAT_KINFOLK = 1)
 
 	description = "Report emergencies to the correct emergency service."
-	minimal_masquerade = 0
-	known_contacts = list("Police Chief")
+	minimum_masquerade = 0
+	known_contacts = list("Police Captain")
 
 /datum/outfit/job/vampire/dispatcher
 	name = "Dispatcher"
 	jobtype = /datum/job/vampire/dispatcher
 	uniform = /obj/item/clothing/under/vampire/office
-	//ears = /obj/item/p25radio/police/dispatch
+	ears = /obj/item/radio/headset/darkpack
 	shoes = /obj/item/clothing/shoes/vampire/businessblack
-	gloves = /obj/item/watch
 	id = /obj/item/card/government
 	l_pocket = /obj/item/smartphone
 	r_pocket = /obj/item/vamp/keys/dispatch
-	backpack_contents = list(/obj/item/passport=1, /obj/item/card/credit=1, /obj/item/flashlight=1)
+	backpack_contents = list(/obj/item/card/credit=1)

@@ -1,4 +1,6 @@
 /obj/effect/landmark/npc_spawn_point
+	icon = 'modular_darkpack/modules/deprecated/icons/effects/landmarks_static.dmi'
+	icon_state = "spawn"
 
 /obj/effect/landmark/npc_spawn_point/Initialize(mapload)
 	. = ..()
@@ -59,29 +61,27 @@
 	if (istype(last_attacker, /mob/living/simple_animal/hostile))
 		var/mob/living/simple_animal/hostile/HS = last_attacker
 		if(HS.my_creator)
-			HS.my_creator.AdjustHumanity(-1, 0)
-			HS.my_creator.last_nonraid = world.time
+			SEND_SIGNAL(HS.my_creator, COMSIG_PATH_HIT, -1, 0, FALSE, 8)
 			HS.my_creator.killed_count += 1
 			if(!HS.my_creator.warrant && !HS.my_creator.ignores_warrant)
 				if(HS.my_creator.killed_count >= 5)
 					HS.my_creator.warrant = TRUE
-					SEND_SOUND(HS.my_creator, sound('modular_darkpack/modules/deprecated/sounds/suspect.ogg', 0, 0, 75))
+					SEND_SOUND(HS.my_creator, sound('modular_darkpack/modules/deprecated/sounds/suspect.ogg', volume = 75))
 					to_chat(HS.my_creator, span_userdanger("<b>POLICE ASSAULT IN PROGRESS</b>"))
 				else
-					SEND_SOUND(HS.my_creator, sound('modular_darkpack/modules/deprecated/sounds/sus.ogg', 0, 0, 75))
+					SEND_SOUND(HS.my_creator, sound('modular_darkpack/modules/deprecated/sounds/sus.ogg', volume = 75))
 					to_chat(HS.my_creator, span_userdanger("<b>SUSPICIOUS ACTION (murder)</b>"))
 	else if (ishuman(last_attacker))
 		var/mob/living/carbon/human/HM = last_attacker
-		HM.AdjustHumanity(-1, 0)
-		HM.last_nonraid = world.time
+		SEND_SIGNAL(HM, COMSIG_PATH_HIT, -1, 0, FALSE, 8)
 		HM.killed_count += 1
 		if(!HM.warrant && !HM.ignores_warrant)
 			if(HM.killed_count >= 5)
 				HM.warrant = TRUE
-				SEND_SOUND(HM, sound('modular_darkpack/modules/deprecated/sounds/suspect.ogg', 0, 0, 75))
+				SEND_SOUND(HM, sound('modular_darkpack/modules/deprecated/sounds/suspect.ogg', volume = 75))
 				to_chat(HM, span_userdanger("<b>POLICE ASSAULT IN PROGRESS</b>"))
 			else
-				SEND_SOUND(HM, sound('modular_darkpack/modules/deprecated/sounds/sus.ogg', 0, 0, 75))
+				SEND_SOUND(HM, sound('modular_darkpack/modules/deprecated/sounds/sus.ogg', volume = 75))
 				to_chat(HM, span_userdanger("<b>SUSPICIOUS ACTION (murder)</b>"))
 
 	. = ..()
@@ -110,6 +110,8 @@
 		return
 	if (!walktarget)
 		walktarget = ChoosePath()
+	if(walktarget)
+		EVLOG_PATH(src, EVLOG_CATEGORY_MOVELOOPS, "Set walktarget: [walktarget]", list(loc, get_turf(walktarget)))
 	if (loc == tupik_loc)
 		tupik_steps += 1
 	else
@@ -126,7 +128,10 @@
 		return
 	if (observed_by_player())
 		return
-	forceMove(get_turf(walktarget))
+	var/turf/old_loc = loc
+	var/turf/new_loc = get_turf(walktarget)
+	forceMove(new_loc)
+	EVLOG_PATH(src, EVLOG_CATEGORY_MOVELOOPS, "Teleported using evil russian shitcode", list(old_loc, new_loc))
 
 /mob/living/carbon/human/npc/proc/CreateWay(direction)
 	var/turf/location = get_turf(src)
@@ -228,12 +233,14 @@
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_RESTRAINED))
 		return FALSE
+	if(HAS_TRAIT(src, TRAIT_IMMOBILIZED))
+		return FALSE
 	if(is_talking)
 		return FALSE
 	if(pulledby)
 		if (HAS_TRAIT(pulledby, TRAIT_CHARMER))
 			return FALSE
-		if (prob(30))
+		if (prob(10))
 			execute_resist()
 		return FALSE
 
@@ -263,15 +270,7 @@
 		return
 
 	// Checks for fire, clearing the stored fire if none is in view
-	// DARKPACK TODO - reimplement fire
-	/*
-	var/seeing_fire
-	for (var/obj/effect/fire/seen_fire in view(DEFAULT_SIGHT_DISTANCE, src))
-		afraid_of_fire = seen_fire
-		seeing_fire = TRUE
-	if (!seeing_fire)
-		afraid_of_fire = null
-	*/
+	afraid_of_fire = locate(/obj/effect/abstract/turf_fire) in view(DEFAULT_SIGHT_DISTANCE, src)
 
 	// Combat behaviour
 	if (danger_source)
@@ -298,7 +297,7 @@
 					GLOB.move_manager.move_to(src, danger_source, 1, cached_multiplicative_slowdown)
 
 		// Deaggro if the danger source has been beaten up
-		if (danger_source.stat > UNCONSCIOUS)
+		if (IS_UNCONSCIOUS_OR_CRIT(danger_source))
 			end_combat()
 
 		// Deaggro if 30 second have passed since being antagonised
@@ -306,18 +305,13 @@
 			end_combat()
 
 	// Running away from fire behaviour
-	// DARKPACK TODO - reimplement fire
-	/*
 	else if (afraid_of_fire)
 		GLOB.move_manager.move_away(src, afraid_of_fire, 10, cached_multiplicative_slowdown)
 		if (prob(25))
 			emote("scream")
-	*/
 
 	// Walking around behaviour
 	else if (walktarget && !staying)
-		if (prob(25))
-			toggle_move_intent(src)
 		GLOB.move_manager.move_to(src, walktarget, 0, cached_multiplicative_slowdown)
 
 	if (!has_weapon || danger_source || !spawned_weapon)

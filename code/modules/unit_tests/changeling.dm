@@ -24,7 +24,7 @@
 	// Check their name and species align
 	TEST_ASSERT(victim.has_status_effect(/datum/status_effect/temporary_transformation), "Victim did not get temporary transformation status effect on being transformation stung.")
 	TEST_ASSERT_EQUAL(victim.real_name, ling_name, "Victim real name did not change on being transformation stung.")
-	TEST_ASSERT_EQUAL(victim.name, ling_name, "Victim name did not change on being transformation stung.")
+	// DARKPACK EDIT REMOVAL //TEST_ASSERT_EQUAL(victim.name, ling_name, "Victim name did not change on being transformation stung.")
 	TEST_ASSERT_EQUAL(victim.dna.species.type, ling.dna.species.type, "Victim species did not change on being transformation stung.")
 	TEST_ASSERT_EQUAL(victim.dna.features[FEATURE_MUTANT_COLOR], ling.dna.features[FEATURE_MUTANT_COLOR], "Victim mcolor did not change on being transformation stung.")
 	// Check they actually look the same
@@ -34,7 +34,7 @@
 	sleep(sting_action.sting_duration + 0.5 SECONDS)
 
 	// Check their name and species reset correctly
-	TEST_ASSERT_EQUAL(victim.name, base_victim_name, "Victim name did not change back after transformation sting expired.")
+	// DARKPACK EDIT REMOVAL //TEST_ASSERT_EQUAL(victim.name, base_victim_name, "Victim name did not change back after transformation sting expired.")
 	TEST_ASSERT_EQUAL(victim.real_name, base_victim_name, "Victim real name did not change back after transformation sting expired.")
 	TEST_ASSERT_NOTEQUAL(victim.dna.species.type, ling.dna.species.type, "Victim species did not change back after transformation sting expired.")
 	TEST_ASSERT_NOTEQUAL(victim.dna.features[FEATURE_MUTANT_COLOR], ling.dna.features[FEATURE_MUTANT_COLOR], "Victim mcolor did not reset after transformation sting expired.")

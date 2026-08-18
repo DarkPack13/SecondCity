@@ -1,6 +1,5 @@
 /mob/living/carbon/human/npc/police
 	aggressive = TRUE
-	max_stat = DEAD
 	my_backup_weapon_type = /obj/item/melee/baton/vamp
 
 /mob/living/carbon/human/npc/police/Initialize(mapload)
@@ -11,7 +10,7 @@
 /mob/living/carbon/human/npc/police/Life()
 	. = ..()
 
-	if (stat >= SOFT_CRIT)
+	if (IS_UNCONSCIOUS_OR_CRIT(src))
 		return
 	if (!prob(10))
 		return
@@ -24,3 +23,17 @@
 			continue
 
 		Aggro(H, FALSE)
+
+// There was a todo here for creating a npc that stands still. But it seems like we did implement that behavoir
+/mob/living/carbon/human/npc/police/static
+	// fights_anyway = TRUE
+	staying = TRUE
+	my_backup_weapon_type = /obj/item/melee/baton/vamp
+
+/*
+/mob/living/carbon/human/npc/police/Initialize(mapload)
+	. = ..()
+
+	if(prob(66))
+		set_body_model(FAT_BODY_MODEL)
+*/

@@ -5,3 +5,6 @@
 #define COMSIG_MOB_VAMPIRE_SUCKED "mob_vampire_sucked"
 	///vampire suck resisted
 	#define COMPONENT_RESIST_VAMPIRE_KISS (1<<0)
+
+///baali demons have touched the target, time to apply the effect from daimonion 4
+#define COMSIG_BAALI_DEMON_REACHED_TARGET "baali_demon_reached_target"

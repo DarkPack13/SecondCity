@@ -1,9 +1,12 @@
 /area/vtm/interior/millennium_tower
 	name = "Millennium Tower F1"
 	icon_state = "millenniumtowerf1"
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/prince.ogg'
+	ambience_index = AMBIENCE_TOWER
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/shop.ogg'
+	music_index = MUSIC_PRINCE
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/millennium_tower/f2
 	name = "Millennium Tower F2"
@@ -28,6 +31,7 @@
 /area/vtm/interior/prince_elevator
 	name = "Millenium Elevator"
 	icon_state = "prince"
-	ambience_index = AMBIENCE_OFFICE
+	ambience_index = AMBIENCE_TOWER
+	ambient_buzz = null
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE

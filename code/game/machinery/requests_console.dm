@@ -129,7 +129,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 		LAZYADD(GLOB.reta_consoles_by_origin[dept_key], src)
 
 	if(mapload)
-		find_and_hang_on_wall()
+		find_and_mount_on_atom()
 
 /obj/machinery/requests_console/Destroy()
 	QDEL_LIST(messages)
@@ -389,7 +389,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 
 /obj/machinery/requests_console/ui_data(mob/user)
 	var/list/data = list()
-	data["is_admin_ghost_ai"] = isAdminGhostAI()
+	data["is_admin_ghost_ai"] = isAdminGhostAI(user)
 	data["can_send_announcements"] = can_send_announcements
 	data["department"] = department
 	data["emergency"] = emergency
@@ -517,19 +517,18 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 		to_chat(user, span_warning("You must open the maintenance panel first!"))
 	return TRUE
 
-/obj/machinery/requests_console/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
-	var/obj/item/card/id/ID = attacking_item.GetID()
-	if(ID)
-		message_verified_by = "[ID.registered_name] ([ID.assignment])"
-		announcement_authenticated = (ACCESS_RC_ANNOUNCE in ID.access)
+/obj/machinery/requests_console/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	var/obj/item/card/id/card = tool.GetID()
+	if(card)
+		message_verified_by = "[card.registered_name] ([card.assignment])"
+		announcement_authenticated = (ACCESS_RC_ANNOUNCE in card.access)
 		SStgui.update_uis(src)
-		return
-	if (istype(attacking_item, /obj/item/stamp))
-		var/obj/item/stamp/attacking_stamp = attacking_item
-		message_stamped_by = attacking_stamp.name
+		return ITEM_INTERACT_SUCCESS
+	if (istype(tool, /obj/item/stamp))
+		message_stamped_by = tool.name
 		SStgui.update_uis(src)
-		return
-	return ..()
+		return ITEM_INTERACT_SUCCESS
+	return NONE
 
 /obj/machinery/requests_console/on_deconstruction(disassembled)
 	new /obj/item/wallframe/requests_console(loc)
@@ -547,6 +546,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/requests_console/auto_name, 30)
 	icon_state = "req_comp_off"
 	result_path = /obj/machinery/requests_console/auto_name
 	pixel_shift = 30
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7)
 
 /datum/aas_config_entry/rc_emergency
 	name = "RC Alert: Emergency Request"

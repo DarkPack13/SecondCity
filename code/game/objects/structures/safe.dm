@@ -13,7 +13,7 @@ FLOOR SAFES
 /obj/structure/safe
 	name = "safe"
 	desc = "A huge chunk of metal with a dial embedded in it. Fine print on the dial reads \"Scarborough Arms - 2 tumbler safe, guaranteed thermite resistant, explosion resistant, and burglar resistant.\"" // DARKPACK EDIT CHANGE
-	icon = 'icons/obj/structures.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/safes.dmi' // DARKPACK EDIT CHANGE - (MS FURNITURE UPDATE)
 	icon_state = "safe"
 	anchored = TRUE
 	density = TRUE
@@ -21,11 +21,13 @@ FLOOR SAFES
 	obj_flags = CONDUCTS_ELECTRICITY
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_UI_INTERACT
 	custom_materials = list(
-		/datum/material/metalhydrogen = SHEET_MATERIAL_AMOUNT*10,
-		/datum/material/alloy/plastitanium = SHEET_MATERIAL_AMOUNT*5,
+		/datum/material/metalhydrogen = SHEET_MATERIAL_AMOUNT * 15,
+		/datum/material/alloy/plastitanium = SHEET_MATERIAL_AMOUNT * 8,
+		/datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 6,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3,
 	)
 	material_flags = MATERIAL_EFFECTS
-
 	/// The maximum combined w_class of stuff in the safe
 	var/maxspace = 24
 	/// The amount of tumblers that will be generated
@@ -116,24 +118,30 @@ FLOOR SAFES
 	balloon_alert(user, "lock set!")
 	return ITEM_INTERACT_SUCCESS
 
-/obj/structure/safe/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
-	if(open)
-		. = TRUE //no afterattack
-		if(attacking_item.w_class + space <= maxspace)
-			if(!user.transferItemToLoc(attacking_item, src))
-				to_chat(user, span_warning("\The [attacking_item] is stuck to your hand, you cannot put it in the safe!"))
-				return
-			space += attacking_item.w_class
-			to_chat(user, span_notice("You put [attacking_item] in [src]."))
-		else
-			to_chat(user, span_warning("[attacking_item] won't fit in [src]."))
-	else
-		if(istype(attacking_item, /obj/item/clothing/neck/stethoscope))
-			attack_hand(user)
-			return
-		else
-			to_chat(user, span_warning("You can't put [attacking_item] into the safe while it is closed!"))
-			return
+/obj/structure/safe/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(user.combat_mode)
+		return NONE
+
+	if(!open)
+		if(!istype(tool, /obj/item/clothing/neck/stethoscope))
+			to_chat(user, span_warning("You can't put [tool] into the safe while it is closed!"))
+			return ITEM_INTERACT_BLOCKING
+
+		attack_hand(user)
+		return ITEM_INTERACT_SUCCESS
+
+	if(tool.w_class + space > maxspace)
+		to_chat(user, span_warning("[tool] won't fit in [src]."))
+		return ITEM_INTERACT_BLOCKING
+
+	if(!user.transferItemToLoc(tool, src))
+		to_chat(user, span_warning("\The [tool] is stuck to your hand, you cannot put it in the safe!"))
+		return ITEM_INTERACT_BLOCKING
+
+	space += tool.w_class
+	to_chat(user, span_notice("You put [tool] in [src]."))
+	return ITEM_INTERACT_SUCCESS
+
 
 /obj/structure/safe/blob_act(obj/structure/blob/B)
 	return
@@ -302,6 +310,11 @@ FLOOR SAFES
 	icon_state = "floorsafe"
 	density = FALSE
 	layer = LOW_OBJ_LAYER
+	custom_materials = list(
+		/datum/material/metalhydrogen = SHEET_MATERIAL_AMOUNT * 15,
+		/datum/material/alloy/plastitanium = SHEET_MATERIAL_AMOUNT * 8,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.55,
+	)
 
 /obj/structure/safe/floor/Initialize(mapload)
 	. = ..()

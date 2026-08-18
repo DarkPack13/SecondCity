@@ -1,7 +1,7 @@
 /obj/item/wallframe/secure_safe
 	name = "secure safe frame"
 	desc = "A locked safe. It being unpowered prevents any access until placed back onto a wall."
-	icon = 'icons/obj/storage/storage.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/safes.dmi' // DARKPACK EDIT CHANGE - (MS FURNITURE UPDATE)
 	icon_state = "wall_safe"
 	base_icon_state = "wall_safe"
 	result_path = /obj/structure/secure_safe
@@ -10,8 +10,9 @@
 	obj_flags = CONDUCTS_ELECTRICITY
 	resistance_flags = FIRE_PROOF
 	custom_materials = list(
-		/datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT*5,
-		/datum/material/titanium = SHEET_MATERIAL_AMOUNT*3,
+		/datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 8,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 4,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
 	)
 	material_flags = MATERIAL_EFFECTS
 	/// The lock code transferred from the structure
@@ -81,7 +82,7 @@
 /obj/structure/secure_safe
 	name = "secure safe"
 	desc = "Excellent for securing things away from grubby hands."
-	icon = 'icons/obj/storage/storage.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/safes.dmi' // DARKPACK EDIT CHANGE - (MS FURNITURE UPDATE)
 	icon_state = "wall_safe"
 	base_icon_state = "wall_safe"
 	anchored = TRUE
@@ -104,13 +105,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/secure_safe, 32)
 /obj/structure/secure_safe/Initialize(mapload)
 	. = ..()
 	//this will create the storage for us.
-	AddComponent(/datum/component/lockable_storage, , stored_lock_code)
+	AddComponent(/datum/component/lockable_storage, stored_lock_code)
 	if(mapload)
 		PopulateContents()
-		find_and_hang_on_wall()
+		find_and_mount_on_atom()
 	RegisterSignal(src, COMSIG_LOCKABLE_STORAGE_SET_CODE, PROC_REF(update_lock_code))
 
-/obj/structure/secure_safe/find_and_hang_on_wall()
+/obj/structure/secure_safe/find_and_mount_on_atom(mark_for_late_init, late_init)
 	if(!density)
 		return ..()
 
@@ -163,7 +164,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/secure_safe, 32)
 		It is made out of the same material as the station's Black Box and is designed to resist all conventional weaponry. \
 		There appears to be a small amount of surface corrosion. It doesn't look like it could withstand much of an explosion.\
 		Due to the expensive material, it was made incredibly small to cut corners, leaving only enough room to fit something as slim as an ID card."
-	icon = 'icons/obj/structures.dmi'
 	icon_state = "spare_safe"
 	base_icon_state = "spare_safe"
 	armor_type = /datum/armor/safe_caps_spare
@@ -198,3 +198,4 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/secure_safe, 32)
 
 /obj/structure/secure_safe/caps_spare/rust_heretic_act()
 	take_damage(damage_amount = 100, damage_type = BRUTE, damage_flag = MELEE, armour_penetration = 100)
+	return TRUE

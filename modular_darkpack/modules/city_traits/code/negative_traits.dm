@@ -9,9 +9,9 @@
 
 /datum/station_trait/thunder_storm/on_round_start()
 	. = ..()
-	SSweather.run_weather(/datum/weather/rain_storm/endless)
+	SSweather.run_weather(/datum/weather/particle/rain_storm/endless)
 
-/datum/weather/rain_storm/endless
+/datum/weather/particle/rain_storm/endless
 	name = "endless rain"
 	probability = 0
 	target_trait = ZTRAIT_STATION
@@ -36,13 +36,13 @@
 	trait_type = STATION_TRAIT_NEGATIVE
 	can_revert = FALSE
 	darkpack_allowed = TRUE
+	trait_to_give = STATION_TRAIT_BLACKOUT
+	newspaper_message = "We continue to receive delays from city officals on estimates when power will be returned city-wide."
+	newspaper_chance = 60
 
 /datum/station_trait/faulty_power_grid/on_round_start()
 	. = ..()
-	// Fuck I hate it, rework fusebox code
-	for(var/obj/fusebox/broken_box in world)
+	for(var/obj/fusebox/F in GLOB.fuseboxes)
 		if(prob(75))
 			continue
-		broken_box.damaged += rand(50, 200)
-		broken_box.check_damage()
-
+		F.take_damage(rand(50,200))

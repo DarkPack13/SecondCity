@@ -19,6 +19,7 @@
 	greyscale_config_inhand_left = /datum/greyscale_config/fish_analyzer_inhand_left
 	greyscale_config_inhand_right = /datum/greyscale_config/fish_analyzer_inhand_right
 	greyscale_config_worn = /datum/greyscale_config/fish_analyzer_worn
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.5)
 	///The color of the case. Used by grayscale configs and update_overlays()
 	var/case_color
 	///the atom (aquarium or fish) we have scanned
@@ -41,7 +42,7 @@
 
 	register_item_context()
 	update_appearance()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -3, ITEM_SLOT_HANDS)
+	AddElement(/datum/element/adjust_fishing_difficulty, -3, ITEM_SLOT_HANDS)
 
 /obj/item/fish_analyzer/Destroy()
 	scanned_object = null
@@ -89,11 +90,11 @@
 	SIGNAL_HANDLER
 	unregister_scanned()
 
-/obj/item/fish_analyzer/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/fish_analyzer/ui_interact(mob/living/user, datum/tgui/ui)
 	if(isnull(scanned_object))
 		balloon_alert(user, "no specimen data!")
 		return TRUE
-	if(!(scanned_object in view(7, get_turf(src))))
+	if(istype(user) && !(scanned_object in (view(7, get_turf(src)) | user.get_equipped_items(INCLUDE_HELD))))
 		balloon_alert(user, "specimen data lost!")
 		unregister_scanned()
 		return TRUE
@@ -103,8 +104,10 @@
 		ui = new(user, src, "FishAnalyzer")
 		ui.open()
 
-/obj/item/fish_analyzer/ui_status(mob/user, datum/ui_state/state)
-	if(!scanned_object || !(scanned_object in view(7, get_turf(src))))
+/obj/item/fish_analyzer/ui_status(mob/living/user, datum/ui_state/state)
+	if(!istype(user)) //observers shouldn't disrupt things.
+		return ..()
+	if(!scanned_object || !(scanned_object in (view(7, get_turf(src)) | user.get_equipped_items(INCLUDE_HELD))))
 		balloon_alert(user, "specimen data lost!")
 		unregister_scanned()
 		return UI_CLOSE

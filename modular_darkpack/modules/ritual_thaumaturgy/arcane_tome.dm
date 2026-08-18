@@ -1,43 +1,31 @@
-/obj/item/arcane_tome
+/obj/item/ritual_tome/arcane
 	name = "arcane tome"
 	desc = "The secrets of Blood Magic..."
 	icon_state = "arcane"
 	icon = 'modular_darkpack/modules/ritual_thaumaturgy/icons/arcane_tome.dmi'
-	onflooricon = 'modular_darkpack/modules/ritual_thaumaturgy/icons/arcane_tome_onfloor.dmi'
-	w_class = WEIGHT_CLASS_SMALL
-	var/list/rituals = list()
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/ritual_thaumaturgy/icons/arcane_tome_onfloor.dmi')
+	rune_type = /obj/ritual_rune/thaumaturgy
+	discipline_type = /datum/discipline/thaumaturgy
+	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT, /datum/material/paper = SHEET_MATERIAL_AMOUNT * 0.75)
 
-/obj/item/arcane_tome/Initialize()
+/obj/item/ritual_tome/arcane/attack_self(mob/user)
+	var/mob/living/living_user = astype(user)
+	if(!living_user || !living_user.get_discipline(/datum/discipline/thaumaturgy))
+		to_chat(user, span_cult("A book whose title is inscribed in latin and coated with various sigils and shapes. You'll need a teacher if you want to learn more. For some reason it wont open."))
+		return
 	. = ..()
-	for(var/i in subtypesof(/obj/ritualrune))
-		var/obj/ritualrune/R = new i(src)
-		rituals |= R
-
-/obj/item/arcane_tome/attack_self(mob/user)
-	. = ..()
-	for(var/obj/ritualrune/R in rituals)
-		if(R.sacrifices.len > 0)
-			var/list/required_items = list()
-			for(var/item_type in R.sacrifices)
-				var/obj/item/I = new item_type(src)
-				required_items += I.name
-				qdel(I)
-			var/required_list
-			if(required_items.len == 1)
-				required_list = required_items[1]
-			else
-				for(var/item_name in required_items)
-					required_list += (required_list == "" ? item_name : ", [item_name]")
-			to_chat(user, span_cult("[R.thaumlevel] [R.name] - [R.desc] Requirements: [required_list]."))
-		else
-			to_chat(user, span_cult("[R.thaumlevel] [R.name] - [R.desc]"))
 
 /datum/crafting_recipe/arctome
 	name = "Arcane Tome"
 	time = 10 SECONDS
 	reqs = list(/obj/item/paper = 3, /obj/item/reagent_containers/blood = 2)
-	result = /obj/item/arcane_tome
+	result = /obj/item/ritual_tome/arcane
 	category = CAT_MISC
+	skill_required_for_use = STAT_OCCULT
+	skill_dots_minimum = 1
 
 /datum/crafting_recipe/arctome/is_recipe_available(mob/user)
-	return HAS_TRAIT(user, TRAIT_THAUMATURGY_KNOWLEDGE)
+	. = ..()
+	var/mob/living/living_user = astype(user)
+	if(!living_user?.get_discipline(/datum/discipline/thaumaturgy))
+		return FALSE

@@ -1,9 +1,15 @@
-/mob/living
-	COOLDOWN_DECLARE(masquerade_timer)
-
 /mob/living/Initialize(mapload)
 	. = ..()
-	storyteller_stat_holder = new() // STORYTELLER_STATS
+	storyteller_stats = create_new_stat_prefs(storyteller_stats)
+	become_area_sensitive(ZONE_TRAIT)
+	update_zone_hud(src, get_area(src)) // AREAS - (Zone hud)
+
+/mob/living/Destroy(force)
+	storyteller_stats = null
+	beastmaster_minions = null
+	minion_command_components = null
+	QDEL_LAZYLIST(splats)
+	return ..()
 
 /mob/living/set_pull_offsets(mob/living/mob_to_set, grab_state = GRAB_PASSIVE, animate = TRUE)
 	. = ..()

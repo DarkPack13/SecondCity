@@ -1,7 +1,9 @@
 /area/vtm/interior/shop
-	name = "Shop"
+	name = "\improper Shop"
 	icon_state = "shop"
 	fire_controled = TRUE
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/shop.ogg'
+	ambient_buzz_vol = 20
 
 /area/vtm/interior/laundromat
 	name = "Laundromat"
@@ -10,6 +12,14 @@
 
 /area/vtm/interior/giovanni
 	name = "Giovanni Mansion"
+	icon_state = "giovanni"
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/giovanni_moldy_old_world.ogg')
+	zone_type = ZONE_ELYSIUM
+	fire_controled = TRUE
+	domain = TRUE
+
+/area/vtm/interior/giovanni/basement
+	name = "Giovanni Mansion - Basement"
 	icon_state = "giovanni"
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
@@ -24,9 +34,36 @@
 	icon_state = "giovanni"
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/police
-	name = "Police Station"
+	name = "\improper Police Station"
+	icon_state = "police"
+	fire_controled = TRUE
+	domain = TRUE
+
+/area/vtm/interior/police/morgue
+	name = "Police Station - Morgue"
+	icon_state = "police"
+	fire_controled = TRUE
+
+/area/vtm/interior/police/upstairs
+	name = "Police Station - Upstairs"
+	icon_state = "police"
+	fire_controled = TRUE
+
+/area/vtm/interior/police/fed
+	name = "Reserved Room"
+	icon_state = "police"
+	fire_controled = TRUE
+
+/area/vtm/interior/police/court
+	name = "Courthouse"
+	icon_state = "police"
+	fire_controled = TRUE
+
+/area/vtm/interior/ranger
+	name = "Firewatch Tower"
 	icon_state = "police"
 	fire_controled = TRUE
 
@@ -38,27 +75,28 @@
 /area/vtm/interior/strip
 	name = "Strip Club"
 	icon_state = "strip"
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/strip_club.ogg')
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/mansion
 	name = "Abandoned Mansion"
 	icon_state = "mansion"
 	zone_type = ZONE_NO_MASQUERADE
+	domain = TRUE
+
+/area/vtm/interior/apartment
+	name = "Millenium Apartments"
+	icon_state = "camarilla_interior"
+	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/glasswalker
 	name = "Glasswalker's Lab"
 	icon_state = "supply"
 	zone_type = ZONE_NO_MASQUERADE
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/night_ambience.ogg'
+	music_index = MUSIC_FOREST
 	fire_controled = TRUE
-
-/area/vtm/interior/penumbra
-	name = "Penumbra"
-	icon_state = "church"
-	ambience_index = AMBIENCE_NATURE
-	zone_type = ZONE_NO_MASQUERADE
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/penumbra.ogg'
-	fire_controled = FALSE
 
 /area/vtm/interior/backrooms
 	name = "Backrooms"
@@ -71,17 +109,11 @@
 	name = "Wyrm Corruption"
 	icon_state = "graveyard"
 	zone_type = ZONE_NO_MASQUERADE
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/night_ambience.ogg'
+	music_index = MUSIC_FOREST
 	fire_controled = FALSE
 
-/area/vtm/interior/old_clan_tzimisce_manor
-	name = "Old Clan Tzimisce Manor"
-	icon_state = "old_clan_tzimisce"
-	zone_type = ZONE_ELYSIUM
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/prince.ogg'
-
 /area/vtm/interior/strip_elysium
-	name = "Strip Club Elysium"
+	name = "Strip Club - Elysium"
 	icon_state = "prince"
 	fire_controled = TRUE
 	zone_type = ZONE_ELYSIUM
@@ -90,8 +122,10 @@
 	name = "Jazz Club"
 	icon_state = "camarilla"
 	ambience_index = AMBIENCE_OFFICE
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/elysium.ogg')
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/cabaret
 	name = "Siren's Cabaret"
@@ -103,33 +137,170 @@
 	name = "Clinic"
 	icon_state = "clinic"
 	ambience_index = AMBIENCE_OFFICE
+	music_index = MUSIC_SAFE
 	fire_controled = TRUE
+	domain = TRUE
 
 /area/vtm/interior/clinic/haven
 	name = "Clinic - Psych Ward"
 	zone_type = ZONE_ELYSIUM
 
 /area/vtm/interior/supply
-	name = "Supply"
+	name = "Supply Offices"
 	icon_state = "supply"
 	ambience_index = AMBIENCE_OFFICE
+	domain = TRUE
 
 /area/vtm/interior/hotel
 	name = "Hotel"
 	icon_state = "hotel"
 	ambience_index = AMBIENCE_OFFICE
 	fire_controled = TRUE
+	domain = TRUE
+
+/area/vtm/interior/cabdepot
+	name = "Cab Depot"
+	icon_state = "hotel"
+	music_index = MUSIC_CITY
+	ambience_index = AMBIENCE_OFFICE
+	fire_controled = TRUE
 
 /area/vtm/interior/church
 	name = "Church"
 	icon_state = "church"
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/hahihaho.ogg'
 	ambience_index = AMBIENCE_OFFICE
+	music_index = MUSIC_CHURCH
 	fire_controled = TRUE
+	domain = TRUE
+
+/area/vtm/interior/church/staff
+	name = "Church - Backrooms"
+	zone_type = ZONE_ELYSIUM
+	music_index = MUSIC_CITY
+
+/area/vtm/interior/church/haven
+	name = "Church - Restricted Floor"
+	icon_state = "old_clan_tzimisce"
+	music_index = MUSIC_CITY
+	zone_type = ZONE_ELYSIUM
 
 /area/vtm/interior/elevator
 	name = "Elevator"
 	icon_state = "prince"
-	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/lift.ogg'
 	zone_type = ZONE_ELYSIUM
 	fire_controled = TRUE
+
+/area/vtm/interior/theatre
+	name = "Theatre"
+	icon_state = "theatre"
+	music_index = MUSIC_CITY
+	musictracks = list('modular_darkpack/modules/ambience/sounds/music/theatre.ogg')
+	zone_type = ZONE_ELYSIUM
+	fire_controled = TRUE
+	forced_music = TRUE // need that epic theatre intro as soon as you walk in
+
+/area/vtm/interior/oldchurch
+	name = "Old Seaside Church"
+	icon_state = "church"
+	fire_controled = TRUE
+
+/area/vtm/interior/museum
+	name = "Historical Museum"
+	icon_state = "old_clan_tzimisce"
+	zone_type = ZONE_ELYSIUM
+	fire_controled = TRUE
+	domain = TRUE
+
+/area/vtm/interior/trujah
+	name = "Antique Shop"
+	icon_state = "old_clan_tzimisce"
+	zone_type = ZONE_ELYSIUM
+	fire_controled = TRUE
+
+/area/vtm/interior/baali
+	name = "Alcoholics Anonymous"
+	icon_state = "old_clan_tzimisce"
+	zone_type = ZONE_ELYSIUM
+	fire_controled = TRUE
+
+/area/vtm/interior/salubri
+	name = "Veterinary Clinic"
+	icon_state = "old_clan_tzimisce"
+	zone_type = ZONE_ELYSIUM
+	fire_controled = TRUE
+
+/area/vtm/interior/banu
+	name = "Coffee House"
+	icon_state = "old_clan_tzimisce"
+	fire_controled = TRUE
+	domain = TRUE
+
+/area/vtm/interior/banu/haven
+	name = "Coffee House - Employee Only"
+	icon_state = "old_clan_tzimisce"
+	zone_type = ZONE_ELYSIUM
+	fire_controled = TRUE
+
+/area/vtm/interior/tzimisce_manor
+	name = "Clan Tzimisce Manor"
+	icon_state = "old_clan_tzimisce"
+	music_index = MUSIC_PRINCE
+	zone_type = ZONE_ELYSIUM
+	domain = TRUE
+
+/area/vtm/interior/tzimisce_sanctum
+	name = "Clan Tzimisce Sanctum"
+	icon_state = "old_clan_sanctum"
+	zone_type = ZONE_ELYSIUM
+
+/area/vtm/interior/setite
+	name = "Community Center"
+	icon_state = "hotel"
+	fire_controled = TRUE
+	domain = TRUE
+
+/area/vtm/interior/setite/basement
+	name = "Community Center Basement"
+	zone_type = ZONE_ELYSIUM
+
+/area/vtm/interior/ghetto
+	name = "Ghetto Apartments"
+	icon_state = "ghetto_interior"
+	fire_controled = TRUE
+
+/area/vtm/interior/littleitaly
+	name = "Little Italy - Store"
+	icon_state = "shop"
+	fire_controled = TRUE
+	domain = TRUE
+
+/area/vtm/interior/littleitaly/apartments
+	name = "Little Italy - Apartments"
+	icon_state = "shop"
+	fire_controled = TRUE
+
+/area/vtm/interior/tzimisce_sanctum
+	name = "Tzimisce Sanctum"
+	icon_state = "old_clan_sanctum"
+	zone_type = ZONE_ELYSIUM
+	music_index = MUSIC_PRINCE
+
+/area/vtm/interior/sabbat_lair
+	name = "Interior"
+	zone_type = "elysium"
+	domain = TRUE
+
+/area/vtm/interior/subway
+	name = "Subway Station"
+	icon_state = "financialdistrict"
+	fire_controled = TRUE
+	domain = TRUE
+
+/area/vtm/interior/substation
+	name = "Grid Substation"
+	icon_state = "hotel"
+	fire_controled = TRUE
+	music_index = MUSIC_CITY
+	ambience_index = AMBIENCE_OFFICE
+	fire_controled = TRUE
+	domain = TRUE

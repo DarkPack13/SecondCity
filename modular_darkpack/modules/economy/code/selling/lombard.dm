@@ -2,6 +2,17 @@
 #define SALE_DIFFICULTY 6
 #define BOTCH_FAILURE_PENALTY 0.5
 
+/datum/storyteller_roll/fencing
+	bumper_text = "fencing"
+	applicable_stats = list(STAT_CHARISMA, STAT_FINANCE)
+	difficulty = SALE_DIFFICULTY
+	numerical = TRUE
+
+/datum/storyteller_roll/selling_masquerade_sensitive
+	bumper_text = "selling supernatural items"
+	applicable_stats = list(STAT_MANIPULATION, STAT_SUBTERFUGE)
+	difficulty = 8
+
 /obj/lombard
 	name = "pawnshop"
 	desc = "Sell your stuff."
@@ -9,18 +20,35 @@
 	icon_state = "sell"
 	icon = 'modular_darkpack/modules/retail/icons/vendors_shops.dmi'
 	anchored = TRUE
+	var/mob/living/carbon/human/npc/owner
 	var/black_market = FALSE
+	var/datum/storyteller_roll/fencing/sell_roll
+	var/datum/storyteller_roll/selling_masquerade_sensitive/masquerade_roll
 
-/obj/lombard/attackby(obj/item/W, mob/living/carbon/human/user, params)
-	var/datum/component/selling/selling_comp = W.GetComponent(/datum/component/selling)
+/obj/lombard/Initialize(mapload)
+	. = ..()
+	for(var/mob/living/carbon/human/npc/potential_owner in range(2, src))
+		if(istype(potential_owner, /mob/living/carbon/human/npc/shop) || istype(potential_owner, /mob/living/carbon/human/npc/illegal))
+			owner = potential_owner
+			break
+	if(owner)
+		RegisterSignal(owner, COMSIG_QDELETING, PROC_REF(cleanup_owner))
+
+/obj/lombard/proc/cleanup_owner()
+	SIGNAL_HANDLER
+	owner = null
+
+/obj/lombard/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	var/datum/component/selling/selling_comp = tool.GetComponent(/datum/component/selling)
 	if(!selling_comp)
-		return ..()
+		return NONE
 
 	if(selling_comp.illegal != black_market)
 		to_chat(user, span_warning("[black_market ? "This" : "The pawnshop"] doesn't accept [selling_comp.illegal ? "illegal" : "legal"] goods."))
-		return
+		return ITEM_INTERACT_BLOCKING
 
-	sell_one_item(W, user)
+	sell_one_item(tool, user)
+	return ITEM_INTERACT_SUCCESS
 
 /// Sell a single item
 /obj/lombard/proc/sell_one_item(obj/item/sold, mob/living/user)
@@ -32,11 +60,13 @@
 		to_chat(user, selling_comp.sale_fail_message())
 		return FALSE
 
+	sell_masquerade_sensitive_item(user, selling_comp)
+
 	var/sale_price = calculate_sale_price(sold, user, selling_comp)
 	spawn_money(sale_price, loc)
 
 	if(ishuman(user) && selling_comp.humanity_loss)
-		user.AdjustHumanity(selling_comp.humanity_loss, selling_comp.humanity_loss_limit)
+		SEND_SIGNAL(user, COMSIG_PATH_HIT, selling_comp.humanity_loss, selling_comp.humanity_loss_limit, FALSE)
 
 	// feedback
 	playsound(loc, 'modular_darkpack/modules/deprecated/sounds/sell.ogg', 50, TRUE)
@@ -53,16 +83,19 @@
 	if(!length(items_to_sell))
 		return list()
 
+	// One masquerade roll for the whole batch, using the first item as reference
+	var/obj/item/reference_item = items_to_sell[1]
+	var/datum/component/selling/reference_comp = reference_item.GetComponent(/datum/component/selling)
+	if(reference_comp)
+		sell_masquerade_sensitive_item(user, reference_comp)
+
 	var/list/sold_items = list()
 	var/total_sale_price = 0
 
+	if(!sell_roll)
+		sell_roll = new()
 	// Make a single roll to sell all your items in bulk
-	var/negotiation_success_count = 0
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		var/negotiation_dice = H.st_get_stat(STAT_CHARISMA) + H.st_get_stat(STAT_FINANCE)
-		if(negotiation_dice > 0)
-			negotiation_success_count = SSroll.storyteller_roll(negotiation_dice, SALE_DIFFICULTY, H, src, TRUE)
+	var/negotiation_success_count = sell_roll.st_roll(user, src)
 
 	for(var/obj/item/sold in items_to_sell)
 		var/datum/component/selling/selling_comp = sold.GetComponent(/datum/component/selling)
@@ -105,20 +138,16 @@
 			return round(base_price * stack_multiplier * negotiation_success_count)
 		return round(base_price * stack_multiplier * BOTCH_FAILURE_PENALTY)
 
+
 	// otherwise, roll for negotiation in a single item sale
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		var/negotiation_dice = H.st_get_stat(STAT_CHARISMA) + H.st_get_stat(STAT_FINANCE)
+	if(!sell_roll)
+		sell_roll = new()
+	// Make a single roll to sell all your items in bulk
+	var/success_count = sell_roll.st_roll(user, src)
 
-		if(negotiation_dice > 0)
-			var/success_count = SSroll.storyteller_roll(negotiation_dice, SALE_DIFFICULTY, H, src, TRUE)
-
-			if(success_count > 0)
-				return round(base_price * stack_multiplier * success_count)
-			return round(base_price * stack_multiplier * BOTCH_FAILURE_PENALTY)
-
-	// No negotiation dice (which should rarely happen) = ZERO! Completely scammed at 0 finance 0 charisma
-	return 0
+	if(success_count > 0)
+		return round(base_price * stack_multiplier * success_count)
+	return round(base_price * stack_multiplier * BOTCH_FAILURE_PENALTY)
 
 /obj/lombard/proc/spawn_money(amount, atom/spawn_location)
 	if(amount <= 0)
@@ -169,21 +198,20 @@
 		sell_one_item(sold, user)
 		return
 
-	// Humanity loss warning for bulk sales
+	// Morality loss warning for bulk sales
 	if(selling_comp.humanity_loss && ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/datum/species/human/kindred/vampirism = H.dna.species
-		if(!iskindred(H) || !vampirism.enlightenment)
+		if(!get_kindred_splat(H) || !H.is_enlightenment())
 			var/humanity_loss_modifier = HAS_TRAIT(H, TRAIT_SENSITIVE_HUMANITY) ? 2 : 1
 			var/total_humanity_risk = length(items_to_sell) * humanity_loss_modifier * selling_comp.humanity_loss
 
-			if(selling_comp.humanity_loss_limit < H.humanity)
-				if((selling_comp.humanity_loss_limit <= 0) && ((H.humanity + total_humanity_risk) <= 0))
-					to_chat(user, span_warning("Selling all of this will remove all of your Humanity!"))
+			if(selling_comp.humanity_loss_limit < H.st_get_stat(STAT_MORALITY))
+				if((selling_comp.humanity_loss_limit <= 0) && ((H.st_get_stat(STAT_MORALITY) + total_humanity_risk) <= 0))
+					to_chat(user, span_warning("Selling all of this will remove all of your st_get_stat(STAT_MORALITY)!"))
 					return
 
-				var/max_loss = min(H.humanity - selling_comp.humanity_loss_limit, -total_humanity_risk)
-				var/choice = alert(H, "Your HUMANITY is currently at [H.humanity], you will LOSE [max_loss] humanity if you proceed. Do you proceed?",,"Yes", "No")
+				var/max_loss = min(H.st_get_stat(STAT_MORALITY) - selling_comp.humanity_loss_limit, -total_humanity_risk)
+				var/choice = alert(H, "Your HUMANITY is currently at [H.st_get_stat(STAT_MORALITY)], you will LOSE [max_loss] humanity if you proceed. Do you proceed?",,"Yes", "No")
 				if(choice == "No")
 					return
 
@@ -198,7 +226,7 @@
 	// Apply humanity loss for all sold items at once
 	if(selling_comp.humanity_loss && ishuman(user))
 		var/total_humanity_loss = selling_comp.humanity_loss * length(sold_items)
-		user.AdjustHumanity(total_humanity_loss, selling_comp.humanity_loss_limit)
+		SEND_SIGNAL(user, COMSIG_PATH_HIT, total_humanity_loss, selling_comp.humanity_loss_limit, FALSE)
 
 	for(var/obj/item/sold_item in sold_items)
 		qdel(sold_item)
@@ -228,6 +256,29 @@
 		matching_items += check_item
 
 	return matching_items
+
+/obj/lombard/proc/sell_masquerade_sensitive_item(mob/living/user, datum/component/selling/reference_comp)
+	if(!issupernatural(user))
+		return TRUE
+	if(!reference_comp.masquerade_violating)
+		return TRUE
+	if(!masquerade_roll)
+		masquerade_roll = new()
+
+	var/roll_output = masquerade_roll.st_roll(user, src)
+	var/datum/socialrole/shop/shop_role = owner?.socialrole
+
+	if(roll_output != ROLL_SUCCESS)
+		to_chat(user, span_warning("You get a bad feeling about selling that supernatural item..."))
+		SEND_SIGNAL(user, COMSIG_MASQUERADE_VIOLATION)
+		if(shop_role && length(shop_role.masquerade_item_failure_phrases))
+			owner.realistic_say(pick(shop_role.masquerade_item_failure_phrases))
+		return FALSE
+	else
+		to_chat(user, span_notice("You successfully fence the supernatural item with enough finesse that the sale won't be traced back to you."))
+		if(shop_role && length(shop_role.masquerade_item_phrases))
+			owner.realistic_say(pick(shop_role.masquerade_item_phrases))
+		return TRUE
 
 /obj/lombard/blackmarket
 	name = "black market"

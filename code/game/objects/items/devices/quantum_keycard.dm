@@ -12,6 +12,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	obj_flags = UNIQUE_RENAME
 	interaction_flags_click = NEED_DEXTERITY|ALLOW_RESTING
+	custom_materials = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT)
 	/// The linked quantum pad
 	var/obj/machinery/quantumpad/qpad
 
@@ -22,7 +23,7 @@
 		/area/station/service = COLOR_SERVICE_LIME,
 		/area/centcom = COLOR_CENTCOM_BLUE,  // how?
 		/area/station/command = COLOR_COMMAND_BLUE,
-		/area/station/ai_monitored = COLOR_COMMAND_BLUE,
+		/area/station/ai = COLOR_COMMAND_BLUE,
 		/area/station/medical = COLOR_MEDICAL_BLUE,
 		/area/station/science = COLOR_SCIENCE_PINK,
 		/area/station/engineering = COLOR_ENGINEERING_ORANGE,

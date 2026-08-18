@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Button, Stack } from 'tgui-core/components';
+import { Button, Dropdown, Flex, Stack } from 'tgui-core/components'; // DARKPACK EDIT CHANGE
 import { exhaustiveCheck } from 'tgui-core/exhaustive';
 
 import { PageButton } from '../components/PageButton';
@@ -10,15 +10,19 @@ import { JobsPage } from './JobsPage';
 import { LoadoutPage } from './loadout';
 import { MainPage } from './MainPage';
 import { QuirkPersonalityPage } from './QuirksPage';
-import { SpeciesPage } from './SpeciesPage';
+import { SplatsPage } from './SplatsPage'; // DARKPACK EDIT CHANGE - SPLATS
+import { StatsPage } from './Stats'; // DARKPACK EDIT ADD
+import { DisciplinesPage } from './DisciplinesPage'; // DARKPACK EDIT ADD
 
 enum Page {
   Antags,
   Main,
   Jobs,
-  Species,
+  Splats, // DARKPACK EDIT CHANGE - SPLATS
   Quirks,
   Loadout,
+  Stats, // DARKPACK EDIT ADD
+  Disciplines, // DARKPACK EDIT ADD
 }
 
 type ProfileProps = {
@@ -30,23 +34,47 @@ type ProfileProps = {
 function CharacterProfiles(props: ProfileProps) {
   const { activeSlot, onClick, profiles } = props;
 
-  return (
-    <Stack justify="center" wrap>
-      {profiles.map((profile, slot) => (
-        <Stack.Item key={slot} mb={1}>
-          <Button
-            selected={slot === activeSlot}
-            onClick={() => {
+  // DARKPACK EDIT CHANGE START
+  if (profiles.length <= 5)
+    // TG Version
+    return (
+      <Stack justify="center" wrap>
+        {profiles.map((profile, slot) => (
+          <Stack.Item key={slot} mb={1}>
+            <Button
+              selected={slot === activeSlot}
+              onClick={() => {
+                onClick(slot);
+              }}
+              fluid
+            >
+              {profile ?? 'New Character'}
+            </Button>
+          </Stack.Item>
+        ))}
+      </Stack>
+    );
+  else
+    // Expanded version if we have way 2 many slots.
+    return (
+      <Flex align="center" justify="center">
+        <Flex.Item width="25%">
+          <Dropdown
+            width="100%"
+            selected={activeSlot as unknown as string}
+            displayText={profiles[activeSlot]}
+            options={profiles.map((profile, slot) => ({
+              value: slot,
+              displayText: profile ?? 'New Character',
+            }))}
+            onSelected={(slot) => {
               onClick(slot);
             }}
-            fluid
-          >
-            {profile ?? 'New Character'}
-          </Button>
-        </Stack.Item>
-      ))}
-    </Stack>
-  );
+          />
+        </Flex.Item>
+      </Flex>
+    );
+  // DARKPACK EDIT CHANGE END
 }
 
 export function CharacterPreferenceWindow(props) {
@@ -65,13 +93,13 @@ export function CharacterPreferenceWindow(props) {
       break;
     case Page.Main:
       pageContents = (
-        <MainPage openSpecies={() => setCurrentPage(Page.Species)} />
+        <MainPage openSplats={() => setCurrentPage(Page.Splats)} /> // DARKPACK EDIT CHANGE - SPLATS
       );
 
       break;
-    case Page.Species:
+    case Page.Splats: // DARKPACK EDIT CHANGE - SPLATS
       pageContents = (
-        <SpeciesPage closeSpecies={() => setCurrentPage(Page.Main)} />
+        <SplatsPage closeSplats={() => setCurrentPage(Page.Main)} /> // DARKPACK EDIT CHANGE - SPLATS
       );
 
       break;
@@ -82,6 +110,16 @@ export function CharacterPreferenceWindow(props) {
     case Page.Loadout:
       pageContents = <LoadoutPage />;
       break;
+
+    // DARKPACK EDIT ADD START - Stats / Disciplines
+    case Page.Stats:
+      pageContents = <StatsPage />;
+      break;
+
+    case Page.Disciplines:
+      pageContents = <DisciplinesPage />;
+      break;
+    // DARKPACK EDIT ADD END
 
     default:
       exhaustiveCheck(currentPage);
@@ -113,11 +151,40 @@ export function CharacterPreferenceWindow(props) {
               currentPage={currentPage}
               page={Page.Main}
               setPage={setCurrentPage}
-              otherActivePages={[Page.Species]}
+              otherActivePages={[Page.Splats]} // DARKPACK EDIT CHANGE - SPLATS
             >
               Character
             </PageButton>
           </Stack.Item>
+
+          {
+            // DARKPACK EDIT ADD START - stats / disciplines
+          }
+          <Stack.Item grow>
+            <PageButton
+              currentPage={currentPage}
+              page={Page.Stats}
+              setPage={setCurrentPage}
+            >
+              Stats
+            </PageButton>
+          </Stack.Item>
+          {['splat_kindred', 'splat_ghoul'].includes(
+            data.character_preferences.misc.splats,
+          ) && (
+            <Stack.Item grow>
+              <PageButton
+                currentPage={currentPage}
+                page={Page.Disciplines}
+                setPage={setCurrentPage}
+              >
+                Disciplines
+              </PageButton>
+            </Stack.Item>
+          )}
+          {
+            // DARKPACK EDIT END
+          }
 
           <Stack.Item grow>
             <PageButton
@@ -143,6 +210,7 @@ export function CharacterPreferenceWindow(props) {
             </PageButton>
           </Stack.Item>
 
+          {/* DARKPACK EDIT REMOVAL - (We dont have antags and this is useless atm)
           <Stack.Item grow>
             <PageButton
               currentPage={currentPage}
@@ -152,16 +220,23 @@ export function CharacterPreferenceWindow(props) {
               Antagonists
             </PageButton>
           </Stack.Item>
+            */}
 
+          {
+            // DARKPACK EDIT ADD START - Merits
+          }
           <Stack.Item grow>
             <PageButton
               currentPage={currentPage}
               page={Page.Quirks}
               setPage={setCurrentPage}
             >
-              Quirks and Personality
+              Merits / Flaws
             </PageButton>
           </Stack.Item>
+          {
+            // DARKPACK EDIT ADD END
+          }
         </Stack>
       </Stack.Item>
       <Stack.Divider />

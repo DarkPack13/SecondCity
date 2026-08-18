@@ -2,7 +2,7 @@
 /datum/supply_pack/goody
 	access = NONE
 	group = "Goodies"
-	goody = TRUE
+	order_flags = ORDER_GOODY
 	crate_type = null
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
@@ -12,6 +12,7 @@
 	cost = 100000
 	contains = list(/obj/item/modular_computer/pda/clear)
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/goody/dumdum38
 	name = ".38 DumDum Speedloader Single-Pack"
 	desc = "Contains one speedloader of .38 DumDum ammunition, good for embedding in soft targets."
@@ -99,22 +100,36 @@
 	contains = list(/obj/item/gun/energy/e_gun)
 
 /datum/supply_pack/goody/laser_single
-	name = "Laser Gun Single-Pack"
-	desc = "Contains one laser gun, the lethal workhorse of Nanotrasen security everywhere."
+	name = "Type 5 Laser Gun Single-Pack"
+	desc = "Contains one Type 5 laser gun, the lethal workhorse of Nanotrasen security everywhere."
 	cost = PAYCHECK_COMMAND * 6
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/laser)
 
 /datum/supply_pack/goody/carbine_single
-	name = "Laser Carbine Single_Pack"
-	desc = "Contains one laser carbines, capable of rapidly firing weak lasers."
+	name = "Type 5/R Laser Carbine Single-Pack"
+	desc = "Contains one laser carbine. Fires a rapid burst of slightly weaker laser projectiles."
 	cost = PAYCHECK_COMMAND * 8
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/laser/carbine)
 
+/datum/supply_pack/goody/laser_pistol_single
+	name = "Type 5/C Laser Pistol Single-Pack"
+	desc = "Contains one Type 5C laser pistol in an energy shoulder holster. Groovy."
+	cost = PAYCHECK_COMMAND * 2
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/storage/belt/holster/energy/laser_pistol)
+
+/datum/supply_pack/goody/laser_single_soul
+	name = "Type 3 Laser Gun Single-Pack"
+	desc = "Contains one Type 3 laser gun. They don't make 'em like they used to."
+	cost = PAYCHECK_COMMAND * 6
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/energy/laser/soul)
+
 /datum/supply_pack/goody/smg_single
-	name = "Disabler SMG Single_Pack"
-	desc = "Contains one disabler SMGs, capable of rapidly firing weak disabler beams."
+	name = "Disabler SMG Single Pack"
+	desc = "Contains one disabler SMG, capable of rapidly firing weak disabler beams."
 	cost = PAYCHECK_COMMAND * 6
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/disabler/smg)
@@ -132,6 +147,7 @@
 	cost = PAYCHECK_COMMAND * 15
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/storage/belt/holster/energy/thermal)
+*/
 
 /datum/supply_pack/goody/sologamermitts
 	name = "Insulated Gloves Single-Pack"
@@ -186,6 +202,12 @@
 	desc = "A fully stocked mechanical toolbox, for when you're too lazy to just print them out."
 	cost = PAYCHECK_CREW * 3
 	contains = list(/obj/item/storage/toolbox/mechanical)
+
+/datum/supply_pack/goody/autolatheboard
+	name = "Autolathe Circuit Board"
+	desc = "A single autolathe circuit board for your construction needs."
+	cost = PAYCHECK_CREW * 2
+	contains = list(/obj/item/circuitboard/machine/autolathe)
 
 /datum/supply_pack/goody/valentine
 	name = "Valentine Card"
@@ -261,6 +283,7 @@
 	cost = PAYCHECK_CREW * 2
 	contains = list(/obj/item/food/ready_donk)
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/goody/pill_mutadone
 	name = "Emergency Mutadone Pill Single-Pack"
 	desc = "A single pill for curing genetic defects. Useful for when you can't procure one from medbay."
@@ -272,6 +295,7 @@
 	desc = "A device used to rapidly provide lighting sources to an area. Reload with iron, plasteel, glass or compressed matter cartridges."
 	cost = PAYCHECK_CREW * 10
 	contains = list(/obj/item/construction/rld)
+*/
 
 /datum/supply_pack/goody/fishing_toolbox
 	name = "Fishing Toolbox"
@@ -381,12 +405,14 @@
 	cost = PAYCHECK_CREW * 5
 	contains = list(/obj/item/climbing_hook)
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/goody/double_barrel
 	name = "Double-barreled Shotgun Single-Pack"
 	desc = "Lost your beloved bunny to a demonic invasion? Clown broke in and stole your beloved gun? No worries! Get a new gun as long as you can pay the absurd fees."
 	cost = PAYCHECK_COMMAND * 18
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/ballistic/shotgun/doublebarrel)
+*/
 
 /datum/supply_pack/goody/experimental_medication
 	name = "Experimental Medication Single-Pack"
@@ -400,6 +426,7 @@
 	cost = PAYCHECK_CREW * 1.5
 	contains = list(/obj/item/pet_carrier/small/mouse)
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/goody/shuttle_construction_kit
 	name = "Shuttle Construction Starter Kit"
 	desc = "Contains a set of shuttle blueprints, and the circuitboards necessary for constructing your own shuttle. \
@@ -412,9 +439,25 @@
 		/obj/item/circuitboard/computer/shuttle/docker,
 		/obj/item/circuitboard/machine/engine/propulsion = 2,
 	)
+*/
 
 /datum/supply_pack/goody/golfcart_key
 	name = "Spare Golf Cart Key"
 	desc = "If you in your carelessness lost the key to your golfcart you can purchase one. Unfortunately not covered by warranty."
 	cost = PAYCHECK_CREW * 5
 	contains = list(/obj/item/key/golfcart)
+
+/datum/supply_pack/goody/handheld_crew_monitor
+	name = "Handheld Crew Monitor"
+	desc = "A crate containing a handheld crew monitor."
+	cost = /obj/item/sensor_device::custom_premium_price * 1.25 // 1.25X base vending machine value
+	contains = list(
+		/obj/item/sensor_device,
+	)
+	crate_name = "handheld crew monitor crate"
+
+/datum/supply_pack/goody/camera
+	name = "Broadcast Camera"
+	desc = "A single broadcast camera which broadcasts to the station's entertainment monitors, for all your theatrical needs."
+	cost = PAYCHECK_COMMAND * 8
+	contains = list(/obj/item/broadcast_camera/cargo)

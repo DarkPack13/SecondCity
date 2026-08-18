@@ -16,6 +16,7 @@
 				)
 	crate_name = "bio suit crate"
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/emergency/equipment
 	name = "Emergency Bot/Internals Crate"
 	desc = "Explosions got you down? These supplies are guaranteed to patch up holes, \
@@ -30,6 +31,7 @@
 	)
 	crate_name = "emergency crate"
 	crate_type = /obj/structure/closet/crate/internals
+*/
 
 /datum/supply_pack/emergency/bomb
 	name = "Explosive Emergency Crate"
@@ -81,6 +83,7 @@
 	crate_name = "internals crate"
 	crate_type = /obj/structure/closet/crate/internals
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/emergency/metalfoam
 	name = "Metal Foam Grenade Crate"
 	desc = "Seal up those pesky hull breaches with seven metal foam grenades."
@@ -111,6 +114,7 @@
 					/obj/item/clothing/gloves/color/plasmaman = 2,
 				)
 	crate_name = "plasmaman supply kit"
+*/
 
 /datum/supply_pack/emergency/radiation
 	name = "Radiation Protection Crate"
@@ -127,6 +131,7 @@
 	crate_name = "radiation protection crate"
 	crate_type = /obj/structure/closet/crate/radiation
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/emergency/spacesuit
 	name = "Space Suit Crate"
 	desc = "Contains one aging suit from Space-Goodwill and a jetpack."
@@ -162,3 +167,4 @@
 	contains = list(/obj/item/storage/box/mothic_rations = 3)
 	crate_name = "surplus rations box"
 	crate_type = /obj/structure/closet/crate/cardboard/mothic
+*/

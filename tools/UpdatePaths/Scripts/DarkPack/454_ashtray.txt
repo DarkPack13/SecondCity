@@ -1,0 +1,2 @@
+/obj/item/reagent_containers/glass/bowl/mushroom_bowl{name="ashtray"} : /obj/item/storage/ashtray {@OLD;name=@SKIP}
+/obj/item/reagent_containers/glass/bowl/ash_tray : /obj/item/storage/ashtray {@OLD}

@@ -10,7 +10,7 @@
 /obj/structure/bonfire
 	name = "bonfire"
 	desc = "For grilling, broiling, charring, smoking, heating, roasting, toasting, simmering, searing, melting, and occasionally burning things."
-	icon = 'modular_darkpack/master_files/icons/obj/service/hydroponics/equipment.dmi' // DARKPACK EDIT CHANGE
+	icon = 'modular_darkpack/modules/decor/icons/fires.dmi' // DARKPACK EDIT CHANGE
 	icon_state = "bonfire"
 	base_icon_state = "bonfire" // DARKPACK EDIT ADD
 	light_color = LIGHT_COLOR_FIRE
@@ -18,6 +18,7 @@
 	anchored = TRUE
 	buckle_lying = 0
 	pass_flags_self = PASSTABLE | LETPASSTHROW
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 10)
 	/// is the bonfire lit?
 	var/burning = FALSE
 	/// icon for the bonfire while on. for a softer more burning embers icon, use "bonfire_warm"
@@ -40,12 +41,12 @@
 	QDEL_NULL(burning_loop)
 	. = ..()
 
-/obj/structure/bonfire/attackby(obj/item/used_item, mob/living/user, list/modifiers, list/attack_modifiers)
-	if(istype(used_item, /obj/item/stack/rods) && !can_buckle && !grill)
-		var/obj/item/stack/rods/rods = used_item
+/obj/structure/bonfire/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(istype(tool, /obj/item/stack/rods) && !can_buckle && !grill)
+		var/obj/item/stack/rods/rods = tool
 		var/choice = tgui_alert(user, "What would you like to construct?", "Bonfire", list("Stake","Grill"))
 		if(isnull(choice))
-			return
+			return ITEM_INTERACT_BLOCKING
 		rods.use(1)
 		switch(choice)
 			if("Stake")
@@ -55,28 +56,36 @@
 				var/mutable_appearance/rod_underlay = mutable_appearance('icons/obj/service/hydroponics/equipment.dmi', "bonfire_rod")
 				rod_underlay.pixel_z = 16
 				underlays += rod_underlay
+				return ITEM_INTERACT_SUCCESS
+
 			if("Grill")
 				grill = TRUE
 				to_chat(user, span_notice("You add a grill to \the [src]."))
 				add_overlay("bonfire_grill")
-			else
-				return ..()
-	if(used_item.get_temperature())
+				return ITEM_INTERACT_SUCCESS
+
+
+	if(tool.get_temperature() >= FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
 		start_burning()
+		return ITEM_INTERACT_SUCCESS
+
 	if(grill)
-		if(istype(used_item, /obj/item/melee/roastingstick))
-			return FALSE
-		if(!user.combat_mode && !(used_item.item_flags & ABSTRACT))
-			if(user.temporarilyRemoveItemFromInventory(used_item))
-				used_item.forceMove(get_turf(src))
-				//Center the icon where the user clicked.
-				if(!LAZYACCESS(modifiers, ICON_X) || !LAZYACCESS(modifiers, ICON_Y))
-					return
-				//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
-				used_item.pixel_x = used_item.base_pixel_x + clamp(text2num(LAZYACCESS(modifiers, ICON_X)) - 16, -(ICON_SIZE_X/2), ICON_SIZE_X/2)
-				used_item.pixel_y = used_item.base_pixel_y + clamp(text2num(LAZYACCESS(modifiers, ICON_Y)) - 16, -(ICON_SIZE_Y/2), ICON_SIZE_Y/2)
-		else
-			return ..()
+		if(istype(tool, /obj/item/melee/roastingstick))
+			return ITEM_INTERACT_BLOCKING
+		if(user.combat_mode || (tool.item_flags & ABSTRACT))
+			return NONE
+		if(!user.temporarilyRemoveItemFromInventory(tool))
+			return ITEM_INTERACT_BLOCKING
+		tool.forceMove(get_turf(src))
+		//Center the icon where the user clicked.
+		if(!LAZYACCESS(modifiers, ICON_X) || !LAZYACCESS(modifiers, ICON_Y))
+			return ITEM_INTERACT_SUCCESS
+		//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
+		tool.pixel_x = tool.base_pixel_x + clamp(text2num(LAZYACCESS(modifiers, ICON_X)) - 16, -(ICON_SIZE_X/2), ICON_SIZE_X/2)
+		tool.pixel_y = tool.base_pixel_y + clamp(text2num(LAZYACCESS(modifiers, ICON_Y)) - 16, -(ICON_SIZE_Y/2), ICON_SIZE_Y/2)
+		return ITEM_INTERACT_SUCCESS
+
+	return NONE
 
 /obj/structure/bonfire/attack_hand(mob/user, list/modifiers)
 	. = ..()
@@ -98,10 +107,8 @@
 /obj/structure/bonfire/proc/check_oxygen()
 	if(isopenturf(loc))
 		var/turf/open/bonfire_turf = loc
-		if(bonfire_turf.air)
-			var/loc_gases = bonfire_turf.air.gases
-			if(loc_gases[/datum/gas/oxygen] && loc_gases[/datum/gas/oxygen][MOLES] >= 5)
-				return TRUE
+		if(bonfire_turf.air?.moles[/datum/gas/oxygen] >= 5)
+			return TRUE
 	return FALSE
 
 /obj/structure/bonfire/proc/start_burning()
@@ -206,8 +213,26 @@
 	base_icon_state = "campfire"
 
 /obj/structure/bonfire/prelit/alt
-	icon_state = "campfire"
+	icon_state = "campfire_on_fire"
 	base_icon_state = "campfire"
+
+/obj/structure/bonfire/alt2
+	icon_state = "campfire_alt"
+	base_icon_state = "campfire_alt"
+
+/obj/structure/bonfire/prelit/alt2
+	icon_state = "campfire_alt_on_fire"
+	base_icon_state = "campfire_alt"
+
+/obj/structure/bonfire/fire_barrel
+	icon_state = "fire_barrel"
+	base_icon_state = "fire_barrel"
+	density = TRUE
+
+/obj/structure/bonfire/prelit/fire_barrel
+	icon_state = "fire_barrel_on_fire"
+	base_icon_state = "fire_barrel"
+	density = TRUE
 // DARKPACK EDIT ADD END
 
 #undef BONFIRE_FIRE_STACK_STRENGTH

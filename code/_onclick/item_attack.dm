@@ -78,7 +78,8 @@
 	// This can mean nothing happened, this can mean the target took damage, etc.
 
 	if(user.client && isitem(target))
-		if(isnull(user.get_inactive_held_item()))
+		var/mob/living/living_user = astype(user)
+		if(isnull(user.get_inactive_held_item() && living_user?.num_hands > 1))
 			SStutorials.suggest_tutorial(user, /datum/tutorial/switch_hands, modifiers)
 		else
 			SStutorials.suggest_tutorial(user, /datum/tutorial/drop, modifiers)
@@ -181,13 +182,18 @@
 	return attacking_item.attack_atom(src, user, modifiers, attack_modifiers)
 
 /mob/living/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
-	for(var/datum/surgery/operation as anything in surgeries)
-		if(IS_IN_INVALID_SURGICAL_POSITION(src, operation))
-			continue
-		if(!(operation.surgery_flags & SURGERY_SELF_OPERABLE) && (user == src) && !HAS_TRAIT(user, TRAIT_SELF_SURGERY))
-			continue
-		if(operation.next_step(user, modifiers))
-			return ITEM_INTERACT_SUCCESS
+	if(user.combat_mode)
+		return NONE
+
+	if(HAS_TRAIT(src, TRAIT_READY_TO_OPERATE))
+		var/surgery_ret = user.perform_surgery(src, tool, LAZYACCESS(modifiers, RIGHT_CLICK))
+		if(surgery_ret)
+			return surgery_ret
+
+	if(src == user)
+		var/manual_cauterization = try_manual_cauterize(tool)
+		if(manual_cauterization & ITEM_INTERACT_ANY_BLOCKER)
+			return manual_cauterization
 
 	return NONE
 
@@ -229,6 +235,11 @@
 		return FALSE
 
 	var/final_force = CALCULATE_FORCE(src, attack_modifiers)
+	// DARKPACK EDIT ADD START - WEREWOLF
+	if(HAS_TRAIT(user, TRAIT_JAMMING_WEAPONS) && !HAS_TRAIT(src, TRAIT_NATURAL))
+		to_chat(user, span_warning("[src] ineffectively jams or malfunctions!"))
+		return FALSE
+	// DARKPACK EDIT ADD END
 	if(damtype != STAMINA && final_force && HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("You don't want to harm other living beings!"))
 		return FALSE
@@ -282,6 +293,11 @@
 	user.changeNext_move(attack_speed)
 	if(get(src, /mob/living) == user) // telekinesis.
 		user.do_attack_animation(attacked_atom)
+	// DARKPACK EDIT ADD START - WEREWOLF
+	if(HAS_TRAIT(user, TRAIT_JAMMING_WEAPONS) && !HAS_TRAIT(src, TRAIT_NATURAL))
+		to_chat(user, span_warning("[src] ineffectively jams or malfunctions!"))
+		return FALSE
+	// DARKPACK EDIT ADD END
 	if(attacked_atom.attacked_by(src, user, modifiers, attack_modifiers) == ATTACK_FAILED)
 		return TRUE
 	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, attacked_atom, user, modifiers, attack_modifiers)
@@ -296,6 +312,18 @@
 		return ATTACK_FAILED
 
 	var/final_force = CALCULATE_FORCE(attacking_item, attack_modifiers)
+	// DARKPACK EDIT ADD START - STORYTELLER_ROLLS/STORYTELLER_STATS
+	// This is pretty evil, but we are gonna convert all the tg force into the +# that melee weapons have listed.
+	// This means we can do stuff like set force of a baseball bat to 2 TTRPG_DAM and it just works.
+	if(isliving(user) && !HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER) && (final_force >= 1 TTRPG_DAMAGE))
+		var/bonus_dice = FORCE_TO_DICE_POOL(final_force)
+		if(prob(LEFTOVER_FORCE_TO_PERCENT(final_force)))
+			bonus_dice++
+		var/datum/storyteller_roll/damage/damage_roll = new()
+		damage_roll.applicable_stats = list(attacking_item.st_damage_stat)
+		var/damage_roll_result = damage_roll.st_roll(user, src, bonus_dice)
+		final_force = damage_roll_result TTRPG_DAMAGE
+	// DARKPACK EDIT ADD END
 	if(final_force <= 0)
 		return 0
 
@@ -333,11 +361,34 @@
 		), ARMOR_MAX_BLOCK)
 
 	var/final_force = CALCULATE_FORCE(attacking_item, attack_modifiers)
-	if(mob_biotypes & MOB_ROBOTIC)
+	if(mob_biotypes & (MOB_ROBOTIC|MOB_MINERAL|MOB_SKELETAL)) // this should probably check hit bodypart for humanoids
 		final_force *= attacking_item.get_demolition_modifier(src)
 
+	// DARKPACK EDIT ADD START - STORYTELLER_ROLLS/STORYTELLER_STATS
+	if(isliving(user) && !HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER) && (final_force >= 1 TTRPG_DAMAGE))
+		var/datum/storyteller_roll/attack/attack_roll = new()
+		attack_roll.applicable_stats = list(attacking_item.st_attack_ability, attacking_item.st_attack_attribute)
+		attack_roll.difficulty = attacking_item.attack_difficulty
+		var/attack_roll_result = attack_roll.st_roll(user, src)
+
+		// What i want to do is acctually have it return if not success. But that creates bad visual feedback as all the FX still play. just give them them SOME damage..
+		if(attack_roll_result == ROLL_SUCCESS)
+			// This is pretty evil, but we are gonna convert all the tg force into the +# that melee weapons have listed.
+			// This means we can do stuff like set force of a baseball bat to 2 TTRPG_DAM and it just works.
+			var/bonus_dice = FORCE_TO_DICE_POOL(final_force)
+			if(prob(LEFTOVER_FORCE_TO_PERCENT(final_force)))
+				bonus_dice++
+			var/datum/storyteller_roll/damage/damage_roll = new()
+			damage_roll.applicable_stats = list(attacking_item.st_damage_stat)
+			var/damage_roll_result = damage_roll.st_roll(user, src, bonus_dice)
+
+			final_force = max(damage_roll_result TTRPG_DAMAGE, 1 TTRPG_DAMAGE)
+		else
+			final_force = 1 TTRPG_DAMAGE // "SOME damage" in question
+	// DARKPACK EDIT ADD END
+
 	var/wounding = attacking_item.wound_bonus
-	if((attacking_item.item_flags & SURGICAL_TOOL) && !user.combat_mode && body_position == LYING_DOWN && (LAZYLEN(surgeries) > 0))
+	if((attacking_item.item_flags & SURGICAL_TOOL) && !user.combat_mode && HAS_TRAIT(user, TRAIT_READY_TO_OPERATE))
 		wounding = CANT_WOUND
 
 	if(user != src)
@@ -403,7 +454,7 @@
 	return TRUE
 
 /mob/living/carbon/attack_effects(damage_done, hit_zone, armor_block, obj/item/attacking_item, mob/living/attacker)
-	var/obj/item/bodypart/hit_bodypart = get_bodypart(hit_zone) || bodyparts[1]
+	var/obj/item/bodypart/hit_bodypart = get_bodypart(hit_zone) || get_bodypart()
 	if(!hit_bodypart.can_bleed())
 		return FALSE
 
@@ -421,8 +472,8 @@
 
 			if(!attacking_item.get_sharpness() && !HAS_TRAIT(src, TRAIT_HEAD_INJURY_BLOCKED) && attacking_item.damtype == BRUTE)
 				if(prob(damage_done))
-					adjustOrganLoss(ORGAN_SLOT_BRAIN, 20)
-					if(stat == CONSCIOUS)
+					adjust_organ_loss(ORGAN_SLOT_BRAIN, 20)
+					if(!IS_UNCONSCIOUS_OR_CRIT(src))
 						visible_message(
 							span_danger("[src] is knocked senseless!"),
 							span_userdanger("You're knocked senseless!"),
@@ -432,11 +483,11 @@
 					if(prob(10))
 						gain_trauma(/datum/brain_trauma/mild/concussion)
 				else
-					adjustOrganLoss(ORGAN_SLOT_BRAIN, damage_done * 0.2)
+					adjust_organ_loss(ORGAN_SLOT_BRAIN, damage_done * 0.2)
 
 				// rev deconversion through blunt trauma.
 				// this can be signalized to the rev datum
-				if(mind && stat == CONSCIOUS && src != attacker && prob(damage_done + ((100 - health) * 0.5)))
+				if(mind && !IS_UNCONSCIOUS_OR_CRIT(src) && src != attacker && prob(damage_done + ((100 - health) * 0.5)))
 					var/datum/antagonist/rev/rev = mind.has_antag_datum(/datum/antagonist/rev)
 					rev?.remove_revolutionary(attacker)
 
@@ -444,7 +495,7 @@
 			if(.)
 				add_blood_DNA_to_items(get_blood_dna_list(), ITEM_SLOT_ICLOTHING|ITEM_SLOT_OCLOTHING)
 
-			if(stat == CONSCIOUS && !attacking_item.get_sharpness() && !HAS_TRAIT(src, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED) && attacking_item.damtype == BRUTE)
+			if(!IS_UNCONSCIOUS_OR_CRIT(src) && !attacking_item.get_sharpness() && !HAS_TRAIT(src, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED) && attacking_item.damtype == BRUTE)
 				if(prob(damage_done))
 					visible_message(
 						span_danger("[src] is knocked down!"),

@@ -34,12 +34,13 @@
 	if(our_hud)
 		our_hud.master_groups -= key
 		hide_hud()
+	var/datum/hud/old_hud = our_hud
 	our_hud = new_hud
 	if(new_hud)
 		our_hud.master_groups[key] = src
 		show_hud()
 		build_planes_offset(our_hud, active_offset)
-	SEND_SIGNAL(src, COMSIG_GROUP_HUD_CHANGED, our_hud)
+	SEND_SIGNAL(src, COMSIG_GROUP_HUD_CHANGED, old_hud, our_hud)
 
 /// Display a plane master group to some viewer, so show all our planes to it
 /datum/plane_master_group/proc/attach_to(datum/hud/viewing_hud)
@@ -116,6 +117,7 @@
 	if(!our_mob?.client?.prefs?.read_preference(/datum/preference/toggle/multiz_parallax))
 		use_scale = FALSE
 	*/ // DARKPACK EDIT REMOVAL END
+	use_scale = FALSE // DARKPACK EDIT -- we want multi-z parallax offsets to always be false
 	// No offset? piss off
 	if(!SSmapping.max_plane_offset)
 		return

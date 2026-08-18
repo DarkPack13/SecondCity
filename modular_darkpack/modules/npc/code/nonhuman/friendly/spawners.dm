@@ -27,6 +27,8 @@
 	loot = list(
 		/mob/living/basic/pet/cat/darkpack = 9,
 		/mob/living/basic/pet/dog/darkpack = 1,
+		/mob/living/basic/corvid/crow = 1,
+		/mob/living/basic/corvid/raven = 1,
 		/mob/living/basic/mouse/vampire = 1
 	)
 

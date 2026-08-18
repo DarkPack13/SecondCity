@@ -1,6 +1,11 @@
 /datum/discipline/valeren
 	name = "Healer Valeren"
-	desc = "Use your third eye in healing or protecting needs."
+	desc = {"Use your third eye in healing or protecting needs.
+● Sense Vitality: Passive
+●● Anesthetic Touch: Passive
+●●● Corpore Sano: Passive
+●●●● Shepherd's Watch: Passive
+●●●●● Unburden the Bestial Soul: Passive"}
 	icon_state = "valeren"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/valeren
@@ -20,6 +25,7 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_FREE_HAND
 	target_type = TARGET_MOB
 	range = 1
+	vitae_cost = 0
 
 	cooldown_length = 5 SECONDS
 
@@ -48,8 +54,7 @@
 /datum/discipline_power/valeren/anesthetic_touch/activate(mob/living/target)
 	. = ..()
 	//I'm not a fan of how punishing this is towards human players, but not my job to rework it
-	//refactor this when the species refactoring comes through
-	if (ishumanbasic(target))
+	if (ismundane(target))
 		target.SetSleeping(15 SECONDS)
 	else
 		target.add_confusion(5)
@@ -89,6 +94,7 @@
 	desc = "Create a supernatural barrier to protect yourself from harm."
 
 	level = 4
+	vitae_cost = 0
 
 	cooldown_length = 40 SECONDS
 
@@ -124,7 +130,7 @@
 /datum/discipline_power/valeren/unburden_the_bestial_soul/can_activate(mob/living/target, alert)
 	. = ..()
 
-	if (!iskindred(target))
+	if (!get_kindred_splat(target))
 		if (alert)
 			to_chat(owner, span_warning("[src] can only be used on Kindred."))
 		return FALSE
@@ -149,7 +155,7 @@
 /datum/discipline_power/valeren/unburden_the_bestial_soul/activate(mob/living/carbon/human/target)
 	. = ..()
 	to_chat(owner, span_notice("You have healed [target]'s soul slightly."))
-	target.AdjustHumanity(1, 10)
+	SEND_SIGNAL(owner, COMSIG_PATH_HIT, 1, 10, FALSE)
 	points_can_restore--
 
 

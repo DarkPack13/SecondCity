@@ -1,8 +1,5 @@
 //Please use mob or src (not usr) in these procs. This way they can be called in the same fashion as procs.
-/client/verb/wiki()
-	set name = "wiki"
-	set desc = "Brings you to the Wiki"
-	set hidden = TRUE
+GAME_VERB_HIDDEN(/client, wiki, "wiki")
 
 	var/wikiurl = CONFIG_GET(string/wikiurl)
 	if(!wikiurl)
@@ -21,10 +18,7 @@
 		output += "?title=Special%3ASearch&profile=default&search=[query]"
 	DIRECT_OUTPUT(src, link(output))
 
-/client/verb/forum()
-	set name = "forum"
-	set desc = "Visit the forum."
-	set hidden = TRUE
+GAME_VERB_HIDDEN(/client, forum, "forum")
 
 	var/forumurl = CONFIG_GET(string/forumurl)
 	if(!forumurl)
@@ -32,10 +26,7 @@
 		return
 	DIRECT_OUTPUT(src, link(forumurl))
 
-/client/verb/rules()
-	set name = "rules"
-	set desc = "Show Server Rules."
-	set hidden = TRUE
+GAME_VERB_HIDDEN(/client, rules, "rules")
 
 	var/rulesurl = CONFIG_GET(string/rulesurl)
 	if(!rulesurl)
@@ -43,10 +34,7 @@
 		return
 	DIRECT_OUTPUT(src, link(rulesurl))
 
-/client/verb/github()
-	set name = "github"
-	set desc = "Visit Github"
-	set hidden = TRUE
+GAME_VERB_HIDDEN(/client, github, "github")
 
 	var/githuburl = CONFIG_GET(string/githuburl)
 	if(!githuburl)
@@ -54,14 +42,30 @@
 		return
 	DIRECT_OUTPUT(src, link(githuburl))
 
-/client/verb/reportissue()
-	set name = "report-issue"
-	set desc = "Report an issue"
+GAME_VERB_HIDDEN(/client, config, "config")
 
-	var/githuburl = CONFIG_GET(string/githuburl)
-	if(!githuburl)
+	var/configurl = CONFIG_GET(string/configurl)
+	if(!configurl)
+		to_chat(src, span_danger("The Config URL is not set in the server configuration."))
+		return
+	DIRECT_OUTPUT(src, link(configurl))
+
+GAME_VERB_DESC(/client, reportissue, "report-issue", "Report an issue", null)
+
+	// DARKPACK EDIT CHANGE START
+	// "our" url, all other ones should be upstreams
+	var/main_url = CONFIG_GET(string/githuburl)
+	var/all_options = CONFIG_GET(str_list/extra_issue_urls)
+	all_options |= main_url
+
+	if(!all_options || !length(all_options))
 		to_chat(src, span_danger("The Github URL is not set in the server configuration."))
 		return
+
+	var/githuburl = tgui_input_list(src, "Choose a codebase to report the issue to", "Choose Codebase", all_options, main_url)
+	if(!githuburl)
+		return
+	// DARKPACK EDIT CHANGE END
 
 	var/testmerge_data = GLOB.revdata.testmerge
 	var/has_testmerge_data = (length(testmerge_data) != 0)
@@ -82,25 +86,39 @@
 	var/client_version = "[byond_version].[byond_build]"
 	concatable += ("&reporting-version=" + client_version)
 
+	// DARKPACK EDIT CHANGE START
+	var/server_name = CONFIG_GET(string/servername)
+	var/server_link
+	if(server_name)
+		server_link = "\[[server_name]\]([main_url])"
+	else
+		server_link = main_url // Someone forgot to set a config or your in a dev enviro
+
 	// the way it works is that we use the ID's that are baked into the template YML and replace them with values that we can collect in game.
-	if(GLOB.round_id)
-		concatable += ("&round-id=" + GLOB.round_id)
+	if(githuburl == main_url) // Why would we report the url when its the same server lol
+		if(GLOB.round_id)
+			concatable += ("&round-id=" + GLOB.round_id)
+	else
+		if(GLOB.round_id)
+			concatable += ("&round-id=[server_link] [GLOB.round_id]")
+		else
+			// Likely a dev enviroment or db is down, still worth noting.
+			concatable += ("&round-id=[server_link]")
+	// DARKPACK EDIT CHANGE END
 
 	// Insert testmerges
 	if(has_testmerge_data)
 		var/list/all_tms = list()
 		for(var/entry in testmerge_data)
 			var/datum/tgs_revision_information/test_merge/tm = entry
-			all_tms += "- \[[tm.title]\]([githuburl]/pull/[tm.number])"
+			all_tms += "- \[[tm.title]\]([main_url]/pull/[tm.number])" // DARKPACK EDIT CHANGE
 		var/all_tms_joined = jointext(all_tms, "\n")
 
 		concatable += ("&test-merges=" + url_encode(all_tms_joined))
 
 	DIRECT_OUTPUT(src, link(jointext(concatable, "")))
 
-/client/verb/changelog()
-	set name = "Changelog"
-	set category = "OOC"
+GAME_VERB(/client, changelog, "Changelog", "OOC")
 
 	if(!GLOB.changelog_tgui)
 		GLOB.changelog_tgui = new /datum/changelog()
@@ -109,13 +127,20 @@
 	if(prefs.lastchangelog != GLOB.changelog_hash)
 		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
-		winset(src, "infobuttons.changelog", "font-style=;")
 
-/client/verb/hotkeys_help()
-	set name = "Hotkeys Help"
-	set category = "OOC"
+GAME_VERB_HIDDEN(/client, hotkeys_help, "Hotkeys Help")
 
 	if(!GLOB.hotkeys_tgui)
 		GLOB.hotkeys_tgui = new /datum/hotkeys_help()
 
 	GLOB.hotkeys_tgui.ui_interact(mob)
+
+GAME_VERB_HIDDEN(/client, emote_panel, "Emote Panel")
+
+	if(!isliving(mob))
+		to_chat(mob, span_notice("You can only use this while you're alive!"))
+		return
+
+	if(!GLOB.emote_panel)
+		GLOB.emote_panel = new /datum/emote_panel()
+	GLOB.emote_panel.ui_interact(mob)

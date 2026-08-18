@@ -11,7 +11,7 @@
 	// - list(/obj/item/plush/lizard = list("name" = "Tests-The-Loadout", "color" = "#FF0000"))
 
 // Loadouts are applied with job equip code.
-/datum/preference/loadout/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/loadout/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return
 
 // Sanitize on load to ensure no invalid paths from older saves get in
@@ -51,6 +51,10 @@
 					It has been removed, renamed, or is otherwise missing - \
 					You may want to check your loadout settings."))
 			continue
+
+		var/datum/loadout_item/loadout_item = GLOB.all_loadout_datums[real_path]
+		if(loadout_item.is_disabled())
+			continue // this just falls off silently
 
 		// Set into sanitize list using converted path key
 		var/list/data = passed_list[path]

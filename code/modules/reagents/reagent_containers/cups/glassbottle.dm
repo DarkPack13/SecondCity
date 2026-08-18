@@ -34,7 +34,6 @@
 	. = ..()
 	var/static/list/recipes =  list(/datum/crafting_recipe/molotov)
 	AddElement(/datum/element/slapcrafting, recipes)
-	register_context()
 	register_item_context()
 
 /obj/item/reagent_containers/cup/glass/bottle/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
@@ -126,21 +125,11 @@
 	volume = 50
 	custom_price = PAYCHECK_CREW * 0.9
 
-/obj/item/reagent_containers/cup/glass/bottle/smash(mob/living/target, mob/thrower, datum/thrownthing/throwingdatum, break_top)
-	if(bartender_check(target, thrower) && throwingdatum)
-		return FALSE
-	splash_reagents(target, thrower || throwingdatum?.get_thrower(), allow_closed_splash = TRUE)
-	var/obj/item/broken_bottle/broken = new(drop_location())
-	if(!throwingdatum && thrower)
-		thrower.put_in_hands(broken)
-	broken.mimic_broken(src, target, break_top)
+/obj/item/reagent_containers/cup/glass/bottle/post_smash(atom/target, atom/thrower, datum/thrownthing/throwingdatum, obj/item/broken_bottle/broken)
+	if(!throwingdatum && ismob(thrower))
+		astype(thrower, /mob).put_in_hands(broken)
 	broken.inhand_icon_state = broken_inhand_icon_state
-	if(message_in_a_bottle)
-		message_in_a_bottle.forceMove(drop_location())
-
-	qdel(src)
-	target.Bumped(broken)
-	return TRUE
+	message_in_a_bottle?.forceMove(drop_location())
 
 /obj/item/reagent_containers/cup/glass/bottle/try_splash(mob/user, atom/target)
 	if(!isGlass)
@@ -152,27 +141,27 @@
 		return
 
 	var/head_hitter = user.zone_selected == BODY_ZONE_HEAD && isliving(target)
-
-	// An attack that targets the head of a living mob will attempt to knock them down
-	if(head_hitter)
-		var/mob/living/living_target = target
-		var/knockdown_effectiveness = 0
-		if(!HAS_TRAIT(target, TRAIT_HEAD_INJURY_BLOCKED))
-			knockdown_effectiveness = bottle_knockdown_duration + ((force / 10) * 1 SECONDS) - living_target.getarmor(BODY_ZONE_HEAD, MELEE)
-		if(prob(knockdown_effectiveness))
-			living_target.Knockdown(min(knockdown_effectiveness, 20 SECONDS))
+	if(!QDELETED(target))
+		// An attack that targets the head of a living mob will attempt to knock them down
+		if(head_hitter)
+			var/mob/living/living_target = target
+			var/knockdown_effectiveness = 0
+			if(!HAS_TRAIT(target, TRAIT_HEAD_INJURY_BLOCKED))
+				knockdown_effectiveness = bottle_knockdown_duration + ((force / 10) * 1 SECONDS) - living_target.getarmor(BODY_ZONE_HEAD, MELEE)
+			if(prob(knockdown_effectiveness))
+				living_target.Knockdown(min(knockdown_effectiveness, 20 SECONDS))
 
 	// Displays a custom message which follows the attack
 	if(target == user)
-		target.visible_message(
+		user.visible_message(
 			span_warning("[user] smashes [src] [head_hitter ? "over [user.p_their()] head" : "against [user.p_them()]selves"]!"),
 			span_warning("You smash [src] [head_hitter ? "over your head" : "against yourself"]!"),
 		)
 
 	else
-		target.visible_message(
+		user.visible_message(
 			span_warning("[user] smashes [src] [head_hitter ? "over [target]'s head" : "against [target]"]!"),
-			span_warning("[user] smashes [src] [head_hitter ? "over your head" : "against you"]!"),
+			span_warning("You smash [src] [head_hitter ? "over [target]'s head" : "against [target]"]!"),
 		)
 
 	// Finally, smash the bottle. This kills (del) the bottle and also does all the logging for us
@@ -263,20 +252,19 @@
 		desc = "A carton with the bottom half burst open. Might give you a papercut."
 	else
 		if(prob(33))
-			var/obj/item/shard/stab_with = new(to_mimic.drop_location())
-			target.Bumped(stab_with)
+			new /obj/item/shard(to_mimic.drop_location())
 		playsound(src, SFX_SHATTER, 70, TRUE)
 	name = "broken [to_mimic.name]"
 	to_mimic.transfer_fingerprints_to(src)
 
 /obj/item/reagent_containers/cup/glass/bottle/beer
-	name = "Beer" // DARKPACK EDIT CHANGE
+	name = "beer" // DARKPACK EDIT CHANGE
 	desc = "Beer." // DARKPACK EDIT CHANGE
 	icon_state = "beer"
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 30)
 	drink_type = GRAIN | ALCOHOL
-	custom_price = 5 // DARKPACK EDIT CHANGE
+	custom_price = 5 // DARKPACK EDIT CHANGE - ECONOMY
 
 /obj/item/reagent_containers/cup/glass/bottle/beer/almost_empty
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 1)
@@ -395,6 +383,7 @@
 	desc = "A flask of the chaplain's holy water."
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "holyflask"
+	worn_icon_state = "holyflask"
 	inhand_icon_state = "holyflask"
 	broken_inhand_icon_state = "broken_holyflask"
 	list_reagents = list(/datum/reagent/water/holywater = 100)
@@ -475,6 +464,13 @@
 		"Beaulieu", // DARKPACK EDIT CHANGE
 	)
 	return "[year] [origin] [type]"
+
+// DARKPACK EDIT ADD START
+/obj/item/reagent_containers/cup/glass/bottle/wine/blood
+	// DARKPACK TODO - I would like this to be a roll without it being dumb.
+	desc = "There is a thin smear of red on the lid of this bottle..."
+	list_reagents = list(/datum/reagent/blood = 100)
+// DARKPACK EDIT ADD END
 
 /obj/item/reagent_containers/cup/glass/bottle/absinthe
 	name = "Extra-strong absinthe"
@@ -876,12 +872,34 @@
 	list_reagents = list(/datum/reagent/consumable/ethanol/coconut_rum = 100)
 	drink_type = ALCOHOL
 
+/obj/item/reagent_containers/cup/glass/bottle/aperitivo
+	name = "Camillo Aperitivo Rosso"
+	desc = "The bottle that led to the creation of the modern Camillo Group beverage conglomerate. Despite what you might expect, there's a good chance that whoever makes your favorite liquor is at least in part owned by Camillo."
+	icon_state = "aperitivo_bottle"
+	list_reagents = list(/datum/reagent/consumable/ethanol/aperitivo = 100)
+	drink_type = ALCOHOL
+
+/obj/item/reagent_containers/cup/glass/bottle/herbal_liqueur
+	name = "Bellarmine D.O.P Herbal Liqueur"
+	desc = "An almost millenia old herbal liqueur made from a secret recipe passed down over generations of monks. It's not great to know that the herbs and spices used in this are a better-kept secret than the codes to Nanotrasen's nuclear arsenal."
+	icon_state = "herbal_liqueur_bottle"
+	list_reagents = list(/datum/reagent/consumable/ethanol/herbal_liqueur = 100)
+	drink_type = ALCOHOL
+
+/obj/item/reagent_containers/cup/glass/bottle/maraschino
+	name = "Dalmazia Originale Maraschino Liqueur"
+	desc = "A small note on the back of the bottle instructs all customers who complain about a lack of cherry flavor to direct their concerns to what appears to be a defunct phone number."
+	icon_state = "maraschino_bottle"
+	list_reagents = list(/datum/reagent/consumable/ethanol/maraschino = 100)
+	drink_type = ALCOHOL
+
 ////////////////////////// MOLOTOV ///////////////////////
 /obj/item/reagent_containers/cup/glass/bottle/molotov
 	name = "molotov cocktail"
 	desc = "A throwing weapon used to ignite things, typically filled with an accelerant. Recommended highly by rioters and revolutionaries. Light and toss."
 	icon_state = "vodkabottle"
 	list_reagents = list()
+	heatable = FALSE
 	var/active = FALSE
 	var/list/accelerants = list(
 		/datum/reagent/consumable/ethanol,
@@ -909,20 +927,26 @@
 	..(hit_atom, throwingdatum, do_splash = FALSE)
 
 /obj/item/reagent_containers/cup/glass/bottle/molotov/smash(atom/target, mob/thrower, datum/thrownthing/throwingdatum, break_top)
-	var/firestarter = 0
+	var/firestarter = FALSE
 	for(var/datum/reagent/contained_reagent in reagents.reagent_list)
 		for(var/accelerant_type in accelerants)
 			if(istype(contained_reagent, accelerant_type))
-				firestarter = 1
+				firestarter = TRUE
 				break
 	..()
 	if(firestarter && active)
-		target.fire_act()
-		new /obj/effect/hotspot(get_turf(target))
+		if(!QDELETED(target))
+			target.fire_act()
+		// DARKPACK EDIT CHANGE START - TURF_FIRE
+		var/turf/the_turf = get_turf(target)
+		the_turf.ignite_turf(30)
+		new /obj/effect/hotspot(the_turf)
+		// DARKPACK EDIT CHANGE END
 
 /obj/item/reagent_containers/cup/glass/bottle/molotov/item_interaction(mob/living/user, obj/item/item, list/modifiers)
-	if(!item.get_temperature() || active)
+	if(item.get_temperature() < FIRE_MINIMUM_TEMPERATURE_TO_EXIST || active)
 		return NONE
+
 	active = TRUE
 	log_bomber(user, "has primed a", src, "for detonation")
 
@@ -961,6 +985,7 @@
 	icon = 'icons/obj/service/janitor.dmi'
 	icon_state = "trashbag"
 	list_reagents = list(/datum/reagent/consumable/prunomix = 50)
+	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT)
 	var/fermentation_time = 30 SECONDS /// time it takes to ferment
 	var/fermentation_time_remaining /// for partial fermentation
 	var/fermentation_timer /// store the timer id of fermentation
@@ -1022,6 +1047,7 @@
 	righthand_file = 'icons/mob/inhands/items/drinks_righthand.dmi'
 	isGlass = FALSE
 	age_restricted = FALSE
+	custom_materials = list(/datum/material/cardboard = SHEET_MATERIAL_AMOUNT * 1.5)
 
 /obj/item/reagent_containers/cup/glass/bottle/juice/orangejuice
 	name = "orange juice"
@@ -1031,6 +1057,14 @@
 	list_reagents = list(/datum/reagent/consumable/orangejuice = 100)
 	drink_type = FRUIT | BREAKFAST
 
+/obj/item/reagent_containers/cup/glass/bottle/juice/lemonjuice
+	name = "lemon juice"
+	desc = "Some like to pour a few drops of this over their fish."
+	icon = 'icons/obj/drinks/boxes.dmi'
+	icon_state = "lemonjuice"
+	list_reagents = list(/datum/reagent/consumable/lemonjuice = 100)
+	drink_type = FRUIT
+
 /obj/item/reagent_containers/cup/glass/bottle/juice/cream
 	name = "milk cream"
 	desc = "It's cream. Made from milk. What else did you think you'd find in there?"
@@ -1038,6 +1072,7 @@
 	icon_state = "cream"
 	list_reagents = list(/datum/reagent/consumable/cream = 100)
 	drink_type = DAIRY
+	custom_price = 5 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/cup/glass/bottle/juice/eggnog
 	name = "eggnog"

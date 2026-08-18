@@ -1,7 +1,8 @@
 //Hulk turns your skin green, makes you strong, and allows you to shrug off stun effect.
 /datum/mutation/hulk
 	name = "Hulk"
-	desc = "A poorly understood genome that causes the holder's muscles to expand, inhibit speech and gives the person a bad skin condition."
+	desc = "The subject's muscles expand drastically, granting superhuman strength and resilience, but inhibit speech in the process. \
+		This heightened muscle density is more vulnerable to the cold, and cannot be maintained if critically injured."
 	quality = POSITIVE
 	locked = TRUE
 	difficulty = 16
@@ -33,12 +34,15 @@
 	. = ..()
 	if(!.)
 		return
-	for(var/obj/item/bodypart/part as anything in owner.bodyparts)
-		part.add_color_override(bodypart_color, LIMB_COLOR_HULK)
+	for(var/obj/item/bodypart/part as anything in owner.get_bodyparts())
+		if (part.bodytype & BODYTYPE_ORGANIC)
+			part.add_color_override(bodypart_color, LIMB_COLOR_HULK)
 	owner.update_body_parts()
 	owner.add_mood_event("hulk", /datum/mood_event/hulk)
 	RegisterSignal(owner, COMSIG_LIVING_EARLY_UNARMED_ATTACK, PROC_REF(on_attack_hand))
 	RegisterSignal(owner, COMSIG_MOB_CLICKON, PROC_REF(check_swing))
+	RegisterSignal(owner, COMSIG_CARBON_ATTACH_LIMB, PROC_REF(texture_limb))
+	RegisterSignal(owner, COMSIG_CARBON_REMOVE_LIMB, PROC_REF(untexture_limb))
 	owner.add_movespeed_mod_immunities("hulk", /datum/movespeed_modifier/damage_slowdown)
 
 /datum/mutation/hulk/proc/on_attack_hand(mob/living/carbon/human/source, atom/target, proximity, modifiers)
@@ -62,7 +66,7 @@
 /datum/mutation/hulk/proc/scream_attack(mob/living/carbon/human/source)
 	source.say("WAAAAAAAAAAAAAAGH!", forced="hulk")
 
-/datum/mutation/hulk/on_life(seconds_per_tick, times_fired)
+/datum/mutation/hulk/on_life(seconds_per_tick)
 	if(owner.health < owner.crit_threshold)
 		on_losing(owner)
 		to_chat(owner, span_danger("You suddenly feel very weak."))
@@ -71,13 +75,22 @@
 /datum/mutation/hulk/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	for(var/obj/item/bodypart/part as anything in owner.bodyparts)
+	for(var/obj/item/bodypart/part as anything in owner.get_bodyparts())
 		part.remove_color_override(LIMB_COLOR_HULK)
 	owner.update_body_parts()
 	owner.clear_mood_event("hulk")
 	UnregisterSignal(owner, COMSIG_LIVING_EARLY_UNARMED_ATTACK)
 	UnregisterSignal(owner, COMSIG_MOB_CLICKON)
 	owner.remove_movespeed_mod_immunities("hulk", /datum/movespeed_modifier/damage_slowdown)
+
+/datum/mutation/hulk/proc/texture_limb(atom/source, obj/item/bodypart/limb)
+	SIGNAL_HANDLER
+	if (limb.bodytype & BODYTYPE_ORGANIC)
+		limb.add_color_override(bodypart_color, LIMB_COLOR_HULK)
+
+/datum/mutation/hulk/proc/untexture_limb(atom/source, obj/item/bodypart/limb)
+	SIGNAL_HANDLER
+	limb.remove_color_override(LIMB_COLOR_HULK)
 
 /// How many steps it takes to throw the mob
 #define HULK_TAILTHROW_STEPS 28
@@ -184,7 +197,7 @@
 		if(!collateral_mob.density || collateral_mob == yeeted_person)
 			continue
 
-		yeeted_person.adjustBruteLoss(step*0.5)
+		yeeted_person.adjust_brute_loss(step*0.5)
 		playsound(collateral_mob,'sound/items/weapons/punch1.ogg',50,TRUE)
 		log_combat(the_hulk, collateral_mob, "has smacked with tail swing victim")
 		log_combat(the_hulk, yeeted_person, "has smacked this person into someone while tail swinging") // i have no idea how to better word this
@@ -192,14 +205,14 @@
 		if(collateral_mob == the_hulk) // if the hulk moves wrong and crosses himself
 			the_hulk.visible_message(span_warning("[the_hulk] smacks [the_hulk.p_them()]self with [yeeted_person]!"), span_userdanger("You end up smacking [yeeted_person] into yourself!"), ignored_mobs = yeeted_person)
 			to_chat(yeeted_person, span_userdanger("[the_hulk] smacks you into [the_hulk.p_them()]self, turning you free!"))
-			the_hulk.adjustBruteLoss(step)
+			the_hulk.adjust_brute_loss(step)
 			return
 
 		yeeted_person.visible_message(span_warning("[the_hulk] swings [yeeted_person] directly into [collateral_mob], sending [collateral_mob.p_them()] flying!"), \
 			span_userdanger("You're smacked into [collateral_mob]!"), ignored_mobs = collateral_mob)
 		to_chat(collateral_mob, span_userdanger("[the_hulk] swings [yeeted_person] directly into you, sending you flying!"))
 
-		collateral_mob.adjustBruteLoss(step*0.5)
+		collateral_mob.adjust_brute_loss(step*0.5)
 		collateral_mob.throw_at(collat_throw_target, round(step * 0.25) + 1, round(step * 0.25) + 1)
 		step -= 5
 		delay += 5
@@ -230,7 +243,7 @@
 	var/turf/T = get_edge_target_turf(the_hulk, the_hulk.dir)
 	if(!isturf(T))
 		return
-	if(!yeeted_person.stat)
+	if(!IS_UNCONSCIOUS_OR_CRIT(yeeted_person))
 		yeeted_person.emote("scream")
 	yeeted_person.throw_at(T, 10, 6, the_hulk, TRUE, TRUE)
 	log_combat(the_hulk, yeeted_person, "has thrown by tail")
@@ -239,7 +252,7 @@
 	name = "Hulk (Magical)"
 	species_allowed = null //yes skeleton/lizard hulk - note that species that dont have skintone changing (like skellies) get custom handling
 	health_req = 0
-	instability = 0
+	instability = NEGATIVE_STABILITY_NONE
 	scream_delay = 2.5 SECONDS // halved to be more annoying (spell doesn't last long anyways)
 	no_recoil = FALSE
 	mutation_traits = list(
@@ -251,7 +264,7 @@
 /datum/mutation/hulk/superhuman
 	name = "Hulk (Super)"
 	health_req = 0
-	instability = 0
+	instability = NEGATIVE_STABILITY_NONE
 	no_recoil = FALSE
 	mutation_traits = list(
 		TRAIT_CHUNKYFINGERS,
@@ -261,14 +274,15 @@
 		TRAIT_PUSHIMMUNE,
 		TRAIT_STUNIMMUNE,
 		TRAIT_ANALGESIA,
+		TRAIT_NO_OXYLOSS_PASSOUT,
 	) // fight till your last breath
 
-/datum/mutation/hulk/superhuman/on_life(seconds_per_tick, times_fired)
+/datum/mutation/hulk/superhuman/on_life(seconds_per_tick)
 	return
 
 /datum/mutation/hulk/ork
 	name = "Ork"
-	desc = "A mutation caused by a mixup of hulk genes which severely impacts speech centers in owners' brains."
+	desc = "A variant of the hulk mutation that is also known to inhibit the subject's brain functions."
 	text_gain_indication = span_notice("You feel significantly dumber!")
 	bodypart_color = COLOR_ASSISTANT_OLIVE
 	conflicts = list(/datum/mutation/hulk)

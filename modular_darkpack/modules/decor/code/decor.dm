@@ -1,7 +1,7 @@
 /obj/structure/vampfence
 	name = "\improper fence"
 	desc = "Protects places from walking in."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/fence.dmi'
 	icon_state = "fence"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -48,10 +48,27 @@
 
 /obj/structure/lamppost/Initialize(mapload)
 	. = ..()
+	var/area/vtm/my_area = get_area(src)
 	if(check_holidays(FESTIVE_SEASON))
-		var/area/my_area = get_area(src)
 		if(istype(my_area) && my_area.outdoors)
 			icon_state = "[initial(icon_state)]-snow"
+	RegisterSignal(my_area, COMSIG_AREA_POWER_CHANGE, PROC_REF(on_power_change))
+	// DARKPACK TODO - fuseboxes and areas aren't meaningfully connected to each other, and thusly aren't meaningfully connected to lights/devices that may need poer.
+	// TLDR we need to basically re-evaluate how we approach power... the current system is flavcode spaghetti shit.
+	if(my_area.powered(AREA_USAGE_LIGHT))
+		create_lights()
+
+/obj/structure/lamppost/proc/on_power_change(area/A)
+	SIGNAL_HANDLER
+
+
+	if(A.power_light)
+		create_lights()
+	else
+		QDEL_LIST(my_lights)
+
+/obj/structure/lamppost/proc/create_lights()
+	QDEL_LIST(my_lights)
 	switch(number_of_lamps)
 		if(1)
 			new_light(get_step(loc, dir))
@@ -74,6 +91,7 @@
 	my_lights += new /obj/effect/decal/lamplight(location)
 
 /obj/structure/lamppost/Destroy(force)
+	UnregisterSignal(get_area(src), COMSIG_AREA_POWER_CHANGE)
 	QDEL_LIST(my_lights)
 	. = ..()
 
@@ -128,17 +146,13 @@
 		if(istype(my_area) && my_area.outdoors)
 			icon_state = "[initial(icon_state)]-snow"
 
-//I should make these slow to move
 /obj/structure/closet/crate/dumpster
 	name = "dumpster"
 	desc = "Holds garbage inside."
 	icon = 'modular_darkpack/master_files/icons/obj/storage/crates32x32.dmi'
 	icon_state = "garbage"
 	base_icon_state = "garbage"
-	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
-	anchored = TRUE
-	density = TRUE
+	drag_slowdown = 3
 	var/internal_trash_chance = 75
 	var/external_trash_chance = 10
 
@@ -160,6 +174,9 @@
 			new /obj/effect/spawner/random/maintenance(src)
 	if(prob(external_trash_chance))
 		new /obj/effect/spawner/random/trash/grime(loc)
+	//artifacts
+	if(prob(CONFIG_GET(number/artifact_crate_probability)))
+		new /obj/effect/spawner/random/occult/artifact(src)
 
 /obj/structure/closet/crate/dumpster/empty
 	internal_trash_chance = 0
@@ -168,14 +185,14 @@
 /obj/structure/trashbag
 	name = "trash bags"
 	desc = "Enough trashbags to block your way."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/trash.dmi'
 	icon_state = "garbage1"
 	density = TRUE
 	anchored = TRUE
 
 /obj/structure/trashbag/Initialize(mapload)
 	. = ..()
-	icon_state = "garbage[rand(7, 9)]"
+	icon_state = "garbage[rand(3, 6)]"
 
 /obj/structure/trashbag/Destroy()
 	new /obj/effect/spawner/random/trash/garbage(loc)
@@ -184,9 +201,8 @@
 /obj/structure/hotelbanner
 	name = "banner"
 	desc = "It says H O T E L."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/city_sign.dmi'
 	icon_state = "banner"
-	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
 
@@ -200,7 +216,7 @@
 /obj/structure/arc
 	name = "chinatown arc"
 	desc = "Cool chinese architecture."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/chinatown.dmi'
 	icon_state = "ark1"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -218,10 +234,11 @@
 /obj/structure/trad
 	name = "traditional lamp"
 	desc = "Cool chinese lamp."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/chinatown.dmi'
 	icon_state = "trad"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
+
 
 /obj/structure/vampipe
 	name = "pipes"
@@ -229,10 +246,22 @@
 	icon_state = "piping1"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
+	var/datum/looping_sound/slow_drip/looping_drips
+	var/drip_chance = 5
+
+/obj/structure/vampipe/Initialize(mapload)
+	. = ..()
+	if(prob(drip_chance))
+		looping_drips = new(src, TRUE)
+
+/obj/structure/vampipe/Destroy(force)
+	. = ..()
+	QDEL_NULL(looping_drips)
+
 
 /obj/structure/vamproofwall
 	name = "wall"
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/roofwall.dmi'
 	icon_state = "the_wall"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -240,7 +269,7 @@
 /obj/structure/hydrant
 	name = "hydrant"
 	desc = "Used for firefighting."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/hydrant.dmi'
 	icon_state = "hydrant"
 	anchored = TRUE
 
@@ -259,26 +288,48 @@
 /obj/structure/roadblock
 	name = "\improper road block"
 	desc = "Protects places from walking in."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/barriers.dmi'
 	icon_state = "roadblock"
-	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
 
 /obj/structure/roadblock/alt
 	icon_state = "barrier"
 
+// DARKPACK TODO - Does not pass the sniff test of being a decal. Make a structure
 /obj/effect/decal/painting
 	name = "painting"
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/paintings.dmi'
 	icon_state = "painting1"
-	layer = ABOVE_ALL_MOB_LAYER
+	plane = GAME_PLANE
+	layer = SIGN_LAYER
 
 /obj/effect/decal/painting/second
 	icon_state = "painting2"
 
 /obj/effect/decal/painting/third
 	icon_state = "painting3"
+
+/obj/structure/painting/trad
+	name = "chinese traditional ink painting"
+	icon_state = "trad-art1"
+	icon = 'modular_darkpack/modules/decor/icons/chinatown.dmi'
+	desc = "Seems to be ink on a pleasant yellow canvas."
+	layer = SIGN_LAYER
+
+/obj/structure/painting/trad/second
+	icon_state = "trad-art2"
+
+/obj/structure/painting/trad/three
+	icon_state = "trad-art3"
+
+/obj/structure/fluff/shrine
+	name = "altar shrine"
+	desc = "An old rustic buddhist shrine, with a red cermaic roof."
+	icon = 'modular_darkpack/modules/decor/icons/chinatown.dmi'
+	icon_state = "budshrine"
+	anchored = TRUE
+	density = TRUE
 
 /obj/structure/jesuscross
 	name = "Jesus Christ on a cross"
@@ -293,33 +344,105 @@
 
 /obj/structure/barrels
 	name = "barrel"
-	desc = "Storage some liquids."
+	desc = "Store some liquids."
 	icon = 'modular_darkpack/modules/decor/icons/barrels.dmi'
 	icon_state = "barrel1"
+	base_icon_state = "barrel"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
+	var/variants = 12
 
 /obj/structure/barrels/rand
 	icon_state = "barrel2"
 
 /obj/structure/barrels/rand/Initialize(mapload)
 	. = ..()
-	icon_state = "barrel[rand(1, 12)]"
+	icon_state = "[base_icon_state][rand(1, variants)]"
+
+/obj/structure/barrels/plural
+	name = "barrels"
+	desc = "Store some liquids."
+	icon = 'modular_darkpack/modules/decor/icons/barrels.dmi'
+	icon_state = "barrels1"
+	base_icon_state = "barrels"
+	layer = ABOVE_ALL_MOB_LAYER
+	anchored = TRUE
+	density = TRUE
+
+/obj/structure/barrels/rand/plural
+	icon_state = "barrels2"
+	base_icon_state = "barrels"
+	variants = 18
+
+/obj/structure/barrels/rusty
+	name = "barrels"
+	desc = "Used to store some liquids."
+	icon = 'modular_darkpack/modules/decor/icons/barrels.dmi'
+	icon_state = "rustybarrels1"
+	base_icon_state = "rustybarrels"
+	layer = ABOVE_ALL_MOB_LAYER
+	anchored = TRUE
+	density = TRUE
+
+/obj/structure/barrels/rand/rusty
+	icon_state = "rustybarrels2"
+	base_icon_state = "rustybarrels"
+	variants = 6
 
 /obj/structure/bricks
 	name = "bricks"
 	desc = "Building material."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/alleyway.dmi'
 	icon_state = "bricks"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
 
+/obj/structure/tire
+	name = "tire"
+	desc = "It's a tire."
+	icon = 'modular_darkpack/modules/decor/icons/alleyway.dmi'
+	icon_state = "tire"
+	anchored = TRUE
+	density = FALSE
+
+/obj/structure/tire/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/elevation, pixel_shift = 14)
+
+/obj/structure/tire/big
+	icon_state = "bigtire"
+	density = TRUE
+
+/obj/structure/tire/big/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
+/obj/structure/pallets
+	name = "pallets"
+	desc = "Great for burning and blocking the player in cheap 2005 FPS games."
+	icon = 'modular_darkpack/modules/decor/icons/alleyway_32x48.dmi'
+	icon_state = "pallets1"
+	layer = ABOVE_ALL_MOB_LAYER
+	anchored = TRUE
+	density = TRUE
+
+/obj/structure/pallets/rand
+	icon_state = "pallets2"
+
+/obj/structure/pallets/rand/Initialize(mapload)
+	. = ..()
+	if(icon_state == src::icon_state)
+		icon_state = "pallets[rand(1, 2)]"
+
 /obj/effect/decal/pallet
 	name = "pallet"
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/alleyway.dmi'
 	icon_state = "under1"
+
+/obj/effect/decal/pallet/NeverShouldHaveComeHere(turf/here_turf)
+	return FALSE
 
 /obj/effect/decal/pallet/Initialize(mapload)
 	. = ..()
@@ -339,6 +462,7 @@
 /obj/cargotrain/Initialize(mapload)
 	. = ..()
 	icon_state = "[rand(2, 5)]"
+	AddComponent(/datum/component/seethrough, SEE_THROUGH_CARGO_CRATE)
 
 /obj/cargotrain/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	for(var/mob/living/L in get_step(src, movement_dir))
@@ -346,7 +470,7 @@
 			if(starter)
 				if(ishuman(starter))
 					var/mob/living/carbon/human/H = starter
-					H.AdjustHumanity(-1, 0)
+					SEND_SIGNAL(H, COMSIG_PATH_HIT, -1, 0, FALSE)
 		L.gib()
 	. = ..()
 
@@ -363,6 +487,7 @@
 	icon_state = "[rand(1, 5)]"
 	if(icon_state != "1")
 		opacity = TRUE
+		AddComponent(/datum/component/seethrough, SEE_THROUGH_CARGO_CRATE)
 	set_density(TRUE)
 	var/atom/movable/M1 = new(get_step(loc, EAST))
 	var/atom/movable/M2 = new(get_step(M1.loc, EAST))
@@ -409,25 +534,12 @@
 
 /obj/underplate
 	name = "underplate"
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/restaurant.dmi'
 	icon_state = "underplate"
-	layer = TABLE_LAYER
 	anchored = TRUE
 
 /obj/underplate/stuff
 	icon_state = "stuff"
-
-/obj/structure/billiard_table
-	name = "billiard table"
-	desc = "Come here, play some BALLS. I know you want it so much..."
-	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
-	icon_state = "billiard1"
-	anchored = TRUE
-	density = TRUE
-
-/obj/structure/billiard_table/Initialize(mapload)
-	. = ..()
-	icon_state = "billiard[rand(1, 3)]"
 
 /obj/structure/pole
 	name = "stripper pole"
@@ -449,19 +561,20 @@
 	if(pole_in_use)
 		to_chat(user, "It's already in use - wait a bit.")
 		return
+
 	if(user.dancing)
 		return
-	else
-		pole_in_use = TRUE
-		user.setDir(SOUTH)
-		user.Stun(100)
-		user.forceMove(src.loc)
-		user.visible_message("<B>[user] dances on [src]!</B>")
-		animatepole(user)
-		user.layer = layer //set them to the poles layer
-		pole_in_use = FALSE
-		user.pixel_y = 0
-		icon_state = initial(icon_state)
+
+	pole_in_use = TRUE
+	user.setDir(SOUTH)
+	user.Stun(100)
+	user.forceMove(src.loc)
+	user.visible_message("<B>[user] dances on [src]!</B>")
+	animatepole(user)
+	user.layer = layer //set them to the poles layer
+	pole_in_use = FALSE
+	user.pixel_y = 0
+	icon_state = initial(icon_state)
 
 /obj/structure/pole/proc/animatepole(mob/living/user)
 	return
@@ -490,18 +603,6 @@
 	sleep(6)
 	user.dir = 2
 
-/obj/structure/fire_barrel
-	name = "barrel"
-	desc = "Some kind of light and warm source..."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
-	icon_state = "barrel"
-	anchored = TRUE
-	density = TRUE
-
-/obj/structure/fire_barrel/Initialize(mapload)
-	. = ..()
-	set_light(3, 2, "#ffa800")
-
 /obj/structure/fountain
 	name = "fountain"
 	desc = "Gothic water structure."
@@ -520,6 +621,9 @@
 	anchored = TRUE
 	var/large = FALSE
 
+/obj/effect/decal/graffiti/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)
+
 /obj/effect/decal/graffiti/large
 	pixel_w = -16
 	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
@@ -532,11 +636,14 @@
 	else
 		icon_state = "graffiti[rand(1, 3)]"
 
+/obj/effect/decal/graffiti/NeverShouldHaveComeHere(turf/here_turf)
+	return isclosedturf(here_turf)
+
 /obj/effect/decal/kopatich
 	name = "hide carpet"
 	pixel_w = -16
 	pixel_z = -16
-	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/rugs64x64.dmi'
 	icon_state = "kopatich"
 
 /obj/effect/decal/baalirune
@@ -554,8 +661,7 @@
 
 	var/list/myriad_targets = list()
 	for(var/mob/living/target in loc)
-		if(!IS_DEAD_OR_INCAP(target))
-			myriad_targets += target
+		myriad_targets += target
 
 	if(length(myriad_targets) < 20)
 		visible_message(span_warning("The markings pulse with a small flash of red light, then fall dark."))
@@ -601,7 +707,7 @@
 /obj/structure/bath
 	name = "bath"
 	desc = "Not big enough for hiding in."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/bathroom.dmi'
 	icon_state = "tub"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -611,11 +717,11 @@
 /obj/weapon_showcase
 	name = "weapon showcase"
 	desc = "Look, a gun."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/showcase.dmi'
 	icon_state = "showcase"
 	density = TRUE
 	anchored = TRUE
-	layer = ABOVE_ALL_MOB_LAYER
+	layer = BELOW_OBJ_LAYER
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
 /obj/weapon_showcase/Initialize(mapload)
@@ -626,78 +732,80 @@
 	name = "carpet"
 	pixel_w = -16
 	pixel_z = -16
-	icon = 'modular_darkpack/modules/deprecated/icons/64x64.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/rugs64x64.dmi'
 	icon_state = "kover"
-
-/obj/were_ice
-	name = "ice block"
-	desc = "Stores some precious organs..."
-	icon = 'modular_darkpack/modules/deprecated/icons/werewolf_lupus.dmi'
-	icon_state = "ice_man"
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
-
-/obj/were_ice/lupus
-	icon_state = "ice_wolf"
-
-/obj/were_ice/crinos
-	icon = 'modular_darkpack/modules/deprecated/icons/werewolf.dmi'
-	icon_state = "ice"
-	pixel_w = -8
 
 /obj/structure/bury_pit
 	name = "bury pit"
 	desc = "You can bury someone here."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/bury_pit.dmi'
 	icon_state = "pit0"
 	layer = ABOVE_OPEN_TURF_LAYER
+	plane = FLOOR_PLANE
 	anchored = TRUE
 	density = FALSE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	var/burying = FALSE
+	var/pit_busy = FALSE
 
-// DARKPACK TODO - reimplement
-/*
-/obj/structure/bury_pit/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/shovel/vamp))
-		if(!burying)
-			burying = TRUE
-			user.visible_message(span_warning("[user] starts to dig [src]"), span_warning("You start to dig [src]."))
-			if(do_mob(user, src, 10 SECONDS))
-				burying = FALSE
-				if(icon_state == "pit0")
-					for(var/mob/living/L in get_turf(src))
-						L.forceMove(src)
-						icon_state = "pit1"
-						user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
-				else
-					for(var/mob/living/L in src)
-						L.forceMove(get_turf(src))
-					icon_state = "pit0"
-					user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
-			else
-				burying = FALSE
+/obj/structure/bury_pit/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(tool.tool_behaviour == TOOL_SHOVEL)
+		if(pit_busy)
+			return ITEM_INTERACT_BLOCKING
 
-/obj/structure/bury_pit/container_resist_act(mob/living/user)
-	if(!burying)
-		burying = TRUE
-		if(do_mob(user, src, 30 SECONDS))
+		pit_busy = TRUE
+		user.visible_message(span_warning("[user] starts to dig [src]"), span_warning("You start to dig [src]."))
+		if(!do_after(user, 10 SECONDS, src))
+			pit_busy = FALSE
+
+		pit_busy = FALSE
+		if(icon_state == "pit0")
+			for(var/mob/living/L in get_turf(src))
+				L.forceMove(src)
+				icon_state = "pit1"
+				user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
+		else
 			for(var/mob/living/L in src)
 				L.forceMove(get_turf(src))
 			icon_state = "pit0"
-			burying = FALSE
-		else
-			burying = FALSE
-*/
+			user.visible_message(span_warning("[user] digs a hole in [src]."), span_warning("You dig a hole in [src]."))
+
+/obj/structure/bury_pit/container_resist_act(mob/living/user)
+	if(pit_busy)
+		return
+
+	pit_busy = TRUE
+	if(!do_after(user, 30 SECONDS, src))
+		pit_busy = FALSE
+
+	for(var/mob/living/L in src)
+		L.forceMove(get_turf(src))
+	icon_state = "pit0"
+	pit_busy = FALSE
+
 
 /obj/structure/fluff/tv
 	name = "\improper TV"
-	desc = "A slightly battered looking TV. Various infomercials play on a loop, accompanied by a jaunty tune."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	desc = "A slightly battered looking TV. It's off"
+	icon = 'modular_darkpack/modules/decor/icons/television.dmi'
+	icon_state = "tv_off"
+	density = TRUE
+
+/obj/structure/fluff/tv/news
+	desc = "A slightly battered looking TV. Looks like you're not on the news... this time."
 	icon_state = "tv_news"
+
+/obj/structure/fluff/tv/nature
+	desc = "A slightly battered looking TV. A documentary about a rabbit named 'Lepix'."
+	icon_state = "tv_nature"
+
+/obj/structure/fluff/tv/analog
+	desc = "A slightly battered looking TV. It might be broken."
+	icon_state = "tv_analog"
 
 /obj/structure/fluff/tv/order
 	name = "order screen"
 	desc = "A slightly battered looking TV. It shows a menu to order from."
+	icon = 'modular_darkpack/modules/decor/icons/restaurant.dmi'
 	icon_state = "order1"
 
 /obj/structure/fluff/tv/order/one
@@ -717,3 +825,8 @@
 /obj/structure/fluff/tv/order/random/Initialize(mapload)
 	. = ..()
 	icon_state = "order[rand(1,4)]"
+
+/obj/structure/projector
+	name = "projector"
+	icon = 'icons/obj/machines/stationary_camera.dmi'
+	icon_state = "camera"

@@ -34,11 +34,15 @@ GLOBAL_LIST_INIT(typecache_elevated_structures, typecacheof(list(
 	/obj/machinery/gibber,
 	/obj/machinery/icecream_vat,
 	//Botany
+	/obj/machinery/biogenerator,
 	/obj/machinery/hydroponics, // So that harvest doesn't catch germs or decompose (includes dirt piles)
 	//Medbay
 	/obj/machinery/stasis,
 	/obj/machinery/chem_master, // Pills may catch germs
 	/obj/machinery/plumbing/pill_press,
+	/obj/effect/decal/pallet, // DARKPACK EDIT ADD START // Some structures that should stop food from rotting that don't.
+	/obj/structure/platform/lowwall,
+	/obj/structure/stone_tile, // DARKPACK EDIT ADD END
 )))
 
 /// A typecache of objects that player controlled, easily accessible, hostile mobs should not be able to attack

@@ -1,7 +1,7 @@
 /obj/structure/city_map
 	name = "\improper map"
 	desc = "Locate yourself now."
-	icon = 'modular_darkpack/modules/decor/icons/decor.dmi'
+	icon = 'modular_darkpack/modules/decor/icons/city_map.dmi'
 	icon_state = "map"
 	anchored = TRUE
 	density = TRUE

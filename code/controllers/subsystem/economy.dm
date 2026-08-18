@@ -14,11 +14,6 @@ SUBSYSTEM_DEF(economy)
 										ACCOUNT_CAR = ACCOUNT_CAR_NAME,
 										ACCOUNT_SEC = ACCOUNT_SEC_NAME)
 	var/list/departmental_accounts = list()
-	/**
-	 * Enables extra money charges for things that normally would be free, such as sleepers/cryo/beepsky.
-	 * Take care when enabling, as players will NOT respond well if the economy is set up for low cash flows.
-	 */
-	var/full_ancap = FALSE
 
 	/// Departmental cash provided to science when a node is researched in specific configs.
 	var/techweb_bounty = 250
@@ -126,7 +121,7 @@ SUBSYSTEM_DEF(economy)
 /**
  * Handy proc for obtaining a department's bank account, given the department ID, AKA the define assigned for what department they're under.
  */
-/datum/controller/subsystem/economy/proc/get_dep_account(dep_id)
+/datum/controller/subsystem/economy/proc/get_dep_account(dep_id) as /datum/bank_account/department
 	for(var/datum/bank_account/department/D in departmental_accounts)
 		if(D.department_id == dep_id)
 			return D
@@ -168,7 +163,7 @@ SUBSYSTEM_DEF(economy)
  * Updates the the inflation_value, effecting newscaster alerts and the mail system.
  **/
 /datum/controller/subsystem/economy/proc/price_update()
-	/* DARKPACK EDIT REMOVAL
+	/* // DARKPACK EDIT REMOVAL
 	var/fluff_string = ""
 	if(!HAS_TRAIT(SSeconomy, TRAIT_MARKET_CRASHING))
 		fluff_string = ", but company countermeasures protect <b>YOU</b> from being affected!"
@@ -177,7 +172,7 @@ SUBSYSTEM_DEF(economy)
 	*/
 	earning_report = "<b>[CITY_NAME] Economic Report</b><br><br> Expected inflation rates are measured at <b>[SSeconomy.inflation_value()*100]%</b>" // DARKPACK EDIT CHANGE
 	var/update_alerts = FALSE
-	if(HAS_TRAIT(SSstation, STATION_TRAIT_ECONOMY_ALERTS))
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_ECONOMY_ALERTS) && (living_player_count() > 1))
 		var/datum/bank_account/moneybags
 		var/static/list/typecache_bank = typecacheof(list(/datum/bank_account/department, /datum/bank_account/remote))
 		for(var/i in bank_accounts_by_id)
@@ -187,7 +182,7 @@ SUBSYSTEM_DEF(economy)
 			if(!moneybags || moneybags.account_balance < current_acc.account_balance)
 				moneybags = current_acc
 		if (moneybags)
-			earning_report += "Our GMM Spotlight would like to alert you that <b>[moneybags.account_holder]</b> is your station's most affulent crewmate! They've hit it big with [moneybags.account_balance] credits saved. "
+			earning_report += "Our GMM Spotlight would like to alert you that <b>[moneybags.account_holder]</b> is your station's most affulent crewmate! They've hit it big with [moneybags.account_balance] [MONEY_NAME] saved. "
 			update_alerts = TRUE
 			inflict_moneybags(moneybags)
 	earning_report += "<br>That's all from the <i>[CITY_NAME] Economist Division</i>." // DARKPACK EDIT CHANGE
@@ -223,8 +218,8 @@ SUBSYSTEM_DEF(economy)
 	audit_log += list(list(
 		"account" = "[account.account_holder]",
 		"cost" = price_to_use,
-		"vendor" = "[vendor]",
-		"stationtime" = station_time_timestamp("hh:mm"),
+		"vendor" = "[astype(vendor, /atom)?.name || vendor]",
+		"stationtime" = round_timestamp("hh:mm"),
 	))
 
 /**

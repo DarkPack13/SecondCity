@@ -181,7 +181,7 @@
 		I.do_pickup_animation(src)
 	if(get_item_for_held_index(hand_index))
 		dropItemToGround(get_item_for_held_index(hand_index), force = TRUE)
-	I.forceMove(src)
+	I.forceMove(src) //this has to come before has_equipped() is called
 	held_items[hand_index] = I
 	SET_PLANE_EXPLICIT(I, ABOVE_HUD_PLANE, src)
 	if(I.pulledby)
@@ -194,6 +194,7 @@
 	if(QDELETED(I)) // this is here because some ABSTRACT items like slappers and circle hands could be moved from hand to hand then delete, which meant you'd have a null in your hand until you cleared it (say, by dropping it)
 		held_items[hand_index] = null
 		return FALSE
+	SEND_SIGNAL(I, COMSIG_ITEM_ENTERED_HANDS, src, hand_index)
 	return hand_index
 
 //Puts the item into the first available left hand if possible and calls all necessary triggers/updates. returns 1 on success.
@@ -354,7 +355,6 @@
 	if(!(to_drop.item_flags & NO_PIXEL_RANDOM_DROP))
 		x_offset += rand(-6, 6)
 		y_offset += rand(-6, 6)
-	SEND_SIGNAL(src, COMSIG_MOB_DROPPING_ITEM)
 	if(!transfer_item_to_turf(to_drop, drop_location(), x_offset, y_offset, force, silent, invdrop))
 		return
 
@@ -370,6 +370,7 @@
 	silent = FALSE,
 	drop_item_inventory = TRUE,
 )
+	SEND_SIGNAL(src, COMSIG_MOB_DROPPING_ITEM)
 	if(!doUnEquip(to_transfer, force, new_loc, no_move = FALSE, invdrop = drop_item_inventory, silent = silent))
 		return FALSE
 	if(QDELETED(to_transfer)) // Some items may get deleted upon getting unequipped.
@@ -382,11 +383,13 @@
 //for when the item will be immediately placed in a loc other than the ground
 /mob/proc/transferItemToLoc(obj/item/I, newloc = null, force = FALSE, silent = TRUE, animated = null)
 	. = doUnEquip(I, force, newloc, FALSE, silent = silent)
-	//This proc wears a lot of hats for moving items around in different ways,
-	//so we assume unhandled cases for checking to animate can safely be handled
-	//with the same logic we handle animating putting items in container (container on your person isn't animated)
+	if(!.)
+		return
+	// This proc wears a lot of hats for moving items around in different ways,
+	// so we assume unhandled cases for checking to animate can safely be handled
+	// with the same logic we handle animating putting items in container (container on your person isn't animated)
 	if(isnull(animated))
-		//if the item's ultimate location is us, we don't animate putting it wherever
+		// If the item's ultimate location is us, we don't animate putting it wherever
 		animated = !(get(newloc, /mob) == src)
 	if(animated)
 		I.do_pickup_animation(newloc, src)
@@ -438,6 +441,7 @@
 	item_dropping.layer = initial(item_dropping.layer)
 	SET_PLANE_EXPLICIT(item_dropping, initial(item_dropping.plane), newloc)
 	item_dropping.appearance_flags &= ~NO_CLIENT_COLOR
+	item_dropping.item_flags &= ~IN_INVENTORY //This has to come before MoveToNullspace/forceMove is called
 	if(!no_move && !(item_dropping.item_flags & DROPDEL)) //item may be moved/qdel'd immedietely, don't bother moving it
 		if (isnull(newloc))
 			item_dropping.moveToNullspace()
@@ -445,8 +449,8 @@
 			item_dropping.forceMove(newloc)
 
 	has_unequipped(item_dropping, silent)
-	SEND_SIGNAL(item_dropping, COMSIG_ITEM_POST_UNEQUIP, force, newloc, no_move, invdrop, silent)
-	SEND_SIGNAL(src, COMSIG_MOB_UNEQUIPPED_ITEM, item_dropping, force, newloc, no_move, invdrop, silent)
+	SEND_SIGNAL(item_dropping, COMSIG_ITEM_POST_UNEQUIP, force, newloc, no_move, invdrop, silent, hand_index)
+	SEND_SIGNAL(src, COMSIG_MOB_UNEQUIPPED_ITEM, item_dropping, force, newloc, no_move, invdrop, silent, hand_index)
 	return TRUE
 
 /**
@@ -456,7 +460,7 @@
  * * Optional - include_flags, (see obj.flags.dm) describes which optional things to include or not (pockets, accessories, held items)
  */
 
-/mob/living/proc/get_equipped_items(include_flags = NONE)
+/mob/proc/get_equipped_items(include_flags = NONE)
 	var/list/items = list()
 	for(var/obj/item/item_contents in contents)
 		if(item_contents.item_flags & IN_INVENTORY)
@@ -470,6 +474,12 @@
 
 	return items
 
+///Get all items in our possession that should affect our movespeed
+/mob/proc/get_equipped_speed_mod_items()
+	. = get_equipped_items(INCLUDE_ABSTRACT|INCLUDE_PROSTHETICS)
+	for(var/obj/item/thing in held_items)
+		if(thing.item_flags & SLOWS_WHILE_IN_HAND)
+			. += thing
 /**
  * Returns the items that were successfully unequipped.
  */
@@ -529,12 +539,16 @@
 /// This proc is called after an item has been successfully handled and equipped to a slot.
 /mob/proc/has_equipped(obj/item/item, slot, initial = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
-	return item.on_equipped(src, slot, initial)
+	item.item_flags |= IN_INVENTORY
+	. = item.on_equipped(src, slot, initial)
+	if(.)
+		update_equipment_speed_mods()
 
 /// This proc is called after an item has been removed from a mob but before it has been officially deslotted.
 /mob/proc/has_unequipped(obj/item/item, silent = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 	item.dropped(src, silent)
+	update_equipment_speed_mods()
 	return TRUE
 
 /**
@@ -631,9 +645,7 @@
 		qdel(item)
 	return FALSE
 
-/mob/verb/quick_equip()
-	set name = "quick-equip"
-	set hidden = TRUE
+GAME_VERB_HIDDEN(/mob, quick_equip, "quick-equip")
 
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(execute_quick_equip)))
 
@@ -662,8 +674,13 @@
 			dropItemToGround(held_items[i])
 	held_items.len = amt
 
-	if(hud_used)
-		hud_used.build_hand_slots()
+	if(!hud_used)
+		return
+
+	hud_used.build_hand_slots(update_hud = TRUE)
+	var/atom/movable/screen/healthdoll/doll = hud_used.screen_objects[HUD_MOB_HEALTHDOLL]
+	if(doll)
+		doll.update_body_zones()
 
 //GetAllContents that is reasonable and not stupid
 /mob/living/proc/get_all_gear(equipment_flags = INCLUDE_ACCESSORIES|INCLUDE_PROSTHETICS, recursive = TRUE)

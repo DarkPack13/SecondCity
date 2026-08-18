@@ -1,0 +1,1 @@
+/obj/item/vtm_artifact/@SUBTYPES : /obj/item/occult_artifact/vampire/@SUBTYPES {@OLD}

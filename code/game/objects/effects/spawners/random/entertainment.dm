@@ -12,6 +12,23 @@
 		/obj/machinery/computer/arcade/amputation = 2,
 	)
 
+/obj/effect/spawner/random/entertainment/slot_machine
+	name = "spawn random slot machine"
+	desc = "Automagically transforms into a random slot machine. If you see this while in a shift, please create a bug report."
+	icon_state = "arcade"
+	loot = list( // syndie slots omitted
+		/obj/machinery/computer/slot_machine = 20,
+		/obj/machinery/computer/slot_machine/security = 10,
+		/obj/machinery/computer/slot_machine/medical = 10,
+		/obj/machinery/computer/slot_machine/engineering = 10,
+		/obj/machinery/computer/slot_machine/cargo = 10,
+		/obj/machinery/computer/slot_machine/service = 10,
+		/obj/machinery/computer/slot_machine/science = 10,
+		/obj/machinery/computer/slot_machine/command = 10,
+		/obj/machinery/computer/slot_machine/clown = 5,
+		/obj/machinery/computer/slot_machine/mime = 5,
+	)
+
 /obj/effect/spawner/random/entertainment/musical_instrument
 	name = "musical instrument spawner"
 	icon_state = "eguitar"
@@ -257,7 +274,10 @@
 		/obj/item/toy/plush/pkplush,
 		/obj/item/toy/plush/horse,
 		/obj/item/toy/plush/monkey,
-		/obj/item/toy/plush/goatplushie, 	// DARKPACK EDIT ADD - TOYS - Plushes.dm addition for mapping
+		// DARKPACK EDIT ADD START - TOYS - (Plushes.dm addition for mapping)
+		/obj/item/toy/plush/goatplushie,
+		/obj/item/toy/plush/argemia,
+		// DARKPACK EDIT ADD END
 	)
 
 /obj/effect/spawner/random/entertainment/plushie_delux
@@ -274,7 +294,10 @@
 		/obj/item/toy/plush/pkplush = 5,
 		/obj/item/toy/plush/human = 5,
 		/obj/item/toy/plush/horse = 5,
-		/obj/item/toy/plush/goatplushie = 5,	// DARKPACK EDIT ADD - TOYS - Plushes.dm addition for mapping
+		// DARKPACK EDIT ADD START - TOYS - (Plushes.dm addition for mapping)
+		/obj/item/toy/plush/goatplushie = 5,
+		/obj/item/toy/plush/argemia = 5,
+		// DARKPACK EDIT ADD END
 		// rare plushies
 		/obj/item/toy/plush/carpplushie = 3,
 		/obj/item/toy/plush/lizard_plushie/green = 3,

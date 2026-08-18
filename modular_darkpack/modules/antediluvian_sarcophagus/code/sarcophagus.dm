@@ -79,58 +79,116 @@ GLOBAL_LIST_INIT(caesar_cipher, list(
 			final_message += "[get_uncipher_num(letter, password)]"
 		return final_message
 
-/obj/sarcophagus/examine(mob/user)
-	. = ..()
-	. += "You see an engraved text on it: <b>[encipher(password, passkey)]<b>. You have no clue what that could possibly mean..."
+
+/datum/storyteller_roll/sarcophagus_cipher
+	bumper_text = "examine"
+	difficulty = 10
+	applicable_stats = list(STAT_INTELLIGENCE, STAT_OCCULT)
+	reroll_cooldown = 1 SCENES
 
 /obj/sarcophagus
-	name = "Unknown Sarcophagus"
-	desc = "Contains elder devil..."
-	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
+	name = "unknown sarcophagus"
+	desc = "A shiver runs down your spine just looking at it..."
+	icon = 'modular_darkpack/modules/antediluvian_sarcophagus/icons/sarcophagus.dmi'
 	icon_state = "b_sarcophagus"
-	plane = GAME_PLANE
-	layer = CAR_LAYER
+	// layer = CAR_LAYER
 	density = TRUE
+	anchored = FALSE
 	pixel_w = -8
 	var/password = "Brongus"
 	var/passkey = 5
-
-/obj/sarcophagus/attackby(obj/item/I, mob/living/user, params)
-	. = ..()
-	if(istype(I, /obj/item/sarcophagus_key))
-		var/pass = input(user, "???") as text|null
-		if(pass)
-			if(password == uppertext(pass))
-				icon_state = "b_sarcophagus-open1"
-				to_chat(world, span_userdanger("<b>UNKNOWN SARCOPHAGUS HAS BEEN OPENED</b>"))
-				SEND_SOUND(world, sound('modular_darkpack/modules/masquerade/sounds/announce.ogg'))
-				playsound(get_turf(src), 'modular_darkpack/modules/deprecated/sounds/mp_hello.ogg', 100, TRUE)
-				spawn(200)
-					icon_state = "b_sarcophagus-open0"
-					new /mob/living/simple_animal/hostile/megafauna/wendigo(loc)
+	var/datum/storyteller_roll/sarcophagus_cipher/cipher_roll
 
 /obj/sarcophagus/Initialize(mapload)
 	. = ..()
 	password = pick(GLOB.sarcophagus_passwords)
-	if(prob(50))
-		passkey = rand(5, 15)
-	else
-		passkey = rand(-15, -5)
+	passkey = rand(5, 15)
+
 	//to_chat(world, span_userdanger("<b>UNKNOWN SARCOPHAGUS POSITION HAS BEEN LEAKED</b>"))
-	SEND_SOUND(world, sound('modular_darkpack/modules/masquerade/sounds/announce.ogg'))
+	//if(!mapload)
+	//	SEND_SOUND(world, sound('modular_darkpack/master_files/sounds/announce.ogg'))
 
-/obj/item/sarcophagus_key
-	name = "sarcophagus key"
-	desc = "The secrets of elder devil..."
-	icon_state = "sarcophagus_key"
-	icon = 'modular_darkpack/modules/deprecated/icons/icons.dmi'
-	w_class = WEIGHT_CLASS_SMALL
+/obj/sarcophagus/examine(mob/user)
+	. = ..()
+	var/message = "You see an engraved text on it: <b>[encipher(password, passkey)]</b>."
+	if(isliving(user))
+		if(!cipher_roll)
+			cipher_roll = new()
+		var/roll_result = cipher_roll.st_roll(user, src)
+		if(roll_result == ROLL_SUCCESS)
+			message += " It's an ancient cipher. You shift letters in your head till you end up with [uppertext(password)]."
+		else
+			message += " You have no clue what that could possibly mean..."
+	. += message
 
-/obj/item/fake_sarcophagus
-	name = "Voivode-in-Waiting's Sarcophagus"
-	desc = "The Voivode-in-Waiting lies here."
-	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
+#define OPEN_SOUND 'modular_darkpack/modules/antediluvian_sarcophagus/sounds/mp_hello.ogg'
+/obj/sarcophagus/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(istype(tool, /obj/item/sarcophagus_key))
+		var/pass = tgui_input_text(user, "???", "???")
+		if(!pass)
+			return ITEM_INTERACT_BLOCKING
+		if(password == uppertext(pass))
+			open_the_sarcophagus()
+			return ITEM_INTERACT_SUCCESS
+
+/obj/sarcophagus/proc/open_the_sarcophagus()
+	icon_state = "b_sarcophagus-open1"
+	to_chat(world, span_userdanger("<b>UNKNOWN SARCOPHAGUS HAS BEEN OPENED</b>"))
+	SEND_SOUND(world, sound('modular_darkpack/master_files/sounds/announce.ogg'))
+	var/sound_length = SSsounds.get_sound_length(OPEN_SOUND)
+	playsound(src, OPEN_SOUND, 100, FALSE)
+	spawn(sound_length)
+		icon_state = "b_sarcophagus-open0"
+		if(prob(50))
+			new /mob/living/simple_animal/hostile/megafauna/wendigo/antediluvian(loc)
+		else
+			new /mob/living/simple_animal/hostile/megafauna/colossus/antediluvian(loc)
+#undef OPEN_SOUND
+
+/obj/sarcophagus/bomb
+
+/obj/sarcophagus/bomb/open_the_sarcophagus()
+	icon_state = "b_sarcophagus-open2"
+	to_chat(world, span_userdanger("<b>UNKNOWN SARCOPHAGUS HAS BEEN OPENED</b>"))
+	SEND_SOUND(world, sound('modular_darkpack/master_files/sounds/announce.ogg'))
+	playsound(src, 'sound/items/weapons/armbomb.ogg', 100, FALSE)
+	anchored = TRUE
+	addtimer(CALLBACK(src, PROC_REF(explode)), 6 SECONDS)
+
+/obj/sarcophagus/bomb/proc/explode()
+	explosion(src, devastation_range = 2, heavy_impact_range = 7, light_impact_range = 11)
+	qdel(src)
+	priority_announce(
+		"BREAKING NEWS!!! A massive explosion has been reported in your area. First responders are advised to rush to the scene as soon as possible to rescue any survivors and a curfew is issued immediately to all citizens until the city is safe.",
+		"EMERGENCY BREAKING NEWS",
+		'modular_darkpack/modules/events/sounds/news_notification.ogg',
+		ANNOUNCEMENT_TYPE_PRIORITY,
+		color_override = "red",
+	)
+
+/obj/sarcophagus/empty
+
+/obj/sarcophagus/empty/open_the_sarcophagus()
+	icon_state = "b_sarcophagus-open0"
+	to_chat(world, span_userdanger("<b>UNKNOWN SARCOPHAGUS HAS BEEN OPENED</b>"))
+	SEND_SOUND(world, sound('modular_darkpack/master_files/sounds/announce.ogg'))
+
+/obj/fake_sarcophagus
+	name = "unknown sarcophagus"
+	desc = "A shiver runs down your spine just looking at it..."
+	icon = 'modular_darkpack/modules/antediluvian_sarcophagus/icons/sarcophagus.dmi'
 	icon_state = "b_sarcophagus"
 	density = TRUE
 	anchored = TRUE
 	pixel_w = -8
+
+/obj/fake_sarcophagus/voivode
+	name = "\improper Voivode-in-Waiting's Sarcophagus"
+	desc = "The Voivode-in-Waiting lies here."
+
+/obj/item/sarcophagus_key
+	name = "sarcophagus key"
+	desc = "Something strange and ancient..."
+	icon_state = "sarcophagus_key"
+	icon = 'modular_darkpack/modules/antediluvian_sarcophagus/icons/key.dmi'
+	w_class = WEIGHT_CLASS_SMALL

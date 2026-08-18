@@ -42,6 +42,9 @@
 	name = "Coat (Red)"
 	item_path = /obj/item/clothing/suit/vampire/coat/winter/alt
 
+/datum/loadout_item/suit/coat/leopardcoat
+	item_path = /obj/item/clothing/suit/vampire/coat/leopard
+
 // Jackets
 /datum/loadout_item/suit/jacket
 	abstract_type = /datum/loadout_item/suit/jacket
@@ -70,6 +73,14 @@
 	name = "Jacket (Black Suit)"
 	item_path = /obj/item/clothing/suit/toggle/lawyer/black
 
+/datum/loadout_item/suit/jacket/bomber_classic
+	name = "Classic Bomber Jacket"
+	item_path = /obj/item/clothing/suit/vampire/bomber_jacket_classic
+
+/datum/loadout_item/suit/jacket/bomber_gray
+	name = "Gray Bomber Jacket"
+	item_path = /obj/item/clothing/suit/vampire/bomber_jacket_gray
+
 // Trenchcoats
 /datum/loadout_item/suit/trenchcoat
 	abstract_type = /datum/loadout_item/suit/trenchcoat
@@ -85,6 +96,13 @@
 /datum/loadout_item/suit/trenchcoat/burgundy
 	name = "Trenchcoat (Burgundy)"
 	item_path = /obj/item/clothing/suit/vampire/trench/archive
+
+// Hoodies
+/datum/loadout_item/suit/hoodie
+	item_path = /obj/item/clothing/suit/hooded/hoodie
+
+/datum/loadout_item/suit/hoodiezim
+	item_path = /obj/item/clothing/suit/hooded/hoodie/hoodie_pim
 
 // Misc
 /datum/loadout_item/suit/kasaya
@@ -102,3 +120,56 @@
 /datum/loadout_item/suit/letterman_red
 	name = "Letterman (Red)"
 	item_path = /obj/item/clothing/suit/jacket/letterman_syndie
+
+// Robes
+/datum/loadout_item/suit/robes
+	abstract_type = /datum/loadout_item/suit/robes
+
+/datum/loadout_item/suit/robes/white
+	name = "Robes (White)"
+	item_path = /obj/item/clothing/suit/hooded/robes
+
+/datum/loadout_item/suit/robes/black
+	name = "Robes (Black)"
+	item_path = /obj/item/clothing/suit/hooded/robes/black
+
+/datum/loadout_item/suit/robes/grey
+	name = "Robes (Grey)"
+	item_path = /obj/item/clothing/suit/hooded/robes/grey
+
+/datum/loadout_item/suit/robes/darkred
+	name = "Robes (Dark Red)"
+	item_path = /obj/item/clothing/suit/hooded/robes/darkred
+
+/datum/loadout_item/suit/robes/yellow
+	name = "Robes (Yellow)"
+	item_path = /obj/item/clothing/suit/hooded/robes/yellow
+
+/datum/loadout_item/suit/robes/green
+	name = "Robes (Green)"
+	item_path = /obj/item/clothing/suit/hooded/robes/green
+
+/datum/loadout_item/suit/robes/Red
+	name = "Robes (Red)"
+	item_path = /obj/item/clothing/suit/hooded/robes/red
+
+/datum/loadout_item/suit/robes/purple
+	name = "Robes (Purple)"
+	item_path = /obj/item/clothing/suit/hooded/robes/purple
+
+/datum/loadout_item/suit/robes/blue
+	name = "Robes (Blue)"
+	item_path = /obj/item/clothing/suit/hooded/robes/blue
+
+
+/// Shawls
+/datum/loadout_item/suit/shawl
+	abstract_type = /datum/loadout_item/suit/shawl
+
+/datum/loadout_item/suit/shawl/black
+	name = "Black Shawl"
+	item_path = /obj/item/clothing/suit/vampire/shawl_black
+
+/datum/loadout_item/suit/shawl/white
+	name = "White Shawl"
+	item_path = /obj/item/clothing/suit/vampire/shawl_white

@@ -1,0 +1,4 @@
+output_name = "wall"
+template = "bitmask/walls.toml"
+[cut_pos]
+y = 7

@@ -67,8 +67,10 @@
 	return attack_target.attack_paw(src, modifiers)
 
 /mob/living/carbon/human/resolve_unarmed_attack(atom/attack_target, list/modifiers)
+	/* // DARKPACK EDIT REMOVAL - Dont assume we are a chimp because we cant use tools.
 	if(!ISADVANCEDTOOLUSER(src))
 		return ..()
+	*/
 
 	return attack_target.attack_hand(src, modifiers)
 
@@ -175,7 +177,7 @@
  * Called when a simple animal is unarmed attacking / clicking on this atom.
  */
 /atom/proc/attack_animal(mob/user, list/modifiers)
-	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_ANIMAL, user)
+	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_ANIMAL, user, modifiers)
 
 /**
  * Called when a simple animal or basic mob right clicks an atom.
@@ -188,7 +190,7 @@
 /atom/proc/attack_basic_mob(mob/user, list/modifiers)
 	SHOULD_CALL_PARENT(TRUE)
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_BASIC_MOB, user) & COMSIG_BASIC_ATTACK_CANCEL_CHAIN)
-		return
+		return FALSE
 	return handle_basic_attack(user, modifiers) //return value of attack animal, this is how much damage was dealt to the attacked thing
 
 ///This exists so stuff can override the default call of attack_animal for attack_basic_mob
@@ -235,7 +237,7 @@
 	return TRUE
 
 /atom/proc/attack_larva(mob/user, list/modifiers)
-	return
+	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_LARVA, user, modifiers)
 
 /**
  * Called when an alien larva right clicks an atom.

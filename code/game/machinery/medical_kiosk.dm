@@ -113,14 +113,10 @@
 	return board.custom_cost
 
 /obj/machinery/medical_kiosk/screwdriver_act(mob/living/user, obj/item/tool)
-	if(default_deconstruction_screwdriver(user, "[base_icon_state]_open", "[base_icon_state]_off", tool))
-		return ITEM_INTERACT_SUCCESS
-	return ITEM_INTERACT_BLOCKING
+	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/medical_kiosk/crowbar_act(mob/living/user, obj/item/tool)
-	if(default_deconstruction_crowbar(tool))
-		return ITEM_INTERACT_SUCCESS
-	return ITEM_INTERACT_BLOCKING
+	return default_deconstruction_crowbar(user, tool)
 
 /obj/machinery/medical_kiosk/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/scanner_wand))
@@ -225,10 +221,10 @@
 	var/patient_status = "Alive."
 	var/max_health = patient.maxHealth
 	var/total_health = patient.health
-	var/brute_loss = patient.getBruteLoss()
-	var/fire_loss = patient.getFireLoss()
-	var/tox_loss = patient.getToxLoss()
-	var/oxy_loss = patient.getOxyLoss()
+	var/brute_loss = patient.get_brute_loss()
+	var/fire_loss = patient.get_fire_loss()
+	var/tox_loss = patient.get_tox_loss()
+	var/oxy_loss = patient.get_oxy_loss()
 	var/chaos_modifier = 0
 
 	var/sickness = "Patient does not show signs of disease."
@@ -236,17 +232,21 @@
 
 	var/bleed_status = "Patient is not currently bleeding."
 	var/blood_status = " Patient either has no blood, or does not require it to function."
-	var/blood_percent = round((patient.blood_volume / BLOOD_VOLUME_NORMAL) * 100)
+	var/blood_percent = round((patient.get_blood_volume(apply_modifiers = TRUE) / BLOOD_VOLUME_NORMAL) * 100)
 	var/datum/blood_type/blood_type = patient.get_bloodtype()
 	var/blood_name = "error"
 	var/blood_warning = " "
 	var/blood_alcohol = patient.get_blood_alcohol_content()
 
 	for(var/thing in patient.diseases) //Disease Information
-		var/datum/disease/D = thing
-		if(!(D.visibility_flags & HIDDEN_SCANNER))
+		var/datum/disease/disease = thing
+		if(!(disease.visibility_flags & HIDDEN_SCANNER))
 			sickness = "Warning: Patient is harboring some form of viral disease. Seek further medical attention."
-			sickness_data = "\nName: [D.name].\nType: [D.spread_text].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure_text]"
+			var/cure_text = disease.cure_text
+			if(istype(disease, /datum/disease/advance))
+				var/datum/disease/advance/advanced_disease = disease
+				cure_text = advanced_disease.generate_cure_text(2)
+			sickness_data = "\nName: [disease.name].\nType: [disease.spread_text].\nStage: [disease.stage]/[disease.max_stages].\nCure: [cure_text]"
 
 	if(patient.can_bleed()) //Blood levels Information
 		blood_name = LOWER_TEXT(blood_type.get_blood_name())
@@ -323,7 +323,7 @@
 	if (patient.has_status_effect(/datum/status_effect/hallucination))
 		hallucination_status = "Subject appears to be hallucinating. Suggested treatments: Antipsychotic medication, [/datum/reagent/medicine/haloperidol::name] or [/datum/reagent/medicine/synaptizine::name]."
 
-	if(patient.stat == DEAD || HAS_TRAIT(patient, TRAIT_FAKEDEATH) || ((brute_loss+fire_loss+tox_loss+oxy_loss) >= 200))  //Patient status checks.
+	if(IS_DEAD_OR_FAKING(patient))  //Patient status checks.
 		patient_status = "Dead."
 	if((brute_loss+fire_loss+tox_loss+oxy_loss) >= 80)
 		patient_status = "Gravely Injured"

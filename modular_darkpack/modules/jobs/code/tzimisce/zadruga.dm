@@ -1,7 +1,6 @@
 /datum/job/vampire/zadruga
 	title = JOB_ZADRUGA
-	department_head = /datum/job/vampire/voivode
-	faction = FACTION_CITY
+	faction = FACTION_SABBAT
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = " the Laws of Hospitality"
@@ -9,15 +8,14 @@
 	outfit = /datum/outfit/job/vampire/zadruga
 	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_MANOR
-	department_for_prefs = /datum/job_department/manor
 	departments_list = list(
 		/datum/job_department/manor,
 	)
 	display_order = JOB_DISPLAY_ORDER_ZADRUGA
 
-	allowed_species = list(SPECIES_GHOUL)
+	allowed_splats = list(SPLAT_GHOUL)
 	description = "You were born in servitude to the Master of the Manor: your father served the Voivode, as did his father. Now, you carry their blood, and with it their responsibilities."
-	minimal_masquerade = 2
+	minimum_masquerade = 2
 
 	known_contacts = list("Prince", "Baron", "Sheriff")
 
@@ -30,8 +28,4 @@
 	suit = /obj/item/clothing/suit/vampire/jacket/punk
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	l_pocket = /obj/item/smartphone/zadruga
-	r_pocket = /obj/item/watch
-	backpack_contents = list(/obj/item/vamp/keys/old_clan_tzimisce=1, /obj/item/passport=1, /obj/item/flashlight=1, /obj/item/card/credit=1)
-
-/obj/effect/landmark/start/zadruga
-	name = "Zadruga"
+	backpack_contents = list(/obj/item/vamp/keys/old_clan_tzimisce=1, /obj/item/card/credit=1)

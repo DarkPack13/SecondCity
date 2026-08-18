@@ -2,7 +2,7 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Icon, Stack } from 'tgui-core/components';
 
-import { Data, NavigableApps } from '.';
+import { type Data, NavigableApps } from '.';
 import { ContactElement } from './ScreenContacts';
 
 export const ScreenRecents = (props: {

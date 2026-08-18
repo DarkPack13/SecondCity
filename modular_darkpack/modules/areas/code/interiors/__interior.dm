@@ -2,5 +2,7 @@
 /area/vtm/interior
 	name = "Interior"
 	icon_state = "interior"
-	ambience_index = AMBIENCE_OFFICE
+	sound_environment = SOUND_ENVIRONMENT_ROOM
+	ambient_buzz = 'modular_darkpack/modules/ambience/sounds/interior_generic.ogg'
+	ambient_buzz_vol = 30
 	outdoors = FALSE

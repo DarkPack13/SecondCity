@@ -1,6 +1,7 @@
 /obj/machinery/computer/cargo
 	name = "supply console"
 	desc = "Used to order supplies, approve requests, and control the shuttle."
+	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/cargo")
 	icon_screen = "supply"
 	circuit = /obj/item/circuitboard/computer/cargo
 	light_color = COLOR_BRIGHT_ORANGE
@@ -45,6 +46,18 @@
 	requestonly = TRUE
 
 /obj/machinery/computer/cargo/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	// DARKPACK EDIT ADD START - CARGO
+	if(iscash(tool))
+		var/datum/bank_account/bank = SSeconomy.get_dep_account(cargo_account)
+		if(!bank)
+			return ITEM_INTERACT_BLOCKING
+		var/dolla = tool.get_item_credit_value()
+		to_chat(user, span_notice("You insert [dolla] [MONEY_NAME] into [src]."))
+		bank.adjust_money(dolla, "Supply Console: Deposit")
+		to_chat(usr, span_notice("You have deposited [dolla] [MONEY_NAME] into the account. The new balance is [bank.account_balance] [MONEY_NAME]."))
+		qdel(tool)
+		return ITEM_INTERACT_SUCCESS
+	// DARKPACK EDIT ADD END
 	if(!istype(tool, /obj/item/trade_chip))
 		return NONE
 	var/obj/item/trade_chip/contract = tool
@@ -121,7 +134,7 @@
 			"id" = order.id,
 			"amount" = 1,
 			"orderer" = order.orderer,
-			"paid" = !!order.paying_account?.add_to_accounts, //number of orders purchased privatly
+			"paid" = !isnull(order.paying_account), //number of orders purchased privatly
 			"dep_order" = !!order.department_destination, //number of orders purchased by a department
 			"can_be_cancelled" = order.can_be_cancelled,
 		))
@@ -149,39 +162,49 @@
 	data["max_order"] = CARGO_MAX_ORDER
 	data["supplies"] = list()
 
-	for(var/pack_id in SSshuttle.supply_packs)
-		var/datum/supply_pack/pack = SSshuttle.supply_packs[pack_id]
-		if(!data["supplies"][pack.group])
-			data["supplies"][pack.group] = list(
-				"name" = pack.group,
-				"packs" = get_packs_data(pack.group),
-			)
+	var/list/packs_by_group = get_packs_data_by_group()
+	for(var/group in packs_by_group)
+		var/list/available_packs = packs_by_group[group]
+		if(!length(available_packs)) // Somehow????
+			continue
+		data["supplies"][group] = list(
+			"name" = group,
+			"packs" = available_packs,
+		)
+
+	data["displayed_currency_full_name"] = " [MONEY_NAME]"
+	data["displayed_currency_name"] = " [MONEY_SYMBOL]"
 
 	return data
 
 /**
- * returns a list of supply packs for a certain group
- * * group - the group of packs to return
- * * express - if this is an express console
+ * returns a list of supply pack ui data by group
  */
-/obj/machinery/computer/cargo/proc/get_packs_data(group, express = FALSE)
-	var/list/packs = list()
+/obj/machinery/computer/cargo/proc/get_packs_data_by_group()
+	var/list/packs_by_group = list()
 	for(var/pack_id in SSshuttle.supply_packs)
 		var/datum/supply_pack/pack = SSshuttle.supply_packs[pack_id]
-		if(pack.group != group)
+
+		if(pack.order_flags & ORDER_INVISIBLE)
 			continue
 
-		// Express console packs check
-		if(express && (pack.hidden || pack.special))
+		if((pack.order_flags & ORDER_EMAG_ONLY) && !(obj_flags & EMAGGED))
+			continue
+		if((pack.order_flags & ORDER_SPECIAL) && !(pack.order_flags & ORDER_SPECIAL_ENABLED))
 			continue
 
-		if(!express && ((pack.hidden && !(obj_flags & EMAGGED)) || (pack.special && !pack.special_enabled) || pack.drop_pod_only))
+		if((pack.order_flags & ORDER_CONTRABAND) && !contraband)
 			continue
 
-		if(pack.contraband && !contraband)
+		if(!is_express && (pack.order_flags & ORDER_POD_ONLY))
 			continue
 
 		var/obj/item/first_item = length(pack.contains) > 0 ? pack.contains[1] : null
+		var/list/packs = packs_by_group[pack.group]
+		if(isnull(packs))
+			packs = list()
+			packs_by_group[pack.group] = packs
+
 		packs += list(list(
 			"name" = pack.name,
 			"cost" = pack.get_cost() * get_discount(),
@@ -189,13 +212,13 @@
 			"desc" = pack.desc || pack.name, // If there is a description, use it. Otherwise use the pack's name.
 			"first_item_icon" = first_item?.icon,
 			"first_item_icon_state" = first_item?.icon_state,
-			"goody" = pack.goody,
+			"goody" = (pack.order_flags & ORDER_GOODY),
 			"access" = pack.access,
-			"contraband" = pack.contraband,
+			"contraband" = (pack.order_flags & ORDER_CONTRABAND),
 			"contains" = pack.get_contents_ui_data(),
 		))
 
-	return packs
+	return packs_by_group
 
 /**
  * returns the discount multiplier applied to all supply packs,
@@ -219,7 +242,8 @@
 		CRASH("Unknown supply pack id given by order console ui. ID: [id]")
 	if(amount > CARGO_MAX_ORDER || amount < 1) // Holy shit fuck off
 		CRASH("Invalid amount passed into add_item")
-	if((pack.hidden && !(obj_flags & EMAGGED)) || (pack.contraband && !contraband) || pack.drop_pod_only || (pack.special && !pack.special_enabled))
+
+	if(((pack.order_flags & ORDER_EMAG_ONLY) && !(obj_flags & EMAGGED)) || ((pack.order_flags & ORDER_CONTRABAND) && !contraband) || (pack.order_flags & ORDER_POD_ONLY) || ((pack.order_flags & ORDER_SPECIAL) && !(pack.order_flags & ORDER_SPECIAL_ENABLED)))
 		return
 
 	var/name = "*None Provided*"
@@ -234,9 +258,15 @@
 		rank = "Silicon"
 
 	var/datum/bank_account/account
+
 	if(isliving(user))
 		var/mob/living/living_user = user
 		var/obj/item/card/id/id_card = living_user.get_idcard(TRUE)
+
+		var/bypass = FALSE
+		if(istype(id_card, /obj/item/card/id/advanced/chameleon)) //We'll bypass access restrictions
+			bypass = TRUE
+
 		account = id_card?.registered_account // We can still assign an account for request department purposes.
 		if(self_paid)
 			if(!istype(id_card))
@@ -249,7 +279,7 @@
 				say("Invalid bank account.")
 				return
 			var/list/access = id_card.GetAccess()
-			if(pack.access_view && !(pack.access_view in access))
+			if((pack.access_view && !(pack.access_view in access)) && !bypass)
 				say("[id_card] lacks the requisite access for this purchase.")
 				return
 
@@ -257,7 +287,7 @@
 	var/list/working_list = SSshuttle.shopping_list
 	var/reason = ""
 	var/datum/bank_account/personal_department
-	if(requestonly && !self_paid && !pack.goody)
+	if(requestonly && !self_paid && !(pack.order_flags & ORDER_GOODY))
 		working_list = SSshuttle.request_list
 		reason = tgui_input_text(user, "Reason", name, max_length = MAX_MESSAGE_LEN)
 		if(isnull(reason))
@@ -271,9 +301,24 @@
 				if(!dept_choice)
 					return
 				if(dept_choice == "Cargo Budget")
-					personal_department = SSeconomy.get_dep_account(cargo_account)
+					personal_department = null
 
-	if(pack.goody && !self_paid)
+
+		if(isliving(user))
+			var/mob/living/living_user = user
+			var/obj/item/card/id/id_card = living_user.get_idcard(TRUE)
+			var/list/access = id_card?.GetAccess()
+			if(!id_card || !living_user || !access)
+				living_user = user
+				id_card = living_user.get_idcard(TRUE)
+			if(pack.access_view && !(pack.access_view in access) && personal_department)
+				// We want to block cargo requests when a player is requesting a restricted pack that they don't have access to.
+				// BUT only when it's requested with non-cargo funds, as cargo had direct oversight over their own purchases with their own budget.
+				// HOWEVER, this shouldn't prevent someone from buying something using their own personal funds.
+				say("ERROR: User lacks the requisite access for this purchase request.")
+				return
+
+	if((pack.order_flags & ORDER_GOODY) && !self_paid)
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 		say("ERROR: Small crates may only be purchased by private accounts.")
 		return
@@ -298,13 +343,13 @@
 				break
 
 		var/datum/supply_order/order = new(
-			pack = pack ,
+			pack = pack,
 			orderer = name,
 			orderer_rank = rank,
 			orderer_ckey = ckey,
 			reason = reason,
 			paying_account = account,
-			coupon = applied_coupon
+			coupon = applied_coupon,
 		)
 		working_list += order
 
@@ -366,10 +411,10 @@
 				//create the paper from the SSshuttle.shopping_list
 				if(length(SSshuttle.shopping_list))
 					var/obj/item/paper/requisition/requisition_paper = new(get_turf(src))
-					requisition_paper.name = "requisition form - [station_time_timestamp()]"
+					requisition_paper.name = "requisition form - [server_timestamp(ic_time = TRUE)]" // DARKPACK EDIT CHANGE - CITY_TIME
 					var/requisition_text = "<h2>[station_name()] Supply Requisition</h2>"
 					requisition_text += "<hr/>"
-					requisition_text += "Time of Order: [station_time_timestamp()]<br/><br/>"
+					requisition_text += "Time of Order: [UNDERLINED_HTML_TEXT("[server_timestamp(ic_time = TRUE)]", "Shift Time: [round_timestamp()]")]<br/><br/>"
 					for(var/datum/supply_order/order as anything in SSshuttle.shopping_list)
 						requisition_text += "<b>[order.pack.name]</b></br>"
 						requisition_text += "- Order ID: [order.id]</br>"
@@ -384,7 +429,7 @@
 						if(reason)
 							requisition_text += "- Reason Given: [reason]</br>"
 						requisition_text += "</br></br>"
-					requisition_paper.add_raw_text(requisition_text)
+					requisition_paper.add_raw_text(requisition_text, advanced_html = TRUE)
 					requisition_paper.color = "#9ef5ff"
 					requisition_paper.update_appearance()
 

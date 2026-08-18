@@ -17,5 +17,4 @@
 
 /datum/station_trait/full_moon/on_round_start()
 	. = ..()
-	GLOB.moon_state = "Full"
 	set_starlight(null, GLOB.starlight_range*1.2, GLOB.starlight_power*1.2)

@@ -1,0 +1,4 @@
+/obj/structure/vampdoor:
+  banned_neighbors:
+    - /obj/structure/vampdoor
+

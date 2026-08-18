@@ -49,6 +49,7 @@
 #define span_cult_bold_italic(str) ("<span class='cult_bold_italic'>" + str + "</span>")
 #define span_cult_italic(str) ("<span class='cult_italic'>" + str + "</span>")
 #define span_cult_large(str) ("<span class='cult_large'>" + str + "</span>")
+#define span_cyan(str) ("<span class='cyan'>" + str + "</span>")
 #define span_danger(str) ("<span class='danger'>" + str + "</span>")
 #define span_deadsay(str) ("<span class='deadsay'>" + str + "</span>")
 #define span_deconversion_message(str) ("<span class='deconversion_message'>" + str + "</span>")
@@ -83,28 +84,33 @@
 #define span_italics(str) ("<span class='italics'>" + str + "</span>")
 #define span_linkify(str) ("<span class='linkify'>" + str + "</span>")
 #define span_looc(str) ("<span class='looc'>" + str + "</span>")
+#define span_rlooc(str) ("<span class='rlooc'>" + str + "</span>") // DARKPACK EDIT ADD
 #define span_major_announcement_text(str) ("<span class='major_announcement_text'>" + str + "</span>")
 #define span_major_announcement_title(str) ("<span class='major_announcement_title'>" + str + "</span>")
+#define span_mansus(str) ("<span class='mansus'>" + str + "</span>")
 #define span_medal(str) ("<span class='medal'>" + str + "</span>")
 #define span_medradio(str) ("<span class='medradio'>" + str + "</span>")
 #define span_memo(str) ("<span class='memo'>" + str + "</span>")
 #define span_memoedit(str) ("<span class='memoedit'>" + str + "</span>")
+#define span_mentor(str) ("<span class ='mentor'>" + str + "</span>") // DARKPACK EDIT ADD - MENTOR
+#define span_mentornotice(str) ("<span class = 'mentornotice'>" + str + "</span>") // DARKPACK EDIT ADD - MENTOR
 #define span_message(str) ("<span class='message'>" + str + "</span>")
 #define span_mind_control(str) ("<span class='mind_control'>" + str + "</span>")
-#define span_minorannounce(str) ("<span class='minorannounce'>" + str + "</span>")
 #define span_minoralert(str) ("<span class='minoralert'>" + str + "</span>")
+#define span_minorannounce(str) ("<span class='minorannounce'>" + str + "</span>")
 #define span_monkey(str) ("<span class='monkey'>" + str + "</span>")
 #define span_name(str) ("<span class='name'>" + str + "</span>")
 #define span_narsie(str) ("<span class='narsie'>" + str + "</span>")
 #define span_narsiesmall(str) ("<span class='narsiesmall'>" + str + "</span>")
 #define span_nicegreen(str) ("<span class='nicegreen'>" + str + "</span>")
-#define span_userlove(str) ("<span class='userlove'>" + str + "</span>") // DARKPACK ADD
+#define span_userlove(str) ("<span class='userlove'>" + str + "</span>") // DARKPACK EDIT ADD
 #define span_notice(str) ("<span class='notice'>" + str + "</span>")
 #define span_noticealien(str) ("<span class='noticealien'>" + str + "</span>")
 #define span_ooc(str) ("<span class='ooc'>" + str + "</span>")
 #define span_ooc_announcement_text(str) ("<span class='ooc_announcement_text'>" + str + "</span>")
 #define span_papyrus(str) ("<span class='papyrus'>" + str + "</span>")
 #define span_phobia(str) ("<span class='phobia'>" + str + "</span>")
+#define span_policy(str) ("<span class='policy'>" + str + "</span>")
 #define span_prefix(str) ("<span class='prefix'>" + str + "</span>")
 #define span_priorityalert(str) ("<span class='priorityalert'>" + str + "</span>")
 #define span_priorityannounce(str) ("<span class='priorityannounce'>" + str + "</span>")
@@ -156,6 +162,8 @@
 #define span_notice_ml(text) "<span class='notice ml-1'>[text]</span>"
 #define span_danger_ml(text) "<span class='danger ml-1'>[text]</span>"
 #define span_info_ml(text) "<span class='info ml-1'>[text]</span>"
+#define span_subtle(str) ("<span class='subtle'>" + str + "</span>") // DARKPACK EDIT ADD - SUBTLE
+#define span_subtler(str) ("<span class='subtler'>" + str + "</span>") // DARKPACK EDIT ADD - SUBTLE
 
 // Spans that use embedded tgui components:
 // Sorted alphabetically

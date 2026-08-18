@@ -10,6 +10,7 @@ GLOBAL_LIST_INIT(numbers_as_words, world.file2list("strings/numbers_as_words.txt
 GLOBAL_LIST_INIT(phonetic_alphabet, world.file2list("strings/phonetic_alphabet.txt"))
 GLOBAL_LIST_INIT(verbs, world.file2list("strings/names/verbs.txt"))
 GLOBAL_LIST_INIT(wisdoms, world.file2list("strings/wisdoms.txt"))
+GLOBAL_LIST_INIT(preference_adjectives, world.file2list("strings/preference_adjectives.txt")) // DARKPACK EDIT ADD
 
 //loaded on startup because of "
 //would include in rsc if ' was used

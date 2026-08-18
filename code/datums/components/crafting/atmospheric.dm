@@ -1,4 +1,4 @@
-/* /datum/crafting_recipe/bluespace_vendor_mount // DARKPACK EDIT REMOVE
+/* /datum/crafting_recipe/bluespace_vendor_mount // DARKPACK EDIT REMOVAL
 	name = "Bluespace Vendor Wall Mount"
 	result = /obj/item/wallframe/bluespace_vendor_mount
 	time = 6 SECONDS
@@ -53,6 +53,7 @@
 
 ///abstract path for pipe crafting recipes that set the pipe_type of their results and have other checks as well
 /datum/crafting_recipe/spec_pipe
+	crafting_flags = parent_type::crafting_flags | CRAFT_COLLECT_REQUIREMENTS
 	var/pipe_type
 
 /datum/crafting_recipe/spec_pipe/check_requirements(mob/user, list/collected_requirements)

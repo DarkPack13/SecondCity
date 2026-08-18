@@ -22,10 +22,10 @@ $include darkpack_config.txt
 # There are various options which are hard-locked for security reasons.
 
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Uncomment and replace 'tgstation' with the name of your choice.
-# SERVERNAME tgstation
+# SERVERNAME darkpack
 
 ## Server SQL name: This is the name used to identify the server to the SQL DB, distinct from SERVERNAME as it must be at most 32 characters.
-# SERVERSQLNAME tgstation
+# SERVERSQLNAME darkpack
 
 ## Station name: The name of the station as it is referred to in-game. If commented out, the game will generate a random name instead.
 # STATIONNAME San Francisco
@@ -34,7 +34,7 @@ $include darkpack_config.txt
 #HUB
 
 ## Lobby time: This is the amount of time between rounds that players have to setup their characters and be ready.
-LOBBY_COUNTDOWN 120
+LOBBY_COUNTDOWN 300
 
 ## Round End Time: This is the amount of time after the round ends that players have to murder death kill each other.
 ROUND_END_COUNTDOWN 90
@@ -122,12 +122,6 @@ RETA_DEPT_COOLDOWN_DS 150
 ## allow players to initiate a map-change vote
 #ALLOW_VOTE_MAP
 
-## allow players to rock the vote, or to vote on the map again if they didn't like the last results
-#ALLOW_ROCK_THE_VOTE
-
-## the number of times you wish to allow players to rock the vote in a given shift
-MAX_ROCKING_VOTES 1
-
 ## min delay (deciseconds) between voting sessions (default 10 minutes)
 VOTE_DELAY 6000
 
@@ -144,7 +138,7 @@ VOTE_PERIOD 600
 ## 0 = Cannot respawn (default)
 ## 1 = Can respawn
 ## 2 = Can respawn if choosing a different character
-ALLOW_RESPAWN 0
+ALLOW_RESPAWN 2
 
 ## Respawn delay (deciseconds), which doesn't allow to return to lobby
 RESPAWN_DELAY 0
@@ -202,7 +196,7 @@ IPINTEL_REJECT_BAD
 # FORUMURL http://tgstation13.org/phpBB/index.php
 
 ## Wiki address
-# WIKIURL http://tgstation13.org/wiki
+# WIKIURL https://wiki.tgstation13.org
 
 ## Rules address
 # RULESURL http://tgstation13.org/wiki/Rules
@@ -226,6 +220,9 @@ IPINTEL_REJECT_BAD
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
 # BANAPPEALS http://justanotherday.example.com
+
+## Config URL - Intended for servers that have a repository/public folder/etc. that show off the config that they are running
+# CONFIGURL https://github.com/tgstation-operations/server-config
 
 ## System command that invokes yt-dlp, used by Play Internet Sound.
 ## You can install yt-dlp with
@@ -606,9 +603,6 @@ PR_ANNOUNCEMENTS_PER_ROUND 5
 ## Uncomment to block granting profiling privileges to users with R_DEBUG, for performance purposes
 #FORBID_ADMIN_PROFILING
 
-## Uncomment to disable TTS messages on whispering, such as radio messages or the whisper verb. Useful for reducing your TTS load.
-#TTS_NO_WHISPER
-
 ## Link to a HTTP server that's been set up on a server. Docker-compose file can be found in tools/tts
 #TTS_HTTP_URL http://localhost:5002
 
@@ -624,6 +618,12 @@ PR_ANNOUNCEMENTS_PER_ROUND 5
 ## Add voices to the TTS voice blacklist.
 #TTS_VOICE_BLACKLIST Sans Undertale
 #TTS_VOICE_BLACKLIST Papyrus Undertale
+
+## Override the voice that the Tram system uses. If left undefined, the tram will pick a random voice.
+#TTS_TRAM_ANNOUNCER_OVERRIDE Sans Undertale
+
+## Override the voice that computers use. If left undefined, the subsystem will pick a random consistent computer voice.
+#TTS_COMPUTER_VOICE_OVERRIDE Papyrus Undertale
 
 ## Comment to disable sending a toast notification on the host server when initializations complete.
 ## Even if this is enabled, a notification will only be sent if there are no clients connected.
@@ -655,5 +655,11 @@ TGUI_MAX_CHUNK_COUNT 32
 ## It increases initialization time significantly so you'll want to disable this in live environments.
 GENERATE_ASSETS_IN_INIT
 
-## Minimum time before a heretic can ascend, in minutes
-# MINIMUM_ASCENSION_TIME 3
+## Path from the config folder to the policy json
+POLICY_JSON_PATH policy.json
+
+# Which CIDs will not be considered for stickybans. This is the default CID that Wine spits out,
+# and for the purpose of not default banning all Linux players, we'll just ignore it.
+# People can spoof this CID and ignore that element of stickybans forever, but they can equally
+# just keep generating new ones. Kind of doesn't matter.
+IGNORED_CIDS 4055623708

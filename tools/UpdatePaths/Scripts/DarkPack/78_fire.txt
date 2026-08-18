@@ -1,0 +1,1 @@
+/obj/item/vampire_flamethrower : /obj/item/liquid_flamethrower{@OLD}

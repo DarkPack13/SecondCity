@@ -19,6 +19,7 @@
 	while(isopenspaceturf(loc) && can_z_move(DOWN, z_move_flags = ZMOVE_ALLOW_ANCHORED))
 		zMove(DOWN, z_move_flags = ZMOVE_ALLOW_ANCHORED)
 	AddElement(/datum/element/connect_loc, loc_connections)
+	AddElement(/datum/element/force_move_pulled)
 
 /obj/effect/decal/blob_act(obj/structure/blob/B)
 	if(B && B.loc == loc)
@@ -69,7 +70,7 @@
 	// If the tile uses holiday colors, apply them here
 	if(use_holiday_colors)
 
-		var/custom_color = request_station_colors(src, pattern) || request_holiday_colors(src, pattern)
+		var/custom_color = request_decoration_colors(src, pattern)
 		if(custom_color)
 			color = custom_color
 			alpha = DECAL_ALPHA

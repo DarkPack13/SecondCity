@@ -11,7 +11,7 @@
 	time = 1 SECONDS
 	reqs = list(/obj/item/paper = 2)
 	category = CAT_CONTAINERS
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/boh
 	name = "Bag of Holding"
 	reqs = list(
@@ -28,7 +28,7 @@
 	)
 	result = /obj/item/storage/basket
 	category = CAT_CONTAINERS
-	crafting_flags = parent_type::crafting_flags | CRAFT_MUST_BE_LEARNED
+	crafting_flags = parent_type::crafting_flags | CRAFT_MUST_BE_LEARNED | CRAFT_SKIP_MATERIALS_PARITY
 	steps = list(
 		"master the art of underwater basketweaving",
 		"be underwater"

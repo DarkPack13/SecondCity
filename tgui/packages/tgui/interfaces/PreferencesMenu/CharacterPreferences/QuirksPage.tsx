@@ -21,7 +21,6 @@ import {
 import { useRandomToggleState } from '../useRandomToggleState';
 import { useServerPrefs } from '../useServerPrefs';
 import { getRandomization, PreferenceList } from './MainPage';
-import { PersonalityPage } from './PersonalityPage';
 
 function getColorValueClass(quirk: Quirk) {
   if (quirk.value > 0) {
@@ -35,7 +34,7 @@ function getColorValueClass(quirk: Quirk) {
 
 function getCorrespondingPreferences(
   customization_options: string[],
-  relevant_preferences: Record<string, string>,
+  relevant_preferences: Record<string, string> = {},
 ) {
   return Object.fromEntries(
     filter(Object.entries(relevant_preferences), ([key, value]) =>
@@ -51,19 +50,21 @@ type QuirkListProps = {
 };
 
 type QuirkProps = {
-  onClick: (quirkName: string, quirk: Quirk) => void;
+  handleClick: (quirkName: string, quirk: Quirk) => void;
   randomBodyEnabled: boolean;
   selected: boolean;
   serverData: ServerData;
+  quirkActionLocked: boolean;
 };
 
 function QuirkList(props: QuirkProps & QuirkListProps) {
   const {
     quirks = [],
     selected,
-    onClick,
+    handleClick,
     serverData,
     randomBodyEnabled,
+    quirkActionLocked,
   } = props;
 
   return (
@@ -71,12 +72,13 @@ function QuirkList(props: QuirkProps & QuirkListProps) {
       {quirks.map(([quirkKey, quirk]) => (
         <Stack.Item key={quirkKey} m={0}>
           <QuirkDisplay
-            onClick={onClick}
+            handleClick={handleClick}
             quirk={quirk}
             quirkKey={quirkKey}
             randomBodyEnabled={randomBodyEnabled}
             selected={selected}
             serverData={serverData}
+            quirkActionLocked={quirkActionLocked}
           />
         </Stack.Item>
       ))}
@@ -91,7 +93,7 @@ type QuirkDisplayProps = {
 } & QuirkProps;
 
 function QuirkDisplay(props: QuirkDisplayProps) {
-  const { quirk, quirkKey, onClick, selected } = props;
+  const { quirk, quirkKey, handleClick, selected, quirkActionLocked } = props;
   const { icon, value, name, description, customizable, failTooltip } = quirk;
 
   const [customizationExpanded, setCustomizationExpanded] = useState(false);
@@ -101,13 +103,18 @@ function QuirkDisplay(props: QuirkDisplayProps) {
   const child = (
     <Box
       className={className}
-      onClick={(event) => {
-        event.stopPropagation();
+      style={{
+        opacity: props.quirkActionLocked ? 0.6 : 1,
+        pointerEvents: props.quirkActionLocked ? 'none' : 'auto',
+      }}
+      onClick={() => {
+        if (quirkActionLocked)
+          return;
         if (selected) {
           setCustomizationExpanded(false);
         }
 
-        onClick(quirkKey, quirk);
+        handleClick(quirkKey, quirk);
       }}
     >
       <Stack fill g={0}>
@@ -303,6 +310,19 @@ function QuirkPage() {
     data.selected_quirks = selected_quirks;
   }
 
+  const [quirkActionLocked, setQuirkActionLocked] = useState(false);
+
+  function withQuirkDebounce(debounce: () => void, delay = 200) {
+    if (quirkActionLocked) return;
+
+    setQuirkActionLocked(true);
+    debounce();
+
+    setTimeout(() => {
+      setQuirkActionLocked(false);
+    }, delay);
+  }
+
   const [searchQuery, setSearchQuery] = useState('');
   const server_data = useServerPrefs();
   if (!server_data) return;
@@ -323,7 +343,7 @@ function QuirkPage() {
     }
   });
 
-  let balance = -data.default_quirk_balance;
+  const balance = data.freebie_points ?? 0; // DARKPACK EDIT CHANGE - ORIGINAL: let balance = -data.default_quirk_balance;
   let positiveQuirks = 0;
 
   for (const selectedQuirkName of selectedQuirks) {
@@ -336,7 +356,7 @@ function QuirkPage() {
       positiveQuirks += 1;
     }
 
-    balance += selectedQuirk.value;
+    //balance += selectedQuirk.value; DARKPACK EDIT REMOVAL - MERITS_FLAWS
   }
 
   function getReasonToNotAdd(quirkName: string) {
@@ -349,6 +369,11 @@ function QuirkPage() {
         return 'You need a negative quirk to balance this out!';
       }
     }
+    // DARKPACK EDIT ADD - MERITS_FLAWS
+    if (balance - quirk.value < 0) {
+      return 'You need more freebie points to take this quirk!';
+    }
+    // DARKPACK EDIT ADD - MERITS_FLAWS
 
     const selectedQuirkNames = selectedQuirks.map((quirkKey) => {
       return quirkInfo[quirkKey].name;
@@ -368,11 +393,28 @@ function QuirkPage() {
         }
       }
     }
-    if (data.species_disallowed_quirks.includes(quirk.name)) {
-      return 'This quirk is incompatible with your selected species.';
+    if (data.clan_disallowed_quirks.includes(quirk.name)) {    // DARKPACK EDIT ADD - MERITS_FLAWS
+      return 'This quirk is incompatible with your selected clan.';    // DARKPACK EDIT END - MERITS_FLAWS
+    }
+    if (data.splat_disallowed_quirks.includes(quirk.name)) { // DARKPACK EDIT CHANGE - SPLATS
+      return 'This quirk is incompatible with your selected splats.'; // DARKPACK EDIT CHANGE - SPLATS
     }
     return;
   }
+
+  // DARKPACK EDIT ADD START - MERITS_FLAWS
+    function getReasonToNotDisplay(quirkName: string) {
+    const quirk = quirkInfo[quirkName];
+
+    if (data.clan_disallowed_quirks.includes(quirk.name)) {
+      return false
+    }
+    if (data.splat_disallowed_quirks.includes(quirk.name)) {
+      return false
+    }
+    return;
+  }
+  // DARKPACK EDIT ADD END
 
   function getReasonToNotRemove(quirkName: string) {
     const quirk = quirkInfo[quirkName];
@@ -422,20 +464,23 @@ function QuirkPage() {
           <Stack.Item grow className="PreferencesMenu__Quirks__QuirkList">
             <QuirkList
               selected={false}
-              onClick={(quirkName, quirk) => {
+              quirkActionLocked={quirkActionLocked}
+              handleClick={(quirkName, quirk) => {
                 if (getReasonToNotAdd(quirkName) !== undefined) {
                   return;
                 }
 
-                setSelectedQuirks(selectedQuirks.concat(quirkName));
-
-                act('give_quirk', { quirk: quirk.name });
+                withQuirkDebounce(() => {
+                  setSelectedQuirks(selectedQuirks.concat(quirkName));
+                  act('give_quirk', { quirk: quirk.name });
+                });
               }}
               quirks={quirks
                 .filter(([quirkName, _]) => {
                   return (
                     selectedQuirks.indexOf(quirkName) === -1 &&
-                    quirkSearch(quirkInfo[quirkName])
+                    quirkSearch(quirkInfo[quirkName]) && // DARKPACK EDIT CHANGE - MERITS_FLAWS
+                    getReasonToNotDisplay(quirkName) === undefined // DARKPACK EDIT ADD - MERITS_FLAWS
                   );
                 })
                 .map(([quirkName, quirk]) => {
@@ -461,17 +506,15 @@ function QuirkPage() {
       <Stack.Item basis="50%">
         <Stack vertical fill align="center">
           <Stack.Item>
-            {pointsEnabled ? (
-              <Box fontSize="1.3em">Quirk Balance</Box>
-            ) : (
-              <Box mt={maxPositiveQuirks > 0 ? 3.4 : 0} />
+            {(
+              // DARKPACK EDIT CHANGE START - (Removed pointsEnabled ? checks)
+              <Box fontSize="1.3em">Freebie Points</Box> // DARKPACK EDIT CHANGE - (Changed 'Quirk Balance' to 'Freebie Points')
             )}
           </Stack.Item>
           <Stack.Item>
-            {pointsEnabled ? (
+            {(
               <StatDisplay>{balance}</StatDisplay>
-            ) : (
-              <Box mt={maxPositiveQuirks > 0 ? 3.4 : 0} />
+              // DARKPACK EDIT CHANGE END
             )}
           </Stack.Item>
           <Stack.Item>
@@ -483,18 +526,19 @@ function QuirkPage() {
           <Stack.Item grow className="PreferencesMenu__Quirks__QuirkList">
             <QuirkList
               selected
-              onClick={(quirkName, quirk) => {
+              quirkActionLocked={quirkActionLocked}
+              handleClick={(quirkName, quirk) => {
                 if (getReasonToNotRemove(quirkName) !== undefined) {
                   return;
                 }
 
-                setSelectedQuirks(
-                  selectedQuirks.filter(
-                    (otherQuirk) => quirkName !== otherQuirk,
-                  ),
-                );
+                withQuirkDebounce(() => {
+                  setSelectedQuirks(
+                    selectedQuirks.filter((otherQuirk) => quirkName !== otherQuirk),
+                  );
 
-                act('remove_quirk', { quirk: quirk.name });
+                  act('remove_quirk', { quirk: quirk.name });
+                });
               }}
               quirks={quirks
                 .filter(([quirkName, _]) => {
@@ -520,7 +564,7 @@ function QuirkPage() {
 }
 
 export function QuirkPersonalityPage() {
-  const [contentPage, setContentPage] = useState<'quirks' | 'personality'>(
+  const [contentPage, setContentPage] = useState<'quirks'>( // DARKPACK EDIT CHANGE - ORIGINAL: const [contentPage, setContentPage] = useState<'quirks' | 'personality'>(
     'quirks',
   );
 
@@ -539,6 +583,7 @@ export function QuirkPersonalityPage() {
               Quirks
             </Button>
           </Stack.Item>
+          { /* // DARKPACK EDIT REMOVAL START
           <Stack.Item grow>
             <Button
               selected={contentPage === 'personality'}
@@ -550,11 +595,17 @@ export function QuirkPersonalityPage() {
               Personality
             </Button>
           </Stack.Item>
+          // DARKPACK EDIT REMOVAL END */}
         </Stack>
       </Stack.Item>
+      { /* // DARKPACK EDIT REMOVAL START
       <Stack.Item grow>
         {contentPage === 'personality' ? <PersonalityPage /> : <QuirkPage />}
       </Stack.Item>
+      // DARKPACK EDIT REMOVAL END */}
+      {/* DARKPACK EDIT ADD START */}
+      <QuirkPage />
+      {/* DARKPACK EDIT ADD END */}
     </Stack>
   );
 }

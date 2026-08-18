@@ -1,0 +1,3 @@
+/obj/structure/platform:
+  banned_neighbors:
+    - /turf/open/space

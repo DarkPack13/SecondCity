@@ -18,6 +18,7 @@
 	name = "bullet"
 	icon = 'icons/obj/weapons/guns/ammo.dmi'
 	icon_state = "s-casing"
+	item_flags = null	// DARKPACK EDIT ADD - FORENSICS - (Makes bullets recoverable from bodies.)
 	embed_type = null
 
 /obj/item/shrapnel/plastic

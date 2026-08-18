@@ -8,6 +8,7 @@
 	result = /obj/item/stack/sheet/paperframes
 	result_amount = 5
 	category = CAT_STRUCTURE
+	requirements_mats_blacklist = list(/obj/item/stack/sheet/mineral/wood)
 
 /datum/crafting_recipe/rib
 	name = "Colossal Rib"
@@ -50,7 +51,7 @@
 	)
 	category = CAT_STRUCTURE
 
-/*// DARKPACK EDIT REMOVE
+/*// DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/mechcabinet
 	name = "Mech Removal Cabinet"
 	result = /obj/item/wallframe/fireaxecabinet/mechremoval
@@ -72,7 +73,7 @@
 	)
 	category = CAT_STRUCTURE
 	crafting_flags = CRAFT_CHECK_DENSITY
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/adam_pedestal
 	name = "Adamantine Pedestal"
 	result = /obj/item/adamantine_pedestal
@@ -120,6 +121,12 @@
 	)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WELDER, TOOL_DRILL)
 	time = 30 SECONDS
+	removed_mats = list(
+		/datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.55,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+	)
 	category = CAT_STRUCTURE
 
 /datum/crafting_recipe/vault
@@ -134,6 +141,14 @@
 	)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WELDER, TOOL_DRILL)
 	time = 90 SECONDS
+	removed_mats = list(
+		/datum/material/metalhydrogen = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/alloy/plastitanium = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+	)
 	category = CAT_STRUCTURE
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND
 
@@ -149,4 +164,25 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WELDER, TOOL_DRILL)
 	time = 90 SECONDS
 	category = CAT_STRUCTURE
+	removed_mats = list(
+		/datum/material/metalhydrogen = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/alloy/plastitanium = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+	)
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND
+
+/datum/crafting_recipe/tripwire_post
+	name = "Tripwire Post"
+	result = /obj/structure/tripwire/post
+	reqs = list(
+		/obj/item/stack/rods = 3,
+		/obj/item/stack/sheet/iron = 5,
+	)
+	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
+	time = 5 SECONDS
+	category = CAT_STRUCTURE
+	removed_mats = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3,
+	)
+	crafting_flags = CRAFT_ON_SOLID_GROUND

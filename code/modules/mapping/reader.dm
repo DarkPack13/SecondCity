@@ -102,7 +102,7 @@
 	/// Matches key formats in TMG (IE: newline after the \()
 	var/static/regex/matches_tgm = new(@'^"[A-z]*"[\s]*=[\s]*\([\s]*\n', "m")
 	/// Pulls out key value pairs for TGM
-	var/static/regex/var_edits_tgm = new(@'^\t([A-z]*) = (.*?);?$')
+	var/static/regex/var_edits_tgm = new(@'^\t([A-z0-9]*) = (.*?);?$')
 	/// Pulls out model paths for DMM
 	var/static/regex/model_path = new(@'(\/[^\{]*?(?:\{.*?\})?)(?:,|$)', "g")
 
@@ -933,6 +933,8 @@ GLOBAL_LIST_EMPTY(map_model_default)
 			old_area.turfs_to_uncontain_by_zlevel[crds.z] += crds
 			area_instance.turfs_by_zlevel[crds.z] += crds
 		area_instance.contents.Add(crds)
+		if(!isnull(old_area) && !old_area.has_contained_turfs())
+			qdel(old_area)
 
 		if(GLOB.use_preloader)
 			world.preloader_load(area_instance)

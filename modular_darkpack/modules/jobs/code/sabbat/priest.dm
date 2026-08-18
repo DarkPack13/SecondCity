@@ -1,22 +1,20 @@
 /datum/job/vampire/sabbatpriest
 	title = JOB_SABBAT_PRIEST
-	faction = FACTION_CITY
+	faction = FACTION_SABBAT
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "Caine"
 	config_tag = "SABBAT_PRIEST"
 	outfit = /datum/outfit/job/vampire/sabbatpriest
-	allowed_species = list(SPECIES_KINDRED)
+	allowed_splats = list(SPLAT_KINDRED)
 	job_flags = CITY_JOB_FLAGS
 	exp_required_type_department = EXP_TYPE_SABBAT
-	department_for_prefs = /datum/job_department/sabbat
 	departments_list = list(
 		/datum/job_department/sabbat,
 	)
 
 	description = "You are the Sabbat Priest. You are charged with the supervision of the ritae of your pack. You also serve as the second-in-command to the Ductus. Consecrate the Vaulderie for new Sabbat, consult your tome for rites to aid your pack, and ensure the Sabbat live on in Caine's favor. NOTE: BY PLAYING THIS ROLE YOU AGREE TO AND HAVE READ THE SERVER'S RULES ON ESCALATION FOR ANTAGS. KEEP THINGS INTERESTING AND ENGAGING FOR BOTH SIDES. KILLING PLAYERS JUST BECAUSE YOU CAN MAY RESULT IN A ROLEBAN."
-	minimal_masquerade = 0
-	allowed_clans = VAMPIRE_CLAN_ALL
+	minimum_masquerade = 0
 	display_order = JOB_DISPLAY_ORDER_SABBATPRIEST
 	whitelisted = TRUE
 
@@ -24,26 +22,19 @@
 	name = "Sabbat Priest"
 	jobtype = /datum/job/vampire/sabbatpriest
 	l_pocket = /obj/item/smartphone
-	id = /obj/item/watch
 	r_pocket = /obj/item/vamp/keys/sabbat
+	suit = /obj/item/clothing/suit/vampire/noddist
+	head = /obj/item/clothing/head/vampire/noddist_mask
+	uses_default_clan_clothes = TRUE
+	backpack_contents = list(/obj/item/card/credit=1)
 
 /datum/outfit/job/vampire/sabbatpriest/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
-		H.mind.add_antag_datum(/datum/antagonist/sabbatist)
+		H.mind.add_antag_datum(/datum/antagonist/sabbatist/priest)
 
-/obj/effect/landmark/start/sabbatpriest
-	name = "Sabbat Priest"
-	icon_state = "Assistant"
-
-/proc/is_sabbatist(mob/living/user)
-	return user?.mind?.assigned_role in list("Sabbat Priest", "Sabbat Ductus", "Sabbat Pack")
-
-/proc/is_sabbat_priest(mob/living/user)
-	return user?.mind?.assigned_role == "Sabbat Priest"
-
-/proc/is_sabbat_ductus(mob/living/user)
-	return user?.mind?.assigned_role == "Sabbat Ductus"
+/datum/antagonist/sabbatist/priest
+	antag_hud_name = "ductus_priest"
 
 /obj/item/sabbat_priest_tome
 	name = "Sabbat Priest's Tome"
@@ -88,11 +79,11 @@
 	desc = "None may defy Caine - especially not those who have undertaken the Vaulderie! Traitors and defectors to Caine and the Sabbat shall be struck down with a rightful war party, along with any who know of their treachery. Diablerie, burning them atop our ritual fire with a stake still in their putrid heart, or mutilation may take place, before they are sentenced to death. None may defy Caine, and none may escape Caine's vengeance, not the Elders of the Camarilla or traitors to the pack.\n "
 
 /obj/item/sabbat_priest_tome/attack_self(mob/living/carbon/human/user)
-	if(!user.mind || !is_sabbatist(user))
+	if(!user.mind || !is_sabbatist(user.mind.assigned_role))
 		to_chat(user, "You feel nothing when you touch this tome.")
 		return
 
-	var/is_priest = is_sabbat_priest(user)
+	var/is_priest = is_sabbat_priest(user.mind.assigned_role)
 
 	var/original_icon_state = icon_state
 	icon_state = "[original_icon_state]-open"

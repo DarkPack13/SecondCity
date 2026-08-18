@@ -11,12 +11,6 @@
 /datum/examine_panel/ui_state(mob/user)
 	return GLOB.always_state
 
-/datum/examine_panel/ui_close(mob/user)
-	// If this is an examine preview dummy, clean it up.
-	if(istype(holder, /mob/living/carbon/human/dummy))
-		qdel(holder)
-
-
 /datum/examine_panel/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -36,16 +30,23 @@
 	var/nsfw_content = user.client?.prefs.read_preference(/datum/preference/toggle/nsfw_content_pref)
 	var/flavor_text_nsfw = ""
 	var/ooc_notes = ""
-	var/show_flavor_text_when_masked = user.client?.prefs.read_preference(/datum/preference/toggle/show_flavor_text_when_masked)
+	var/show_flavor_text_when_masked = holder.client?.prefs.read_preference(/datum/preference/toggle/show_identity_when_masked)
 
 	if(ishuman(holder))
 		var/mob/living/carbon/human/holder_human = holder
 		obscured = holder_human.obscured_slots & HIDEFACE
 
+		var/main_flavor_text_key = EXAMINE_DNA_FLAVOR_TEXT
+
+		if(iscrinos(holder))
+			main_flavor_text_key = EXAMINE_DNA_WAR_FORM_FLAVOR_TEXT
+		else if(ishispo(holder) || islupus(holder))
+			main_flavor_text_key = EXAMINE_DNA_FERAL_FORM_FLAVOR_TEXT
+
 		//Check if the mob is obscured, then continue to headshot
 		if(isobserver(user) || show_flavor_text_when_masked || !obscured)
 			headshot = holder_human.dna.features[EXAMINE_DNA_HEADSHOT]
-			flavor_text = holder_human.dna.features[EXAMINE_DNA_FLAVOR_TEXT]
+			flavor_text = holder_human.dna.features[main_flavor_text_key]
 			flavor_text_nsfw = holder.dna.features[EXAMINE_DNA_NSFW_FLAVOR_TEXT]
 			ooc_notes = holder.dna.features[EXAMINE_DNA_OOC_NOTES]
 			character_notes = holder.dna.features[EXAMINE_DNA_CHARACTER_NOTES]
@@ -69,23 +70,22 @@
 
 /mob/living/carbon/proc/flavor_text_creation()
 	var/flavor_text_to_show
-	var/preview_text = copytext_char(dna.features[EXAMINE_DNA_FLAVOR_TEXT], 1, FLAVOR_PREVIEW_LIMIT)
+
+	var/main_flavor_text_key = EXAMINE_DNA_FLAVOR_TEXT
+	if(iscrinos(src))
+		main_flavor_text_key = EXAMINE_DNA_WAR_FORM_FLAVOR_TEXT
+	else if(ishispo(src) || islupus(src))
+		main_flavor_text_key = EXAMINE_DNA_FERAL_FORM_FLAVOR_TEXT
+
+	var/preview_text = copytext_char(dna.features[main_flavor_text_key], 1, FLAVOR_PREVIEW_LIMIT)
 	// What examine_tgui.dm uses to determine if flavor text appears as "Obscured".
 	var/face_obscured = obscured_slots & HIDEFACE
-	if(!face_obscured || (face_obscured && client?.prefs.read_preference(/datum/preference/toggle/show_flavor_text_when_masked)))
+	if(!face_obscured || (face_obscured && client?.prefs.read_preference(/datum/preference/toggle/show_identity_when_masked)))
 		flavor_text_to_show = span_notice("[preview_text]... <a href='byond://?src=[REF(src)];view_flavortext=1;'>\[Look closer?\]</a>")
 
 	return flavor_text_to_show
 
-/mob/living/carbon/human/dummy/proc/setup_examine_preview(mob/living/carbon/user)
-	examine_panel_tgui.holder = user
-
 /mob/living/carbon/Topic(href, href_list)
 	if(href_list["view_flavortext"])
-		// The examine preview dummy will be cleaned up once the user closes the TGUI window.
-		var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy()
-		if(!mannequin.examine_panel_tgui)
-			mannequin.examine_panel_tgui = new()
-		mannequin.setup_examine_preview(src)
-		mannequin.examine_panel_tgui.ui_interact(usr)
-	..()
+		examine_panel_tgui.ui_interact(usr)
+	. = ..()

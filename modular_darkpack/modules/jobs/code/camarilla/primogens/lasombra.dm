@@ -2,8 +2,7 @@
 	title = JOB_PRIMOGEN_LASOMBRA
 	description = "Offer your infinite knowledge to Prince of the City. Monitor those of your Clan and your lesser cousins, while holding a Court of Blood as need be, for all it takes for the Camarilla to turn on you is one mistake. You and Your Clan were given a domain in the local Church and in the vicinity of a swarm of Lupines, keep matters under control."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
-	department_head = list("Justicar")
-	faction = FACTION_CITY
+	faction = FACTION_CAMARILLA
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = SUPERVISOR_TRADITIONS
@@ -18,16 +17,15 @@
 	outfit = /datum/outfit/job/vampire/lasombraprim
 
 	display_order = JOB_DISPLAY_ORDER_LASOMBRA
-	department_for_prefs = /datum/job_department/camarilla
 	departments_list = list(
-		/datum/job_department/camarilla,
 		/datum/job_department/church,
+		/datum/job_department/camarilla,
 	)
 
 	minimal_generation = 12
 	minimum_immortal_age = 50
-	minimal_masquerade = 5
-	allowed_species = list(SPECIES_KINDRED)
+	minimum_masquerade = 5
+	allowed_splats = list(SPLAT_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_LASOMBRA)
 
 	known_contacts = list("Prince")
@@ -36,16 +34,11 @@
 	name = "Primogen Lasombra"
 	jobtype = /datum/job/vampire/primogen_lasombra
 
-	//ears = /obj/item/p25radio
+	ears = /obj/item/radio/headset/darkpack
 	id = /obj/item/card/primogen
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	uniform = /obj/item/clothing/under/vampire/turtleneck_black
 	suit = /obj/item/clothing/suit/vampire/trench
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	l_pocket = /obj/item/smartphone/lasombra_primo
-	r_pocket = /obj/item/watch
-	//backpack_contents = list(/obj/item/vamp/keys/lasombra/primogen=1, /obj/item/passport=1, /obj/item/vamp/creditcard/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)
-
-/obj/effect/landmark/start/primogen_lasombra
-	name = "Primogen Lasombra"
-	icon_state = "Assistant"
+	backpack_contents = list(/obj/item/vamp/keys/lasombra/primogen=1, /obj/item/card/credit/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)

@@ -1,27 +1,30 @@
 import { sortBy } from 'es-toolkit';
 import { filter, map } from 'es-toolkit/compat';
 import { type ReactNode, useState } from 'react';
-import { type sendAct, useBackend } from 'tgui/backend';
+import { useBackend } from 'tgui/backend';
+import { sendAct } from 'tgui/events/act';
 import {
   Box,
   Button,
   Floating,
   Input,
   LabeledList,
+  NumberInput, // DARKPACK EDIT
   Section,
   Stack,
 } from 'tgui-core/components';
+import { exhaustiveCheck } from 'tgui-core/exhaustive'; // DARKPACK EDIT ADD
 import { classes } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
-
 import { CharacterPreview } from '../../common/CharacterPreview';
+import { PageButton } from '../components/PageButton'; // DARKPACK EDIT ADD
 import { RandomizationButton } from '../components/RandomizationButton';
 import { features } from '../preferences/features';
 import {
   type FeatureChoicedServerData,
   FeatureValueInput,
 } from '../preferences/features/base';
-import { Gender, GENDERS } from '../preferences/gender';
+import { GENDERS, Gender } from '../preferences/gender';
 import {
   createSetPreference,
   type PreferencesMenuData,
@@ -32,9 +35,10 @@ import { useRandomToggleState } from '../useRandomToggleState';
 import { useServerPrefs } from '../useServerPrefs';
 import { DeleteCharacterPopup } from './DeleteCharacterPopup';
 import { MultiNameInput, NameInput } from './names';
+import { VocalsInput, VoiceInput } from './darkpack_vocals'; // DARKPACK EDIT ADDITION
 
 const CLOTHING_CELL_SIZE = 48;
-const CLOTHING_SIDEBAR_ROWS = 9;
+const CLOTHING_SIDEBAR_ROWS = 12; // DARKPACK EDIT CHANGE - ORIGINAL: 9;
 
 const CLOTHING_SELECTION_CELL_SIZE = 48;
 const CLOTHING_SELECTION_WIDTH = 5.4;
@@ -42,7 +46,7 @@ const CLOTHING_SELECTION_MULTIPLIER = 5.2;
 
 type CharacterControlsProps = {
   handleRotate: () => void;
-  handleOpenSpecies: () => void;
+  handleOpenSplats: () => void; // DARKPACK EDIT CHANGE - SPLATS
   gender: Gender;
   setGender: (gender: Gender) => void;
   showGender: boolean;
@@ -65,22 +69,19 @@ function CharacterControls(props: CharacterControlsProps) {
 
       <Stack.Item>
         <Button
-          onClick={props.handleOpenSpecies}
+          onClick={props.handleOpenSplats} // DARKPACK EDIT CHANGE - SPLATS
           fontSize="22px"
           icon="paw"
-          tooltip="Species"
+          tooltip="Splats" // DARKPACK EDIT CHANGE - SPLATS
           tooltipPosition="top"
         />
       </Stack.Item>
 
-      {props.showGender && (
-        <Stack.Item>
-          <GenderButton
-            gender={props.gender}
-            handleSetGender={props.setGender}
-          />
-        </Stack.Item>
-      )}
+      {/* DARKPACK EDIT REMOVAL {props.showGender && ( */}
+      <Stack.Item>
+        <GenderButton gender={props.gender} handleSetGender={props.setGender} />
+      </Stack.Item>
+      {/* DARKPACK EDIT REMOVAL )} */}
 
       <Stack.Item>
         <Button
@@ -337,8 +338,8 @@ function MainFeature(props: MainFeatureProps) {
 }
 
 const createSetRandomization =
-  (act: typeof sendAct, preference: string) => (newSetting: RandomSetting) => {
-    act('set_random_preference', {
+  (preference: string) => (newSetting: RandomSetting) => {
+    sendAct('set_random_preference', {
       preference,
       value: newSetting,
     });
@@ -353,11 +354,12 @@ type PreferenceListProps = {
   randomizations: Record<string, RandomSetting>;
   maxHeight: string;
   children?: ReactNode;
+  overrides?: Record<string, ReactNode>; // DARKPACK EDIT ADD
 };
 
 export function PreferenceList(props: PreferenceListProps) {
   const { act } = useBackend<PreferencesMenuData>();
-  const { preferences, randomizations, maxHeight, children } = props;
+  const { preferences, randomizations, maxHeight, children, overrides } = props;
 
   return (
     <Stack.Item
@@ -390,24 +392,28 @@ export function PreferenceList(props: PreferenceListProps) {
                 key={featureId}
                 label={feature.name}
                 tooltip={feature.description}
+                tooltipPosition="right" // DARKPACK EDIT ADD - Swappable pref menus
                 verticalAlign="middle"
               >
                 <Stack fill>
                   {randomSetting && (
                     <Stack.Item>
                       <RandomizationButton
-                        setValue={createSetRandomization(act, featureId)}
+                        setValue={createSetRandomization(featureId)}
                         value={randomSetting}
                       />
                     </Stack.Item>
                   )}
-
+                  {/* DARKPACK EDIT START - Overrides so we can capture input. For use in detecting if a player has changed their clan, immortal age, etc*/}
                   <Stack.Item grow>
-                    <FeatureValueInput
-                      feature={feature}
-                      featureId={featureId}
-                      value={value}
-                    />
+                    {overrides?.[featureId] ?? (
+                      <FeatureValueInput
+                        feature={feature}
+                        featureId={featureId}
+                        value={value}
+                      />
+                    )}
+                  {/*DARKPACK EDIT END */}
                   </Stack.Item>
                 </Stack>
               </LabeledList.Item>
@@ -426,13 +432,9 @@ export function getRandomization(
   serverData: ServerData | undefined,
   randomBodyEnabled: boolean,
 ): Record<string, RandomSetting> {
-  if (!serverData) {
-    return {};
-  }
-
   const { data } = useBackend<PreferencesMenuData>();
 
-  if (!randomBodyEnabled) {
+  if (!randomBodyEnabled || !serverData) {
     return {};
   }
 
@@ -450,20 +452,23 @@ export function getRandomization(
 }
 
 type MainPageProps = {
-  openSpecies: () => void;
+  openSplats: () => void; // DARKPACK EDIT CHANGE - SPLATS
 };
 
 export function MainPage(props: MainPageProps) {
   const { act, data } = useBackend<PreferencesMenuData>();
+
   const [deleteCharacterPopupOpen, setDeleteCharacterPopupOpen] =
     useState(false);
   const [multiNameInputOpen, setMultiNameInputOpen] = useState(false);
+  const [vocalsInputOpen, setVocalsInputOpen] = useState(false); // DARKPACK EDIT ADDITION
   const [randomToggleEnabled] = useRandomToggleState();
+  const [pendingConfirm, setPendingConfirm] = useState<(() => void) | null>(null); // DARKPACK EDIT ADD - for popups
 
   const serverData = useServerPrefs();
 
-  const currentSpeciesData =
-    serverData?.species[data.character_preferences.misc.species];
+  const currentSplatsData = // DARKPACK EDIT CHANGE - SPLATS
+    serverData?.splats[data.character_preferences.misc.splats]; // DARKPACK EDIT CHANGE - SPLATS
 
   const contextualPreferences =
     data.character_preferences.secondary_features || [];
@@ -486,15 +491,76 @@ export function MainPage(props: MainPageProps) {
   const nonContextualPreferences = {
     ...data.character_preferences.non_contextual,
   };
+  // DARKPACK EDIT ADD START - tracking age changes
+  const immortalAgeValue = nonContextualPreferences.immortal_age as number | undefined;
+  const immortalAgeServerData = serverData?.immortal_age as { minimum: number; maximum: number; step: number } | undefined;
+  // DARKPACK EDIT ADD END
 
   if (randomBodyEnabled) {
-    nonContextualPreferences.random_species =
-      data.character_preferences.randomization.species;
+    nonContextualPreferences.random_splats = // DARKPACK EDIT CHANGE - SPLATS
+      data.character_preferences.randomization.splats; // DARKPACK EDIT CHANGE - SPLATS
   } else {
     // We can't use random_name/is_accessible because the
     // server doesn't know whether the random toggle is on.
     delete nonContextualPreferences.random_name;
   }
+
+  // DARKPACK EDIT ADD START - SWAPPABLE PREF MENUS
+  enum PrefPage {
+    Visual, // The visual parts
+    Profile, // Flavor Text, Age, Records, PDA ringtone, etc
+  }
+
+  const [currentPrefPage, setCurrentPrefPage] = useState(PrefPage.Visual);
+
+  let prefPageContents;
+  switch (currentPrefPage) {
+    case PrefPage.Visual:
+      prefPageContents = (
+        <PreferenceList
+          randomizations={getRandomization(
+            contextualPreferences,
+            serverData,
+            randomBodyEnabled,
+          )}
+          preferences={contextualPreferences}
+          maxHeight="auto"
+        />
+      );
+      break;
+    case PrefPage.Profile:
+      prefPageContents = (
+        <PreferenceList
+          randomizations={getRandomization(
+            nonContextualPreferences,
+            serverData,
+            randomBodyEnabled,
+          )}
+          preferences={nonContextualPreferences}
+          maxHeight="auto"
+          // DARKPACK EDIT ADD START
+          overrides={{
+            immortal_age: immortalAgeValue !== undefined ? (
+              <NumberInput
+                value={immortalAgeValue}
+                minValue={immortalAgeServerData?.minimum ?? 0}
+                maxValue={immortalAgeServerData?.maximum ?? 1000}
+                step={immortalAgeServerData?.step ?? 1}
+                onChange={(value) => setPendingConfirm(() => () => {
+                  createSetPreference(act, 'immortal_age')(value);
+                  act('clear_discipline_levels');
+                })}
+              />
+            ) : undefined,
+          }}
+          // DARKPACK EDIT ADD END
+        />
+      );
+      break;
+    default:
+      exhaustiveCheck(currentPrefPage);
+  }
+  // DARKPACK EDIT ADD END
 
   return (
     <>
@@ -515,12 +581,78 @@ export function MainPage(props: MainPageProps) {
           names={data.character_preferences.names}
         />
       )}
+      {/* DARKPACK EDIT ADDITION START */}
+      {vocalsInputOpen && (
+        <VocalsInput
+          handleClose={() => setVocalsInputOpen(false)}
+          vocals={data.character_preferences.vocals}
+        />
+      )}
+      {/* DARKPACK EDIT ADDITION END */}
 
       {deleteCharacterPopupOpen && (
         <DeleteCharacterPopup
           close={() => setDeleteCharacterPopupOpen(false)}
         />
       )}
+      {/* DARKPACK EDIT START - popup for clan, age, etc. changes */}
+      {pendingConfirm !== null && (
+        <Box
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0,0,0,0.75)',
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Box
+            style={{
+              background: '#1b1b1b',
+              border: '1px solid #555',
+              padding: '20px',
+              maxWidth: '380px',
+              width: '90%',
+            }}
+          >
+            <Box bold textAlign="center" fontSize={1.1} mb={1} mt={-1}>
+              Change Character Details?
+            </Box>
+            <Box color="label" mb={2}>
+              Changing significant character details (Clan, age, etc.) will wipe ALL of your existing disciplines.
+              This cannot be undone. Are you sure?
+            </Box>
+            <Stack textAlign="center" justify="center">
+              <Stack.Item>
+                <Button
+                  textAlign="center"
+                  onClick={() => setPendingConfirm(null)}
+                >
+                  Cancel
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  textAlign="center"
+                  color="bad"
+                  onClick={() => {
+                    pendingConfirm?.();
+                    setPendingConfirm(null);
+                  }}
+                >
+                  Proceed
+                </Button>
+              </Stack.Item>
+            </Stack>
+          </Box>
+        </Box>
+      )}
+      {/* DARKPACK EDIT END*/}
 
       <Stack height={`${CLOTHING_SIDEBAR_ROWS * CLOTHING_CELL_SIZE}px`}>
         <Stack.Item>
@@ -528,13 +660,13 @@ export function MainPage(props: MainPageProps) {
             <Stack.Item>
               <CharacterControls
                 gender={data.character_preferences.misc.gender}
-                handleOpenSpecies={props.openSpecies}
+                handleOpenSplats={props.openSplats} // DARKPACK EDIT CHANGE - SPLATS
                 handleRotate={() => {
                   act('rotate');
                 }}
                 setGender={createSetPreference(act, 'gender')}
                 showGender={
-                  currentSpeciesData ? !!currentSpeciesData.sexes : true
+                  currentSplatsData ? !!currentSplatsData.sexes : true // DARKPACK EDIT CHANGE - SPLATS
                 }
                 canDeleteCharacter={
                   Object.values(data.character_profiles).filter(
@@ -560,6 +692,16 @@ export function MainPage(props: MainPageProps) {
                   setMultiNameInputOpen(true);
                 }}
               />
+
+            {/* DARKPACK EDIT ADDITION START */}
+            <Stack.Item position="relative">
+              <VoiceInput
+                openVocalsInput={() => {
+                  setVocalsInputOpen(true);
+                }}
+              />
+            </Stack.Item>
+            {/* DARKPACK EDIT ADDITION END */}
             </Stack.Item>
           </Stack>
         </Stack.Item>
@@ -572,6 +714,24 @@ export function MainPage(props: MainPageProps) {
               ] as FeatureChoicedServerData & {
                 name: string;
               };
+              // DARKPACK EDIT START - Refactor Selections to support the clan reset popup
+              // this exists because with the way the default selections work, it would call the createsetpref directly and make us unable to call say, a fancy reset confirmation dialogue for clan changes
+              // while this works fine, if you can come up with a better solution that i cant see, plz do
+              const baseSelect = createSetPreference(act, clothingKey);
+              const handleSelect =
+                clothingKey === 'vampire_clan'
+                  ? (newValue: string) => {
+                      if (newValue !== clothing) {
+                        setPendingConfirm(() => () => {
+                          createSetPreference(act, 'vampire_clan')(newValue);
+                          act('clear_discipline_levels');
+                        });
+                      } else {
+                        baseSelect(newValue);
+                      }
+                    }
+                  : baseSelect;
+              // DARKPACK EDIT END
 
               return (
                 <Stack.Item key={clothingKey}>
@@ -582,12 +742,9 @@ export function MainPage(props: MainPageProps) {
                     <MainFeature
                       catalog={catalog}
                       currentValue={clothing}
-                      handleSelect={createSetPreference(act, clothingKey)}
+                      handleSelect={handleSelect}
                       randomization={randomizationOfMainFeatures[clothingKey]}
-                      setRandomization={createSetRandomization(
-                        act,
-                        clothingKey,
-                      )}
+                      setRandomization={createSetRandomization(clothingKey)}
                     />
                   )}
                 </Stack.Item>
@@ -596,8 +753,12 @@ export function MainPage(props: MainPageProps) {
           </Stack>
         </Stack.Item>
 
-        <Stack.Item grow basis={0}>
+        {/* DARKPACK EDIT CHANGE: Swappable pref menus */}
+        {/* ORIGINAL: <Stack.Item grow basis={0}> */}
+        <Stack.Item grow basis={0} ml="4px">
           <Stack vertical fill>
+            {
+              /* DARKPACK EDIT REMOVAL START
             <PreferenceList
               randomizations={getRandomization(
                 contextualPreferences,
@@ -617,8 +778,34 @@ export function MainPage(props: MainPageProps) {
               preferences={nonContextualPreferences}
               maxHeight="auto"
             />
+            */
+              // DARKPACK EDIT REMOVAL END
+            }
+            {/* DARKPACK EDIT ADD START -  Swappable pref menus */}
+            <Stack>
+              <Stack.Item grow={2}>
+                <PageButton
+                  currentPage={currentPrefPage}
+                  page={PrefPage.Visual}
+                  setPage={setCurrentPrefPage}
+                >
+                  Character Visuals
+                </PageButton>
+              </Stack.Item>
+              <Stack.Item grow={2}>
+                <PageButton
+                  currentPage={currentPrefPage}
+                  page={PrefPage.Profile}
+                  setPage={setCurrentPrefPage}
+                >
+                  Character Lore
+                </PageButton>
+              </Stack.Item>
+            </Stack>
+            {prefPageContents}
           </Stack>
         </Stack.Item>
+        {/* DARKPACK EDIT ADD END: Swappable pref menus */}
       </Stack>
     </>
   );

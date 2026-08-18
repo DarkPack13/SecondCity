@@ -7,7 +7,7 @@
 	)
 	time = 2 SECONDS //faster than crafting them by hand!
 	category = CAT_WEAPON_RANGED
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/gonbola
 	name = "Gonbola"
 	result = /obj/item/restraints/legcuffs/bola/gonbola
@@ -18,19 +18,20 @@
 	)
 	time = 4 SECONDS
 	category = CAT_WEAPON_RANGED
-
+*/
 /datum/crafting_recipe/receiver
 	name = "Modular Rifle Receiver"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
 	result = /obj/item/weaponcrafting/receiver
 	reqs = list(
 		/obj/item/stack/sheet/iron = 5,
-		/obj/item/stack/sticky_tape = 1,
+		/obj/item/stack/medical/wrap/sticky_tape = 1,
 		/obj/item/screwdriver = 1,
 		/obj/item/assembly/mousetrap = 1,
 	)
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/riflestock
 	name = "Wooden Rifle Stock"
@@ -38,10 +39,11 @@
 	result = /obj/item/weaponcrafting/stock
 	reqs = list(
 		/obj/item/stack/sheet/mineral/wood = 8,
-		/obj/item/stack/sticky_tape = 1,
+		/obj/item/stack/medical/wrap/sticky_tape = 1,
 	)
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/gun_maint_kit
 	name = "Makeshift Gun Maintenance Kit"
@@ -49,13 +51,15 @@
 	result = /obj/item/gun_maintenance_supplies/makeshift
 	reqs = list(
 		/obj/item/stack/sheet/iron = 5,
-		/obj/item/stack/sticky_tape = 1,
+		/obj/item/stack/medical/wrap/sticky_tape = 1,
 		/obj/item/pipe = 1,
 		/obj/item/stack/sheet/cloth = 2,
 	)
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/advancedegun
 	name = "Advanced Energy Gun"
 	result = /obj/item/gun/energy/e_gun/nuclear
@@ -67,8 +71,8 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/advancedegun/New()
-	..()
-	blacklist += subtypesof(/obj/item/gun/energy/e_gun)
+	LAZYADD(blacklist, typecacheof(/obj/item/gun/energy/e_gun, ignore_root_path = TRUE))
+	return ..()
 
 /datum/crafting_recipe/tempgun
 	name = "Temperature Gun"
@@ -81,8 +85,8 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/tempgun/New()
-	..()
-	blacklist += subtypesof(/obj/item/gun/energy/e_gun)
+	LAZYADD(blacklist, typecacheof(/obj/item/gun/energy/e_gun, ignore_root_path = TRUE))
+	return ..()
 
 /datum/crafting_recipe/beam_rifle
 	name = "Event Horizon Anti-Existential Beam Rifle"
@@ -108,9 +112,20 @@
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
 
-/datum/crafting_recipe/xraylaser
+/datum/crafting_recipe/laser
+	abstract_type = /datum/crafting_recipe/laser
+	/// We will use the same blacklist for every type here to avoid repeating lists
+	var/static/list/laser_blacklist
+
+/datum/crafting_recipe/laser/New()
+	if(isnull(laser_blacklist))
+		laser_blacklist = typecacheof(/obj/item/gun/energy/laser, ignore_root_path = TRUE)
+	blacklist = laser_blacklist
+	return ..()
+
+/datum/crafting_recipe/laser/xraylaser
 	name = "X-ray Laser Gun"
-	result = /obj/item/gun/energy/xray
+	result = /obj/item/gun/energy/laser/xray
 	reqs = list(
 		/obj/item/gun/energy/laser = 1,
 		/obj/item/weaponcrafting/gunkit/xray = 1,
@@ -118,11 +133,7 @@
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
 
-/datum/crafting_recipe/xraylaser/New()
-	..()
-	blacklist += subtypesof(/obj/item/gun/energy/laser)
-
-/datum/crafting_recipe/hellgun
+/datum/crafting_recipe/laser/hellgun
 	name = "Hellfire Laser Gun"
 	result = /obj/item/gun/energy/laser/hellgun
 	reqs = list(
@@ -132,11 +143,7 @@
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
 
-/datum/crafting_recipe/hellgun/New()
-	..()
-	blacklist += subtypesof(/obj/item/gun/energy/laser)
-
-/datum/crafting_recipe/ioncarbine
+/datum/crafting_recipe/laser/ioncarbine
 	name = "Ion Carbine"
 	result = /obj/item/gun/energy/ionrifle/carbine
 	reqs = list(
@@ -145,10 +152,6 @@
 	)
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
-
-/datum/crafting_recipe/ioncarbine/New()
-	..()
-	blacklist += subtypesof(/obj/item/gun/energy/laser)
 
 /datum/crafting_recipe/teslacannon
 	name = "Tesla Cannon"
@@ -159,7 +162,7 @@
 	)
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
-
+*/
 /datum/crafting_recipe/improvised_pneumatic_cannon //Pretty easy to obtain but
 	name = "Pneumatic Cannon"
 	result = /obj/item/pneumatic_cannon/ghetto
@@ -171,7 +174,8 @@
 	)
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
-
+	skill_dots_minimum = 5 // DARKPACK EDIT ADD - STORYTELER_STATS
+/*
 /datum/crafting_recipe/flamethrower
 	name = "Flamethrower"
 	result = /obj/item/flamethrower
@@ -187,36 +191,39 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 1 SECONDS
 	category = CAT_WEAPON_RANGED
+*/
 
 /datum/crafting_recipe/pipegun
 	name = "Pipegun"
-	result = /obj/item/gun/ballistic/rifle/boltaction/pipegun
+	result = /obj/item/gun/ballistic/rifle/boltaction/pipegun/empty
 	reqs = list(
 		/obj/item/weaponcrafting/receiver = 1,
 		/obj/item/pipe = 2,
 		/obj/item/weaponcrafting/stock = 1,
 		/obj/item/storage/toolbox = 1, // for the screws
-		/obj/item/stack/sticky_tape = 1,
+		/obj/item/stack/medical/wrap/sticky_tape = 1,
 	)
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/pipepistol
 	name = "Pipe Pistol"
-	result = /obj/item/gun/ballistic/rifle/boltaction/pipegun/pistol
+	result = /obj/item/gun/ballistic/rifle/boltaction/pipegun/pistol/empty
 	reqs = list(
 		/obj/item/weaponcrafting/receiver = 1,
 		/obj/item/pipe = 1,
 		/obj/item/stock_parts/servo = 2,
 		/obj/item/stack/sheet/mineral/wood = 4,
 		/obj/item/storage/toolbox = 1, // for the screws
-		/obj/item/stack/sticky_tape = 1,
+		/obj/item/stack/medical/wrap/sticky_tape = 1,
 	)
 	tool_paths = list(/obj/item/hatchet)
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/rebarxbow
 	name = "Heated Rebar Crossbow"
@@ -232,6 +239,7 @@
 	tool_behaviors = list(TOOL_WELDER)
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
 
 /datum/crafting_recipe/rebarxbowforced
 	name = "Forced Rebar Crossbow"
@@ -241,16 +249,17 @@
 		/obj/item/gun/ballistic/rifle/rebarxbow = 1,
 	)
 	blacklist = list(
-	/obj/item/gun/ballistic/rifle/rebarxbow/forced,
-	/obj/item/gun/ballistic/rifle/rebarxbow/syndie,
+		/obj/item/gun/ballistic/rifle/rebarxbow/forced,
+		/obj/item/gun/ballistic/rifle/rebarxbow/syndie,
 	)
 	tool_behaviors = list(TOOL_CROWBAR)
 	time = 1 SECONDS
 	category = CAT_WEAPON_RANGED
-*/
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
+
 /datum/crafting_recipe/pipegun_prime
 	name = "Regal Pipegun"
-	result = /obj/item/gun/ballistic/rifle/boltaction/pipegun/prime
+	result = /obj/item/gun/ballistic/rifle/boltaction/pipegun/prime/empty
 	reqs = list(
 		/obj/item/gun/ballistic/rifle/boltaction/pipegun = 1,
 		/obj/item/food/deadmouse = 1,
@@ -267,16 +276,14 @@
 
 /datum/crafting_recipe/deagle_prime //When you factor in the makarov (7 tc), the toolbox (1 tc), and the emag (3 tc), this comes to a total of 18 TC or thereabouts. Igorning the 20k pricetag, obviously.
 	name = "Regal Condor"
-	result = /obj/item/gun/ballistic/automatic/pistol/deagle/regal
+	result = /obj/item/gun/ballistic/automatic/pistol/deagle/regal/no_mag
 	reqs = list(
 		/obj/item/gun/ballistic/automatic/pistol = 1,
-		/obj/item/stack/sheet/mineral/gold = 25,
-		/obj/item/stack/sheet/mineral/silver = 25,
-		/obj/item/food/donkpocket = 1,
+		/obj/item/stack/sheet/mineral/gold = 15,
+		/obj/item/stack/sheet/mineral/silver = 15,
 		/obj/item/stack/telecrystal = 4,
 		/obj/item/clothing/head/costume/crown/fancy = 1, //the captain's crown
 		/obj/item/storage/toolbox/syndicate = 1,
-		/obj/item/stack/sheet/iron = 10,
 	)
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	tool_paths = list(
@@ -284,17 +291,17 @@
 		/obj/item/clothing/mask/gas/syndicate,
 		/obj/item/card/emag
 	)
-	time = 30 SECONDS
+	time = 25 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/deagle_prime/New()
-	..()
-	blacklist += subtypesof(/obj/item/gun/ballistic/automatic/pistol)
+	LAZYADD(blacklist, typecacheof(/obj/item/gun/ballistic/automatic/pistol, ignore_root_path = TRUE))
+	return ..()
 
 /datum/crafting_recipe/deagle_prime_mag
-	name = "Regal Condor Magazine (10mm Reaper)"
-	result = /obj/item/ammo_box/magazine/r10mm
+	name = "Regal Condor Magazine (.45 Reaper)"
+	result = /obj/item/ammo_box/magazine/r45
 	reqs = list(
 		/obj/item/stack/sheet/iron = 10,
 		/obj/item/stack/sheet/mineral/gold = 10,
@@ -312,11 +319,11 @@
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-/* // DARKPACK EDIT REMOVE
+
 /datum/crafting_recipe/pipe_organ_gun
 	name = "Pipe Organ Gun"
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER)
-	result = /obj/structure/mounted_gun/pipe
+	result = /obj/structure/mounted_gun/organ_gun
 	reqs = list(
 		/obj/item/pipe = 8,
 		/obj/item/stack/sheet/mineral/wood = 15,
@@ -328,7 +335,51 @@
 	time = 15 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY
+	skill_dots_minimum = 5 // DARKPACK EDIT ADD - STORYTELER_STATS
+
+/* // DARKPACK EDIT REMOVAL
+/datum/crafting_recipe/ratvarian_repeater
+	name = "Emplaced Ratvarian Repeater"
+	tool_behaviors = list(TOOL_SCREWDRIVER,TOOL_WRENCH)
+	result = /obj/structure/mounted_gun/ratvarian_repeater
+	reqs = list(
+		/obj/item/stack/cable_coil = 15,
+		/obj/item/stock_parts/micro_laser = 2,
+		/obj/item/stock_parts/capacitor = 2,
+		/obj/item/reagent_containers/cup/glass/drinkingglass = 2,
+		/obj/item/stack/sheet/bronze = 5,
+		/obj/item/stack/rods = 10,
+	)
+	time = 15 SECONDS
+	category = CAT_WEAPON_RANGED
+	crafting_flags = CRAFT_CHECK_DENSITY
 */
+
+/datum/crafting_recipe/detached_ratvarian_repeater
+	name = "Iconoclast's Repeater"
+	tool_behaviors = list(TOOL_WELDER)
+	result = /obj/item/gun/energy/laser/musket/repeater
+	structures = list(
+		/obj/structure/mounted_gun/ratvarian_repeater = CRAFTING_STRUCTURE_CONSUME,
+	)
+	time = 10 SECONDS
+	category = CAT_WEAPON_RANGED
+	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
+
+/datum/crafting_recipe/large_ballista
+	name = "Improvised Ballista"
+	tool_behaviors = list(TOOL_WELDER,TOOL_SCREWDRIVER,TOOL_WRENCH,TOOL_WIRECUTTER)
+	result = /obj/structure/mounted_gun/ballista
+	reqs = list(
+		/obj/item/stack/cable_coil = 15,
+		/obj/item/stack/sheet/iron = 10,
+		/obj/item/stack/rods = 10,
+	)
+	time = 8 SECONDS
+	category = CAT_WEAPON_RANGED
+	crafting_flags = CRAFT_CHECK_DENSITY
+	skill_dots_minimum = 4 // DARKPACK EDIT ADD - STORYTELER_STATS
+
 /datum/crafting_recipe/trash_cannon
 	name = "Trash Cannon"
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER)
@@ -342,7 +393,7 @@
 	)
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/laser_musket
 	name = "Laser Musket"
 	result = /obj/item/gun/energy/laser/musket
@@ -373,7 +424,7 @@
 	time = 30 SECONDS //contemplate for a bit
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/smoothbore_disabler
 	name = "Smoothbore Disabler"
 	result = /obj/item/gun/energy/disabler/smoothbore
@@ -417,7 +468,7 @@
 	time = 30 SECONDS
 	category = CAT_WEAPON_RANGED
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-/* // DARKPACK EDIT REMOVE
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/ashenbow
 	name = "Ashen Bow"
 	result = /obj/item/gun/ballistic/bow/ashenbow

@@ -1,5 +1,14 @@
 /datum/bank_account
 	var/times_used_without_pin = 0
+	var/paycheck_amount = 0
+
+/datum/bank_account/payday(amount_of_paychecks, free = FALSE, skippable = FALSE, event = "Paycheck")
+	if(!paycheck_amount)
+		return FALSE
+	log_econ("[paycheck_amount] [MONEY_NAME] were given to [src.account_holder]'s account from income.")
+	adjust_money(paycheck_amount, "Paycheck")
+	bank_card_talk("Account now holds [MONEY_SYMBOL][account_balance].")
+	return TRUE
 
 /datum/bank_account/proc/check_pin(mob/living/user, amount, obj/item/source)
 	//purchases over $20 require a pin, you have to use one eventually
@@ -39,3 +48,26 @@
 	else
 		times_used_without_pin += 1
 	return TRUE
+
+/// Your bank account ID, can't get into it without it
+/datum/memory/key/bank_pin
+	var/remembered_id
+
+/datum/memory/key/bank_pin/New(
+	datum/mind/memorizer_mind,
+	atom/protagonist,
+	atom/deuteragonist,
+	atom/antagonist,
+	remembered_id,
+)
+	src.remembered_id = remembered_id
+	return ..()
+
+/datum/memory/key/bank_pin/get_names()
+	return list("The bank pin of [protagonist_name], [remembered_id].")
+
+/datum/memory/key/bank_pin/get_starts()
+	return list(
+		"[protagonist_name] flexing their last brain cells, proudly showing their lucky numbers [remembered_id].",
+		"[remembered_id]. The numbers mason, what do they mean!?",
+	)

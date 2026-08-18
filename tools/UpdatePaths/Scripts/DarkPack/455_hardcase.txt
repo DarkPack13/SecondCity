@@ -1,0 +1,1 @@
+/obj/item/storage/fancy/hardcase/mp5 : /obj/item/storage/fancy/hardcase/mag_mp5 {@OLD}

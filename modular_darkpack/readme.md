@@ -242,7 +242,7 @@ In those cases, we've decided to apply the following convention, with examples:
   log_admin("[key_name(usr)] admin-called the emergency shuttle.")
   message_admins(span_adminnotice("[key_name_admin(usr)] admin-called the emergency shuttle."))
   return
-  */ //DARKPACK EDIT REMOVAL END
+  */ // DARKPACK EDIT REMOVAL END
   ```
 
 - **Change:**
@@ -250,7 +250,8 @@ In those cases, we've decided to apply the following convention, with examples:
   ```byond
   if(SHUTTLE_STRANDED, SHUTTLE_ESCAPE, SHUTTLE_DISABLED) // DARKPACK EDIT CHANGE - ORIGINAL: if(SHUTTLE_STRANDED, SHUTTLE_ESCAPE)
   ```
-	Adding `- ORIGINAL:` is optional but prefered.
+
+  Adding `- ORIGINAL:` is optional but prefered.
 
   Example: Removal/addition combo.
   This is the preferred way of dealing with changes that span more than one line and have varying

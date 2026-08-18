@@ -66,7 +66,7 @@
 	if(flaming)
 		ash = new(owner, /particles/smoke/ash, PARTICLE_ATTACH_MOB)
 		var/clear_in = rand(15 SECONDS, 25 SECONDS)
-		if(duration != -1)
+		if(duration != STATUS_EFFECT_PERMANENT)
 			clear_in = min(duration, clear_in)
 		addtimer(CALLBACK(src, PROC_REF(clear_flame)), clear_in)
 	return TRUE
@@ -121,7 +121,7 @@
 		var/atom/target = get_edge_target_turf(source, source.dir)
 		choking_on.throw_at(target, distance, 1, source)
 
-/datum/status_effect/choke/get_examine_text()
+/datum/status_effect/choke/get_examine_text(mob/examiner)
 	return span_boldwarning("[owner.p_They()] [owner.p_are()] choking!")
 
 /datum/status_effect/choke/proc/remove_choke(datum/source)
@@ -163,7 +163,7 @@
 /datum/status_effect/choke/proc/attempt_eat(mob/source, atom/eating)
 	SIGNAL_HANDLER
 	source.balloon_alert(source, "can't get it down!")
-	return COMSIG_CARBON_BLOCK_EAT
+	return BLOCK_EAT_ATTEMPT
 
 /datum/status_effect/choke/proc/helped(mob/source, mob/helping)
 	SIGNAL_HANDLER
@@ -238,7 +238,7 @@
 
 	if(iscarbon(victim))
 		var/mob/living/carbon/carbon_victim = victim
-		if(!carbon_victim.appears_alive())
+		if(IS_DEAD_OR_FAKING(carbon_victim))
 			victim.balloon_alert(aggressor, "too late...")
 			return FALSE
 
@@ -264,7 +264,7 @@
 	// If we ain't starting, deal a tad bit of brute, as a treat
 	// Note, we attempt to process 10 times a second, so over 7 seconds this'll deal 14 brute
 	if(!before_work)
-		victim.adjustBruteLoss(0.2)
+		victim.adjust_brute_loss(0.2)
 	return TRUE
 
 /datum/status_effect/choke/tick(seconds_between_ticks)

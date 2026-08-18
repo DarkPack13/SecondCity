@@ -9,6 +9,8 @@
 	attack_verb_simple = list("forcefully inspire", "violently encourage", "relentlessly galvanize")
 	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/banners_righthand.dmi'
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
+	item_flags = NO_PIXEL_RANDOM_DROP
 	var/inspiration_available = TRUE //If this banner can be used to inspire crew
 	var/morale_time = 0
 	var/morale_cooldown = 600 //How many deciseconds between uses
@@ -66,8 +68,8 @@
 
 /obj/item/banner/proc/inspiration(mob/living/carbon/human/inspired_human)
 	var/need_mob_update = FALSE
-	need_mob_update += inspired_human.adjustBruteLoss(-15, updating_health = FALSE)
-	need_mob_update += inspired_human.adjustFireLoss(-15, updating_health = FALSE)
+	need_mob_update += inspired_human.adjust_brute_loss(-15, updating_health = FALSE)
+	need_mob_update += inspired_human.adjust_fire_loss(-15, updating_health = FALSE)
 	if(need_mob_update)
 		inspired_human.updatehealth()
 	inspired_human.AdjustStun(-4 SECONDS)
@@ -94,6 +96,7 @@
 /obj/item/banner/security/mundane
 	inspiration_available = FALSE
 
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/security_banner
 	name = "Securistan Banner"
 	result = /obj/item/banner/security/mundane
@@ -101,6 +104,7 @@
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/clothing/under/rank/security/officer = 1)
 	category = CAT_MISC
+*/
 
 /obj/item/banner/medical
 	name = "meditopia banner"
@@ -119,6 +123,7 @@
 /obj/item/banner/medical/check_inspiration(mob/living/carbon/human/H)
 	return H.stat //Meditopia is moved to help those in need
 
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/medical_banner
 	name = "Meditopia Banner"
 	result = /obj/item/banner/medical/mundane
@@ -126,11 +131,12 @@
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/clothing/under/rank/medical/doctor = 1)
 	category = CAT_MISC
+*/
 
 /obj/item/banner/medical/special_inspiration(mob/living/carbon/human/inspired_human)
 	var/need_mob_update = FALSE
-	need_mob_update += inspired_human.adjustToxLoss(-15, updating_health = FALSE)
-	need_mob_update += inspired_human.setOxyLoss(0, updating_health = FALSE)
+	need_mob_update += inspired_human.adjust_tox_loss(-15, updating_health = FALSE)
+	need_mob_update += inspired_human.set_oxy_loss(0, updating_health = FALSE)
 	if(need_mob_update)
 		inspired_human.updatehealth()
 	inspired_human.reagents.add_reagent(/datum/reagent/medicine/inaprovaline, 5)
@@ -152,6 +158,7 @@
 /obj/item/banner/science/check_inspiration(mob/living/carbon/human/H)
 	return H.on_fire //Sciencia is pleased by dedication to the art of Ordnance
 
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/science_banner
 	name = "Sciencia Banner"
 	result = /obj/item/banner/science/mundane
@@ -159,6 +166,7 @@
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/clothing/under/rank/rnd/scientist = 1)
 	category = CAT_MISC
+*/
 
 /obj/item/banner/cargo
 	name = "cargonia banner"
@@ -174,6 +182,7 @@
 /obj/item/banner/cargo/mundane
 	inspiration_available = FALSE
 
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/cargo_banner
 	name = "Cargonia Banner"
 	result = /obj/item/banner/cargo/mundane
@@ -181,6 +190,7 @@
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/clothing/under/rank/cargo/tech = 1)
 	category = CAT_MISC
+*/
 
 /obj/item/banner/engineering
 	name = "engitopia banner"
@@ -199,6 +209,7 @@
 /obj/item/banner/engineering/special_inspiration(mob/living/carbon/human/H)
 	qdel(H.GetComponent(/datum/component/irradiated))
 
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/engineering_banner
 	name = "Engitopia Banner"
 	result = /obj/item/banner/engineering/mundane
@@ -206,6 +217,7 @@
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/clothing/under/rank/engineering/engineer = 1)
 	category = CAT_MISC
+*/
 
 /obj/item/banner/command
 	name = "command banner"
@@ -223,6 +235,7 @@
 /obj/item/banner/command/check_inspiration(mob/living/carbon/human/H)
 	return HAS_TRAIT(H, TRAIT_MINDSHIELD) //Command is stalwart but rewards their allies.
 
+/* // DARKPACK EDIT REMOVAL
 /datum/crafting_recipe/command_banner
 	name = "Command Banner"
 	result = /obj/item/banner/command/mundane
@@ -230,6 +243,7 @@
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/clothing/under/rank/captain/parade = 1)
 	category = CAT_MISC
+*/
 
 /obj/item/banner/red
 	name = "red banner"
@@ -335,6 +349,10 @@
 	var/staffcooldown = 0
 	var/staffwait = 30
 
+/obj/item/godstaff/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/walking_aid)
+
 /obj/item/godstaff/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(SHOULD_SKIP_INTERACTION(interacting_with, src, user))
 		return NONE
@@ -404,6 +422,10 @@
 
 /obj/item/claymore/weak
 	desc = "This one is rusted."
+	icon = 'icons/obj/weapons/sword.dmi'
+	icon_state = "claymore_old"
+	worn_icon = 'icons/mob/clothing/back.dmi'
+	worn_icon_state = "claymore"
 	force = 30
 	armour_penetration = 15
 

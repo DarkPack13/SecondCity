@@ -29,3 +29,20 @@
 	bloodpool = 10
 	maxbloodpool = 10
 	unique_pet = TRUE
+
+/mob/living/basic/pet/cat/darkpack/autun
+	name = "Autun"
+	unique_pet = TRUE
+
+/mob/living/basic/pet/cat/darkpack/don
+	name = "Don"
+	unique_pet = TRUE
+
+// Dont ask okay.
+/mob/living/basic/pet/cat/darkpack/sproingus
+	name = "Sproingus"
+	unique_pet = TRUE
+
+/mob/living/basic/pet/cat/darkpack/zleeby
+	name = "Zleeby"
+	unique_pet = TRUE

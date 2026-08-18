@@ -10,7 +10,7 @@
 	name = "Unmelting Protection"
 	desc = "Grants fire immunity to any piece of clothing."
 	ritual_length = 12 SECONDS
-	ritual_invocations = list("And so to support the holder of the Ever-Burning candle ...",
+	ritual_invocations = list("And so to support the holder of the Ever-Burning Candle ...",
 	"... allow this unworthy apparel to serve you ...",
 	"... make it strong enough to burn a thousand times and more ...")
 	invoke_msg = "... Come forth in your new form, and join the unmelting wax of the one true flame!"
@@ -43,7 +43,7 @@
 
 /datum/religion_rites/burning_sacrifice
 	name = "Burning Offering"
-	desc = "Sacrifice a buckled burning or husked corpse for favor, the more burn damage the corpse has the more favor you will receive."
+	desc = "Sacrifice a buckled burning or husked corpse for favor. The more burn damage the corpse has the more favor you will receive."
 	ritual_length = 15 SECONDS
 	ritual_invocations = list("Burning body ...",
 	"... cleansed by the flame ...",
@@ -90,7 +90,7 @@
 		to_chat(user, span_warning("The sacrifice has to stay dead for the rite to work!"))
 		chosen_sacrifice = null
 		return FALSE
-	var/favor_gained = 100 + round(chosen_sacrifice.getFireLoss())
+	var/favor_gained = 100 + round(chosen_sacrifice.get_fire_loss())
 	GLOB.religious_sect.adjust_favor(favor_gained, user)
 	to_chat(user, span_notice("[GLOB.deity] absorbs the charred corpse and any trace of fire with it. [GLOB.deity] rewards you with [favor_gained] favor."))
 	chosen_sacrifice.dust(force = TRUE)
@@ -100,7 +100,7 @@
 
 /datum/religion_rites/infinite_candle
 	name = "Immortal Candles"
-	desc = "Creates 5 candles that never run out of wax."
+	desc = "Create five unextinguishable candles that never run out of wax."
 	ritual_length = 10 SECONDS
 	invoke_msg = "Burn bright, little candles, for you will only extinguish along with the universe."
 	favor_cost = 200
@@ -118,7 +118,7 @@
 	desc = "Enchants a holy arrow to set someone on fire on hit, or if the victim is already on fire... note, this consumes the arrow."
 	ritual_length = 15 SECONDS
 	ritual_invocations = list(
-		"And so to keep the Ever-Burning candle protected ...",
+		"And so to keep the Ever-Burning Candle protected ...",
 		"... grant this feeble bolt your blessing ...",
 		"... make it burn bright ...",
 	)

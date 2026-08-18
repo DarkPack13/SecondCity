@@ -3,6 +3,7 @@
 	savefile_key = "language"
 	savefile_identifier = PREFERENCE_CHARACTER
 	should_generate_icons = TRUE
+	should_update_preview = FALSE
 
 /datum/preference/choiced/language/create_default_value()
 	return /datum/language/spanish::name // DARKPACK EDIT CHANGE - LANGUAGES
@@ -30,7 +31,7 @@
 	if(!GLOB.uncommon_roundstart_languages.len)
 		generate_selectable_species_and_languages()
 
-	/* DARKPACK EDIT REMOVAL - LANGUAGES
+	/* // DARKPACK EDIT REMOVAL - LANGUAGES
 	values += "Random"
 	//we add uncommon as it's foreigner-only.
 	values += /datum/language/uncommon::name
@@ -43,7 +44,7 @@
 
 	return values
 
-/datum/preference/choiced/language/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/choiced/language/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return
 
 /datum/preference/toggle/language_speakable
@@ -52,6 +53,7 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	default_value = TRUE
 	can_randomize = FALSE
+	should_update_preview = FALSE
 
 /datum/preference/toggle/language_speakable/is_accessible(datum/preferences/preferences)
 	if(!..())
@@ -59,7 +61,7 @@
 
 	return /datum/quirk/bilingual::name in preferences.all_quirks
 
-/datum/preference/toggle/language_speakable/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/toggle/language_speakable/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return
 
 /datum/preference/choiced/language_skill
@@ -67,6 +69,7 @@
 	savefile_key = "language_skill"
 	savefile_identifier = PREFERENCE_CHARACTER
 	can_randomize = FALSE
+	should_update_preview = FALSE
 
 /datum/preference/choiced/language_skill/create_default_value()
 	return "100%"
@@ -82,7 +85,7 @@
 /datum/preference/choiced/language_skill/init_possible_values()
 	return list("100%", "75%", "50%", "33%", "25%", "10%")
 
-/datum/preference/choiced/language_skill/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/choiced/language_skill/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return
 
 /datum/preference/choiced/csl_strength
@@ -90,15 +93,16 @@
 	savefile_key = "csl_strength"
 	savefile_identifier = PREFERENCE_CHARACTER
 	can_randomize = FALSE
+	should_update_preview = FALSE
 
 /datum/preference/choiced/csl_strength/create_default_value()
-	return "90%"
+	return init_possible_values()[1]
 
 /datum/preference/choiced/csl_strength/is_accessible(datum/preferences/preferences)
 	return ..() && (/datum/quirk/csl::name in preferences.all_quirks)
 
 /datum/preference/choiced/csl_strength/init_possible_values()
-	return list("90%", "75%", "50%", "33%", "25%", "10%")
+	return list("75%", "50%", "25%")
 
-/datum/preference/choiced/csl_strength/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/choiced/csl_strength/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return

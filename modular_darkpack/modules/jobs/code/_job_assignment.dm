@@ -17,16 +17,21 @@
  */
 /datum/controller/subsystem/job/proc/check_job_eligibility_darkpack(mob/dead/new_player/player, datum/job/possible_job, debug_prefix = "", add_job_to_log = FALSE)
 	var/client/player_client = GET_CLIENT(player)
-	var/datum/species/player_species = GLOB.species_prototypes[player_client.prefs.read_preference(/datum/preference/choiced/species)]
-	var/player_species_id = player_species.id
+	var/splat_pref = player_client.prefs.read_preference(/datum/preference/choiced/splats)
+	var/player_splat_id
+	if(ispath(splat_pref))
+		var/datum/splat/player_splat = GLOB.splat_prototypes[splat_pref]
+		player_splat_id = player_splat.id
+	else
+		player_splat_id = splat_pref
 
-	if(!(player_species_id in possible_job.allowed_species))
-		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPECIES, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
-		return JOB_UNAVAILABLE_SPECIES
+	if(possible_job.allowed_splats && !(player_splat_id in possible_job.allowed_splats))
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPLAT, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_SPLAT
 
-	if(possible_job.species_slots[player_species_id] == 0)
-		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPECIES_SLOTS, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
-		return JOB_UNAVAILABLE_SPECIES_SLOTS
+	if(possible_job.splat_slots && (possible_job.splat_slots[player_splat_id] == 0))
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPLAT_SLOTS, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_SPLAT_SLOTS
 
 	/*
 	if(possible_job.whitelisted)
@@ -34,22 +39,57 @@
 		return JOB_UNAVAILABLE_WHITELIST
 	*/
 
-	if(player_species_id != SPECIES_KINDRED)
-		return JOB_AVAILABLE
-	// Beyond this point, we know our species is a kindred.
-
-	if((player_client.prefs.read_preference(/datum/preference/numeric/immortal_age) < possible_job.minimum_immortal_age))
-		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_AGE, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
-		return JOB_UNAVAILABLE_KINDRED_AGE
-
-	if((player_client.prefs.read_preference(/datum/preference/numeric/generation) > possible_job.minimal_generation))
-		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_GENERATION, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
-		return JOB_UNAVAILABLE_KINDRED_GENERATION
-
-	var/datum/vampire_clan/clan = get_vampire_clan(player_client.prefs.read_preference(/datum/preference/choiced/vampire_clan))
-	if(!(clan.id in possible_job.allowed_clans))
-		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_CLAN, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
-		return JOB_UNAVAILABLE_KINDRED_CLAN
+	var/splat_checks
+	switch(player_splat_id)
+		if(SPLAT_KINDRED)
+			splat_checks = check_kindred_prefs(player_client, player, possible_job, debug_prefix, add_job_to_log)
+		if(SPLAT_GAROU)
+			splat_checks = check_garou_prefs(player_client, player, possible_job, debug_prefix, add_job_to_log)
+	if(splat_checks)
+		return splat_checks
 
 	return JOB_AVAILABLE
 
+/datum/config_entry/flag/max_gen_limits //If you can be limited from a job for having too high a generation
+
+/datum/controller/subsystem/job/proc/check_kindred_prefs(client/player_client, mob/dead/new_player/player, datum/job/possible_job, debug_prefix = "", add_job_to_log = FALSE)
+	if((player_client.prefs.read_preference(/datum/preference/numeric/immortal_age) < possible_job.minimum_immortal_age))
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_AGE_MIN, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_KINDRED_AGE_MIN
+
+	if((CONFIG_GET(flag/max_gen_limits)) && (!isnull(possible_job.maximum_immortal_age) && (player_client.prefs.read_preference(/datum/preference/numeric/immortal_age) > possible_job.maximum_immortal_age)))
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_AGE_MAX, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_KINDRED_AGE_MAX
+
+	if((player_client.prefs.read_preference(/datum/preference/numeric/generation) > possible_job.minimal_generation))
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_GENERATION_MIN, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_KINDRED_GENERATION_MIN
+
+	if((CONFIG_GET(flag/max_gen_limits)) && (player_client.prefs.read_preference(/datum/preference/numeric/generation) < possible_job.maximal_generation))
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_GENERATION_MAX, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_KINDRED_GENERATION_MAX
+
+	var/datum/subsplat/vampire_clan/clan = get_vampire_clan(player_client.prefs.read_preference(/datum/preference/choiced/subsplat/vampire_clan))
+	if(possible_job.allowed_clans && !(clan.id in possible_job.allowed_clans))
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_CLAN, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_KINDRED_CLAN
+	if(possible_job.disallowed_clans && (clan.id in possible_job.disallowed_clans))
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_KINDRED_CLAN, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_KINDRED_CLAN
+
+/datum/controller/subsystem/job/proc/check_garou_prefs(client/player_client, mob/dead/new_player/player, datum/job/possible_job, debug_prefix = "", add_job_to_log = FALSE)
+	var/datum/subsplat/werewolf/auspice/auspice = get_fera_auspice(player_client.prefs.read_preference(/datum/preference/choiced/subsplat/fera_auspice/garou))
+	if(possible_job.allowed_auspice && !(auspice.name in possible_job.allowed_auspice))
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FERA_AUSPICE, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_FERA_AUSPICE
+	if(possible_job.disallowed_auspice && (auspice.name in possible_job.disallowed_auspice))
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FERA_AUSPICE, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_FERA_AUSPICE
+
+	var/datum/subsplat/werewolf/tribe/tribe = get_fera_tribe(player_client.prefs.read_preference(/datum/preference/choiced/subsplat/fera_tribe/garou))
+	if(possible_job.allowed_tribes && !(tribe.name in possible_job.allowed_tribes))
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FERA_TRIBE, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_FERA_TRIBE
+	if(possible_job.disallowed_tribes && (tribe.name in possible_job.disallowed_tribes))
+		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FERA_TRIBE, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+		return JOB_UNAVAILABLE_FERA_TRIBE

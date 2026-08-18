@@ -17,7 +17,7 @@
 #define CARGO_MINIMUM_COST CARGO_CRATE_VALUE * 1.4
 
 /// The baseline unit for cargo crates. Adjusting this will change the cost of all in-game shuttles, crate export values, bounty rewards, and all supply pack import values, as they use this as their unit of measurement.
-#define CARGO_CRATE_VALUE 200
+#define CARGO_CRATE_VALUE 50 // DARKPACK EDIT CHANGE
 
 /// The highest amount of orders you can have of one thing at any one time
 #define CARGO_MAX_ORDER 50
@@ -40,6 +40,28 @@
 
 ///Used by coupons to define that they're cursed
 #define COUPON_OMEN "omen"
+
+// Supply pack flags determining ordering properties
+/// Order is literally never visible, presumably it's an abstract type or something
+#define ORDER_INVISIBLE (1 << 0)
+/// Only orderable on emagged consoles
+#define ORDER_EMAG_ONLY (1 << 1)
+/// Only orderable on consoles with doctored boards
+#define ORDER_CONTRABAND (1 << 2)
+/// Can only be ordered privately, can use discount coupons, and arrives in a bag instead of a crate
+#define ORDER_GOODY (1 << 3)
+/// Can only be ordered via the express order console
+#define ORDER_POD_ONLY (1 << 4)
+/// Can only be ordered if the following flag is also enabled, for conditionally provided options
+#define ORDER_SPECIAL (1 << 5)
+/// If present then a special order can be ordered
+#define ORDER_SPECIAL_ENABLED (1 << 6)
+/// Unavailable to departmental order consoles even if it is in an appropriate category
+#define ORDER_NOT_DEPARTMENTAL (1 << 7)
+/// This will notify admins when it is purchased
+#define ORDER_DANGEROUS (1 << 8)
+/// This is set when something is created by an admin to make sure its contents is also marked as such
+#define ORDER_ADMIN_SPAWNED (1 << 9)
 
 ///Discount categories for coupons. This one is for anything that isn't discountable.
 #define SUPPLY_PACK_NOT_DISCOUNTABLE null
@@ -70,3 +92,6 @@
 #define DEPARTMENTAL_ORDER_REWARD_COEFFICIENT 120
 /// Used for the power of the logarithmic value for the free crate delivery reward
 #define DEPARTMENTAL_ORDER_REWARD_EXPONENT 1.5
+
+/// How many global bounties are spawned at minimum when refreshing the list?
+#define CIV_BOUNTY_BASELINE 5

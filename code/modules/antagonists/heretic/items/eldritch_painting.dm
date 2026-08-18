@@ -38,7 +38,7 @@
 	SIGNAL_HANDLER
 	if(!isliving(viewer) || !can_see(viewer, src, range))
 		return
-	if(isnull(viewer.mind) || isnull(viewer.mob_mood) || viewer.stat != CONSCIOUS || viewer.is_blind())
+	if(isnull(viewer.mind) || isnull(viewer.mob_mood) || IS_UNCONSCIOUS_OR_CRIT(viewer) || viewer.is_blind())
 		return
 	if(viewer.has_status_effect(applied_status_effect))
 		return
@@ -123,7 +123,7 @@
 		// Gives them some nutrition
 		examiner.adjust_nutrition(50)
 		to_chat(examiner, span_warning("You feel a searing pain in your stomach!"))
-		examiner.adjustOrganLoss(ORGAN_SLOT_STOMACH, 5)
+		examiner.adjust_organ_loss(ORGAN_SLOT_STOMACH, 5)
 		to_chat(examiner, span_notice("You feel less hungry."))
 		to_chat(examiner, span_warning("You should stockpile raw meat and organs, before you get hungry again."))
 		examiner.add_mood_event("respite_eldritch_hunger", /datum/mood_event/eldritch_painting/desire_examine)
@@ -173,8 +173,8 @@
 	)
 	// Poppy and harebell are used in heretic rituals
 	var/list/items_to_spawn = list(
-		/obj/item/food/grown/poppy,
-		/obj/item/food/grown/harebell,
+		/obj/item/food/grown/flower/poppy,
+		/obj/item/food/grown/flower/harebell,
 	)
 
 /obj/structure/sign/painting/eldritch/vines/Initialize(mapload)

@@ -10,7 +10,7 @@
 	///Handles the informational chat message timer.
 	COOLDOWN_DECLARE(headshot_cooldown)
 	///Assoc list of ckeys and their links, used to cut down on chat spam
-	var/list/stored_links = list()
+	var/static/list/stored_links = list()
 	var/static/link_regex = regex("files.catbox.moe|images2.imgbox.com|i.gyazo.com")
 	var/static/list/valid_extensions = list("jpg", "png", "jpeg") // Regex works fine, if you know how it works
 
@@ -33,7 +33,7 @@
 
 	// extension will always be the last entry
 	var/extension = value_split[length(value_split)]
-	if(!(extension in valid_extensions))
+	if(!(LOWER_TEXT(extension) in valid_extensions))
 		to_chat(usr, span_warning("The image must be one of the following extensions: '[english_list(valid_extensions)]'"))
 		return
 
@@ -68,6 +68,32 @@
 
 /datum/preference/text/flavor_text/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	target.dna.features[EXAMINE_DNA_FLAVOR_TEXT] = value
+
+
+/datum/preference/text/war_form_flavor_text
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	priority = PREFERENCE_PRIORITY_BODYPARTS
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "war_form_flavor_text"
+	maximum_value_length = MAX_FLAVOR_LEN
+	relevant_inherent_trait = TRAIT_FERA_FORMS
+	must_have_relevant_trait = TRUE
+
+/datum/preference/text/war_form_flavor_text/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	target.dna.features[EXAMINE_DNA_WAR_FORM_FLAVOR_TEXT] = value
+
+
+/datum/preference/text/feral_form_flavor_text
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	priority = PREFERENCE_PRIORITY_BODYPARTS
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "feral_form_flavor_text"
+	maximum_value_length = MAX_FLAVOR_LEN
+	relevant_inherent_trait = TRAIT_FERA_FORMS
+	must_have_relevant_trait = TRUE
+
+/datum/preference/text/feral_form_flavor_text/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	target.dna.features[EXAMINE_DNA_FERAL_FORM_FLAVOR_TEXT] = value
 
 ///////////////////////////////////////////////////////////////////////////
 

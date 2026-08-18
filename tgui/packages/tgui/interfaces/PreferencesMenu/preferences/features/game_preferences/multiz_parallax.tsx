@@ -1,6 +1,6 @@
+/* DARKPACK EDIT REMOVAL START - Offsets Z levels to give the appearance of building 'stacking' - This feature made buildings 'bend' in relation
 import { CheckboxInput, type FeatureToggle } from '../base';
 
-/* DARKPACK EDIT REMOVAL START - Offsets Z levels to give the appearance of building 'stacking' - This feature made buildings 'bend' in relation
 // to where the viewer was looking at them.
 export const multiz_parallax: FeatureToggle = {
   name: 'Enable multi-z parallax',

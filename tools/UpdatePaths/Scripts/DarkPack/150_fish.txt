@@ -1,1 +1,2 @@
 /obj/item/food/fish/@SUBTYPES : /obj/item/fish/darkpack/@SUBTYPES {@OLD}
+/obj/item/fish/darkpack/tune : /obj/item/fish/darkpack/tuna {@OLD}

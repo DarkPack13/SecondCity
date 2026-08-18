@@ -208,11 +208,14 @@
 
 	if(greyscale_colors)
 		vended_item.set_greyscale(colors=greyscale_colors)
-	if(IsReachableBy(user) && user.put_in_hands(vended_item))
+
+	var/sigreturn = SEND_SIGNAL(user, COMSIG_MOB_VENDING_PURCHASE, src, vended_item)
+	if(!(sigreturn & VENDING_NO_PICKUP) && IsReachableBy(user) && user.put_in_hands(vended_item))
 		to_chat(user, span_notice("You take [item_record.name] out of the slot."))
 		vended_item.do_pickup_animation(user, src)
 	else
 		to_chat(user, span_warning("[capitalize(format_text(item_record.name))] falls onto the floor!"))
+
 	SSblackbox.record_feedback("nested tally", "vending_machine_usage", 1, list("[type]", "[item_record.product_path]"))
 
 /**
@@ -242,6 +245,8 @@
 
 	on_dispense(vended_item, dispense_returned)
 	use_energy(active_power_usage)
+
+	SEND_SIGNAL(src, COMSIG_VENDING_DISPENSED, vended_item)
 
 	return vended_item
 
@@ -287,7 +292,7 @@
 
 	//transfer money to machine
 	SSblackbox.record_feedback("amount", "vending_spent", price_to_use)
-	log_econ("[price_to_use] credits were inserted into [src] by [account.account_holder] to buy [product_to_vend].")
+	log_econ("[price_to_use] [MONEY_NAME] were inserted into [src] by [account.account_holder] to buy [product_to_vend].")
 	credits_contained += round(price_to_use * VENDING_CREDITS_COLLECTION_AMOUNT)
 	return TRUE
 // DARKPACK EDIT END START - ECONOMY

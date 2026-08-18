@@ -1,0 +1,7 @@
+/obj/clinic_machine/pyxis : @DELETE
+
+/mob/living/carbon/human/npc/sabbat/@SUBTYPES : @DELETE
+
+/obj/item/clothing/under/pentex/pentex_executive_suit : /obj/item/clothing/under/vampire/pentex_executive_suit
+/obj/item/clothing/under/pentex/pentex_executiveskirt : /obj/item/clothing/under/vampire/pentex_executiveskirt
+/obj/item/clothing/under/pentex/pentex_suitskirt : /obj/item/clothing/under/vampire/pentex_suitskirt

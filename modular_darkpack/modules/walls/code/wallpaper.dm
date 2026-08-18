@@ -19,6 +19,42 @@
 /obj/effect/decal/wallpaper/low
 	icon_state = "wallpaper_low"
 
+/obj/effect/decal/wallpaper/paint
+	icon_state = "paint-white"
+
+/obj/effect/decal/wallpaper/paint/low
+	icon_state = "paint-white_low"
+
+/obj/effect/decal/wallpaper/paint/gray
+	icon_state = "paint-gray"
+
+/obj/effect/decal/wallpaper/paint/gray/low
+	icon_state = "paint-gray_low"
+
+/obj/effect/decal/wallpaper/paint/red
+	icon_state = "paint-red"
+
+/obj/effect/decal/wallpaper/paint/red/low
+	icon_state = "paint-red_low"
+
+/obj/effect/decal/wallpaper/paint/yellow
+	icon_state = "paint-yellow"
+
+/obj/effect/decal/wallpaper/paint/yellow/low
+	icon_state = "paint-yellow_low"
+
+/obj/effect/decal/wallpaper/paint/green
+	icon_state = "paint-green"
+
+/obj/effect/decal/wallpaper/paint/green/low
+	icon_state = "paint-green_low"
+
+/obj/effect/decal/wallpaper/paint/blue
+	icon_state = "paint-blue"
+
+/obj/effect/decal/wallpaper/paint/blue/low
+	icon_state = "paint-blue_low"
+
 /obj/effect/decal/wallpaper/grey
 	icon_state = "wallpaper-grey"
 
@@ -50,6 +86,30 @@
 /obj/effect/decal/wallpaper/paper/low
 	icon_state = "wallpaper-cheap_low"
 
+/obj/effect/decal/wallpaper/paper/fancy
+	icon_state = "wallpaper-greenfancy"
+
+/obj/effect/decal/wallpaper/paper/fancy/low
+	icon_state = "wallpaper-greenfancy_low"
+
+/obj/effect/decal/wallpaper/paper/fancy/stripe
+	icon_state = "wallpaper-stripesfancy"
+
+/obj/effect/decal/wallpaper/paper/fancy/stripe/low
+	icon_state = "wallpaper-stripesfancy_low"
+
+/obj/effect/decal/wallpaper/paper/fancy/red
+	icon_state = "wallpaper-redfancy"
+
+/obj/effect/decal/wallpaper/paper/fancy/red/low
+	icon_state = "wallpaper-redfancy_low"
+
+/obj/effect/decal/wallpaper/paper/fancy/blue
+	icon_state = "wallpaper-bluefancy"
+
+/obj/effect/decal/wallpaper/paper/fancy/blue/low
+	icon_state = "wallpaper-bluefancy_low"
+
 /obj/effect/decal/wallpaper/paper/green
 	icon_state = "wallpaper-green"
 
@@ -80,12 +140,21 @@
 /obj/effect/decal/wallpaper/paper/darkgreen/low
 	icon_state = "wallpaper-dgreen_low"
 
+/obj/effect/decal/wallpaper/paper/purple
+	icon_state = "wallpaper-dpurple"
+
+/obj/effect/decal/wallpaper/paper/purple/low
+	icon_state = "wallpaper-dpurple_low"
+
 /obj/effect/decal/wallpaper/stone
 	name = "wall decoration"
 	icon_state = "wallpaper-stone"
 
 /obj/effect/decal/wallpaper/stone/low
 	icon_state = "wallpaper-stone_low"
+
+/obj/effect/decal/wallpaper/stone/low/tilt
+	icon_state = "wallpaper-stone_low_tilt"
 
 /obj/effect/decal/wallpaper/gold
 	icon_state = "wallpaper-gold"
@@ -108,6 +177,12 @@
 /obj/effect/decal/wallpaper/lightpadded/low
 	icon_state = "wallpaper-lightpadded_low"
 
+/obj/effect/decal/wallpaper/absorbingfoam
+	icon_state = "absorbingfoam"
+
+/obj/effect/decal/wallpaper/absorbingfoam/low
+	icon_state = "absorbingfoam_low"
+
 /obj/effect/decal/wallpaper/papers
 	name = "papers"
 	layer = SIGN_LAYER
@@ -117,7 +192,8 @@
 
 /obj/effect/decal/wallpaper/papers/random/Initialize(mapload)
 	. = ..()
-	icon_state = "wallpapers_[rand(1, 8)]"
+	if(icon_state == src::icon_state)
+		icon_state = "wallpapers_[rand(1, 8)]"
 
 /obj/effect/decal/wallpaper/papers/one
 	icon_state = "wallpapers_1"
@@ -142,3 +218,18 @@
 
 /obj/effect/decal/wallpaper/papers/eight
 	icon_state = "wallpapers_8"
+
+/obj/effect/decal/wallpaper/trim
+	icon_state = "trimgrey"
+
+/obj/effect/decal/wallpaper/trim/green
+	icon_state = "trimgreen"
+
+/obj/effect/decal/wallpaper/trim/purple
+	icon_state = "trimpurple"
+
+/obj/effect/decal/wallpaper/stripes
+	icon_state = "stripesgreen"
+
+/obj/effect/decal/wallpaper/stripes/purple
+	icon_state = "stripespurple"

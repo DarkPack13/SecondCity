@@ -17,23 +17,26 @@
 /obj/item/reagent_containers/cup/glass/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum, do_splash = TRUE)
 	. = ..()
 	if(!.) //if the bottle wasn't caught
-		var/mob/thrower = throwingdatum?.get_thrower()
-		if(!istype(thrower))
-			return
-		smash(hit_atom, thrower, throwingdatum)
+		smash(hit_atom, throwingdatum?.get_thrower(), throwingdatum)
 
-/obj/item/reagent_containers/cup/glass/proc/smash(atom/target, mob/thrower, datum/thrownthing/throwingdatum, break_top = FALSE)
+/obj/item/reagent_containers/cup/glass/proc/smash(atom/target, atom/thrower, datum/thrownthing/throwingdatum, break_top = FALSE)
 	if(!isGlass)
-		return
+		return FALSE
 	if(QDELING(src) || !target) //Invalid loc
-		return
-	if(bartender_check(target, thrower) && throwingdatum)
-		return
-	splash_reagents(target, thrower || throwingdatum?.get_thrower(), allow_closed_splash = TRUE)
-	var/obj/item/broken_bottle/B = new (loc)
-	B.mimic_broken(src, target, break_top)
+		return FALSE
+	if(ismob(thrower) && bartender_check(target, thrower) && throwingdatum)
+		return FALSE
+	var/splash_target = QDELETED(target) ? target.drop_location() : target
+	var/splash_thrower = ismob(thrower) ? thrower : null
+	splash_reagents(splash_target, splash_thrower, allow_closed_splash = TRUE)
+	var/obj/item/broken_bottle/broken = new (loc)
+	broken.mimic_broken(src, target, break_top)
+	post_smash(target, thrower, throwingdatum, broken)
 	qdel(src)
-	target.Bumped(B)
+	return TRUE
+
+/obj/item/reagent_containers/cup/glass/proc/post_smash(atom/target, atom/thrower, datum/thrownthing/throwingdatum, obj/item/broken_bottle/broken)
+	return
 
 /obj/item/reagent_containers/cup/glass/bullet_act(obj/projectile/proj)
 	. = ..()
@@ -120,6 +123,7 @@
 	resistance_flags = FREEZE_PROOF
 	isGlass = FALSE
 	drink_type = BREAKFAST
+	custom_price = 3 // DARKPACK EDIT ADD - ECONOMY
 
 	/// Is our lid currently removed?
 	var/lid_open = FALSE
@@ -129,11 +133,7 @@
 	list_reagents = null
 	lid_open = TRUE
 
-/* DARKPACK EDIT REMOVAL - Our coffee sprites only have one state
-/obj/item/reagent_containers/cup/glass/coffee/Initialize(mapload)
-	. = ..()
-	register_context()
-
+/* // DARKPACK EDIT REMOVAL - Our coffee sprites only have one state
 /obj/item/reagent_containers/cup/glass/coffee/examine(mob/user)
 	. = ..()
 	. += span_notice("Alt-click to toggle cup lid.")
@@ -237,7 +237,7 @@
 	icon_state = "smallbottle"
 	inhand_icon_state = null
 	list_reagents = list(/datum/reagent/water = 49.5, /datum/reagent/fluorine = 0.5)//see desc, don't think about it too hard
-	custom_materials = list(/datum/material/plastic=HALF_SHEET_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT)
 	volume = 50
 	amount_per_transfer_from_this = 10
 	fill_icon_thresholds = list(0, 10, 25, 50, 75, 80, 90)
@@ -322,7 +322,7 @@
 /obj/item/reagent_containers/cup/glass/waterbottle/large
 	desc = "A fresh commercial-sized bottle of water."
 	icon_state = "largebottle"
-	custom_materials = list(/datum/material/plastic=SHEET_MATERIAL_AMOUNT * 1.5)
+	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 3)
 	list_reagents = list(/datum/reagent/water = 100)
 	volume = 100
 	amount_per_transfer_from_this = 10
@@ -355,6 +355,7 @@
 	possible_transfer_amounts = list(10)
 	volume = 10
 	isGlass = FALSE
+	custom_materials = list(/datum/material/paper = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/reagent_containers/cup/glass/sillycup/update_icon_state()
 	icon_state = reagents.total_volume ? "water_cup" : "water_cup_e"
@@ -367,6 +368,7 @@
 	icon_state = "juicebox"
 	volume = 15
 	drink_type = NONE
+	custom_materials = list(/datum/material/cardboard = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/reagent_containers/cup/glass/bottle/juice/smallcarton/Initialize(mapload, vol)
 	. = ..()
@@ -377,22 +379,13 @@
 		base_container_type = /obj/item/reagent_containers/cup/glass/bottle/juice/smallcarton, \
 	)
 
-/obj/item/reagent_containers/cup/glass/bottle/juice/smallcarton/smash(atom/target, mob/thrower, datum/thrownthing/throwingdatum, break_top)
-	if(bartender_check(target, thrower) && throwingdatum)
-		return
-	splash_reagents(target, thrower || throwingdatum?.get_thrower(), allow_closed_splash = TRUE)
-	var/obj/item/broken_bottle/bottle_shard = new(drop_location())
-	bottle_shard.mimic_broken(src, target)
-	qdel(src)
-	target.Bumped(bottle_shard)
-
 /obj/item/reagent_containers/cup/glass/colocup
 	name = "colo cup"
 	desc = "A cheap, mass produced style of cup, typically used at parties. They never seem to come out red, for some reason..."
 	icon = 'icons/obj/drinks/colo.dmi'
 	icon_state = "colocup"
 	inhand_icon_state = "colocup"
-	custom_materials = list(/datum/material/plastic =HALF_SHEET_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 	possible_transfer_amounts = list(5, 10, 15, 20)
 	volume = 20
 	amount_per_transfer_from_this = 5
@@ -442,7 +435,6 @@
 
 /obj/item/reagent_containers/cup/glass/shaker/Initialize(mapload)
 	. = ..()
-	register_context()
 	if(prob(10))
 		name = "\improper Nanotrasen 20th Anniversary Shaker"
 		desc += " It has an emblazoned Nanotrasen logo on it."
@@ -515,6 +507,7 @@
 	desc = "Every good spaceman knows it's a good idea to bring along a couple of pints of whiskey wherever they go."
 	custom_price = PAYCHECK_COMMAND * 2
 	icon = 'icons/obj/drinks/bottles.dmi'
+	worn_icon_state = "flask"
 	icon_state = "flask"
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*2.5)
 	volume = 60
@@ -523,12 +516,14 @@
 /obj/item/reagent_containers/cup/glass/flask/gold
 	name = "captain's flask"
 	desc = "A gold flask belonging to the captain."
+	worn_icon_state = "flask_gold"
 	icon_state = "flask_gold"
 	custom_materials = list(/datum/material/gold=SMALL_MATERIAL_AMOUNT*5)
 
 /obj/item/reagent_containers/cup/glass/flask/det
 	name = "detective's flask"
 	desc = "The detective's only true friend."
+	worn_icon_state = "detflask"
 	icon_state = "detflask"
 	list_reagents = list(/datum/reagent/consumable/ethanol/whiskey = 30)
 

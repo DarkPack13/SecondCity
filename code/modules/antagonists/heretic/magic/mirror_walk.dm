@@ -65,7 +65,7 @@
 
 	jaunter.Beam(nearby_reflection, icon_state = "light_beam", time = phase_out_time)
 	nearby_reflection.visible_message(span_warning("[nearby_reflection] begins to shimmer and shake slightly!"))
-	if(!do_after(jaunter, phase_out_time, nearby_reflection, IGNORE_USER_LOC_CHANGE|IGNORE_INCAPACITATED, hidden = TRUE))
+	if(!do_after(jaunter, phase_out_time, nearby_reflection, IGNORE_USER_LOC_CHANGE|IGNORE_INCAPACITATED, cog_icon = null))
 		return
 
 	playsound(jaunter, 'sound/effects/magic/ethereal_enter.ogg', 50, TRUE, -1)
@@ -91,13 +91,13 @@
 
 	// It would likely be a bad idea to teleport into an ai monitored area (ai sat)
 	var/area/phase_area = get_area(phase_turf)
-	if(istype(phase_area, /area/station/ai_monitored))
+	if(phase_area.motion_monitored)
 		to_chat(unjaunter, span_warning("It's probably not a very wise idea to exit the mirror's realm here."))
 		return FALSE
 
 	nearby_reflection.Beam(phase_turf, icon_state = "light_beam", time = phase_in_time)
 	nearby_reflection.visible_message(span_warning("[nearby_reflection] begins to shimmer and shake slightly!"))
-	if(!do_after(unjaunter, phase_in_time, nearby_reflection, hidden = TRUE))
+	if(!do_after(unjaunter, phase_in_time, nearby_reflection, cog_icon = null))
 		return FALSE
 
 	// We can move around while phasing in, but we'll always end up where we started it.

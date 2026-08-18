@@ -1,12 +1,14 @@
 /obj/item/sim_card
 	name = "\improper SIM card"
 	desc = "A SIM card with a phone number attached to it."
-	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	ONFLOOR_ICON_HELPER(null)
+	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "ssd_micro"
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+	var/published = FALSE
+	var/published_name = "" //the published number listing for this sim
 
 	var/phone_number = ""
 	var/datum/weakref/phone_weakref = null
@@ -19,7 +21,7 @@
 /obj/item/sim_card/Destroy(force)
 	. = ..()
 	SSphones.assigned_phone_numbers.Remove(src)
-	for(var/contact as anything in SSphones.published_phone_numbers)
+	for(var/contact in SSphones.published_phone_numbers)
 		if(SSphones.published_phone_numbers[contact] == phone_number)
 			SSphones.published_phone_numbers.Remove(src)
 	phone_weakref = null

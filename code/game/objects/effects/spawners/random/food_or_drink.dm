@@ -105,16 +105,16 @@
 		/obj/item/food/grown/eggplant,
 		/obj/item/food/grown/garlic,
 		/obj/item/food/grown/korta_nut,
-		/obj/item/food/grown/watermelon,
+		/obj/item/food/grown/melonlike/watermelon,
 		/obj/item/food/grown/olive,
 		/obj/item/food/grown/onion,
 		/obj/item/food/grown/peanut,
 		/obj/item/food/grown/pineapple,
-		/obj/item/seeds/plum,
+		/obj/item/food/grown/plum,
 		/obj/item/food/grown/potato,
 		/obj/item/food/grown/pumpkin,
-		/obj/item/food/grown/carrot,
-		/obj/item/food/grown/parsnip,
+		/obj/item/food/grown/carrotlike/carrot,
+		/obj/item/food/grown/carrotlike/parsnip,
 		/obj/item/food/grown/whitebeet,
 		/obj/item/food/grown/peas,
 		/obj/item/grown/cotton,
@@ -224,7 +224,7 @@
 	)
 
 /obj/effect/spawner/random/food_or_drink/pizzaparty
-	name = "pizza bomb spawner"
+	name = "pizza spawner" // DARKPACK EDIT CHANGE
 	icon_state = "pizzabox"
 	loot = list(
 		/obj/item/pizzabox/margherita = 2,
@@ -232,7 +232,7 @@
 		/obj/item/pizzabox/mushroom = 2,
 		/obj/item/pizzabox/pineapple = 2,
 		/obj/item/pizzabox/vegetable = 2,
-		/obj/item/pizzabox/bomb/armed = 1,
+		// /obj/item/pizzabox/bomb/armed = 1, // DARKPACK EDIT REMOVAL
 
 	)
 
@@ -390,4 +390,18 @@
 		/obj/effect/spawner/random/food_or_drink/snack/lizard = 4,
 		/obj/effect/spawner/random/food_or_drink/jelly_donuts = 3,
 		/obj/effect/spawner/random/food_or_drink/slime_jelly_donuts = 1,
+	)
+
+/obj/effect/spawner/random/food_or_drink/keg
+	name = "alcohol keg spawner"
+	icon_state = "keg"
+	loot = list(
+		/obj/structure/reagent_dispensers/keg/beer = 16,
+		/obj/structure/reagent_dispensers/keg/whiskey = 4,
+		/obj/structure/reagent_dispensers/keg/rum = 4,
+		list(
+			/obj/structure/reagent_dispensers/keg/gold/rum,
+			/obj/structure/reagent_dispensers/keg/gold/irish,
+			/obj/structure/reagent_dispensers/keg/gold/trappist,
+		) = 1,
 	)

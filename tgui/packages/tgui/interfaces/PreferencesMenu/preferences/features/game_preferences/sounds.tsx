@@ -8,11 +8,21 @@ import {
 import { FeatureDropdownInput } from '../dropdowns';
 
 export const sound_ambience_volume: Feature<number> = {
-  name: 'Ambience volume',
+  name: 'City ambience volume', // DARKPACK EDIT CHANGE - AMBIENCE
   category: 'SOUND',
-  description: `Ambience refers to the more noticeable ambient sounds that play on occasion.`,
+  description: `Ambience refers to things like ocean waves, city noise, etc.`, // DARKPACK EDIT CHANGE - AMBIENCE
   component: FeatureSliderInput,
 };
+
+// DARKPACK EDIT ADD START - AMBIENCE
+export const sound_music_volume: Feature<number> = {
+  name: 'Music volume',
+  category: 'SOUND',
+  description: `Music refers to the non-diagetic tracks that can be played for areas very similar to ambience.`,
+  component: FeatureSliderInput,
+};
+// DARKPACK EDIT ADD END
+
 
 export const sound_breathing: FeatureToggle = {
   name: 'Enable breathing sounds',
@@ -73,10 +83,35 @@ export const sound_tts: FeatureChoiced = {
   component: FeatureDropdownInput,
 };
 
+export const sound_tts_radio: FeatureChoiced = {
+  name: 'Enable TTS Over Radio',
+  category: 'SOUND',
+  description: `
+    When enabled, be able to hear text-to-speech sounds in game over radio channels.
+    When set to "Departmental Radio Only", text to speech over the radio will only play for departmental radio channels. Anything that isn't Common.
+    When disabled, text to speech will not play over radio sources.
+  `,
+  component: FeatureDropdownInput,
+};
+
+export const sound_tts_hear_self_radio: FeatureToggle = {
+  name: 'Enable TTS Hear Self Over Radio',
+  category: 'SOUND',
+  description: 'When enabled, hear yourself over the radio when Text to Speech and TTS Over Radio is enabled.',
+  component: CheckboxInput,
+};
+
 export const sound_tts_volume: Feature<number> = {
   name: 'TTS Volume',
   category: 'SOUND',
   description: 'The volume that the text-to-speech sounds will play at.',
+  component: FeatureSliderInput,
+};
+
+export const sound_tts_radio_volume: Feature<number> = {
+  name: 'TTS Radio Volume',
+  category: 'SOUND',
+  description: 'The volume that radio text-to-speech sounds will play at. This is independent of regular TTS volume.',
   component: FeatureSliderInput,
 };
 
@@ -94,9 +129,9 @@ export const sound_midi: Feature<number> = {
 };
 
 export const sound_ship_ambience_volume: Feature<number> = {
-  name: 'Ship ambience volume',
+  name: 'Main ambience volume', // DARKPACK EDIT CHANGE - AMBIENCE
   category: 'SOUND',
-  description: `Ship ambience refers to the low ambient buzz that plays on loop.`,
+  description: `Main ambience refers to the main background noise that plays on loop.`, // DARKPACK EDIT CHANCE - AMBIENCE
   component: FeatureSliderInput,
 };
 
@@ -108,6 +143,13 @@ export const sound_achievement: FeatureChoiced = {
     If disabled, no sound will be played.
   `,
   component: FeatureDropdownInput,
+};
+
+export const sound_radio_noise: Feature<number> = {
+  name: 'Radio sound volume',
+  category: 'SOUND',
+  description: 'Volume of the bloops that play when a radio message is said or received.',
+  component: FeatureSliderInput,
 };
 
 export const sound_ai_vox: Feature<number> = {

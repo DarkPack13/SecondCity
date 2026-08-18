@@ -28,7 +28,7 @@
 
 /obj/item/clothing/suit/vampire/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/selling, 75, "suit", FALSE)
+	AddComponent(/datum/component/selling, 10, "suit", FALSE)
 
 /obj/item/clothing/suit/vampire/trench/malkav
 	icon_state = "malkav_coat"
@@ -43,6 +43,8 @@
 	body_parts_covered = CHEST | GROIN | ARMS
 	cold_protection = CHEST | GROIN | ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	clothing_flags = THICKMATERIAL
+	resistance_flags = ACID_PROOF
 	armor_type = /datum/armor/chemical_costume
 	hoodtype = /obj/item/clothing/head/hooded/heisenberg_hood
 
@@ -56,7 +58,7 @@
 
 /obj/item/clothing/head/hooded/heisenberg_hood
 	name = "chemical hood"
-	desc = "A hood attached to a cchemical costume."
+	desc = "A hood attached to a chemical costume."
 	icon_state = "heisenberg_helm"
 	icon = 'modular_darkpack/modules/clothes/icons/clothing.dmi'
 	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
@@ -65,6 +67,8 @@
 	cold_protection = HEAD
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	flags_inv = HIDEHAIR | HIDEEARS
+	clothing_flags = THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | SNUG_FIT | STACKABLE_HELMET_EXEMPT | HEADINTERNALS
+	resistance_flags = ACID_PROOF
 	armor_type = /datum/armor/chemical_costume
 
 //** SPOOOOKY ROBES FROM THE CAPPADOCIAN UPDATE **//
@@ -220,6 +224,54 @@
 	name = "brown fur coat"
 	icon_state = "winter2"
 
+/obj/item/clothing/suit/vampire/coat/leopard
+	name = "leopard coat"
+	desc = "A coat made from synthetic fur."
+	icon_state = "leopard_coat"
+
+/obj/item/clothing/suit/vampire/coat/milparka
+	name = "military parka"
+	desc = "A thick parka in desert night camoflague."
+	icon_state = "desertnightparka"
+
+
+/obj/item/clothing/suit/hooded/hoodie
+	name = "hoodie"
+	desc = "A simple hoodie."
+	icon_state = "hoodie"
+	icon = 'modular_darkpack/modules/clothes/icons/clothing.dmi'
+	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/clothes/icons/clothing_onfloor.dmi')
+	body_parts_covered = CHEST|GROIN|ARMS
+	cold_protection = CHEST|GROIN|ARMS
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	hoodtype = /obj/item/clothing/head/hooded/hood_hood
+
+/obj/item/clothing/head/hooded/hood_hood
+	name = "hoodie hood"
+	desc = "A hoodies hoodie hood."
+	icon_state = "hoodie_hood"
+	icon = 'modular_darkpack/modules/clothes/icons/clothing.dmi'
+	worn_icon = 'modular_darkpack/modules/clothes/icons/worn.dmi'
+	// You should not expect this to have an onfloor
+	body_parts_covered = HEAD
+	cold_protection = HEAD
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	flags_inv = HIDEEARS
+	hair_mask = /datum/hair_mask/winterhood
+
+/obj/item/clothing/suit/hooded/hoodie/hoodie_pim
+	name = "intruder zim hoodie"
+	desc = "A hoodie of a favorite Intruder Zim character, Ger."
+	icon_state = "hoodie_zim"
+	hoodtype = /obj/item/clothing/head/hooded/hood_hood/hood_pim
+
+/obj/item/clothing/head/hooded/hood_hood/hood_pim
+	name = "intruder zim hoodie hood"
+	desc = "A hood resembling a favorite Intruder Zim character, Ger."
+	icon_state = "hoodie_zim_hood"
+
+
 /obj/item/clothing/suit/vampire/slickbackcoat
 	name = "opulent coat"
 	desc = "Lavish, luxurious, and deeply purple. Slickback Clothing Co. It exudes immense energy."
@@ -282,6 +334,32 @@
 	acid = 10
 	wound = 35
 
+/obj/item/clothing/suit/vampire/jacket/better/armored
+	name = "armored leather jacket"
+	armor_type = /datum/armor/armored_jackets
+
+/datum/armor/armored_jackets
+	melee = 50
+	bullet = 50
+	laser = 50
+	energy = 10
+	bomb = 40
+	bio = 0
+	fire = 40
+	acid = 10
+	wound = 25
+
+/obj/item/clothing/suit/vampire/trench/alt/armored
+	name = "armored brown trenchcoat"
+	icon_state = "trench2"
+	max_integrity = 400
+	armor_type = /datum/armor/armored_jackets
+
+/obj/item/clothing/suit/vampire/trench/armored
+	name = "armored black trenchcoat"
+	max_integrity = 400
+	armor_type = /datum/armor/armored_jackets
+
 /obj/item/clothing/suit/vampire/trench
 	name = "trenchcoat"
 	desc = "Best noir clothes for night. Provides some kind of protection."
@@ -301,22 +379,6 @@
 	name = "red trenchcoat"
 	desc = "True power lies not in wealth, but in the things it affords you."
 	icon_state = "strauss_coat"
-
-/obj/item/clothing/suit/vampire/trench/tzi
-	name = "fleshcoat"
-	desc = "HUMAN LEATHER JACKET."
-	icon_state = "trench_tzi"
-	armor_type = /datum/armor/fleshcoat
-	clothing_traits = list(TRAIT_UNMASQUERADE)
-
-/datum/armor/fleshcoat
-	melee = 50
-	bullet = 50
-	laser = 10
-	energy = 10
-	bomb = 25
-	acid = 10
-	wound = 50
 
 /obj/item/clothing/suit/vampire/trench/voivode
 	name = "regal coat"
@@ -361,22 +423,24 @@
 	desc = "Probably spanish. Provides good protection."
 	icon_state = "medieval"
 
-/obj/item/clothing/suit/vampire/vest/police/fbivest
-	name = "FBI duty vest"
-	icon_state = "fbivest"
-	desc = "Lightweight, bulletproof vest with yellow FBI markings, tailored for active duty. This one has special agent insignia on it."
-
 //Police + Army
 
 /obj/item/clothing/suit/vampire/coat/police
 	name = "police raincoat"
 	icon_state = "policecoat"
 	desc = "A sturdy and reflective raincoat tailored for wet weather patrols."
+	custom_price = 20
 
 /obj/item/clothing/suit/vampire/vest/police
 	name = "police duty vest"
 	icon_state = "pdvest"
 	desc = "Lightweight, bulletproof vest with SFPD markings, tailored for active duty."
+	custom_price = 50
+
+/obj/item/clothing/suit/vampire/vest/police/fbivest
+	name = "FBI duty vest"
+	icon_state = "fbivest"
+	desc = "Lightweight, bulletproof vest with yellow FBI markings, tailored for active duty. This one has special agent insignia on it."
 
 /obj/item/clothing/suit/vampire/vest/police/sergeant
 	name = "police sergeant vest"
@@ -384,9 +448,9 @@
 	desc = "Lightweight, bulletproof vest with SFPD markings, tailored for active duty. This one has sergeant insignia on it."
 
 // They got an Army vest post-PD update. I am just giving them the same, instead coded into their equipment instead of mapped.
-/obj/item/clothing/suit/vampire/vest/police/chief
-	name = "police chief duty vest"
-	icon_state = "chiefvest"
+/obj/item/clothing/suit/vampire/vest/police/captain
+	name = "police captain duty vest"
+	icon_state = "capvest"
 	desc = "Composite bulletproof vest with SFPD markings, tailored for improved protection. This one has captain insignia on it."
 	armor_type = /datum/armor/highly_protective_vest
 
@@ -501,17 +565,40 @@
 	desc = "A traditional robe worn by priests of the Orthodox faith."
 	icon_state = "vestments"
 
+/obj/item/clothing/suit/vampire/dutch
+	name = "dutch's jacket"
+	desc = "For those long nights on the beach in Tahiti."
+	icon_state = "DutchJacket"
+
 //Pentex Overwear
 /obj/item/clothing/suit/vampire/pentex_labcoat
-	name = EVIL_OIL_COMPANY + " abcoat"
-	desc = "A crisp white labcoat. This one has the " + EVIL_OIL_COMPANY + " International logo stiched onto the breast!"
+	name = "\improper " + MAIN_EVIL_COMPANY + " labcoat"
+	desc = "A crisp white labcoat. This one has the " + MAIN_EVIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_closedlabcoat"
 	armor_type = /datum/armor/labcoat
 
 /obj/item/clothing/suit/vampire/pentex_labcoat_alt
-	name = EVIL_OIL_COMPANY + " labcoat"
-	desc = "A crisp white labcoat. This one has a green trim and the " + EVIL_OIL_COMPANY + " International logo stiched onto the breast!"
+	name = "\improper " + MAIN_EVIL_COMPANY + " labcoat"
+	desc = "A crisp white labcoat. This one has a green trim and the " + MAIN_EVIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_labcoat_alt"
 	armor_type = /datum/armor/labcoat
 
+/obj/item/clothing/suit/vampire/bomber_jacket_classic
+	name = "classic bomber jacket"
+	desc = "A classic bomber jacket."
+	icon_state = "bomber_classic"
 
+/obj/item/clothing/suit/vampire/bomber_jacket_gray
+	name = "gray bomber jacket"
+	desc = "A gray bomber jacket."
+	icon_state = "bomber_gray"
+
+/obj/item/clothing/suit/vampire/shawl_black
+	name = "black shawl"
+	desc = "A black shawl."
+	icon_state = "shawl_black"
+
+/obj/item/clothing/suit/vampire/shawl_white
+	name = "white shawl"
+	desc = "A white shawl."
+	icon_state = "shawl_white"

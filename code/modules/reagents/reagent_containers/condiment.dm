@@ -36,7 +36,7 @@
 		icon_state = icon_empty
 	return ..()
 
-/obj/item/reagent_containers/condiment/suicide_act(mob/living/carbon/user)
+/obj/item/reagent_containers/condiment/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] is trying to eat the entire [src]! It looks like [user.p_they()] forgot how food works!"))
 	return OXYLOSS
 
@@ -121,14 +121,18 @@
 	righthand_file = 'icons/mob/inhands/items/drinks_righthand.dmi'
 	list_reagents = list(/datum/reagent/consumable/sugar = 50)
 	fill_icon_thresholds = null
+	custom_price = 3 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/condiment/sugar/examine(mob/user)
 	. = ..()
-	var/datum/chemical_reaction/recipe = GLOB.chemical_reactions_list[/datum/chemical_reaction/food/cakebatter]
-	var/flour_required = recipe.required_reagents[/datum/reagent/consumable/flour]
-	var/eggyolk_required = recipe.required_reagents[/datum/reagent/consumable/eggyolk]
-	var/sugar_required = recipe.required_reagents[/datum/reagent/consumable/sugar]
-	. += span_notice("[flour_required] flour, [eggyolk_required] egg yolk (or soy milk), [sugar_required] sugar makes cake dough. You can make pie dough from it.")
+	var/datum/chemical_reaction/standard_recipe = GLOB.chemical_reactions_list[/datum/chemical_reaction/food/cakebatter]
+	var/datum/chemical_reaction/alt_recipe = GLOB.chemical_reactions_list[/datum/chemical_reaction/food/cakebatter/vegan]
+	var/flour_required = standard_recipe.required_reagents[/datum/reagent/consumable/flour]
+	var/eggyolk_required = standard_recipe.required_reagents[/datum/reagent/consumable/eggyolk]
+	var/eggwhite_required = standard_recipe.required_reagents[/datum/reagent/consumable/eggwhite]
+	var/sugar_required = standard_recipe.required_reagents[/datum/reagent/consumable/sugar]
+	var/soymilk_required = alt_recipe.required_reagents[/datum/reagent/consumable/soymilk]
+	. += span_notice("[flour_required] flour, [sugar_required] sugar, and either [eggyolk_required] egg yolk + [eggwhite_required] egg white or [soymilk_required] soy milk yields a cake dough. You can make pie dough from it.")
 
 /obj/item/reagent_containers/condiment/saltshaker //Separate from above since it's a small shaker rather then
 	name = "salt shaker" // a large one.
@@ -247,6 +251,17 @@
 	righthand_file = 'icons/mob/inhands/items/drinks_righthand.dmi'
 	list_reagents = list(/datum/reagent/consumable/cornmeal = 30)
 	fill_icon_thresholds = null
+	custom_price = 3 // DARKPACK EDIT ADD - ECONOMY
+
+/obj/item/reagent_containers/condiment/korta_flour
+	name = "korta flour sack"
+	desc = "A big bag of lizards' favorite korta nut flour. Made in Tiriza!"
+	icon_state = "korta_flour"
+	inhand_icon_state = "carton"
+	lefthand_file = 'icons/mob/inhands/items/drinks_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items/drinks_righthand.dmi'
+	list_reagents = list(/datum/reagent/consumable/korta_flour = 30)
+	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/bbqsauce
 	name = "bbq sauce"
@@ -274,6 +289,7 @@
 	icon_state = "vinegar"
 	list_reagents = list(/datum/reagent/consumable/vinegar = 50)
 	fill_icon_thresholds = null
+	custom_price = 10 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/condiment/vegetable_oil
 	name = "cooking oil"
@@ -281,6 +297,7 @@
 	icon_state = "cooking_oil"
 	list_reagents = list(/datum/reagent/consumable/nutriment/fat/oil = 50)
 	fill_icon_thresholds = null
+	custom_price = 10 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/condiment/olive_oil
 	name = "quality oil"
@@ -288,6 +305,7 @@
 	icon_state = "oliveoil"
 	list_reagents = list(/datum/reagent/consumable/nutriment/fat/oil/olive = 50)
 	fill_icon_thresholds = null
+	custom_price = 25 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/condiment/yoghurt
 	name = "yoghurt carton"
@@ -295,6 +313,7 @@
 	icon_state = "yoghurt"
 	list_reagents = list(/datum/reagent/consumable/yoghurt = 50)
 	fill_icon_thresholds = null
+	custom_price = 5 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/condiment/peanut_butter
 	name = "peanut butter"
@@ -302,6 +321,7 @@
 	icon_state = "peanutbutter"
 	list_reagents = list(/datum/reagent/consumable/peanut_butter = 50)
 	fill_icon_thresholds = null
+	custom_price = 5 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/condiment/cherryjelly
 	name = "cherry jelly"
@@ -309,6 +329,7 @@
 	icon_state = "cherryjelly"
 	list_reagents = list(/datum/reagent/consumable/cherryjelly = 50)
 	fill_icon_thresholds = null
+	custom_price = 5 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/condiment/honey
 	name = "honey"
@@ -316,14 +337,24 @@
 	icon_state = "honey"
 	list_reagents = list(/datum/reagent/consumable/honey = 50)
 	fill_icon_thresholds = null
+	custom_price = 5 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/reagent_containers/condiment/ketchup
 	name = "ketchup"
+	ONFLOOR_ICON_HELPER('modular_darkpack/master_files/icons/obj/food/containers.dmi') // DARKPACK EDIT ADD
 	// At time of writing, "ketchup" mechanically, is just ground tomatoes,
 	// rather than // tomatoes plus vinegar plus sugar.
 	desc = "A tomato slurry in a tall plastic bottle. Somehow still vaguely American."
 	icon_state = "ketchup"
 	list_reagents = list(/datum/reagent/consumable/ketchup = 50)
+	fill_icon_thresholds = null
+
+/obj/item/reagent_containers/condiment/mustard
+	name = "mustard"
+	ONFLOOR_ICON_HELPER('modular_darkpack/master_files/icons/obj/food/containers.dmi') // DARKPACK EDIT ADD
+	desc = "A spicy and tangy sauce made out of the mustard plant. Great on hotdogs!"
+	icon_state = "mustard"
+	list_reagents = list(/datum/reagent/consumable/mustard = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/worcestershire
@@ -483,7 +514,7 @@
 		desc = temp_list[3]
 	else
 		icon_state = "condi_mixed"
-		desc = "A small condiment pack. The label says it contains [originalname]"
+		desc = "A small condiment pack. The label says it contains [originalname]."
 
 //Ketchup
 /obj/item/reagent_containers/condiment/pack/ketchup
@@ -531,3 +562,9 @@
 	originalname = "mayonnaise"
 	volume = 5
 	list_reagents = list(/datum/reagent/consumable/mayonnaise = 5)
+
+/obj/item/reagent_containers/condiment/pack/beef_flavour
+	name = "beef space ramen flavouring"
+	originalname = "beef flavour"
+	volume = 5
+	list_reagents = list(/datum/reagent/consumable/beef_flavour = 5)

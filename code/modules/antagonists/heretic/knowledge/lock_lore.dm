@@ -3,6 +3,7 @@
 	ui_bgr = "node_lock"
 	complexity = "Medium"
 	complexity_color = COLOR_YELLOW
+	shop_cost_discount = 1
 	icon = list(
 		"icon" = 'icons/obj/weapons/khopesh.dmi',
 		"state" = "key_blade",
@@ -32,7 +33,7 @@
 		"Use your labyrinth book to shake off pursuers. It creates impassible walls to anyone but you.",
 	)
 
-	start = /datum/heretic_knowledge/limited_amount/starting/base_knock
+	start = /datum/heretic_knowledge/limited_amount/starting/base_lock
 	knowledge_tier1 = /datum/heretic_knowledge/key_ring
 	guaranteed_side_tier1 = /datum/heretic_knowledge/painting
 	knowledge_tier2 = /datum/heretic_knowledge/limited_amount/concierge_rite
@@ -44,12 +45,13 @@
 	knowledge_tier4 = /datum/heretic_knowledge/spell/caretaker_refuge
 	ascension = /datum/heretic_knowledge/ultimate/lock_final
 
-/datum/heretic_knowledge/limited_amount/starting/base_knock
+/datum/heretic_knowledge/limited_amount/starting/base_lock
 	name = "A Steward's Secret"
-	desc = "Opens up the Path of Lock to you. \
-		Allows you to transmute a knife and a crowbar into a Key Blade. \
+	desc = "Opens up the Path of Lock to you.<br>\
+		Allows you to create Key Blades. \
 		You can only create two at a time and they function as fast crowbars. \
 		In addition, they can fit into utility belts."
+	transmute_text = "Transmute a knife and a crowbar."
 	gain_text = "The Locked Labyrinth leads to freedom. But only the trapped Stewards know the correct path."
 	required_atoms = list(
 		/obj/item/knife = 1,
@@ -62,26 +64,28 @@
 	mark_type = /datum/status_effect/eldritch/lock
 	eldritch_passive = /datum/status_effect/heretic_passive/lock
 
-/datum/heretic_knowledge/limited_amount/starting/base_knock/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
+/datum/heretic_knowledge/limited_amount/starting/base_lock/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
 	. = ..()
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK_SECONDARY, PROC_REF(on_secondary_mansus_grasp))
 	var/datum/action/cooldown/spell/touch/mansus_grasp/grasp_spell = locate() in user.actions
 	grasp_spell?.invocation_type = INVOCATION_NONE
 	grasp_spell?.sound = null
 
-/datum/heretic_knowledge/limited_amount/starting/base_knock/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
+/datum/heretic_knowledge/limited_amount/starting/base_lock/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
 	. = ..()
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK_SECONDARY)
 
-/datum/heretic_knowledge/limited_amount/starting/base_knock/on_mansus_grasp(mob/living/source, mob/living/target)
+/datum/heretic_knowledge/limited_amount/starting/base_lock/on_mansus_grasp(mob/living/source, mob/living/target)
 	. = ..()
 
 	var/obj/item/clothing/under/suit = target.get_item_by_slot(ITEM_SLOT_ICLOTHING)
+	if(!suit.can_adjust)
+		return
 	if(istype(suit) && suit.adjusted == NORMAL_STYLE)
 		suit.toggle_jumpsuit_adjust()
 		suit.update_appearance()
 
-/datum/heretic_knowledge/limited_amount/starting/base_knock/proc/on_secondary_mansus_grasp(mob/living/source, atom/target)
+/datum/heretic_knowledge/limited_amount/starting/base_lock/proc/on_secondary_mansus_grasp(mob/living/source, atom/target)
 	SIGNAL_HANDLER
 
 	if(ismecha(target))
@@ -115,13 +119,16 @@
 	return COMPONENT_USE_HAND
 
 /datum/heretic_knowledge/key_ring
-	name = "Key Keeper’s Burden"
-	desc = "Allows you to transmute a wallet, an iron rod, and an ID card to create an Eldritch Card. \
-		Hit a pair of airlocks with it to create a pair of portals, which will teleport you between them, but teleport non-heretics randomly. \
+	name = "Key Keeper's Burden"
+	desc = "Enchants an ID card into an Eldritch Card.<br>\
+		Hit a pair of airlocks with it to create a pair of portals, \
+		which will teleport you between them, but teleport non-heretics randomly. \
 		You can ctrl-click the card to invert this behavior for created portals. \
-		Each card may only sustain a single pair of portals at the same time. \
+		Each card may only sustain a single pair of portals at the same time.<br>\
 		It also functions and appears the same as a regular ID Card. \
-		Attacking it with a normal ID card consumes it and gains its access, and you can use it in-hand to change its appearance to a card you fused."
+		Attacking it with a normal ID card consumes it and gains its access, \
+		and you can use it in-hand to change its appearance to a card you fused."
+	transmute_text = "Transmute a wallet, an iron rod, and an ID card."
 	gain_text = "The Keeper sneered. \"These plastic rectangles are a mockery of keys, and I curse every door that desires them.\""
 	required_atoms = list(
 		/obj/item/storage/wallet = 1,
@@ -147,8 +154,10 @@
 
 /datum/heretic_knowledge/limited_amount/concierge_rite
 	name = "Concierge's Rite"
-	desc = "Allows you to transmute a crayon, a wooden plank, and a multitool to create a Labyrinth Handbook. \
-		It can materialize a barricade at range that only you and people resistant to magic can pass. Has 5 charges which regenerate over time."
+	desc = "Author a Labyrinth Handbook.<br>\
+		It can materialize a barricade at range that only you and people resistant to magic can pass.<br>\
+		Has 5 charges which regenerate over time."
+	transmute_text = "Transmute a crayon, a wooden plank, and a multitool."
 	gain_text = "The Concierge scribbled my name into the Handbook. \"Welcome to your new home, fellow Steward.\""
 	required_atoms = list(
 		/obj/item/toy/crayon = 1,
@@ -162,12 +171,12 @@
 	drafting_tier = 5
 
 /datum/heretic_knowledge/armor/lock
-	desc = "Allows you to transmute a table (or a suit), a mask and a crowbar to create a shifting guise. \
-		It grants you camoflage from cameras, hides your identity, voice and muffles your footsteps. \
-		Acts as a focus while hooded."
+	desc = "Create a Shifting Guise.<br>\
+		It grants you camouflage from cameras, hides your identity, voice and muffles your footsteps."
+	transmute_text = "Transmute a table (or a suit), a mask and a crowbar."
 	gain_text = "While stewards are known to the Concierge, \
-				they still consort between one another and with outsiders under shaded cloaks and drawn hoods. \
-				Familiarity is treachery, even to oneself."
+		they still consort between one another and with outsiders under shaded cloaks and drawn hoods. \
+		Familiarity is treachery, even to oneself."
 	result_atoms = list(/obj/item/clothing/suit/hooded/cultrobes/eldritch/lock)
 	research_tree_icon_state = "lock_armor"
 	required_atoms = list(
@@ -181,9 +190,13 @@
 	desc = "Grants you Burglar's Finesse, a single-target spell \
 		that puts a random item from the victims backpack into your hand."
 	gain_text = "Consorting with Burglar spirits is frowned upon, but a Steward will always want to learn about new doors."
-
+	required_atoms = list(/obj/item/clothing/gloves = 1)
 	action_to_add = /datum/action/cooldown/spell/pointed/burglar_finesse
 	cost = 2
+	max_charges = 12
+	focus_recharge_amount = 0.33
+	holywater_drain_amount = 0.33
+	transmute_text = "Can be manually recharged by completing a ritual with a pair of gloves."
 
 /datum/heretic_knowledge/blade_upgrade/flesh/lock
 	name = "Opening Blade"
@@ -199,25 +212,29 @@
 		return ..()
 
 /datum/heretic_knowledge/spell/caretaker_refuge
-	name = "Caretaker’s Last Refuge"
-	desc = "Gives you a spell that makes you transparent and not dense. Cannot be used near living sentient beings. \
-		While in refuge, you cannot use your hands or spells, and you are immune to slowdown. \
-		You are invincible but unable to harm anything. Cancelled by being hit with an anti-magic item."
+	name = "Caretaker's Last Refuge"
+	desc = "Gives you a spell that makes you transparent and not dense.<br>\
+		While the spell is active, you cannot use your hands or other spells, and you are immune to slowdown. \
+		You are fully invincible but unable to harm anything. "
 	gain_text = "Jealously, the Guard and the Hound hunted me. But I unlocked my form, and was but a haze, untouchable."
 	action_to_add = /datum/action/cooldown/spell/caretaker
 	cost = 2
 	is_final_knowledge = TRUE
+	max_charges = 3
+	path_recharge_amount = 0.66
+	holywater_drain_amount = 0.33
+	notice = "&bull; Cannot be used near living sentient beings.<br>&bull; Cancelled if you are hit with an anti-magic item."
 
 /datum/heretic_knowledge/ultimate/lock_final
 	name = "Unlock the Labyrinth"
 	desc = "The ascension ritual of the Path of Knock. \
-		Bring 3 corpses without organs in their torso to a transmutation rune to complete the ritual. \
 		When completed, you gain the ability to transform into empowered eldritch creatures \
 		and your keyblades will become even deadlier. \
 		In addition, you will create a tear to the Labyrinth's heart; \
 		a tear in reality located at the site of this ritual. \
 		Eldritch creatures will endlessly pour from this rift \
 		who are bound to obey your instructions."
+	transmute_text = "Transmute three corpses without organs in their torso."
 	gain_text = "The Stewards guided me, and I guided them. \
 		My foes were the Locks and my blades were the Key! \
 		The Labyrinth will be Locked no more, and freedom will be ours! WITNESS US!"

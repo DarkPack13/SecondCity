@@ -43,7 +43,7 @@
 /obj/item/card/credit/Initialize(mapload)
 	. = ..()
 	var/datum/bank_account/blank_bank_account = new("Unassigned", SSjob.get_job_type(/datum/job/unassigned), player_account = FALSE)
-	registered_account = blank_bank_account
+	set_account(blank_bank_account)
 	registered_account.replaceable = TRUE
 
 	/*
@@ -61,8 +61,7 @@
 	*/
 
 /obj/item/card/credit/Destroy(force)
-	if (registered_account)
-		registered_account.bank_cards -= src
+	clear_account()
 	return ..()
 
 /obj/item/card/credit/examine(mob/user)
@@ -72,6 +71,33 @@
 
 /obj/item/card/credit/GetCreditCard()
 	return src
+
+/// Sets the bank account for the ID card.
+/obj/item/card/credit/proc/set_account(datum/bank_account/account, transfer_funds = FALSE)
+	if(registered_account == account)
+		return
+	if(!isnull(registered_account))
+		if(transfer_funds)
+			account?.transfer_money(registered_account, registered_account.account_balance, "Account transfer")
+		clear_account()
+	if(isnull(account))
+		return
+
+	if(src in account.bank_cards)
+		stack_trace("Despite [src] not being registered to [account], the account already has it within the bank_cards list.")
+
+	registered_account = account
+	LAZYOR(registered_account.bank_cards, src)
+	registered_account.civilian_bounty?.on_selected(src)
+
+/// Clears the economy account from the ID card.
+/obj/item/card/credit/proc/clear_account()
+	if(isnull(registered_account))
+		return
+
+	registered_account.civilian_bounty?.on_reset(src)
+	LAZYREMOVE(registered_account.bank_cards, src)
+	registered_account = null
 
 /datum/outfit/job/vampire/post_equip(mob/living/carbon/human/user, visuals_only = FALSE)
 	. = ..()
@@ -87,8 +113,7 @@
 			var/datum/bank_account/account = SSeconomy.bank_accounts_by_id["[user.account_id]"]
 
 			if(account && account.account_id == user.account_id)
-				card.registered_account = account
-				account.bank_cards += card
+				card.set_account(account)
 
 
 /obj/item/proc/GetCreditCard()

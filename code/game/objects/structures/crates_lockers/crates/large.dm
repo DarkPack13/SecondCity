@@ -27,37 +27,34 @@
 
 /obj/structure/closet/crate/large/attack_hand(mob/user, list/modifiers)
 	add_fingerprint(user)
-	if(manifest)
-		tear_manifest(user)
-	else
+	if(!tear_manifest(user))
 		to_chat(user, span_warning("You need a crowbar to pry this open!"))
 
-/obj/structure/closet/crate/large/attackby(obj/item/W, mob/living/user, list/modifiers, list/attack_modifiers)
-	if(W.tool_behaviour == TOOL_CROWBAR)
-		if(manifest)
-			tear_manifest(user)
-		if(!open(user))
-			return FALSE
-		user.visible_message(span_notice("[user] pries \the [src] open."), \
-			span_notice("You pry open \the [src]."), \
-			span_hear("You hear splitting wood."))
-		playsound(src.loc, 'sound/items/weapons/slashmiss.ogg', 75, TRUE)
+/obj/structure/closet/crate/large/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(user.combat_mode)
+		return ITEM_INTERACT_SKIP_TO_ATTACK //Stops it from opening and turning invisible when items are used on it.
 
-		var/turf/T = get_turf(src)
-		for(var/i in 1 to material_drop_amount)
-			new material_drop(src)
-		for(var/atom/movable/AM in contents)
-			AM.forceMove(T)
-		qdel(src)
+	to_chat(user, span_warning("You need a crowbar to pry this open!"))
+	return ITEM_INTERACT_BLOCKING //Just stop. Do nothing. Don't turn into an invisible sprite. Don't open like a locker.
+								  //The large crate has no non-attack interactions other than the crowbar, anyway.
 
-	else
-		if(user.combat_mode) //Only return  ..() if intent is harm, otherwise return 0 or just end it.
-			return ..() //Stops it from opening and turning invisible when items are used on it.
+/obj/structure/closet/crate/large/crowbar_act(mob/living/user, obj/item/tool)
+	if(manifest)
+		tear_manifest(user)
+	if(!open(user))
+		return ITEM_INTERACT_BLOCKING
+	user.visible_message(span_notice("[user] pries \the [src] open."), \
+						span_notice("You pry open \the [src]."), \
+						span_hear("You hear splitting wood."))
+	playsound(src.loc, 'sound/items/weapons/slashmiss.ogg', 75, TRUE)
 
-		else
-			to_chat(user, span_warning("You need a crowbar to pry this open!"))
-			return FALSE //Just stop. Do nothing. Don't turn into an invisible sprite. Don't open like a locker.
-					//The large crate has no non-attack interactions other than the crowbar, anyway.
+	var/turf/dump = get_turf(src)
+	for(var/i in 1 to material_drop_amount)
+		new material_drop(src)
+	for(var/atom/movable/stuff in contents)
+		stuff.forceMove(dump)
+	qdel(src)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/closet/crate/large/hats/PopulateContents()
 	..()
@@ -71,3 +68,13 @@
 			var/obj/item/clothing/head/lucky_hat = pick(our_contents)
 			lucky_hat.AddComponent(/datum/component/unusual_effect, color = "#FFEA0030", include_particles = TRUE)
 			lucky_hat.name = "unusual [name]"
+
+// DARKPACK EDIT ADD - Paths, finding artifacts in crates
+/obj/structure/closet/crate/large/Destroy()
+	// 10% chance to spawn a random artifact when destroyed (spawner has 50% chance of spawning nothing)
+	if(!length(contents) && prob(CONFIG_GET(number/artifact_crate_probability)))
+		var/turf/T = get_turf(src)
+		if(T)
+			new /obj/effect/spawner/random/occult/artifact(T)
+	return ..()
+// DARKPACK EDIT ADD END

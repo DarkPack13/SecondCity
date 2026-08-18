@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(bouncer_barriers)
 	name = "Bouncer Barrier"
-	flags = SS_NO_FIRE
+	ss_flags = SS_NO_FIRE
 	init_order = INIT_ORDER_BARRIER
 	var/barriers_enabled = TRUE
 
@@ -14,4 +14,4 @@ SUBSYSTEM_DEF(bouncer_barriers)
 		if(!vip_barrier_perms?[test_barrier.protected_zone_id])
 			vip_barrier_perms[test_barrier.protected_zone_id] = new /datum/vip_barrier_perm(test_barrier.protected_zone_id)
 		qdel(test_barrier)
-	return ..()
+	return SS_INIT_SUCCESS

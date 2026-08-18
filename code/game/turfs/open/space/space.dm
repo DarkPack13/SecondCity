@@ -44,10 +44,11 @@ GLOBAL_LIST_EMPTY(starlight)
 
 /turf/open/space
 	icon = 'icons/turf/space.dmi'
-	MAP_SWITCH(icon_state = "space", icon_state = "space_map")
-	name = CITY_NAME // DARKPACK EDIT CHANGE - ORIGINAL: name = "\proper space"
+	icon_state = MAP_SWITCH("space", "space_map")
+	name = "\proper space"
 	overfloor_placed = FALSE
 	underfloor_accessibility = UNDERFLOOR_INTERACTABLE
+	turf_flags = NO_RUST
 	rust_resistance = RUST_RESISTANCE_ABSOLUTE
 
 	temperature = TCMB
@@ -60,8 +61,8 @@ GLOBAL_LIST_EMPTY(starlight)
 	run_later = TRUE
 	plane = PLANE_SPACE
 	layer = SPACE_LAYER
-	light_power = 0.25 // DARKPACK EDIT CHANGE, ORIGINAL: light_power = 1 - CITY_TIME
-	light_range = 0.5 // DARKPACK EDIT CHANGE, ORIGINAL: light_range = 2 - CITY_TIME
+	light_power = 1
+	light_range = 2
 	light_color = COLOR_STARLIGHT
 	light_height = LIGHTING_HEIGHT_SPACE
 	light_on = FALSE
@@ -70,9 +71,10 @@ GLOBAL_LIST_EMPTY(starlight)
 	vis_flags = VIS_INHERIT_ID //when this be added to vis_contents of something it be associated with something on clicking, important for visualisation of turf in openspace and interraction with openspace that show you turf.
 
 	force_no_gravity = TRUE
+	skip_minimap_rendering = TRUE
 
 /turf/open/space/basic
-	MAP_SWITCH(icon_state = "space", icon_state = "space_basic_map")
+	icon_state = MAP_SWITCH("space", "space_basic_map")
 
 /turf/open/space/basic/New() //Do not convert to Initialize
 	SHOULD_CALL_PARENT(FALSE)
@@ -125,14 +127,21 @@ GLOBAL_LIST_EMPTY(starlight)
 /turf/open/space/handle_slip()
 	return
 
-/turf/open/space/attackby(obj/item/attacking_item, mob/user, list/modifiers)
-	..()
+/turf/open/space/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	. = ..()
+	if(ITEM_INTERACT_ANY_BLOCKER & .)
+		return .
+
 	if(!CanBuildHere())
-		return
-	if(istype(attacking_item, /obj/item/stack/rods))
-		build_with_rods(attacking_item, user)
-	else if(ismetaltile(attacking_item))
-		build_with_floor_tiles(attacking_item, user)
+		return .
+
+	if(istype(tool, /obj/item/stack/rods))
+		build_with_rods(tool, user)
+		return ITEM_INTERACT_SUCCESS
+
+	if(ismetaltile(tool))
+		build_with_floor_tiles(tool, user)
+		return ITEM_INTERACT_SUCCESS
 
 /turf/open/space/MakeSlippery(wet_setting, min_wet_time, wet_time_to_add, max_wet_time, permanent)
 	return
@@ -174,10 +183,10 @@ GLOBAL_LIST_EMPTY(starlight)
 
 /turf/open/space/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
 	if(the_rcd.mode == RCD_TURF)
-		if(rcd_data["[RCD_DESIGN_PATH]"] == /turf/open/floor/plating/rcd)
+		if(rcd_data[RCD_DESIGN_PATH] == /turf/open/floor/plating/rcd)
 			place_on_top(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 			return TRUE
-		else if(rcd_data["[RCD_DESIGN_PATH]"] == /obj/structure/lattice/catwalk)
+		else if(rcd_data[RCD_DESIGN_PATH] == /obj/structure/lattice/catwalk)
 			var/obj/structure/lattice/lattice = locate(/obj/structure/lattice, src)
 			if(lattice)
 				qdel(lattice)
@@ -219,8 +228,8 @@ GLOBAL_LIST_EMPTY(starlight)
 
 /turf/open/space/openspace/Initialize(mapload) // handle plane and layer here so that they don't cover other obs/turfs in Dream Maker
 	. = ..()
-	if(PERFORM_ALL_TESTS(focus_only/openspace_clear) && !GET_TURF_BELOW(src))
-		stack_trace("[src] was inited as openspace with nothing below it at ([x], [y], [z])")
+	if(PERFORM_ALL_TESTS(maptest_log_mapping) && !GET_TURF_BELOW(src))
+		log_mapping("[src] was inited as openspace with nothing below it at ([x], [y], [z])")
 	icon_state = "pure_white"
 	// We make the assumption that the space plane will never be blacklisted, as an optimization
 	if(SSmapping.max_plane_offset)

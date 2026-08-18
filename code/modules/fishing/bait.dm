@@ -49,17 +49,20 @@
 	name = "can o' worm"
 	desc = "This can got worms."
 	bait_type = /obj/item/food/bait/worm
+	custom_price = 12 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/bait_can/worm/premium
 	name = "can o' worm deluxe"
 	desc = "This can got fancy worms."
 	bait_type = /obj/item/food/bait/worm/premium
+	custom_price = 20 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/bait_can/super_baits
 	name = "can o' super-baits"
 	desc = "This can got the nectar of god."
 	bait_type = /obj/item/food/bait/doughball/synthetic/super
 	uses_left = 12
+	custom_price = 30 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/fishing_lure
 	name = "fishing lure"
@@ -72,6 +75,7 @@
 	 * This is passed down to the fishing rod, and then to the lure during the minigame.
 	 */
 	var/spin_frequency = list(2 SECONDS, 3 SECONDS)
+	custom_price = 10 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/fishing_lure/Initialize(mapload)
 	. = ..()

@@ -2,7 +2,7 @@
 	name = "small plastic bag"
 	icon_state = "package_empty"
 	icon = 'modular_darkpack/modules/drugs/icons/items.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/drugs/icons/onfloor.dmi')
 
 /obj/item/reagent_containers/cup/glass/baggie/meth
 	name = "blue package"

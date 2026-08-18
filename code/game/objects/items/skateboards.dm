@@ -2,7 +2,7 @@
 /obj/item/melee/skateboard
 	name = "skateboard"
 	desc = "A skateboard. It can be placed on its wheels and ridden, or used as a radical weapon."
-	icon = 'icons/mob/rideables/vehicles.dmi'
+	icon = 'modular_darkpack/master_files/icons/mob/rideables/vehicles.dmi' // DARKPACK EDIT CHANGE - Darkpack skateboard icon
 	icon_state = "skateboard_held"
 	inhand_icon_state = "skateboard"
 	force = 12
@@ -10,18 +10,21 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("smacks", "whacks", "slams", "smashes")
 	attack_verb_simple = list("smack", "whack", "slam", "smash")
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
+	custom_price = 50 // DARKPACK EDIT ADD - ECONOMY
 	///The vehicle counterpart for the board
 	var/board_item_type = /obj/vehicle/ridden/scooter/skateboard
 
 /obj/item/melee/skateboard/attack_self(mob/user)
-	var/obj/vehicle/ridden/scooter/skateboard/S = new board_item_type(get_turf(user))//this probably has fucky interactions with telekinesis but for the record it wasn't my fault
-	S.buckle_mob(user)
-	qdel(src)
+	var/obj/vehicle/ridden/scooter/skateboard/board = new board_item_type(get_turf(user), src)//this probably has fucky interactions with telekinesis but for the record it wasn't my fault
+	board.buckle_mob(user)
+	forceMove(board)
 
 /obj/item/melee/skateboard/improvised
 	name = "improvised skateboard"
 	desc = "A jury-rigged skateboard. It can be placed on its wheels and ridden, or used as a radical weapon."
 	board_item_type = /obj/vehicle/ridden/scooter/skateboard/improvised
+	custom_price = 25 // DARKPACK EDIT ADD - ECONOMY
 
 /obj/item/melee/skateboard/pro
 	name = "skateboard"
@@ -29,6 +32,7 @@
 	icon_state = "skateboard2_held"
 	inhand_icon_state = "skateboard2"
 	board_item_type = /obj/vehicle/ridden/scooter/skateboard/pro
+	custom_price = 150 // DARKPACK EDIT ADD - ECONOMY
 	custom_premium_price = PAYCHECK_COMMAND * 5
 
 /obj/item/melee/skateboard/hoverboard
@@ -54,6 +58,7 @@
 	force = 18
 	throwforce = 6
 	w_class = WEIGHT_CLASS_NORMAL
+	obj_flags = parent_type::obj_flags | UNIQUE_RENAME
 	attack_verb_continuous = list("bashes", "crashes", "grinds", "skates")
 	attack_verb_simple = list("bash", "crash", "grind", "skate")
 	board_item_type = /obj/vehicle/ridden/scooter/skateboard/hoverboard/holyboarded

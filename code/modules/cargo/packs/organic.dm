@@ -36,10 +36,10 @@
 	test_ignored = TRUE
 	crate_name = "food crate"
 
-/datum/supply_pack/organic/randomized/fill(obj/structure/closet/crate/C)
+/datum/supply_pack/organic/randomized/fill(obj/container)
 	for(var/i in 1 to 15)
 		var/item = pick(contains)
-		new item(C)
+		new item(container)
 
 /datum/supply_pack/organic/randomized/chef
 	name = "Excellent Meat Crate"
@@ -66,7 +66,7 @@
 	contains = list(
 		/obj/item/food/grown/citrus/lime,
 		/obj/item/food/grown/citrus/orange,
-		/obj/item/food/grown/watermelon,
+		/obj/item/food/grown/melonlike/watermelon,
 		/obj/item/food/grown/apple,
 		/obj/item/food/grown/berries,
 		/obj/item/food/grown/citrus/lemon,
@@ -81,13 +81,14 @@
 		/obj/item/food/grown/corn,
 		/obj/item/food/grown/tomato,
 		/obj/item/food/grown/potato,
-		/obj/item/food/grown/carrot,
+		/obj/item/food/grown/carrotlike/carrot,
 		/obj/item/food/grown/mushroom/chanterelle,
 		/obj/item/food/grown/onion,
 		/obj/item/food/grown/pumpkin,
 		/obj/item/food/grown/cucumber,
 	)
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/organic/exoticseeds
 	name = "Exotic Seeds Crate"
 	desc = "Any entrepreneuring botanist's dream. Contains twelve different seeds, \
@@ -110,6 +111,7 @@
 	)
 	crate_name = "exotic seeds crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
+*/
 
 /datum/supply_pack/organic/food
 	name = "Food Crate"
@@ -139,7 +141,7 @@
 	cost = CARGO_CRATE_VALUE * 12
 	contains = list(/obj/item/storage/backpack/duffelbag/clown/cream_pie)
 	crate_name = "party equipment crate"
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 	access = ACCESS_THEATRE
 	access_view = ACCESS_THEATRE
 	crate_type = /obj/structure/closet/crate/secure
@@ -183,6 +185,8 @@
 	var/anomalous_box_provided = FALSE
 	/// one percent chance for a pizza box to be the ininfite pizza box
 	var/infinite_pizza_chance = 1
+	/// chance that any one of the pizzas in the crate will have romerol added to it
+	var/romerol_chance = 0.2
 	///Whether we've provided a bomb pizza box already this shift or not.
 	var/boombox_provided = FALSE
 	/// three percent chance for a pizza box to be the pizza bomb box
@@ -207,12 +211,18 @@
 /datum/supply_pack/organic/pizza/fill(obj/structure/closet/crate/new_crate)
 	. = ..()
 	var/list/rng_pizza_list = pizza_types.Copy()
+	var/add_romerol = prob(romerol_chance)
 	for(var/i in 1 to 5)
 		if(add_anomalous(new_crate))
 			continue
 		if(add_boombox(new_crate))
 			continue
-		add_normal_pizza(new_crate, rng_pizza_list)
+		var/obj/item/pizzabox/pizzabox = add_normal_pizza(new_crate, rng_pizza_list)
+		if(add_romerol && pizzabox.pizza)
+			pizzabox.pizza.reagents.add_reagent(/datum/reagent/romerol, pizzabox.pizza.slices_left)
+			add_romerol = FALSE
+			log_game("A romerol pizza (as [pizzabox.pizza]) was created in a pizza crate delivery.")
+			message_admins("A romerol pizza (as [pizzabox.pizza]) was created in a pizza crate delivery.")
 
 /// adds the chance for an infinite pizza box
 /datum/supply_pack/organic/pizza/proc/add_anomalous(obj/structure/closet/crate/new_crate)
@@ -253,6 +263,7 @@
 	new_pizza_box.boxtag = new_pizza_box.pizza.boxtag
 	new_pizza_box.boxtag_set = TRUE
 	new_pizza_box.update_appearance(UPDATE_ICON | UPDATE_DESC)
+	return new_pizza_box
 
 /// tells crew that an infinite pizza box exists, half of the time, based on a roll in the anamolous box proc
 /datum/supply_pack/organic/pizza/proc/anomalous_pizza_report()
@@ -322,6 +333,7 @@
 	crate_name = "grilling fuel kit crate"
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
+/* // DARKPACK EDIT REMOVAL
 /datum/supply_pack/organic/tiziran_supply
 	name = "Tiziran Supply Box"
 	desc = "A packaged box of supplies from the heart of the Lizard Empire. \
@@ -346,6 +358,7 @@
 				)
 	crate_name = "\improper Mothic Supply box"
 	crate_type = /obj/structure/closet/crate/cardboard/mothic
+*/
 
 /datum/supply_pack/organic/syrup
 	name = "Coffee Syrups Box"
@@ -360,7 +373,7 @@
 	crate_type = /obj/structure/closet/crate/cardboard
 
 /datum/supply_pack/organic/syrup_contraband
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 	name = "Contraband Syrups Box"
 	desc = "A packaged box containing illegal coffee syrups. Possession of these carries a penalty established in the galactic penal code."
 	cost = CARGO_CRATE_VALUE * 6
@@ -386,7 +399,7 @@
 	Contains a full barrel of Nanotrasen brewed, low-grade alcoholic beverage, \
 	perfect for getting loose after a hard day of not dying."
 	cost = CARGO_CRATE_VALUE * 6.25
-	contains = list(/obj/structure/reagent_dispensers/beerkeg)
+	contains = list(/obj/structure/reagent_dispensers/keg/beer)
 	crate_name = "beer keg crate"
 	crate_type = /obj/structure/closet/crate/wooden
 
@@ -396,7 +409,7 @@
 	A single bite will transport you back to the taste of yesterday's prison rations. \
 	Contains a serving dish filled with Nutraslop."
 	cost = CARGO_CRATE_VALUE * 4
-	contains = list(/obj/structure/reagent_dispensers/servingdish)
+	contains = list(/obj/structure/reagent_dispensers/servingdish/unanchored)
 	crate_name = "nutraslop serving dish crate"
 
 
@@ -445,4 +458,3 @@
 	contains = list(
 		/obj/item/soil_sack/worm = 3,
 	)
-

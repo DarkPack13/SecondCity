@@ -1,7 +1,6 @@
 /datum/job/atmospheric_technician
 	title = JOB_ATMOSPHERIC_TECHNICIAN
 	description = "Ensure the air is breathable on the station, fill oxygen tanks, fight fires, purify the air."
-	department_head = list(JOB_CHIEF_ENGINEER)
 	faction = FACTION_STATION
 	total_positions = 3
 	spawn_positions = 2
@@ -57,6 +56,8 @@
 
 	box = /obj/item/storage/box/survival/engineer
 	pda_slot = ITEM_SLOT_LPOCKET
+
+	wintercoat = /obj/item/clothing/suit/hooded/wintercoat/engineering/atmos
 
 /datum/outfit/job/atmos/mod
 	name = "Atmospheric Technician (MODsuit)"

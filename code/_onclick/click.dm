@@ -27,6 +27,7 @@
 		mod *= effect.nextmove_modifier()
 		adj += effect.nextmove_adjust()
 	next_move = world.time + ((num + adj)*mod)
+	SEND_SIGNAL(src, COMSIG_LIVING_CHANGENEXT_MOVE, next_move, num)
 
 /**
  * Before anything else, defer these calls to a per-mobtype handler.  This allows us to
@@ -176,8 +177,13 @@
 		else
 			if(LAZYACCESS(modifiers, RIGHT_CLICK))
 				ranged_secondary_attack(A, modifiers)
+			/* // DARKPACK EDIT REMOVAL - COMBAT
 			else
 				RangedAttack(A, modifiers)
+			*/
+		// DARKPACK EDIT ADD START - COMBAT
+		RangedAttack(A, modifiers)
+		// DARKPACK EDIT ADD END
 
 /// Is the atom obscured by a PREVENT_CLICK_UNDER_1 object above it
 /atom/proc/IsObscured()
@@ -354,6 +360,13 @@
 /mob/proc/RangedAttack(atom/A, modifiers)
 	if(SEND_SIGNAL(src, COMSIG_MOB_ATTACK_RANGED, A, modifiers) & COMPONENT_CANCEL_ATTACK_CHAIN)
 		return TRUE
+	A.RangedAttackOn(src, modifiers)
+
+/**
+ * Atom's version of RangedAttack, for when you want to do something when a mob clicks on this with more sanity than just Click()
+ */
+/atom/proc/RangedAttackOn(mob/attacker, list/modifiers)
+	return null
 
 /**
  * Ranged secondary attack
@@ -407,7 +420,7 @@
 
 /// Simple helper to face what you clicked on, in case it should be needed in more than one place
 /mob/proc/face_atom(atom/atom_to_face)
-	if( buckled || stat != CONSCIOUS || !atom_to_face || !x || !y || !atom_to_face.x || !atom_to_face.y )
+	if( buckled || IS_UNCONSCIOUS_OR_CRIT(src) || !atom_to_face || !x || !y || !atom_to_face.x || !atom_to_face.y )
 		return
 	var/dx = atom_to_face.x - x
 	var/dy = atom_to_face.y - y
@@ -478,7 +491,7 @@
 
 /atom/movable/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
-	// DARKPACK EDIT REMOVAL START - remove middle click swapping hands.
+	// DARKPACK EDIT REMOVAL START - (remove middle click swapping hands.)
 	/*
 	if(LAZYACCESS(modifiers, MIDDLE_CLICK) && iscarbon(usr))
 		var/mob/living/carbon/C = usr

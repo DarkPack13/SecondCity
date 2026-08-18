@@ -58,8 +58,10 @@ export const NtosRecords = (props) => {
               <br />
               Rank: {record.rank}
               <br />
-              Species: {record.species}
-              <br />
+              {/* DARKPACK EDIT REMOVAL START */}
+              {/* Species: {record.species} */}
+              {/* <br /> */}
+              {/* DARKPACK EDIT REMOVAL END */}
               Gender: {record.gender}
               <br />
               Age: {record.age}
@@ -96,14 +98,16 @@ export const NtosRecords = (props) => {
               <br />
               Bloodtype: {record.bloodtype}
               <br />
-              Minor Disabilities: {record.mi_dis}
-              <br />
-              Major Disabilities: {record.ma_dis}
-              <br />
+              Minor Disabilities:
+              {record.mi_dis?.split('<br>').map((entry, index) => (
+                <Box key={index}>&#8226; {entry}</Box>
+              ))}
+              Major Disabilities:
+              {record.ma_dis?.split('<br>').map((entry, index) => (
+                <Box key={index}>&#8226; {entry}</Box>
+              ))}
               <br />
               Notes: {record.notes}
-              <br />
-              Notes Contd: {record.cnotes}
             </Section>
           ))}
       </NtosWindow.Content>

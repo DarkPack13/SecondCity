@@ -45,9 +45,9 @@
 
 //Suit/Skirt
 /// Preference: Jumpsuit
-#define PREF_SUIT "Jumpsuit"
+#define PREF_SUIT "Suit" // DARKPACK EDIT CHANGE
 /// Preference: Jumpskirt
-#define PREF_SKIRT "Jumpskirt"
+#define PREF_SKIRT "Skirt" // DARKPACK EDIT CHANGE
 
 // Types of backpack
 /// Backpack type: Department themed backpack
@@ -68,3 +68,12 @@
 #define GMESSENGER "Grey Messenger Bag"
 /// Backpack type: Leather satchel
 #define LSATCHEL "Leather Satchel"
+
+//Defines for space suits. The respective define is also an icon.
+#define SPACESUIT_NO_ICON "none"
+#define SPACESUIT_CELL_MISSING "missing"
+#define SPACESUIT_CELL_EMPTY "empty"
+#define SPACESUIT_CELL_HIGH "high"
+#define SPACESUIT_CELL_MID "mid"
+#define SPACESUIT_CELL_LOW "low"
+#define SPACESUIT_CELL_VERY_LOW "very_low"

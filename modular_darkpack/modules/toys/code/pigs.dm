@@ -1,6 +1,6 @@
 /obj/item/toy/rubberpig
 	name = "rubberpig"
-	desc = "Klim Sanych, zdravstvuite."
+	desc = "Do not."
 	icon = 'modular_darkpack/modules/deprecated/icons/icons.dmi'
 	icon_state = "rubberpig"
 	inhand_icon_state = "rubberpig"

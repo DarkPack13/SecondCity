@@ -2,10 +2,12 @@
 	name = "V26 taser"
 	desc = "A less-than-lethal stun gun. Fires an electrode pair that will impale and electrocute noncompliant suspects."
 	icon = 'modular_darkpack/modules/taser/icons/taser.dmi'
-	icon_state = "taser_wod"
+	icon_state = "taser"
 	inhand_icon_state = null // TODO: Make inhands for these
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/taser/icons/taser_onfloor.dmi')
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode/darkpack)
 	charge_sections = 2
+	custom_price = 50
 
 
 /obj/item/ammo_casing/energy/electrode/darkpack
@@ -21,11 +23,15 @@
 	base_icon_state = "handtaser"
 	inhand_icon_state = null // TODO: Make inhands for these
 //	worn_icon_state = "baton" // TODO: make an onmob for this
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/taser/icons/taser_onfloor.dmi')
 	force = 4
 	armor_type = /datum/armor/none
 	throwforce = 2
 	on_stun_sound = 'modular_darkpack/modules/taser/sounds/handtaser_activate.ogg'
+	preload_cell_type = /obj/item/stock_parts/power_store/cell
+	cell_hit_cost = STANDARD_CELL_CHARGE * 0.5
 	active_changes_inhand = FALSE // TODO: different sprites for cells?
+	custom_price = 200
 
 
 /obj/item/melee/baton/security/handtaser/turn_on(mob/user)
@@ -38,7 +44,7 @@
 	pickup_sound = active_pickup_sound
 
 
-/obj/item/melee/baton/security/hand_taser/turn_off()
+/obj/item/melee/baton/security/handtaser/turn_off()
 	active = FALSE
 	set_light_on(FALSE)
 	update_appearance()

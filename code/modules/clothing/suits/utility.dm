@@ -41,7 +41,7 @@
 
 /obj/item/clothing/suit/utility/fire/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, 7)
+	AddElement(/datum/element/adjust_fishing_difficulty, 7)
 
 /datum/armor/utility_fire
 	melee = 15
@@ -53,7 +53,7 @@
 	fire = 100
 	acid = 50
 
-/obj/item/clothing/suit/utility/fire/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+/obj/item/clothing/suit/utility/fire/worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
 	if(!isinhands)
 		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha, effect_type = EMISSIVE_SPECULAR)
@@ -107,7 +107,7 @@
 /obj/item/clothing/head/utility/bomb_hood/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_dirt, "bomb_dirt")
-	AddComponent(/datum/component/adjust_fishing_difficulty, 8)
+	AddElement(/datum/element/adjust_fishing_difficulty, 8)
 	AddComponent(/datum/component/hat_stabilizer, loose_hat = TRUE)
 
 /datum/armor/utility_bomb_hood
@@ -140,7 +140,7 @@
 
 /obj/item/clothing/suit/utility/bomb_suit/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, 8)
+	AddElement(/datum/element/adjust_fishing_difficulty, 8)
 
 /datum/armor/utility_bomb_suit
 	melee = 20
@@ -186,7 +186,7 @@
 
 /obj/item/clothing/head/utility/radiation/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, 7)
+	AddElement(/datum/element/adjust_fishing_difficulty, 7)
 	AddComponent(/datum/component/hat_stabilizer, loose_hat = TRUE)
 	AddElement(/datum/element/radiation_protected_clothing)
 	AddComponent(/datum/component/clothing_dirt, "rad_dirt")
@@ -219,4 +219,4 @@
 /obj/item/clothing/suit/utility/radiation/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/radiation_protected_clothing)
-	AddComponent(/datum/component/adjust_fishing_difficulty, 7)
+	AddElement(/datum/element/adjust_fishing_difficulty, 7)

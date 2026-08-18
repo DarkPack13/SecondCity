@@ -1,5 +1,5 @@
 /datum/storage/holster/darkpack
-	max_slots = 2 // Pistol + a mag // TODO: Gridventory
+	max_slots = 3 // Pistol + two mags
 	max_total_storage = 16
 	open_sound = 'sound/items/handling/holster_open.ogg'
 	open_sound_vary = TRUE
@@ -20,6 +20,7 @@
 	name = "holster"
 	desc = "a holster for your gun."
 	storage_type = /datum/storage/holster/darkpack
+	custom_price = 50
 
 /obj/item/storage/belt/holster/detective/darkpack/police
 	desc = "standard issue holster for standard issue sidearms."
@@ -40,8 +41,8 @@
 
 /obj/item/storage/belt/holster/detective/darkpack/fbi/PopulateContents()
 	new /obj/item/gun/ballistic/automatic/pistol/darkpack/glock21(src)
-	new /obj/item/ammo_box/magazine/glock45acp(src)
-	new /obj/item/ammo_box/magazine/glock45acp(src)
+	new /obj/item/ammo_box/magazine/glock45acp/hp(src)
+	new /obj/item/ammo_box/magazine/glock45acp/hp(src)
 
 /obj/item/storage/belt/holster/detective/darkpack/endron
 
@@ -53,10 +54,14 @@
 	name = "duty belt"
 	desc = "A black leather belt for holding patrol gear."
 	storage_type = /datum/storage/security_belt/darkpack
+	custom_price = 50
 
 /obj/item/storage/belt/security/police/PopulateContents()
 	new /obj/item/gun/energy/taser/darkpack(src)
-	new /obj/item/gun/ballistic/automatic/pistol/darkpack/m1911(src)
+	new /obj/item/restraints/handcuffs(src)
+	new /obj/item/reagent_containers/spray/pepper(src)
+	new /obj/item/melee/baton/vamp(src)
+	new /obj/item/gun/ballistic/automatic/pistol/darkpack/glock19(src)
 
 /obj/item/storage/belt/security/police/swat
 
@@ -86,4 +91,5 @@
 		/obj/item/restraints/handcuffs,
 		/obj/item/restraints/legcuffs/bola,
 		/obj/item/gun/energy/taser,
+		/obj/item/gun/ballistic/automatic/pistol,
 	))

@@ -19,7 +19,7 @@ Adds the ability for living mobs to shift their sprite to fit an RP situation be
 
 ### Defines:
 
-- `code/__DEFINES/~darkpack/keybinding.dm`: `COMSIG_KB_MOB_PIXEL_SHIFT_DOWN`, `COMSIG_KB_MOB_PIXEL_SHIFT_UP`, `COMSIG_KB_MOB_ITEM_PIXEL_SHIFT_DOWN`. `COMSIG_KB_MOB_ITEM_PIXEL_SHIFT_UP`, `COMSIG_KB_MOB_PIXEL_TILT_DOWN`, `COMSIG_KB_MOB_PIXEL_TILT_UP`
+- `code/__DEFINES/~darkpack/keybindings.dm`: `COMSIG_KB_MOB_PIXEL_SHIFT_DOWN`, `COMSIG_KB_MOB_PIXEL_SHIFT_UP`, `COMSIG_KB_MOB_ITEM_PIXEL_SHIFT_DOWN`. `COMSIG_KB_MOB_ITEM_PIXEL_SHIFT_UP`, `COMSIG_KB_MOB_PIXEL_TILT_DOWN`, `COMSIG_KB_MOB_PIXEL_TILT_UP`
 - `code/__DEFINES/~darkpack/dcs/signals_mob/signals_mob_living.dm`: `COMSIG_LIVING_SET_PULL_OFFSET`, `COMSIG_LIVING_RESET_PULL_OFFSETS`, `COMSIG_LIVING_CAN_ALLOW_THROUGH`, `COMPONENT_LIVING_PASSABLE`
 
 ### Included files that are not contained in this module:
