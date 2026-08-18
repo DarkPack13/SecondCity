@@ -1,5 +1,0 @@
-author: "ChudBluski"
-delete-after: True
-changes:
-  - balance: "changed Thirst of Ages to -7 points to reflect the ttrpg"
-  - code_imp: "changes the ttrpg source of Thirst of Ages to \"V20's The Black Hand: Guide to the Tal'Mahe'Ra\""

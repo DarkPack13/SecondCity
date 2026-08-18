@@ -1,5 +1,0 @@
-author: "cam_dev"
-delete-after: True
-changes:
-  - bugfix: "buzzard crinos warforms are visible again (no unique sprites yet)"
-  - image: "red buzzard raven sprites"
