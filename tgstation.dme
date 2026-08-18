@@ -7588,6 +7588,7 @@
 #include "modular_darkpack\modules\guestbook\code\adjective_preference.dm"
 #include "modular_darkpack\modules\guestbook\code\guestbook.dm"
 #include "modular_darkpack\modules\guestbook\code\human_helpers.dm"
+#include "modular_darkpack\modules\guestbook\code\known_identities.dm"
 #include "modular_darkpack\modules\guestbook\code\mob.dm"
 #include "modular_darkpack\modules\guestbook\code\persistent_guestbooks.dm"
 #include "modular_darkpack\modules\hair\code\sprite_accessories.dm"

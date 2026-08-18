@@ -112,7 +112,7 @@
 
 	output_text += get_dice_display(rolled_dice, difficulty_amount, success_amount, hide_result)
 
-	var/title
+	var/title = ""
 	if(roll_output_type in list(ROLL_PRIVATE_ADMIN, ROLL_ADMIN) && (displayed_to.client in GLOB.admins))
 		title = "[ADMIN_LOOKUPFLW(roller)]"
 	else

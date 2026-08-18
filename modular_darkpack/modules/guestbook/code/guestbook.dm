@@ -7,10 +7,12 @@
 /datum/guestbook
 	/// Associative list of known guests, real_name = known_name
 	var/list/known_names
-	var/list/known_identities
+
+	var/list/known_identity_datums
 
 /datum/guestbook/Destroy(force)
-	known_names = null
+	LAZYNULL(known_names)
+	LAZYNULL(known_identity_datums)
 	return ..()
 
 /datum/guestbook/ui_interact(mob/user, datum/tgui/ui)

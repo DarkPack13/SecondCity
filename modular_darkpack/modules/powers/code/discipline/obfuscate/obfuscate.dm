@@ -241,20 +241,10 @@
 
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/activate()
 	. = ..()
+	var/mob/living/carbon/human/target = owner?.mind?.guestbook.pick_known_guy(owner)
 
-	var/list/display_targets = list()
-	for(var/target_name in cached_targets)
-		display_targets[target_name] = cached_targets[target_name]["image"]
-
-	var/chosen_name = show_radial_menu(owner, owner, display_targets, radius = 40, require_near = TRUE, tooltips = TRUE)
-	if(!chosen_name)
-		try_deactivate(direct = TRUE)
-		return
-
-	var/mob/living/carbon/human/target = cached_targets[chosen_name]["target"]
-
-	if(!target)
-		to_chat(owner, span_warning("You can't recall [chosen_name]'s features clearly enough!"))
+	if(!istype(target))
+		to_chat(owner, span_warning("You can't recall [target]'s features clearly enough!"))
 		try_deactivate(direct = TRUE)
 		return
 
