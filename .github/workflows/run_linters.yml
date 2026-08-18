@@ -75,7 +75,7 @@ jobs:
           tools/bootstrap/python tools/ticked_file_enforcement/ticked_file_enforcement.py < modular_darkpack/tools/ticked_file_enforcement/modular_darkpack_master_files.json
           tools/bootstrap/python tools/ticked_file_enforcement/ticked_file_enforcement.py < modular_darkpack/tools/ticked_file_enforcement/modular_darkpack_modules.json
           tools/bootstrap/python tools/ticked_file_enforcement/ticked_file_enforcement.py < modular_darkpack/tools/ticked_file_enforcement/modular_darkpack_unit_tests.json
-          tools/bootstrap/python tools/ticked_file_enforcement/ticked_file_enforcement.py < modular_downstream/tools/ticked_file_enforcement/modular_downstream.json
+          tools/bootstrap/python tools/ticked_file_enforcement/ticked_file_enforcement.py < modular_downstream/tools/ticked_file_enforcement/modular_downstream_unit_tests.json
       - name: Check Define Sanity
         if: steps.linter-setup.conclusion == 'success' && !cancelled()
         run: tools/bootstrap/python -m define_sanity.check
