@@ -63,4 +63,4 @@
 /datum/preferences/proc/apply_stats_from_prefs(mob/living/carbon/human/character)
 	character.storyteller_stats = preference_storyteller_stats.Copy()
 	character.update_modifiers_from_stats(TRUE)
-	character.RegisterSignal(character, COMSIG_LIVING_OPERATING_ON, TYPE_PROC_REF(/mob/living, check_medicine_wound_tending), orverride = TRUE)
+	character.RegisterSignal(character, COMSIG_LIVING_OPERATING_ON, TYPE_PROC_REF(/mob/living, check_medicine_wound_tending), override = TRUE)
