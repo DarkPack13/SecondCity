@@ -51,7 +51,7 @@
 	multi_activate = TRUE
 	duration_length = 1 SCENES
 	cooldown_length = 1 TURNS
-	frenzy = FALSE
+	frenzy_usable = FALSE
 
 	var/list/shadows = list() // A list of all active shadows
 	var/datum/action/clear_shadows/cbutton // The button to clear everything

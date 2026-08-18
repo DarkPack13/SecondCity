@@ -59,7 +59,7 @@
 	name = "Dominate power name"
 	desc = "Dominate power description"
 	vitae_cost = 0 //No Dominate 1-5 abilities cost blood.
-	frenzy = FALSE
+	frenzy_usable = FALSE
 
 	activate_sound = 'modular_darkpack/modules/powers/sounds/dominate.ogg'
 

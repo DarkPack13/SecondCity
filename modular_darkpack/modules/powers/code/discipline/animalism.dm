@@ -13,7 +13,7 @@
 	name = "Animalism power name"
 	desc = "Animalism power description"
 	effect_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/wolves.ogg'
-	frenzy = FALSE
+	frenzy_usable = FALSE
 
 //SUMMON RAT
 /datum/discipline_power/animalism/summon_rat

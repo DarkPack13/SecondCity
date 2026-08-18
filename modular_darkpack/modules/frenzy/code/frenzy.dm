@@ -11,7 +11,7 @@
 	set_jitter_if_lower(1 SCENES)
 
 	add_blocked_language(subtypesof(/datum/language) - /datum/language/frenzy, LANGUAGE_FRENZY)
-    grant_language(/datum/language/frenzy, source = LANGUAGE_FRENZY)
+	grant_language(/datum/language/frenzy, source = LANGUAGE_FRENZY)
 	AddComponentFrom("frenzy", /datum/component/speechmod, replacements = list("." = "!"), end_string = "!!", uppercase = TRUE)	//Not perfect as two vampires in frenzy could have a legible conversation with each other, maybe if a fire happened and every vampire went rotschreck.
 
 	message_admins("[ADMIN_LOOKUPFLW(src)] has entered frenzy[target ? " targeting [ADMIN_LOOKUPFLW(target)]": ""]. ([source])")

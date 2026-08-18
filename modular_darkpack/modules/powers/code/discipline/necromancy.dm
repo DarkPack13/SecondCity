@@ -32,7 +32,7 @@
 /datum/discipline_power/necromancy
 	name = "Necromancy power name"
 	desc = "Necromancy power description"
-	frenzy = FALSE
+	frenzy_usable = FALSE
 
 //SHROUDSIGHT V20 p. 163
 /datum/storyteller_roll/shroudsight

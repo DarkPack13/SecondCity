@@ -7561,6 +7561,7 @@
 #include "modular_darkpack\modules\forensics\code\forensic_gatherer.dm"
 #include "modular_darkpack\modules\forensics\code\serial_number_log.dm"
 #include "modular_darkpack\modules\forensics\code\serial_numbering.dm"
+#include "modular_darkpack\modules\frenzy\code\beast_language.dm"
 #include "modular_darkpack\modules\frenzy\code\frenzy.dm"
 #include "modular_darkpack\modules\frenzy\code\frenzy_helpers.dm"
 #include "modular_darkpack\modules\frenzy\code\status_effect.dm"

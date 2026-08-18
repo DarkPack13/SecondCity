@@ -25,7 +25,7 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE
 	target_type = TARGET_MOB
 	range = 7
-	frenzy = FALSE
+	frenzy_usable = FALSE
 
 	cooldown_length = 10 SECONDS
 
@@ -80,7 +80,7 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_FREE_HAND
 	target_type = TARGET_MOB
 	range = 5
-	frenzy = FALSE
+	frenzy_usable = FALSE
 
 	aggravating = TRUE
 	hostile = TRUE
@@ -157,7 +157,7 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE
 	target_type = TARGET_LIVING
 	range = 5
-	frenzy = FALSE
+	frenzy_usable = FALSE
 
 	aggravating = TRUE
 	hostile = TRUE
@@ -179,7 +179,7 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_SPEAK
 	target_type = TARGET_LIVING
 	range = 7
-	frenzy = FALSE
+	frenzy_usable = FALSE
 
 	cooldown_length = 0
 

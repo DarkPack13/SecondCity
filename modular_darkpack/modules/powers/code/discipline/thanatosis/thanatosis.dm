@@ -157,7 +157,7 @@
 	cancelable = TRUE
 	duration_length = 0
 	cooldown_length = 1 TURNS
-	frenzy = FALSE
+	frenzy_usable = FALSE
 
 	var/datum/action/cooldown/spell/shapeshift/samedi_ash/dust_transformation
 
