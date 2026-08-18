@@ -678,7 +678,7 @@
 		if(TIMER_COOLDOWN_RUNNING(iter_living, COOLDOWN_YAWN_WITNESSED))
 			continue
 
-		TIMER_COOLDOWN_START(iter_living, COOLDOWN_YAWN_WITNESSED, cooldown) // Prevents yawns from scaling extreamly hard against large crowds
+		TIMER_COOLDOWN_START(iter_living, COOLDOWN_YAWN_WITNESSED, cooldown) // Prevents yawns from scaling extremely hard against large crowds
 		// DARKPACK EDIT ADD END
 
 		var/dist_between = get_dist(user, iter_living)
