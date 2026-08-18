@@ -9,11 +9,11 @@
 	description = "A character's inner drive and competence at overcoming unfavorable odds. Used for spendature."
 	editable = FALSE
 
+
 /// Prompts the user to burn an amount of willpower then returns the amount spent.
 /mob/living/proc/prompt_burn_willpower(amount = 1)
 	if(st_get_stat(STAT_TEMPORARY_WILLPOWER) < amount)
 		return 0
-	#warn placeholder asset.
 	var/choices = list(
 		"Burn Willpower" = image(icon = 'modular_darkpack/modules/storyteller_stats/icons/assets.dmi', icon_state = "willpower"),
 		"No" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_no"),

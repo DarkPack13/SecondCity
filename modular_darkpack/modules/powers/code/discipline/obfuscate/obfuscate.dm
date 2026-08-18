@@ -213,7 +213,8 @@
 	var/mob/living/carbon/human/target = examined
 	var/image/target_image = image(target)
 	to_chat(owner, span_info("You get a good look at your target and memorize their features."))
-	LAZYSET(cached_targets, target.name, list("image" = target_image, "target" = target))
+	// Oh this shit hella hard-dels.
+	LAZYSET(cached_targets, GET_GUESTBOOK_NAME_TRUE(examiner, target), list("image" = target_image, "target" = target))
 
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/post_gain()
 	. = ..()

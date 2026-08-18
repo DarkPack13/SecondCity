@@ -15,11 +15,11 @@
 
 	name = "Shed"
 	desc = "The Garou knows the trick of shedding and growing fur at an alarming rate."
-	#warn placeholder asset.
+	#warn icon
 	button_icon_state = "shed" // TODO: get an icon for this
 	rank = 1
 	cooldown_time = 1 TURNS
-	var/datum/storyteller_roll/shed/roll
+	var/datum/storyteller_roll/gift/shed/roll
 
 /datum/action/cooldown/power/gift/shed/New()
 	. = ..()
@@ -30,17 +30,19 @@
 	return ..()
 
 /datum/action/cooldown/power/gift/shed/Activate(atom/target)
-	var/mob/living/carbon/owner = src.owner
-	if(!istype(owner))
+	var/mob/living/carbon/carbon_owner = astype(owner)
+	if(!carbon_owner)
 		return FALSE // eh
 
-	if(!owner.pulledby && !owner.handcuffed && !owner.legcuffed)
-		to_chat(owner, span_warning("No one is grappling or restraining you, all this would amount to is theatrics."))
+	if(!carbon_owner.pulledby && !carbon_owner.handcuffed && !carbon_owner.legcuffed)
+		to_chat(carbon_owner, span_warning("No one is grappling or restraining you, all this would amount to is theatrics."))
 		return FALSE
 
-	switch(roll.st_roll(owner, null, PRIMAL_URGE_PLACEHOLDER))
+	. = ..()
+
+	switch(roll.st_roll(carbon_owner, null, PRIMAL_URGE_PLACEHOLDER))
 		if(ROLL_SUCCESS)
-			astype(owner, /mob/living).apply_status_effect(/datum/status_effect/shed)
+			carbon_owner.apply_status_effect(/datum/status_effect/shed)
 			return TRUE
 		if(ROLL_FAILURE)
 			pass()
@@ -49,8 +51,6 @@
 		if(ROLL_BOTCH)
 			pass()
 
-	StartCooldown()
-	return TRUE
 
 /datum/status_effect/shed
 	id = "shed"
@@ -58,31 +58,31 @@
 
 	status_type = STATUS_EFFECT_REFRESH
 
-	alert_type = /atom/movable/screen/alert/status_effect/shed
+	alert_type = /atom/movable/screen/alert/status_effect/gift/shed
 
 /datum/status_effect/shed/on_apply()
-	var/mob/living/carbon/owner = src.owner
-	if(!istype(owner))
+	var/mob/living/carbon/carbon_owner = owner
+	if(!istype(carbon_owner))
 		return FALSE // eh
 
-	if(owner.pulledby)
-		to_chat(owner, span_notice("You shed your fur, and [owner.pulledby] loses [owner.pulledby.p_their()] grip on you!"))
-		owner.pulledby.stop_pulling()
-	else if(owner.handcuffed || owner.legcuffed)
-		to_chat(owner, span_notice("You shed your fur, using the slick coating as lubrication to slip out of your restraints."))
-		owner.uncuff()
+	. = ..()
 
-	#warn do when len decides what to do with restraints
-	return FALSE // also pull master branch mf
+	if(carbon_owner.pulledby)
+		to_chat(carbon_owner, span_notice("You shed your fur, and [carbon_owner.pulledby] loses [carbon_owner.pulledby.p_their()] grip on you!"))
+		carbon_owner.pulledby.stop_pulling()
+	else if(carbon_owner.handcuffed || carbon_owner.legcuffed)
+		to_chat(carbon_owner, span_notice("You shed your fur, using the slick coating as lubrication to slip out of your restraints."))
+		carbon_owner.uncuff()
 
-/atom/movable/screen/alert/status_effect/shed
-	name = "Shed"
+	#warn reread to see what to do with restraints
+
+/atom/movable/screen/alert/status_effect/gift/shed
+	name = /datum/action/cooldown/power/gift/shed::name
 	desc = "The shedding fur reduces the difficulty of slipping restraints by two."
-	icon = 'modular_darkpack/modules/deprecated/icons/hud/screen_alert.dmi'
-	#warn placeholder asset.
-	icon_state = "riddle" // TODO: get an icon for this
+	overlay_state = /datum/action/cooldown/power/gift/shed::button_icon_state
 
-/datum/storyteller_roll/shed
+
+/datum/storyteller_roll/gift/shed
 	bumper_text = "shedding fur"
 	difficulty = 7
 	applicable_stats = list(STAT_DEXTERITY)

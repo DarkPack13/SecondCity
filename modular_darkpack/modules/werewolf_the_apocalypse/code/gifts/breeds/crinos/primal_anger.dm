@@ -1,6 +1,7 @@
 /datum/action/cooldown/power/gift/primal_anger
 	name = "Primal Anger"
 	desc = "The character may inflict a single level of aggravated damage on herself once per scene, and gain three points of Rage in exchange."
+	#warn icon
 	rank = 1
 	cooldown_time = 1 SCENES
 

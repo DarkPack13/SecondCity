@@ -7,6 +7,7 @@
 /datum/guestbook
 	/// Associative list of known guests, real_name = known_name
 	var/list/known_names
+	var/list/known_identities
 
 /datum/guestbook/Destroy(force)
 	known_names = null

@@ -121,7 +121,7 @@
 	reroll_cooldown = 1 SCENES
 	applicable_stats = list(STAT_STRENGTH)
 
-/datum/storyteller_roll/bash_door/calculate_used_dice(mob/living/roller, bonus)
+/datum/storyteller_roll/bash_door/using_dice(mob/living/roller, bonus)
 	. = ..()
 	if(HAS_TRAIT(roller, TRAIT_HUGE_SIZE))
 		. += 2

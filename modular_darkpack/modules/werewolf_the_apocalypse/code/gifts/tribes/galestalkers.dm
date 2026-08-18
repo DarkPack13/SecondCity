@@ -2,6 +2,7 @@
 /datum/action/cooldown/power/gift/beat_of_the_heartdrum
 	name = "Beat of the Heart-Drum"
 	desc = {"The werewolf becomes an inescapable hunter, drawn ever onward by the beat of his prey's heart until that heart grows still."}
+	#warn icon
 	rank = 1
 	gnosis_cost = 1
 
@@ -125,29 +126,6 @@
 	applicable_stats = list(STAT_PERCEPTION, STAT_SURVIVAL)
 	difficulty = 7
 	numerical = TRUE
-
-
-/mob/proc/heart_is_beating()
-	return FALSE
-
-/mob/living/heart_is_beating()
-	if(stat == DEAD)
-		return FALSE
-
-	return TRUE
-
-/mob/living/carbon/human/heart_is_beating()
-	var/obj/item/organ/heart/beating_heart = get_organ_slot(ORGAN_SLOT_HEART)
-	if(!istype(beating_heart) || !(beating_heart.is_beating()))
-		return FALSE
-
-	// high humanity kindred OR kindred with blush of health avoid getting the still heart. in auspex, their hearts will instead show like humans; beating!
-	if(get_kindred_splat(src))
-		var/datum/st_stat/morality_path/morality/stat_morality = storyteller_stats[STAT_MORALITY]
-		if((stat_morality?.morality_path?.alignment != MORALITY_HUMANITY || stat_morality?.get_score() < 5) && !HAS_TRAIT(src, TRAIT_BLUSH_OF_HEALTH))
-			return FALSE
-
-	return TRUE
 
 
 /// Returns the last mob we would be considered a "sample" off.

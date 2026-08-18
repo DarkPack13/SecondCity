@@ -2,6 +2,7 @@
 	name = "Hares Leap"
 	desc = {"The player makes a reflexive Strength + Athletics roll (difficulty 7) to activate this Gift.
 	If successful, the character's leaping distances are doubled for a scene — or tripled for a single turn with the expenditure of a Willpower point"}
+	#warn icon
 	rank = 1
 
 /datum/action/cooldown/power/gift/hares_leap/Activate(atom/target)
@@ -45,8 +46,29 @@
 	overlay_state = /datum/action/cooldown/power/gift/hares_leap::button_icon_state
 
 
-#warn do
 /datum/action/cooldown/power/gift/heightened_senses
+	name = "Heightened Senses"
+	desc = "The player gains an uncanncy sense of perception and tracking ability"
+	#warn icon
+	rank = 1
+	gnosis_cost = 1
+
+
+/datum/status_effect/heightened_senses
+	id = "heightened_senses"
+	duration = 1 SCENES
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = /atom/movable/screen/alert/status_effect/gift/heightened_senses
+
+/datum/status_effect/heightened_senses/on_creation(mob/living/new_owner)
+	. = ..()
+
+
+/atom/movable/screen/alert/status_effect/gift/heightened_senses
+	name = /datum/action/cooldown/power/gift/heightened_senses::name
+	desc = /datum/action/cooldown/power/gift/heightened_senses::desc
+	overlay_state = /datum/action/cooldown/power/gift/heightened_senses::button_icon_state
+
 
 
 #warn do

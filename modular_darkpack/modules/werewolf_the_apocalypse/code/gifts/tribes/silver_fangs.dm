@@ -11,7 +11,7 @@
 /datum/action/cooldown/power/gift/falcons_grasp
 	name = "Falcon's Grasp"
 	desc = "The Garou's hands or jaws tighten in a mighty death-grip, making it nearly impossible to escape."
-	#warn icon
+	button_icon_state = "falcons_grasp"
 	cooldown_time = 1 SCENES
 	rank = 1
 	rage_cost = 1

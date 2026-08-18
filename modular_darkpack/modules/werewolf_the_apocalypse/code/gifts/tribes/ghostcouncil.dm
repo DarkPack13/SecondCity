@@ -2,6 +2,7 @@
 	name = "Sense Magic"
 	desc = {"The werewolf can sense the pulse and flux of mystic energies, whether the righteous Gifts of the Garou,
 	the arrogant wizardry of mages, the debased powers of vampires, or even the black arts of the Wyrm's minions"}
+	button_icon_state = "sense_magic"
 	cooldown_time = DEFAULT_REROLL_COOLDOWN
 	rank = 1
 	/*
