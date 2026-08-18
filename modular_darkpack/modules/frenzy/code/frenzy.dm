@@ -22,6 +22,7 @@
 		add_trait(src, TRAIT_PACIFISM, FRENZY_TRAIT)	//Lore inaccurate, but this forces them to flee instead of ignoring rotshreck and continuing to fight.
 	else
 		to_chat(src, span_bolddanger("FRENZY."))
+		add_trait(src, TRAIT_PERMAFANGS, FRENZY_TRAIT)	//You're hangry and can't wait to eat.
 
 	SEND_SOUND(src, sound('modular_darkpack/modules/frenzy/sounds/frenzy.ogg', volume = 50))
 
@@ -33,7 +34,7 @@
 /mob/living/proc/exit_frenzy_mode()
 	if(!HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		return
-	remove_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA, TRAIT_PACIFISM), FRENZY_TRAIT)
+	remove_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA, TRAIT_PACIFISM, TRAIT_PERMAFANGS), FRENZY_TRAIT)
 	log_message("exited frenzy.", LOG_ATTACK, color="red")
 
 	RemoveComponentSource("frenzy", /datum/component/speechmod)
