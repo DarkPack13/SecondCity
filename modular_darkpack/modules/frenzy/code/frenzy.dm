@@ -8,6 +8,8 @@
 		return
 	add_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA), FRENZY_TRAIT)
 
+	set_jitter_if_lower(1 SCENES)
+
 	add_blocked_language(subtypesof(/datum/language) - /datum/language/frenzy, LANGUAGE_FRENZY)
     grant_language(/datum/language/frenzy, source = LANGUAGE_FRENZY)
 	AddComponentFrom("frenzy", /datum/component/speechmod, replacements = list("." = "!"), end_string = "!!", uppercase = TRUE)	//Not perfect as two vampires in frenzy could have a legible conversation with each other, maybe if a fire happened and every vampire went rotschreck.
