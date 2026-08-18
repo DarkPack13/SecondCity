@@ -29,7 +29,7 @@
 	cancelable = TRUE
 	duration_length = 1 HOURS
 	var/datum/storyteller_roll/hags_wrinkles/hags_wrinkles_roll
-	frenzy = FALSE
+	frenzy_usable = FALSE
 
 /datum/storyteller_roll/hags_wrinkles
 	bumper_text = "hag's wrinkles"

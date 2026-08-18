@@ -46,7 +46,7 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_FREE_HAND | DISC_CHECK_LYING
 	target_type = TARGET_LIVING
 	range = 3
-	frenzy = FALSE
+	frenzy_usable = FALSE
 
 	cooldown_length = 30 SECONDS
 
