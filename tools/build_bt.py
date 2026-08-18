@@ -266,6 +266,7 @@ def main() -> int:
     code_dirs = [
         repo_root / 'code',
         repo_root / 'modular_darkpack',
+        repo_root / 'modular_downstream',
     ]
 
     for code_dir in code_dirs:

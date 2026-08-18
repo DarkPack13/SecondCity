@@ -178,6 +178,7 @@ export const BehaviorTreeCompilerTarget = new Juke.Target({
   inputs: [
     'code/**/*.bt.json',
     'modular_darkpack/**/*.bt.json',
+    'modular_downstream/**/*.bt.json',
     'code/__DEFINES/**/*.dm',
     'tools/build_bt.py',
   ],
@@ -185,6 +186,7 @@ export const BehaviorTreeCompilerTarget = new Juke.Target({
     return [
       ...Juke.glob('code/**/*.bt.json'),
       ...Juke.glob('modular_darkpack/**/*.bt.json'),
+      ...Juke.glob('modular_downstream/**/*.bt.json'),
     ].map((file) => {
       const rel = file.replace(/\.bt\.json$/, '');
       return `build/behavior_trees/${rel}.bt.compiled.json`;
