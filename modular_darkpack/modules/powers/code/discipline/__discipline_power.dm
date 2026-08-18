@@ -32,7 +32,7 @@
 	/// If use of this power creates a visible Masquerade breach.
 	var/violates_masquerade = FALSE
 	/// Can this be used while in frenzy
-	var/frenzy = TRUE
+	var/frenzy_usable = TRUE
 
 	/* HOW AND WHEN IT'S ACTIVATED AND DEACTIVATED */
 	/// If this Discipline doesn't automatically expire, but rather periodically drains blood.
@@ -271,7 +271,7 @@
 		//feedback is sent by the proc preventing activation
 		return FALSE
 
-	if(HAS_TRAIT(owner, TRAIT_IN_FRENZY))
+	if(!frenzy_usable && HAS_TRAIT(owner, TRAIT_IN_FRENZY))
 		to_chat(owner, span_warning("You cannot do this while in frenzy!"))
 		return FALSE
 
