@@ -7,11 +7,17 @@
 	if(IS_UNCONSCIOUS(src))
 		return
 	add_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA), FRENZY_TRAIT)
+
+	add_blocked_language(subtypesof(/datum/language) - /datum/language/frenzy, LANGUAGE_FRENZY)
+    grant_language(/datum/language/frenzy, source = LANGUAGE_FRENZY)
+	AddComponentFrom("frenzy", /datum/component/speechmod, replacements = list("." = "!"), end_string = "!!", uppercase = TRUE)	//Not perfect as two vampires in frenzy could have a legible conversation with each other, maybe if a fire happened and every vampire went rotschreck.
+
 	message_admins("[ADMIN_LOOKUPFLW(src)] has entered frenzy[target ? " targeting [ADMIN_LOOKUPFLW(target)]": ""]. ([source])")
 	log_combat(src, (src || target), "has frenzied on because of \"[source]\" on")
 
 	if(fleeing)
 		to_chat(src, span_danger("FLEE."))
+		add_trait(src, TRAIT_PACIFISM, FRENZY_TRAIT)	//Lore inaccurate, but this forces them to flee instead of ignoring rotshreck and continuing to fight.
 	else
 		to_chat(src, span_bolddanger("FRENZY."))
 
@@ -25,8 +31,13 @@
 /mob/living/proc/exit_frenzy_mode()
 	if(!HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		return
-	remove_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA), FRENZY_TRAIT)
+	remove_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA, TRAIT_PACIFISM), FRENZY_TRAIT)
 	log_message("exited frenzy.", LOG_ATTACK, color="red")
+
+	RemoveComponentSource("frenzy", /datum/component/speechmod)
+
+	remove_blocked_language(subtypesof(/datum/language), source = LANGUAGE_FRENZY)
+	remove_language(/datum/language/frenzy, source = LANGUAGE_FRENZY)
 
 	remove_status_effect(/datum/status_effect/frenzy)
 

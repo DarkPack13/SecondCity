@@ -31,6 +31,8 @@
 	var/hostile = FALSE
 	/// If use of this power creates a visible Masquerade breach.
 	var/violates_masquerade = FALSE
+	/// Can this be used while in frenzy
+	var/frenzy = TRUE
 
 	/* HOW AND WHEN IT'S ACTIVATED AND DEACTIVATED */
 	/// If this Discipline doesn't automatically expire, but rather periodically drains blood.
