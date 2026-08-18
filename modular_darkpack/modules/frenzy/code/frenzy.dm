@@ -19,10 +19,10 @@
 
 	if(fleeing)
 		to_chat(src, span_danger("FLEE."))
-		add_trait(src, TRAIT_PACIFISM, FRENZY_TRAIT)	//Lore inaccurate, but this forces them to flee instead of ignoring rotshreck and continuing to fight.
+		add_traits(list(TRAIT_PACIFISM), FRENZY_TRAIT)	//Lore inaccurate, but this forces them to flee instead of ignoring rotshreck and continuing to fight.
 	else
 		to_chat(src, span_bolddanger("FRENZY."))
-		add_trait(src, TRAIT_PERMAFANGS, FRENZY_TRAIT)	//You're hangry and can't wait to eat.
+		add_traits(list(TRAIT_PERMAFANGS), FRENZY_TRAIT)	//You're hangry and can't wait to eat.
 
 	SEND_SOUND(src, sound('modular_darkpack/modules/frenzy/sounds/frenzy.ogg', volume = 50))
 
