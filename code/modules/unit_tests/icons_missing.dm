@@ -6,8 +6,10 @@
 	/// Make sure these locations are also present in tools/deploy.sh
 	// DARKPACK EDIT CHANGE START
 	var/additional_icon_locations = list(
-		'modular_darkpack/'
-		'modular_downstream/' // DOWNSTREAM EDIT ADD
+		'modular_darkpack/modules/',
+		'modular_darkpack/master_files/',
+		'modular_downstream/modules/', // DOWNSTREAM EDIT ADD
+		'modular_downstream/master_files/' // DOWNSTREAM EDIT ADD
 	)
 	// DARKPACK EDIT CHANGE END
 
