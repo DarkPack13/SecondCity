@@ -341,3 +341,26 @@
 /datum/component/aura/proc/has_pale_blotches(mob/parent_mob)
 	if(!HAS_TRAIT(parent_mob, TRAIT_PALE_AURA) && get_ghoul_splat(parent_mob))
 		return TRUE
+
+
+/mob/proc/heart_is_beating()
+	return FALSE
+
+/mob/living/heart_is_beating()
+	if(stat == DEAD)
+		return FALSE
+
+	return TRUE
+
+/mob/living/carbon/human/heart_is_beating()
+	var/obj/item/organ/heart/beating_heart = get_organ_slot(ORGAN_SLOT_HEART)
+	if(!istype(beating_heart) || !(beating_heart.is_beating()))
+		return FALSE
+
+	// high humanity kindred OR kindred with blush of health avoid getting the still heart. in auspex, their hearts will instead show like humans; beating!
+	if(get_kindred_splat(src))
+		var/datum/st_stat/morality_path/morality/stat_morality = storyteller_stats[STAT_MORALITY]
+		if((stat_morality?.morality_path?.alignment != MORALITY_HUMANITY || stat_morality?.get_score() < 5) && !HAS_TRAIT(src, TRAIT_BLUSH_OF_HEALTH))
+			return FALSE
+
+	return TRUE

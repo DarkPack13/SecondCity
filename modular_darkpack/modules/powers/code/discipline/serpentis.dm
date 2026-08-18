@@ -1,6 +1,11 @@
 /datum/discipline/serpentis
 	name = "Serpentis"
-	desc = "Act like a cobra, get the powers to stun targets with your gaze and your tongue, praise the mummy traditions and spread them to your childe. Violates Masquerade."
+	desc = {"Act like a cobra, get the powers to stun targets with your gaze and your tongue, praise the mummy traditions and spread them to your childe. Violates Masquerade.
+● The Eyes of the Serpent: Passive
+●● The Tongue of the Asp: Strength (difficulty 6)
+●●● The Skin of the Adder: Passive
+●●●● The Form of the Cobra: Passive
+●●●●● The Heart of Darkness: Passive"}
 	icon_state = "serpentis"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/serpentis
@@ -129,7 +134,7 @@
 	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_LYING
 	toggled = TRUE
 	vitae_cost = 0 //handling blood cost in pre_activation because this power asks for one bloodpoint, but can be on forever without consuming more
-	violates_masquerade = TRUE
+	violates_masquerade = FALSE
 	var/choice
 
 /datum/discipline_power/serpentis/the_skin_of_the_adder/pre_activation_checks()

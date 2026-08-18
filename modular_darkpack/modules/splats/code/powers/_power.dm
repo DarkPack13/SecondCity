@@ -1,4 +1,5 @@
 /datum/action/cooldown/power
+	abstract_type = /datum/action/cooldown/power
 	cooldown_time = 1 TURNS // Good default.
 
 	/// The level/rank at which this power is taken or can be taken at.
@@ -36,6 +37,9 @@
 		if(used_turf)
 			spawn_magic_after_effect(used_turf, owner, rank, magic_type)
 
+	do_logging(target)
+
+
 /**
  * Returns a boolean of if the caster can afford
  * this power's cost cost.
@@ -60,3 +64,9 @@
 		var/mob/living/living_owner = owner
 		living_owner.st_change_stat(STAT_TEMPORARY_WILLPOWER, -willpower_cost)
 		to_chat(owner, span_warning("You burn [willpower_cost] willpower."))
+
+/**
+ * Overridable proc handling the combat log created by using this power.
+ */
+/datum/action/cooldown/power/proc/do_logging(target)
+	log_combat(owner, target || owner, "casted the power [name] on")

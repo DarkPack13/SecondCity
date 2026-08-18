@@ -58,9 +58,7 @@
 	if(isnull(receivers[parent_mob]))
 		receivers[parent_mob] = list()
 	for(var/mob/living/carbon/living_carbon in orange(parent_mob.client?.view, get_turf(parent_mob)))
-		// DARKPACK EDIT CHANGE START - (swapped to a helper on mob instead of checking the heart manually)
 		if(!living_carbon.heart_is_beating())
-		// DARKPACK EDIT CHANGE END
 			continue
 		show_heartbeat_image(living_carbon)
 

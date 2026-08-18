@@ -75,7 +75,10 @@
 		if(!spammy_roll)
 			var/message = build_output_message(roller, player_mob, dice_amount, bonus_amount, auto_success_amount, difficulty_amount, success_amount, rolled_dice, hide_result)
 			to_chat(player_mob, message, MESSAGE_TYPE_INFO, trailing_newline = FALSE)
-			SEND_SOUND(player_mob, sound('sound/items/dice_roll.ogg', volume = roll_important_to_me ? 5 : 20))
+			var/roll_sound = 'sound/items/dice_roll.ogg'
+			if(dice_amount + rand(-1, 1) > 3) // Create some nice variation.
+				roll_sound = 'modular_darkpack/modules/storyteller_dice/sounds/lots_of_dice.ogg'
+			SEND_SOUND(player_mob, sound(roll_sound, volume = roll_important_to_me ? 5 : 20))
 		else
 			if(alert_delay)
 				var/using_number = success_amount

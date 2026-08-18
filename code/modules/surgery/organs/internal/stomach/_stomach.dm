@@ -37,7 +37,7 @@
 	var/metabolism_efficiency = 0.05 // the lowest we should go is 0.025
 
 	/// Multiplier for hunger rate
-	var/hunger_modifier = 0.2 // DARKPACK EDIT CHANGE - ORIGINAL: var/hunger_modifier = 1
+	var/hunger_modifier = 1
 	/// Whether the stomach's been repaired with surgery and can be fixed again or not
 	var/operated = FALSE
 	/// List of all atoms within the stomach
@@ -169,6 +169,7 @@
 			hunger_rate = 3 * HUNGER_FACTOR
 		hunger_rate *= hunger_modifier
 		hunger_rate *= human.physiology.hunger_mod
+		hunger_rate *= CONFIG_GET(number/hunger_modifier) // DARKPACK EDIT ADD
 		human.adjust_nutrition(-hunger_rate * seconds_per_tick)
 
 	var/nutrition = human.nutrition
@@ -203,7 +204,7 @@
 /obj/item/organ/stomach/proc/handle_hunger_slowdown(mob/living/carbon/human/human)
 	var/hungry = (500 - human.nutrition) / 5 //So overeat would be 100 and default level would be 80
 	if(hungry >= 70)
-		human.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/hunger, multiplicative_slowdown = (hungry / 80)) // DARKPACK EDIT CHANGE - ORIGINAL: human.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/hunger, multiplicative_slowdown = (hungry / 50))
+		human.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/hunger, multiplicative_slowdown = (hungry / 50))
 	else
 		human.remove_movespeed_modifier(/datum/movespeed_modifier/hunger)
 
@@ -351,7 +352,7 @@
 			if(SPT_PROB(5, seconds_per_tick))
 				disgusted.adjust_stutter(2 SECONDS)
 				disgusted.adjust_confusion(2 SECONDS)
-			if(SPT_PROB(5, seconds_per_tick) && !disgusted.stat)
+			if(SPT_PROB(5, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(disgusted))
 				to_chat(disgusted, span_warning("You feel kind of iffy..."))
 			disgusted.adjust_jitter(-6 SECONDS)
 		if(disgust >= DISGUST_LEVEL_VERYGROSS)
@@ -488,6 +489,13 @@
 	metabolism_efficiency = 0.025 //very bad
 	organ_traits = list(TRAIT_NOHUNGER)
 
+/obj/item/organ/stomach/moth
+	name = "moth stomach"
+	desc = "An insectoid stomach adapted to the digestion of textile fibers from the get go. It's estimated that a young mothperson will eat 30 times their body weight in cloth \
+		before their stomach can fully produce the enzymes required to digest other matter as well."
+	icon_state = "spinner-x"
+	organ_traits = list(TRAIT_CLOTH_EATER)
+
 /obj/item/organ/stomach/bone/plasmaman
 	name = "digestive crystal"
 	desc = "A strange crystal that is responsible for metabolizing the unseen energy force that feeds plasmamen."
@@ -511,7 +519,8 @@
 	if(. & EMP_PROTECT_SELF)
 		return
 	if(!COOLDOWN_FINISHED(src, severe_cooldown)) //So we cant just spam emp to kill people.
-		owner.vomit(vomit_flags = (MOB_VOMIT_MESSAGE | MOB_VOMIT_HARM))
+		if(prob(100/severity))
+			owner.vomit(vomit_flags = (MOB_VOMIT_MESSAGE | MOB_VOMIT_HARM))
 		COOLDOWN_START(src, severe_cooldown, 10 SECONDS)
 	if(prob(emp_vulnerability/severity)) //Chance of permanent effects
 		organ_flags |= ORGAN_EMP //Starts organ faliure - gonna need replacing soon.

@@ -1,5 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - rscadd: "Endpost and Message+ now use a generic helper for displaying a notification as a balloon alert."
-  - bugfix: "Text messages properly use the phone numbers for the texters rather then phones"
