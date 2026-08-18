@@ -48,6 +48,7 @@
 
 	aggravating = TRUE
 	hostile = TRUE
+	frenzy = FALSE
 
 	cooldown_length = 20 SECONDS
 
@@ -71,6 +72,7 @@
 	range = 1
 
 	violates_masquerade = TRUE
+	frenzy = FALSE
 
 	cooldown_length = 5 SECONDS
 
@@ -112,6 +114,7 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE | DISC_CHECK_FREE_HAND
 	target_type = TARGET_LIVING
 	range = 1
+	frenzy = FALSE
 
 	cooldown_length = 5 SECONDS
 

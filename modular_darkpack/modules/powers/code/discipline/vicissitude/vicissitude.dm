@@ -45,6 +45,7 @@
 	cooldown_length = 1 TURNS
 	vitae_cost = 1
 	toggled = FALSE
+	frenzy = FALSE
 
 /datum/discipline_power/vicissitude/malleable_visage/activate(atom/target)
 	. = ..()
@@ -64,6 +65,7 @@
 	range = 1
 	toggled = FALSE
 	cooldown_length = 1 TURNS
+	frenzy = FALSE
 
 /datum/discipline_power/vicissitude/fleshcrafting/activate(atom/movable/target)
 	. = ..()

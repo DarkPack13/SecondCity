@@ -105,6 +105,7 @@
 	vitae_cost = 1
 	var/successes = 0
 	var/list/affected_targets = list()
+	frenzy = FALSE
 
 /datum/discipline_power/presence/awe/pre_activation_checks()
 	. = ..()
@@ -224,6 +225,7 @@
 	duration_length = 5 SECONDS
 	vitae_cost = 1
 	var/successes = 0
+	frenzy = FALSE
 
 /datum/discipline_power/presence/entrancement/pre_activation_checks(mob/living/target)
 
@@ -268,6 +270,7 @@
 	vitae_cost = 1
 	var/successes = 0
 	var/mob/living/carbon/human/summon_target
+	frenzy = FALSE
 
 /datum/discipline_power/presence/summon/pre_activation_checks(mob/living/target)
 	var/summon_target_name = tgui_input_text(owner, "Summon Target:", "Summon Target")
@@ -338,6 +341,7 @@
 	willpower_cost = 1
 	violates_masquerade = TRUE
 	var/list/affected_targets = list()
+	frenzy = FALSE
 
 /datum/discipline_power/presence/majesty/pre_activation_checks(mob/living/target)
 	return TRUE

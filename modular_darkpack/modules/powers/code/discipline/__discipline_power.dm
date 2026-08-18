@@ -271,6 +271,10 @@
 		//feedback is sent by the proc preventing activation
 		return FALSE
 
+	if(HAS_TRAIT(owner, TRAIT_IN_FRENZY))
+		to_chat(owner, span_warning("You cannot do this while in frenzy!"))
+		return FALSE
+
 	//can't activate if the owner isn't capable of it
 	if (!can_activate_untargeted(alert))
 		return FALSE
