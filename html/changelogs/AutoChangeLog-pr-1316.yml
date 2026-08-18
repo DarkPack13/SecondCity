@@ -1,0 +1,5 @@
+author: "Faengi"
+delete-after: True
+changes:
+  - rscadd: "Added Alcohol Tolerance, Banned Transformation, Beacon of the Unholy, Huge Size, Language Barrier, and No Sense of Taste as traits."
+  - bugfix: "Priests and Inquisition are now set as priests."
