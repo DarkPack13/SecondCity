@@ -34,12 +34,6 @@
 
 	unmemorize_guy(source)
 
-
-/datum/known_identity
-	var/last_examine_time
-	var/last_examine_image
-	var/last_examine_block
-
 /datum/guestbook/proc/pick_known_guy(mob/living/user)
 	RETURN_TYPE(/mob/living)
 
@@ -47,7 +41,7 @@
 	var/list/possible_chooseable_atoms = list()
 
 	for(var/mob/living/known_guy as anything in known_identity_datums)
-		choosable_targets[GET_GUESTBOOK_NAME(user, known_guy)] = known_identity_datums[known_guy]
+		choosable_targets[GET_GUESTBOOK_NAME(user, known_guy)] = known_identity_datums[known_guy].last_examine_image
 		possible_chooseable_atoms[GET_GUESTBOOK_NAME(user, known_guy)] = known_guy
 
 	var/name_choice = show_radial_menu(
@@ -64,3 +58,9 @@
 		return null
 
 	return possible_chooseable_atoms[name_choice]
+
+
+/datum/known_identity
+	var/last_examine_time
+	var/last_examine_image
+	var/last_examine_block

@@ -8,7 +8,7 @@
 	/// Associative list of known guests, real_name = known_name
 	var/list/known_names
 
-	var/list/known_identity_datums
+	var/list/datum/known_identity/known_identity_datums
 
 /datum/guestbook/Destroy(force)
 	LAZYNULL(known_names)

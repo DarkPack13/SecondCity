@@ -61,6 +61,7 @@
 	SEND_SIGNAL(roller, COMSIG_LIVING_PRE_DICE_ROLLED, src, target, using_item, &bonus_amount, &difficulty_amount)
 
 	dice_amount += bonus_amount
+	difficulty_amount = clamp(difficulty_amount, 3, 9)
 
 	var/list/rolled_dice = roll_dice(dice_amount, auto_success_amount)
 
@@ -112,11 +113,11 @@
 
 	output_text += get_dice_display(rolled_dice, difficulty_amount, success_amount, hide_result)
 
-	var/title = ""
+	var/title
 	if(roll_output_type in list(ROLL_PRIVATE_ADMIN, ROLL_ADMIN) && (displayed_to.client in GLOB.admins))
 		title = "[ADMIN_LOOKUPFLW(roller)]"
 	else
-		title = GET_GUESTBOOK_NAME(displayed_to, roller)
+		title = GET_GUESTBOOK_NAME_TRUE(displayed_to, roller)
 	title += " - [bumper_text] [span_tinynoticeital(roll_output_type)]"
 
 	var/output_combined = fieldset_block(title, jointext(output_text, "<br>"), "boxed_message")
