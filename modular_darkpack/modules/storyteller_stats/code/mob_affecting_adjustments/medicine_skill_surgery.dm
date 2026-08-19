@@ -1,3 +1,4 @@
+//Function for giving a player upgraded wound tending based on their current medical skill
 /datum/st_stat/ability/medicine/proc/check_medicine_wound_tending(datum/source, atom/movable/operating_on, list/possible_operations)
 	SIGNAL_HANDLER
 	var/mob/living/surgeon = source
