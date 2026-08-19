@@ -142,7 +142,7 @@
 	description = "Affects your character's knowledge of anatomy, medicine, and emergency first aid protocols. Used in Vicissitude."
 
 /datum/st_stat/ability/medicine/update_mob(mob/living/our_mob, initial)
-	RegisterSignal(our_mob, COMSIG_LIVING_OPERATING_ON, PROC_REF(check_medicine_wound_tending), override = TRUE)
+	RegisterSignal(our_mob, COMSIG_LIVING_OPERATING_ON, PROC_REF(check_medicine_wound_tending))
 
 /datum/st_stat/ability/occult
 	subcategory = "Knowledges"
