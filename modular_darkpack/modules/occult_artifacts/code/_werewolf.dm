@@ -15,7 +15,7 @@ GLOBAL_LIST_INIT(animal_spirits, world.file2list("modular_darkpack/modules/occul
 	var/spirit_type = "ahelp"
 
 /obj/item/occult_artifact/werewolf/can_be_used_by(mob/living/user)
-	return !isnull(get_shifter_splat(user) || get_kinfolk_splat(user))
+	return !!get_shifter_splat(user) || get_kinfolk_splat(user)
 
 /proc/generate_spirit_name(spirit_type) // TODO: make this better. there are 50+ spirits in WoD, and that's not condusive to this format.
 	var/spirit_name
