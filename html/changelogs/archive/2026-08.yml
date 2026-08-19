@@ -161,3 +161,36 @@
       or 'cure all breaches' (clears all breaches) on any mob that has breached
   dwinters99:
   - image: bloodstone now has an onfloor
+2026-08-18:
+  Absolucy:
+  - rscadd: Map votes are now automatically started at roundend, if a next map has
+      not already been selected.
+  Beautiful TG coders:
+  - code_imp: TG Pull. Thank you TG.
+  ChudBluski:
+  - balance: changed Thirst of Ages to -7 points to reflect the ttrpg
+  - code_imp: 'changes the ttrpg source of Thirst of Ages to "V20''s The Black Hand:
+      Guide to the Tal''Mahe''Ra"'
+  Contrabang:
+  - code_imp: Made wall frills more memory efficient
+  Faengi:
+  - rscadd: Added Alcohol Tolerance, Banned Transformation, Beacon of the Unholy,
+      Huge Size, Language Barrier, and No Sense of Taste as traits.
+  - bugfix: Priests and Inquisition are now set as priests.
+  Stutternov:
+  - bugfix: Fixes the sawn AK74's sprite overlays. Has proper mag now and belt sprite
+      placeholder. (Looks like normal AK on belt.)
+  - bugfix: Fixes lever action not having updating sprite overlays when you cycle
+      its bolt.
+  - bugfix: Fixes musket to be capable of being sawn down as intended.
+  breadcrombs:
+  - rscadd: Added a few more selectable adjectives
+  cam_dev:
+  - bugfix: buzzard crinos warforms are visible again (no unique sprites yet)
+  - image: red buzzard raven sprites
+  chazzyjazzy:
+  - bugfix: if you diablerize someone you can no longer bloodheal to get rid of the
+      imaginary friend
+  flleeppyy:
+  - bugfix: fix a phone bluescreen where some contacts could have empty names.
+  - bugfix: typo in ugly examine
