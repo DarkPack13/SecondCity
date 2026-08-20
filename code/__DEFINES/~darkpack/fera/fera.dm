@@ -18,6 +18,8 @@
 
 #define FEATURE_FERA_FUR_COLOR "fera_fur_color"
 #define FEATURE_FERA_HAIR(splat_id) "fera_hair" + splat_id
+#define FEATURE_FERA_BODY(splat_id) "fera_body" + splat_id
+#define FEATURE_FERA_CLOTHES(splat_id) "fera_clothes" + splat_id
 
 GLOBAL_ALIST_INIT(fera_fur_colors, alist(
 	SPLAT_GAROU = list(

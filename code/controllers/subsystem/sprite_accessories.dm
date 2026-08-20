@@ -104,6 +104,8 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 
 	// DARKPACK EDIT ADD START - WEREWOLF
 	feature_list[FEATURE_FERA_HAIR(SPLAT_GAROU)] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/fera_feature/hair/garou)
+	feature_list[FEATURE_FERA_BODY(SPLAT_GAROU)] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/fera_feature/body/garou)
+	feature_list[FEATURE_FERA_CLOTHES(SPLAT_GAROU)] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/fera_feature/clothes/garou)
 	// DARKPACK EDIT ADD END
 
 /// This proc just initializes all /datum/sprite_accessory/hair_gradient into an list indexed by gradient-style name

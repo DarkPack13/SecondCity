@@ -150,9 +150,11 @@
 
 
 	human.remove_overlay(BODY_ADJ_LAYER)
-	var/mutable_appearance/scar_image = mutable_appearance(mob_icon, "scar1" + postfix_info, -BODY_ADJ_LAYER)
-	human.overlays_standing[BODY_ADJ_LAYER] = list(scar_image)
-	human.apply_overlay(BODY_ADJ_LAYER)
+	var/body_icon_state = get_feature_icon_state(human, FEATURE_FERA_BODY(splat_id))
+	if(body_icon_state)
+		var/mutable_appearance/body_image = mutable_appearance(mob_icon, body_icon_state + postfix_info, -BODY_ADJ_LAYER)
+		human.overlays_standing[BODY_ADJ_LAYER] = list(body_image)
+		human.apply_overlay(BODY_ADJ_LAYER)
 
 	human.remove_overlay(HAIR_LAYER)
 	var/hair_icon_state = get_feature_icon_state(human, FEATURE_FERA_HAIR(splat_id))
@@ -164,9 +166,11 @@
 
 
 	human.remove_overlay(UNIFORM_LAYER)
-	var/mutable_appearance/outfit_layer = mutable_appearance(mob_icon, "green_tribal" + postfix_info, -UNIFORM_LAYER)
-	human.overlays_standing[UNIFORM_LAYER] = list(outfit_layer)
-	human.apply_overlay(UNIFORM_LAYER)
+	var/uniform_icon_state = get_feature_icon_state(human, FEATURE_FERA_CLOTHES(splat_id))
+	if(!uniform_icon_state)
+		var/mutable_appearance/outfit_layer = mutable_appearance(mob_icon, uniform_icon_state + postfix_info, -UNIFORM_LAYER)
+		human.overlays_standing[UNIFORM_LAYER] = list(outfit_layer)
+		human.apply_overlay(UNIFORM_LAYER)
 
 	return TRUE
 
