@@ -8208,7 +8208,6 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\basic_mobs\banes\suffocating.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\basic_mobs\corvid\_bird.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\basic_mobs\corvid\bird_ai.dm"
-#include "modular_darkpack\modules\werewolf_the_apocalypse\code\changing_breeds\corax.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\_gift.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\auspices\ahroun.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\auspices\galliard.dm"
