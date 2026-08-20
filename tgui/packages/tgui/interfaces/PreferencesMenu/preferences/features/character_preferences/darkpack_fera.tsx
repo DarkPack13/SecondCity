@@ -16,3 +16,13 @@ export const garou_hair: FeatureChoiced = {
   name: 'Garou Hair',
   component: FeatureDropdownInput,
 };
+
+export const garou_body: FeatureChoiced = {
+  name: 'Garou Body',
+  component: FeatureDropdownInput,
+};
+
+export const garou_clothes: FeatureChoiced = {
+  name: 'Garou Clothes',
+  component: FeatureDropdownInput,
+};
