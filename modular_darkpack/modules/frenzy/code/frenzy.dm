@@ -23,6 +23,8 @@
 		add_traits(list(TRAIT_PACIFISM), FRENZY_TRAIT)	//Lore inaccurate, but this forces them to flee instead of ignoring rotshreck and continuing to fight.
 	else
 		to_chat(src, span_bolddanger("FRENZY."))
+		if(!HAS_TRAIT(src, TRAIT_PERMAFANGS))	//If you already have fangs, you don't grow them suddenly.
+			src.balloon_alert_to_viewers("grows fangs!")
 		add_traits(list(TRAIT_PERMAFANGS), FRENZY_TRAIT)	//You're hangry and can't wait to eat.
 
 	SEND_SOUND(src, sound('modular_darkpack/modules/frenzy/sounds/frenzy.ogg', volume = 50))
