@@ -8261,6 +8261,7 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\breeds\crinos\sense_wyrm.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\breeds\homid\_homid.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\breeds\lupus\_lupus.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\breeds\lupus\heightened_senses.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\innate\eye_drink.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\innate\howling.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\gifts\tribes\black_furies.dm"

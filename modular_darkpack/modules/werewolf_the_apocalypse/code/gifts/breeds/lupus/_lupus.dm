@@ -46,95 +46,15 @@
 	overlay_state = /datum/action/cooldown/power/gift/hares_leap::button_icon_state
 
 
-
-/datum/action/cooldown/power/gift/heightened_senses
-	name = "Heightened Senses"
-	desc = "The player gains an uncanncy sense of perception and tracking ability"
-	#warn icon
-	rank = 1
-	gnosis_cost = 1
-
-/datum/action/cooldown/power/gift/heightened_senses/Activate(atom/target)
-	var/mob/living/living_owner = astype(target)
-	if(!living_owner)
-		return
-
-	. = ..()
-
-	living_owner.apply_status_effect(/datum/status_effect/heightened_senses)
-
-
-/datum/status_effect/heightened_senses
-	id = "heightened_senses"
-	duration = 1 SCENES
-	status_type = STATUS_EFFECT_REFRESH
-	alert_type = /atom/movable/screen/alert/status_effect/gift/heightened_senses
-	var/datum/action/uncanny_tracking/tracking_action
-
-/datum/status_effect/heightened_senses/on_apply()
-	RegisterSignal(owner, COMSIG_LIVING_PRE_DICE_ROLLED, PROC_REF(on_dice_rolled))
-
-	tracking_action = new(owner)
-	tracking_action.Grant(owner)
-
-	return TRUE
-
-/datum/status_effect/heightened_senses/on_remove()
-	UnregisterSignal(owner, COMSIG_LIVING_PRE_DICE_ROLLED)
-
-	if(owner)
-		tracking_action.Remove(owner)
-	QDEL_NULL(tracking_action)
-
-/datum/status_effect/heightened_senses/proc/on_dice_rolled(mob/living/roller, datum/storyteller_roll/roll_datum, atom/target, atom/using_item, bonus, difficulty)
-	SIGNAL_HANDLER
-
-	if(STAT_PERCEPTION in roll_datum.applicable_stats)
-		*difficulty -= 2
-
-
-/atom/movable/screen/alert/status_effect/gift/heightened_senses
-	name = /datum/action/cooldown/power/gift/heightened_senses::name
-	desc = /datum/action/cooldown/power/gift/heightened_senses::desc
-	overlay_state = /datum/action/cooldown/power/gift/heightened_senses::button_icon_state
-
-
-/datum/action/uncanny_tracking
-	name = "Uncanny Tracking"
-	desc = "Sense the location."
-	button_icon = /datum/action/cooldown/power/gift/heightened_senses::button_icon
-	button_icon_state = /datum/action/cooldown/power/gift/heightened_senses::button_icon_state
-	check_flags = AB_CHECK_CONSCIOUS
-	var/datum/storyteller_roll/gift/uncanny_tracking/roll_datum
-
-/datum/action/uncanny_tracking/Trigger(mob/clicker, trigger_flags)
-	var/mob/living/living_owner = astype(owner)
-	if(!living_owner)
-		return
-
-	. = ..()
-	if(!.)
-		return
-
-
-	var/mob/living/target = owner?.mind?.guestbook.pick_known_guy(owner)
-	if(!istype(target))
-		return
-
-	if(!roll_datum)
-		roll_datum = new()
-	var/roll_result = roll_datum.st_roll(living_owner, bonus_added = PRIMAL_URGE_PLACEHOLDER)
-
-	if(roll_result != ROLL_SUCCESS)
-		return
-
-	to_chat(owner, span_warning("[get_area_name(target)]"))
-
-/datum/storyteller_roll/gift/uncanny_tracking
-	applicable_stats = list(STAT_PERCEPTION)
-	difficulty = 7
-
-
-
 #warn do
 /datum/action/cooldown/power/gift/predators_arsenal
+	name = "Predator's Arsenal"
+	desc = {"One of the most unnerving aspects of the Homid shape is its lack of proper weapons.
+	This Gift remedies that problem (while still retaining much of the Homid shape's ability to blend in with the human world),
+	granting the Garou battle-ready claws and teeth in Homid form."}
+	#warn icon
+	rank = 1
+
+/datum/action/cooldown/power/gift/predators_arsenal/Activate(atom/target)
+	. = ..()
+	
