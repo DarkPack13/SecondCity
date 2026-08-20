@@ -12,7 +12,8 @@
 
 	add_blocked_language(subtypesof(/datum/language) - /datum/language/frenzy, LANGUAGE_FRENZY)
 	grant_language(/datum/language/frenzy, source = LANGUAGE_FRENZY)
-	AddComponentFrom("frenzy", /datum/component/speechmod, replacements = list("." = "!"), end_string = "!!", uppercase = TRUE)	//Not perfect as two vampires in frenzy could have a legible conversation with each other, maybe if a fire happened and every vampire went rotschreck.
+	RegisterSignal(src, COMSIG_MOB_SAY, PROC_REF(handle_frenzy_speech))
+	AddComponentFrom("frenzy", /datum/component/speechmod, replacements = list("." = "!"), end_string = "!!", uppercase = TRUE)
 
 	message_admins("[ADMIN_LOOKUPFLW(src)] has entered frenzy[target ? " targeting [ADMIN_LOOKUPFLW(target)]": ""]. ([source])")
 	log_combat(src, (src || target), "has frenzied on because of \"[source]\" on")
@@ -38,11 +39,24 @@
 	log_message("exited frenzy.", LOG_ATTACK, color="red")
 
 	RemoveComponentSource("frenzy", /datum/component/speechmod)
+	UnregisterSignal(src, list(COMSIG_MOB_SAY))
 
 	remove_blocked_language(subtypesof(/datum/language), source = LANGUAGE_FRENZY)
 	remove_language(/datum/language/frenzy, source = LANGUAGE_FRENZY)
 
 	remove_status_effect(/datum/status_effect/frenzy)
+
+/mob/living/proc/handle_frenzy_speech(datum/source, list/speech_args)
+	SIGNAL_HANDLER
+
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message)
+		var/list/message_split = splittext(message, " ")
+		var/list/new_message = list()
+		for(var/word in message_split)
+			new_message += pick("HISS!!!","RAAAGH!!!", "FFFFF!!!")
+
+		message = jointext(new_message, " ")
 
 /datum/storyteller_roll/frenzy
 	abstract_type = /datum/storyteller_roll/frenzy
