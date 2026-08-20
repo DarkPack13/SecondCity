@@ -12,11 +12,9 @@
  * TODO handcuff part
  */
 /datum/action/cooldown/power/gift/shed
-
 	name = "Shed"
 	desc = "The Garou knows the trick of shedding and growing fur at an alarming rate."
-	#warn icon
-	button_icon_state = "shed" // TODO: get an icon for this
+	button_icon_state = "shed"
 	rank = 1
 	cooldown_time = 1 TURNS
 	var/datum/storyteller_roll/gift/shed/roll

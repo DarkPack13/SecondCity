@@ -1,7 +1,7 @@
 /datum/action/cooldown/power/gift/heightened_senses
 	name = "Heightened Senses"
 	desc = "The player gains an uncanncy sense of perception and tracking ability"
-	#warn icon
+	button_icon_state = "heightened_senses"
 	rank = 1
 	gnosis_cost = 1
 
@@ -73,8 +73,8 @@
 	if(!living_owner)
 		return
 
-	var/mob/living/target = owner?.mind?.guestbook.pick_known_guy(owner)
-	if(!istype(target))
+	var/mob/living/living_target = owner?.mind?.guestbook.pick_known_guy(owner)
+	if(!istype(living_target))
 		return
 
 	. = ..()
@@ -86,7 +86,7 @@
 	if(roll_result != ROLL_SUCCESS)
 		return
 
-	living_owner.create_navigation_line(target)
+	living_owner.create_navigation_line(living_target)
 
 /datum/storyteller_roll/gift/uncanny_tracking
 	applicable_stats = list(STAT_PERCEPTION)

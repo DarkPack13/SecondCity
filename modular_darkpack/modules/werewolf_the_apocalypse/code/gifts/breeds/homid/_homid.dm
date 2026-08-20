@@ -2,7 +2,7 @@
 	name = "City Running"
 	desc = {"The player spends a point of Rage. For the rest of the scene, the character may climb at her full movement speed,
 	and the difficulty of all Athletics rolls to navigate is reduced by two."}
-	#warn icon
+	button_icon_state = "city_running"
 	rank = 1
 	rage_cost = 1
 

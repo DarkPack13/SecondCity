@@ -2,7 +2,7 @@
 /datum/action/cooldown/power/gift/beat_of_the_heartdrum
 	name = "Beat of the Heart-Drum"
 	desc = {"The werewolf becomes an inescapable hunter, drawn ever onward by the beat of his prey's heart until that heart grows still."}
-	#warn icon
+	button_icon_state = "beat_of_the_heartdrum"
 	rank = 1
 	gnosis_cost = 1
 

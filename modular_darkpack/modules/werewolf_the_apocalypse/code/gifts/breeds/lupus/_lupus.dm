@@ -2,7 +2,7 @@
 	name = "Hares Leap"
 	desc = {"The player makes a reflexive Strength + Athletics roll (difficulty 7) to activate this Gift.
 	If successful, the character's leaping distances are doubled for a scene — or tripled for a single turn with the expenditure of a Willpower point"}
-	#warn icon
+	button_icon_state = "hares_leap"
 	rank = 1
 
 /datum/action/cooldown/power/gift/hares_leap/Activate(atom/target)
@@ -52,9 +52,8 @@
 	desc = {"One of the most unnerving aspects of the Homid shape is its lack of proper weapons.
 	This Gift remedies that problem (while still retaining much of the Homid shape's ability to blend in with the human world),
 	granting the Garou battle-ready claws and teeth in Homid form."}
-	#warn icon
+	button_icon_state = "predators_arsenal"
 	rank = 1
 
 /datum/action/cooldown/power/gift/predators_arsenal/Activate(atom/target)
 	. = ..()
-	

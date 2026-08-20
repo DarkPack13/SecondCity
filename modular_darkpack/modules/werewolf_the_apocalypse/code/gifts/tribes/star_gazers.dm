@@ -1,6 +1,7 @@
 /datum/action/cooldown/power/gift/channeling
 	name = "Channeling"
 	desc = "The user burns 1 to 3 rage in exchange for that many bonus dice on there next roll."
+	button_icon_state = "channeling"
 	rank = 1
 	rage_cost = 1
 	handles_spend_resources = TRUE
