@@ -12,7 +12,7 @@
 /datum/sprite_accessory/fera_feature/body/garou
 	abstract_type = /datum/sprite_accessory/fera_feature/body/garou
 
-	/datum/sprite_accessory/fera_feature/body/garou/scar_1
+/datum/sprite_accessory/fera_feature/body/garou/scar_1
 	name = "Right Eye Scar"
 	icon_state = "scar1"
 
