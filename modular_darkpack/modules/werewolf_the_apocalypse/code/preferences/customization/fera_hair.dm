@@ -69,18 +69,6 @@
 	name = "Left Artificial Arm"
 	icon_state = "scar9"
 
-/datum/sprite_accessory/fera_feature/hair/garou/damage_1
-	name = "Light Damage"
-	icon_state = "damage1"
-
-/datum/sprite_accessory/fera_feature/hair/garou/damage_2
-	name = "Moderate Damage"
-	icon_state = "damage2"
-
-/datum/sprite_accessory/fera_feature/hair/garou/damage_3
-	name = "Severe Damage"
-	icon_state = "damage3"
-
 /datum/sprite_accessory/fera_feature/hair/garou/loincloth
 	name = "Loincloth"
 	icon_state = "loincloth"
