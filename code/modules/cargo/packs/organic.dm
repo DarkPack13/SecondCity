@@ -120,7 +120,7 @@
 	desc = "Get things cooking with this crate full of useful ingredients! \
 		Contains a dozen eggs, three bananas, and some flour, rice, milk, \
 		soymilk, salt, pepper, enzyme, sugar, and monkeymeat."
-	cost = CARGO_CRATE_VALUE * 2
+	cost = CARGO_CRATE_VALUE * 3 // DARKPACK EDIT CHANGE - Unit test failure? - Original: 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/reagent_containers/condiment/flour,
 					/obj/item/reagent_containers/condiment/rice,
 					/obj/item/reagent_containers/condiment/milk,
