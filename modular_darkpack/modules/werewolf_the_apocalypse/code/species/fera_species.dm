@@ -167,7 +167,7 @@
 
 	human.remove_overlay(UNIFORM_LAYER)
 	var/uniform_icon_state = get_feature_icon_state(human, FEATURE_FERA_CLOTHES(splat_id))
-	if(!uniform_icon_state)
+	if(uniform_icon_state)
 		var/mutable_appearance/outfit_layer = mutable_appearance(mob_icon, uniform_icon_state + postfix_info, -UNIFORM_LAYER)
 		human.overlays_standing[UNIFORM_LAYER] = list(outfit_layer)
 		human.apply_overlay(UNIFORM_LAYER)
