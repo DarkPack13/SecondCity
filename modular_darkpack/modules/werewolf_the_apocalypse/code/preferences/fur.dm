@@ -1,3 +1,4 @@
+/*
 /datum/preference/choiced/fera_fur_color
 	abstract_type = /datum/preference/choiced/fera_fur_color
 	savefile_key = "fur_color"
@@ -33,3 +34,5 @@
 
 /datum/preference/choiced/fera_fur_color/corax/init_possible_values()
 	return assoc_to_keys(GLOB.corax_fur_colors)
+
+*/
