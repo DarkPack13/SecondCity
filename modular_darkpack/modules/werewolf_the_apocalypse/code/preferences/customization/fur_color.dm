@@ -8,7 +8,7 @@
 	abstract_type = /datum/preference/choiced/fera_fur_color
 	savefile_key = "fur_color"
 
-	// main_feature_name = "Fera Fur Color"
+	main_feature_name = "Fera Fur Color"
 	relevant_inherent_trait = TRAIT_FERA_FUR
 	var/splat_id
 
