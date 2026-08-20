@@ -503,6 +503,7 @@
 	desc = "Pretty old, but also easy fireable and cleanable by vodka. This one has had its stock removed and the barrel chopped; it's a miracle it still cycles! Uses 5.45 rounds."
 	icon_state = "ak74_sawn"
 	inhand_icon_state = "ak74_sawn"
+	worn_icon_state = "sks"
 	w_class = WEIGHT_CLASS_NORMAL
 	weapon_weight = WEAPON_MEDIUM
 	recoil = 8	//Increased recoil due to sawing off the stock on a full-auto. Bootleg draco.
@@ -609,7 +610,7 @@
 	recoil = 3
 	fire_delay = 1					//It's bolt-action. Fast as you can go really; which is still pretty slow.
 	burst_size = 1
-	slot_flags = ITEM_SLOT_BACK
+	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	projectile_damage_multiplier = 1.5 //~52 damage vs 35 base .44 damage. It's ok, on par with 5.56 but lower pen and slower to fire due to bolt action.
 	masquerade_violating = FALSE
 	serial_type = "WN"
@@ -891,6 +892,7 @@
 	spread = 14
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
+	can_be_sawn_off	= TRUE
 	projectile_damage_multiplier = 1.5 //150 damage; it is a single-shot.
 	serial_shown = FALSE	//No serial, it's a musket.
 	actions_types = list()
