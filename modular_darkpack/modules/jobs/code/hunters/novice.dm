@@ -30,3 +30,9 @@
 	r_pocket = /obj/item/vamp/keys/hunter
 	l_pocket = /obj/item/smartphone/novice
 	backpack_contents = list(/obj/item/camera=1, /obj/item/vampirebook/bible=1, /obj/item/card/credit=1)
+
+
+/datum/outfit/job/vampire/novice/pre_equip(mob/living/carbon/human/H)
+	. = ..()
+	if(H.mind)
+		H.mind.set_holy_role(HOLY_ROLE_DEACON)
