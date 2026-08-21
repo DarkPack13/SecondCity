@@ -85,7 +85,7 @@
 		observe_masquerade_reinforce(dead_breacher)
 		UnregisterSignal(dead_breacher, COMSIG_LIVING_DEATH)
 
-/atom/movable/proc/observe_masquerade_violation(player_breacher)
+/atom/proc/observe_masquerade_violation(player_breacher)
 	do_alert_animation()
 	if(get_werewolf_splat(player_breacher))
 		to_chat(player_breacher, span_userdanger(span_bold("VEIL VIOLATION")))
@@ -94,7 +94,7 @@
 	playsound(player_breacher, 'modular_darkpack/modules/masquerade/sound/masquerade_violation.ogg', 50, FALSE, -5)
 	to_chat(player_breacher, span_userdanger(span_bold("MASQUERADE VIOLATION")))
 
-/atom/movable/proc/observe_masquerade_reinforce(player_breacher)
+/atom/proc/observe_masquerade_reinforce(player_breacher)
 	if(get_werewolf_splat(player_breacher))
 		to_chat(player_breacher, span_big(span_boldnicegreen("VEIL REINFORCED")))
 		playsound(player_breacher, 'modular_darkpack/modules/masquerade/sound/humanity_gain.ogg', 50, FALSE, -5)
