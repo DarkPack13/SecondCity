@@ -196,6 +196,8 @@
 	calling_smartphone.set_phone_state(PHONE_IN_CALL)
 
 	toggle_masquerade_sensitivity()
+	calling_smartphone.toggle_masquerade_sensitivity()
+
 	phone_radio.canhear_range = 1
 	calling_smartphone.phone_radio.canhear_range = 1
 	muted = FALSE
