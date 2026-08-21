@@ -1,0 +1,7 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "Adds a subtype to yawns for a covered yawn to prevent propagation"
+  - balance: "Willpower scales the change for a yawn to propagate to you"
+  - balance: "You only roll a chance for automatic yawn propagation from the first yawn you witness"
+  - balance: "Yawn propagation only happens on half of yawns"

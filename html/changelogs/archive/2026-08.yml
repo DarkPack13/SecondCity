@@ -202,3 +202,13 @@
   - bugfix: fixed Blood Form on-exit head sprite bug.
   breadcrombs:
   - balance: npc vendor .45 acp ammo box price has been reduced from 2100 to 700
+2026-08-21:
+  Stutternov:
+  - bugfix: Fixes issue on Dread Gaze that was causing people to run away for entire
+      rounds. Adjusted to 2 minute timer.
+  breadcrombs:
+  - sound: the vicissitude surgery implant toolset has been given a new more organic
+      sound
+  chazzyjazzy:
+  - rscdel: Removes Beekeeping supply pack from the warehouse
+  - rscdel: Removes Monkey Cubes supply pack from the warehouse
