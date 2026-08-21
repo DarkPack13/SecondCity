@@ -1,7 +1,7 @@
-/atom
+/atom/movable
 	var/violation_observer = FALSE
 
-/atom/proc/toggle_masquerade_sensitivity()
+/atom/movable/proc/toggle_masquerade_sensitivity()
 	violation_observer = !violation_observer
 	if(violation_observer)
 		RegisterSignal(src, COMSIG_SEEN_MASQUERADE_VIOLATION, PROC_REF(on_observed_violation))
@@ -11,6 +11,12 @@
 		UnregisterSignal(src, list(COMSIG_SEEN_MASQUERADE_VIOLATION, COMSIG_MASQUERADE_REINFORCE, COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE))
 
 // violate. sent by comsig_masquerade_violation, checks for mob/living/carbon/human/npc
+/atom/movable/proc/on_masquerade_violation()
+	for(var/atom/movable/moving_atom in orange(7, loc))
+		if(!violation_observer)
+			continue
+		SEND_SIGNAL(moving_atom, COMSIG_SEEN_MASQUERADE_VIOLATION, src)
+
 /atom/proc/on_observed_violation(atom/source, mob/living/player_breacher)
 	SIGNAL_HANDLER
 

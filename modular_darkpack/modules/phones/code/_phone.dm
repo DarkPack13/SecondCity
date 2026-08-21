@@ -81,7 +81,6 @@
 	wiki_book = new()
 	become_hearing_sensitive(ROUNDSTART_TRAIT)
 	RegisterSignal(src, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hearing))
-	AddComponent(/datum/component/violation_observer, FALSE)
 	phone_background = "BG_[rand(1,18)]" // pick a random phone background when spawned
 
 /obj/item/smartphone/proc/update_initialized_contacts()
