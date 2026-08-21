@@ -109,7 +109,7 @@
 	if(!iscarbon(clothing.loc))
 		return
 	wearer = clothing.loc // interacting_with_atom forces us to be on an /obj/item/clothing on a mob
-	wearer.toggle_masquerade_sensitivity()
+	wearer.toggle_masquerade_sensitivity(TRUE)
 	log_game("BODYCAM TOGGLE: [(user ? key_name(user) : "SYSTEM")] turned ON [src] ([builtin_bodycamera.c_tag]) at [loc_name(src)].")
 
 ///Turns the camera off. Will be silent if 'user' is null.
@@ -119,7 +119,7 @@
 		playsound(loc, 'sound/machines/beep/beep.ogg', get_clamped_volume(), TRUE, -1)
 	if(builtin_bodycamera)
 		builtin_bodycamera.camera_enabled = FALSE
-	wearer.toggle_masquerade_sensitivity()
+	wearer.toggle_masquerade_sensitivity(FALSE)
 	wearer = null
 	log_game("BODYCAM TOGGLE: [(user ? key_name(user) : "SYSTEM")] turned OFF [src] at [loc_name(src)].")
 

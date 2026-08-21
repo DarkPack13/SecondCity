@@ -195,8 +195,9 @@
 	set_phone_state(PHONE_IN_CALL)
 	calling_smartphone.set_phone_state(PHONE_IN_CALL)
 
-	toggle_masquerade_sensitivity()
-	calling_smartphone.toggle_masquerade_sensitivity()
+	// turn masq stuff on
+	toggle_masquerade_sensitivity(TRUE)
+	calling_smartphone.toggle_masquerade_sensitivity(TRUE)
 
 	phone_radio.canhear_range = 1
 	calling_smartphone.phone_radio.canhear_range = 1
@@ -225,7 +226,10 @@
 	// Set proper phone state.
 	set_phone_state(PHONE_AVAILABLE)
 	calling_smartphone.set_phone_state(PHONE_AVAILABLE)
-	toggle_masquerade_sensitivity()
+
+	// turn masq stuff off
+	toggle_masquerade_sensitivity(FALSE)
+	calling_smartphone.toggle_masquerade_sensitivity(FALSE)
 
 // Internal only proc, used for setting a phone's internal radio.
 /obj/item/smartphone/proc/set_phone_radio(enabled)

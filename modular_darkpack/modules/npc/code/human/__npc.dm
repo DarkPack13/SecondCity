@@ -91,7 +91,7 @@
 	// Be annoyed if helped
 	RegisterSignal(src, COMSIG_CARBON_HELP_ACT, PROC_REF(handle_helped))
 	//all npcs are masquerade violators by default so flip it to true
-	toggle_masquerade_sensitivity()
+	toggle_masquerade_sensitivity(TRUE)
 	return INITIALIZE_HINT_LATELOAD
 
 /mob/living/carbon/human/npc/LateInitialize(mapload)

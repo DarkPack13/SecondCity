@@ -1,8 +1,17 @@
 /atom/movable
 	var/violation_observer = FALSE
 
-/atom/movable/proc/toggle_masquerade_sensitivity()
-	violation_observer = !violation_observer
+/atom/movable/proc/toggle_masquerade_sensitivity(new_listening_state)
+	// don't proceed if we're toggling to TRUE on something already listening
+	if(!isnull(new_listening_state) && new_listening_state == violation_observer)
+		return
+
+	// if we don't pass an arg just flip the switch
+	if(isnull(new_listening_state))
+		violation_observer = !violation_observer
+	else
+		violation_observer = new_listening_state
+
 	if(violation_observer)
 		RegisterSignal(src, COMSIG_SEEN_MASQUERADE_VIOLATION, PROC_REF(on_observed_violation))
 		RegisterSignal(src, COMSIG_MASQUERADE_REINFORCE, PROC_REF(on_masquerade_violation_reinforced))
