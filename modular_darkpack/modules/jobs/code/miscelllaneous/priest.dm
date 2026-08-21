@@ -42,3 +42,8 @@
 	l_hand = /obj/item/vamp/keys/church
 	back = /obj/item/storage/backpack/satchel
 	backpack_contents = list(/obj/item/card/credit=1)
+
+/datum/outfit/job/vampire/priest/pre_equip(mob/living/carbon/human/H)
+	. = ..()
+	if(H.mind)
+		H.mind.set_holy_role(HOLY_ROLE_PRIEST)
