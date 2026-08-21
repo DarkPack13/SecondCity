@@ -43,7 +43,7 @@
 
 	source.AddComponent(/datum/component/masquerade_hud, player_breacher)
 	SSmasquerade.masquerade_breach(source, player_breacher, (isliving(source) ? MASQUERADE_REASON_NPC : MASQUERADE_REASON_OBJECT))
-	RegisterSignal(player_breacher, COMSIG_LIVING_DEATH, PROC_REF(on_breacher_death))
+	RegisterSignal(player_breacher, COMSIG_LIVING_DEATH, PROC_REF(on_breacher_death), override = TRUE) // override is for breaching multiple times on the same violation observer - on_breacher_death handles all violations, not just the breach created here
 
 	return TRUE
 
