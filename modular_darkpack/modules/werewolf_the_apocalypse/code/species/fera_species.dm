@@ -207,6 +207,7 @@
 	name = "war form"
 	id = SPECIES_FERA_WAR
 	inherent_traits = list(
+		TRAIT_CHUNKYFINGERS,
 		TRAIT_NO_UNDERWEAR,
 		TRAIT_NO_BLOOD_OVERLAY,
 		TRAIT_NO_LYING_ANGLE,
