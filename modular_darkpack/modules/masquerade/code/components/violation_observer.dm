@@ -10,7 +10,6 @@
 	else
 		UnregisterSignal(src, list(COMSIG_SEEN_MASQUERADE_VIOLATION, COMSIG_MASQUERADE_REINFORCE, COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE))
 
-// violate. sent by comsig_masquerade_violation, checks for mob/living/carbon/human/npc
 /atom/movable/proc/on_masquerade_violation()
 	var/area/vtm/breacher_area = get_area(src)
 	if(!istype(breacher_area, /area/vtm))
@@ -22,7 +21,7 @@
 			continue
 		SEND_SIGNAL(moving_atom, COMSIG_SEEN_MASQUERADE_VIOLATION, src)
 
-/atom/proc/on_observed_violation(atom/source, mob/living/player_breacher)
+/atom/movable/proc/on_observed_violation(atom/source, mob/living/player_breacher)
 	SIGNAL_HANDLER
 
 	if(!source || !player_breacher || ismundane(player_breacher)) //Humans cant break the masquerade. Because reasons.
@@ -47,7 +46,7 @@
 
 	return TRUE
 
-/atom/proc/on_masquerade_violation_reinforced(atom/source, mob/living/player_breacher)
+/atom/movable/proc/on_masquerade_violation_reinforced(atom/source, mob/living/player_breacher)
 	SIGNAL_HANDLER
 
 	for(var/breach in SSmasquerade.masquerade_breachers)
@@ -62,7 +61,7 @@
 
 		return TRUE
 
-/atom/proc/on_masquerade_witness_death()
+/atom/movable/proc/on_masquerade_witness_death()
 	SIGNAL_HANDLER
 
 	for(var/breach in SSmasquerade.masquerade_breachers)
@@ -75,7 +74,7 @@
 		observe_masquerade_reinforce(player_breacher)
 		UnregisterSignal(player_breacher, COMSIG_LIVING_DEATH)
 
-/atom/proc/on_breacher_death(mob/living/dead_breacher, gibbed)
+/atom/movable/proc/on_breacher_death(mob/living/dead_breacher, gibbed)
 	SIGNAL_HANDLER
 
 	for(var/breach in SSmasquerade.masquerade_breachers)
@@ -86,7 +85,7 @@
 		observe_masquerade_reinforce(dead_breacher)
 		UnregisterSignal(dead_breacher, COMSIG_LIVING_DEATH)
 
-/atom/proc/observe_masquerade_violation(player_breacher)
+/atom/movable/proc/observe_masquerade_violation(player_breacher)
 	do_alert_animation()
 	if(get_werewolf_splat(player_breacher))
 		to_chat(player_breacher, span_userdanger(span_bold("VEIL VIOLATION")))
@@ -95,7 +94,7 @@
 	playsound(player_breacher, 'modular_darkpack/modules/masquerade/sound/masquerade_violation.ogg', 50, FALSE, -5)
 	to_chat(player_breacher, span_userdanger(span_bold("MASQUERADE VIOLATION")))
 
-/atom/proc/observe_masquerade_reinforce(player_breacher)
+/atom/movable/proc/observe_masquerade_reinforce(player_breacher)
 	if(get_werewolf_splat(player_breacher))
 		to_chat(player_breacher, span_big(span_boldnicegreen("VEIL REINFORCED")))
 		playsound(player_breacher, 'modular_darkpack/modules/masquerade/sound/humanity_gain.ogg', 50, FALSE, -5)
