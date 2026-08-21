@@ -69,12 +69,12 @@
 /datum/component/violation_observer/proc/on_death(atom/source)
 	SIGNAL_HANDLER
 
-	for(var/player_breacher in breached_players)
-		SEND_SIGNAL(source, COMSIG_MASQUERADE_HUD_DELETE, player_breacher)
-		SSmasquerade.masquerade_reinforce(source, player_breacher)
-		source.observe_masquerade_reinforce(player_breacher)
-		breached_players -= player_breacher
-		UnregisterSignal(player_breacher, COMSIG_LIVING_DEATH)
+	for(var/mob/player_breacher in breached_players)
+		if(!QDELETED(player_breacher))
+			SEND_SIGNAL(source, COMSIG_MASQUERADE_HUD_DELETE, player_breacher)
+			SSmasquerade.masquerade_reinforce(source, player_breacher)
+			source.observe_masquerade_reinforce(player_breacher)
+			breached_players -= player_breacher
 
 /datum/component/violation_observer/proc/on_breacher_death(mob/living/dead_breacher, gibbed)
 	SIGNAL_HANDLER
