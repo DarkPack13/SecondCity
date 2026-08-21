@@ -104,7 +104,7 @@
 	successes_needed = 1
 	applicable_stats = list(STAT_WITS, STAT_PERFORMANCE)
 	numerical = TRUE
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_FLAG_ROLLER
 	spammy_roll = TRUE
 
 /datum/discipline_power/melpominee/phantom_speaker
@@ -261,12 +261,12 @@
 	bumper_text = "Siren's Beckoning"
 	applicable_stats = list(STAT_WITS, STAT_PERFORMANCE)
 	numerical = TRUE
-	roll_output_type = ROLL_PRIVATE_AND_TARGET
+	roll_output_type = ROLL_FLAG_ROLLER|ROLL_FLAG_TARGET
 	spammy_roll = TRUE
 
 /datum/storyteller_roll/sirens_beckoning/victim // Difficulty is the siren's Appearance + Performance
 	applicable_stats = list(STAT_TEMPORARY_WILLPOWER)
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_FLAG_ROLLER
 
 /datum/discipline_power/melpominee/sirens_beckoning
 	name = "Siren's Beckoning"

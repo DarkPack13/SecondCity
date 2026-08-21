@@ -36,9 +36,14 @@ GAME_VERB(/mob/living, do_roll_dice_custom, "Roll custom dice", null)
 	if(isnull(successes_needed))
 		return
 
-	var/roll_type = tgui_input_list(usr, "Who do you want to roll to.", "Roll Type", list(ROLL_PUBLIC, ROLL_PRIVATE, ROLL_PRIVATE_ADMIN, ROLL_ADMIN), ROLL_PUBLIC)
-	if(isnull(roll_type))
+	var/static/list/roll_choices = ROLL_OUTPUT_IC
+	var/list/roll_type_choice = tgui_input_checkboxes(usr, "Who do you want to roll to.", "Roll Type", roll_choices)
+	if(!roll_type_choice)
 		return
+	var/roll_type = NONE
+	for(var/list/entry in roll_type_choice)
+		roll_type |= roll_choices.Find(entry[1]) + 1
+
 
 	var/datum/storyteller_roll/custom_roll/custom_roll = new()
 	custom_roll.applicable_stats = output_stats

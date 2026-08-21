@@ -26,7 +26,7 @@
 	applicable_stats = list(STAT_PERCEPTION, STAT_EMPATHY)
 	difficulty = 7
 	numerical = TRUE
-	roll_output_type = ROLL_PRIVATE_ADMIN
+	roll_output_type = ROLL_FLAG_ROLLER
 
 /datum/discipline_power/valeren/sense_vitality
 	name = "Sense Vitality"
@@ -177,7 +177,7 @@
 	bumper_text = "anesthetic touch"
 	applicable_stats = list(STAT_TEMPORARY_WILLPOWER)
 	numerical = TRUE
-	roll_output_type = ROLL_PRIVATE_AND_TARGET
+	roll_output_type = ROLL_FLAG_ROLLER|ROLL_FLAG_TARGET
 
 /datum/storyteller_roll/anesthetic_touch/unwilling
 	bumper_text = "anesthetic touch (unwilling)"
@@ -258,13 +258,13 @@
 /datum/storyteller_roll/burning_touch_resist
 	bumper_text = "resist burning pain"
 	applicable_stats = list(STAT_TEMPORARY_WILLPOWER)
-	roll_output_type = ROLL_PRIVATE_AND_TARGET
+	roll_output_type = ROLL_FLAG_ROLLER|ROLL_FLAG_TARGET
 
 /datum/storyteller_roll/burning_touch_focus
 	bumper_text = "focus through burning pain"
 	applicable_stats = list(STAT_TEMPORARY_WILLPOWER)
 	spammy_roll = TRUE
-	roll_output_type = ROLL_PRIVATE_AND_TARGET
+	roll_output_type = ROLL_FLAG_ROLLER|ROLL_FLAG_TARGET
 
 /datum/status_effect/burning_touch
 	id = "burning_touch"
@@ -331,7 +331,7 @@
 	applicable_stats = list(STAT_STAMINA, STAT_MELEE)
 	difficulty = 7
 	numerical = TRUE
-	roll_output_type = ROLL_PRIVATE_AND_TARGET
+	roll_output_type = ROLL_FLAG_ROLLER|ROLL_FLAG_TARGET
 
 /datum/discipline_power/valeren/armor_of_caines_fury
 	name = "Armor of Caine's Fury"

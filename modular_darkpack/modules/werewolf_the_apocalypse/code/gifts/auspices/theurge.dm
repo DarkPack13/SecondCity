@@ -1,7 +1,7 @@
 /datum/storyteller_roll/gift/mothers_touch
 	applicable_stats = list(STAT_INTELLIGENCE, STAT_EMPATHY)
 	numerical = TRUE
-	roll_output_type = ROLL_PRIVATE_AND_TARGET
+	roll_output_type = ROLL_FLAG_ROLLER|ROLL_FLAG_TARGET
 
 /*
 From W20 p. 164

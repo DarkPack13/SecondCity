@@ -26,7 +26,7 @@
 	bumper_text = /datum/action/cooldown/power/gift/hares_leap::name
 	applicable_stats = list(STAT_STRENGTH, STAT_ATHLETICS)
 	difficulty = 7
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_FLAG_ROLLER
 
 
 /datum/status_effect/hares_leap

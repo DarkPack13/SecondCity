@@ -108,7 +108,7 @@
 	bumper_text = "aura reading"
 	difficulty = 8
 	applicable_stats = list(STAT_PERCEPTION, STAT_EMPATHY)
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_FLAG_ROLLER
 
 //AURA PERCEPTION
 /datum/discipline_power/auspex/aura_perception
@@ -279,13 +279,13 @@
 	bumper_text = "mind reading"
 	applicable_stats = list(STAT_INTELLIGENCE, STAT_SUBTERFUGE)
 	numerical = TRUE
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_FLAG_ROLLER
 
 /datum/storyteller_roll/disguise_voice_roll
 	bumper_text = "disguise voice"
 	applicable_stats = list(STAT_MANIPULATION, STAT_SUBTERFUGE)
 	numerical = FALSE
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_FLAG_ROLLER
 
 /datum/discipline_power/auspex/telepathy/pre_activation_checks(mob/living/target)
 	. = ..()

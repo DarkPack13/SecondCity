@@ -8,7 +8,7 @@
 	bumper_text = "banned transformation bypass"
 	applicable_stats = list(STAT_PERMANENT_WILLPOWER)
 	difficulty = 8
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_FLAG_ROLLER
 
 // Remeber if you remove homid being species that this will break.
 /datum/splat/werewolf/shifter/proc/transform_fera(datum/species/human/shifter/form_to_transform, costs_rage = FALSE, requires_roll = TRUE, force = FALSE)

@@ -11,6 +11,14 @@
 	var/numerical = FALSE
 
 	var/roll_output_type = ROLL_PUBLIC
+	/**
+	 * For showing a diffrent result on a botch/fail. e.g
+	 *
+	 *	/datum/storyteller_roll/investigation
+	 *		roll_output_type = ROLL_FLAG_ROLLER
+	 *		roll_output_type_on_fail = ROLL_FLAG_NEARBY
+	 */
+	var/roll_output_type_on_fail
 	var/hide_result = FALSE
 	/// This is a roll that can proc multiple times in rapid succession and thus has weaker or less notible outputs (forced runechat and quieter dice rolls)
 	var/spammy_roll = FALSE
@@ -67,14 +75,33 @@
 
 	var/success_amount = count_success(rolled_dice, difficulty_amount)
 	var/output = roll_result(success_amount)
+	var/using_output_type = roll_output_type
+	if(!isnull(roll_output_type_on_fail))
+		if(numerical)
+			if(output < 1)
+				using_output_type = roll_output_type_on_fail
+		else
+			if(output < ROLL_SUCCESS)
+				using_output_type = roll_output_type_on_fail
 
-	for(var/mob/player_mob in get_mobs_to_show(roller, target))
+	for(var/mob/player_mob in get_mobs_to_show(roller, target, using_output_type))
 		var/roll_important_to_me = FALSE
 		if(!spammy_roll && (player_mob == roller || target))
 			roll_important_to_me = TRUE
 
 		if(!spammy_roll)
-			var/message = build_output_message(roller, player_mob, dice_amount, bonus_amount, auto_success_amount, difficulty_amount, success_amount, rolled_dice, hide_result)
+			var/message = build_output_message(
+				roller,
+				player_mob,
+				dice_amount,
+				bonus_amount,
+				auto_success_amount,
+				difficulty_amount,
+				success_amount,
+				rolled_dice,
+				hide_result,
+				using_output_type
+			)
 			to_chat(player_mob, message, MESSAGE_TYPE_INFO, trailing_newline = FALSE)
 			var/roll_sound = 'sound/items/dice_roll.ogg'
 			if(dice_amount + rand(-1, 1) > 3) // Create some nice variation.
@@ -102,7 +129,8 @@
 	difficulty_amount,
 	success_amount,
 	list/rolled_dice,
-	hide_result
+	hide_result,
+	using_output_type
 )
 	var/output_text = list()
 	var/dice_used_text = "[dice_amount] dice"
@@ -113,12 +141,14 @@
 
 	output_text += get_dice_display(rolled_dice, difficulty_amount, success_amount, hide_result)
 
+	var/roll_output_string = jointext(bitfield_to_list(using_output_type, ROLL_OUTPUT_IC), "+")
+
 	var/title
-	if(roll_output_type in list(ROLL_PRIVATE_ADMIN, ROLL_ADMIN) && (displayed_to.client in GLOB.admins))
+	if(using_output_type & ROLL_FLAG_ADMIN && (displayed_to.client in GLOB.admins))
 		title = "[ADMIN_LOOKUPFLW(roller)]"
 	else
 		title = GET_GUESTBOOK_NAME_TRUE(displayed_to, roller)
-	title += " - [bumper_text] [span_tinynoticeital(roll_output_type)]"
+	title += " - [bumper_text] [span_tinynoticeital(roll_output_string)]"
 
 	var/output_combined = fieldset_block(title, jointext(output_text, "<br>"), "boxed_message")
 
@@ -133,23 +163,19 @@
 	else
 		roller.balloon_alert(player_mob, "<span style='color: #ff0000;'>[alert_prefix][number]</span>", TRUE)
 
-/datum/storyteller_roll/proc/get_mobs_to_show(mob/living/roller, atom/target)
-	switch(roll_output_type)
-		if(ROLL_PUBLIC)
-			return viewers(DEFAULT_SIGHT_DISTANCE, roller)
-		if(ROLL_PRIVATE)
-			return list(roller)
-		if(ROLL_PRIVATE_AND_TARGET)
-			if(roller == target || !isliving(target))
-				return list(roller)
-			else
-				return list(roller, target)
-		if(ROLL_PRIVATE_ADMIN)
-			return admin_mobs() + roller
-		if(ROLL_ADMIN)
-			return admin_mobs()
-		if(ROLL_NONE)
-			return // Not even important enough to be admin visible.
+/datum/storyteller_roll/proc/get_mobs_to_show(mob/living/roller, atom/target, using_output_type)
+	var/list/shown_targets = list()
+	if(using_output_type & ROLL_FLAG_NEARBY)
+		shown_targets |= viewers(DEFAULT_SIGHT_DISTANCE, roller)
+	if(using_output_type & ROLL_FLAG_ROLLER)
+		shown_targets |= roller
+	if(using_output_type & ROLL_FLAG_TARGET)
+		if(isliving(target))
+			shown_targets |= target
+	if(using_output_type & ROLL_FLAG_ADMIN)
+		shown_targets |= admin_mobs()
+
+	return shown_targets
 
 /datum/storyteller_roll/proc/admin_mobs()
 	var/list/admin_mobs = list()

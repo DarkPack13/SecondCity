@@ -33,7 +33,7 @@
 /datum/storyteller_roll/frenzy
 	abstract_type = /datum/storyteller_roll/frenzy
 	bumper_text = "frenzy"
-	roll_output_type = ROLL_PRIVATE_AND_TARGET
+	roll_output_type = ROLL_FLAG_ROLLER|ROLL_FLAG_TARGET
 	numerical = TRUE
 
 /datum/storyteller_roll/frenzy/rotschreck
