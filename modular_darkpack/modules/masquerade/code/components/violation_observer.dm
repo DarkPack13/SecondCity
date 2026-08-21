@@ -12,11 +12,13 @@
 
 // violate. sent by comsig_masquerade_violation, checks for mob/living/carbon/human/npc
 /atom/movable/proc/on_masquerade_violation()
-	var/area/breacher_area = get_area(src)
+	var/area/vtm/breacher_area = get_area(src)
+	if(!istype(breacher_area, /area/vtm))
+		return
 	if(breacher_area.zone_type != ZONE_MASQUERADE)
 		return
 	for(var/atom/movable/moving_atom in orange(7, loc))
-		if(!violation_observer)
+		if(!moving_atom.violation_observer)
 			continue
 		SEND_SIGNAL(moving_atom, COMSIG_SEEN_MASQUERADE_VIOLATION, src)
 
