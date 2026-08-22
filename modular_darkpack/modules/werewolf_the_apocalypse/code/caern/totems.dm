@@ -16,7 +16,7 @@
 	light_power = 0.5
 	damage_deflection = 5
 
-	// var/friendly_splats
+	var/friendly_trait
 	var/friendly_tribes
 
 	COOLDOWN_DECLARE(rage_notify_cd)
@@ -111,33 +111,29 @@
 
 		if(damage_change < 0)
 			if(broken)
-				to_chat(human, span_userdanger("<b>YOUR TOTEM IS DESTROYED</b>"))
+				to_chat(human, span_userdanger("<b>A TOTEM'S SPIRIT WEAPS IN PAIN AS ITS TOTEM SHATTERS.</b>"))
 				SEND_SOUND(human, sound('sound/effects/tendril_destroyed.ogg', volume = 50))
-				shifter_splat.adjust_gnosis(-5, FALSE)
+				shifter_splat.adjust_rage(3, FALSE)
 			else
-				to_chat(human, span_userdanger("<b>YOUR TOTEM IS BREAKING DOWN</b>"))
+				to_chat(human, span_userdanger("<b>A TOTEM's CRY CAN BE HEARD ACROSS THE CITY.</b>"))
 				SEND_SOUND(human, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/bumps.ogg', volume = 50))
 				shifter_splat.adjust_rage(1, FALSE)
 		else
-			to_chat(human, span_boldnotice("<b>YOUR TOTEM IS RESTORED</b>"))
+			to_chat(human, span_boldnotice("<b>A TOTEM'S SPIRIT THANKS ITS ALLIES.</b>"))
 			SEND_SOUND(human, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/inspire.ogg', volume = 50))
 			shifter_splat.adjust_gnosis(1, FALSE)
 
 /// Returns true or false wether or not the totems benificial affects will target this mob
 /obj/structure/werewolf_totem/proc/is_friend_of_totem(mob/living/potential_friend)
-	if(!length(tribes)) // Totem has no alleginces and is presumbed to be owned by no-one.
-		return FALSE
-	var/datum/splat/werewolf/friends_splat = get_werewolf_splat(potential_friend)
-	if(!friends_splat) // RN the only totem effect relys on a werewolf splat
-		return FALSE
-	if(!friends_splat.tribe) // Dont fuck over tribeless fera. Prob need a better way to determine friends tho
+	if(friendly_trait && HAS_TRAIT(potential_friend, friendly_trait))
 		return TRUE
-	if(!(friends_splat.tribe.name in friendly_tribes))
-		return FALSE
-	/*
-	if(friendly_tribe && !(friends_splat.tribe.name in friendly_tribes))
-		return FALSE
-	*/
+
+	if(friendly_tribes)
+		var/datum/splat/werewolf/friends_splat = get_werewolf_splat(potential_friend)
+		if(!friends_splat) // RN the only totem effect relys on a werewolf splat
+			return FALSE
+		if(!(friends_splat.tribe.name in friendly_tribes))
+			return FALSE
 
 	return TRUE
 
@@ -154,7 +150,7 @@
 			return
 		var/obj/umbra_portal/prev = locate() in get_step(src, SOUTH)
 		if(!prev)
-			if(HAS_TRIAT(user, TRAIT_OPENS_MOONGATES))
+			if(HAS_TRAIT(user, TRAIT_OPENS_MOONGATES))
 				if(!opening)
 					opening = TRUE
 					if(do_after(user, 10 SECONDS, src))
@@ -163,7 +159,7 @@
 			else
 				to_chat(user, span_warning("You need some who can open the Moon Gates!"))
 		else
-			if(HAS_TRIAT(user, TRAIT_OPENS_MOONGATES))
+			if(HAS_TRAIT(user, TRAIT_OPENS_MOONGATES))
 				collapse_portal(prev)
 
 /obj/structure/werewolf_totem/proc/spawn_portal()
@@ -184,6 +180,20 @@
 	playsound(src, 'modular_darkpack/modules/deprecated/sounds/portal.ogg', 50, FALSE)
 	qdel(old_portal.exit)
 	qdel(old_portal)
+
+/obj/structure/werewolf_totem/proc/kick_out(mob/living/stinky_guy)
+	if(!istype(stinky_guy))
+		return
+
+	stinky_guy.set_confusion_if_lower(5 SECONDS)
+	stinky_guy.set_eye_blur_if_lower(15 SECONDS)
+	to_chat(stinky_guy, span_boldwarning("You get turned around and mixed up in a strange fog."))
+	for(var/obj/effect/landmark/bawn_entrance/landmark in GLOB.landmarks_list)
+		if(!istype(src, landmark.linked_totem_path))
+			continue
+		var/turf/kickout_turf = get_turf(landmark)
+		stinky_guy.forceMove(kickout_turf)
+		break
 
 /obj/structure/werewolf_totem/wendigo
 	name = "\improper " + TRIBE_GALESTALKERS + " totem"
@@ -215,10 +225,13 @@
 	light_color = "#ff5235"
 	friendly_tribes = list(TRIBE_BLACK_SPIRAL_DANCERS)
 
-
 /obj/structure/werewolf_totem/generic
+	abstract_type = /obj/structure/werewolf_totem/generic
+
+/obj/structure/werewolf_totem/generic/gaia
 	light_color = "#81ff4f"
 	friendly_tribes = TRIBE_LIST_GAIA
+	friendly_trait = TRAIT_GAIA_CAERN_FRIEND
 
 /obj/structure/werewolf_totem/generic/wyld
 	light_color = "#81ff4f"
