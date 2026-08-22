@@ -130,6 +130,10 @@
 			QDEL_NULL(wall_frill)
 		return
 
+	var/turf/north = get_step(src, NORTH)
+	if(isnull(north))
+		return
+	wall_frill = new(north)
 	if(!wall_frill)
 		wall_frill = new(get_step(src, NORTH))
 		wall_frill.icon = frill_icon
