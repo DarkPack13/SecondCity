@@ -76,7 +76,7 @@
 			break
 
 	if(!linked_totem)
-		CRASH("Failed to find a totem.")
+		return COMPONENT_INCOMPATIBLE
 
 /datum/component/bawn_area/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_AREA_ENTERED, PROC_REF(on_entered))

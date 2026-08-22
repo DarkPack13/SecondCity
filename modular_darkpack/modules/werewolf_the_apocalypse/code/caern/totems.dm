@@ -157,7 +157,7 @@
 						spawn_portal()
 					opening = FALSE
 			else
-				to_chat(user, span_warning("You need some who can open the Moon Gates!"))
+				to_chat(user, span_warning("You need someone who can open the Moon Gates!"))
 		else
 			if(HAS_TRAIT(user, TRAIT_OPENS_MOONGATES))
 				collapse_portal(prev)
