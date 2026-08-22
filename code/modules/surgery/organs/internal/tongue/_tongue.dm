@@ -104,6 +104,7 @@
 			/datum/language/nekomimetic,
 			/datum/language/garou_tongue,
 			/datum/language/primal_tongue,
+			/datum/language/frenzy
 		)
 		for(var/datum/language/lang as anything in subtypesof(/datum/language))
 			if(lang.restricted)
