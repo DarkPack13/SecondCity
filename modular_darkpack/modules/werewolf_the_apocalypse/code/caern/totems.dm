@@ -185,8 +185,8 @@
 	if(!istype(stinky_guy))
 		return
 
-	stinky_guy.set_confusion_if_lower(5 SECONDS)
-	stinky_guy.set_eye_blur_if_lower(15 SECONDS)
+	stinky_guy.set_confusion_if_lower(10 SECONDS)
+	stinky_guy.set_eye_blur_if_lower(30 SECONDS)
 	to_chat(stinky_guy, span_boldwarning("You get turned around and mixed up in a strange fog."))
 	for(var/obj/effect/landmark/bawn_entrance/landmark in GLOB.landmarks_list)
 		if(!istype(src, landmark.linked_totem_path))
