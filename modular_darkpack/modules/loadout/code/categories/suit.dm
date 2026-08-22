@@ -45,6 +45,10 @@
 /datum/loadout_item/suit/coat/leopardcoat
 	item_path = /obj/item/clothing/suit/vampire/coat/leopard
 
+/datum/loadout_item/suit/jacket/oversizedjacket
+	name = "Oversized Jacket"
+	item_path = /obj/item/clothing/suit/jacket/oversized
+
 // Jackets
 /datum/loadout_item/suit/jacket
 	abstract_type = /datum/loadout_item/suit/jacket
