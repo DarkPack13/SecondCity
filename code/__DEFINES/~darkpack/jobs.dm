@@ -89,7 +89,7 @@
 #define JOB_GAROU_WARDER "Warder" // Adren+
 #define JOB_GAROU_WYRMFOE "Wyrmfoe" // Fostern
 #define JOB_GAROU_GUARDIAN "Guardian"
-#define JOB_GAROU_KEEPER
+#define JOB_GAROU_KEEPER "Keeper"
 
 // Pentex
 #define JOB_PENTEX_LEAD "Branch Lead"
