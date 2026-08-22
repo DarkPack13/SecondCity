@@ -1,18 +1,3 @@
-/obj/effect/decal/cleanable/crustie
-	name = "dead skin flakes"
-	desc = "Disgusting."
-	beauty = -50
-	icon = 'modular_darkpack/modules/fomori/icons/the_crusties.dmi'
-	icon_state = "crustie"
-	/// The mob we use for DNA
-	var/mob/living/living_source
-
-/obj/effect/decal/cleanable/crustie/Initialize(mapload)
-	. = ..()
-	var/matrix/M = matrix()
-	M.Turn(rand(0, 360))
-	transform = M
-
 /datum/action/cooldown/power/fomori_power/crusties // Freak Legion pg. 42
 	name = "The Crusties"
 	desc = "Expel the crusties that writhe in your flesh, tearing you apart from the inside."
