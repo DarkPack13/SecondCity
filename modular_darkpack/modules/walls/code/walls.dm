@@ -134,6 +134,7 @@
 	if(isnull(north))
 		return
 	wall_frill = new(north)
+
 	if(!wall_frill)
 		wall_frill = new(get_step(src, NORTH))
 		wall_frill.icon = frill_icon
