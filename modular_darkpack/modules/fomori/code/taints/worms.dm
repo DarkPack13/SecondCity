@@ -27,5 +27,5 @@
 
 /datum/action/cooldown/power/fomori_power/worms/proc/the_worms_are_back()
 	ADD_TRAIT(owner, TRAIT_FOMORI_WORMS, "fomor_worms")
-	to_chat(owner, span_boldwarning("The worms are back."))
+	owner.balloon_alert(owner, "worms are back!")
 	SEND_SOUND(owner, 'sound/items/handling/reagent_containers/plastic_bottle/plastic_bottle_liquid_slosh2.ogg')
