@@ -1,8 +1,8 @@
 /datum/job/vampire/bruiser
 	title = JOB_BRUISER
 	faction = FACTION_ANARCHS
-	total_positions = 7
-	spawn_positions = 7
+	total_positions = 10
+	spawn_positions = 10
 	supervisors = SUPERVISOR_BARON
 	config_tag = "BRUISER"
 	job_flags = CITY_JOB_FLAGS

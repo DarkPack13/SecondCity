@@ -32,6 +32,7 @@
 #define JOB_PRIMOGEN_MALKAVIAN "Primogen Malkavian"
 #define JOB_PRIMOGEN_NOSFERATU "Primogen Nosferatu"
 #define JOB_PRIMOGEN_VENTRUE "Primogen Ventrue"
+#define JOB_PRIMOGEN_BRUJAH "Primogen Brujah"
 
 //Anarch
 #define JOB_BARON "Baron"
@@ -88,6 +89,7 @@
 #define JOB_GAROU_WARDER "Warder" // Adren+
 #define JOB_GAROU_WYRMFOE "Wyrmfoe" // Fostern
 #define JOB_GAROU_GUARDIAN "Guardian"
+#define JOB_GAROU_KEEPER
 
 // Pentex
 #define JOB_PENTEX_LEAD "Branch Lead"
@@ -102,6 +104,12 @@
 #define JOB_ABBE "Abbe"
 #define JOB_CONDOTTIERI "Condottieri"
 #define JOB_INQUISITOR "Inquisitor"
+
+// Triad
+#define JOB_MOUNTAIN_MASTER "Mountain Master"
+#define JOB_DEPUTY_MOUNTAIN_MASTER "Deputy Mountain Master"
+#define JOB_TRIAD_RED_POLE "Red Pole"
+#define JOB_TRIAD_BLUE_LANTERNS "Blue Lanterns"
 
 //////////////////////////////////////////////////
 
@@ -120,6 +128,7 @@
 #define JOB_DISPLAY_ORDER_NOSFERATU 10
 #define JOB_DISPLAY_ORDER_TOREADOR 11
 #define JOB_DISPLAY_ORDER_VENTRUE 12
+#define JOB_DISPLAY_ORDER_BRUJAH 13
 
 #define JOB_DISPLAY_ORDER_CLINICS_DIRECTOR 1
 #define JOB_DISPLAY_ORDER_DOCTOR 2
@@ -162,6 +171,7 @@
 #define JOB_DISPLAY_ORDER_WARDER 3
 #define JOB_DISPLAY_ORDER_WYRMFOE 4
 #define JOB_DISPLAY_ORDER_GUARDIAN 5
+#define JOB_DISPLAY_ORDER_KEEPER 6
 
 #define JOB_DISPLAY_ORDER_BRANCH_LEAD 1
 #define JOB_DISPLAY_ORDER_EXECUTIVE 2
@@ -174,6 +184,11 @@
 #define JOB_DISPLAY_ORDER_INQUISITOR 2
 #define JOB_DISPLAY_ORDER_CONDOTTIERI 3
 #define JOB_DISPLAY_ORDER_NOVICE 4
+
+#define JOB_DISPLAY_ORDER_MOUNTAIN_MASTER 1
+#define JOB_DISPLAY_ORDER_DEPUTY_MOUNTAIN_MASTER 2
+#define JOB_DISPLAY_ORDER_TRIAD_RED_POLE 3
+#define JOB_DISPLAY_ORDER_TRIAD_BLUE_LANTERNS 4
 
 //////////////////////////////////////////////////
 
@@ -211,6 +226,8 @@
 #define DEPARTMENT_GAIA "Garou Nation"
 #define DEPARTMENT_BITFLAG_SOCIETY_OF_LEOPOLD (1<<16)
 #define DEPARTMENT_SOCIETY_OF_LEOPOLD "Society of Leopold"
+#define DEPARTMENT_BITFLAG_TRIAD (1<<17)
+#define DEPARTMENT_TRIAD "Chinese Triad"
 
 DEFINE_BITFIELD(departments_bitflags, list(
 	"CITIZEN" = DEPARTMENT_BITFLAG_CITIZEN,
@@ -230,6 +247,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 	"MANOR" = DEPARTMENT_BITFLAG_MANOR,
 	"CITY_SERVICES" = DEPARTMENT_BITFLAG_CITY_SERVICES,
 	"SOCIETY_OF_LEOPOLD" = DEPARTMENT_BITFLAG_SOCIETY_OF_LEOPOLD,
+	"TRIAD" = DEPARTMENT_BITFLAG_TRIAD
 ))
 
 /// Combination flag for jobs which are considered regular crew members of the station.
@@ -251,6 +269,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 #define SUPERVISOR_SENESCHAL_PUBLIC "the COO"
 #define SUPERVISOR_BARON_PUBLIC "the Bar's Owner"
 #define SUPERVISOR_SOCIETY_OF_LEOPOLD "the Society of Leopold, the Inquisition, the local Provincial, and God"
+#define SUPERVISOR_TRIAD "the Mountain Master"
 
 // Playtime tracking system, see jobs_exp.dm
 // weird one.
@@ -266,6 +285,7 @@ DEFINE_BITFIELD(departments_bitflags, list(
 #define EXP_TYPE_POLICE "Police Force"
 #define EXP_TYPE_NATIONAL_SECURITY "National Security"
 #define EXP_TYPE_SERVICES "City Services"
+#define EXP_TYPE_TRIAD "Chinese Triad"
 // this prob should just say clinic genericly.
 #define EXP_TYPE_CLINIC "St. John's Clinic"
 #define EXP_TYPE_GIOVANNI "Giovanni Family"

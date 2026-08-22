@@ -1,8 +1,8 @@
 /datum/job/vampire/sabbatpriest
 	title = JOB_SABBAT_PRIEST
 	faction = FACTION_SABBAT
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "Caine"
 	config_tag = "SABBAT_PRIEST"
 	outfit = /datum/outfit/job/vampire/sabbatpriest
