@@ -11,11 +11,6 @@
 /datum/preference/choiced/fera_feature/init_possible_values()
 	return assoc_to_keys_features(SSaccessories.feature_list[feature_key])
 
-/datum/preference/choiced/fera_feature/apply_to_human(mob/living/carbon/human/target, value)
-	// target.set_facial_hair_gradient_style(new_style = value, update = FALSE)
-
-/datum/preference/choiced/fera_feature/create_default_value()
-	// return /datum/sprite_accessory/gradient/none::name
 
 /datum/preference/choiced/fera_feature/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features[feature_key] = value
