@@ -1,5 +1,0 @@
-author: "breadcrombs"
-delete-after: True
-changes:
-  - rscadd: "Bonecrafting now drops the brain along with all head organs when used on a corpses"
-  - rscadd: "Bonecrafting can now deal damage to selected target limbs rather than the chest all the time and can also wound"
