@@ -40,6 +40,11 @@
 	r_pocket = /obj/item/vamp/keys/capo
 	backpack_contents = list(/obj/item/card/credit/giovanniboss=1, /obj/item/ritual_tome/necromancy=1, /obj/item/vamp/keys/graveyard = 1)
 
+///datum/outfit/job/vampire/capo/post_equip(mob/living/carbon/human/H)
+//	. = ..()
+//	H.grant_language(/datum/language/italian, source = "job")
+// Only vampires of Giovanni Clan may be Capo, and being Giovanni already grants them automatic knowledge of Italian. Leaving this commented as a backup.
+
 /datum/memory/key/bank_vault_code
 	var/remembered_code
 

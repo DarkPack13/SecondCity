@@ -31,3 +31,8 @@
 	l_pocket = /obj/item/smartphone/giovanni_nonni
 	r_pocket = /obj/item/vamp/keys/giovanni
 	backpack_contents = list(/obj/item/card/credit=1)
+
+///datum/outfit/job/vampire/nonni/post_equip(mob/living/carbon/human/H)
+//	. = ..()
+//	H.grant_language(/datum/language/italian, source = "job")
+// Only vampires of Giovanni Clan may be I Nonni, and being Giovanni already grants them automatic knowledge of Italian. Leaving this commented as a backup.
