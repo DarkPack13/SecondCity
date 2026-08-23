@@ -38,14 +38,8 @@
 	r_pocket = /obj/item/vamp/keys/giovanni
 	backpack_contents = list(/obj/item/card/credit/rich=1, /obj/item/ritual_tome/necromancy=1, /obj/item/vamp/keys/graveyard = 1)
 
-///datum/outfit/job/vampire/squadra/post_equip(mob/living/carbon/human/H)
-// 	. = ..()
-//	H.grant_language(/datum/language/italian, source = "job")
-// Only vampires of Giovanni Clan may be La Squadra, and being Giovanni already grants them automatic knowledge of Italian. Leaving this commented as a backup.
-
 /datum/job/vampire/squadra/after_spawn(mob/living/spawned, client/player_client)
 	. = ..()
 	var/obj/structure/vaultdoor/pincode/bank/door = locate() in GLOB.vault_doors
 	if(door)
 		spawned.mind.add_memory(/datum/memory/key/bank_vault_code, remembered_code = door.pincode)
-
