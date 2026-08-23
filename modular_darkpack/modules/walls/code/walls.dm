@@ -138,7 +138,6 @@
 		if(isnull(north)) // edge of the map
 			return
 		wall_frill = new(north)
-		wall_frill = new(get_step(src, NORTH))
 		wall_frill.icon = frill_icon
 		wall_frill.name = name
 		wall_frill.desc = desc
