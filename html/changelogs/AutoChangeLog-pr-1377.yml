@@ -1,5 +1,0 @@
-author: "chazzyjazzy"
-delete-after: True
-changes:
-  - rscdel: "Removes Beekeeping supply pack from the warehouse"
-  - rscdel: "Removes Monkey Cubes supply pack from the warehouse"
