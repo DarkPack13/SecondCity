@@ -212,11 +212,11 @@
 		if(ROLL_SUCCESS)
 			successful = TRUE
 			saved_brute_mod = owner.physiology.brute_mod//your armor 
-			owner.physiology.brute_mod = 0.75
+			owner.physiology.brute_mod = 0.70//Specifically at 30% dr due to it having no upkeep cost
 			saved_burn_mod = owner.physiology.burn_mod
 			owner.physiology.burn_mod = 2
 			saved_aggravated_mod= owner.physiology.aggravated_mod
-			owner.physiology.aggravated_mod = 0.9
+			owner.physiology.aggravated_mod = 0.80
 
 			animate(owner, color = "#000000", time = 1 SECONDS, loop = 1)
 			to_chat(owner, span_green("You successfully fuse with the shadows!"))
