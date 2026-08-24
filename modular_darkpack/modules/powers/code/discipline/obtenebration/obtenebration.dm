@@ -204,11 +204,20 @@
 /datum/discipline_power/obtenebration/black_metamorphosis/activate()
 	. = ..()
 	activating = FALSE
+	var/saved_brute_mod = 1
+	var/saved_burn_mod = 1
+	var/saved_aggravated_mod = 1
 	var/roll = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_MANIPULATION, STAT_COURAGE))
 	switch(roll)
 		if(ROLL_SUCCESS)
 			successful = TRUE
-			owner.physiology.damage_resistance += 60
+			saved_brute_mod = owner.physiology.brute_mod//your armor 
+			owner.physiology.brute_mod = 0.75
+			saved_burn_mod = owner.physiology.burn_mod
+			owner.physiology.burn_mod = 2
+			saved_aggravated_mod= owner.physiology.aggravated_mod
+			owner.physiology.aggravated_mod = 0.9
+
 			animate(owner, color = "#000000", time = 1 SECONDS, loop = 1)
 			to_chat(owner, span_green("You successfully fuse with the shadows!"))
 		if(ROLL_FAILURE)
