@@ -16,6 +16,9 @@
 
 /obj/effect/wall_frill/Initialize(mapload)
 	. = ..()
+	if(isnull(loc))
+		. = INITIALIZE_HINT_QDEL
+		CRASH("[type] created in nullspace, this should not happen!")
 	// Turfs don't really move, so we set the reset timer to an abstractly high number so we can enable and disable seethrough at will
 	AddComponent(/datum/component/seethrough, SEE_THROUGH_MAP_WALLS, perimeter_reset_timer = 24 HOURS)
 	update_seethrough()
@@ -131,7 +134,10 @@
 		return
 
 	if(!wall_frill)
-		wall_frill = new(get_step(src, NORTH))
+		var/turf/north = get_step(src, NORTH)
+		if(isnull(north)) // edge of the map
+			return
+		wall_frill = new(north)
 		wall_frill.icon = frill_icon
 		wall_frill.name = name
 		wall_frill.desc = desc
