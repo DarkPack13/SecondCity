@@ -224,3 +224,11 @@
       on a corpses
   - rscadd: Bonecrafting can now deal damage to selected target limbs rather than
       the chest all the time and can also wound
+2026-08-23:
+  ShirouAjisai:
+  - rscadd: Added phone contacts to every phone. You know your own co-workers now..
+      waow....
+2026-08-24:
+  Stutternov:
+  - rscadd: Adds shove-knockback with active potence
+  - rscadd: Adds disarming based on your strength roll vs opponents overall strength.
