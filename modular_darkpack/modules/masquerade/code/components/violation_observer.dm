@@ -1,5 +1,6 @@
 /atom/movable
 	var/violation_observer = FALSE
+	COOLDOWN_DECLARE(masquerade_violation_cooldown)
 
 /atom/movable/proc/toggle_masquerade_sensitivity(new_listening_state)
 	// don't proceed if we're toggling to TRUE on something already listening
@@ -20,6 +21,8 @@
 		UnregisterSignal(src, list(COMSIG_SEEN_MASQUERADE_VIOLATION, COMSIG_MASQUERADE_REINFORCE, COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE))
 
 /atom/movable/proc/on_masquerade_violation()
+	if(!COOLDOWN_FINISHED(src, masquerade_violation_cooldown))
+		return
 	var/area/vtm/breacher_area = get_area(src)
 	if(!istype(breacher_area, /area/vtm))
 		return
@@ -29,8 +32,9 @@
 		if(!moving_atom.violation_observer)
 			continue
 		SEND_SIGNAL(moving_atom, COMSIG_SEEN_MASQUERADE_VIOLATION, src)
+	COOLDOWN_START(src, masquerade_violation_cooldown, 1 TURNS)
 
-/atom/movable/proc/on_observed_violation(atom/source, mob/living/player_breacher)
+/atom/movable/proc/on_observed_violation(atom/source, atom/movable/player_breacher)
 	SIGNAL_HANDLER
 
 	if(!source || !player_breacher || ismundane(player_breacher)) //Humans cant break the masquerade. Because reasons.
@@ -57,7 +61,7 @@
 
 	return TRUE
 
-/atom/movable/proc/on_masquerade_violation_reinforced(atom/source, mob/living/player_breacher)
+/atom/movable/proc/on_masquerade_violation_reinforced(atom/source, atom/movable/player_breacher)
 	SIGNAL_HANDLER
 
 	for(var/breach in SSmasquerade.masquerade_breachers)
