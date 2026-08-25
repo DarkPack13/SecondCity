@@ -81,9 +81,15 @@ LOG_STATS
 ## Bool for if roleplay only merits/quirks are enabled
 ROLEPLAY_ONLY_MERITS 1
 
+## String for how ttrpg accurate our merits must be. Offical, Storyteller Vault, or Homebrew
+TTRPG_ACCURATE_CUTOFF_MERITS Homebrew
+
 ## Configs for the type of attack we use when we click at a ranged distance. Only one can be enabled at a time.
 #DIRECTIONAL_COMBAT
 SWING_COMBAT
+
+## Server tagline: This will appear right below the server's title.
+# SERVERTAGLINE A total conversion project to the WoD setting
 
 ## Configs for passive bloodpool drain, if this is enabled, then the below timer can be adjusted to make vampires and ghouls lose 1 blood point when the timer is up
 #PASSIVE_BP_DRAIN
