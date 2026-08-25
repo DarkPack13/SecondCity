@@ -514,7 +514,7 @@
 	icon_state = "bogatyr_captain_armor"
 	armor_type = /datum/armor/highly_protective_vest
 
-/obj/item/clothing/suit/vampire/bogatyr/captain/heavy // ! Craftable only. DO NOT MAP!!
+/obj/item/clothing/suit/vampire/bogatyr/captain/heavy // ! Craftable only.
 	name = "reinforced golden bone armor"
 	armor_type = /datum/armor/eod_suit
 	w_class = WEIGHT_CLASS_BULKY
