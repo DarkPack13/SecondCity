@@ -824,6 +824,10 @@
 	weapon_weight = WEAPON_MEDIUM
 	accepted_magazine_type = /obj/item/gun/ballistic/shotgun/vampire/remington/sawnoff
 
+/obj/item/gun/ballistic/shotgun/vampire/remington/shoot_live_shot(mob/living/user)
+	..()
+	rack()
+
 /obj/item/suppressor/darkpack_oil
 	name = "modified oil filter"
 	desc = "An old oil filter.. there seems to be attachment grooves lathed onto the barrel for a Remington 11-87."
