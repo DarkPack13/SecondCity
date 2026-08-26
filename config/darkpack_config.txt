@@ -91,3 +91,15 @@ PASSIVE_BP_DRAIN_TIMER 12000
 DISCIPLINE_KEYBINDS
 ## Gives every single power a keybind, will majorly clutter the keybinds menu if uncommented in exchange for being very convenient for players
 #INDIVIDUAL_POWER_KEYBINDS
+
+## Configs how long between full moons. Defaults to realtime (default: 29.530588)
+LUNAR_CYCLE_INTERVAL 29.530588
+
+## Configs what kind of Lunar Cycle we want to use. A malformed number will result in a permanent new moon
+## 0 = Use LUNAR_CYCLE_INTERVAL (Default)
+## 1 = Lunar cycle advances every LUNAR_CYCLE_ROUNDS
+## 2 = Lunar cycle is random per round
+LUNAR_CYCLE_TYPE 0
+
+## If using LUNAR_CYCLE_TYPE 1, how many rounds does the moonphase last? (default: 1)
+LUNAR_CYCLE_ROUNDS 1
