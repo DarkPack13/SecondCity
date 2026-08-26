@@ -757,6 +757,78 @@
 	weapon_weight = WEAPON_MEDIUM
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/vampshotgun/sawnoff
 
+/obj/item/ammo_box/magazine/internal/remington
+	name = "remington internal magazine"
+	ammo_type = /obj/item/ammo_casing/vampire/c12g
+	caliber = CALIBER_12G
+	//multiload = FALSE
+	max_ammo = 6
+	masquerade_violating = FALSE
+
+/obj/item/gun/ballistic/shotgun/vampire/remington
+	name = "\improper Remington 11-87"
+	desc = "A modern gas-operated shotgun with a textured polycarbonate body... wasnt this in some movie?"
+	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
+	lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
+	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
+	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_guns.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	w_class = WEIGHT_CLASS_BULKY
+	icon_state = "1187"
+	inhand_icon_state = "1187"
+	worn_icon_state = "1187"
+	recoil = 4 //Gas Operated mechanism reduces the recoil
+	fire_delay = 5
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/remington
+	can_be_sawn_off	= TRUE
+	suppressed_sound = 'modular_darkpack/modules/weapons/sounds/1187_silenced.ogg'
+	fire_sound = 'modular_darkpack/modules/weapons/sounds/1187.ogg'
+	inhand_x_dimension = 32
+	inhand_y_dimension = 32
+	custom_price = 1000
+	serial_type = "R"
+
+/obj/item/gun/ballistic/shotgun/vampire/remington/silenced
+	name = "\improper Silenced Remington 11-87"
+	desc = "A modern gas-operated shotgun with an oil filter attached to the barrel... isnt that illegal?"
+	icon_state = "1187s"
+	inhand_icon_state = "1187s"
+	worn_icon_state = "1187s"
+	suppressed = SUPPRESSED_QUIET
+
+/obj/item/ammo_box/magazine/internal/remington/sawnoff
+	name = "sawn-off reminton internal magazine"
+	max_ammo = 4
+
+/obj/item/gun/ballistic/shotgun/vampire/remington/sawnoff
+	name = "\improper Sawn-Off Remington 11-87"
+	desc = "A Remington 11-87 shotgun that's had the barrel extension crudely sawn off.. this is definitely illegal"
+	icon_state = "1187_sawn"
+	inhand_icon_state = "1187_sawn"
+	orn_icon_state = "1187_sawn"
+	recoil = 7
+	w_class = WEIGHT_CLASS_NORMAL
+	weapon_weight = WEAPON_MEDIUM
+	accepted_magazine_type = /obj/item/gun/ballistic/shotgun/vampire/remington/sawnoff
+
+/obj/item/gun/ballistic/shotgun/vampire/remington/silenced/sawnoff
+	name = "\improper Silenced Sawn-Off 11-87"
+	desc = "A Remington 11-87 shotgun that's had the barrel extension crudely sawn off and replaced with an oil fiter"
+	icon_state = "1187s_sawn"
+	inhand_icon_state = "1187s_sawn"
+	orn_icon_state = "1187s_sawn"
+	recoil = 7
+	w_class = WEIGHT_CLASS_NORMAL
+	weapon_weight = WEAPON_MEDIUM
+	accepted_magazine_type = /obj/item/gun/ballistic/shotgun/vampire/remington/sawnoff
+
+/obj/item/suppressor/darkpack_oil
+	name = "modified oil filter"
+	desc = "An old half inch oil filter.. there seems to be attachment grooves lathed onto the barrel."
+	icon = 'modular_darkpack/modules/weapons/icons/attachments.dmi'
+	icon_state = "oil_filter"
+	var/suppression = SUPPRESSED_QUIET
+
 /obj/item/ammo_box/magazine/internal/darkpack_dbarrel
 	name = "double barrel internal magazine"
 	ammo_type = /obj/item/ammo_casing/vampire/c12g
