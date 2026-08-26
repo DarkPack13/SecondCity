@@ -818,7 +818,7 @@
 	icon_state = "1187s_sawn"
 	inhand_icon_state = "1187s_sawn"
 	worn_icon_state = "1187s_sawn"
-	recoil = 7
+	recoil = 6
 	w_class = WEIGHT_CLASS_NORMAL
 	can_be_sawn_off	= FALSE
 	weapon_weight = WEAPON_MEDIUM
@@ -826,7 +826,7 @@
 
 /obj/item/suppressor/darkpack_oil
 	name = "modified oil filter"
-	desc = "An old half inch oil filter.. there seems to be attachment grooves lathed onto the barrel."
+	desc = "An old oil filter.. there seems to be attachment grooves lathed onto the barrel for a Remington 11-87."
 	icon = 'modular_darkpack/modules/weapons/icons/attachments.dmi'
 	icon_state = "oil_filter"
 
