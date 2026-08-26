@@ -111,7 +111,7 @@
 
 		if(damage_change < 0)
 			if(broken)
-				to_chat(human, span_userdanger("<b>A TOTEM'S SPIRIT WEAPS IN PAIN AS ITS TOTEM SHATTERS.</b>"))
+				to_chat(human, span_userdanger("<b>A TOTEM'S SPIRIT WEEPS IN PAIN AS IT'S TOTEM SHATTERS.</b>"))
 				SEND_SOUND(human, sound('sound/effects/tendril_destroyed.ogg', volume = 50))
 				shifter_splat.adjust_rage(3, FALSE)
 			else
