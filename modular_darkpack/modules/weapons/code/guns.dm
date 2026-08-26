@@ -805,8 +805,9 @@
 	desc = "A Remington 11-87 shotgun that's had the barrel extension crudely sawn off.. this is definitely illegal"
 	icon_state = "1187_sawn"
 	inhand_icon_state = "1187_sawn"
-	orn_icon_state = "1187_sawn"
+	worn_icon_state = "1187_sawn"
 	recoil = 7
+	can_be_sawn_off	= FALSE
 	w_class = WEIGHT_CLASS_NORMAL
 	weapon_weight = WEAPON_MEDIUM
 	accepted_magazine_type = /obj/item/gun/ballistic/shotgun/vampire/remington/sawnoff
@@ -816,9 +817,10 @@
 	desc = "A Remington 11-87 shotgun that's had the barrel extension crudely sawn off and replaced with an oil fiter"
 	icon_state = "1187s_sawn"
 	inhand_icon_state = "1187s_sawn"
-	orn_icon_state = "1187s_sawn"
+	worn_icon_state = "1187s_sawn"
 	recoil = 7
 	w_class = WEIGHT_CLASS_NORMAL
+	can_be_sawn_off	= FALSE
 	weapon_weight = WEAPON_MEDIUM
 	accepted_magazine_type = /obj/item/gun/ballistic/shotgun/vampire/remington/sawnoff
 
@@ -827,7 +829,6 @@
 	desc = "An old half inch oil filter.. there seems to be attachment grooves lathed onto the barrel."
 	icon = 'modular_darkpack/modules/weapons/icons/attachments.dmi'
 	icon_state = "oil_filter"
-	var/suppression = SUPPRESSED_QUIET
 
 /obj/item/ammo_box/magazine/internal/darkpack_dbarrel
 	name = "double barrel internal magazine"
