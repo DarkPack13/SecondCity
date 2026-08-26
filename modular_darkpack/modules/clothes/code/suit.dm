@@ -235,9 +235,9 @@
 	hoodtype = /obj/item/clothing/head/hooded/robes_hood/magister_capeless
 
 /obj/item/clothing/head/hooded/robes_hood/magister_capeless
-	name = "tremere hood"
+	name = "magister hood"
 	desc = "A red hood with ornate trim, marked with the emblem of House Tremere."
-	icon_state = "magister_robes_capeless"
+	icon_state = "magister_hood_capeless"
 
 /obj/item/clothing/suit/vampire/coat
 	name = "brown coat"
