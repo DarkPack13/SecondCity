@@ -232,3 +232,6 @@
   Stutternov:
   - rscadd: Adds shove-knockback with active potence
   - rscadd: Adds disarming based on your strength roll vs opponents overall strength.
+2026-08-26:
+  KCartridge:
+  - rscadd: Four Pride flags
