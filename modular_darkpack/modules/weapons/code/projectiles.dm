@@ -250,8 +250,8 @@
 
 /obj/projectile/bullet/darkpack/vamp40mm
 	name = "40mm grenade"
-	damage = 5			//LTL, not non-lethal
-	stamina = 50		//YOUCH!!!
+	damage = 5
+	stamina = 50
 	armour_penetration = 0
 	exposed_wound_bonus = 5
 	wound_bonus = 5
@@ -337,3 +337,4 @@
 	exposed_wound_bonus = 5
 	wound_bonus = 5
 	range = 18	//longer range since no impact
+	can_hit_turfs = FALSE	//So it can travel past the screens edge; doesn't do anything to floors anyway.
