@@ -211,7 +211,6 @@
 	icon_state = "apprentice_robes"
 	hoodtype = /obj/item/clothing/head/hooded/robes_hood/apprentice
 
-
 /obj/item/clothing/head/hooded/robes_hood/apprentice
 	name = "apprentice hood"
 	desc = "A purple hood with an ornate trim, marked with the emblem of House Tremere."
