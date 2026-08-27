@@ -591,7 +591,6 @@
 	desc = "A hard hitting rifle firing a full power 7.62 rifle cartridge."
 	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
-	worn_icon = 'icons/mob/clothing/back.dmi'
 	icon_state = "fal"
 	inhand_icon_state = "fal"
 	worn_icon_state = "fal"
@@ -612,6 +611,9 @@
 /obj/item/gun/ballistic/automatic/darkpack/fal/automatic
 	name = "military battle rifle"
 	desc = "A hard hitting rifle firing a full power 7.62 rifle cartridge. This one is a military variant capable of automatic fire."
+	icon_state = "falgreen"
+	inhand_icon_state = "falgreen"
+	worn_icon_state = "falgreen"
 	var/rof = 0.2 SECONDS //300 RPM
 
 /obj/item/gun/ballistic/automatic/darkpack/fal/automatic/Initialize(mapload)
