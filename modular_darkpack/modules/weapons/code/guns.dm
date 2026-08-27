@@ -610,7 +610,7 @@
 
 /obj/item/gun/ballistic/automatic/darkpack/fal/automatic
 	name = "military battle rifle"
-	desc = "A hard hitting rifle firing a full power 7.62 rifle cartridge. This one is a military variant capable of automatic fire."
+	desc = "A hard hitting rifle firing a full power 7.62 cartridge. This one is a military variant capable of automatic fire."
 	icon_state = "falgreen"
 	inhand_icon_state = "falgreen"
 	worn_icon_state = "falgreen"
