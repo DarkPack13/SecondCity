@@ -37,13 +37,11 @@
 	result = /obj/item/clothing/suit/vampire/bogatyr/captain/heavy
 	category = CAT_TZIMISCE
 
-/datum/crafting_recipe/tzi_upgrade_helmet
+/datum/crafting_recipe/tzi_upgrade_armor/helmet
 	name = "Bone Helmet (Upgrade)"
 	desc = "A set of regal golden armor, reinforced with fleshcrafting."
-	time = 5 SECONDS
 	reqs = list(/obj/item/clothing/head/vampire/bogatyr/heavy = 1, /obj/item/clothing/head/vampire/bogatyr/captain = 1)
 	result = /obj/item/clothing/head/vampire/bogatyr/captain/heavy
-	category = CAT_TZIMISCE
 
 /datum/crafting_recipe/tzi_heart
 	name = "Second Heart (Antistun)"
