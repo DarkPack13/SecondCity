@@ -180,7 +180,7 @@
 /datum/supply_pack/medical/organs/multi
 	name = "Organ Multi-pack (Ethically sourced)"
 	desc = "A crate full of LOTS of human organs. 'Ethically' is the name of our surgeon. Thank him!"
-	cost = 7000
+	cost = 8500
 	contains = list(
 		/obj/item/organ/heart = 4,
 		/obj/item/organ/lungs = 4,
