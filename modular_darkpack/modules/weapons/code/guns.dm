@@ -774,11 +774,8 @@
 	recoil = 4 //Gas Operated mechanism reduces the recoil
 	fire_delay = 5
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/remington
-	can_be_sawn_off	= TRUE
 	suppressed_sound = 'modular_darkpack/modules/weapons/sounds/1187_silenced.ogg'
 	fire_sound = 'modular_darkpack/modules/weapons/sounds/1187.ogg'
-	inhand_x_dimension = 32
-	inhand_y_dimension = 32
 	custom_price = 1000
 	serial_type = "R"
 
