@@ -173,6 +173,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // BELOW ARE ALL MERITS/FLAWS
 #define TRAIT_ACUTE_HEARING "acute_hearing"
 #define TRAIT_ANIMAL_MUSK "animal_musk"
+#define TRAIT_ANTHROPIC_TASTE "anthropic_taste"
 #define TRAIT_BANNED_TRANSFORMATION "banned_transformation"
 #define TRAIT_BEACON_OF_THE_UNHOLY "beacon_of_the_unholy"
 #define TRAIT_BETRAYERS_MARK "betrayers_mark"
