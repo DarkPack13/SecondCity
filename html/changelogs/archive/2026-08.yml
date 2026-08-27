@@ -202,3 +202,36 @@
   - bugfix: fixed Blood Form on-exit head sprite bug.
   breadcrombs:
   - balance: npc vendor .45 acp ammo box price has been reduced from 2100 to 700
+2026-08-21:
+  Stutternov:
+  - bugfix: Fixes issue on Dread Gaze that was causing people to run away for entire
+      rounds. Adjusted to 2 minute timer.
+  breadcrombs:
+  - sound: the vicissitude surgery implant toolset has been given a new more organic
+      sound
+  chazzyjazzy:
+  - rscdel: Removes Beekeeping supply pack from the warehouse
+  - rscdel: Removes Monkey Cubes supply pack from the warehouse
+2026-08-22:
+  FalloutFalcon:
+  - rscadd: Adds a subtype to yawns for a covered yawn to prevent propagation
+  - balance: Willpower scales the change for a yawn to propagate to you
+  - balance: You only roll a chance for automatic yawn propagation from the first
+      yawn you witness
+  - balance: Yawn propagation only happens on half of yawns
+  breadcrombs:
+  - rscadd: Bonecrafting now drops the brain along with all head organs when used
+      on a corpses
+  - rscadd: Bonecrafting can now deal damage to selected target limbs rather than
+      the chest all the time and can also wound
+2026-08-23:
+  ShirouAjisai:
+  - rscadd: Added phone contacts to every phone. You know your own co-workers now..
+      waow....
+2026-08-24:
+  Stutternov:
+  - rscadd: Adds shove-knockback with active potence
+  - rscadd: Adds disarming based on your strength roll vs opponents overall strength.
+2026-08-26:
+  KCartridge:
+  - rscadd: Four Pride flags
