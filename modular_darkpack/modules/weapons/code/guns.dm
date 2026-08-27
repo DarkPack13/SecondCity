@@ -768,12 +768,6 @@
 /obj/item/gun/ballistic/shotgun/vampire/remington
 	name = "\improper Remington 11-87"
 	desc = "A modern gas-operated shotgun with a textured polycarbonate body... wasnt this in some movie?"
-	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
-	lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
-	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
-	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_guns.dmi'
-	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
-	w_class = WEIGHT_CLASS_BULKY
 	icon_state = "1187"
 	inhand_icon_state = "1187"
 	worn_icon_state = "1187"
