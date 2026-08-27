@@ -588,7 +588,7 @@
 
 /obj/item/gun/ballistic/automatic/darkpack/fal
 	name = "battle rifle"
-	desc = "A hard hitting rifle firing a full power 7.62 rifle cartridge."
+	desc = "A hard hitting rifle firing a full power 7.62 cartridge."
 	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "fal"
