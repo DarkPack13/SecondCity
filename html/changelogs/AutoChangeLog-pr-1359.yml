@@ -1,5 +1,0 @@
-author: "Stutternov"
-delete-after: True
-changes:
-  - rscadd: "Adds shove-knockback with active potence"
-  - rscadd: "Adds disarming based on your strength roll vs opponents overall strength."
