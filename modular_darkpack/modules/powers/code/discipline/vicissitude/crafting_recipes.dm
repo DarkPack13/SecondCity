@@ -14,22 +14,12 @@
 	result = /obj/item/clothing/suit/vampire/bogatyr/heavy
 	category = CAT_TZIMISCE
 
-/datum/crafting_recipe/tzi_heavyhelm
+/datum/crafting_recipe/tzi_heavyarmor/helmet
 	name = "Bone Armor (Helmet)"
 	desc = "A regal winged greathelm made of flesh and bone. An ancient recipe, rarely made today due to it's prohibitive cost. It is, however, exceptionally protective. Requires Vicissitude 3."
 	time = 10 SECONDS
 	reqs = list(/obj/item/stack/sheet/meat = 40, /obj/item/spine = 2, /datum/reagent/blood/vitae = 100, /datum/reagent/blood = 200)
-	structures = list(/obj/structure/table)
 	result = /obj/item/clothing/head/vampire/bogatyr/heavy
-	category = CAT_TZIMISCE
-
-/datum/crafting_recipe/tzi_heavyhelm/check_requirements(mob/user, list/collected_requirements)
-	var/mob/living/living_user = astype(user)
-	var/datum/discipline/disc = living_user?.get_discipline(/datum/discipline/vicissitude)
-	if(disc.level >= 3)
-		return TRUE
-	else
-		return FALSE
 
 /datum/crafting_recipe/tzi_heavyarmor/check_requirements(mob/user, list/collected_requirements)
 	var/mob/living/living_user = astype(user)
@@ -49,7 +39,7 @@
 
 /datum/crafting_recipe/tzi_upgrade_helmet
 	name = "Bone Helmet (Upgrade)"
-	desc = "A regal golden helmet, reinforced with fleshcrafting."
+	desc = "A set of regal golden armor, reinforced with fleshcrafting."
 	time = 5 SECONDS
 	reqs = list(/obj/item/clothing/head/vampire/bogatyr/heavy = 1, /obj/item/clothing/head/vampire/bogatyr/captain = 1)
 	result = /obj/item/clothing/head/vampire/bogatyr/captain/heavy
