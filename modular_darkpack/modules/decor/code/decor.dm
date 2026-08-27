@@ -39,7 +39,6 @@
 	icon = 'modular_darkpack/modules/decor/icons/lamppost.dmi'
 	icon_state = "base"
 	bulb_colour = "#ffde9b"
-	break_if_moved = FALSE
 	allow_break_on_init = FALSE
 	plane = GAME_PLANE
 	pixel_w = -32
