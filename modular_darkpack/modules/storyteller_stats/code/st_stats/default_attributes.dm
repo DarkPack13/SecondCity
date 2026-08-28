@@ -18,9 +18,9 @@
 	description = "Affects your maximum health. Used in Quietus."
 	subcategory = "Physical"
 
-/datum/st_stat/attribute/stamina/update_mob(mob/living/our_mob, initial)
-	our_mob.recalculate_max_health(initial)
-
+/datum/st_stat/attribute/stamina/update_mob(mob/living/our_mob)
+	var/mob/living/carbon/carbon_mob = astype(our_mob)
+	carbon_mob?.update_soak()
 
 /datum/st_stat/attribute/charisma
 	name = "Charisma"

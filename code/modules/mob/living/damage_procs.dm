@@ -17,6 +17,8 @@
  * * attack_direction - Direction of the attack from the attacker to [src].
  * * attacking_item - Item that is attacking [src].
  * * wound_clothing - If this should cause damage to clothing.
+ * * soak_difficulty - The difficulty of soaking an attack. Base is 6, adjusted by some unique effects, rare disciplines, and more. Only reference this if you've used the proper path and checked iscarbon() for apply_damage() or it'll throw up errors.
+ * * unsoakable - Whether an attack is soakable or not. By default off, some damage types and specific effects are unsoakable.
  *
  * Returns the amount of damage dealt.
  */
@@ -33,8 +35,14 @@
 	attack_direction = null,
 	attacking_item,
 	wound_clothing = TRUE,
-)
+	soak_difficulty = 6,
+	unsoakable = FALSE,
+) // DARKPACK EDIT CHANGE - (soak)
 	SHOULD_CALL_PARENT(TRUE)
+
+	if(!forced && unsoakable == FALSE && !HAS_TRAIT(src, TRAIT_NO_SOAK)) //If the damage isn't forced and isn't unsoakable and the target can soak, run it through the soak proc. Soak runs before damage mods.
+		damage = soak_roll(damage, damagetype, def_zone, sharpness, attacking_item, soak_difficulty)
+
 	var/damage_amount = damage
 	if(!forced)
 		damage_amount *= ((100 - blocked) / 100)
@@ -563,3 +571,63 @@
 			break
 	if(. && update_health)
 		updatehealth()
+
+// DARKPACK EDIT ADD START - (soak)
+/mob/living/proc/soak_roll(
+	damage = 0,
+	damagetype = BRUTE,
+	def_zone = null,
+	sharpness = NONE,
+	attacking_item,
+	soak_difficulty = 6)
+
+	var/roll_used = soak_dice_bashing
+	switch(damagetype)
+		if(BRUTE)
+			if(isprojectile(attacking_item))
+				if(get_kindred_splat(src) && !def_zone == HEAD)
+					roll_used = soak_dice_bashing //Kindred take bullets as bashing unless they're to the head.
+				else
+					roll_used = soak_dice_lethal //Otherwise it's lethal damage.
+				roll_used += getsoak(def_zone, "lethal_bullet_soak")
+			else if(!sharpness == NONE)
+				roll_used = soak_dice_lethal //Sharp or piercing objects deal lethal to every splat.
+				roll_used += getsoak(def_zone, "lethal_melee_soak")
+			else
+				roll_used = soak_dice_bashing //Everything else should take Bashing.
+				roll_used += getsoak(def_zone, "bashing_soak")
+		if(BURN)
+			roll_used = soak_dice_aggravated //Burning is always Agg.
+			roll_used += getsoak(def_zone, "agg_fire_soak")
+		if(TOX)
+			roll_used = soak_dice_lethal //Poisons can vary from Bashing to Lethal, but the vast majority are Lethal.
+		if(OXY)
+			roll_used = 0 //Oxygen damage is applied automatically and cannot be soaked.
+		if(STAMINA)
+			roll_used = soak_dice_bashing //Stamina damage is a little weird, but as per exhaustion rules for rituals and the like, you can soak it like Bashing. Not too sure about it though.
+		if(BRAIN)
+			roll_used = soak_dice_lethal //Not many situations where you'd take direct brain damage really, but it'd be lethal in this case.
+		if(AGGRAVATED)
+			roll_used = soak_dice_aggravated //Well, obviously.
+			roll_used += getsoak(def_zone, "agg_supernatural_soak")
+
+	if(roll_used < 1)
+		return damage //Skip the roll if it can't be soaked. Covers negative numbers too, in case of edge cases.
+
+	if(HAS_TRAIT(src, TRAIT_SERPENTIS_SKIN))
+		soak_difficulty -= 1 //Technically RAW sets it to 5 no matter what, but this seems more reasonable.
+
+	var/datum/storyteller_roll/soak/soak_roll = new()
+
+	soak_roll.difficulty = soak_difficulty //Overrides difficulty for adjustments when soak difficulty is different.
+	var/successes = soak_roll.st_roll(src, src, roll_used)
+
+	if(successes > 0)
+		damage = (max(0, damage - (successes * (1 TTRPG_DAMAGE))))
+		to_chat(src, span_warning("You stand firm and are able to absorb some of the damage!"))
+
+	return damage
+
+/mob/living/proc/update_soak() //Pretty basic calculation for the average entity, soak is Bashing only using Stamina.
+	soak_dice_bashing = st_get_stat(STAT_STAMINA)
+// DARKPACK EDIT ADD END

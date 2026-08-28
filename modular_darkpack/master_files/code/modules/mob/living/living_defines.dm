@@ -53,4 +53,9 @@
 	var/research_points = 0
 	var/collected_souls = 0
 
+	// The number of dice available to soak bashing, lethal, and aggravated damage
+	var/soak_dice_bashing = 0
+	var/soak_dice_lethal = 0
+	var/soak_dice_aggravated = 0
+
 	var/last_shown_area_name // AREAS

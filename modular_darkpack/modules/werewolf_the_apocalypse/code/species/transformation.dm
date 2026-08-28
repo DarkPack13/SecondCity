@@ -113,6 +113,7 @@
 		return
 
 	owner.set_species(form_to_transform)
+	owner.update_soak()
 
 /datum/splat/werewolf/shifter/proc/is_breed_form()
 	if(!owner?.dna)

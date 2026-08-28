@@ -261,9 +261,9 @@
 		if(ishuman(attacker))
 			var/mob/living/carbon/human/H = attacker
 			H.electrocution_animation(40)
+		attacker.apply_damage(30, BURN, soak_difficulty = 8)
 		attacker.adjust_jitter_up_to(2 SECONDS, 15)
 		attacker.Stun(3 SECONDS)
-		attacker.adjust_fire_loss(30)
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/three/proc/powerarray_target_click(mob/source, atom/target, params)
 	SIGNAL_HANDLER
@@ -450,11 +450,12 @@
 
 	owner.Beam(target, icon_state="lightning[rand(1,12)]", time = 10)
 
-	target.adjust_fire_loss(20)
 	target.adjust_jitter_up_to(3 SECONDS, 15)
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		H.electrocution_animation(50)
+
+	target.apply_damage(20, BURN, soak_difficulty = 8)
 
 	if(prob(60))
 		target.Stun(1 SECONDS)

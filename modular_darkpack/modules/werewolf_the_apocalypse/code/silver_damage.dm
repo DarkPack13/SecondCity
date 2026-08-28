@@ -28,7 +28,7 @@
 
 		if(!shot_pup_splat.is_breed_form() || iscrinos(shot_pup))
 			// IDK. This is might TTRPG inaccurate RN because i think it should acctaully convert ALL the damage to agg not just add some agg to it.
-			shot_pup.apply_damage(dice TTRPG_DAMAGE, AGGRAVATED)
+			shot_pup.apply_damage(dice TTRPG_DAMAGE, AGGRAVATED, unsoakable = TRUE) //Agg from silver is unsoakable.
 
 /obj/item/proc/fera_silver_damage(mob/living/carbon/human/target, dice = 0, gnosis_damage = 0)
 	if(!istype(target))
@@ -42,4 +42,4 @@
 
 		// W20 p. 290 - Werewolves dont take silver damage in breed form because they arent spirits
 		if(!shot_pup_splat.is_breed_form() || iscrinos(shot_pup))
-			shot_pup.apply_damage(dice TTRPG_DAMAGE, AGGRAVATED)
+			shot_pup.apply_damage(dice TTRPG_DAMAGE, AGGRAVATED, unsoakable = TRUE) //Agg from silver is unsoakable.

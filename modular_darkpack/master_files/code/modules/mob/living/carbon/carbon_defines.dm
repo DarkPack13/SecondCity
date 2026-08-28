@@ -8,4 +8,3 @@
 
 	var/fakediablerist = FALSE
 	var/can_be_embraced = TRUE
-

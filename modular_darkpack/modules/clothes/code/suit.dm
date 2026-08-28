@@ -16,15 +16,16 @@
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
 	max_integrity = 250
 	resistance_flags = NONE
-	armor_type = /datum/armor/vampire_suit
+	//armor_type = /datum/armor/vampire_suit //DARKPACK EDIT (Soak) - Removing these for soak mechanics instead, but preserving for reference.
 
-/datum/armor/vampire_suit
+//DARKPACK EDIT (Soak) - Removing these for soak mechanics instead, but preserving for reference.
+/*/datum/armor/vampire_suit
 	melee = 10
 	laser = 10
 	energy = 10
 	bomb = 10
 	acid = 10
-	wound = 10
+	wound = 10*/
 
 /obj/item/clothing/suit/vampire/Initialize(mapload)
 	. = ..()
@@ -43,18 +44,18 @@
 	body_parts_covered = CHEST | GROIN | ARMS
 	cold_protection = CHEST | GROIN | ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	//armor_type = /datum/armor/chemical_costume
 	clothing_flags = THICKMATERIAL
 	resistance_flags = ACID_PROOF
-	armor_type = /datum/armor/chemical_costume
 	hoodtype = /obj/item/clothing/head/hooded/heisenberg_hood
 
-/datum/armor/chemical_costume
+/*/datum/armor/chemical_costume
 	laser = 10
 	energy = 10
 	bomb = 50
 	fire = 50
 	acid = 100
-	wound = 10
+	wound = 10*/
 
 /obj/item/clothing/head/hooded/heisenberg_hood
 	name = "chemical hood"
@@ -67,9 +68,9 @@
 	cold_protection = HEAD
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	flags_inv = HIDEHAIR | HIDEEARS
+	//armor_type = /datum/armor/chemical_costume
 	clothing_flags = THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | SNUG_FIT | STACKABLE_HELMET_EXEMPT | HEADINTERNALS
 	resistance_flags = ACID_PROOF
-	armor_type = /datum/armor/chemical_costume
 
 //** SPOOOOKY ROBES FROM THE CAPPADOCIAN UPDATE **//
 /obj/item/clothing/suit/hooded/robes
@@ -276,20 +277,22 @@
 	name = "opulent coat"
 	desc = "Lavish, luxurious, and deeply purple. Slickback Clothing Co. It exudes immense energy."
 	icon_state = "slickbackcoat"
-	armor_type = /datum/armor/opulent_coat
+	//armor_type = /datum/armor/opulent_coat
 
-/datum/armor/opulent_coat
+/*/datum/armor/opulent_coat
 	melee = 5
 	bullet = 5
-	wound = 5
+	wound = 5*/
 
 /obj/item/clothing/suit/vampire/jacket
 	name = "black leather jacket"
 	desc = "True clothing for any punk. Provides some kind of protection."
 	icon_state = "jacket1"
-	armor_type = /datum/armor/vampire_jacket
+	//armor_type = /datum/armor/vampire_jacket
+	bashing_soak = 1
+	lethal_melee_soak = 1
 
-/datum/armor/vampire_jacket
+/*/datum/armor/vampire_jacket
 	melee = 25
 	bullet = 25
 	laser = 10
@@ -297,19 +300,19 @@
 	bomb = 25
 	fire = 25
 	acid = 10
-	wound = 25
+	wound = 25*/
 
 /obj/item/clothing/suit/vampire/jacket/fbi
 	name = "Federal Bureau of Investigation jacket"
 	desc = "\"FBI OPEN UP!!\""
 	icon_state = "fbi"
-	armor_type = /datum/armor/vampire_jacket
+	//armor_type = /datum/armor/vampire_jacket
 
 /obj/item/clothing/suit/vampire/jacket/punk
 	icon_state = "punk"
-	armor_type = /datum/armor/punk_jacket
+	//armor_type = /datum/armor/punk_jacket
 
-/datum/armor/punk_jacket
+/*/datum/armor/punk_jacket
 	melee = 50
 	bullet = 50
 	laser = 10
@@ -317,14 +320,14 @@
 	bomb = 50
 	fire = 25
 	acid = 10
-	wound = 25
+	wound = 25*/
 
 /obj/item/clothing/suit/vampire/jacket/better
 	name = "brown leather jacket"
 	icon_state = "jacket2"
-	armor_type = /datum/armor/brown_leather_jacket
+	//armor_type = /datum/armor/brown_leather_jacket
 
-/datum/armor/brown_leather_jacket
+/*/datum/armor/brown_leather_jacket
 	melee = 35
 	bullet = 35
 	laser = 10
@@ -332,13 +335,15 @@
 	bomb = 35
 	fire = 35
 	acid = 10
-	wound = 35
+	wound = 35*/
 
 /obj/item/clothing/suit/vampire/jacket/better/armored
 	name = "armored leather jacket"
-	armor_type = /datum/armor/armored_jackets
+	bashing_soak = 2
+	lethal_melee_soak = 2
+	//armor_type = /datum/armor/armored_jackets
 
-/datum/armor/armored_jackets
+/*/datum/armor/armored_jackets
 	melee = 50
 	bullet = 50
 	laser = 50
@@ -347,24 +352,30 @@
 	bio = 0
 	fire = 40
 	acid = 10
-	wound = 25
+	wound = 25*/
 
 /obj/item/clothing/suit/vampire/trench/alt/armored
 	name = "armored brown trenchcoat"
 	icon_state = "trench2"
 	max_integrity = 400
-	armor_type = /datum/armor/armored_jackets
+	//armor_type = /datum/armor/armored_jackets
+	bashing_soak = 2
+	lethal_melee_soak = 2
 
 /obj/item/clothing/suit/vampire/trench/armored
 	name = "armored black trenchcoat"
 	max_integrity = 400
-	armor_type = /datum/armor/armored_jackets
+	//armor_type = /datum/armor/armored_jackets
+	bashing_soak = 2
+	lethal_melee_soak = 2
 
 /obj/item/clothing/suit/vampire/trench
 	name = "trenchcoat"
 	desc = "Best noir clothes for night. Provides some kind of protection."
 	icon_state = "trench1"
-	armor_type = /datum/armor/vampire_jacket
+	//armor_type = /datum/armor/vampire_jacket
+	bashing_soak = 1
+	lethal_melee_soak = 1
 
 /obj/item/clothing/suit/vampire/trench/alt
 	name = "brown trenchcoat"
@@ -384,9 +395,11 @@
 	name = "regal coat"
 	desc = "A beautiful jacket. Whoever owns this must be important."
 	icon_state = "voicoat"
-	armor_type = /datum/armor/regal_coat
+	//armor_type = /datum/armor/regal_coat
+	bashing_soak = 2
+	lethal_melee_soak = 2
 
-/datum/armor/regal_coat
+/*/datum/armor/regal_coat
 	melee = 60
 	bullet = 60
 	laser = 10
@@ -394,21 +407,25 @@
 	bomb = 55
 	fire = 45
 	acid = 10
-	wound = 25
+	wound = 25*/
 
 /obj/item/clothing/suit/vampire/vest
 	name = "bulletproof vest"
 	desc = "Durable, lightweight vest designed to protect against most threats efficiently."
 	icon_state = "vest"
-	armor_type = /datum/armor/bulletproof_vest
+	//armor_type = /datum/armor/bulletproof_vest
 	allowed = list(
 		/obj/item/card/id,
 		/obj/item/flashlight,
 		/obj/item/melee/baton,
 		/obj/item/restraints/handcuffs
 	)
+	bashing_soak = 3
+	lethal_melee_soak = 2 //Bulletproof vests tend to underperform against blades.
+	lethal_bullet_soak = 3
+	agg_supernatural_soak = 2
 
-/datum/armor/bulletproof_vest
+/*/datum/armor/bulletproof_vest
 	melee = 55
 	bullet = 55
 	laser = 10
@@ -416,7 +433,7 @@
 	bomb = 55
 	fire = 45
 	acid = 10
-	wound = 25
+	wound = 25*/
 
 /obj/item/clothing/suit/vampire/vest/medieval
 	name = "medieval vest"
@@ -452,9 +469,13 @@
 	name = "police captain duty vest"
 	icon_state = "capvest"
 	desc = "Composite bulletproof vest with SFPD markings, tailored for improved protection. This one has captain insignia on it."
-	armor_type = /datum/armor/highly_protective_vest
+	//armor_type = /datum/armor/highly_protective_vest
+	bashing_soak = 4
+	lethal_melee_soak = 3 //Bulletproof vests tend to underperform against blades.
+	lethal_bullet_soak = 4
+	agg_supernatural_soak = 2
 
-/datum/armor/highly_protective_vest
+/*/datum/armor/highly_protective_vest
 	melee = 70
 	bullet = 70
 	laser = 10
@@ -462,15 +483,19 @@
 	bomb = 60
 	fire = 50
 	acid = 10
-	wound = 30
+	wound = 30*/
 
 /obj/item/clothing/suit/vampire/vest/army
 	name = "army vest"
 	desc = "Army equipment. Provides great protection against blunt force."
 	icon_state = "army"
 	w_class = WEIGHT_CLASS_BULKY
-	armor_type = /datum/armor/highly_protective_vest
+	//armor_type = /datum/armor/highly_protective_vest
 	masquerade_violating = TRUE
+	bashing_soak = 4
+	lethal_melee_soak = 3 //Bulletproof vests tend to underperform against blades.
+	lethal_bullet_soak = 4
+	agg_supernatural_soak = 2
 
 /obj/item/clothing/suit/vampire/eod
 	name = "EOD suit"
@@ -483,10 +508,15 @@
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	slowdown = 2
 	w_class = WEIGHT_CLASS_BULKY
-	armor_type = /datum/armor/eod_suit
+	//armor_type = /datum/armor/eod_suit
 	masquerade_violating = TRUE
+	bashing_soak = 5
+	lethal_melee_soak = 4
+	lethal_bullet_soak = 5
+	agg_fire_soak = 3
+	agg_supernatural_soak = 3
 
-/datum/armor/eod_suit
+/*/datum/armor/eod_suit
 	melee = 90
 	bullet = 90
 	laser = 50
@@ -494,7 +524,7 @@
 	bomb = 100
 	fire = 70
 	acid = 90
-	wound = 50
+	wound = 50*/
 
 /obj/item/clothing/suit/vampire/bogatyr
 	name = "bogatyr armor"
@@ -507,17 +537,21 @@
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	slowdown = 1
 	w_class = WEIGHT_CLASS_BULKY
-	armor_type = /datum/armor/highly_protective_vest
+	//armor_type = /datum/armor/highly_protective_vest
+	bashing_soak = 4
+	lethal_melee_soak = 4
+	lethal_bullet_soak = 4
+	agg_supernatural_soak = 2
 
 /obj/item/clothing/suit/vampire/labcoat
 	name = "labcoat"
 	desc = "For medicine and research purposes."
 	icon_state = "labcoat"
-	armor_type = /datum/armor/labcoat
+	//armor_type = /datum/armor/labcoat
 
-/datum/armor/labcoat
+/*/datum/armor/labcoat
 	acid = 90
-	wound = 10
+	wound = 10*/
 
 /obj/item/clothing/suit/vampire/labcoat/director
 	name = "clinic director's labcoat"
@@ -575,13 +609,13 @@
 	name = "\improper " + MAIN_EVIL_COMPANY + " labcoat"
 	desc = "A crisp white labcoat. This one has the " + MAIN_EVIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_closedlabcoat"
-	armor_type = /datum/armor/labcoat
+	//armor_type = /datum/armor/labcoat
 
 /obj/item/clothing/suit/vampire/pentex_labcoat_alt
 	name = "\improper " + MAIN_EVIL_COMPANY + " labcoat"
 	desc = "A crisp white labcoat. This one has a green trim and the " + MAIN_EVIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_labcoat_alt"
-	armor_type = /datum/armor/labcoat
+	//armor_type = /datum/armor/labcoat
 
 /obj/item/clothing/suit/vampire/bomber_jacket_classic
 	name = "classic bomber jacket"

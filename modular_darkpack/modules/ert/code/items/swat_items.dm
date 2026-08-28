@@ -48,11 +48,16 @@
 	icon_state = "swatvest"
 	inhand_icon_state = null
 	w_class = WEIGHT_CLASS_BULKY
-	armor_type = /datum/armor/highly_protective_vest
+	//armor_type = /datum/armor/highly_protective_vest  //DARKPACK EDIT (Soak) - Removing these for soak mechanics instead, but preserving for reference.
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	clothing_traits = list(TRAIT_BRAWLING_KNOCKDOWN_BLOCKED)
+	bashing_soak = 5
+	lethal_melee_soak = 5
+	lethal_bullet_soak = 4
+	agg_fire_soak = 2
+	agg_supernatural_soak = 3
 
 /obj/item/clothing/suit/vampire/darkpack_ert/swat_armor/fbi
 	name = "\improper FBI SWAT vest"
@@ -62,11 +67,16 @@
 	name = "\improper SWAT Helmet"
 	desc = "Modified SFPD helmet with improved performance. Isnt it great to be on the good side of police militarization?"
 	icon_state = "swathelmet"
-	armor_type = /datum/armor/army_helmet
+	//armor_type = /datum/armor/army_helmet
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEHAIR
 	visor_flags_inv = HIDEFACE|HIDESNOUT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
+	bashing_soak = 5
+	lethal_melee_soak = 5
+	lethal_bullet_soak = 4
+	agg_fire_soak = 2
+	agg_supernatural_soak = 3
 
 /obj/item/clothing/head/vampire/darkpack_ert/swat_helmet/fbi
 	name = "\improper FBI SWAT Helmet"

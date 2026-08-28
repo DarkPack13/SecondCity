@@ -912,3 +912,6 @@
 	if(mob_mood?.sanity < SANITY_UNSTABLE)
 		return TRUE
 	return FALSE
+
+/mob/living/proc/getsoak(def_zone, type)
+	return 0

@@ -11,7 +11,10 @@
 	attack_direction = null,
 	attacking_item,
 	wound_clothing = TRUE,
-)
+	soak_difficulty = 6,
+	unsoakable = FALSE,
+) // DARKPACK EDIT CHANGE - (soak)
+
 	// Spread damage should always have def zone be null
 	if(spread_damage)
 		def_zone = null
@@ -35,6 +38,7 @@
 	var/species_mod = (100 - dna.species.damage_modifier) / 100
 	return ..() * species_mod
 
+
 /mob/living/carbon/human/apply_damage(
 	damage = 0,
 	damagetype = BRUTE,
@@ -48,7 +52,9 @@
 	attack_direction = null,
 	attacking_item,
 	wound_clothing = TRUE,
-)
+	soak_difficulty = 6,
+	unsoakable = FALSE,
+) // DARKPACK EDIT CHANGE - (soak)
 
 	// Add relevant DR modifiers into blocked value to pass to parent
 	blocked += physiology?.damage_resistance

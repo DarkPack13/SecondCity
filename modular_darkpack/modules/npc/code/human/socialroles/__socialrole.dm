@@ -241,8 +241,6 @@
 	fully_replace_character_name(name, real_name)
 
 
-	maxHealth = round(initial(maxHealth)+(initial(maxHealth)/3)*(st_get_stat(STAT_STAMINA)))
-	health = round(initial(health)+(initial(health)/3)*(st_get_stat(STAT_STAMINA)))
 	last_health = health
 
 	is_criminal = socialrole.is_criminal

@@ -38,6 +38,7 @@
 			owner.give_st_power(discipline, 1)
 			if(ispath(discipline, /datum/discipline/dementation))
 				owner.add_quirk(/datum/quirk/darkpack/derangement)
+	owner.update_soak() //Updates Soak in case they've inherited Fortitude.
 
 /datum/splat/vampire/ghoul/on_lose_or_destroy()
 	owner.remove_st_power(/datum/discipline/bloodheal)
