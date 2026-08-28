@@ -111,6 +111,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // Allows the user to pass through doors
 #define TRAIT_IN_FRENZY "in_frenzy"
 
+// Can't examine people
+#define TRAIT_CANNOT_FOCUS "cannot_focus"
+
 // Is the mob silenced (by Quietus 1 for example)
 #define TRAIT_SILENCED "silenced"
 // is the vampire weak to Dominate?
