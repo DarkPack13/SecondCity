@@ -7595,6 +7595,8 @@
 #include "modular_darkpack\modules\fomori\code\taints\bane_attractor.dm"
 #include "modular_darkpack\modules\fomori\code\taints\walking_bomb.dm"
 #include "modular_darkpack\modules\fomori\code\taints\worms.dm"
+#include "modular_darkpack\modules\fomori\code\taints\inner_volcano\inner_volcano.dm"
+#include "modular_darkpack\modules\fomori\code\taints\inner_volcano\inner_volcano_component.dm"
 #include "modular_darkpack\modules\fomori\code\taints\the_crusties\crusties_decal.dm"
 #include "modular_darkpack\modules\fomori\code\taints\the_crusties\the_crusties.dm"
 #include "modular_darkpack\modules\font_adjustments\font_procs.dm"
