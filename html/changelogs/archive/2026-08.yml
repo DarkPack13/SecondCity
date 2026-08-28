@@ -232,3 +232,9 @@
   Stutternov:
   - rscadd: Adds shove-knockback with active potence
   - rscadd: Adds disarming based on your strength roll vs opponents overall strength.
+2026-08-26:
+  KCartridge:
+  - rscadd: Four Pride flags
+2026-08-27:
+  breadcrombs:
+  - rscadd: Medicine Skill level 3 and 4 allows better wound tending on patients
