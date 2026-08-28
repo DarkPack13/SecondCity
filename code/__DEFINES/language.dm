@@ -54,7 +54,6 @@
 #define LANGUAGE_EMP "emp"
 #define LANGUAGE_TONGUE "tongue"
 #define LANGUAGE_BLOOD_WORM "blood_worm"
-#define LANGUAGE_FRENZY "frenzy"	//DARKPACK EDIT: ADDS FRENZY LANGUAGE FOR VAMPIRES
 
 // Language flags. Used in granting and removing languages.
 /// This language can be spoken.
