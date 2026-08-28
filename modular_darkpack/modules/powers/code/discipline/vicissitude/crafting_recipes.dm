@@ -13,6 +13,7 @@
 	structures = list(/obj/structure/table)
 	result = /obj/item/clothing/suit/vampire/bogatyr/heavy
 	category = CAT_TZIMISCE
+	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_SKIP_MATERIALS_PARITY // Maybe we fix this one day when our items are more sane
 
 /datum/crafting_recipe/tzi_heavyarmor/helmet
 	name = "Bone Armor (Helmet)"
