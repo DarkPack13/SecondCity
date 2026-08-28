@@ -153,12 +153,10 @@
 /datum/status_effect/knocked_out/on_apply()
 	owner.become_blind(TRAIT_STATUS_EFFECT(id))
 	owner.apply_status_effect(/datum/status_effect/grouped/see_no_names, TRAIT_STATUS_EFFECT(id))
+	owner.apply_status_effect(/datum/status_effect/grouped/static_look, TRAIT_STATUS_EFFECT(id))
 	owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILIZED, TRAIT_BLOCK_SECHUD, TRAIT_BLOCK_MEDHUD, TRAIT_INCAPACITATED, TRAIT_FLOORED), TRAIT_STATUS_EFFECT(id))
 	owner.update_eyes() // updates eyelids
 	RegisterSignal(owner, COMSIG_MOB_STATCHANGE, PROC_REF(on_mob_statchange))
-	RegisterSignal(owner, COMSIG_MOB_CLIENT_LOGIN, PROC_REF(show_unconscious_hud))
-	if(GET_CLIENT(owner)) // let's not waste time giving the hud to non-player characters
-		show_unconscious_hud(owner)
 	return TRUE
 
 /datum/status_effect/knocked_out/on_creation(mob/living/new_owner, ...)
@@ -171,27 +169,13 @@
 /datum/status_effect/knocked_out/on_remove()
 	owner.cure_blind(TRAIT_STATUS_EFFECT(id))
 	owner.remove_status_effect(/datum/status_effect/grouped/see_no_names, TRAIT_STATUS_EFFECT(id))
+	owner.remove_status_effect(/datum/status_effect/grouped/static_look, TRAIT_STATUS_EFFECT(id))
 	owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILIZED, TRAIT_BLOCK_SECHUD, TRAIT_BLOCK_MEDHUD, TRAIT_INCAPACITATED, TRAIT_FLOORED), TRAIT_STATUS_EFFECT(id))
 	owner.update_eyes() // updates eyelids
-	UnregisterSignal(owner, list(COMSIG_MOB_CLIENT_LOGIN, COMSIG_MOB_STATCHANGE))
-	if(GET_CLIENT(owner))
-		hide_unconscious_hud(owner)
+	UnregisterSignal(owner, list(COMSIG_MOB_STATCHANGE))
 
 /datum/status_effect/knocked_out/tick(seconds_between_ticks)
 	owner.adjust_stamina_loss(-3 * seconds_between_ticks)
-
-/// Global list of images that correspond to a mob's unconscious appearance
-GLOBAL_LIST_EMPTY(unconscious_appearances)
-
-/datum/status_effect/knocked_out/proc/show_unconscious_hud(mob/living/source)
-	SIGNAL_HANDLER
-
-	source.client?.images += (GLOB.unconscious_appearances - source.unconscious_appearance)
-
-/datum/status_effect/knocked_out/proc/hide_unconscious_hud(mob/living/source)
-	SIGNAL_HANDLER
-
-	source.client?.images -= GLOB.unconscious_appearances
 
 /datum/status_effect/knocked_out/proc/on_mob_statchange(mob/living/source, ...)
 	SIGNAL_HANDLER
@@ -199,6 +183,36 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 		stop_ticking()
 	else
 		start_ticking()
+
+//CANNOT RECOGNIZE ANYONE
+/datum/status_effect/grouped/static_look
+	id = "static look"
+	duration = STATUS_EFFECT_PERMANENT
+
+/datum/status_effect/grouped/static_look/on_apply()
+	. = ..()
+	RegisterSignal(owner, COMSIG_MOB_CLIENT_LOGIN, PROC_REF(show_unconscious_hud))
+	if(GET_CLIENT(owner)) // let's not waste time giving the hud to non-player characters
+		show_unconscious_hud(owner)
+
+/datum/status_effect/grouped/static_look/on_remove()
+	UnregisterSignal(owner, list(COMSIG_MOB_CLIENT_LOGIN))
+	if(GET_CLIENT(owner))
+		hide_unconscious_hud(owner)
+	return ..()
+
+/// Global list of images that correspond to a mob's unconscious appearance
+GLOBAL_LIST_EMPTY(unconscious_appearances)
+
+/datum/status_effect/grouped/static_look/proc/show_unconscious_hud(mob/living/source)
+	SIGNAL_HANDLER
+
+	source.client?.images += (GLOB.unconscious_appearances - source.unconscious_appearance)
+
+/datum/status_effect/grouped/static_look/proc/hide_unconscious_hud(mob/living/source)
+	SIGNAL_HANDLER
+
+	source.client?.images -= GLOB.unconscious_appearances
 
 //SLEEPING
 /datum/status_effect/incapacitating/sleeping

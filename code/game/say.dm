@@ -310,12 +310,14 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 	if(!has_language(language))
 		var/list/mutual_languages
-		// Get what we can kinda understand, factor in any bonuses passed in from say mods
-		var/list/partially_understood_languages = get_partially_understood_languages()
-		if(LAZYLEN(partially_understood_languages))
-			mutual_languages = partially_understood_languages.Copy()
-			for(var/bonus_language in message_mods[LANGUAGE_MUTUAL_BONUS])
-				mutual_languages[bonus_language] = max(message_mods[LANGUAGE_MUTUAL_BONUS][bonus_language], mutual_languages[bonus_language])
+
+		if(!HAS_TRAIT(src, TRAIT_IN_FRENZY))	//DARKPACK EDIT: IF IN FRENZY YOU DONT UNDERSTAND ANY LANGUAGE. I would prefer to just remove languages in frenzy.dm but apparently that doesn't work.
+			// Get what we can kinda understand, factor in any bonuses passed in from say mods
+			var/list/partially_understood_languages = get_partially_understood_languages()
+			if(LAZYLEN(partially_understood_languages))
+				mutual_languages = partially_understood_languages.Copy()
+				for(var/bonus_language in message_mods[LANGUAGE_MUTUAL_BONUS])
+					mutual_languages[bonus_language] = max(message_mods[LANGUAGE_MUTUAL_BONUS][bonus_language], mutual_languages[bonus_language])
 
 		var/datum/language/dialect = GLOB.language_datum_instances[language]
 		raw_message = dialect.scramble_paragraph(raw_message, mutual_languages)

@@ -11,6 +11,12 @@
 	var/datum/weakref/frenzy_overlay_ref
 	var/seconds_alone = 0
 
+/datum/status_effect/frenzy/on_apply()
+	owner.apply_status_effect(/datum/status_effect/grouped/see_no_names, TRAIT_STATUS_EFFECT(id))
+	owner.apply_status_effect(/datum/status_effect/grouped/static_look, TRAIT_STATUS_EFFECT(id))
+	owner.add_blocked_language(subtypesof(/datum/language), language_flags = UNDERSTOOD_LANGUAGE, source = id)
+	return TRUE
+
 /datum/status_effect/frenzy/on_creation(mob/living/new_owner, atom/frenzy_target)
 	. = ..()
 	if(!.)
@@ -35,6 +41,9 @@
 	owner.remove_client_colour(FRENZY_TRAIT)
 	var/mob/living/carbon/carbon_owner = astype(owner)
 	carbon_owner?.exit_frenzy_mode()
+	owner.remove_status_effect(/datum/status_effect/grouped/see_no_names, TRAIT_STATUS_EFFECT(id))
+	owner.remove_status_effect(/datum/status_effect/grouped/static_look, TRAIT_STATUS_EFFECT(id))
+	owner.remove_blocked_language(subtypesof(/datum/language), language_flags = UNDERSTOOD_LANGUAGE, source = id)
 	return ..()
 
 /datum/status_effect/frenzy/tick(seconds_between_ticks)

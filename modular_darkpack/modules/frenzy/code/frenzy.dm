@@ -10,9 +10,6 @@
 
 	set_jitter_if_lower(1 SCENES)
 
-	add_blocked_language(subtypesof(/datum/language) - /datum/language/frenzy, LANGUAGE_FRENZY)
-	grant_language(/datum/language/frenzy, source = LANGUAGE_FRENZY)
-
 	message_admins("[ADMIN_LOOKUPFLW(src)] has entered frenzy[target ? " targeting [ADMIN_LOOKUPFLW(target)]": ""]. ([source])")
 	log_combat(src, (src || target), "has frenzied on because of \"[source]\" on")
 
@@ -37,9 +34,6 @@
 		return
 	remove_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA, TRAIT_PACIFISM, TRAIT_PERMAFANGS, TRAIT_STRONG_GRABBER), FRENZY_TRAIT)
 	log_message("exited frenzy.", LOG_ATTACK, color="red")
-
-	remove_blocked_language(subtypesof(/datum/language), source = LANGUAGE_FRENZY)
-	remove_language(/datum/language/frenzy, source = LANGUAGE_FRENZY)
 
 	remove_status_effect(/datum/status_effect/frenzy)
 
