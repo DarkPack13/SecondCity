@@ -40,7 +40,7 @@
 *What happens when the ritual rune executes successfully
 */
 /obj/ritual_rune/proc/complete()
-	last_activator?.log_game("has successfully completed casting the ritual '[name]'.", LOG_GAME)
+	log_game("[last_activator ? last_activator : "someone"] has successfully completed casting the ritual '[name]'.", LOG_GAME)
 	return
 
 /*
