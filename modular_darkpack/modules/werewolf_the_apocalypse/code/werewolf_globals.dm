@@ -34,8 +34,10 @@ GLOBAL_VAR_INIT(moon_state, get_moon_phase())
 #undef LUNAR_CYCLE
 
 /proc/get_persistant_moon_phase()
+	if(isnull(GLOB.round_id))
+		return get_random_moon_phase() // abort if we don't have a round ID
 	var/offset_days = CONFIG_GET(flag/lunar_cycle_rounds)
-	var/phase_day = GLOB.round_id % (8*offset_days) // GLOB.round_id
+	var/phase_day = GLOB.round_id % (8*offset_days) || 1 // GLOB.round_id
 	return moon_phase_name(floor(phase_day/offset_days))
 
 /proc/get_random_moon_phase()
