@@ -15,5 +15,3 @@
 	var/matrix/M = matrix()
 	M.Turn(rand(0, 360))
 	transform = M
-	if(living_source)
-		add_blood_DNA(living_source.get_blood_dna_list())

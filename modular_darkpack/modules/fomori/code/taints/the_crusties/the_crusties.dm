@@ -1,6 +1,6 @@
 /datum/action/cooldown/power/fomori_power/crusties // Freak Legion pg. 42
 	name = "The Crusties"
-	desc = "Expel the crusties that writhe in your flesh, tearing you apart from the inside."
+	desc = ""
 	button_icon_state = "crusties"
 	rank = 1
 	cooldown_time = 5 SCENES // 15 minutes
@@ -29,3 +29,4 @@
 		if(ATTACK_RANGED)
 			create_crust(list(direction))
 */
+#warn CRUSTIES UNFINISHED
