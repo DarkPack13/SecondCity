@@ -4,11 +4,11 @@
 /mob/living/proc/enter_frenzy_mode(atom/target, fleeing = FALSE, source = "Unknown cause")
 	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		return
-	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+	if(IS_UNCONSCIOUS(src))
 		return
 	add_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA), FRENZY_TRAIT)
-	message_admins("[ADMIN_LOOKUPFLW(src)] has entered frenzy[target ? " targeting [ADMIN_LOOKUPFLW(src)]": ""]. ([source])")
-	log_message("entered frenzy.", LOG_GAME)
+	message_admins("[ADMIN_LOOKUPFLW(src)] has entered frenzy[target ? " targeting [ADMIN_LOOKUPFLW(target)]": ""]. ([source])")
+	log_combat(src, (src || target), "has frenzied on because of \"[source]\" on")
 
 	if(fleeing)
 		to_chat(src, span_danger("FLEE."))
@@ -26,7 +26,7 @@
 	if(!HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		return
 	remove_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA), FRENZY_TRAIT)
-	log_message("exited frenzy.", LOG_GAME)
+	log_message("exited frenzy.", LOG_ATTACK, color="red")
 
 	remove_status_effect(/datum/status_effect/frenzy)
 
@@ -65,7 +65,7 @@
 
 
 /mob/living/proc/trigger_rotschreck(atom/fire, difficulty = 6, successes = 0)
-	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+	if(IS_UNCONSCIOUS(src))
 		return
 	if(!get_kindred_splat(src))
 		return
@@ -84,7 +84,7 @@
 
 
 /mob/living/proc/trigger_kindred_frenzy(atom/target, difficulty = 6, successes = 0, flavor_text = "Something")
-	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+	if(IS_UNCONSCIOUS(src))
 		return
 	if(!get_kindred_splat(src))
 		return
@@ -109,7 +109,7 @@
 
 
 /mob/living/proc/trigger_rage_frenzy(atom/target, difficulty = 6, successes = 0)
-	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+	if(IS_UNCONSCIOUS(src))
 		return
 	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(src)
 	if(!shifter_splat)
@@ -123,7 +123,9 @@
 	return frenzy_result
 
 
-GAME_VERB_PROC_DESC(/mob/living/carbon/human, manual_frenzy_roll, "Manual Frenzy Roll", "Trigger a roll for a frenzy", null, atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
+GAME_VERB_PROC_DESC(/mob/living/carbon/human, manual_frenzy_roll, "Manual Frenzy Roll", "Trigger a roll for a frenzy", null)
+	VERB_ARG_TYPED(AM, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_VIEW, /mob/living)
+
 	if(!istype(AM))
 		return
 	if(!issupernatural(src))
@@ -135,7 +137,9 @@ GAME_VERB_PROC_DESC(/mob/living/carbon/human, manual_frenzy_roll, "Manual Frenzy
 		trigger_kindred_frenzy(AM)
 
 // Used by the berserker merit. or possibly even for that one vampire thing of riding the frenzy in future?
-GAME_VERB_PROC_DESC(/mob/living/carbon/human, manual_frenzy, "Manual Frenzy", "Enter a frenzy at will", null, atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
+GAME_VERB_PROC_DESC(/mob/living/carbon/human, manual_frenzy, "Manual Frenzy", "Enter a frenzy at will", null)
+	VERB_ARG_TYPED(AM, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_VIEW, /mob/living)
+
 	if(!istype(AM))
 		return
 	if(!issupernatural(src))

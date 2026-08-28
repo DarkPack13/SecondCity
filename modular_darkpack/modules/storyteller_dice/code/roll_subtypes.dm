@@ -52,6 +52,8 @@
 	. = ..()
 	if(HAS_TRAIT(roller, TRAIT_RAZOR_CLAWS)) // Your still using claws. A bit homebrew tho.
 		. += 1
+	if(HAS_TRAIT(roller, TRAIT_BRASSKNUCKLES))	// Method for giving brass knuckles bonus punch damage. It's blunt, and punch damage is naturally low, so equals out.
+		. += 2
 
 /datum/storyteller_roll/damage/bite
 	bumper_text = "damage (bite)"
@@ -76,6 +78,10 @@
 	if(HAS_TRAIT(roller, TRAIT_RAZOR_CLAWS))
 		. -= 1
 */
+
+/datum/storyteller_roll/damage/attacker_disarm
+	numerical = TRUE
+	applicable_stats = list(STAT_STRENGTH)
 
 /datum/storyteller_roll/shooting
 	bumper_text = "shooting"
@@ -113,6 +119,11 @@
 	bumper_text = "bash door"
 	reroll_cooldown = 1 SCENES
 	applicable_stats = list(STAT_STRENGTH)
+
+/datum/storyteller_roll/bash_door/calculate_used_dice(mob/living/roller, bonus)
+	. = ..()
+	if(HAS_TRAIT(roller, TRAIT_HUGE_SIZE))
+		. += 2
 
 /datum/storyteller_roll/grappling
 	bumper_text = "grappling"
