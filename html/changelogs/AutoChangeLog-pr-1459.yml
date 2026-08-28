@@ -1,0 +1,4 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - admin: "ritual runes now print unique logs in game.log, Ward and Blood curse rituals print the specific caster as well as the victim in attack.log"
