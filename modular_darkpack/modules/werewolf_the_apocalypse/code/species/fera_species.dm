@@ -119,7 +119,7 @@
 		return FALSE
 
 	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(human)
-	var/splat_id = shifter_splat.id || SPLAT_GAROU
+	var/splat_id = shifter_splat?.id || SPLAT_GAROU
 
 	var/fur_color = get_fur_color(human)
 	var/mob_icon = get_mob_icon(human)
