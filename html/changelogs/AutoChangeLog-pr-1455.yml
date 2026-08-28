@@ -1,0 +1,5 @@
+author: "kimesik"
+delete-after: True
+changes:
+  - rscadd: "Giovannis and Leopoldites automatically learn Italian and Latin respectively."
+  - rscadd: "Banu Haqim and Setites automatically learn Arabic."
