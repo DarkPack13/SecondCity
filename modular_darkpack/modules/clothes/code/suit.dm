@@ -229,6 +229,11 @@
 	desc = "A coat made from synthetic fur."
 	icon_state = "leopard_coat"
 
+/obj/item/clothing/suit/vampire/coat/milparka
+	name = "military parka"
+	desc = "A thick parka in desert night camoflague."
+	icon_state = "desertnightparka"
+
 
 /obj/item/clothing/suit/hooded/hoodie
 	name = "hoodie"
@@ -418,22 +423,24 @@
 	desc = "Probably spanish. Provides good protection."
 	icon_state = "medieval"
 
-/obj/item/clothing/suit/vampire/vest/police/fbivest
-	name = "FBI duty vest"
-	icon_state = "fbivest"
-	desc = "Lightweight, bulletproof vest with yellow FBI markings, tailored for active duty. This one has special agent insignia on it."
-
 //Police + Army
 
 /obj/item/clothing/suit/vampire/coat/police
 	name = "police raincoat"
 	icon_state = "policecoat"
 	desc = "A sturdy and reflective raincoat tailored for wet weather patrols."
+	custom_price = 20
 
 /obj/item/clothing/suit/vampire/vest/police
 	name = "police duty vest"
 	icon_state = "pdvest"
 	desc = "Lightweight, bulletproof vest with SFPD markings, tailored for active duty."
+	custom_price = 50
+
+/obj/item/clothing/suit/vampire/vest/police/fbivest
+	name = "FBI duty vest"
+	icon_state = "fbivest"
+	desc = "Lightweight, bulletproof vest with yellow FBI markings, tailored for active duty. This one has special agent insignia on it."
 
 /obj/item/clothing/suit/vampire/vest/police/sergeant
 	name = "police sergeant vest"
@@ -490,17 +497,35 @@
 	wound = 50
 
 /obj/item/clothing/suit/vampire/bogatyr
-	name = "bogatyr armor"
+	name = "bone armor"
 	desc = "A regal set of armor made of unknown materials."
-	icon_state = "bogatyr_armor"
+	icon_state = "bogatyr_armor_light"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	flags_inv = HIDEJUMPSUIT
 	clothing_flags = THICKMATERIAL
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	slowdown = 1
-	w_class = WEIGHT_CLASS_BULKY
+	slowdown = 0.5
+	w_class = WEIGHT_CLASS_NORMAL
+	armor_type = /datum/armor/bulletproof_vest
+
+/obj/item/clothing/suit/vampire/bogatyr/captain
+	name = "golden bone armor"
+	icon_state = "bogatyr_captain_armor"
 	armor_type = /datum/armor/highly_protective_vest
+
+/obj/item/clothing/suit/vampire/bogatyr/captain/heavy // ! Craftable only.
+	name = "reinforced golden bone armor"
+	armor_type = /datum/armor/eod_suit
+	w_class = WEIGHT_CLASS_BULKY
+	slowdown = 1
+
+/obj/item/clothing/suit/vampire/bogatyr/heavy
+	name = "heavy bone harness"
+	icon_state = "bogatyr_armor"
+	armor_type = /datum/armor/eod_suit
+	w_class = WEIGHT_CLASS_BULKY
+	slowdown = 1
 
 /obj/item/clothing/suit/vampire/labcoat
 	name = "labcoat"
@@ -575,3 +600,23 @@
 	desc = "A crisp white labcoat. This one has a green trim and the " + MAIN_EVIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_labcoat_alt"
 	armor_type = /datum/armor/labcoat
+
+/obj/item/clothing/suit/vampire/bomber_jacket_classic
+	name = "classic bomber jacket"
+	desc = "A classic bomber jacket."
+	icon_state = "bomber_classic"
+
+/obj/item/clothing/suit/vampire/bomber_jacket_gray
+	name = "gray bomber jacket"
+	desc = "A gray bomber jacket."
+	icon_state = "bomber_gray"
+
+/obj/item/clothing/suit/vampire/shawl_black
+	name = "black shawl"
+	desc = "A black shawl."
+	icon_state = "shawl_black"
+
+/obj/item/clothing/suit/vampire/shawl_white
+	name = "white shawl"
+	desc = "A white shawl."
+	icon_state = "shawl_white"

@@ -1,5 +1,0 @@
-author: "baabass1"
-delete-after: True
-changes:
-  - bugfix: "Fixed the door shield not displaying its correct in-hand sprite when held."
-  - code_imp: "Added the missing `inhand_icon_state` assignment for the door shield item."
