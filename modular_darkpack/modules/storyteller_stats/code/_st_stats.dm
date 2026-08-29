@@ -47,10 +47,9 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 	var/using_score = score
 	if(include_bonus)
-		if(include_auto_sucesses)
-			using_score = score + bonus_score + auto_success_score
-		else
-			using_score = score + bonus_score
+		using_score += bonus_score
+	if(include_auto_sucesses)
+		using_score += auto_success_score
 
 	if(include_stat_clamps && !isnull(stat_clamp_score))
 		return min(using_score, stat_clamp_score)
