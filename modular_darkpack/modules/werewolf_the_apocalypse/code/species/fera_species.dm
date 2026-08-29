@@ -71,11 +71,20 @@
 	if(shifter_splat?.transformation_stats && shifter_splat.transformation_stats[id])
 		return shifter_splat.transformation_stats[id]
 
+/datum/species/human/shifter/proc/get_stat_clamps(mob/living/carbon/human/human)
+	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(human)
+	if(shifter_splat?.transformation_stat_clamps && shifter_splat.transformation_stat_clamps[id])
+		return shifter_splat.transformation_stat_clamps[id]
+
 /datum/species/human/shifter/proc/add_buffs(mob/living/carbon/human/human)
 	for(var/key, value in get_buffs(human))
 		if(!should_add_buff(human, key, value))
 			continue
 		human.st_add_stat_mod(key, value, type)
+	for(var/key, value in get_stat_clamps(human))
+		if(!should_add_buff(human, key, value))
+			continue
+		human.st_add_stat_clamps(key, value, type)
 
 /datum/species/human/shifter/proc/should_add_buff(mob/living/carbon/human/human, datum/st_stat/buff_type, amount)
 	return TRUE
@@ -83,6 +92,8 @@
 /datum/species/human/shifter/proc/clear_buffs(mob/living/carbon/human/human)
 	for(var/key, value in get_buffs(human))
 		human.st_remove_stat_mod(key, type)
+	for(var/key, value in get_stat_clamps(human))
+		human.st_remove_stat_clamps(key, type)
 
 /datum/species/human/shifter/proc/is_veil_breaching_form(mob/living/carbon/human/human)
 	return veil_breaching_form

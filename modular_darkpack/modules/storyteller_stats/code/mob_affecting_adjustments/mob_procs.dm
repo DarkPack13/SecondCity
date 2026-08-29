@@ -1,14 +1,14 @@
 /// Get a specific mob's stat from its stats list.
-/mob/living/proc/st_get_stat(stat_path, include_bonus, include_auto_successes)
+/mob/living/proc/st_get_stat(stat_path, include_bonus, include_auto_successes, include_stat_clamps)
 	var/datum/st_stat/given_stat = storyteller_stats[stat_path]
-	return given_stat?.get_score(include_bonus, include_auto_successes)
+	return given_stat?.get_score(include_bonus, include_auto_successes, include_stat_clamps)
 
 /// Wrapper for st_get_stat to reduce copypaste. Get a specific mob's stat from its stats list.
-/mob/living/proc/st_get_stats(list/stat_list, include_bonus, include_auto_successes)
+/mob/living/proc/st_get_stats(list/stat_list, include_bonus, include_auto_successes, include_stat_clamps)
 	var/total_score = 0
 	for(var/stat_path in stat_list)
 		var/datum/st_stat/given_stat = storyteller_stats[stat_path]
-		total_score += given_stat?.get_score(include_bonus, include_auto_successes)
+		total_score += given_stat?.get_score(include_bonus, include_auto_successes, include_stat_clamps)
 	return total_score
 
 /// Set a specific mob's stat from its stats list.
@@ -51,6 +51,19 @@
 /mob/living/proc/st_remove_auto_successes(stat_path, source)
 	var/datum/st_stat/given_stat = storyteller_stats[stat_path]
 	var/score = given_stat?.remove_auto_successes(source)
+	update_modifiers_from_stats()
+	return score
+
+
+/mob/living/proc/st_add_stat_clamps(stat_path, amount, source)
+	var/datum/st_stat/given_stat = storyteller_stats[stat_path]
+	var/score = given_stat?.add_stat_clamps(amount, source)
+	update_modifiers_from_stats()
+	return score
+
+/mob/living/proc/st_remove_stat_clamps(stat_path, source)
+	var/datum/st_stat/given_stat = storyteller_stats[stat_path]
+	var/score = given_stat?.remove_stat_clamps(source)
 	update_modifiers_from_stats()
 	return score
 
