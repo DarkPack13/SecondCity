@@ -287,7 +287,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 1
 	},
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 1
 	},
 /turf/open/floor/plating/sidewalk/rich,
@@ -307,7 +307,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 8
 	},
-/obj/structure/lamppost/four,
+/obj/machinery/light/floor/lamppost/four,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "hi" = (
@@ -715,7 +715,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch)
 "nq" = (
-/obj/structure/lamppost/three{
+/obj/machinery/light/floor/lamppost/three{
 	dir = 8
 	},
 /turf/open/floor/plating/sidewalk,
@@ -884,7 +884,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
 "qz" = (
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "qC" = (
@@ -1093,7 +1093,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 10
 	},
-/obj/structure/lamppost/four,
+/obj/machinery/light/floor/lamppost/four,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "tg" = (
@@ -1190,7 +1190,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 4
 	},
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 4
 	},
 /turf/open/floor/plating/sidewalk/rich,
@@ -1239,7 +1239,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 8
 	},
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 8
 	},
 /turf/open/floor/plating/sidewalk/rich,
@@ -1527,7 +1527,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 4
 	},
-/obj/structure/lamppost/three{
+/obj/machinery/light/floor/lamppost/three{
 	dir = 4
 	},
 /turf/open/floor/plating/sidewalk,
@@ -1551,7 +1551,7 @@
 /area/vtm/interior/shop)
 "Bq" = (
 /obj/effect/turf_decal/bordur,
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/pacificheights)
 "Bs" = (
@@ -1609,7 +1609,7 @@
 /turf/open/floor/plating/asphalt,
 /area/vtm/outside/pacificheights)
 "Ct" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 1
 	},
 /turf/open/floor/plating/sidewalk,
@@ -1761,7 +1761,7 @@
 /turf/open/misc/grass,
 /area/vtm/outside/pacificheights)
 "DY" = (
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/pacificheights)
 "Eb" = (
@@ -2545,7 +2545,7 @@
 /area/vtm/interior/graveyard)
 "OA" = (
 /obj/effect/turf_decal/bordur,
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/baywalk)
 "OB" = (
@@ -2730,7 +2730,7 @@
 /area/vtm/outside/pacificheights)
 "QU" = (
 /obj/effect/turf_decal/bordur,
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/financialdistrict)
 "QW" = (
@@ -3073,14 +3073,14 @@
 /turf/open/floor/plating/elevatorshaft,
 /area/vtm/outside/pacificheights)
 "WR" = (
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "WW" = (
 /turf/open/floor/plating/canal,
 /area/vtm/interior/techshop)
 "WZ" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 8
 	},
 /turf/open/floor/plating/sidewalk,
@@ -3173,7 +3173,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/graveyard)
 "XY" = (
-/obj/structure/lamppost/three,
+/obj/machinery/light/floor/lamppost/three,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
 "XZ" = (
