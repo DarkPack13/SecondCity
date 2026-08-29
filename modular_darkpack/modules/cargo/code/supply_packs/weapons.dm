@@ -196,14 +196,14 @@
 /datum/supply_pack/weapons/weaponfal
 	name = "Weapon (Battle Rifle)"
 	desc = "Contains an 7.62 battle rifle."
-	cost = 3000
+	cost = 4000
 	contains = list(/obj/item/gun/ballistic/automatic/darkpack/fal, /obj/item/ammo_box/magazine/darkpack762x51fal)
 	crate_name = "weapon crate"
 
 /datum/supply_pack/weapons/weaponfalauto
 	name = "Weapon (Military Battle Rifle)"
 	desc = "Contains an Military 7.62 battle rifle."
-	cost = 4000
+	cost = 4500
 	contains = list(/obj/item/gun/ballistic/automatic/darkpack/fal/automatic, /obj/item/ammo_box/magazine/darkpack762x51fal)
 	crate_name = "weapon crate"
 
