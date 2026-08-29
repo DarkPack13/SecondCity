@@ -54,6 +54,27 @@
 	update_modifiers_from_stats()
 	return score
 
+/mob/living/proc/replace_storyteller_stats(list/new_stat_list, initial = FALSE)
+	if(length(storyteller_stats))
+		unlink_st_stats()
+
+	storyteller_stats = new_stat_list
+	link_st_stats()
+	update_modifiers_from_stats(initial)
+
+/mob/living/proc/clear_storyteller_stats()
+	unlink_st_stats()
+	storyteller_stats = null
+
+/mob/living/proc/link_st_stats()
+	for(var/stat_path in storyteller_stats)
+		var/datum/st_stat/given_stat = storyteller_stats[stat_path]
+		given_stat.link_mob(src)
+
+/mob/living/proc/unlink_st_stats()
+	for(var/stat_path in storyteller_stats)
+		var/datum/st_stat/taken_stat = storyteller_stats[stat_path]
+		taken_stat.unlink_mob(src)
 
 /mob/living/proc/update_modifiers_from_stats(initial = FALSE)
 	for(var/stat_typepath in storyteller_stats)
@@ -61,5 +82,4 @@
 		stat_datum.update_mob(src, initial)
 
 /datum/preferences/proc/apply_stats_from_prefs(mob/living/carbon/human/character)
-	character.storyteller_stats = preference_storyteller_stats.Copy()
-	character.update_modifiers_from_stats(TRUE)
+	character.replace_storyteller_stats(preference_storyteller_stats.Copy(), TRUE)
