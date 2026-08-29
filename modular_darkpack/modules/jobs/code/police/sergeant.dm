@@ -9,7 +9,6 @@
 	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_POLICE_SERGEANT
 	exp_requirements = EXP_REQ_MINOR
-	// exp_required_type_department = EXP_TYPE_POLICE
 	departments_list = list(
 		/datum/job_department/police,
 	)
