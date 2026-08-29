@@ -1,5 +1,0 @@
-author: "dwinters99"
-delete-after: True
-changes:
-  - balance: "Bogatyr armor reduced in effectiveness to be equal to Police armor"
-  - rscadd: "2 new sets of Bogatyr armor: Captain armor (admin-spawn or mapspawn only, equal to old Bogatyr armor) and Heavy Bone Armor (craftable, equal to EOD armor, requires 7 human corpses and 10 bloodpoints)"

@@ -1,4 +1,0 @@
-author: "chazzyjazzy"
-delete-after: True
-changes:
-  - refactor: "lampposts are now an /obj/machinery/light/floor instead of an /obj/structure, please run the updatepaths script!!!"
