@@ -1,16 +1,22 @@
 /// Current phase of the moon, randomly chosen
 GLOBAL_VAR_INIT(moon_state, get_moon_phase())
 
-/datum/config_entry/flag/lunar_cycle_interval
+/datum/config_entry/number/lunar_cycle_interval
+	default = 29.530588
+	min_val = 0.01
 
-/datum/config_entry/flag/lunar_cycle_type
-// 0 = Use CONFIG_GET(flag/lunar_cycle_interval)
+/datum/config_entry/number/lunar_cycle_type
+	default = 0
+	min_val = 0
+// 0 = Use CONFIG_GET(number/lunar_cycle_interval)
 // 1 = Moon phase based on round ID
 // 2 = Moon phase random
 
-/datum/config_entry/flag/lunar_cycle_rounds
+/datum/config_entry/number/lunar_cycle_rounds
+	default = 1
+	min_val = 1
 
-#define LUNAR_CYCLE CONFIG_GET(flag/lunar_cycle_interval)
+#define LUNAR_CYCLE CONFIG_GET(number/lunar_cycle_interval)
 /proc/get_real_moon_phase()
 	// First known fullmoon since the BYOND EPOCH.
 	var/ref_year = 2000
@@ -36,7 +42,7 @@ GLOBAL_VAR_INIT(moon_state, get_moon_phase())
 /proc/get_persistant_moon_phase()
 	if(isnull(GLOB.round_id))
 		return get_random_moon_phase() // abort if we don't have a round ID
-	var/offset_days = CONFIG_GET(flag/lunar_cycle_rounds)
+	var/offset_days = CONFIG_GET(number/lunar_cycle_rounds)
 	var/phase_day = GLOB.round_id % (8*offset_days) || 1 // GLOB.round_id
 	return moon_phase_name(floor(phase_day/offset_days))
 
@@ -44,7 +50,7 @@ GLOBAL_VAR_INIT(moon_state, get_moon_phase())
 	return pick(MOON_NEW, MOON_WAXING_CRESENT, MOON_FIRST_QUARTER, MOON_WAXING_GIBBOUS, MOON_FULL, MOON_WANING_GIBBOUS, MOON_LAST_QUARTER, MOON_WANING_CRESCENT)
 
 /proc/get_moon_phase()
-	switch(CONFIG_GET(flag/lunar_cycle_type))
+	switch(CONFIG_GET(number/lunar_cycle_type))
 		if(0)
 			return get_real_moon_phase()
 		if(1)
