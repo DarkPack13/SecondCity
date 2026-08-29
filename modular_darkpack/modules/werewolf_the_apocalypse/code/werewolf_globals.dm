@@ -8,6 +8,7 @@ GLOBAL_VAR_INIT(moon_state, get_moon_phase())
 /datum/config_entry/number/lunar_cycle_type
 	default = 0
 	min_val = 0
+	max_val = 2
 // 0 = Use CONFIG_GET(number/lunar_cycle_interval)
 // 1 = Moon phase based on round ID
 // 2 = Moon phase random
@@ -16,7 +17,6 @@ GLOBAL_VAR_INIT(moon_state, get_moon_phase())
 	default = 1
 	min_val = 1
 
-#define LUNAR_CYCLE CONFIG_GET(number/lunar_cycle_interval)
 /proc/get_real_moon_phase()
 	// First known fullmoon since the BYOND EPOCH.
 	var/ref_year = 2000
@@ -32,12 +32,11 @@ GLOBAL_VAR_INIT(moon_state, get_moon_phase())
 
 	var/days_since_full = current_days - ref_days
 
-	var/phase_day = days_since_full % LUNAR_CYCLE
+	var/phase_day = days_since_full % CONFIG_GET(number/lunar_cycle_interval)
 	if(phase_day < 0)
-		phase_day += LUNAR_CYCLE
+		phase_day += CONFIG_GET(number/lunar_cycle_interval)
 
 	return moon_phase_cycle_name(phase_day)
-#undef LUNAR_CYCLE
 
 /proc/get_persistant_moon_phase()
 	if(isnull(GLOB.round_id))
