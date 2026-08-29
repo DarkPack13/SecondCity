@@ -63,18 +63,18 @@
 	update_modifiers_from_stats(initial)
 
 /mob/living/proc/clear_storyteller_stats()
-	storyteller_stats = null
 	unlink_st_stats()
+	storyteller_stats = null
 
 /mob/living/proc/link_st_stats()
-	for(var/stat_path in stat_list)
+	for(var/stat_path in storyteller_stats)
 		var/datum/st_stat/given_stat = storyteller_stats[stat_path]
-		giving_stat.link_mob(src)
+		given_stat.link_mob(src)
 
 /mob/living/proc/unlink_st_stats()
-	for(var/stat_path in stat_list)
-		var/datum/st_stat/given_stat = storyteller_stats[stat_path]
-		giving_stat.unlink_mob(src)
+	for(var/stat_path in storyteller_stats)
+		var/datum/st_stat/taken_stat = storyteller_stats[stat_path]
+		taken_stat.unlink_mob(src)
 
 /mob/living/proc/update_modifiers_from_stats(initial = FALSE)
 	for(var/stat_typepath in storyteller_stats)
