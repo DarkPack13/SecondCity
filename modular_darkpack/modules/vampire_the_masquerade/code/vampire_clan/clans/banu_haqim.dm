@@ -35,3 +35,7 @@
 		/datum/discipline/quietus
 	)
 	subsplat_traits =  list()
+
+/datum/subsplat/vampire_clan/banu_haqim/on_join_round(mob/living/carbon/human/joining)
+	. = ..()
+	joining.grant_language(/datum/language/arabic)
