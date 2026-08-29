@@ -84,7 +84,7 @@
 	for(var/key, value in get_stat_clamps(human))
 		if(!should_add_buff(human, key, value))
 			continue
-		human.st_add_stat_clamps(key, value, type)
+		human.st_add_stat_clamp(key, value, type)
 
 /datum/species/human/shifter/proc/should_add_buff(mob/living/carbon/human/human, datum/st_stat/buff_type, amount)
 	return TRUE
@@ -93,7 +93,7 @@
 	for(var/key, value in get_buffs(human))
 		human.st_remove_stat_mod(key, type)
 	for(var/key, value in get_stat_clamps(human))
-		human.st_remove_stat_clamps(key, type)
+		human.st_remove_stat_clamp(key, type)
 
 /datum/species/human/shifter/proc/is_veil_breaching_form(mob/living/carbon/human/human)
 	return veil_breaching_form

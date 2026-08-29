@@ -21,8 +21,8 @@
 			human_holder.rot_body(3)
 		if (500 to INFINITY)
 			human_holder.rot_body(4)
-	human_holder.st_add_stat_clamps(STAT_APPEARANCE, 0, type)
+	human_holder.st_add_stat_clamp(STAT_APPEARANCE, 0, type)
 
 /datum/quirk/darkpack/horrific_appearance/remove()
 	. = ..()
-	quirk_holder.st_remove_stat_clamps(STAT_APPEARANCE, type)
+	quirk_holder.st_remove_stat_clamp(STAT_APPEARANCE, type)

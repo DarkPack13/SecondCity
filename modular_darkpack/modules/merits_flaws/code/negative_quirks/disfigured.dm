@@ -20,8 +20,8 @@
 		return
 	if(human_holder.st_get_stat(STAT_APPEARANCE) > 2)
 		to_chat(human_holder, span_warning("Your appearance stat has been lowered as you cannot have an appearance value greater than two."))
-	human_holder.st_add_stat_clamps(STAT_APPEARANCE, 2, type)
+	human_holder.st_add_stat_clamp(STAT_APPEARANCE, 2, type)
 
 /datum/quirk/darkpack/disfigured/remove()
 	. = ..()
-	quirk_holder.st_remove_stat_clamps(STAT_APPEARANCE, type)
+	quirk_holder.st_remove_stat_clamp(STAT_APPEARANCE, type)

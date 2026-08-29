@@ -55,13 +55,13 @@
 	return score
 
 
-/mob/living/proc/st_add_stat_clamps(stat_path, amount, source)
+/mob/living/proc/st_add_stat_clamp(stat_path, amount, source)
 	var/datum/st_stat/given_stat = storyteller_stats[stat_path]
 	var/score = given_stat?.add_stat_clamps(amount, source)
 	update_modifiers_from_stats()
 	return score
 
-/mob/living/proc/st_remove_stat_clamps(stat_path, source)
+/mob/living/proc/st_remove_stat_clamp(stat_path, source)
 	var/datum/st_stat/given_stat = storyteller_stats[stat_path]
 	var/score = given_stat?.remove_stat_clamps(source)
 	update_modifiers_from_stats()

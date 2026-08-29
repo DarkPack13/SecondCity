@@ -17,8 +17,8 @@
 		return
 	human_holder.rot_body(1)
 	ADD_TRAIT(human_holder, TRAIT_MASQUERADE_VIOLATING_FACE, type)
-	human_holder.st_add_stat_clamps(STAT_APPEARANCE, 0, type)
+	human_holder.st_add_stat_clamp(STAT_APPEARANCE, 0, type)
 
 /datum/quirk/darkpack/monstrous/remove()
 	. = ..()
-	quirk_holder.st_remove_stat_clamps(STAT_APPEARANCE, type)
+	quirk_holder.st_remove_stat_clamp(STAT_APPEARANCE, type)
