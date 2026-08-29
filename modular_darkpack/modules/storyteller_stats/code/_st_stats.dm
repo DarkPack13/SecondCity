@@ -42,6 +42,8 @@
 	var/freebie_cost_spent = 0
 
 // Score
+/datum/st_stat/proc/get_pure_score()
+	return score
 
 /datum/st_stat/proc/get_score(include_bonus = TRUE, include_auto_sucesses = TRUE, include_stat_clamps = TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
