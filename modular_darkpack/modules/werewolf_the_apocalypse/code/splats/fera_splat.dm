@@ -79,6 +79,7 @@
 
 	splat_traits = list(
 		TRAIT_FERA_RENOWN,
+		TRAIT_GAIA_CAERN_FRIEND, // Without them having there own tribes or declared alligence. This is the best way to determine.
 	)
 
 	// incompatible_splats = list(/datum/splat/werewolf/shifter) // TODO: Becoming a shifter should get rid of your kinfolk splat

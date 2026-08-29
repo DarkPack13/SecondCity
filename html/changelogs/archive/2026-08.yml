@@ -254,3 +254,20 @@
   kimesik:
   - rscadd: Giovannis and Leopoldites automatically learn Italian and Latin respectively.
   - rscadd: Banu Haqim and Setites automatically learn Arabic.
+2026-08-29:
+  FalloutFalcon:
+  - rscadd: Add Bawns; a barrier that surrounds and protects caerns
+  - bugfix: BSD are actually givin the wrymtained trait (not the sprite)
+  - bugfix: Haunted lights should actually break.
+  Psychodeath42:
+  - bugfix: Mask of a Thousand Faces now properly hides your hideous features
+  chazzyjazzy:
+  - admin: ritual runes now print unique logs in game.log, Ward and Blood curse rituals
+      print the specific caster as well as the victim in attack.log
+  - refactor: lampposts are now an /obj/machinery/light/floor instead of an /obj/structure,
+      please run the updatepaths script!!!
+  dwinters99:
+  - balance: Bogatyr armor reduced in effectiveness to be equal to Police armor
+  - rscadd: '2 new sets of Bogatyr armor: Captain armor (admin-spawn or mapspawn only,
+      equal to old Bogatyr armor) and Heavy Bone Armor (craftable, equal to EOD armor,
+      requires 7 human corpses and 10 bloodpoints)'
