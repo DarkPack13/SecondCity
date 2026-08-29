@@ -15,7 +15,7 @@
 /mob/living/proc/st_set_stat(stat_path, amount)
 	var/datum/st_stat/given_stat = storyteller_stats[stat_path]
 	var/score = given_stat?.set_score(amount)
-	update_modifiers_from_stats()
+	given_stat.update_mob(src)
 	return score
 
 /// Changes a specific mob's stat from its stats list by the given amount.
@@ -26,45 +26,45 @@
 		score = given_stat?.increase_score(amount)
 	else
 		score = given_stat?.decrease_score(amount)
-	update_modifiers_from_stats()
+	given_stat.update_mob(src)
 	return score
 
 /mob/living/proc/st_add_stat_mod(stat_path, amount, source)
 	var/datum/st_stat/given_stat = storyteller_stats[stat_path]
 	var/score = given_stat?.add_stat_mod(amount, source)
-	update_modifiers_from_stats()
+	given_stat.update_mob(src)
 	return score
 
 /mob/living/proc/st_remove_stat_mod(stat_path, source)
 	var/datum/st_stat/given_stat = storyteller_stats[stat_path]
 	var/score = given_stat?.remove_stat_mod(source)
-	update_modifiers_from_stats()
+	given_stat.update_mob(src)
 	return score
 
 
 /mob/living/proc/st_add_auto_successes(stat_path, amount, source)
 	var/datum/st_stat/given_stat = storyteller_stats[stat_path]
 	var/score = given_stat?.add_auto_successes(amount, source)
-	update_modifiers_from_stats()
+	given_stat.update_mob(src)
 	return score
 
 /mob/living/proc/st_remove_auto_successes(stat_path, source)
 	var/datum/st_stat/given_stat = storyteller_stats[stat_path]
 	var/score = given_stat?.remove_auto_successes(source)
-	update_modifiers_from_stats()
+	given_stat.update_mob(src)
 	return score
 
 
 /mob/living/proc/st_add_stat_clamp(stat_path, amount, source)
 	var/datum/st_stat/given_stat = storyteller_stats[stat_path]
 	var/score = given_stat?.add_stat_clamps(amount, source)
-	update_modifiers_from_stats()
+	given_stat.update_mob(src)
 	return score
 
 /mob/living/proc/st_remove_stat_clamp(stat_path, source)
 	var/datum/st_stat/given_stat = storyteller_stats[stat_path]
 	var/score = given_stat?.remove_stat_clamps(source)
-	update_modifiers_from_stats()
+	given_stat.update_mob(src)
 	return score
 
 
