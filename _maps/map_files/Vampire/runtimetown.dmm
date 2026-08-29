@@ -24,6 +24,10 @@
 	},
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/shop)
+"ay" = (
+/obj/structure/werewolf_totem/children_of_gaia,
+/turf/open/floor/plating/sidewalk,
+/area/vtm/interior/cog/caern)
 "aM" = (
 /obj/effect/spawner/random/trash/rat,
 /turf/open/misc/beach/vamp,
@@ -350,7 +354,7 @@
 /obj/lombard/blackmarket,
 /obj/structure/platform/lowwall/rich/old,
 /turf/open/floor/plating/rough,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/pantry)
 "hF" = (
 /obj/structure/table,
 /obj/structure/platform/lowwall/brick,
@@ -482,8 +486,9 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/supply)
 "jr" = (
+/obj/effect/turf_decal/trimline/brown/filled/warning,
 /turf/open/floor/plating/sidewalk,
-/area/vtm/interior/techshop)
+/area/vtm/interior/cog/caern/bawn)
 "jw" = (
 /obj/effect/decal/cleanable/trash{
 	icon_state = "trash7"
@@ -623,7 +628,7 @@
 /area/vtm/outside/pacificheights)
 "lv" = (
 /turf/closed/wall/vampwall/rich/old,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/caern/bawn)
 "lC" = (
 /obj/structure/railing,
 /obj/structure/lattice/grate,
@@ -962,7 +967,7 @@
 /obj/item/soil_sack/vermaculite,
 /obj/item/soil_sack/worm,
 /turf/open/floor/plating/sidewalk,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/pantry)
 "rB" = (
 /turf/closed/indestructible/the_matrix,
 /area/vtm)
@@ -1104,7 +1109,7 @@
 /obj/machinery/smartfridge/drying/rack,
 /obj/machinery/light/directional/north,
 /turf/open/floor/plating/sidewalk,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/pantry)
 "tu" = (
 /obj/darkpack_car/track/volkswagen{
 	dir = 4;
@@ -1247,7 +1252,7 @@
 "vm" = (
 /obj/machinery/hydroponics/simple/wooden,
 /turf/open/floor/plating/sidewalk,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/pantry)
 "vs" = (
 /obj/effect/landmark/npcbeacon,
 /obj/effect/turf_decal/bordur/corner,
@@ -1293,7 +1298,7 @@
 "vT" = (
 /obj/machinery/hydroponics/soil,
 /turf/open/floor/plating/sidewalk,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/pantry)
 "wb" = (
 /obj/structure/table,
 /obj/item/storage/medkit/darkpack/brute,
@@ -1334,7 +1339,7 @@
 "xd" = (
 /obj/structure/closet/crate/wooden/communitygardens/tools,
 /turf/open/floor/plating/sidewalk,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/pantry)
 "xh" = (
 /obj/effect/turf_decal/bordur{
 	dir = 1
@@ -1449,7 +1454,7 @@
 	pixel_x = 10
 	},
 /turf/open/floor/plating/sidewalk,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/pantry)
 "zd" = (
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
@@ -1495,7 +1500,7 @@
 /area/vtm/interior/sewer)
 "zQ" = (
 /turf/open/floor/plating/sidewalk,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/caern)
 "zX" = (
 /obj/effect/decal/wallpaper/red,
 /turf/closed/wall/vampwall/market,
@@ -1741,7 +1746,7 @@
 	pixel_y = 10
 	},
 /turf/open/floor/plating/sidewalk,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/pantry)
 "DS" = (
 /obj/effect/decal/pallet,
 /obj/effect/abstract/cargo_landing_spot,
@@ -1825,13 +1830,13 @@
 /obj/item/seeds/cannabis,
 /obj/item/seeds/cannabis,
 /turf/open/floor/plating/sidewalk,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/pantry)
 "Fe" = (
 /obj/structure/table,
 /obj/lombard,
 /obj/structure/platform/lowwall/rich/old,
 /turf/open/floor/plating/rough,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/pantry)
 "Ff" = (
 /obj/effect/spawner/random/trash/grime{
 	spawn_loot_count = 30;
@@ -1842,6 +1847,10 @@
 "Fg" = (
 /turf/closed/wall/vampwall/brick,
 /area/vtm/interior/shop)
+"Fj" = (
+/obj/effect/landmark/bawn_entrance/gaia/children_of_gaia,
+/turf/open/openspace,
+/area/vtm/interior/techshop)
 "Fs" = (
 /obj/effect/turf_decal/bordur{
 	dir = 1
@@ -1896,7 +1905,7 @@
 "Gf" = (
 /obj/machinery/hydroponics/simple/plastic,
 /turf/open/floor/plating/sidewalk,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/pantry)
 "Gj" = (
 /obj/effect/gibspawner/human,
 /turf/open/floor/city/toilet,
@@ -2078,7 +2087,7 @@
 /obj/item/food/grown/cannabis,
 /obj/item/food/grown/cannabis,
 /turf/open/floor/plating/sidewalk,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/pantry)
 "IA" = (
 /obj/structure/railing{
 	dir = 10
@@ -2153,7 +2162,7 @@
 "JE" = (
 /obj/structure/closet/crate/wooden/communitygardens/seeds,
 /turf/open/floor/plating/sidewalk,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/pantry)
 "JG" = (
 /obj/structure/table,
 /obj/item/ammo_box/magazine/glock9mm,
@@ -2421,7 +2430,7 @@
 /obj/structure/table/wood,
 /obj/machinery/light/directional/south,
 /turf/open/floor/plating/sidewalk,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/pantry)
 "MF" = (
 /obj/structure/table/wood,
 /obj/machinery/radio_tranceiver/camarilla,
@@ -2782,9 +2791,9 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/sewer)
 "RV" = (
-/obj/structure/werewolf_totem/generic/weaver,
+/obj/effect/realistic_fog/bawn/children_of_gaia,
 /turf/open/floor/plating/sidewalk,
-/area/vtm/interior/techshop)
+/area/vtm/interior/cog/caern/bawn)
 "Sf" = (
 /obj/structure/sign/city/police_department/directional/north{
 	icon_state = "police4"
@@ -2903,7 +2912,7 @@
 "Uw" = (
 /obj/structure/sink/directional/east,
 /turf/open/floor/plating/sidewalk,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/pantry)
 "UC" = (
 /obj/effect/turf_decal/bordur{
 	dir = 8
@@ -3001,7 +3010,7 @@
 "VW" = (
 /obj/structure/toiletbong,
 /turf/open/floor/plating/sidewalk,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/pantry)
 "Wa" = (
 /turf/open/misc/dirt,
 /area/vtm/outside/supply)
@@ -3072,6 +3081,9 @@
 /obj/structure/transport/linear/public,
 /turf/open/floor/plating/elevatorshaft,
 /area/vtm/outside/pacificheights)
+"WO" = (
+/turf/closed/wall/vampwall/rich/old,
+/area/vtm/interior/cog/pantry)
 "WR" = (
 /obj/machinery/light/floor/lamppost/one,
 /turf/open/misc/beach/vamp,
@@ -3241,12 +3253,15 @@
 /area/vtm/interior/techshop)
 "Zj" = (
 /obj/machinery/light/directional/north,
-/obj/structure/werewolf_totem/children_of_gaia,
+/obj/structure/werewolf_totem/generic/gaia,
 /turf/open/floor/plating/sidewalk,
-/area/vtm/interior/cog)
+/area/vtm/interior/cog/pantry)
 "Zs" = (
 /turf/closed/wall/vampwall/brick_old,
 /area/vtm/outside/pacificheights)
+"Zt" = (
+/turf/open/floor/plating/sidewalk,
+/area/vtm/interior/cog/pantry)
 "Zz" = (
 /turf/open/misc/grass/random/grass,
 /area/vtm/outside/pacificheights)
@@ -8112,12 +8127,12 @@ GJ
 "}
 (6,1,2) = {"
 GJ
-ZU
-ZU
-ZU
-ZU
-ZU
-ZU
+lv
+lv
+lv
+lv
+lv
+lv
 md
 ZU
 ZU
@@ -8180,12 +8195,12 @@ GJ
 "}
 (7,1,2) = {"
 GJ
-ZU
-jr
-jr
-jr
-jr
-ZU
+lv
+zQ
+zQ
+zQ
+zQ
+RV
 WW
 ZF
 nj
@@ -8248,16 +8263,16 @@ GJ
 "}
 (8,1,2) = {"
 GJ
-ZU
-jr
+lv
+ay
+zQ
+zQ
+zQ
 RV
-jr
-jr
-ZU
 Au
 lC
 nj
-nj
+Fj
 nj
 nj
 nj
@@ -8316,12 +8331,12 @@ GJ
 "}
 (9,1,2) = {"
 GJ
-ZU
-jr
-jr
-jr
-jr
-ZU
+lv
+zQ
+zQ
+zQ
+zQ
+lv
 tc
 lC
 nj
@@ -8384,11 +8399,11 @@ GJ
 "}
 (10,1,2) = {"
 GJ
-ZU
-jr
-jr
-jr
-jr
+lv
+zQ
+zQ
+zQ
+zQ
 jr
 Au
 lC
@@ -8520,12 +8535,12 @@ GJ
 "}
 (12,1,2) = {"
 GJ
-lv
+WO
 VW
 Uw
 Uw
 rx
-lv
+WO
 Au
 lC
 nj
@@ -8588,12 +8603,12 @@ GJ
 "}
 (13,1,2) = {"
 GJ
-lv
+WO
 vm
-zQ
-zQ
+Zt
+Zt
 vT
-lv
+WO
 WW
 ZF
 nj
@@ -8656,12 +8671,12 @@ GJ
 "}
 (14,1,2) = {"
 GJ
-lv
+WO
 vm
-zQ
-zQ
+Zt
+Zt
 vT
-lv
+WO
 WW
 NM
 Zi
@@ -8724,12 +8739,12 @@ GJ
 "}
 (15,1,2) = {"
 GJ
-lv
+WO
 Zj
-zQ
-zQ
+Zt
+Zt
 Mr
-lv
+WO
 oP
 ZF
 nj
@@ -8792,12 +8807,12 @@ GJ
 "}
 (16,1,2) = {"
 GJ
-lv
+WO
 vm
-zQ
-zQ
+Zt
+Zt
 Gf
-lv
+WO
 Au
 lC
 nj
@@ -8860,12 +8875,12 @@ GJ
 "}
 (17,1,2) = {"
 GJ
-lv
+WO
 vm
-zQ
-zQ
+Zt
+Zt
 Gf
-lv
+WO
 Au
 lC
 nj
@@ -8928,12 +8943,12 @@ GJ
 "}
 (18,1,2) = {"
 GJ
-lv
+WO
 Fa
-zQ
-zQ
+Zt
+Zt
 JE
-lv
+WO
 Au
 FE
 nj
@@ -8996,12 +9011,12 @@ GJ
 "}
 (19,1,2) = {"
 GJ
-lv
+WO
 Fa
-zQ
-zQ
+Zt
+Zt
 JE
-lv
+WO
 Au
 lC
 nj
@@ -9064,12 +9079,12 @@ GJ
 "}
 (20,1,2) = {"
 GJ
-lv
+WO
 Ii
-zQ
-zQ
+Zt
+Zt
 xd
-lv
+WO
 Au
 lC
 nj
@@ -9132,12 +9147,12 @@ GJ
 "}
 (21,1,2) = {"
 GJ
-lv
+WO
 ti
-zQ
-zQ
+Zt
+Zt
 xd
-lv
+WO
 oP
 ZF
 nj
@@ -9200,12 +9215,12 @@ GJ
 "}
 (22,1,2) = {"
 GJ
-lv
+WO
 yX
-zQ
-zQ
-zQ
-zQ
+Zt
+Zt
+Zt
+Zt
 WW
 WW
 nj
@@ -9268,12 +9283,12 @@ GJ
 "}
 (23,1,2) = {"
 GJ
-lv
+WO
 DP
-zQ
-zQ
-zQ
-zQ
+Zt
+Zt
+Zt
+Zt
 WW
 WW
 nj
@@ -9336,12 +9351,12 @@ GJ
 "}
 (24,1,2) = {"
 GJ
-lv
+WO
 Fe
 hD
-lv
-lv
-lv
+WO
+WO
+WO
 md
 md
 ZU

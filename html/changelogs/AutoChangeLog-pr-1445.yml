@@ -1,0 +1,6 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "Add Bawns; a barrier that surrounds and protects caerns"
+  - bugfix: "BSD are actually givin the wrymtained trait (not the sprite)"
+  - bugfix: "Haunted lights should actually break."
