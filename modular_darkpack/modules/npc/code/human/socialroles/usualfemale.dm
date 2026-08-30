@@ -94,7 +94,7 @@
 	)
 	pockets = list(
 		/obj/item/vamp/keys/npc,
-		// /obj/item/stack/dollar/rand
+		/obj/item/smartphone,
 	)
 
 	female_phrases = list(
