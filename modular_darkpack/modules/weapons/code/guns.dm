@@ -936,6 +936,10 @@
 	worn_icon_state = "gl"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/vampire/grenadelauncher
 	fire_sound = 'sound/items/weapons/gun/general/grenade_launch.ogg'
+	vary_fire_sound = FALSE
+	fire_delay = 10
+	recoil = 5
+	spread = 2
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = ITEM_SLOT_BACK
 	bolt_type = BOLT_TYPE_NO_BOLT

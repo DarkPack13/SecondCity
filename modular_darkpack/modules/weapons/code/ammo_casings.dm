@@ -208,48 +208,48 @@
 	name = "40mm casing"
 	desc = "A 40mm casing."
 	caliber = CALIBER_GRENADE
-	projectile_type = /obj/projectile/bullet/darkpack/vamp40mm
+	projectile_type = /obj/projectile/bullet/darkpack/c40mm
 	icon_state = "explosive_slug"
 	base_icon_state = "explosive_slug"
 
 /obj/item/ammo_casing/vampire/c40mm/incendiary
 	name = "40mm incendiary casing"
 	desc = "A 40mm incendiary casing."
-	projectile_type = /obj/projectile/bullet/darkpack/vamp40mm/incendiary
+	projectile_type = /obj/projectile/bullet/darkpack/c40mm/incendiary
 	icon_state = "incendiary_slug"
 	base_icon_state = "incendiary_slug"
 
 /obj/item/ammo_casing/vampire/c40mm/explosive
 	name = "40mm explosive casing"
 	desc = "A 40mm explosive casing."
-	projectile_type = /obj/projectile/bullet/darkpack/vamp40mm/explosive
+	projectile_type = /obj/projectile/bullet/darkpack/c40mm/explosive
 	icon_state = "explosive_slug"
 	base_icon_state = "explosive_slug"
 
 /obj/item/ammo_casing/vampire/c40mm/teargas
 	name = "40mm teargas casing"
 	desc = "A 40mm teargas casing."
-	projectile_type = /obj/projectile/bullet/darkpack/vamp40mm/teargas
+	projectile_type = /obj/projectile/bullet/darkpack/c40mm/teargas
 	icon_state = "teargas_slug"
 	base_icon_state = "teargas_slug"
 
 /obj/item/ammo_casing/vampire/c40mm/smoke
 	name = "40mm smoke casing"
 	desc = "A 40mm smoke casing."
-	projectile_type = /obj/projectile/bullet/darkpack/vamp40mm/smoke
+	projectile_type = /obj/projectile/bullet/darkpack/c40mm/smoke
 	icon_state = "smoke_slug"
 	base_icon_state = "smoke_slug"
 
 /obj/item/ammo_casing/vampire/c40mm/flashbang
 	name = "40mm flashbang casing"
 	desc = "A 40mm flashbang casing."
-	projectile_type = /obj/projectile/bullet/darkpack/vamp40mm/flashbang
+	projectile_type = /obj/projectile/bullet/darkpack/c40mm/flashbang
 	icon_state = "flashbang_slug"
 	base_icon_state = "flashbang_slug"
 
 /obj/item/ammo_casing/vampire/c40mm/baton
 	name = "40mm baton casing"
 	desc = "A 40mm baton casing."
-	projectile_type = /obj/projectile/bullet/darkpack/vamp40mm/baton
+	projectile_type = /obj/projectile/bullet/darkpack/c40mm/baton
 	icon_state = "baton_slug"
 	base_icon_state = "baton_slug"

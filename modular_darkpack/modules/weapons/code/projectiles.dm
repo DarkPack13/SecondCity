@@ -248,7 +248,7 @@
 	. = ..()
 	fera_silver_damage(target, 5) //Same as silver longsword; it's a solid silver ball. As the founding fathers intended.
 
-/obj/projectile/bullet/darkpack/vamp40mm
+/obj/projectile/bullet/darkpack/c40mm
 	name = "40mm grenade"
 	damage = 5
 	stamina = 50
@@ -273,13 +273,13 @@
 	//For if the explosive is silent or not. (Ex - smoke grenade, flashbang, etc. They are 'explosive' but not like a bomb.)
 	var/explosive_sound = FALSE
 
-/obj/projectile/bullet/darkpack/vamp40mm/on_hit(atom/target, blocked = 0, pierce_hit)
+/obj/projectile/bullet/darkpack/c40mm/on_hit(atom/target, blocked = 0, pierce_hit)
 	..()
 	if(explosive_light_range || explosive_fire_range || explosive_flash_range)
 		explosion(target, devastation_range = explosive_devastation_range, heavy_impact_range = explosive_heavy_range, light_impact_range = explosive_light_range, flame_range = explosive_fire_range, flash_range = explosive_flash_range, silent = explosive_sound, smoke = smoke_effect, adminlog = TRUE, explosion_cause = src)
 	return BULLET_ACT_HIT
 
-/obj/projectile/bullet/darkpack/vamp40mm/explosive
+/obj/projectile/bullet/darkpack/c40mm/explosive
 	name = "40mm explosive"
 	//explosive_heavy_range = 2		- Don't use this for now, it causes flooring to get destroyed.
 	explosive_light_range = 4
@@ -288,7 +288,7 @@
 	smoke_effect = TRUE
 	explosive_sound = TRUE
 
-/obj/projectile/bullet/darkpack/vamp40mm/incendiary
+/obj/projectile/bullet/darkpack/c40mm/incendiary
 	name = "40mm incendiary"
 	explosive_light_range = 2
 	explosive_flash_range = 3
@@ -296,24 +296,24 @@
 	smoke_effect = TRUE
 	explosive_sound = TRUE
 
-/obj/projectile/bullet/darkpack/vamp40mm/incendiary/on_hit(atom/target, blocked = 0, pierce_hit)
+/obj/projectile/bullet/darkpack/c40mm/incendiary/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/victim = target
 		victim.adjust_fire_stacks(7)
 		victim.ignite_mob()
 
-/obj/projectile/bullet/darkpack/vamp40mm/teargas
+/obj/projectile/bullet/darkpack/c40mm/teargas
 	name = "40mm teargas"
 
-/obj/projectile/bullet/darkpack/vamp40mm/teargas/Initialize(mapload)
+/obj/projectile/bullet/darkpack/c40mm/teargas/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/projectile_drop, /obj/item/grenade/chem_grenade/teargas/instant)
 
-/obj/projectile/bullet/darkpack/vamp40mm/smoke
+/obj/projectile/bullet/darkpack/c40mm/smoke
 	name = "40mm smoke"
 
-/obj/projectile/bullet/darkpack/vamp40mm/smoke/Initialize(mapload)
+/obj/projectile/bullet/darkpack/c40mm/smoke/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/projectile_drop, /obj/item/grenade/smokebomb/instant)
 
@@ -322,14 +322,14 @@
 	if(detonate())
 		return INITIALIZE_HINT_QDEL
 
-/obj/projectile/bullet/darkpack/vamp40mm/flashbang
+/obj/projectile/bullet/darkpack/c40mm/flashbang
 	name = "40mm flashbang"
 	explosive_flash_range = 2
 	explosive_light_range = 1
 	smoke_effect = TRUE
 
 // Only projectile of the family with no explosive element or effect
-/obj/projectile/bullet/darkpack/vamp40mm/baton
+/obj/projectile/bullet/darkpack/c40mm/baton
 	name = "40mm baton"
 	damage = 15		//LTL, not non-lethal
 	stamina = 120	//YOUCH!!!
