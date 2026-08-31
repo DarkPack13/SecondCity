@@ -272,7 +272,8 @@
 		return FALSE
 
 	if(!frenzy_usable && HAS_TRAIT(owner, TRAIT_IN_FRENZY))
-		to_chat(owner, span_warning("You cannot do this while in frenzy!"))
+		if(alert)
+				to_chat(owner, span_warning("You cannot do this while in frenzy!"))
 		return FALSE
 
 	//can't activate if the owner isn't capable of it
