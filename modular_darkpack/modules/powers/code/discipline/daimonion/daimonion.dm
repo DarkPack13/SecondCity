@@ -125,7 +125,7 @@
 
 	target_type = TARGET_HUMAN
 	range = 7
-	cooldown_timer = 30 SECONDS
+	cooldown_length  = 30 SECONDS
 	vitae_cost = 0
 
 	duration_length = 3 SECONDS
