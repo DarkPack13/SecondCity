@@ -1,5 +1,10 @@
 /// Current phase of the moon, randomly chosen
-GLOBAL_VAR_INIT(moon_state, get_moon_phase())
+GLOBAL_VAR_INIT(moon_state)
+
+/proc/get_moon_state()
+	if(isnull(GLOB.moon_state))
+		GLOB.moon_state = get_moon_phase()
+	return GLOB.moon_state
 
 /datum/config_entry/number/lunar_cycle_interval
 	default = 29.530588
