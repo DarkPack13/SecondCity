@@ -154,7 +154,7 @@
 			if(!sink_ball(user, choice, accuracy_result, amount_to_hit_result, balls_sunk = balls_sunk))
 				break
 		if(length(balls_sunk))
-			user.visible_message(span_notice("[user] sinks [english_list(balls_sunk)]. [length(get_balls_on_table())] left."), span_notice("You sink [english_list(balls_sun)]!"))
+			user.visible_message(span_notice("[user] sinks [english_list(balls_sunk)]. [length(get_balls_on_table())] left."), span_notice("You sink [english_list(balls_sunk)]!"))
 		return ITEM_INTERACT_SUCCESS
 
 /datum/storyteller_roll/pool_aiming
