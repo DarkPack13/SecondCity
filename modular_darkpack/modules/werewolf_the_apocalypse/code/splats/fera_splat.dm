@@ -91,8 +91,9 @@
 
 /datum/splat/werewolf/kinfolk/on_lose_or_destroy()
 	. = ..()
-	owner.remove_language(/datum/language/garou_tongue, SPOKEN_LANGUAGE, LANGUAGE_SPLAT) //Separated because Spoken and Hearing Components are separated
-	owner.remove_language(/datum/language/garou_tongue, UNDERSTOOD_LANGUAGE, LANGUAGE_SPLAT)
+	if(!QDELING(owner))
+		owner.remove_language(/datum/language/garou_tongue, SPOKEN_LANGUAGE, LANGUAGE_SPLAT) //Separated because Spoken and Hearing Components are separated
+		owner.remove_language(/datum/language/garou_tongue, UNDERSTOOD_LANGUAGE, LANGUAGE_SPLAT)
 
 /datum/splat/werewolf/shifter
 	abstract_type = /datum/splat/werewolf/shifter
