@@ -2,11 +2,12 @@
 
 [![resentment](.github/images/badges/built-with-resentment.svg)](.github/images/comics/131-bug-free.png) [![technical debt](.github/images/badges/contains-technical-debt.svg)](.github/images/comics/106-tech-debt-modified.png) [![forinfinityandbyond](.github/images/badges/made-in-byond.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
-| Website                 | Link                                         |
-| ----------------------- | -------------------------------------------- |
+| Website                 | Link                                     |
+| ----------------------- | -----------------------------------------|
 | Code                    | https://github.com/ApocryphaXIII/Apocrypha13 |
-| The Second City Discord | https://discord.gg/rmAbJcuChD                |
-| Coderbus Discord        | https://discord.gg/Vh8TJp9                   |
+| The Second City Discord | https://discord.gg/rmAbJcuChD            |
+| Coderbus Discord        | https://discord.gg/Vh8TJp9               |
+| Getting Started With Development | https://hackmd.io/@tgstation/HJ8OdjNBc#tgstation-Development-Guide |
 
 This is the codebase for Apocrypha13, a downstream/fork for the Darkpack13 Project, a fork of TGstation 2025
 
@@ -27,16 +28,6 @@ We are based on the Paradox Interactive World of Darkness(c) gamelines, with adm
 **Building tgstation in DreamMaker directly is deprecated and might produce errors**, such as `'tgui.bundle.js': cannot find file`.
 
 **[How to compile in VSCode and other build options](tools/build/README.md).**
-
-If you'd like to contribute to this codebase, consider uncommenting line 1 @ \_maps_basemap.dm for faster initialization.
-
-## Getting started
-
-For contribution guidelines refer to the [Guides for Contributors](.github/CONTRIBUTING.md).
-
-For getting started (dev env, compilation) see the HackMD document [here](https://hackmd.io/@tgstation/HJ8OdjNBc#tgstation-Development-Guide).
-
-For overall design documentation see [HackMD](https://hackmd.io/@tgstation).
 
 ## LICENSE
 
