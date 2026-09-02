@@ -18,7 +18,13 @@
 	allowed_clans = list(VAMPIRE_CLAN_TZIMISCE, VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_TOREADOR, VAMPIRE_CLAN_OLD_CLAN_TZIMISCE, VAMPIRE_CLAN_HEALER_SALUBRI, VAMPIRE_CLAN_WARRIOR_SALUBRI, VAMPIRE_CLAN_DAUGHTERS_OF_CACOPHONY)
 
 	description = "You belong to the Seer's Voivodate, a resurgance of the pre-existing California Voivodate. Above all you must respect the Hospitality, and the Voivodes."
-	known_contacts = list("Voivode", "Zadruga", "Bogatyr", "Bogatyr Captain")
+
+	known_contacts = list(
+		JOB_VOIVODE,
+		JOB_BOGATYR_CAPTAIN,
+		JOB_BOGATYR,
+		JOB_ZADRUGA
+	)
 
 /datum/outfit/job/vampire/voivodate_citizen
 	name = JOB_VOIVODATE_CITIZEN
@@ -44,7 +50,18 @@
 	description = "Captain of the Bogatyri, protectors of the Seer's Voivodate. You lead them in the protection of your family and the Voivode-in-Waiting who sleeps in the basement. Serve the Voivodes, and enforce the Hospitality on your family's lands."
 
 	display_order = JOB_DISPLAY_ORDER_BOGATYR_CAPTAIN
-	known_contacts = list("Prince", "Baron", "Sheriff", "Emissary", "Seneschal", "Zadruga", "Bogatyr")
+
+	known_contacts = list(
+		JOB_PRINCE,
+		JOB_BARON,
+		JOB_SHERIFF,
+		JOB_EMISSARY,
+		JOB_SENESCHAL,
+		JOB_VOIVODE,
+		JOB_BOGATYR,
+		JOB_ZADRUGA,
+		JOB_VOIVODATE_CITIZEN,
+	)
 
 /datum/outfit/job/vampire/bogatyr/captain
 	name = "Bogatyr Captain"

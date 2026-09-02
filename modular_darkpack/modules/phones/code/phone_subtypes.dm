@@ -359,7 +359,3 @@
 	contact_networks_pre_init = list(
 		alist(NETWORK_ID = SABBAT_NETWORK, OUR_ROLE = "Assistant Manager", USE_JOB_TITLE = FALSE)
 		)
-
-#undef NETWORK_ID
-#undef OUR_ROLE
-#undef USE_JOB_TITLE
