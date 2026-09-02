@@ -188,7 +188,7 @@
 /turf/open/floor/iron/stairs/right,
 /area/vtm)
 "bl" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 4
 	},
 /obj/effect/turf_decal/bordur{
@@ -287,7 +287,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 1
 	},
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/outside/fishermanswharf)
 "bZ" = (
@@ -898,7 +898,7 @@
 /turf/open/floor/plating/asphalt,
 /area/vtm/outside/fishermanswharf)
 "gu" = (
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /obj/effect/turf_decal/bordur,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/fishermanswharf/ghetto)
@@ -1139,7 +1139,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/apartment)
 "ic" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/outside/fishermanswharf)
 "id" = (
@@ -1443,7 +1443,7 @@
 /turf/open/floor/wood/old,
 /area/vtm/interior/shop)
 "kz" = (
-/obj/structure/lamppost/four,
+/obj/machinery/light/floor/lamppost/four,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/fishermanswharf)
 "kC" = (
@@ -1693,7 +1693,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 1
 	},
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalk,
 /area/vtm)
 "lT" = (
@@ -2349,7 +2349,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 8
 	},
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 4
 	},
 /obj/effect/landmark/npcability,
@@ -2367,7 +2367,7 @@
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/fishermanswharf/ghetto)
 "qL" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /obj/effect/turf_decal/bordur/corner{
 	dir = 4
 	},
@@ -2382,7 +2382,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/ghetto)
 "qQ" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalk,
 /area/vtm)
 "qR" = (
@@ -2812,7 +2812,7 @@
 /obj/effect/turf_decal/bordur/corner{
 	dir = 4
 	},
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalk,
 /area/vtm)
 "tH" = (
@@ -3181,7 +3181,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 8
 	},
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /obj/structure/railing{
 	dir = 8
 	},
@@ -3219,7 +3219,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 6
 	},
-/obj/structure/lamppost/four,
+/obj/machinery/light/floor/lamppost/four,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/fishermanswharf)
 "wq" = (
@@ -3615,7 +3615,7 @@
 /turf/open/floor/city/bacotell,
 /area/vtm/interior/apartment)
 "yT" = (
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/fishermanswharf/ghetto)
 "yW" = (
@@ -4240,7 +4240,7 @@
 /turf/open/misc/beach/vamp,
 /area/vtm/interior)
 "Dd" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 1
 	},
 /obj/effect/turf_decal/bordur,
@@ -4294,7 +4294,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 8
 	},
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 4
 	},
 /turf/open/floor/plating/sidewalk,
@@ -4327,7 +4327,7 @@
 /turf/open/floor/plating/sidewalkalt,
 /area/vtm)
 "DE" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /obj/effect/landmark/npcwall,
 /obj/effect/turf_decal/bordur{
 	dir = 5
@@ -4436,7 +4436,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 1
 	},
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 1
 	},
 /turf/open/floor/plating/sidewalk,
@@ -5080,11 +5080,11 @@
 /obj/effect/turf_decal/bordur{
 	dir = 9
 	},
-/obj/structure/lamppost/four,
+/obj/machinery/light/floor/lamppost/four,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/fishermanswharf)
 "IS" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 1
 	},
 /turf/open/floor/plating/sidewalk,
@@ -5908,7 +5908,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /obj/structure/railing{
 	dir = 1
 	},
@@ -6163,7 +6163,7 @@
 /area/vtm/interior/ghetto)
 "Qp" = (
 /obj/effect/turf_decal/bordur,
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 1
 	},
 /turf/open/floor/plating/sidewalk/old,
@@ -6230,7 +6230,7 @@
 /obj/structure/railing{
 	dir = 10
 	},
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/wood/old,
 /area/vtm/outside/northbeach)
 "QP" = (
@@ -6441,7 +6441,7 @@
 /area/vtm)
 "RN" = (
 /obj/effect/turf_decal/bordur,
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalk,
 /area/vtm)
 "RO" = (
@@ -6513,7 +6513,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
 	},
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/wood/old,
 /area/vtm/outside/northbeach)
 "St" = (
@@ -6965,7 +6965,7 @@
 /turf/open/floor/carpet/purple,
 /area/vtm/interior/ghetto)
 "Vr" = (
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/fishermanswharf/ghetto)
 "Vt" = (
@@ -7523,7 +7523,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 10
 	},
-/obj/structure/lamppost/four,
+/obj/machinery/light/floor/lamppost/four,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/fishermanswharf)
 "Zr" = (

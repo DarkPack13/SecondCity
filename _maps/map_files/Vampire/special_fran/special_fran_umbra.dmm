@@ -29,7 +29,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/outside/penumbra)
 "aC" = (
-/obj/structure/lamppost/four,
+/obj/machinery/light/floor/lamppost/four,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/penumbra)
 "aQ" = (
@@ -205,7 +205,7 @@
 /turf/open/floor/eighties,
 /area/vtm/outside/penumbra)
 "gL" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 1
 	},
 /turf/open/floor/plating/sidewalkalt,
@@ -484,7 +484,7 @@
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/penumbra)
 "rP" = (
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/outside/penumbra)
 "si" = (
@@ -575,7 +575,7 @@
 /turf/open/floor/carpet/darkpack/old,
 /area/vtm/outside/penumbra)
 "wg" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalkalt,
 /area/vtm/outside/penumbra)
 "wt" = (
@@ -617,7 +617,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/outside/penumbra)
 "ye" = (
@@ -710,7 +710,7 @@
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/penumbra)
 "BM" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	light_power = 0
 	},
 /turf/open/floor/plating/sidewalk,
@@ -729,7 +729,7 @@
 /turf/closed/wall/vampwall/rich/old,
 /area/vtm/outside/penumbra)
 "Cf" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 1
 	},
 /turf/open/floor/plating/sidewalk,
@@ -997,7 +997,7 @@
 /turf/open/floor/carpet/black,
 /area/vtm/outside/penumbra)
 "Km" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 4
 	},
 /turf/open/floor/plating/sidewalk/rich,
@@ -1018,7 +1018,7 @@
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/outside/penumbra)
 "KS" = (
-/obj/structure/lamppost/sidewalk/chinese{
+/obj/machinery/light/floor/lamppost/sidewalk/chinese{
 	dir = 8
 	},
 /turf/open/floor/plating/sidewalkalt,
@@ -1124,7 +1124,7 @@
 /turf/open/umbra,
 /area/vtm/outside/penumbra)
 "PP" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
@@ -1194,7 +1194,7 @@
 /turf/open/floor/city/plating_mono,
 /area/vtm/outside/penumbra)
 "RG" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/misc/grass,
 /area/vtm/outside/penumbra)
 "RQ" = (
@@ -1400,7 +1400,7 @@
 /turf/open/floor/plating/canalplating,
 /area/vtm/outside/penumbra)
 "WO" = (
-/obj/structure/lamppost/four,
+/obj/machinery/light/floor/lamppost/four,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/penumbra)
 "WP" = (

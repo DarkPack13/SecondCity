@@ -5110,7 +5110,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 4
 	},
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/misc/dirt,
 /area/vtm/outside/forest)
 "Fy" = (
@@ -5320,7 +5320,7 @@
 /turf/open/water/beach/vamp/deep,
 /area/vtm/outside/forest)
 "GP" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/misc/dirt,
 /area/vtm/outside/forest)
 "GQ" = (
@@ -5847,7 +5847,7 @@
 /turf/open/misc/grass,
 /area/vtm/outside/forest)
 "Kc" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /obj/effect/turf_decal/bordur{
 	dir = 8
 	},
