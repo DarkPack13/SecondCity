@@ -1,5 +1,5 @@
 /// Current phase of the moon, randomly chosen
-GLOBAL_VAR_INIT(moon_state)
+GLOBAL_VAR_INIT(moon_state, null)
 
 /proc/get_moon_state()
 	if(isnull(GLOB.moon_state))
