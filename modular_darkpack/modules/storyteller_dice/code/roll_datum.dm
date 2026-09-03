@@ -1,9 +1,19 @@
 /datum/storyteller_roll
 	var/bumper_text = "roll"
 
+	/**
+	 * The difficulty of a roll.
+	 * As a reference, three is trivial, six is standard, nine is extremely difficulty.
+	 */
 	var/difficulty = 6
 	var/bonus = 0
 
+	/**
+	 * The amount of successes required to pass.
+	 * As a reference,
+	 * 	one is marginal, eg: keep a broken refrigerator running until the repairman arrives
+	 *	five is p h e n o m e n a l, eg: creating a masterwork
+	 */
 	var/successes_needed = 1
 
 	// By default uses the highest attribute and ability // Not acctually true yet, it just used all of them. But it should be that.
@@ -69,7 +79,7 @@
 	SEND_SIGNAL(roller, COMSIG_LIVING_PRE_DICE_ROLLED, src, target, using_item, &bonus_amount, &difficulty_amount)
 
 	dice_amount += bonus_amount
-	difficulty_amount = clamp(difficulty_amount, 3, 9)
+	difficulty_amount = clamp(difficulty_amount, 2, 10) // WTA pg. 234
 
 	var/list/rolled_dice = roll_dice(dice_amount, auto_success_amount)
 
