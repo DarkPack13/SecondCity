@@ -1,13 +1,20 @@
-////////////////////
-// Zulo Form refactored in Aug-2026 from Basicmob into a carbon species for better functionality.
-// Fera_species.dm code was used as a base template, whilst also taking cues from Blood Form and other vicissitude code.
-////////////////////
-
 // This list holds icon for the character screen form selection UI
 GLOBAL_LIST_INIT(zulo_forms, list(
 	"Beast" = "weretzi",
 	"Brust" = "4armstzi",
 	// "Noble" = "nobletzi", //Nobletzi commented out for now pending a new 64x64 sprite
+))
+// This list holds w pixel offset for the character screen form selection UI
+GLOBAL_LIST_INIT(zulo_w_offset, list(
+	"Beast" = -16,
+	"Brust" = -16,
+	// "Noble" = 0, //Nobletzi commented out for now pending a new 64x64 sprite
+))
+// This list holds z pixel offset for the character screen form selection UI
+GLOBAL_LIST_INIT(zulo_z_offset, list(
+	"Beast" = 0,
+	"Brust" = 0,
+	// "Noble" = 0, //Nobletzi commented out for now pending a new 64x64 sprite
 ))
 
 /datum/species/tzimisce_zulo_form
@@ -38,8 +45,6 @@ GLOBAL_LIST_INIT(zulo_forms, list(
 	no_equip_flags = ITEM_SLOT_MASK | ITEM_SLOT_OCLOTHING | ITEM_SLOT_GLOVES | ITEM_SLOT_FEET | ITEM_SLOT_ICLOTHING | ITEM_SLOT_SUITSTORE | ITEM_SLOT_HEAD | ITEM_SLOT_EYES | ITEM_SLOT_EARS
 	var/obj/item/zulo_backpack_to_hide
 	// important to retain at least backpack slot - the Tzimisce soil bag needs to remain on the character.
-	var/mob_pixel_w = 0
-	var/mob_pixel_z = 0
 	// Zulo-specific bodyparts are defined in zulo_organs.dm.
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/zulo,
@@ -58,10 +63,12 @@ GLOBAL_LIST_INIT(zulo_forms, list(
 	var/form_limb_id = GLOB.zulo_forms[form_name] || ZULO_DEFAULT_LIMB_ID // fallback to weretzi as a safety measure
 	for(var/obj/item/bodypart/limb as anything in human_who_gained_species.bodyparts)
 		limb.change_appearance(icon = 'modular_darkpack/modules/powers/icons/zulo_bodyparts.dmi', id = form_limb_id, greyscale = TRUE)
+	var/form_w_offset = GLOB.zulo_w_offset[form_name] || 0   // fallback to no offset
+	var/form_z_offset = GLOB.zulo_z_offset[form_name] || 0
+	human_who_gained_species.add_offsets(type, w_add = form_w_offset, z_add = form_z_offset)
 	human_who_gained_species.hairstyle = "Bald"
 	human_who_gained_species.facial_hairstyle = "Shaved"
 	human_who_gained_species.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
-	human_who_gained_species.add_offsets(type, w_add = mob_pixel_w, z_add = mob_pixel_z)
 	human_who_gained_species.update_mob_height()
 	old_size = human_who_gained_species.current_size
 	// +3 stat boots to all physical stats, and socials to 0 as per V20 - pages: 242
@@ -97,10 +104,9 @@ GLOBAL_LIST_INIT(zulo_forms, list(
 		zulo_backpack_to_hide.worn_icon_state = initial(zulo_backpack_to_hide.worn_icon_state)
 		human.update_worn_back()
 		zulo_backpack_to_hide = null
-	// learned from fera code. Needed for revert on death.
 	UnregisterSignal(human, COMSIG_LIVING_DEATH)
 
-// learned from fera code, feeds into the registered signal gained/lost with species
+
 /datum/species/tzimisce_zulo_form/proc/revert_on_zulo_death(mob/living/carbon/human/source)
 	source.set_species(mrace = /datum/species/human, icon_update = TRUE, pref_load = TRUE, replace_missing = FALSE)
 
