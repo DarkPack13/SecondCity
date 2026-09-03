@@ -79,7 +79,7 @@
 	SEND_SIGNAL(roller, COMSIG_LIVING_PRE_DICE_ROLLED, src, target, using_item, &bonus_amount, &difficulty_amount)
 
 	dice_amount += bonus_amount
-	difficulty_amount = clamp(difficulty_amount, 2, 10) // WTA pg. 234
+	difficulty_amount = clamp(difficulty_amount, ROLL_DIFFICULTY_MIN, ROLL_DIFFICULTY_MAX) // WTA pg. 234
 
 	var/list/rolled_dice = roll_dice(dice_amount, auto_success_amount)
 

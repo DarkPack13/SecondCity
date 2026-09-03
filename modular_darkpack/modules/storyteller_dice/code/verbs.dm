@@ -28,11 +28,11 @@ GAME_VERB(/mob/living, do_roll_dice_custom, "Roll custom dice", null)
 	if(isnull(bonus_dice))
 		return
 
-	var/difficulty = tgui_input_number(usr, "Input roll difficulty.", "Difficulty", 6, 10, 1)
+	var/difficulty = tgui_input_number(usr, "Input roll difficulty.", "Difficulty", 6, ROLL_DIFFICULTY_MAX, ROLL_DIFFICULTY_MIN)
 	if(isnull(difficulty))
 		return
 
-	var/successes_needed = tgui_input_number(usr, "Input successes required to pass.", "Successes Needed", 1, 20, 1)
+	var/successes_needed = tgui_input_number(usr, "Input successes required to pass.", "Successes Needed", 1, 5, 1)
 	if(isnull(successes_needed))
 		return
 
