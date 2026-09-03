@@ -306,7 +306,7 @@
 /obj/item/gun/ballistic/automatic/darkpack/mac10
 	name = "\improper Braddock .45"
 	desc = "A box filled with bullets. The high cyclic rate and low weight means it's only good for spraying and then praying. Uses .45 caliber rounds."
-	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
+	icon = 'modular_darkpack/modules/weapons/icons/weapons48x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "mac10"
 	inhand_icon_state = "mac10"
@@ -377,7 +377,7 @@
 /obj/item/gun/ballistic/automatic/darkpack/mp7
 	name = "\improper HK MP7"
 	desc = "A Machine Pistol recently adopted by the German Military. Comes loaded with armor-piercing rounds, use responsibly."
-	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
+	icon = 'modular_darkpack/modules/weapons/icons/weapons48x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "mp7"
 	inhand_icon_state = "mp7"
@@ -671,7 +671,7 @@
 /obj/item/gun/ballistic/automatic/darkpack/autosniper
 	name = "auto-sniper rifle"
 	desc = "A semi-automatic marksman rifle. This particular model is very popular in video games as of late."
-	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
+	icon = 'modular_darkpack/modules/weapons/icons/weapons48x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "psg1"
 	inhand_icon_state = "psg1"
@@ -701,8 +701,8 @@
 	serial_type = "DS"
 
 /obj/item/ammo_box/magazine/vamp762x51PSG1
-	name = "PSG1 magazine (7.62x51mm)"
-	desc = "A magazine for the PSG1 loaded in 7.62 NATO."
+	name = "Auto-sniper magazine (7.62 NATO)"
+	desc = "A magazine for an Automatic Sniper rifle loaded in 7.62 NATO."
 	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
 	//lefthand_file = 'code/modules/wod13/lefthand.dmi'
 	//righthand_file = 'code/modules/wod13/righthand.dmi'
