@@ -11,14 +11,24 @@
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/abbe
 
+	exp_requirements = EXP_REQ_HEAD
+	exp_required_type_department = EXP_TYPE_SOCIETY_OF_LEOPOLD
+
 	display_order = JOB_DISPLAY_ORDER_ABBE
 	departments_list = list(
 		/datum/job_department/society_of_leopold,
 	)
+
+	known_contacts = list(
+		JOB_CONDOTTIERI,
+		JOB_INQUISITOR,
+		JOB_NOVICE
+	)
+
 	allowed_splats = list(SPLAT_NONE)
 
 /datum/outfit/job/vampire/abbe
-	name = "Abbe"
+	name = JOB_ABBE
 	jobtype = /datum/job/vampire/abbe
 
 	id = /obj/item/card/hunter
@@ -35,3 +45,8 @@
 	. = ..()
 	if(H.mind)
 		H.mind.set_holy_role(HOLY_ROLE_HIGHPRIEST)
+
+/datum/outfit/job/vampire/abbe/post_equip(mob/living/carbon/human/H)
+	. = ..()
+	H.grant_language(/datum/language/latin, source = "job")
+	H.grant_language(/datum/language/italian, source = "job")
