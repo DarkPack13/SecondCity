@@ -1,5 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - balance: "open flames on tables wont set fire to turfs"
-  - balance: "candles wont set fire to turfs"
