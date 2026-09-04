@@ -1,0 +1,5 @@
+author: "Potatocrip"
+delete-after: True
+changes:
+  - sound: "added heavy footstep sound"
+  - code_imp: "gave fera war/dire forms new heavy footstep sound"
