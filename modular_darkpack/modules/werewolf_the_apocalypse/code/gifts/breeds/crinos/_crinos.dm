@@ -9,7 +9,6 @@
  * from any successful grappling attack. The fur also reduces by two the werewolf’s difficulty
  * whenever he squeezes through tight spaces or slips restraints, such as handcuffs.
  *
- * TODO handcuff part
  */
 /datum/action/cooldown/power/gift/shed
 	name = "Shed"
@@ -38,29 +37,25 @@
 
 	. = ..()
 
-	switch(roll.st_roll(carbon_owner, null, PRIMAL_URGE_PLACEHOLDER))
-		if(ROLL_SUCCESS)
-			carbon_owner.apply_status_effect(/datum/status_effect/shed)
-			return TRUE
-		if(ROLL_FAILURE)
-			pass()
-		if(ROLL_COOLDOWN)
-			return FALSE // shouldn't happen..?
-		if(ROLL_BOTCH)
-			pass()
+	var/roll_result = roll.st_roll(carbon_owner, bonus_added = PRIMAL_URGE_PLACEHOLDER)
+	if(roll_result != ROLL_SUCCESS)
+		return TRUE
+
+	carbon_owner.apply_status_effect(/datum/status_effect/shed)
+	return TRUE
 
 
 /datum/status_effect/shed
 	id = "shed"
 	duration = 1 SCENES // duration higher than gift CD. we just refresh
 
-	status_type = STATUS_EFFECT_REFRESH
+	status_type = STATUS_EFFECT_REPLACE
 
 	alert_type = /atom/movable/screen/alert/status_effect/gift/shed
 
 /datum/status_effect/shed/on_apply()
-	var/mob/living/carbon/carbon_owner = owner
-	if(!istype(carbon_owner))
+	var/mob/living/carbon/carbon_owner = astype(owner)
+	if(!carbon_owner)
 		return FALSE // eh
 
 	. = ..()
@@ -68,11 +63,9 @@
 	if(carbon_owner.pulledby)
 		to_chat(carbon_owner, span_notice("You shed your fur, and [carbon_owner.pulledby] loses [carbon_owner.pulledby.p_their()] grip on you!"))
 		carbon_owner.pulledby.stop_pulling()
-	else if(carbon_owner.handcuffed || carbon_owner.legcuffed)
+	if(carbon_owner.handcuffed || carbon_owner.legcuffed)
 		to_chat(carbon_owner, span_notice("You shed your fur, using the slick coating as lubrication to slip out of your restraints."))
 		carbon_owner.uncuff()
-
-	#warn reread to see what to do with restraints
 
 /atom/movable/screen/alert/status_effect/gift/shed
 	name = /datum/action/cooldown/power/gift/shed::name
@@ -84,4 +77,3 @@
 	bumper_text = "shedding fur"
 	difficulty = 7
 	applicable_stats = list(STAT_DEXTERITY)
-	reroll_cooldown = 1 TURNS

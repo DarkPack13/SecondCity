@@ -278,6 +278,7 @@
 	form_causes_delirium = TRUE
 	veil_breaching_form = TRUE
 
+	skinned_type = /obj/item/stack/sheet/animalhide/generic
 	mutanttongue = /obj/item/organ/tongue/fera
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera/aggravated,
@@ -315,6 +316,7 @@
 	)
 	veil_breaching_form = TRUE
 
+	skinned_type = /obj/item/stack/sheet/animalhide/generic
 	mutantbrain = /obj/item/organ/brain/fera
 	mutanttongue = /obj/item/organ/tongue/fera
 	bodypart_overrides = list(
@@ -353,6 +355,7 @@
 		TRAIT_NO_CUFF,
 	)
 
+	skinned_type = /obj/item/stack/sheet/animalhide/generic
 	mutantbrain = /obj/item/organ/brain/fera
 	mutanttongue = /obj/item/organ/tongue/fera
 	bodypart_overrides = list(
@@ -393,6 +396,7 @@
 
 	if(HAS_TRAIT(human, TRAIT_FERA_FLIGHT))
 		REMOVE_TRAIT(human, TRAIT_WADDLING, INNATE_TRAIT)
+
 
 /datum/movespeed_modifier/shifter
 	abstract_type = /datum/movespeed_modifier/shifter

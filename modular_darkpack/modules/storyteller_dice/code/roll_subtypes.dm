@@ -165,8 +165,21 @@
 	reroll_cooldown = 1 SCENES
 	difficulty = 8
 
+
+/datum/storyteller_roll/slip_restraints
+	bumper_text = "slip restraints"
+	applicable_stats = list(STAT_DEXTERITY, STAT_STEALTH)
+	// reroll_cooldown = 1 TURNS
+	difficulty = 8
+
+/datum/storyteller_roll/slip_restraints/using_difficulty(mob/living/roller, atom/target)
+	. = ..()
+	if(roller.has_status_effect(/datum/status_effect/shed))
+		. -= 2
+
+// Based on `Feats of Strength` WTA pg. 270
 /datum/storyteller_roll/restraint_break
 	bumper_text = "breaking restraints"
 	applicable_stats = list(STAT_PERMANENT_WILLPOWER)
-	reroll_cooldown = 1 TURNS
+	// reroll_cooldown = 1 TURNS
 	difficulty = 9
