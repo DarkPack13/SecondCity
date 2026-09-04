@@ -34,7 +34,7 @@
 /datum/storyteller_roll/sense_the_sin
 	bumper_text = "sense the sin"
 	applicable_stats = list(STAT_PERCEPTION, STAT_EMPATHY)
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_FLAG_ROLLER
 
 /datum/discipline_power/daimoinon/sense_the_sin/pre_activation_checks(mob/living/target)
 	if(!sense_the_sin_roll)
@@ -134,7 +134,7 @@
 /datum/storyteller_roll/fear_of_the_void_below
 	bumper_text = "fear of the void below"
 	applicable_stats = list(STAT_WITS, STAT_INTIMIDATION)
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_FLAG_ROLLER
 
 /datum/discipline_power/daimoinon/fear_of_the_void_below/pre_activation_checks(mob/living/target)
 	if(!fear_of_the_void_below_roll)
@@ -197,7 +197,7 @@
 
 /datum/storyteller_roll/psychomania
 	bumper_text = "psychomania"
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_FLAG_ROLLER
 
 /datum/discipline_power/daimoinon/psychomania/pre_activation_checks(mob/living/target)
 	if(!psychomania_roll)
@@ -265,7 +265,7 @@
 /datum/storyteller_roll/condemnation
 	bumper_text = "condemnation"
 	applicable_stats = list(STAT_INTELLIGENCE, STAT_OCCULT)
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_FLAG_ROLLER
 
 /datum/discipline_power/daimoinon/condemnation/activate(mob/living/target)
 	. = ..()
