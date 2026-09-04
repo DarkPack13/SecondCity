@@ -113,9 +113,7 @@
 2026-08-15:
   Dangerlurking:
   - rscadd: Adds path of Asakku along with its V20 book description.
-  - rscadd: 'Adds the otherworldly bearing in the morality defines.
-
-      :cl:'
+  - rscadd: 'Adds the otherworldly bearing in the morality defines.'
   FalloutFalcon:
   - code_imp: Fixes Russian shit code relating to social roles on npcs
   - code_imp: Optimizes walls by not rendering frills when they aren't visible
