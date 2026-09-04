@@ -26,7 +26,14 @@ const batteryHours = Math.floor(Math.random() * 5) + 1;
 
     // most of these are fake... for now
     const choices: SettingsChoice[] = [
-        {
+      {
+        name: 'Security',
+        description: 'Lockscreen, Passwords, and other security settings',
+        icon: 'lock',
+        functional: true,
+        action: () => setApp(NavigableApps.Security),
+      },
+      {
         name: 'Network & Internet',
         description: 'Mobile, Wi-Fi, hotspot',
         icon: 'wifi',
