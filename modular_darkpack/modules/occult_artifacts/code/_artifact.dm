@@ -68,7 +68,7 @@
 	if(!CONFIG_GET(flag/artifact_stacking))
 		var/artifact = src.type //Needed to clarify the kind of item to look for is this specific type and not all artifacts
 		var/list/artifacts = user.get_all_contents_type(artifact)
-		if(length(artifacts) >= 1) //if there's more than one artifact. (The reason why it's 1 instead of 2 is cause the list structured like an array and started the counting number at 0)
+		if(length(artifacts) >= 1)
 			to_chat(user, span_danger("This excess copy of an artifact is made inert by the same resonances of the current copies held."))
 			return
 	owner = user
