@@ -37,3 +37,9 @@
   - bugfix: fixed abilities mouse pointers being reset upon movement
   dwinters99:
   - rscadd: Add an organ crate and organ multi-pack to cargo
+2026-09-05:
+  Potatocrip:
+  - sound: added heavy footstep sound
+  - code_imp: gave fera war/dire forms new heavy footstep sound
+  SELFHELL:
+  - image: New Rotten 4 bodysprite icons (Samedi + Harbringers of Skulls)
