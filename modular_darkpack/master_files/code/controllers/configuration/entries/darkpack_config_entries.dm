@@ -18,5 +18,8 @@
 /// 2 / DISCIPLINE_TEACHING_IN_CLANS_ONLY - Discipline teaching allowed, but you can only teach disciplines inherent to your clan (A Gangrel can teach Protean, but not Thaumaturgy)
 /// 3 / DISCIPLINE_TEACHING_DISABLED - Discipline teaching completely disabled
 
-/datum/config_entry/flag/discipline_teaching
+/datum/config_entry/number/discipline_teaching
 	default = DISCIPLINE_TEACHING_FULL
+	integer = TRUE
+	min_val = DISCIPLINE_TEACHING_FULL
+	max_val = DISCIPLINE_TEACHING_DISABLED
