@@ -7727,6 +7727,7 @@
 #include "modular_darkpack\modules\masquerade\code\subsystem\masquerade.dm"
 #include "modular_darkpack\modules\matrix\code\job.dm"
 #include "modular_darkpack\modules\matrix\code\matrix.dm"
+#include "modular_darkpack\modules\medical\code\vet_lazarus_injector.dm"
 #include "modular_darkpack\modules\mentor\code\_globalvars.dm"
 #include "modular_darkpack\modules\mentor\code\client_procs.dm"
 #include "modular_darkpack\modules\mentor\code\dementor.dm"
