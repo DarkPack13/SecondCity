@@ -15,3 +15,31 @@
   - image: adds resprited Magister Robes, Tremere Robes, and Apprentice Robes to be
       more faithful to VTM Redemption. Adds capeless variants for those who like the
       'capeless' style.
+2026-09-03:
+  Marshmellow105:
+  - rscadd: adds a darkpack subtype of shipping container with wod brands
+2026-09-04:
+  KCartridge:
+  - rscadd: Lazadon Injector
+  Marshmellow105:
+  - rscadd: adds an offset yellow roadline decal
+  Stutternov:
+  - balance: Removed Kindred 4x heat mod, reduced to normal 1x mod.
+  - balance: Added Kindred 2x burn modifier.
+  - balance: Incendiary 5.56 and 7.62 now do bonus burn damage when impacting their
+      target. (10 and 20 respectively.)
+  - balance: Incendiary buckshot reduced to 6 pellets from 8, 7.62 incendiary reduced
+      from 50 brute damage to 40
+  - balance: Adjusts age range dots for Fledge. 12 dots -> 5.
+  - balance: Adjusts age range dots for Neonate. 14 dots -> 10.
+  - balance: Adjusts age range dots for Ancilla. 16 dots -> 15
+  TheColorCyan:
+  - bugfix: fixed abilities mouse pointers being reset upon movement
+  dwinters99:
+  - rscadd: Add an organ crate and organ multi-pack to cargo
+2026-09-05:
+  Potatocrip:
+  - sound: added heavy footstep sound
+  - code_imp: gave fera war/dire forms new heavy footstep sound
+  SELFHELL:
+  - image: New Rotten 4 bodysprite icons (Samedi + Harbringers of Skulls)
