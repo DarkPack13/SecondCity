@@ -193,6 +193,19 @@
 	points -= amount
 	return TRUE
 
+/datum/st_stat/proc/can_change_points(amount)
+	if(amount < 0)
+		return can_decrease_points(-amount)
+	else if(amount > 0)
+		return TRUE// return can_increase_points(amount)
+	return TRUE
+
+/datum/st_stat/proc/change_points(amount)
+	if(amount < 0)
+		return decrease_points(-amount)
+	else if(amount > 0)
+		return increase_points(amount)
+
 // Freebie Points
 
 /datum/st_stat/proc/can_increase_freebie_points(amount)

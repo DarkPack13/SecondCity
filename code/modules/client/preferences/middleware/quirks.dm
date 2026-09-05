@@ -130,7 +130,9 @@
 	// DARKPACK EDIT ADD - MERITS_FLAWS
 	var/datum/st_stat/freebie/freebie_points = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]
 	var/datum/quirk/quirk_type = SSquirks.quirks[quirk_name]
-	freebie_points.decrease_points(quirk_type.value)
+	if(!freebie_points.can_change_points(-quirk_type.value))
+		return FALSE
+	freebie_points.change_points(-quirk_type.value)
 	// DARKPACK EDIT END - MERITS_FLAWS
 	preferences.validate_quirks()
 	var/list/new_quirks = preferences.all_quirks | quirk_name
@@ -153,7 +155,9 @@
 	// DARKPACK EDIT ADD - MERITS_FLAWS
 	var/datum/st_stat/freebie/freebie_points = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]
 	var/datum/quirk/quirk_type = SSquirks.quirks[quirk_name]
-	freebie_points.increase_points(quirk_type.value)
+	if(!freebie_points.can_change_points(quirk_type.value))
+		return FALSE
+	freebie_points.change_points(quirk_type.value)
 	// DARKPACK EDIT END - MERITS_FLAWS
 	var/list/new_quirks = preferences.all_quirks - quirk_name
 	if ( \
@@ -188,7 +192,7 @@
 	if(!freebie_stat)
 		return null
 
-	var/base_points = 15
+	var/base_points = /datum/st_stat/freebie::points
 	var/spent_on_stats = freebie_stat.freebie_cost_spent
 	var/quirk_balance = get_quirk_balance()
 
