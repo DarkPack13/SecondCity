@@ -1628,6 +1628,13 @@
 	},
 /turf/open/misc/dirt,
 /area/vtm/outside/forest)
+"ka" = (
+/obj/effect/turf_decal/darkpack/cave/corner{
+	dir = 8
+	},
+/obj/effect/realistic_fog/bawn/gaia,
+/turf/open/water/river,
+/area/vtm/interior/forest/cave)
 "kc" = (
 /obj/structure/roadsign/parking,
 /turf/open/misc/dirt,
@@ -2795,7 +2802,7 @@
 /obj/effect/turf_decal/darkpack/rough{
 	dir = 4
 	},
-/obj/effect/realistic_fog/dense,
+/obj/effect/realistic_fog/bawn/gaia,
 /turf/open/water/river,
 /area/vtm/interior/forest/cave)
 "rp" = (
@@ -4093,6 +4100,10 @@
 	icon_state = "sand3"
 	},
 /area/vtm/outside/forest)
+"yy" = (
+/obj/effect/realistic_fog/bawn/gaia,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/forest/cave)
 "yA" = (
 /obj/effect/turf_decal/darkpack/rough/corner,
 /obj/structure/glowshroom/glowcap,
@@ -4215,6 +4226,12 @@
 /obj/effect/turf_decal/darkpack/grass,
 /turf/open/genturf,
 /area/vtm/planetgeneration)
+"zx" = (
+/obj/effect/realistic_fog/bawn/gaia,
+/turf/open/floor/plating/rough/cave{
+	icon_state = "cave3"
+	},
+/area/vtm/interior/forest/cave)
 "zz" = (
 /obj/effect/turf_decal/darkpack/cave{
 	dir = 1
@@ -4664,7 +4681,7 @@
 /obj/effect/turf_decal/darkpack/rough/corner{
 	dir = 1
 	},
-/obj/effect/realistic_fog/dense,
+/obj/effect/realistic_fog/bawn/gaia,
 /turf/open/water/river,
 /area/vtm/interior/forest/cave)
 "Cq" = (
@@ -5096,6 +5113,10 @@
 	},
 /turf/open/misc/grass/random/grass,
 /area/vtm/interior/forest/cave)
+"Fo" = (
+/obj/effect/realistic_fog/bawn/gaia,
+/turf/open/water/river,
+/area/vtm/interior/forest/cave)
 "Fp" = (
 /obj/structure/chair/sofa/city_bench/wood/right{
 	dir = 1
@@ -5460,7 +5481,7 @@
 /obj/effect/turf_decal/darkpack/cave{
 	dir = 10
 	},
-/obj/effect/realistic_fog/dense,
+/obj/effect/realistic_fog/bawn/gaia,
 /turf/open/water/river,
 /area/vtm/interior/forest/cave)
 "Hz" = (
@@ -5671,7 +5692,7 @@
 /area/vtm/interior/forest/cave)
 "IP" = (
 /obj/effect/realistic_fog/dense,
-/obj/structure/werewolf_totem/generic,
+/obj/structure/werewolf_totem/generic/gaia,
 /turf/open/floor/plating/rough/cave{
 	icon_state = "cave3"
 	},
@@ -7067,7 +7088,7 @@
 /area/vtm/interior/forest/sept)
 "RJ" = (
 /obj/structure/glowshroom,
-/obj/effect/realistic_fog/dense,
+/obj/effect/realistic_fog/bawn/gaia,
 /turf/open/floor/plating/rough/cave{
 	icon_state = "cave3"
 	},
@@ -8110,7 +8131,7 @@
 /area/vtm/interior/forest/cave)
 "YL" = (
 /obj/structure/flora/rock/darkpack_big,
-/obj/effect/realistic_fog/dense,
+/obj/effect/realistic_fog/bawn/gaia,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/forest/cave)
 "YN" = (
@@ -37681,7 +37702,7 @@ ZF
 FK
 Wa
 yh
-Wf
+zx
 Nr
 RJ
 hl
@@ -37878,7 +37899,7 @@ Sr
 Sb
 ZF
 FK
-Wa
+ka
 tF
 Hv
 aU
@@ -38075,9 +38096,9 @@ Ys
 ye
 qV
 FK
-ZF
+Fo
 FK
-ZF
+Fo
 Hm
 mB
 tF
@@ -38274,7 +38295,7 @@ Ys
 CO
 Cp
 FK
-ZF
+Fo
 FK
 ZF
 FK
@@ -38469,7 +38490,7 @@ EH
 EH
 bv
 ye
-Ys
+yy
 CO
 rn
 Sb
@@ -38668,7 +38689,7 @@ EH
 EH
 YL
 ye
-Ys
+yy
 ye
 Sr
 Sb
@@ -38865,7 +38886,7 @@ EH
 EH
 EH
 EH
-Ys
+yy
 iG
 nZ
 ye
