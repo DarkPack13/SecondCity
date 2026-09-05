@@ -253,7 +253,7 @@
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer/nosferatu_town)
 "aiR" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /obj/effect/turf_decal/bordur/corner{
 	dir = 1
 	},
@@ -552,7 +552,7 @@
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/endron_facility/restricted)
 "asz" = (
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /obj/effect/turf_decal/bordur/inverse,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/financialdistrict)
@@ -617,7 +617,7 @@
 /turf/open/floor/city/toilet/large,
 /area/vtm/interior/police)
 "atL" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 4
 	},
 /obj/effect/landmark/npcactivity,
@@ -734,7 +734,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 5
 	},
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/voivodate)
 "ayD" = (
@@ -1009,7 +1009,7 @@
 /turf/open/floor/plating/granite,
 /area/vtm/interior/millennium_tower/f2)
 "aGB" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 4
 	},
 /obj/structure/sign/city/hotel/directional/west,
@@ -1948,7 +1948,7 @@
 /area/vtm/interior/sewer/nosferatu_town)
 "biQ" = (
 /obj/effect/turf_decal/bordur/corner,
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/voivodate)
 "biY" = (
@@ -2184,7 +2184,7 @@
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/voivodate)
 "bpT" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 1
 	},
 /turf/open/floor/plating/sidewalk,
@@ -2631,7 +2631,7 @@
 /turf/open/misc/dirt,
 /area/vtm/interior/voivodate/cave)
 "bCw" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /obj/effect/turf_decal/bordur/corner{
 	dir = 8
 	},
@@ -3515,7 +3515,7 @@
 /turf/open/floor/iron/showroomfloor,
 /area/vtm/interior/clinic)
 "ccK" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/financialdistrict)
 "ccP" = (
@@ -3531,7 +3531,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/npcwall,
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/misc/grass/random/bushes,
 /area/vtm/outside/park)
 "cdc" = (
@@ -4633,7 +4633,7 @@
 /turf/open/floor/carpet/darkpack/greengold,
 /area/vtm/interior/endron_facility)
 "cIC" = (
-/obj/structure/lamppost/four,
+/obj/machinery/light/floor/lamppost/four,
 /obj/effect/landmark/npcability,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/unionsquare)
@@ -4794,7 +4794,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 6
 	},
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/voivodate)
 "cMy" = (
@@ -5443,7 +5443,7 @@
 	dir = 8;
 	pixel_x = -1
 	},
-/obj/structure/lamppost/sidewalk/chinese,
+/obj/machinery/light/floor/lamppost/sidewalk/chinese,
 /turf/open/floor/plating/sidewalkalt,
 /area/vtm/outside/chinatown)
 "dhf" = (
@@ -5791,7 +5791,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 10
 	},
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/voivodate)
 "dtY" = (
@@ -6072,7 +6072,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/gangbasement)
 "dDy" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 8
 	},
 /turf/open/floor/plating/sidewalk,
@@ -6695,7 +6695,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "dYt" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 8
 	},
 /turf/open/floor/plating/sidewalk/rich,
@@ -6990,7 +6990,7 @@
 /turf/open/water/beach/vamp/deep,
 /area/vtm/interior/voivodate/cave)
 "egl" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer/nosferatu_town)
 "egD" = (
@@ -7848,7 +7848,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/apartment)
 "eIG" = (
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/financialdistrict)
 "eIH" = (
@@ -8472,7 +8472,7 @@
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/endron_facility/restricted)
 "fap" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /obj/effect/turf_decal/bordur/corner{
 	dir = 8
 	},
@@ -9828,7 +9828,7 @@
 /turf/open/floor/plating/canal,
 /area/vtm/interior/sewer)
 "fJD" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 4
 	},
 /turf/open/floor/plating/sidewalk,
@@ -10228,7 +10228,7 @@
 /turf/open/floor/carpet/darkpack,
 /area/vtm/interior/chantry)
 "fXc" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 4
 	},
 /turf/open/floor/plating/sidewalk,
@@ -11573,7 +11573,7 @@
 /turf/closed/wall/vampwall/rock,
 /area/vtm)
 "gKz" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 8
 	},
 /turf/open/floor/plating/sidewalk,
@@ -12671,7 +12671,7 @@
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/smoke)
 "hsF" = (
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/chinatown)
 "hsM" = (
@@ -13893,7 +13893,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/financialdistrict)
 "ibp" = (
@@ -16242,7 +16242,7 @@
 /obj/effect/turf_decal/bordur/corner{
 	dir = 4
 	},
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalk/old,
 /area/vtm/voivodate)
 "juv" = (
@@ -16707,7 +16707,7 @@
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/millennium_tower/f4)
 "jJx" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /obj/effect/turf_decal/bordur/corner{
 	dir = 1
 	},
@@ -18078,7 +18078,7 @@
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/outside/financialdistrict)
 "kxx" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 1
 	},
 /turf/open/floor/plating/sidewalk/rich,
@@ -18276,7 +18276,7 @@
 /turf/open/floor/plating/elevatorshaft,
 /area/vtm/interior)
 "kCZ" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalkalt,
 /area/vtm/outside/financialdistrict)
 "kDe" = (
@@ -20159,7 +20159,7 @@
 	},
 /area/vtm/voivodate)
 "lNo" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/financialdistrict)
 "lNw" = (
@@ -20588,7 +20588,7 @@
 /turf/open/floor/carpet/darkpack/redsilver,
 /area/vtm/interior/voivodate)
 "lZt" = (
-/obj/structure/lamppost/four,
+/obj/machinery/light/floor/lamppost/four,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/financialdistrict)
 "lZy" = (
@@ -21075,7 +21075,7 @@
 /turf/open/floor/plating/asphalt,
 /area/vtm/interior/millennium_tower)
 "mnP" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /obj/structure/railing,
 /turf/open/floor/plating/sidewalkalt,
 /area/vtm/outside/financialdistrict)
@@ -21195,7 +21195,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/anarch/basement)
 "mso" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 1
 	},
 /turf/open/floor/plating/sidewalk,
@@ -21581,7 +21581,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 9
 	},
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/voivodate)
 "mDr" = (
@@ -22081,7 +22081,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/millennium_tower)
 "mOM" = (
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /turf/open/floor/plating/sidewalkalt,
 /area/vtm/outside/financialdistrict)
 "mOP" = (
@@ -23715,7 +23715,7 @@
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/hotel)
 "nSN" = (
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /mob/living/carbon/human/npc/walkby,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/outside/financialdistrict)
@@ -24295,7 +24295,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 8
 	},
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 8
 	},
 /turf/open/floor/plating/sidewalk,
@@ -24535,7 +24535,7 @@
 /turf/open/indestructible/necropolis/air,
 /area/vtm/interior/wyrm_corrupted)
 "opu" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 8
 	},
 /turf/open/floor/plating/sidewalk,
@@ -25544,7 +25544,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior/ghetto)
 "oRS" = (
-/obj/structure/lamppost/four,
+/obj/machinery/light/floor/lamppost/four,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/financialdistrict)
 "oRY" = (
@@ -25652,7 +25652,7 @@
 /turf/open/misc/dirt,
 /area/vtm/outside/pacificheights)
 "oUB" = (
-/obj/structure/lamppost/sidewalk/chinese{
+/obj/machinery/light/floor/lamppost/sidewalk/chinese{
 	dir = 8
 	},
 /obj/effect/landmark/npcactivity,
@@ -25985,7 +25985,7 @@
 /turf/open/floor/wood/ornate,
 /area/vtm/interior/coffee)
 "pdW" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /obj/effect/turf_decal/bordur/corner{
 	dir = 1
 	},
@@ -26581,7 +26581,7 @@
 /turf/open/floor/city/factory,
 /area/vtm/interior/radio)
 "pwH" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /obj/effect/landmark/npcwall,
 /turf/open/floor/plating/sidewalk/rich,
 /area/vtm/interior/millennium_tower)
@@ -27440,7 +27440,7 @@
 	dir = 6;
 	pixel_y = 2
 	},
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/roofwalk,
 /area/vtm)
 "pXh" = (
@@ -28997,7 +28997,7 @@
 /turf/open/floor/plating/rough,
 /area/vtm/interior)
 "qNu" = (
-/obj/structure/lamppost/sidewalk/chinese{
+/obj/machinery/light/floor/lamppost/sidewalk/chinese{
 	dir = 8
 	},
 /turf/open/floor/plating/sidewalkalt,
@@ -30476,7 +30476,7 @@
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/financialdistrict)
 "rzW" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalkalt,
 /area/vtm/voivodate)
 "rAq" = (
@@ -31170,7 +31170,7 @@
 /turf/open/floor/plating/granite/black,
 /area/vtm/interior/strip)
 "rVO" = (
-/obj/structure/lamppost/sidewalk/chinese{
+/obj/machinery/light/floor/lamppost/sidewalk/chinese{
 	dir = 8
 	},
 /turf/open/floor/plating/sidewalkalt,
@@ -31780,7 +31780,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/darkpack/dirt/corner,
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /obj/effect/spawner/random/flora/grass,
 /turf/open/misc/grass/nosmooth,
 /area/vtm/outside/financialdistrict)
@@ -32146,7 +32146,7 @@
 /turf/open/floor/city/toilet/large,
 /area/vtm/interior/police)
 "szY" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 4
 	},
 /obj/structure/trafficlight,
@@ -32223,7 +32223,7 @@
 /turf/open/floor/plating/concrete,
 /area/vtm/interior/police)
 "sCE" = (
-/obj/structure/lamppost/sidewalk/chinese{
+/obj/machinery/light/floor/lamppost/sidewalk/chinese{
 	dir = 1
 	},
 /turf/open/floor/plating/sidewalkalt,
@@ -33563,7 +33563,7 @@
 /turf/open/floor/wood/rough,
 /area/vtm)
 "tpQ" = (
-/obj/structure/lamppost/four,
+/obj/machinery/light/floor/lamppost/four,
 /turf/open/floor/plating/sidewalkalt,
 /area/vtm/outside/chinatown)
 "tpV" = (
@@ -34556,7 +34556,7 @@
 /turf/open/floor/city/plating,
 /area/vtm/interior/endron_facility/restricted)
 "tPH" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 8
 	},
 /obj/effect/turf_decal/bordur,
@@ -34590,7 +34590,7 @@
 /turf/open/floor/city/circled/large,
 /area/vtm/interior/endron_facility/restricted)
 "tPP" = (
-/obj/structure/lamppost/sidewalk{
+/obj/machinery/light/floor/lamppost/sidewalk{
 	pixel_y = 1
 	},
 /turf/open/misc/grass,
@@ -35125,7 +35125,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 4
 	},
-/obj/structure/lamppost/sidewalk/chinese{
+/obj/machinery/light/floor/lamppost/sidewalk/chinese{
 	dir = 8
 	},
 /turf/open/floor/plating/sidewalkalt,
@@ -37914,7 +37914,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 10
 	},
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/financialdistrict)
 "vOC" = (
@@ -38339,7 +38339,7 @@
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/shop/gasstation)
 "wcc" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 8
 	},
 /turf/open/floor/plating/sidewalk,
@@ -38945,7 +38945,7 @@
 /turf/open/floor/plating/asphalt,
 /area/vtm/outside/unionsquare)
 "wvf" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/interior/voivodate/sanctum)
 "wvg" = (
@@ -39961,7 +39961,7 @@
 /obj/effect/turf_decal/bordur/corner{
 	dir = 8
 	},
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/misc/grass/nosmooth,
 /area/vtm/outside/financialdistrict)
 "wYB" = (
@@ -40400,11 +40400,11 @@
 /turf/open/floor/wood/smooth,
 /area/vtm/interior/endron_facility/restricted)
 "xmC" = (
-/obj/structure/lamppost/four,
+/obj/machinery/light/floor/lamppost/four,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/unionsquare)
 "xmH" = (
-/obj/structure/lamppost/one,
+/obj/machinery/light/floor/lamppost/one,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/financialdistrict)
 "xmP" = (
@@ -40636,7 +40636,7 @@
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/strip)
 "xtM" = (
-/obj/structure/lamppost/one{
+/obj/machinery/light/floor/lamppost/one{
 	dir = 1
 	},
 /turf/open/floor/plating/sidewalk,
@@ -41123,7 +41123,7 @@
 /turf/open/floor/city/plating_mono,
 /area/vtm/interior/voivodate)
 "xKn" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /obj/effect/turf_decal/bordur/corner,
 /turf/open/floor/plating/granite/black,
 /area/vtm/outside/park)
@@ -50634,7 +50634,7 @@ lFH
 hxj
 xJp
 wdj
-wbR
+wdj
 wdj
 wdj
 wdj

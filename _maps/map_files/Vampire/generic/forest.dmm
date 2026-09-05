@@ -2795,7 +2795,7 @@
 /obj/effect/turf_decal/darkpack/rough{
 	dir = 4
 	},
-/obj/effect/realistic_fog/dense,
+/obj/effect/realistic_fog/bawn/gaia,
 /turf/open/water/river,
 /area/vtm/interior/forest/cave)
 "rp" = (
@@ -2864,6 +2864,10 @@
 	dir = 4
 	},
 /area/vtm/interior/forest)
+"rO" = (
+/obj/effect/realistic_fog/bawn/gaia,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/forest/cave)
 "rR" = (
 /obj/effect/turf_decal/darkpack/rough/corner{
 	dir = 4
@@ -4454,6 +4458,13 @@
 	},
 /turf/open/misc/dirt,
 /area/vtm/outside/forest/sept)
+"Bo" = (
+/obj/effect/turf_decal/darkpack/cave/corner{
+	dir = 8
+	},
+/obj/effect/realistic_fog/bawn/gaia,
+/turf/open/water/river,
+/area/vtm/interior/forest/cave)
 "Bq" = (
 /obj/effect/turf_decal/darkpack/rough{
 	dir = 5
@@ -4664,7 +4675,7 @@
 /obj/effect/turf_decal/darkpack/rough/corner{
 	dir = 1
 	},
-/obj/effect/realistic_fog/dense,
+/obj/effect/realistic_fog/bawn/gaia,
 /turf/open/water/river,
 /area/vtm/interior/forest/cave)
 "Cq" = (
@@ -5110,7 +5121,7 @@
 /obj/effect/turf_decal/bordur{
 	dir = 4
 	},
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/misc/dirt,
 /area/vtm/outside/forest)
 "Fy" = (
@@ -5320,7 +5331,7 @@
 /turf/open/water/beach/vamp/deep,
 /area/vtm/outside/forest)
 "GP" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /turf/open/misc/dirt,
 /area/vtm/outside/forest)
 "GQ" = (
@@ -5460,7 +5471,7 @@
 /obj/effect/turf_decal/darkpack/cave{
 	dir = 10
 	},
-/obj/effect/realistic_fog/dense,
+/obj/effect/realistic_fog/bawn/gaia,
 /turf/open/water/river,
 /area/vtm/interior/forest/cave)
 "Hz" = (
@@ -5671,7 +5682,7 @@
 /area/vtm/interior/forest/cave)
 "IP" = (
 /obj/effect/realistic_fog/dense,
-/obj/structure/werewolf_totem/generic,
+/obj/structure/werewolf_totem/generic/gaia,
 /turf/open/floor/plating/rough/cave{
 	icon_state = "cave3"
 	},
@@ -5792,6 +5803,12 @@
 	icon_state = "sand3"
 	},
 /area/vtm/outside/forest/sept)
+"JL" = (
+/obj/effect/landmark/bawn_entrance/gaia,
+/turf/open/floor/plating/rough/cave{
+	icon_state = "cave3"
+	},
+/area/vtm/interior/forest/cave)
 "JP" = (
 /obj/effect/turf_decal/darkpack/grass{
 	dir = 5
@@ -5847,7 +5864,7 @@
 /turf/open/misc/grass,
 /area/vtm/outside/forest)
 "Kc" = (
-/obj/structure/lamppost/sidewalk,
+/obj/machinery/light/floor/lamppost/sidewalk,
 /obj/effect/turf_decal/bordur{
 	dir = 8
 	},
@@ -6759,6 +6776,12 @@
 	},
 /turf/open/misc/dirt,
 /area/vtm/outside/forest)
+"PU" = (
+/obj/effect/realistic_fog/bawn/gaia,
+/turf/open/floor/plating/rough/cave{
+	icon_state = "cave3"
+	},
+/area/vtm/interior/forest/cave)
 "PV" = (
 /obj/effect/turf_decal/darkpack/rough/corner{
 	dir = 4
@@ -6817,6 +6840,10 @@
 /obj/structure/flora/rock/darkpack_big,
 /turf/open/misc/grass/random,
 /area/vtm/outside/forest)
+"Qn" = (
+/obj/effect/realistic_fog/bawn/gaia,
+/turf/open/water/river,
+/area/vtm/interior/forest/cave)
 "Qp" = (
 /obj/effect/landmark/start/darkpack/forest_wolves/catcher,
 /turf/open/misc/dirt,
@@ -7067,7 +7094,7 @@
 /area/vtm/interior/forest/sept)
 "RJ" = (
 /obj/structure/glowshroom,
-/obj/effect/realistic_fog/dense,
+/obj/effect/realistic_fog/bawn/gaia,
 /turf/open/floor/plating/rough/cave{
 	icon_state = "cave3"
 	},
@@ -8110,7 +8137,7 @@
 /area/vtm/interior/forest/cave)
 "YL" = (
 /obj/structure/flora/rock/darkpack_big,
-/obj/effect/realistic_fog/dense,
+/obj/effect/realistic_fog/bawn/gaia,
 /turf/open/floor/plating/rough,
 /area/vtm/interior/forest/cave)
 "YN" = (
@@ -34141,7 +34168,7 @@ yh
 Nr
 Nr
 dn
-Nr
+JL
 Nr
 Nr
 wK
@@ -37681,7 +37708,7 @@ ZF
 FK
 Wa
 yh
-Wf
+PU
 Nr
 RJ
 hl
@@ -37878,7 +37905,7 @@ Sr
 Sb
 ZF
 FK
-Wa
+Bo
 tF
 Hv
 aU
@@ -38075,9 +38102,9 @@ Ys
 ye
 qV
 FK
-ZF
+Qn
 FK
-ZF
+Qn
 Hm
 mB
 tF
@@ -38274,7 +38301,7 @@ Ys
 CO
 Cp
 FK
-ZF
+Qn
 FK
 ZF
 FK
@@ -38469,7 +38496,7 @@ EH
 EH
 bv
 ye
-Ys
+rO
 CO
 rn
 Sb
@@ -38668,7 +38695,7 @@ EH
 EH
 YL
 ye
-Ys
+rO
 ye
 Sr
 Sb
@@ -38865,7 +38892,7 @@ EH
 EH
 EH
 EH
-Ys
+rO
 iG
 nZ
 ye
