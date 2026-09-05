@@ -912,3 +912,41 @@
 	spread = 25		//+25 from sawing off anyway, good fucking luck
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
+
+/obj/item/ammo_box/magazine/internal/vampire/grenadelauncher
+	name = "grenade launcher internal magazine"
+	ammo_type = /obj/item/ammo_casing/vampire/c40mm
+	caliber = CALIBER_GRENADE
+	max_ammo = 1
+	start_empty = TRUE
+
+// It's dumb but we path it as a shotgun so it can hold its internal rounds like a proper break-action.
+/obj/item/gun/ballistic/shotgun/darkpack/grenadelauncher
+	name = "break-action grenade launcher"
+	desc = "A break action grenade launcher, designed to fire 40mm grenades. Not suggested to aim for heads or knees."
+	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
+	lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
+	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	inhand_x_dimension = 32
+	inhand_y_dimension = 32
+	base_icon_state = "gl"
+	icon_state = "gl"
+	inhand_icon_state = "gl"
+	worn_icon_state = "gl"
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/vampire/grenadelauncher
+	fire_sound = 'sound/items/weapons/gun/general/grenade_launch.ogg'
+	vary_fire_sound = FALSE
+	fire_delay = 10
+	recoil = 5
+	spread = 2
+	w_class = WEIGHT_CLASS_HUGE
+	slot_flags = ITEM_SLOT_BACK
+	bolt_type = BOLT_TYPE_NO_BOLT
+	can_muzzle_flash = FALSE		//Not a regular projectile weapon, no flash
+	serial_shown = FALSE			//No serial, doesn't need it.
+
+// For the break-action sprite update
+/obj/item/gun/ballistic/shotgun/darkpack/grenadelauncher/update_icon_state()
+	. = ..()
+	icon_state = "[base_icon_state][!chambered ? "_empty" : ""]"
