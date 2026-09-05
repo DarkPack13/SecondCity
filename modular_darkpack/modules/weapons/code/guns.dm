@@ -757,6 +757,57 @@
 	weapon_weight = WEAPON_MEDIUM
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/vampshotgun/sawnoff
 
+/obj/item/ammo_box/magazine/internal/remington
+	name = "remington internal magazine"
+	ammo_type = /obj/item/ammo_casing/vampire/c12g
+	caliber = CALIBER_12G
+	//multiload = FALSE
+	max_ammo = 6
+	masquerade_violating = FALSE
+
+/obj/item/gun/ballistic/shotgun/vampire/remington
+	name = "\improper Remington 11-87"
+	desc = "A modern gas-operated shotgun with a textured polycarbonate body... wasnt this in some movie?"
+	icon_state = "1187"
+	inhand_icon_state = "1187"
+	worn_icon_state = "1187"
+	recoil = 4 //Gas Operated mechanism reduces the recoil
+	fire_delay = 5
+	can_suppress = TRUE
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/remington
+	suppressed_sound = 'modular_darkpack/modules/weapons/sounds/1187_silenced.ogg'
+	fire_sound = 'modular_darkpack/modules/weapons/sounds/1187.ogg'
+	custom_price = 1000
+	serial_type = "R"
+
+
+/obj/item/ammo_box/magazine/internal/remington/sawnoff
+	name = "sawn-off reminton internal magazine"
+	max_ammo = 4
+
+/obj/item/gun/ballistic/shotgun/vampire/remington/sawnoff
+	name = "\improper Sawn-Off Remington 11-87"
+	desc = "A Remington 11-87 shotgun that's had the barrel extension crudely sawn off.. this is definitely illegal"
+	icon_state = "1187_sawn"
+	inhand_icon_state = "1187_sawn"
+	worn_icon_state = "1187_sawn"
+	recoil = 7
+	can_be_sawn_off	= FALSE
+	w_class = WEIGHT_CLASS_NORMAL
+	weapon_weight = WEAPON_MEDIUM
+	accepted_magazine_type = /obj/item/gun/ballistic/shotgun/vampire/remington/sawnoff
+
+
+/obj/item/gun/ballistic/shotgun/vampire/remington/shoot_live_shot(mob/living/user)
+	..()
+	rack()
+
+/obj/item/suppressor/darkpack_oil
+	name = "modified oil filter"
+	desc = "An old oil filter.. there seems to be attachment grooves lathed onto the barrel for a Remington 11-87."
+	icon = 'modular_darkpack/modules/weapons/icons/attachments.dmi'
+	icon_state = "oil_filter"
+
 /obj/item/ammo_box/magazine/internal/darkpack_dbarrel
 	name = "double barrel internal magazine"
 	ammo_type = /obj/item/ammo_casing/vampire/c12g
