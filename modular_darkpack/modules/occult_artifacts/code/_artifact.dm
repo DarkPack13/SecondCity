@@ -66,11 +66,11 @@
 	if(!can_be_used_by(user))
 		return
 	if(!CONFIG_GET(flag/artifact_stacking))
-		var/artifact = src.type //Needed to clarify the kind of item to look for is this specific type and not all artifacts
-		var/list/artifacts = user.get_all_contents_type(artifact)
-		if(length(artifacts) >= 1)
-			to_chat(user, span_danger("This excess copy of an artifact is made inert by the same resonances of the current copies held."))
-			return
+		var/list/artifacts = user.get_all_contents_type(type)
+		for(var/obj/item/occult_artifact/other_artifact in artifacts)
+			if(other_artifact.owner == user) // We already have a trinket bound. Please dont stack.
+				to_chat(user, span_danger("This excess copy of an artifact is made inert by the same resonances of the current copies held."))
+				return
 	owner = user
 
 	var/datum/controller/subsystem/processing/subsystem = locate(subsystem_type) in Master.subsystems
