@@ -523,6 +523,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		tainted_character_profiles = TRUE
 		randomise_appearance_prefs()
 		all_quirks = list()
+		discipline_levels = list() // DARKPACK EDIT ADD - not 100% this is needed. extra sanitization
+		preference_storyteller_stats = list() // DARKPACK EDIT ADD - not 100% this is needed. extra sanitization
 		recently_updated_keys |= /datum/preference/name/real_name
 		save_character()
 
@@ -553,6 +555,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		return
 
 	discipline_levels = list() // DARKPACK EDIT ADD - remove disciplines when removing a character slot
+	preference_storyteller_stats = list() // DARKPACK EDIT ADD - ensure stats can be washed
 	savefile.remove_entry("character[default_slot]")
 	tainted_character_profiles = TRUE
 	switch_to_slot(closest_slot)
