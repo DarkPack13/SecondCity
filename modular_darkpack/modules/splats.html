@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><base href="../../"><link rel="stylesheet" href="dmdoc.css"><title>modular_darkpack/modules/splats/readme.md - San Francisco</title></head><body><header><a href="index.html">San Francisco</a> - <a href="index.html#modules">Modules</a> - <a href="index.html#types">Types</a></header><main><h1>modular_darkpack/modules/splats/readme.md <a href="https://github.com/DarkPack13/SecondCity/blob/261492fc390165146c2f0892973d609900ca24ea/modular_darkpack/modules/splats/readme.md"><img src="git.png" width="16" height="16" title="modular_darkpack/modules/splats/readme.md"></a></h1><table class="summary" cellspacing="0"><tr><td colspan="2"><p>https://github.com/DarkPack13/SecondCity/pull/407</p>
+<h2 id="splats">&lt;Splats&gt;</h2>
+<p>Module ID: SPLATS</p>
+<h3 id="description">Description:</h3>
+<p>A framework for supernatural types (splats) to replace the old species-based splat
+code. Splats are the different kinds of supernatural creatures in the World of
+Darkness like vampires, ghouls, werewolves, mages, and so on.</p>
+<p>Living mobs can have multiple splat datums, which can all:</p>
+<ul>
+<li>Apply traits to their owners that determine different aspects of the supernatural
+creature, like being immortal or weak to silver.</li>
+<li>Give their owners actions to represent innate supernatural abilities, like using
+vampiric blood to heal or empower themselves.</li>
+<li>Optionally give their owners biotypes to represent fundamentally supernatural existences,
+like being undead or a spirit.</li>
+<li>Manage which powers the owner is able to use and provide a way to easily interact
+with them in code.</li>
+<li>Apply unique effects to their owners upon gaining them, which can easily be undone
+when the splat is removed.</li>
+<li>Specify which splats can co-exist with them and dynamically approve or reject new
+splats for unique cross-splat interactions like Abominations.</li>
+</ul>
+<h3 id="tg-proc-file-changes">TG Proc/File Changes:</h3>
+<ul>
+<li>N/A</li>
+</ul>
+<h3 id="modular-overrides">Modular Overrides:</h3>
+<ul>
+<li><a href="/modular_darkpack/master_files/code/modules/mob/living/living_defines.dm">modular_darkpack/master_files/code/modules/mob/living/living_defines.dm</a>
+<ul>
+<li><code>var/list/datum/splat/splats</code></li>
+</ul>
+</li>
+<li><a href="/modular_darkpack/master_files/code/modules/mob/living/living.dm">modular_darkpack/master_files/code/modules/mob/living/living.dm</a>
+<ul>
+<li><code>/mob/living/Destroy()</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="defines">Defines:</h3>
+<ul>
+<li><a href="/code/__DEFINES/~darkpack/splats.dm">code/__DEFINES/~darkpack/splats.dm</a></li>
+<li><a href="/code/__DEFINES/~darkpack/dcs/splat_signals.dm">code/__DEFINES/~darkpack/dcs/splat_signals.dm</a></li>
+</ul>
+<h3 id="included-files-that-are-not-contained-in-this-module">Included files that are not contained in this module:</h3>
+<ul>
+<li><a href="/modular_darkpack/modules/unit_tests/apply_all_splats.dm">modular_darkpack/modules/unit_tests/apply_all_splats.dm</a></li>
+</ul>
+<h3 id="credits">Credits:</h3>
+<p>@TheCarnalest</p></td></tr></table></main><footer>tgstation.dme <a href="https://github.com/DarkPack13/SecondCity/tree/261492fc390165146c2f0892973d609900ca24ea">261492f</a> (master) — <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.11.0</a></footer></body></html>

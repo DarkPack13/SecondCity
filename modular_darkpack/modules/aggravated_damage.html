@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><base href="../../"><link rel="stylesheet" href="dmdoc.css"><title>modular_darkpack/modules/aggravated_damage/readme.md - San Francisco</title></head><body><header><a href="index.html">San Francisco</a> - <a href="index.html#modules">Modules</a> - <a href="index.html#types">Types</a></header><main><h1>modular_darkpack/modules/aggravated_damage/readme.md <a href="https://github.com/DarkPack13/SecondCity/blob/261492fc390165146c2f0892973d609900ca24ea/modular_darkpack/modules/aggravated_damage/readme.md"><img src="git.png" width="16" height="16" title="modular_darkpack/modules/aggravated_damage/readme.md"></a></h1><table class="summary" cellspacing="0"><tr><td colspan="2"><!-- This should be copy-pasted into the root of your module folder as readme.md -->
+<p>https://github.com/DarkPack13/SecondCity/pull/28<!--PR Number--></p>
+<h2 id="aggravated-damage">Aggravated damage <!--Title of your addition.--></h2>
+<p>Module ID: AGGRAVATED_DAMAGE<!-- Uppercase, UNDERSCORE_CONNECTED name of your module, that you use to mark files. This is so people can case-sensitive search for your edits, if any. --></p>
+<h3 id="description">Description:</h3>
+<p>Implements aggravated damage from the Storyteller System TTRPGs. This is usually
+supernatural or exceptionally grievous damage, and is incredibly difficult to heal
+unless you have some kind of supernatural ability for it.</p>
+<!-- Here, try to describe what your PR does, what features it provides and any other directly useful information. -->
+<h3 id="tg-proc-file-changes">TG Proc/File Changes:</h3>
+<ul>
+<li><a href="/code/modules/mob/living/damage_procs.dm">code/modules/mob/living/damage_procs.dm</a>:
+<ul>
+<li><code>/mob/living/proc/apply_damage()</code></li>
+<li><code>/mob/living/proc/heal_damage_type()</code></li>
+<li><code>/mob/living/proc/get_current_damage_of_type()</code></li>
+<li><code>/mob/living/proc/get_total_damage()</code></li>
+<li><code>/mob/living/proc/apply_damages()</code></li>
+<li><code>/mob/living/proc/heal_bodypart_damage()</code></li>
+<li><code>/mob/living/proc/take_bodypart_damage()</code></li>
+<li><code>/mob/living/proc/heal_overall_damage()</code></li>
+<li><code>/mob/living/proc/take_overall_damage()</code></li>
+</ul>
+</li>
+<li><a href="/code/modules/mob/living/living.dm">code/modules/mob/living/living.dm</a>:
+<ul>
+<li><code>/mob/living/proc/updatehealth()</code></li>
+<li><code>/mob/living/vv_get_header()</code></li>
+<li><code>/mob/living/proc/heal_and_revive()</code></li>
+<li><code>/mob/living/proc/fully_heal()</code></li>
+</ul>
+</li>
+<li><a href="/code/modules/mob/living/carbon/carbon.dm">code/modules/mob/living/carbon/carbon.dm</a>
+<ul>
+<li><code>/mob/living/carbon/updatehealth()</code></li>
+<li><code>/mob/living/carbon/update_damage_hud()</code></li>
+<li><code>/mob/living/carbon/proc/can_defib()</code></li>
+</ul>
+</li>
+<li><a href="/code/__DEFINES/dcs/signals/signals_mob/signals_mob_living.dm">code/__DEFINES/dcs/signals/signals_mob/signals_mob_living.dm</a>
+<ul>
+<li><code>#define COMSIG_LIVING_ADJUST_STANDARD_DAMAGE_TYPES</code></li>
+</ul>
+</li>
+<li><a href="/code/__DEFINES/mobs.dm">code/__DEFINES/mobs.dm</a>:
+<ul>
+<li><code>#define HEAL_DAMAGE</code></li>
+</ul>
+</li>
+<li><a href="/code/controllers/subsystem/blackbox.dm">code/controllers/subsystem/blackbox.dm</a>:
+<ul>
+<li><code>/datum/controller/subsystem/blackbox/proc/ReportDeath()</code></li>
+</ul>
+</li>
+<li><a href="/code/modules/admin/tag.dm">code/modules/admin/tag.dm</a>
+<ul>
+<li><code>#define TAG_CARBON_HEALTH()</code></li>
+</ul>
+</li>
+<li><a href="/code/modules/admin/topic.dm">code/modules/admin/topic.dm</a>
+<ul>
+<li><code>/datum/admins/Topic()</code></li>
+</ul>
+</li>
+<li><a href="/code/modules/admin/view_variables/topic.dm">code/modules/admin/view_variables/topic.dm</a>
+<ul>
+<li><code>/client/proc/view_var_Topic()</code></li>
+</ul>
+</li>
+<li><a href="/SQL/tgstation_schema.sql">SQL/tgstation_schema.sql</a>
+<ul>
+<li><code>CREATE TABLE \</code>death``</li>
+</ul>
+</li>
+<li><a href="/SQL/tgstation_schema_prefixed.sql">SQL/tgstation_schema_prefixed.sql</a>
+<ul>
+<li><code>CREATE TABLE \</code>death``</li>
+</ul>
+</li>
+<li><a href="/code/modules/mob/living/carbon/human/death.dm">code/modules/mob/living/carbon/human/death.dm</a>
+<ul>
+<li><code>/mob/living/carbon/human/death()</code></li>
+</ul>
+</li>
+<li><a href="/code/modules/unit_tests/full_heal.dm">code/modules/unit_tests/full_heal.dm</a>
+<ul>
+<li><code>/datum/unit_test/full_heal_damage_types/Run()</code></li>
+</ul>
+</li>
+<li><a href="/code/modules/unit_tests/mob_damage.dm">code/modules/unit_tests/mob_damage.dm</a>
+<ul>
+<li><code>/datum/unit_test/mob_damage/proc/verify_damage()</code></li>
+<li><code>/datum/unit_test/mob_damage/proc/apply_damage()</code></li>
+<li><code>/datum/unit_test/mob_damage/proc/set_damage()</code></li>
+<li><code>/datum/unit_test/mob_damage/animal/verify_damage()</code></li>
+<li><code>/datum/unit_test/mob_damage/animal/Run()</code></li>
+<li><code>/datum/unit_test/mob_damage/animal/test_sanity_simple()</code></li>
+</ul>
+</li>
+<li><a href="/code/datums/components/dejavu.dm">code/datums/components/dejavu.dm</a>
+<ul>
+<li><code>/datum/component/dejavu/Initialize()</code></li>
+<li><code>/datum/component/dejavu/proc/rewind_living()</code></li>
+</ul>
+</li>
+<li><a href="/code/modules/mob/living/carbon/damage_procs.dm">code/modules/mob/living/carbon/damage_procs.dm</a>
+<ul>
+<li><code>/mob/living/carbon/human/get_incoming_damage_modifier()</code></li>
+<li><code>/mob/living/carbon/proc/get_damaged_bodyparts()</code></li>
+<li><code>/mob/living/carbon/proc/get_damageable_bodyparts()</code></li>
+<li><code>/mob/living/carbon/heal_bodypart_damage()</code></li>
+<li><code>/mob/living/carbon/take_bodypart_damage()</code></li>
+<li><code>/mob/living/carbon/heal_overall_damage()</code></li>
+<li><code>/mob/living/carbon/take_overall_damage()</code></li>
+</ul>
+</li>
+<li><a href="/code/modules/surgery/bodyparts/_bodyparts.dm">code/modules/surgery/bodyparts/_bodyparts.dm</a>
+<ul>
+<li><code>/obj/item/bodypart/examine()</code></li>
+<li><code>/obj/item/bodypart/proc/check_for_injuries()</code></li>
+<li><code>/obj/item/bodypart/proc/receive_damage()</code></li>
+<li><code>/obj/item/bodypart/proc/heal_damage()</code></li>
+<li><code>/obj/item/bodypart/proc/set_initial_damage()</code></li>
+<li><code>/obj/item/bodypart/proc/get_damage()</code></li>
+<li><code>/obj/item/bodypart/proc/update_disabled()</code></li>
+<li><code>/obj/item/bodypart/proc/update_bodypart_damage_state()</code></li>
+</ul>
+</li>
+<li><a href="/code/modules/mob/living/carbon/human/human.dm">code/modules/mob/living/carbon/human/human.dm</a>
+<ul>
+<li><code>/mob/living/carbon/human/Topic()</code></li>
+</ul>
+</li>
+<li><a href="/code/modules/mob/living/carbon/examine.dm">code/modules/mob/living/carbon/examine.dm</a>
+<ul>
+<li><code>/mob/living/carbon/examine()</code></li>
+</ul>
+</li>
+<li><a href="/code/modules/mob/living/simple_animal/simple_animal.dm">code/modules/mob/living/simple_animal/simple_animal.dm</a>
+<ul>
+<li><code>var/list/damage_coeff</code></li>
+</ul>
+</li>
+<li><a href="/code/modules/mob/living/simple_animal/simple_animal.dm">code/modules/mob/living/basic/basic.dm</a>
+<ul>
+<li><code>var/list/damage_coeff</code></li>
+</ul>
+</li>
+</ul>
+<!-- If you edited any core procs, you should list them here. You should specify the files and procs you changed.
+E.g:
+- `code/modules/mob/living.dm`: `proc/overriden_proc`, `var/overriden_var`
+  -->
+<h3 id="modular-overrides">Modular Overrides:</h3>
+<ul>
+<li><a href="/modular_darkpack/master_files/code/modules/mob/living/living_defines.dm">modular_darkpack/master_files/code/modules/mob/living/living_defines.dm</a>: <code>var/aggloss = 0</code></li>
+<li><a href="/modular_darkpack/master_files/code/datums/components/dejavu.dm">modular_darkpack/master_files/code/datums/components/dejavu.dm</a>: <code>var/aggravated_loss = 0</code></li>
+<li><a href="/modular_darkpack/master_files/code/modules/mob/living/carbon/human/physiology.dm">modular_darkpack/master_files/code/modules/mob/living/carbon/human/physiology.dm</a>: <code>var/aggravated_mod = 1</code></li>
+<li><a href="/modular_darkpack/master_files/code/modules/surgery/bodyparts/_bodyparts.dm">modular_darkpack/master_files/code/modules/surgery/bodyparts/_bodyparts.dm</a>:
+<ul>
+<li><code>var/aggravated_dam = 0</code></li>
+<li><code>var/aggravated_modifier = 1</code></li>
+<li><code>var/light_aggravated_msg = &quot;bruised and feels numb&quot;</code></li>
+<li><code>var/medium_aggravated_msg = &quot;torn apart&quot;</code></li>
+<li><code>var/heavy_aggravated_msg = &quot;like pieces are falling off&quot;</code></li>
+</ul>
+</li>
+</ul>
+<!-- If you added a new modular override (file or code-wise) for your module, you should list it here. Code files should specify what procs they changed, in case of multiple modules using the same file.
+E.g:
+- `modular_nova/master_files/sound/my_cool_sound.ogg`
+- `modular_nova/master_files/code/my_modular_override.dm`: `proc/overriden_proc`, `var/overriden_var`
+  -->
+<h3 id="defines">Defines:</h3>
+<ul>
+<li><a href="/code/__DEFINES/~darkpack/aggravated_damage.dm">code/__DEFINES/~darkpack/aggravated_damage.dm</a>:
+<ul>
+<li><code>#define AGGRAVATED &quot;aggravated&quot;</code></li>
+<li><code>#define AGGLOSS (1&lt;&lt;8)</code></li>
+<li><code>#define COMSIG_LIVING_ADJUST_AGGRAVATED_DAMAGE &quot;living_adjust_aggravated_damage&quot;</code></li>
+<li><code>#define HEAL_AGGRAVATED (1&lt;&lt;19)</code></li>
+<li><code>#define MAX_REVIVE_AGGRAVATED_DAMAGE 100</code></li>
+</ul>
+<!-- If you needed to add any defines, mention the files you added those defines in, along with the name of the defines. -->
+</li>
+</ul>
+<h3 id="included-files-that-are-not-contained-in-this-module">Included files that are not contained in this module:</h3>
+<ul>
+<li><a href="/code/__DEFINES/~darkpack/aggravated_damage.dm">code/__DEFINES/~darkpack/aggravated_damage.dm</a></li>
+</ul>
+<!-- Likewise, be it a non-modular file or a modular one that's not contained within the folder belonging to this specific module, it should be mentioned here. Good examples are icons or sounds that are used between multiple modules, or other such edge-cases. -->
+<h3 id="credits">Credits:</h3>
+<ul>
+<li>Created by @TheCarnalest</li>
+</ul>
+<!-- Here go the credits to you, dear coder, and in case of collaborative work or ports, credits to the original source of the code. --></td></tr></table></main><footer>tgstation.dme <a href="https://github.com/DarkPack13/SecondCity/tree/261492fc390165146c2f0892973d609900ca24ea">261492f</a> (master) — <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.11.0</a></footer></body></html>

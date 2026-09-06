@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><base href="../../../"><link rel="stylesheet" href="dmdoc.css"><title>_maps/map_files/Vampire/update_guide.md - San Francisco</title></head><body><header><a href="index.html">San Francisco</a> - <a href="index.html#modules">Modules</a> - <a href="index.html#types">Types</a></header><main><h1>Hello Downstream Mapper! <aside>_maps/map_files/Vampire/update_guide.md</aside> <a href="https://github.com/DarkPack13/SecondCity/blob/261492fc390165146c2f0892973d609900ca24ea/_maps/map_files/Vampire/update_guide.md"><img src="git.png" width="16" height="16" title="_maps/map_files/Vampire/update_guide.md"></a></h1><table class="summary" cellspacing="0"><tr><td colspan="2"><p>Are you updating an old map to darkpack?
+Here is a little checklist of things to do.</p>
+<p>See <code>tools/UpdatePaths/readme.md</code> for how to run the updates paths. This will ensure all types are updated to TG.
+It also tries its best to fix a few old mapping sins like layer edits, some of which are now linted against in TG.</p>
+<p>After you have ran the updates paths, You may find some stuff is still broken. Part of this is the cost for ensuring our updates path is non-volatile
+Stuff like chairs, some floor decals, light fixtures, may need to be hand updated due to limitations</p>
+<p>There is also a whole host of new things you get to add to maps or changes to how you map.</p>
+<ul>
+<li>Navigate landmarks <code>/obj/effect/landmark/navigate_destination</code> to allow people to create paths to areas.</li>
+<li>Telecomms from https://github.com/DarkPack13/SecondCity/pull/432. Either use an <code>/obj/machinery/telecomms/allinone/public</code> or hand map telecomms where relevent</li>
+<li>Sprinklers from https://github.com/DarkPack13/SecondCity/pull/78. Areas are now only fire suppresed if you hand place sprinkers <code>/obj/machinery/sprinkler</code></li>
+<li>Doors now have there varibles controlled via helpers, much more visable and reusable from https://github.com/DarkPack13/SecondCity/pull/318 <code>/obj/effect/mapping_helpers/door</code></li>
+<li>A much more robust set of tools for generating random flora or forest. <code>/area/vtm/planetgeneration</code> is an area type that randomly generates forest like terrain but you can also use <code>/turf/open/misc/grass/random</code> or subtypesof <code>/obj/effect/spawner/random/flora</code> for finer control or places you want a specific area type.</li>
+</ul></td></tr></table></main><footer>tgstation.dme <a href="https://github.com/DarkPack13/SecondCity/tree/261492fc390165146c2f0892973d609900ca24ea">261492f</a> (master) — <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.11.0</a></footer></body></html>
