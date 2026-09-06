@@ -30,6 +30,7 @@
 
 /datum/loadout_item/uniform/suit/fancy_black_skirt
 	name = "Dress (Luxury, Black)"
+	group = "Dresses & Skirts"
 	item_path = /obj/item/clothing/under/vampire/ventrue/female
 
 /datum/loadout_item/uniform/suit/formal_white
@@ -42,6 +43,7 @@
 
 /datum/loadout_item/uniform/suit/plain_black_skirt
 	name = "Suit (Plain, Skirt, Black)"
+	group = "Dresses & Skirts"
 	item_path = /obj/item/clothing/under/vampire/suit/female
 
 /datum/loadout_item/uniform/suit/plain_red
@@ -50,6 +52,7 @@
 
 /datum/loadout_item/uniform/suit/plain_red_skirt
 	name = "Suit (Plain, Skirt, Red)"
+	group = "Dresses & Skirts"
 	item_path = /obj/item/clothing/under/vampire/sheriff/female
 
 /datum/loadout_item/uniform/suit/plain_blue
@@ -58,6 +61,7 @@
 
 /datum/loadout_item/uniform/suit/plain_blue_skirt
 	name = "Suit (Skirt, Blue)"
+	group = "Dresses & Skirts"
 	item_path = /obj/item/clothing/under/vampire/clerk/female
 
 /datum/loadout_item/uniform/suit/plain_brown
@@ -66,6 +70,7 @@
 
 /datum/loadout_item/uniform/suit/plain_brown_skirt
 	name = "Suit (Skirt, Brown)"
+	group = "Dresses & Skirts"
 	item_path = /obj/item/clothing/under/vampire/archivist/female
 
 /datum/loadout_item/uniform/suit/prince
@@ -74,6 +79,7 @@
 
 /datum/loadout_item/uniform/suit/prince_skirt
 	name = "Suit (Princely, Skirt)"
+	group = "Dresses & Skirts"
 	item_path = /obj/item/clothing/under/vampire/prince/female
 
 // Skirts
@@ -82,6 +88,7 @@
 
 /datum/loadout_item/uniform/skirt/pentagram
 	name = "Pentagram Shirt (Skirt)"
+	group = "Dresses & Skirts"
 	item_path = /obj/item/clothing/under/vampire/baali/female
 
 // Turtleneck
@@ -159,20 +166,23 @@
 
 /datum/loadout_item/uniform/suit/formal_burgundy_skirt
 	name = "Suit (Skirt, Burgundy)"
+	group = "Dresses & Skirts"
 	item_path = /obj/item/clothing/under/vampire/tremere/female
-
 
 //Dresses
 /datum/loadout_item/uniform/dress
 	name = "Dress (Black)"
+	group = "Dresses & Skirts"
 	item_path = /obj/item/clothing/under/vampire/business
 
 /datum/loadout_item/uniform/dress_red
 	name = "Dress (Red)"
+	group = "Dresses & Skirts"
 	item_path = /obj/item/clothing/under/vampire/primogen_toreador/female
 
 /datum/loadout_item/uniform/maid
 	name = "Maid Outfit"
+	group = "Dresses & Skirts"
 	item_path = /obj/item/clothing/under/costume/maid
 
 //Dress Shirts
@@ -225,7 +235,6 @@
 /datum/loadout_item/uniform/black_grunge
 	name = "Crop Top (Black)"
 	item_path = /obj/item/clothing/under/vampire/black
-
 
 /datum/loadout_item/uniform/burlesque
 	name = "Burlesque Outfit"
