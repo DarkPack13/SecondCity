@@ -19,6 +19,20 @@
 	contains = list(/obj/item/knife/vamp)
 	crate_name = "weapon crate"
 
+/datum/supply_pack/weapons/brassknuckles
+	name = "Weapon (brass knuckles)"
+	desc = "Contains a set of brass knuckles."
+	cost = 100
+	contains = list(/obj/item/clothing/gloves/vampire/brassknuckles)
+	crate_name = "weapon crate"
+
+/datum/supply_pack/weapons/spikedknuckles
+	name = "Weapon (spiked knuckles)"
+	desc = "Contains a set of spiked knuckles."
+	cost = 500
+	contains = list(/obj/item/clothing/gloves/vampire/brassknuckles/spiked)
+	crate_name = "weapon crate"
+
 /datum/supply_pack/weapons/weapontire
 	name = "Weapon (tire iron)"
 	desc = "Contains a tire iron."
@@ -448,6 +462,13 @@
 	desc = "Contains three Thompson magazines."
 	cost = 300
 	contains = list(/obj/item/ammo_box/magazine/darkpackthompson, /obj/item/ammo_box/magazine/darkpackthompson, /obj/item/ammo_box/magazine/darkpackthompson)
+	crate_name = "ammo crate"
+
+/datum/supply_pack/weapons/magazine_mac10
+	name = "Ammo (3x Braddock magazines)"
+	desc = "Contains three Braddock magazines."
+	cost = 250
+	contains = list(/obj/item/ammo_box/magazine/darkpack45smg, /obj/item/ammo_box/magazine/darkpack45smg, /obj/item/ammo_box/magazine/darkpack45smg)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/weapons/armorlight
