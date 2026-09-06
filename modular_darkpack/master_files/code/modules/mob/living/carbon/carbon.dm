@@ -35,13 +35,13 @@
 			var/roll_difficulty = 0
 			switch(I.breakouttime)
 				if(5 SECONDS to 15 SECONDS)
-					roll_difficulty = 5
-				if(15 SECONDS to 30 SECONDS)
 					roll_difficulty = 6
-				if(30 SECONDS to 1 MINUTES)
+				if(15 SECONDS to 30 SECONDS)
 					roll_difficulty = 7
-				if(1 MINUTES to INFINITY)
+				if(30 SECONDS to 1 MINUTES)
 					roll_difficulty = 8
+				if(1 MINUTES to INFINITY)
+					roll_difficulty = 9
 			if(!roll_difficulty)
 				cuff_resist(I)
 
@@ -49,7 +49,7 @@
 			roll.difficulty = roll_difficulty
 			switch(roll.st_roll(src, I))
 				if(ROLL_SUCCESS)
-					cuff_resist(I, cuff_break = INSTANT_CUFFBREAK)
+					cuff_resist(I, null, INSTANT_CUFFBREAK)
 				else
 					playsound(src, 'sound/effects/jingle.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 					visible_message(span_warning("[src] is trying to wiggle out of [I]!"))
