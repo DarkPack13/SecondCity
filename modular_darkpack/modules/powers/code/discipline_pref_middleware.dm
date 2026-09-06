@@ -150,12 +150,12 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 /datum/preference_middleware/disciplines/proc/get_discipline_point_budget(immortal_age)
 	if(immortal_age <= 10)
 		return list(
-			"points" = DISCIPLINE_BUDGET_FLEDGLING,
+			"points" = DISCIPLINE_BUDGET_FLEDGLING,	//Should probably be 4 due to rounded square root of 10, but we do this to give some flexibility.
 			"tier" = "Fledgling",
 			"details" ="As a Fledgling, you are still learning how to control your new powers, and face your new problems. You are much the same person as you were prior to the embrace, for good or for bad. The phrase \"Life's sucks and then you die\" leaves out how much it sucks to be dead, but you're starting to learn that first-hand. You might be recently declared dead or reported missing, and are struggling to piece together a new unlife without the support network you had when you were alive. There are a lot of rules and customs you're unfamiliar with, and older kindred look down on you. You may be alone, hiding out after a string of murders post-embrace that put you on the radar of law enforcement and the Camarilla, or under the watchful eye of your Sire learning to control yourself under their wing. Either way, you're going to need help to navigate all of this.")
 	if(immortal_age <= 100)
 		return list(
-			"points" = DISCIPLINE_BUDGET_NEONATE,
+			"points" = DISCIPLINE_BUDGET_NEONATE,	//Max age of 100, square root it for points.
 			"tier" = "Neonate",
 			"details" = "As a Neonate, you're starting to get the hang of things with your unlife. You have learned to control your urges enough to be mostly left to your own devices, but older kindred can still smell your inexperience from a mile away. Friends and family you once knew are beginning to grow old and pass away due to natural causes, leaving you with the lasting emotional scars from their absence. Any who you remain in contact with but haven't told about your embrace are likely suspicious about your lack of aging and absence during the day. As a result, you've learned to remain mostly composed, and to keep things close to the vest, especially when it comes to interacting with Kine. With your Kine touchstones dwindling or gone, you'll begin to find solace in others... Or else your humanity might start to fade with them.")
 	if(immortal_age <= 200)
