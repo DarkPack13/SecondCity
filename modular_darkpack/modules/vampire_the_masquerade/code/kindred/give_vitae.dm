@@ -63,6 +63,10 @@
 	if(!sire)
 		return FALSE
 
+	if(CONFIG_GET(number/discipline_teaching) == DISCIPLINE_TEACHING_DISABLED)
+		owner.balloon_alert(owner, "discipline teaching is disabled!")
+		return FALSE
+
 	var/list/discipline_entries = list()
 	var/list/disc_type = list()
 	var/list/seen_types = list()
@@ -73,6 +77,8 @@
 		if(ispath(disc.type, /datum/discipline/path))
 			continue
 		if(disc.type in seen_types)
+			continue
+		if(!can_teach_discipline(owner, disc.type))
 			continue
 		seen_types += disc.type // prevent duplicates
 		discipline_entries += "[disc.name]"
@@ -134,3 +140,17 @@
 	owner.log_message("taught [chosen] to [key_name(student)].", LOG_STATS)
 	message_admins("[ADMIN_LOOKUPFLW(owner)] taught [chosen] to [ADMIN_LOOKUPFLW(student)].")
 	return TRUE
+
+// darkpack_config_entries.dm & darkpack_config.txt for server settings regarding discipline teaching permissions
+/proc/can_teach_discipline(mob/living/teacher, discipline_type)
+	switch(CONFIG_GET(number/discipline_teaching))
+		if(DISCIPLINE_TEACHING_FULL)
+			return TRUE
+		if(DISCIPLINE_TEACHING_RARES_DISABLED)
+			return !(discipline_type in GLOB.rare_discipline_types)
+		if(DISCIPLINE_TEACHING_IN_CLANS_ONLY)
+			var/datum/subsplat/vampire_clan/clan = teacher.get_clan()
+			return clan && (discipline_type in clan.clan_disciplines)
+		if(DISCIPLINE_TEACHING_DISABLED)
+			return FALSE
+	return FALSE
