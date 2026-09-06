@@ -65,6 +65,7 @@
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/walking_bomb, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/inner_volcano, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/bane_attractor, 1)
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/rotting, 1)
 
 /datum/splat/werewolf/fomori/get_power(power_type)
 	RETURN_TYPE(/datum/action/cooldown/power/fomori_power)

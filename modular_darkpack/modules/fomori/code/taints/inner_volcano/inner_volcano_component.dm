@@ -20,7 +20,6 @@
 	. = ..()
 	if(!ishuman(parent))
 		return ELEMENT_INCOMPATIBLE
-	to_chat(world, "[type] added to [parent]")
 	RegisterSignal(parent, COMSIG_LIVING_DICE_ROLLED, PROC_REF(on_dice_rolled))
 	RegisterSignal(parent, COMSIG_HUMAN_CORETEMP_CHANGE, PROC_REF(on_coretemp_change))
 
@@ -36,3 +35,8 @@
 		if(human_parent.coretemperature > BODYTEMP_NORMAL)
 			var/change = oldvalue-newvalue
 			human_parent.adjust_coretemperature(change*0.75, min_temp = BODYTEMP_NORMAL) // we cool down 25% slower
+
+/datum/component/inner_volcano/Destroy()
+	. = ..()
+	UnregisterSignal(parent, COMSIG_LIVING_DICE_ROLLED)
+	UnregisterSignal(parent, COMSIG_HUMAN_CORETEMP_CHANGE)
