@@ -458,6 +458,7 @@
 #include "code\__DEFINES\~darkpack\is_helpers.dm"
 #include "code\__DEFINES\~darkpack\jobs.dm"
 #include "code\__DEFINES\~darkpack\keybindings.dm"
+#include "code\__DEFINES\~darkpack\language.dm"
 #include "code\__DEFINES\~darkpack\library.dm"
 #include "code\__DEFINES\~darkpack\lock_access_defines.dm"
 #include "code\__DEFINES\~darkpack\mapswitch.dm"
