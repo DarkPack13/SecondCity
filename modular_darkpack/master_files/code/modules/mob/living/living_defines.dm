@@ -22,6 +22,7 @@
 
 	COOLDOWN_DECLARE(masquerade_timer)
 	var/masquerade_score = 5
+	var/witnessed_crimes = 0
 
 	var/killed_count = 0
 	var/warrant = FALSE
