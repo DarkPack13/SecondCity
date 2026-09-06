@@ -1,0 +1,4 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - config: "Artifact Stacking can now be disabled via config"
