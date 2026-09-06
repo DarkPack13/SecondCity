@@ -576,6 +576,50 @@
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, rof)
 
+/obj/item/ammo_box/magazine/darkpack762x51fal
+	name = "battle rifle magazine (7.62x51mm)"
+	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
+	icon_state = "308mag"
+	ammo_type = /obj/item/ammo_casing/vampire/c762x51mm
+	caliber = CALIBER_762NATO
+	max_ammo = 20
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
+
+/obj/item/gun/ballistic/automatic/darkpack/fal
+	name = "battle rifle"
+	desc = "A hard hitting rifle firing a full power 7.62 cartridge."
+	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	icon_state = "fal"
+	inhand_icon_state = "fal"
+	worn_icon_state = "fal"
+	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_MEDIUM
+	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack762x51fal
+	burst_size = 1
+	fire_delay = 3
+	spread = 2
+	recoil = 5
+	bolt_type = BOLT_TYPE_LOCKING
+	show_bolt_icon = FALSE
+	mag_display = TRUE
+	fire_sound = 'modular_darkpack/modules/deprecated/sounds/sniper.ogg'
+	masquerade_violating = FALSE
+	serial_type = "BR"
+
+/obj/item/gun/ballistic/automatic/darkpack/fal/automatic
+	name = "military battle rifle"
+	desc = "A hard hitting rifle firing a full power 7.62 cartridge. This one is a military variant capable of automatic fire."
+	icon_state = "falgreen"
+	inhand_icon_state = "falgreen"
+	worn_icon_state = "falgreen"
+	var/rof = 0.2 SECONDS //300 RPM
+
+/obj/item/gun/ballistic/automatic/darkpack/fal/automatic/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/automatic_fire, rof)
+
 /obj/item/ammo_box/magazine/internal/darkpack/lever
 	name = "lever action internal magazine"
 	ammo_type = /obj/item/ammo_casing/vampire/c44

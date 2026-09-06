@@ -193,6 +193,20 @@
 	contains = list(/obj/item/gun/ballistic/automatic/darkpack/aug, /obj/item/ammo_box/magazine/darkpackaug)
 	crate_name = "weapon crate"
 
+/datum/supply_pack/weapons/weaponfal
+	name = "Weapon (Battle Rifle)"
+	desc = "Contains an 7.62 battle rifle."
+	cost = 4000
+	contains = list(/obj/item/gun/ballistic/automatic/darkpack/fal, /obj/item/ammo_box/magazine/darkpack762x51fal)
+	crate_name = "weapon crate"
+
+/datum/supply_pack/weapons/weaponfalauto
+	name = "Weapon (Military Battle Rifle)"
+	desc = "Contains an Military 7.62 battle rifle."
+	cost = 4500
+	contains = list(/obj/item/gun/ballistic/automatic/darkpack/fal/automatic, /obj/item/ammo_box/magazine/darkpack762x51fal)
+	crate_name = "weapon crate"
+
 /datum/supply_pack/weapons/musket
 	name = "Weapon (antique musket)"
 	desc = "Contains a .75 caliber antique musket."
@@ -317,11 +331,11 @@
 	cost = 1000
 	contains = list(/obj/item/ammo_box/darkpack/c50ae, /obj/item/ammo_box/darkpack/c50ae)
 
-/datum/supply_pack/weapons/ammo556
-	name = "Ammo (5.56)"
-	desc = "Contains a box of 5.56 ammunition."
+/datum/supply_pack/weapons/ammo762
+	name = "Ammo (7.62)"
+	desc = "Contains a box of 7.62 ammunition."
 	cost = 1500
-	contains = list(/obj/item/ammo_box/darkpack/c556)
+	contains = list(/obj/item/ammo_box/darkpack/c762x51mm, /obj/item/ammo_box/darkpack/c762x51mm)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/weapons/ammo556/incendiart
@@ -420,6 +434,13 @@
 	desc = "Contains three AUG carbine magazines."
 	cost = 300
 	contains = list(/obj/item/ammo_box/magazine/darkpackaug, /obj/item/ammo_box/magazine/darkpackaug, /obj/item/ammo_box/magazine/darkpackaug)
+	crate_name = "ammo crate"
+
+/datum/supply_pack/weapons/magazine_fal
+	name = "Ammo (2x battle rifle magazine)"
+	desc = "Contains two battle rifle magazines."
+	cost = 300
+	contains = list(/obj/item/ammo_box/magazine/darkpack762x51fal, /obj/item/ammo_box/magazine/darkpack762x51fal)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/weapons/magazine_thompson
