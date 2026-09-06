@@ -87,17 +87,27 @@
 		breached_players -= dead_breacher
 		UnregisterSignal(dead_breacher, COMSIG_LIVING_DEATH)
 
-/atom/proc/observe_masquerade_violation(player_breacher)
+/atom/proc/observe_masquerade_violation(mob/living/player_breacher)
 	do_alert_animation()
-	if(get_werewolf_splat(player_breacher))
+	var/should_use_veil
+	for(var/datum/splat/breacher_splat in player_breacher.splats)
+		if(breacher_splat.uses_veil)
+			should_use_veil = TRUE
+
+	if(should_use_veil)
 		to_chat(player_breacher, span_userdanger(span_bold("VEIL VIOLATION")))
 		playsound(player_breacher, 'modular_darkpack/modules/masquerade/sound/veil_violation.ogg', 50, FALSE, -5)
 		return
 	playsound(player_breacher, 'modular_darkpack/modules/masquerade/sound/masquerade_violation.ogg', 50, FALSE, -5)
 	to_chat(player_breacher, span_userdanger(span_bold("MASQUERADE VIOLATION")))
 
-/atom/proc/observe_masquerade_reinforce(player_breacher)
-	if(get_werewolf_splat(player_breacher))
+/atom/proc/observe_masquerade_reinforce(mob/living/player_breacher)
+	var/should_use_veil
+	for(var/datum/splat/breacher_splat in player_breacher.splats)
+		if(breacher_splat.uses_veil)
+			should_use_veil = TRUE
+
+	if(should_use_veil)
 		to_chat(player_breacher, span_big(span_boldnicegreen("VEIL REINFORCED")))
 		playsound(player_breacher, 'modular_darkpack/modules/masquerade/sound/humanity_gain.ogg', 50, FALSE, -5)
 		return
