@@ -21,9 +21,29 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 	var/splat = client.prefs.read_preference(/datum/preference/choiced/splats)
 	if(!ispath(splat, /datum/splat/vampire))
 		return TRUE
+
+	// check for at least one discipline, store how many discipline points spent, count how many disciplines they have
+	var/discipline_count
+	var/discipline_points_spent
+	var/has_any_discipline = FALSE
 	for(var/disc in client.prefs.discipline_levels)
-		if(client.prefs.discipline_levels[disc] > 0)
-			return TRUE
+		var/level = client.prefs.discipline_levels[disc]
+		discipline_points_spent += level
+		if(level > 0)
+			discipline_count++
+			has_any_discipline = TRUE
+
+	var/discipline_points_budget
+	if(ispath(splat, /datum/splat/vampire/kindred))
+		var/immortal_age = client.prefs.read_preference(/datum/preference/numeric/immortal_age)
+		discipline_points_budget = get_discipline_point_budget(immortal_age)["points"]
+	else if(ispath(splat, /datum/splat/vampire/ghoul))
+		discipline_points_budget = get_ghoul_discipline_budget(discipline_count)["points"]
+
+	if(discipline_points_spent > discipline_points_budget)
+		tgui_alert(src, "You have [discipline_points_spent] discipline points spent, but your character is only allowed [discipline_points_budget]! Please fix your character preferences before joining.", "Discipline Points Overspent", list("OK"))
+		return FALSE
+
 	var/choice = tgui_alert(src, "You have not allocated any discipline dots! As a precaution, you will automatically be assigned 1 dot in each of your clan's common disciplines when you spawn.", "Disciplines Not Configured", list("I understand", "Go Back"))
 	return choice == "I understand"
 
@@ -147,7 +167,7 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 
 	return data
 
-/datum/preference_middleware/disciplines/proc/get_discipline_point_budget(immortal_age)
+/proc/get_discipline_point_budget(immortal_age)
 	if(immortal_age <= 10)
 		return list(
 			"points" = DISCIPLINE_BUDGET_FLEDGLING,	//Should probably be 4 due to rounded square root of 10, but we do this to give some flexibility.
@@ -167,7 +187,7 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 			"tier" = "Elder",
 			"details" = "As an Elder of your clan, you are a walking history book. You have learned to keep quiet about your true age and origins, and have likely made a coterie of enemies, some alive some dead. Walking through time as the winding centipede, crawling into centuries unfamiliar as you learn and adapt to each new shifting culture. You may have emerged from torpor after a battle you may or may not remember years prior, thrust into a world you don't recognize. You likely possess a reputation for good or for bad, for something you may or may not have done hundreds of years ago. Some may take solace in your company as a familiar face, some may want to turn you to ash for a petty grievance from lifetimes prior. If your true age is discovered, the Camarilla will likely try to employ you as an enforcer due to your strength... or an aspiring lick might come along to diablerize you and take your power for themselves. To have survived this long, you're cautious, old, and cunning. Your routines are important, and you stay out of the petty squables of younger Kindred if you can help it.")
 
-/datum/preference_middleware/disciplines/proc/get_ghoul_discipline_budget(discipline_count = 0)
+/proc/get_ghoul_discipline_budget(discipline_count = 0)
 	return list(
 		"points" = max(3, discipline_count), // pool expands for each additional discipline they've been taught, but they can never assign more than 1 per
 		"tier" = "Ghoul",
