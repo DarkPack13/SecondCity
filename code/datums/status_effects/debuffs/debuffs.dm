@@ -153,7 +153,7 @@
 /datum/status_effect/knocked_out/on_apply()
 	owner.become_blind(TRAIT_STATUS_EFFECT(id))
 	owner.apply_status_effect(/datum/status_effect/grouped/see_no_names, TRAIT_STATUS_EFFECT(id))
-	owner.apply_status_effect(/datum/status_effect/grouped/static_look, TRAIT_STATUS_EFFECT(id))
+	owner.apply_status_effect(/datum/status_effect/grouped/static_look, TRAIT_STATUS_EFFECT(id))	//DARKPACK EDIT ADD - Static look on unconscious
 	owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILIZED, TRAIT_BLOCK_SECHUD, TRAIT_BLOCK_MEDHUD, TRAIT_INCAPACITATED, TRAIT_FLOORED), TRAIT_STATUS_EFFECT(id))
 	owner.update_eyes() // updates eyelids
 	RegisterSignal(owner, COMSIG_MOB_STATCHANGE, PROC_REF(on_mob_statchange))
@@ -169,7 +169,7 @@
 /datum/status_effect/knocked_out/on_remove()
 	owner.cure_blind(TRAIT_STATUS_EFFECT(id))
 	owner.remove_status_effect(/datum/status_effect/grouped/see_no_names, TRAIT_STATUS_EFFECT(id))
-	owner.remove_status_effect(/datum/status_effect/grouped/static_look, TRAIT_STATUS_EFFECT(id))
+	owner.remove_status_effect(/datum/status_effect/grouped/static_look, TRAIT_STATUS_EFFECT(id))	//DARKPACK EDIT ADD - Static look on unconscious
 	owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILIZED, TRAIT_BLOCK_SECHUD, TRAIT_BLOCK_MEDHUD, TRAIT_INCAPACITATED, TRAIT_FLOORED), TRAIT_STATUS_EFFECT(id))
 	owner.update_eyes() // updates eyelids
 	UnregisterSignal(owner, list(COMSIG_MOB_STATCHANGE))
@@ -184,7 +184,7 @@
 	else
 		start_ticking()
 
-//CANNOT RECOGNIZE ANYONE
+//DARKPACK EDIT ADD - STATUS EFFECT THAT MAKES EVERYONE LOOK STATICY
 /datum/status_effect/grouped/static_look
 	id = "static look"
 	duration = STATUS_EFFECT_PERMANENT
