@@ -7738,7 +7738,6 @@
 #include "modular_darkpack\modules\mentor\code\ahelp_reject.dm"
 #include "modular_darkpack\modules\mentor\code\mentor.dm"
 #include "modular_darkpack\modules\mentor\code\mentor_clientprocs.dm"
-#include "modular_darkpack\modules\mentor\code\mentor_globalvars.dm"
 #include "modular_darkpack\modules\mentor\code\mentor_keybinds.dm"
 #include "modular_darkpack\modules\mentor\code\mentor_logging.dm"
 #include "modular_darkpack\modules\mentor\code\mentor_manager.dm"
