@@ -128,11 +128,8 @@
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			//SN src = null
-			//DARKPACK EDIT START - DISABLE TILE DESTRUCTION
-			//var/turf/NT = ScrapeAway()
-			//NT.contents_explosion(severity, target)
-			dismantle_wall(0,1)
-			//DARKPACK EDIT END
+			var/turf/NT = ScrapeAway()
+			NT.contents_explosion(severity, target)
 			return TRUE
 		if(EXPLODE_HEAVY)
 			dismantle_wall(prob(50), TRUE)

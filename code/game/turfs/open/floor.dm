@@ -59,15 +59,9 @@
 
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			//DARKPACK EDIT START - DISABLE TILE DESTRUCTION
-			//ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
+			ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
 			break_tile()
-			//DARKPACK EDIT END
 		if(EXPLODE_HEAVY)
-			//DARKPACK EDIT START - DISABLE TILE DESTRUCTION
-			break_tile()
-			hotspot_expose(1000,CELL_VOLUME)
-			/*
 			switch(rand(1, 3))
 				if(1)
 					if (!ispath(baseturf_at_depth(2), /turf/open/floor))
@@ -77,17 +71,18 @@
 					if(prob(33))
 						new /obj/item/stack/sheet/iron(src)
 				if(2)
-					ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
+					ScrapeAway(1, flags = CHANGETURF_INHERIT_AIR)	//DARPACK EDIT - LOWER DESTRUCTION (Was 2, now is 1)
 				if(3)
-					if(prob(80))
+					/*DARKPACK EDIT START - LOWER DESTRUCTION (Removes away the scraping of this 30% chance, instead now just breaks the tile)
+					if(prob(30))
 						ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 					else
 						break_tile()
+					*/
+					break_tile()
 					hotspot_expose(1000,CELL_VOLUME)
 					if(prob(33))
 						new /obj/item/stack/sheet/iron(src)
-			*/
-			//DARKPACK EDIT END
 		if(EXPLODE_LIGHT)
 			if (prob(50))
 				src.break_tile()
