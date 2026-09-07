@@ -30,6 +30,9 @@ ON_CRIT_ADDITIONAL_DIE
 #If you can be barred from jobs for having too high of an age/generation
 #MAX_GEN_LIMITS
 
+##Whether we should allow artifact 'stacking', in other words, if a player has more than two of the same artifacts, if that artifact's powers should be applied twice
+#ARTIFACT_STACKING
+
 ##Artifact spawn chance from crates - note, crates usually drop random artifact subtype, so this probability is typically multiplied by the random probability
 ARTIFACT_CRATE_PROBABILITY 20
 ##Artifact spawn chance from mapped in random spots
