@@ -29,8 +29,8 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 	for(var/disc in client.prefs.discipline_levels)
 		var/level = client.prefs.discipline_levels[disc]
 		discipline_points_spent += level
+		discipline_count++
 		if(level > 0)
-			discipline_count++
 			has_any_discipline = TRUE
 
 	var/discipline_points_budget
