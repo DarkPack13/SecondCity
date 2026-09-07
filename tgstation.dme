@@ -7734,6 +7734,7 @@
 #include "modular_darkpack\modules\matrix\code\job.dm"
 #include "modular_darkpack\modules\matrix\code\matrix.dm"
 #include "modular_darkpack\modules\medical\code\vet_lazarus_injector.dm"
+#include "modular_darkpack\modules\mentor\code\_globalvars.dm"
 #include "modular_darkpack\modules\mentor\code\_keybindings.dm"
 #include "modular_darkpack\modules\mentor\code\ahelp_reject.dm"
 #include "modular_darkpack\modules\mentor\code\mentor.dm"
