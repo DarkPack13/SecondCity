@@ -41,7 +41,7 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 		discipline_points_budget = get_ghoul_discipline_budget(discipline_count)["points"]
 
 	// we are assuming that diablerists gain discipline points/disciplines.
-	if(discipline_points_spent > discipline_points_budget && !client.prefs.read_preference(/datum/preference/toggle/is_diablerist))
+	if(discipline_points_spent > discipline_points_budget && !client.prefs.read_preference(/datum/preference/toggle/diablerist))
 		tgui_alert(src, "You have [discipline_points_spent] discipline points spent, but your character is only allowed [discipline_points_budget]! Please fix your character preferences before joining.", "Discipline Points Overspent", list("OK"))
 		return FALSE
 
