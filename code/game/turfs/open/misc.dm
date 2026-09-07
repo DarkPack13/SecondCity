@@ -51,8 +51,15 @@
 
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
+			//DARKPACK EDIT START - DISABLE TILE DESTRUCTION
+			//ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
+			break_tile()
+			//DARKPACK EDIT END
 		if(EXPLODE_HEAVY)
+			//DARKPACK EDIT START - DISABLE TILE DESTRUCTION
+			break_tile()
+			hotspot_expose(1000,CELL_VOLUME)
+			/*
 			switch(rand(1, 3))
 				if(1 to 2)
 					ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
@@ -62,6 +69,8 @@
 					else
 						break_tile()
 					hotspot_expose(1000,CELL_VOLUME)
+			*/
+			//DARKPACK EDIT END
 		if(EXPLODE_LIGHT)
 			if (prob(50))
 				break_tile()
