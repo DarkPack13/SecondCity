@@ -5,7 +5,7 @@
 	numerical = TRUE
 	roll_output_type = ROLL_PRIVATE
 
-/datum/action/cooldown/power/fomori_power/corrupted_visions
+/datum/action/cooldown/power/fomori_power/corrupted_visions // TODO: make this nmot rely on the quirk as much, but maintain the ineffectuality vs people with the quirk
 	name = "Corrupted Visions"
 	desc = "Spend a willpower point to induce hallucinations in your prey."
 	button_icon_state = "corrupted_visions"
