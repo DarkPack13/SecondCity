@@ -1,4 +1,3 @@
-
 /datum/action/cooldown/power/fomori_power/ugly_as_sin
 	name = "Ugly as Sin"
 	desc = "You are horribly ugly, and your Appearance stat is locked to zero."
