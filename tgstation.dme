@@ -7593,6 +7593,7 @@
 #include "modular_darkpack\modules\fomori\code\splats\is_fomori_helpers.dm"
 #include "modular_darkpack\modules\fomori\code\splats\pref_lore.dm"
 #include "modular_darkpack\modules\fomori\code\taints\bane_attractor.dm"
+#include "modular_darkpack\modules\fomori\code\taints\ugly_as_sin.dm"
 #include "modular_darkpack\modules\fomori\code\taints\walking_bomb.dm"
 #include "modular_darkpack\modules\fomori\code\taints\worms.dm"
 #include "modular_darkpack\modules\fomori\code\taints\inner_volcano\inner_volcano.dm"
