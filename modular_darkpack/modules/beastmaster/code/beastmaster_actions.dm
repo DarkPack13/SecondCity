@@ -77,7 +77,6 @@
 		var/datum/ai_controller/controller = minion.ai_controller
 		if(controller)
 			controller.cancel_current_plan()
-			controller.clear_blackboard_key(BB_CURRENT_TARGET)
 			controller.clear_blackboard_key(BB_CURRENT_TARGET_HIDING_LOCATION)
 			controller.clear_blackboard_key(BB_CURRENT_PET_TARGET)
 
