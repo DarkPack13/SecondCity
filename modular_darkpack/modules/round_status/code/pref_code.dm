@@ -1,5 +1,7 @@
 /// Preliminary wrapper for the prefs write_preference_midround that ensures your acctually on the same character as the one you spawned in as.
 /mob/living/carbon/human/proc/write_preference_midround(datum/preference/preference, preference_value)
+	if(!(client?.prefs))
+		return FALSE
 	var/can_save = can_save_midround()
 	return client.prefs.write_preference_midround(GLOB.preference_entries[preference], preference_value, src, can_save)
 
