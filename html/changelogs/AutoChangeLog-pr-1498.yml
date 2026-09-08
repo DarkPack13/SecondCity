@@ -1,5 +1,0 @@
-author: "cornercube"
-delete-after: True
-changes:
-  - rscadd: "frag grenade sprite"
-  - rscadd: "new page for vehicles and new folder for vehicles"

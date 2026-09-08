@@ -1,5 +1,0 @@
-author: "Breadcrombs, ATP Engineer, despong"
-delete-after: True
-changes:
-  - rscadd: "Added a new FAL rifle along with it's magazines and ammo being purchasable from cargo"
-  - bugfix: "Removed a 556 ammo box duplicate from cargo"

@@ -1,7 +1,0 @@
-author: "TheTrueSilverRat"
-delete-after: True
-changes:
-  - code_imp: "commented out language keys of old ss13 languages"
-  - bugfix: "Allows modern language keys to be able to be used"
-  - qol: "Allow Crinos Hispos and Lupus forms to do primal tongue"
-  - qol: "Kinfolk can speak Garou tongue now"

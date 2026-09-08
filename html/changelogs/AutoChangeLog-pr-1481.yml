@@ -1,4 +1,0 @@
-author: "SELFHELL"
-delete-after: True
-changes:
-  - balance: "Aggravated Damage now considers sharpness when dealing wounds (Werewolves now properly cut people)"

@@ -49,3 +49,34 @@
   - bugfix: Fixes ahroun cliath requirements
   chazzyjazzy:
   - bugfix: gets rid of /tg/ style zombie outbreaks forever hopefully
+2026-09-07:
+  Breadcrombs, ATP Engineer, despong:
+  - rscadd: Added a new FAL rifle along with it's magazines and ammo being purchasable
+      from cargo
+  - bugfix: Removed a 556 ammo box duplicate from cargo
+  FalloutFalcon:
+  - server: broadcast configs for time till roundend to status
+  Marshmellow10:
+  - image: adds a black version of the basic darkpack wheely office chair
+  SELFHELL:
+  - balance: Aggravated Damage now considers sharpness when dealing wounds (Werewolves
+      now properly cut people)
+  Stutternov:
+  - rscadd: Adds new brass knuckles, spiked knuckles, mac-10 magazine, iron, and glass
+      shipments to Cargo.
+  TheTrueSilverRat:
+  - code_imp: commented out language keys of old ss13 languages
+  - bugfix: Allows modern language keys to be able to be used
+  - qol: Allow Crinos Hispos and Lupus forms to do primal tongue
+  - qol: Kinfolk can speak Garou tongue now
+  chazzyjazzy:
+  - config: Artifact Stacking can now be disabled via config
+  cornercube:
+  - rscadd: frag grenade sprite
+  - rscadd: new page for vehicles and new folder for vehicles
+  dwinters99:
+  - bugfix: replaced non-functional broadcast camera type-override with new subtype
+  - rscadd: lecterns are now undense and count as a soapbox
+  - image: lectern south sprite is shorter to prevent needing to pixelshift
+  - spellcheck: de-SS13'd the captain-cast radio frequency
+  - rscadd: start_off subtype for generators

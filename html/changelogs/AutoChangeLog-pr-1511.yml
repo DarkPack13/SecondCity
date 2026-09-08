@@ -1,8 +1,0 @@
-author: "dwinters99"
-delete-after: True
-changes:
-  - bugfix: "replaced non-functional broadcast camera type-override with new subtype"
-  - rscadd: "lecterns are now undense and count as a soapbox"
-  - image: "lectern south sprite is shorter to prevent needing to pixelshift"
-  - spellcheck: "de-SS13'd the captain-cast radio frequency"
-  - rscadd: "start_off subtype for generators"
