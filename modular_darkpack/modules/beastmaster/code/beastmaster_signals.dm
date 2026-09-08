@@ -1,25 +1,24 @@
 //register pointing signals and grant actions on the owner - this allows them to use the attack command.
 /mob/living/carbon/human/proc/register_beastmaster_signals()
-	if(!GetComponent(/datum/component/beastmaster_defender))
-		AddComponent(/datum/component/beastmaster_defender)
+	// if(!GetComponent(/datum/component/beastmaster_defender))
+		// AddComponent(/datum/component/beastmaster_defender)
 
-	if(!locate(/datum/action/beastmaster_command_toggle_follow) in actions)
-		var/datum/action/beastmaster_command_toggle_follow/toggle_follow = new()
+	if(!locate(/datum/action/beastmaster_command/toggle_follow) in actions)
+		var/datum/action/beastmaster_command/toggle_follow/toggle_follow = new()
 		toggle_follow.Grant(src)
-		var/datum/action/beastmaster_command_end_aggression/endaggro = new()
+		var/datum/action/beastmaster_command/end_aggression/endaggro = new()
 		endaggro.Grant(src)
 
 /mob/living/carbon/human/proc/unregister_beastmaster_signals()
-	var/datum/component/beastmaster_defender/component = GetComponent(/datum/component/beastmaster_defender)
-	if(component)
-		qdel(component)
+	// var/datum/component/beastmaster_defender/component = GetComponent(/datum/component/beastmaster_defender)
+	// if(component)
+		// qdel(component)
 
 	//remove action buttons
-	for(var/datum/action/beastmaster_cmd in actions)
-		if(istype(beastmaster_cmd, /datum/action/beastmaster_command_toggle_follow) || \
-			istype(beastmaster_cmd, /datum/action/beastmaster_command_end_aggression))
-			beastmaster_cmd.Remove(src)
+	for(var/datum/action/beastmaster_command/beastmaster_cmd in actions)
+		beastmaster_cmd.Remove(src)
 
+/*
 /datum/component/beastmaster_defender/Initialize()
 	if(!ishuman(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -62,3 +61,4 @@
 		//stop everything we're doing if the beastmaster points at an enemy - its time to attack
 		minion.ai_controller.cancel_current_plan()
 		attack_command.on_target_set(H, living_target)
+*/

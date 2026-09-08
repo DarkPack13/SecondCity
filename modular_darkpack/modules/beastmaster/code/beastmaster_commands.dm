@@ -48,6 +48,7 @@
 	return TRUE
 
 /datum/pet_command/attack/beastmaster/execute_action(datum/ai_controller/controller)
+	. = ..()
 	var/mob/living/target = controller.blackboard[BB_CURRENT_TARGET]
 
 	// if current target is invalid, find a new one from enemies list
@@ -60,34 +61,6 @@
 					controller.set_blackboard_key(BB_CURRENT_TARGET, target)
 					controller.set_blackboard_key(BB_CURRENT_PET_TARGET, target)
 					break
-
-		// no valid targets, clear everything
-		if(!target)
-			controller.clear_blackboard_key(BB_CURRENT_PET_TARGET)
-			controller.clear_blackboard_key(BB_CURRENT_TARGET)
-
-			// get owner and check their follow/stay state
-			var/mob/living/pawn = controller.pawn
-			var/list/friends = controller.blackboard[BB_FRIENDS_LIST]
-			if(friends && length(friends))
-				//the master should be the first friend in the list
-				var/mob/living/carbon/human/owner = friends[1]
-				if(ishuman(owner))
-					//check whether they were following or staying before and then return to that after all enemies are defeated
-					var/datum/action/beastmaster_command_toggle_follow/toggle = locate() in owner.actions
-					var/datum/component/obeys_commands/obeys = owner.minion_command_components[pawn]
-					if(toggle && obeys)
-						if(toggle.is_following)
-							var/datum/pet_command/follow/follow_cmd = obeys.available_commands["Follow"]
-							follow_cmd?.set_command_active(pawn, owner)
-						else
-							var/datum/pet_command/idle/stay_cmd = obeys.available_commands["Stay"]
-							stay_cmd?.set_command_active(pawn, owner)
-
-			return
-
-	// attack the target
-	controller.set_behavior_tree_override(SUBPLAN_ID_PET_COMMAND, attack_subtree)
 
 /datum/pet_command/attack/beastmaster/proc/on_enemy_death(mob/living/dead_enemy)
 	SIGNAL_HANDLER
@@ -128,7 +101,7 @@
 			if(friends && length(friends))
 				var/mob/living/carbon/human/owner = friends[1]
 				if(ishuman(owner))
-					var/datum/action/beastmaster_command_toggle_follow/toggle = locate() in owner.actions
+					var/datum/action/beastmaster_command/toggle_follow/toggle = locate() in owner.actions
 					var/datum/component/obeys_commands/obeys = owner.minion_command_components[parent]
 					if(toggle && obeys)
 						if(toggle.is_following)
