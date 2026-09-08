@@ -59,6 +59,8 @@
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/mind_reave, 1) // need 2 client testing
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/numbing, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/eyes_of_the_wyrm, 1)
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/spirit_ties, 1)
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/berserker, 1)
 
 	// TAINTS
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/worms, 1)
