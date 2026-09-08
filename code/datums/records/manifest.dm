@@ -46,7 +46,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 			misc_list[++misc_list.len] = list(
 				"name" = name,
 				"rank" = rank,
-				"trim" = trim,
+				"trim" = job?.tgui_icon,
 				)
 			continue
 		for(var/department_type in job.departments_list)
@@ -60,7 +60,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 			var/list/entry = list(
 				"name" = name,
 				"rank" = rank,
-				"trim" = trim,
+				"trim" = job.tgui_icon,
 				)
 			var/list/department_list = manifest_out[department.department_name]
 			if(istype(job, department.department_head))
@@ -232,7 +232,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 			if(open_slots < 1)
 				continue
 			open += open_slots
-		positions[department.department_name] = list("exceptions" = exceptions, "open" = open)
+		positions[department.department_name] = list("exceptions" = exceptions, "open" = open, "color" = department.ui_color)
 
 	return list(
 		"manifest" = get_manifest(),

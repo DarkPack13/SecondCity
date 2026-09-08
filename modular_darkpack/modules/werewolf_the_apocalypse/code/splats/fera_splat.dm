@@ -81,13 +81,26 @@
 
 	splat_traits = list(
 		TRAIT_FERA_RENOWN,
+		TRAIT_GAIA_CAERN_FRIEND, // Without them having there own tribes or declared alligence. This is the best way to determine.
 	)
 
 	// incompatible_splats = list(/datum/splat/werewolf/shifter) // TODO: Becoming a shifter should get rid of your kinfolk splat
 
+/datum/splat/werewolf/kinfolk/on_gain() //Currently just for granting language Garou Tongue or High Tongue that Kinfolk can learn.
+	. = ..()
+	owner.grant_language(/datum/language/garou_tongue, SPOKEN_LANGUAGE, LANGUAGE_SPLAT) //Separated because Spoken and Hearing Components are separated
+	owner.grant_language(/datum/language/garou_tongue, UNDERSTOOD_LANGUAGE, LANGUAGE_SPLAT)
+
+/datum/splat/werewolf/kinfolk/on_lose_or_destroy()
+	. = ..()
+	if(!QDELING(owner))
+		owner.remove_language(/datum/language/garou_tongue, SPOKEN_LANGUAGE, LANGUAGE_SPLAT) //Separated because Spoken and Hearing Components are separated
+		owner.remove_language(/datum/language/garou_tongue, UNDERSTOOD_LANGUAGE, LANGUAGE_SPLAT)
+
 /datum/splat/werewolf/shifter
 	abstract_type = /datum/splat/werewolf/shifter
 	splat_traits = list(
+		TRAIT_POSSIBLE_WYRM,
 		TRAIT_FERA_FORMS,
 		TRAIT_FERA_FUR,
 		TRAIT_FERA_RENOWN,
@@ -106,6 +119,7 @@
 	var/list/transformation_list = list()
 	/// Stats added and removed upon gaining the species of the splat. Assoc list indexed by the species ids for each form
 	var/list/transformation_stats
+	var/list/transformation_stat_clamps
 	var/transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/transform.ogg'
 	COOLDOWN_DECLARE(transform_cd)
 	/**
@@ -124,6 +138,7 @@
 	/// Type path of the animal we look like in our feral form
 	var/mob/living/basic/mimmicing_animal
 	COOLDOWN_DECLARE(passive_healing_cd)
+	COOLDOWN_DECLARE(passive_regrowth_cd)
 	COOLDOWN_DECLARE(gnosis_regain_cd)
 
 	/// Emote uses for activations of gifts and other things
@@ -133,6 +148,7 @@
 	. = ..()
 	owner.set_species(/datum/species/human/shifter/homid)
 	add_power(/datum/action/cooldown/power/gift/howling)
+	COOLDOWN_START(src, passive_regrowth_cd, 8 MINUTES)
 
 	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(revert_to_breed_form))
 
@@ -146,19 +162,34 @@
 
 /datum/splat/werewolf/shifter/splat_life(seconds_per_tick)
 	regain_gnosis_process(seconds_per_tick)
+	// Crinos heal in all forms. Lupus and homid born dont heal FAST FAST in their breed form.
+	// their fast healing is represented in day/days in breed-form so we just dont.
+	var/can_passively_heal = !(is_breed_form() && (get_breed_form_species() != /datum/species/human/shifter/war))
 	if(COOLDOWN_FINISHED(src, passive_healing_cd))
-		// Crinos heal in all forms. Lupus and homid born dont heal FAST FAST in their breed form
-		// their fast healing is represented in day/days in breed-form so we just dont.
-		if(is_breed_form() && (get_breed_form_species() != /datum/species/human/shifter/war))
-			return
-		// 2 to represent leathal***
-		owner.heal_storyteller_health(2, heal_scars = TRUE, heal_blood = TRUE)
+		if(can_passively_heal)
+			// 2 to represent lethal. Fera passive regen closes burn, but not aggravated damage.
+			owner.heal_storyteller_health(2, heal_aggravated = FALSE, heal_scars = TRUE, heal_blood = TRUE, heal_burn = TRUE)
+			// Keep organ healing ticking so internal damage recovers even between major regrowth pulses.
+			owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, -0.5 * seconds_per_tick, required_organ_flag = ORGAN_ORGANIC)
+			owner.adjust_organ_loss(ORGAN_SLOT_HEART, -0.5 * seconds_per_tick, required_organ_flag = ORGAN_ORGANIC)
+			owner.adjust_organ_loss(ORGAN_SLOT_LUNGS, -0.5 * seconds_per_tick, required_organ_flag = ORGAN_ORGANIC)
+			owner.adjust_organ_loss(ORGAN_SLOT_STOMACH, -0.5 * seconds_per_tick, required_organ_flag = ORGAN_ORGANIC)
+			owner.adjust_organ_loss(ORGAN_SLOT_LIVER, -0.5 * seconds_per_tick, required_organ_flag = ORGAN_ORGANIC)
+			owner.adjust_organ_loss(ORGAN_SLOT_EYES, -0.5 * seconds_per_tick, required_organ_flag = ORGAN_ORGANIC)
+			owner.adjust_organ_loss(ORGAN_SLOT_EARS, -0.5 * seconds_per_tick, required_organ_flag = ORGAN_ORGANIC)
 		COOLDOWN_START(src, passive_healing_cd, 1 TURNS)
+
+	if(COOLDOWN_FINISHED(src, passive_regrowth_cd))
+		owner.regenerate_organs()
+		if(length(owner.get_missing_limbs()))
+			owner.regenerate_limbs()
+		COOLDOWN_START(src, passive_regrowth_cd, 8 MINUTES)
+
 	var/datum/species/human/shifter/shifter_species = owner.dna.species
 	if(istype(shifter_species))
-		if(shifter_species.is_veil_breaching_form(owner) && (!shifter_species.causes_delirium || HAS_TRAIT(owner, TRAIT_PIERCED_VEIL)))
+		if(shifter_species.is_veil_breaching_form(owner) && !causes_delirium())
 			SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
-		if(shifter_species.causes_delirium)
+		if(causes_delirium())
 			for(var/mob/living/carbon/human/guy in oviewers(owner, DEFAULT_SIGHT_DISTANCE))
 				if(!guy.affected_by_delirium())
 					continue
@@ -166,10 +197,11 @@
 
 /datum/splat/werewolf/shifter/proc/causes_delirium()
 	var/datum/species/human/shifter/shifter_species = owner.dna.species
-	if(istype(shifter_species))
+	if(!istype(shifter_species))
 		return FALSE
-	if(shifter_species.causes_delirium && !HAS_TRAIT(owner, TRAIT_PIERCED_VEIL))
-		return TRUE
+	if(HAS_TRAIT(owner, TRAIT_PIERCED_VEIL))
+		return FALSE
+	return shifter_species.form_causes_delirium
 
 // Being used to represent meditating in your caern
 /datum/splat/werewolf/shifter/proc/regain_gnosis_process(seconds_per_tick)
@@ -207,7 +239,6 @@
 			STAT_STAMINA = 3,
 			STAT_DEXTERITY = 1,
 			STAT_MANIPULATION = -3,
-			// STAT_APPEARANCE = 0 // NOT YET SUPPORTED
 		),
 		SPECIES_FERA_DIRE = list(
 			STAT_STRENGTH = 3,
@@ -222,12 +253,18 @@
 			STAT_MANIPULATION = -3,
 		)
 	)
+	transformation_stat_clamps = list(
+		SPECIES_FERA_WAR = list(
+			STAT_APPEARANCE = 0
+		),
+	)
 	mimmicing_animal = /mob/living/basic/pet/dog/wolf
 
 /datum/splat/werewolf/shifter/corax
 	name = "Corax"
 	id = SPLAT_CORAX
 	splat_traits = list(
+		TRAIT_POSSIBLE_WYRM,
 		TRAIT_FERA_FORMS,
 		TRAIT_FERA_FUR,
 		TRAIT_FERA_RENOWN,
@@ -247,7 +284,6 @@
 			STAT_DEXTERITY = 1,
 			STAT_MANIPULATION = -2,
 			STAT_PERCEPTION = 3,
-			// STAT_APPEARANCE = 0 // NOT YET SUPPORTED
 		),
 		SPECIES_FERA_FERAL = list(
 			STAT_STRENGTH = -1,
@@ -255,6 +291,11 @@
 			STAT_MANIPULATION = -3,
 			STAT_PERCEPTION = 4,
 		)
+	)
+	transformation_stat_clamps = list(
+		SPECIES_FERA_WAR = list(
+			STAT_APPEARANCE = 0
+		),
 	)
 	transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/corax_transform.ogg'
 	mob_icons = list(

@@ -1,6 +1,11 @@
 /datum/discipline/daimoinon
 	name = "Daimoinon"
-	desc = "Draw power from the demons and infernal nature of Hell. Use subtle power to manipulate people and when you must, draw upon fire itself and protect yourself."
+	desc = {"Draw power from the demons and infernal nature of Hell. Use subtle power to manipulate people and when you must, draw upon fire itself and protect yourself.
+● Sense the Sin: Perception + Empathy vs. target's Self-Control + 4
+●● Fear of the Void Below: Wits + Intimidation vs. target's Courage + 4
+●●● Conflagration: No roll
+●●●● Psychomania: target's lowest Virtue
+●●●●● Condemnation: Intelligence + Occult vs. target's Willpower"}
 	icon_state = "daimonion"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/daimoinon
@@ -60,7 +65,7 @@
 		var/target_sense_the_sin_weakness = target_clan.sense_the_sin_text
 		baali_get_stolen_disciplines(target, owner)
 		if(target_sense_the_sin_weakness)
-			to_chat(target, span_notice("[target.name] [target_sense_the_sin_weakness]"))
+			to_chat(owner, span_notice("[target.name] [target_sense_the_sin_weakness]"))
 	/* DARKPACK TODO - bloodbonds
 	if(isghoul(target))
 		var/mob/living/carbon/human/ghoul = target
@@ -120,6 +125,7 @@
 
 	target_type = TARGET_HUMAN
 	range = 7
+	cooldown_length  = 30 SECONDS
 	vitae_cost = 0
 
 	duration_length = 3 SECONDS
@@ -143,10 +149,10 @@
 /datum/discipline_power/daimoinon/fear_of_the_void_below/activate(mob/living/carbon/human/target)
 	. = ..()
 	to_chat(target, span_warning("Your mind is enveloped by your greatest fear!"))
-	if(prob(50)) // REPLACE THIS - the people hate hardstuns
-		target.Paralyze(6 SECONDS)
+	if(prob(50))
+		target.AdjustKnockdown(6 SECONDS, daze_amount = 4 SECONDS)
 	else
-		target.Sleeping(6 SECONDS)
+		target.Immobilize(6 SECONDS)
 
 //CONFLAGRATION
 /datum/discipline_power/daimoinon/conflagration

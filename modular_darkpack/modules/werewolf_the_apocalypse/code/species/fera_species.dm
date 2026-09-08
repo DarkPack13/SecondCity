@@ -38,7 +38,7 @@
 	/// Speed mod applied and removed upon gaining this species
 	var/speed_mod
 	/// Causes delirium, which if the user is affected by, does not cause breaches
-	var/causes_delirium
+	var/form_causes_delirium = FALSE
 	/// IF this form can be witnessed, causes masqurade breaches
 	var/veil_breaching_form = FALSE
 
@@ -71,11 +71,20 @@
 	if(shifter_splat?.transformation_stats && shifter_splat.transformation_stats[id])
 		return shifter_splat.transformation_stats[id]
 
+/datum/species/human/shifter/proc/get_stat_clamps(mob/living/carbon/human/human)
+	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(human)
+	if(shifter_splat?.transformation_stat_clamps && shifter_splat.transformation_stat_clamps[id])
+		return shifter_splat.transformation_stat_clamps[id]
+
 /datum/species/human/shifter/proc/add_buffs(mob/living/carbon/human/human)
 	for(var/key, value in get_buffs(human))
 		if(!should_add_buff(human, key, value))
 			continue
 		human.st_add_stat_mod(key, value, type)
+	for(var/key, value in get_stat_clamps(human))
+		if(!should_add_buff(human, key, value))
+			continue
+		human.st_add_stat_clamp(key, value, type)
 
 /datum/species/human/shifter/proc/should_add_buff(mob/living/carbon/human/human, datum/st_stat/buff_type, amount)
 	return TRUE
@@ -83,13 +92,28 @@
 /datum/species/human/shifter/proc/clear_buffs(mob/living/carbon/human/human)
 	for(var/key, value in get_buffs(human))
 		human.st_remove_stat_mod(key, type)
+	for(var/key, value in get_stat_clamps(human))
+		human.st_remove_stat_clamp(key, type)
 
 /datum/species/human/shifter/proc/is_veil_breaching_form(mob/living/carbon/human/human)
 	return veil_breaching_form
 
 /// Fetch the mobs fur color from their features.
 /datum/species/human/shifter/proc/get_fur_color(mob/living/carbon/human/human)
-	return human.dna.features[FEATURE_FUR_COLOR] ? human.dna.features[FEATURE_FUR_COLOR] : "black"
+	return human.dna.features[FEATURE_FERA_FUR_COLOR] || "black"
+
+
+/datum/species/human/shifter/proc/get_feature_icon_state(mob/living/carbon/human/human, feature_key)
+	var/feature_dna = human.dna.features[feature_key]
+	if(!feature_dna)
+		return
+	var/alist/splat_feature_styles = SSaccessories.feature_list[feature_key]
+	if(!splat_feature_styles)
+		return
+	var/datum/sprite_accessory/feature_sprite_datum = splat_feature_styles[feature_dna]
+	if(!feature_sprite_datum)
+		return
+	return feature_sprite_datum::icon_state
 
 
 /// Fetch the mob dmi from our splat
@@ -105,25 +129,64 @@
 	if(!custom_body_render)
 		return FALSE
 
-	human.remove_overlay(BODYPARTS_LAYER)
+	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(human)
+	var/splat_id = shifter_splat?.id || SPLAT_GAROU
 
 	var/fur_color = get_fur_color(human)
 	var/mob_icon = get_mob_icon(human)
 
-	var/main_iconstate = ""
+	var/postfix_info = ""
+
+	human.remove_overlay(BODYPARTS_LAYER)
+	var/main_icon_state = ""
 	if(HAS_TRAIT(human, TRAIT_WYRMTAINTED_SPRITE))
-		main_iconstate += "spiral"
-	main_iconstate += fur_color
-	if(has_flight_icon_states && HAS_TRAIT(human, TRAIT_FERA_FLIGHT) && HAS_TRAIT(human, TRAIT_MOVE_FLYING) && HAS_TRAIT(human, TRAIT_NO_FLOATING_ANIM))
-		main_iconstate += "_flying"
+		main_icon_state += "spiral"
+	main_icon_state += fur_color
+	if(should_append_flying_to_icon(human))
+		postfix_info += "_flying"
 	else if(human.body_position == LYING_DOWN)
-		main_iconstate += "_rest"
+		postfix_info += "_rest"
 
-	human.overlays_standing[BODYPARTS_LAYER] = list(image(mob_icon, main_iconstate))
-
+	human.overlays_standing[BODYPARTS_LAYER] = list(image(mob_icon, icon_state = main_icon_state + postfix_info, layer = -BODYPARTS_LAYER))
 	human.apply_overlay(BODYPARTS_LAYER)
 
+
+	human.remove_overlay(EYES_LAYER)
+	var/mutable_appearance/eyes_overlay = mutable_appearance(mob_icon, "eyes" + postfix_info, -EYES_LAYER)
+	eyes_overlay.color = human.eye_color_left
+	var/mutable_appearance/emissive_overlay = emissive_appearance(mob_icon, "eyes" + postfix_info, human, effect_type = EMISSIVE_SPECULAR)
+	emissive_overlay.color = COLOR_WHITE
+	human.overlays_standing[EYES_LAYER] = list(eyes_overlay, emissive_overlay)
+	human.apply_overlay(EYES_LAYER)
+
+
+	human.remove_overlay(BODY_ADJ_LAYER)
+	var/body_icon_state = get_feature_icon_state(human, FEATURE_FERA_BODY(splat_id))
+	if(body_icon_state)
+		var/mutable_appearance/body_image = mutable_appearance(mob_icon, body_icon_state + postfix_info, -BODY_ADJ_LAYER)
+		human.overlays_standing[BODY_ADJ_LAYER] = list(body_image)
+		human.apply_overlay(BODY_ADJ_LAYER)
+
+	human.remove_overlay(HAIR_LAYER)
+	var/hair_icon_state = get_feature_icon_state(human, FEATURE_FERA_HAIR(splat_id))
+	if(hair_icon_state)
+		var/mutable_appearance/hair_layer = mutable_appearance(mob_icon, hair_icon_state + postfix_info, -HAIR_LAYER)
+		hair_layer.color = human.hair_color
+		human.overlays_standing[HAIR_LAYER] = list(hair_layer)
+		human.apply_overlay(HAIR_LAYER)
+
+
+	human.remove_overlay(UNIFORM_LAYER)
+	var/uniform_icon_state = get_feature_icon_state(human, FEATURE_FERA_CLOTHES(splat_id))
+	if(uniform_icon_state)
+		var/mutable_appearance/outfit_layer = mutable_appearance(mob_icon, uniform_icon_state + postfix_info, -UNIFORM_LAYER)
+		human.overlays_standing[UNIFORM_LAYER] = list(outfit_layer)
+		human.apply_overlay(UNIFORM_LAYER)
+
 	return TRUE
+
+/datum/species/human/shifter/proc/should_append_flying_to_icon(mob/living/carbon/human/human)
+	return has_flight_icon_states && HAS_TRAIT(human, TRAIT_FERA_FLIGHT) && HAS_TRAIT(human, TRAIT_MOVE_FLYING) && HAS_TRAIT(human, TRAIT_NO_FLOATING_ANIM)
 
 /datum/species/human/shifter/update_damage_overlays(mob/living/carbon/human/human)
 	if(!custom_damage_render)
@@ -155,8 +218,17 @@
 	name = "bestial form"
 	id = SPECIES_FERA_BESTIAL
 	shift_difficulty = 7
+	species_language_holder = /datum/language_holder/garou
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/glabro.dmi'
 	veil_breaching_form = TRUE
+	bodypart_overrides = list(
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/fera/bestial,
+	)
 
 /datum/species/human/shifter/bestial/should_add_buff(mob/living/carbon/human/human, datum/st_stat/buff_type, amount)
 	. = ..()
@@ -171,30 +243,28 @@
 
 /datum/species/human/shifter/bestial/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
-	human_who_gained_species.update_mob_height()
+	RegisterSignal(human_who_gained_species, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(add_fluff))
+	human_who_gained_species.update_appearance(UPDATE_OVERLAYS)
 	human_who_gained_species.update_transform(1.25)
-
-	if(!HAS_TRAIT(human_who_gained_species, TRAIT_FAIR_GLABRO))
-		human_who_gained_species.remove_overlay(BODY_ADJ_LAYER)
-		var/fur_color = get_fur_color(human_who_gained_species)
-		var/mob_icon = get_mob_icon(human_who_gained_species)
-		human_who_gained_species.overlays_standing[BODY_ADJ_LAYER] = list(image(mob_icon, fur_color))
-		human_who_gained_species.apply_overlay(BODY_ADJ_LAYER)
 
 /datum/species/human/shifter/bestial/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
 	. = ..()
-	human.update_mob_height()
+	UnregisterSignal(human, COMSIG_ATOM_UPDATE_OVERLAYS)
+	human.update_appearance(UPDATE_OVERLAYS)
 	human.update_transform()
-	human.remove_overlay(BODY_ADJ_LAYER)
 
-/datum/species/human/shifter/bestial/update_species_heights(mob/living/carbon/human/holder)
-	if(HAS_TRAIT(holder, TRAIT_DWARF))
-		return HUMAN_HEIGHT_MEDIUM
+/datum/species/human/shifter/bestial/proc/add_fluff(datum/source, list/overlay_list)
+	SIGNAL_HANDLER
 
-	if(HAS_TRAIT(holder, TRAIT_TOO_TALL))
-		return HUMAN_HEIGHT_TALLEST
+	var/mob/living/carbon/human/guy = astype(source)
+	if(!guy)
+		return
 
-	return HUMAN_HEIGHT_TALL
+	if(!HAS_TRAIT(guy, TRAIT_FAIR_GLABRO))
+		var/fur_color = get_fur_color(guy)
+		var/mob_icon = get_mob_icon(guy)
+		var/image/fluff = image(mob_icon, fur_color, layer = -BODY_ADJ_LAYER)
+		overlay_list += fluff
 
 
 /datum/species/human/shifter/war
@@ -205,17 +275,18 @@
 		TRAIT_NO_BLOOD_OVERLAY,
 		TRAIT_NO_LYING_ANGLE,
 		TRAIT_TRANSFORM_UPDATES_ICON,
+		TRAIT_HARDENED_SOLES,
 	)
-	causes_delirium = TRUE
+	form_causes_delirium = TRUE
 	veil_breaching_form = TRUE
-
+	species_language_holder = /datum/language_holder/crinos
 	mutanttongue = /obj/item/organ/tongue/fera
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera/aggravated,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera/aggravated,
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera/aggravated,
-		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera,
-		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera/heavy,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera/heavy,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/fera,
 	)
 
@@ -242,17 +313,19 @@
 		TRAIT_FERAL_BITER,
 		TRAIT_SMALL_HANDS,
 		TRAIT_NO_CUFF,
+		TRAIT_HARDENED_SOLES,
 	)
 	veil_breaching_form = TRUE
 
 	mutantbrain = /obj/item/organ/brain/fera
 	mutanttongue = /obj/item/organ/tongue/fera
+	species_language_holder = /datum/language_holder/primal
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera/aggravated,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera/aggravated,
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera/aggravated,
-		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera,
-		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera/heavy,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera/heavy,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/fera,
 	)
 
@@ -285,6 +358,7 @@
 
 	mutantbrain = /obj/item/organ/brain/fera
 	mutanttongue = /obj/item/organ/tongue/fera
+	species_language_holder = /datum/language_holder/primal
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera,
@@ -314,12 +388,15 @@
 	if(HAS_TRAIT(human_who_gained_species, TRAIT_FERA_FLIGHT))
 		var/datum/action/innate/toggle_fera_flight/ability = new(human_who_gained_species)
 		ability.Grant(human_who_gained_species)
+		human_who_gained_species.AddElementTrait(TRAIT_WADDLING, INNATE_TRAIT, /datum/element/waddling)
 
 /datum/species/human/shifter/feral/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
 	. = ..()
 	for(var/datum/action/innate/toggle_fera_flight/action in human.actions)
 		action.Remove(human)
 
+	if(HAS_TRAIT(human, TRAIT_FERA_FLIGHT))
+		REMOVE_TRAIT(human, TRAIT_WADDLING, INNATE_TRAIT)
 
 /datum/movespeed_modifier/shifter
 	abstract_type = /datum/movespeed_modifier/shifter

@@ -8,19 +8,17 @@
 	supervisors = "the Board, Branch Lead, and Chief of Security"
 	req_admin_notify = 1
 	minimal_player_age = 25
-	exp_requirements = 100
-	exp_required_type = EXP_TYPE_SPIRAL
-	exp_required_type_department = EXP_TYPE_SPIRAL
-	exp_granted_type = EXP_TYPE_SPIRAL
+	exp_requirements = EXP_REQ_MINOR
 	config_tag = "PENTEX_SEC"
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/pentex_sec
 
 	allowed_tribes = list(TRIBE_BLACK_SPIRAL_DANCERS, TRIBE_RONIN)
-	minimal_masquerade = 3
+	maximal_generation = 9
+	maximum_immortal_age = 200
+	minimum_masquerade = 3
 
 	display_order = JOB_DISPLAY_ORDER_PENTEX_SEC
-	department_for_prefs = /datum/job_department/pentex
 	departments_list = list(
 		/datum/job_department/pentex,
 	)
@@ -29,7 +27,9 @@
 		JOB_PENTEX_LEAD,
 		JOB_PENTEX_EXEC,
 		JOB_PENTEX_AFFAIRS,
-		JOB_PENTEX_SEC_CHIEF
+		JOB_PENTEX_SEC_CHIEF,
+		JOB_PENTEX_EMPLOYEE,
+		JOB_PENTEX_SEC
 	)
 
 	paycheck = PAYCHECK_CREW
@@ -48,6 +48,6 @@
 	gloves = /obj/item/clothing/gloves/vampire/work
 	suit = /obj/item/clothing/suit/vampire/vest
 	belt = /obj/item/storage/belt/holster/detective/darkpack/endron
-	l_pocket = /obj/item/smartphone // /sec - todo subtype
+	l_pocket = /obj/item/smartphone/endron_security
 	r_pocket = /obj/item/vamp/keys/pentex
 	backpack_contents = list(/obj/item/phone_book=1, /obj/item/card/credit=1)

@@ -11,8 +11,10 @@
 	// VTM
 	///Minimum vampire Generation necessary to do this job.
 	var/minimal_generation = HIGHEST_GENERATION_LIMIT
+	//Maximum vampire generation to play the job.
+	var/maximal_generation = LOWEST_GENERATION_LIMIT
 	///Minimum Masquerade level necessary to do this job.
-	var/minimal_masquerade = 0
+	var/minimum_masquerade = 0
 	/// Character must be at least this age (in years) since embrace (chronological_age - age) to join as role.
 	var/minimum_immortal_age = 0
 	/// Character must not be over this age (in years) since embrace (chronological_age - age) to join as role. (Defaults null, set to desired age.)
@@ -105,6 +107,11 @@
 				((guestbook_flags & GUESTBOOK_JOB) && (src.type == player_mob_job.type)) || \
 				((guestbook_flags & GUESTBOOK_DEPARTMENT) && length(common_departments)))
 				spawned.mind.guestbook.add_guest(spawned, player_mob, player_mob.mind.name, player_mob.mind.name, silent = TRUE)
+
+/datum/job/vampire
+	abstract_type = /datum/job/vampire
+	exp_required_type = EXP_TYPE_PLAYTIME
+	exp_granted_type = EXP_TYPE_PLAYTIME
 
 /**
  * This type is used to indicate a lack of a job.

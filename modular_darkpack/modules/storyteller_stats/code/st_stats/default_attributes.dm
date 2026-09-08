@@ -7,16 +7,24 @@
 	description = "Affects your unarmed attack damage multiplier. Increases your chances to knock down an opponent in unarmed combat."
 	subcategory = "Physical"
 
+
 /datum/st_stat/attribute/physical/dexterity
 	name = "Dexterity"
 	description = "Affects your speed and melee weapon accuracy. Increases your defense against being knocked down in unarmed combat. Increases the speed of certain actions."
-	stat_flags = AFFECTS_SPEED
+	subcategory = "Physical"
+
+/datum/st_stat/attribute/physical/dexterity/update_mob(mob/living/our_mob, initial)
+	our_mob.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/dexterity, multiplicative_slowdown = -(get_score() / 20))
+
 
 /datum/st_stat/attribute/physical/stamina
 	name = "Stamina"
 	description = "Affects your maximum health. Used in Quietus."
 	subcategory = "Physical"
-	stat_flags = AFFECTS_HEALTH
+
+/datum/st_stat/attribute/stamina/update_mob(mob/living/our_mob, initial)
+	our_mob.recalculate_max_health(initial)
+
 
 
 /datum/st_stat/attribute/social
@@ -35,6 +43,10 @@
 	name = "Appearance"
 	description = "A measure of how well a character makes a first impression. Used in social disciplines and makes your character more attractive."
 
+/* For the bimbo in the audience
+/datum/st_stat/attribute/social/appearance/update_mob(mob/living/our_mob, initial)
+	update_bloodquality_from_appearance()
+*/
 
 /datum/st_stat/attribute/mental
 	abstract_type = /datum/st_stat/attribute/mental

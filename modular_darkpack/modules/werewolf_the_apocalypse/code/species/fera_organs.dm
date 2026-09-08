@@ -12,6 +12,17 @@
 /obj/item/bodypart/chest/fera
 	// limb_id = SPECIES_FERA
 
+/obj/item/bodypart/chest/fera/bestial
+
+/obj/item/bodypart/chest/fera/bestial/update_mob_heights(mob/living/carbon/human/holder)
+	if(HAS_TRAIT(holder, TRAIT_DWARF))
+		return HUMAN_HEIGHT_MEDIUM
+
+	if(HAS_TRAIT(holder, TRAIT_TOO_TALL))
+		return HUMAN_HEIGHT_TALLEST
+
+	return HUMAN_HEIGHT_TALL
+
 /obj/item/bodypart/arm/left/fera
 	// limb_id = SPECIES_FERA
 	unarmed_sharpness = SHARP_EDGED
@@ -42,14 +53,17 @@
 	unarmed_sharpness = SHARP_EDGED
 	// limb_id = SPECIES_FERA
 	footprint_sprite = FOOTPRINT_SPRITE_CLAWS
-	footstep_type = FOOTSTEP_MOB_CLAW
+
+/obj/item/bodypart/leg/left/fera/heavy
+	special_footstep_sounds = list(list('modular_darkpack/modules/werewolf_the_apocalypse/sounds/hefty_step.ogg'), 60, 15)
 
 /obj/item/bodypart/leg/right/fera
 	unarmed_sharpness = SHARP_EDGED
 	// limb_id = SPECIES_FERA
 	footprint_sprite = FOOTPRINT_SPRITE_CLAWS
-	footstep_type = FOOTSTEP_MOB_CLAW
 
+/obj/item/bodypart/leg/right/fera/heavy
+	special_footstep_sounds = list(list('modular_darkpack/modules/werewolf_the_apocalypse/sounds/hefty_step.ogg'), 60, 15)
 
 // Specificly to restrict use of tools... because that was moved to the brain..
 /obj/item/organ/brain/fera
@@ -63,8 +77,8 @@
 
 /obj/item/organ/tongue/fera
 	name = "exotic tongue"
-	languages_native = list(/datum/language/garou_tongue)
+	languages_native = list(/datum/language/garou_tongue, /datum/language/primal_tongue)
 
 // Garou tongues can speak all default + garou tongue
 /obj/item/organ/tongue/fera/get_possible_languages()
-	return ..() + /datum/language/garou_tongue
+	return ..() + list(/datum/language/garou_tongue, /datum/language/primal_tongue)

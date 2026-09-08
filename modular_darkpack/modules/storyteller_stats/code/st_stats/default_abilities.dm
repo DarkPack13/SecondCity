@@ -148,7 +148,14 @@
 	name = "Medicine"
 	description = "Affects your character's knowledge of anatomy, medicine, and emergency first aid protocols. Used in Vicissitude."
 
+/datum/st_stat/ability/knowledge/medicine/link_mob(mob/living/our_mob)
+	RegisterSignal(our_mob, COMSIG_LIVING_OPERATING_ON, PROC_REF(check_medicine_wound_tending))
+
+/datum/st_stat/ability/knowledge/medicine/unlink_mob(mob/living/our_mob)
+	UnregisterSignal(our_mob, COMSIG_LIVING_OPERATING_ON)
+
 /datum/st_stat/ability/knowledge/occult
+	subcategory = "Knowledges"
 	name = "Occult"
 	description = "Affects your character's knowledge of esoteric and occult knowledge and concepts. Used in magic disciplines and affects your magical rituals. At occult 3 or higher, you can identify magical artifacts."
 

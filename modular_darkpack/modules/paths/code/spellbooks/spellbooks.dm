@@ -26,6 +26,7 @@
 		true_desc = desc
 		name = "dusty forgotten tome"
 		desc = "This book is covered in dust and the pages appear worn. Its probably not important."
+	AddComponent(/datum/component/selling, 100, "artifact", FALSE, 0, 10, TRUE)
 
 /obj/item/path_spellbook/examine(mob/user)
 	. = ..()
@@ -136,7 +137,7 @@
 	var/study_research_value = 50
 	var/required_discipline = /datum/discipline/thaumaturgy
 	var/no_trait_message = "The text is incomprehensible to you without the proper knowledge."
-	var/cooldown_message = "You have recently studied this tome extensively. You need %TIME% more minutes before you can gain further insight from it."
+	var/cooldown_message = "You have recently studied this tome extensively. You need to wait %TIME% before you can gain further insight from it."
 	var/study_start_message = "You begin studying the occult text..."
 	var/study_interrupted_message = "Your concentration was broken. You failed to absorb any meaningful knowledge from the text."
 	var/research_gain_message = "You gain %POINTS% research points from studying this tome!"
@@ -147,6 +148,10 @@
 		"Ancient knowledge flows from the pages into your mind.",
 		"The text reveals secrets of supernatural power and ritual."
 	)
+
+/obj/item/occult_book/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/selling, 100, "artifact", FALSE, 0, 10, TRUE)
 
 /obj/item/occult_book/attack_self(mob/living/carbon/human/user)
 	if(!can_study(user))
@@ -166,7 +171,8 @@
 
 /obj/item/occult_book/proc/check_cooldown(mob/living/carbon/human/user)
 	if(!COOLDOWN_FINISHED(src, study_cooldown))
-		to_chat(user, span_warning(cooldown_message))
+		var/replaced_text_cooldown_message = replacetext(cooldown_message, "%TIME%", "[COOLDOWN_TIMELEFT(src, study_cooldown) / 10] seconds")
+		to_chat(user, span_warning(replaced_text_cooldown_message))
 		return FALSE
 	return TRUE
 

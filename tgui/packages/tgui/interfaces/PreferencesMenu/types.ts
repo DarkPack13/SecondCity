@@ -39,6 +39,12 @@ export enum JobPriority {
   High = 3,
 }
 
+type JobPreference = {
+  job: string;
+  priority: JobPriority | null;
+  assigned_profile_slot: number | null;
+};
+
 export type Name = {
   can_randomize: BooleanLike;
   explanation: string;
@@ -80,7 +86,8 @@ export type DisciplineInfo = {
 };
 // DARKPACK EDIT END - DISCIPLINES
 
-export type Splats = { // DARKPACK EDIT ADD START - SPLATS
+export type Splats = {
+  // DARKPACK EDIT ADD START - SPLATS
   name: string;
   desc: string;
   lore: string[];
@@ -112,6 +119,7 @@ export type Perk = {
 
 export type Department = {
   head?: string;
+  color?: string;
 };
 
 export type Job = {
@@ -222,8 +230,8 @@ export type PreferencesMenuData = {
       required_playtime: number;
     }
   >;
-  job_preferences: Record<string, JobPriority>;
-// DARKPACK EDIT ADD -  ALTERNATIVE_JOB_TITLES
+  job_preferences: JobPreference[];
+  // DARKPACK EDIT ADD -  ALTERNATIVE_JOB_TITLES
   job_alt_titles: Record<string, string>;
   keybindings: Record<string, string[]>;
   overflow_role: string;
@@ -242,6 +250,8 @@ export type PreferencesMenuData = {
   discipline_tier: string;
   discipline_tier_details: string;
   is_trusted: BooleanLike;
+  player_whitelists: string[]; // DARKPACK EDIT ADD - WHITELIST
+  clan_names_to_key: Record<string, string>; // DARKPACK EDIT ADD - WHITELIST
   max_trusted_generation: number;
   max_public_generation: number;
   highest_generation_limit: number;
@@ -279,6 +289,7 @@ export type ServerData = {
   jobs: {
     departments: Record<string, Department>;
     jobs: Record<string, Job>;
+    jobs_sorted: string[];
   };
   names: {
     types: Record<string, Name>;

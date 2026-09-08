@@ -45,6 +45,18 @@
 /datum/loadout_item/suit/coat/leopardcoat
 	item_path = /obj/item/clothing/suit/vampire/coat/leopard
 
+/datum/loadout_item/suit/jacket/oversizedjacket
+	name = "Oversized Jacket"
+	item_path = /obj/item/clothing/suit/jacket/oversized
+
+/datum/loadout_item/suit/jacket/fancyfurcoat
+	name = "Fancy Fur Coat"
+	item_path = /obj/item/clothing/suit/jacket/fancy
+
+/datum/loadout_item/suit/jacket/trenchcoatalt
+	name = "Trenchcoat (Alt)"
+	item_path = /obj/item/clothing/suit/toggle/jacket/trenchcoat
+
 // Jackets
 /datum/loadout_item/suit/jacket
 	abstract_type = /datum/loadout_item/suit/jacket
@@ -72,6 +84,14 @@
 /datum/loadout_item/suit/jacket/black_suit
 	name = "Jacket (Black Suit)"
 	item_path = /obj/item/clothing/suit/toggle/lawyer/black
+
+/datum/loadout_item/suit/jacket/bomber_classic
+	name = "Classic Bomber Jacket"
+	item_path = /obj/item/clothing/suit/vampire/bomber_jacket_classic
+
+/datum/loadout_item/suit/jacket/bomber_gray
+	name = "Gray Bomber Jacket"
+	item_path = /obj/item/clothing/suit/vampire/bomber_jacket_gray
 
 // Trenchcoats
 /datum/loadout_item/suit/trenchcoat
@@ -152,3 +172,16 @@
 /datum/loadout_item/suit/robes/blue
 	name = "Robes (Blue)"
 	item_path = /obj/item/clothing/suit/hooded/robes/blue
+
+
+/// Shawls
+/datum/loadout_item/suit/shawl
+	abstract_type = /datum/loadout_item/suit/shawl
+
+/datum/loadout_item/suit/shawl/black
+	name = "Black Shawl"
+	item_path = /obj/item/clothing/suit/vampire/shawl_black
+
+/datum/loadout_item/suit/shawl/white
+	name = "White Shawl"
+	item_path = /obj/item/clothing/suit/vampire/shawl_white

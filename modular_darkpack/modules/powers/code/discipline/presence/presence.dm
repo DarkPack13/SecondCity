@@ -2,7 +2,12 @@
 
 /datum/discipline/presence
 	name = "Presence"
-	desc = "Allows you to attract, sway, and control crowds through supernatural allure and emotional manipulation."
+	desc = {"Allows you to attract, sway, and control crowds through supernatural allure and emotional manipulation.
+● Awe: Charisma + Performance (difficulty 7)
+●● Dread Gaze: Charisma + Intimidation vs. Wits + Courage
+●●● Entrancement: Appearance + Empathy vs. Willpower
+●●●● Summon: Charisma + Subterfuge (difficulty 7)
+●●●●● Majesty: Courage vs. Charisma + Intimidation"}
 	icon_state = "presence"
 	power_type = /datum/discipline_power/presence
 
@@ -29,6 +34,16 @@
 
 	//is the difficulty pre-defined? if not, its probably their willpower.
 	var/theirpower = difficulty || target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
+
+	// Do we have traits to modify our difficulties?
+	if((!(owner.obscured_slots & HIDEFACE))&(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE))) // Are we visibly disfigured?
+		theirpower += 2 // Increase the difficulty by two.
+
+	if(!get_kindred_splat(target)) // Is our target mortal?
+		if(HAS_TRAIT(owner, TRAIT_GRAVE_SMELL)) // Are we stinky?
+			theirpower += 1
+		if((HAS_TRAIT(owner, TRAIT_GLOWING_EYES)) && (!owner.is_eyes_covered()) && (STAT_INTIMIDATION in using_stats)) // Are we intimidating a mortal with uncovered eyes?
+			theirpower -= 1
 
 	var/successes = SSroll.storyteller_roll_datum(owner, target, difficulty = theirpower, applic_stats = using_stats, numerical = TRUE)
 
@@ -187,7 +202,7 @@
 		to_chat(owner, span_warning("Your terrifying presence sends [target] fleeing in terror!"))
 
 		//V20's 'dread gaze' section states that with 3 or more successes targets will find themselves scratching at the walls or fleeing against their will because they are so terrified.
-		GLOB.move_manager.move_away(target, owner, 10, target.cached_multiplicative_slowdown)
+		GLOB.move_manager.move_away(target, owner, 10, target.cached_multiplicative_slowdown, 2 MINUTES)
 
 /datum/discipline_power/presence/dread_gaze/deactivate(mob/living/carbon/human/target)
 	. = ..()

@@ -2,7 +2,12 @@
 
 /datum/discipline/necromancy
 	name = "Necromancy"
-	desc = "Offers control over another, undead reality."
+	desc = {"Offers control over another, undead reality.
+● Shroudsight: Perception + Awareness (difficulty 7)
+●● Ethereal Horde: Wits + Occult (difficulty 6)
+●●● Ashes to Ashes: Wits + Occult (difficulty 6)
+●●●● Cold of the Grave: Wits + Occult (difficulty 6)
+●●●●● Shambling Horde: Wits + Occult (difficulty 6)"}
 	icon_state = "necromancy"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/necromancy
@@ -42,27 +47,30 @@
 
 	level = 1
 	check_flags = DISC_CHECK_CONSCIOUS
-	vitae_cost = 0
+	vitae_cost = 1
 
 	activate_sound = 'modular_darkpack/modules/ritual_necromancy/sounds/necromancy1on.ogg'
 	deactivate_sound = 'modular_darkpack/modules/ritual_necromancy/sounds/necromancy1off.ogg'
 
-	cooldown_length = 1 SCENES
+	cooldown_length = 3 SCENES
 	duration_length = 1 SCENES
 
 	var/datum/storyteller_roll/shroudsight/roll_datum
 
-/datum/discipline_power/necromancy/shroudsight/activate()
-	. = ..()
+/datum/discipline_power/necromancy/shroudsight/pre_activation_checks(mob/living/target)
 	if(!roll_datum)
 		roll_datum = new()
 
 	var/roll_result = roll_datum.st_roll(owner)
+	if(roll_result == ROLL_COOLDOWN)
+		return FALSE
+	return roll_result == ROLL_SUCCESS
 
-	if(roll_result != ROLL_SUCCESS)
-		return
+/datum/discipline_power/necromancy/shroudsight/activate()
+	. = ..()
 
 	ADD_TRAIT(owner, TRAIT_GHOST_VISION, NECROMANCY_TRAIT)
+	ADD_TRAIT(owner, TRAIT_LOCAL_SIXTHSENSE, NECROMANCY_TRAIT)
 	owner.update_sight()
 
 	to_chat(owner, span_notice("You peek beyond the Shroud."))
@@ -71,6 +79,7 @@
 	. = ..()
 
 	REMOVE_TRAIT(owner, TRAIT_GHOST_VISION, NECROMANCY_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_LOCAL_SIXTHSENSE, NECROMANCY_TRAIT)
 	owner.update_sight()
 
 	to_chat(owner, span_warning("Your vision returns to the mortal realm."))
@@ -201,7 +210,7 @@
 	if(iscarbon(target))
 		var/mob/living/carbon/human/corpsebuff = target
 		// removed iscathayan(target) || from line 183 DARKPACK TODO - readd KJs Kuei-Jin
-		if(get_kindred_splat(target) || iszombie(target)) //undead become spongier, but move slightly slower
+		if(get_kindred_splat(target) || target.has_status_effect(/datum/status_effect/zombie)) //undead become spongier, but move slightly slower
 			corpsebuff.visible_message(span_danger("[target]'s body seizes with rigor mortis."), span_danger("Your senses dull to pain and everything else."))
 
 			for(var/obj/item/bodypart/part as anything in corpsebuff.bodyparts)
@@ -295,7 +304,7 @@
 					owner.add_beastmaster_minion(/mob/living/basic/beastmaster/giovanni_zombie/level5)
 					qdel(target)
 
-	else if(iszombie(target))
+	else if(target.has_status_effect(/datum/status_effect/zombie))
 		owner.visible_message(span_warning("[owner] aggressively gestures at [target]!"))
 		target.visible_message(span_warning("[target]'s flesh knits together'!"), span_danger("Your rotten flesh reconstitutes!"))
 		var/mob/living/carbon/human/zombie = target

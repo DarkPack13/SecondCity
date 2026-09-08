@@ -1,4 +1,5 @@
 /datum/job
+	abstract_type = /datum/job
 	/// The name of the job , used for preferences, bans and more. Make sure you know what you're doing before changing this.
 	var/title = "NOPE"
 
@@ -139,6 +140,9 @@
 	/// How desensitized this job is to seeing death as a base - applied with the job
 	var/desensitized_base = 1.0
 
+	///If set, adds this as the job icon map (from fontawesome5)
+	var/tgui_icon
+
 /datum/job/New()
 	. = ..()
 	// DARKPACK EDIT ADD START - ALTERNATIVE_JOB_TITLES
@@ -216,30 +220,29 @@
 		bank_account.payday(STARTING_PAYCHECKS, free = TRUE)
 		account_id = bank_account.account_id
 		bank_account.replaceable = FALSE
-		// DARKPACK EDIT ADD - Finance affects starting money
-		if(st_get_stat(STAT_FINANCE))
-			var/finance = st_get_stat(STAT_FINANCE)
-			switch(finance)
-				if(0)
-					if(!CONFIG_GET(flag/punishing_zero_dots))
-						bank_account.account_balance = rand(50, 100)
-						bank_account.paycheck_amount = 15
-				if(1)
-					bank_account.account_balance = rand(100, 200)
-					bank_account.paycheck_amount = 40
-				if(2)
-					bank_account.account_balance = rand(300, 600)
-					bank_account.paycheck_amount = 80
-				if(3)
-					bank_account.account_balance = rand(800, 1200)
-					bank_account.paycheck_amount = 120
-				if(4)
-					bank_account.account_balance = rand(1200, 1600)
-					bank_account.paycheck_amount = 160
-				if(5)
-					bank_account.account_balance = rand(2000, 3000)
-					bank_account.paycheck_amount = 250
-		// DARKPACK EDIT ADD END - Finance affects starting money
+		// DARKPACK EDIT ADD - (Finance affects starting money)
+		var/finance = st_get_stat(STAT_FINANCE)
+		switch(finance)
+			if(0)
+				if(!CONFIG_GET(flag/punishing_zero_dots))
+					bank_account.account_balance = rand(50, 100)
+					bank_account.paycheck_amount = 15
+			if(1)
+				bank_account.account_balance = rand(100, 200)
+				bank_account.paycheck_amount = 40
+			if(2)
+				bank_account.account_balance = rand(300, 600)
+				bank_account.paycheck_amount = 80
+			if(3)
+				bank_account.account_balance = rand(800, 1200)
+				bank_account.paycheck_amount = 120
+			if(4)
+				bank_account.account_balance = rand(1200, 1600)
+				bank_account.paycheck_amount = 160
+			if(5)
+				bank_account.account_balance = rand(2000, 3000)
+				bank_account.paycheck_amount = 250
+		// DARKPACK EDIT ADD END
 		add_mob_memory(/datum/memory/key/account, remembered_id = account_id)
 		add_mob_memory(/datum/memory/key/bank_pin, remembered_id = bank_account.bank_pin) // DARKPACK EDIT ADD
 
@@ -379,6 +382,7 @@
 	var/satchel = /obj/item/storage/backpack/satchel
 	var/duffelbag = /obj/item/storage/backpack/duffelbag
 	var/messenger = /obj/item/storage/backpack/messenger
+	var/wintercoat = /obj/item/clothing/suit/hooded/wintercoat
 
 	var/pda_slot = ITEM_SLOT_BELT
 
@@ -553,7 +557,7 @@
 	var/mob/living/spawn_instance
 	if(ispath(spawn_type, /mob/living/silicon/ai))
 		// This is unfortunately necessary because of snowflake AI init code. To be refactored.
-		spawn_instance = new spawn_type(get_turf(spawn_point), null, player_client.mob)
+		spawn_instance = new spawn_type(get_turf(spawn_point), player_client.mob, null, null, TRUE)
 	else
 		spawn_instance = spawn_point.JoinPlayerHere(spawn_type, TRUE)
 	spawn_instance.apply_prefs_job(player_client, src)
@@ -610,7 +614,7 @@
 			dna.species.roundstart_changed = TRUE
 
 		if(GLOB.current_anonymous_theme)
-			fully_replace_character_name(null, GLOB.current_anonymous_theme.anonymous_name(src))
+			fully_replace_character_name(null, GLOB.current_anonymous_theme.anonymous_name(src), log_new_name = TRUE)
 	else
 		var/is_antag = (player_client.mob.mind in GLOB.pre_setup_antags)
 		if(require_human)
@@ -684,6 +688,7 @@
 /datum/job/proc/after_latejoin_spawn(mob/living/spawning)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JOB_AFTER_LATEJOIN_SPAWN, src, spawning)
+	spawning.client.show_spawn_text_overlay()
 
 /// Called when a mob that has this job is admin respawned
 /datum/job/proc/on_respawn(mob/new_character)
@@ -699,8 +704,16 @@
 	if(!job_outfit || !job_outfit::id_trim)
 		CRASH("[src.type] has no job outfit but isn't overwriting get_lobby_icon().")
 	var/datum/id_trim/job_trim = job_outfit::id_trim
+	var/icon = job_trim::sechud_icon
 	var/icon_state = job_trim::sechud_icon_state
-	if(!icon_state || icon_state == SECHUD_UNKNOWN)
-		CRASH("[src.type] has no job icon state.")
+	if(!icon || !icon_state || icon_state == SECHUD_UNKNOWN)
+		CRASH("[src.type] has no job icon or icon state.")
 
-	return icon('icons/mob/huds/hud.dmi', icon_state)
+	return icon(icon, icon_state)
+
+/datum/job/proc/display_order_with_department()
+	var/datum/job_department/main_department = departments_list?[1]
+	if(!main_department)
+		main_department = /datum/job_department/undefined
+
+	return display_order + (main_department::display_order * 1000)

@@ -3,14 +3,14 @@
 /datum/language/spinwarder
 	name = "Spinwarder"
 	desc = "The official language of the Spinward Stellar Coalition, as inherited from the Third Soviet Union."
-	key = "s"
+	// key = "s" // DARKPACK EDIT REMOVAL - (Key conflicts)
 	space_chance = 20
 	sentence_chance = 0
 	between_word_sentence_chance = 10
 	between_word_space_chance = 75
 	additional_syllable_low = 0
 	additional_syllable_high = 0
-	flags = TONGUELESS_SPEECH
+	flags = LANGUAGE_TONGUELESS_SPEECH
 	syllables = list(
 		"v", "od", "noy", "ned", "ele", "dn", "ey", "da", "ny", "et", "mes", "yat",
 		"che", "bu", "pol", "ye", "eli", "nyy", "se", "god", "ya", "dom", "ash", "zav",

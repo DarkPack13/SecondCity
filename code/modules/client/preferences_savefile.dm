@@ -269,6 +269,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	chat_toggles = savefile.get_entry("chat_toggles", chat_toggles)
 	toggles = savefile.get_entry("toggles", toggles)
 	ignoring = savefile.get_entry("ignoring", ignoring)
+	job_assigned_profiles = savefile.get_entry("job_assigned_profiles")
 
 	// OOC commendations
 	hearted_until = savefile.get_entry("hearted_until", hearted_until)
@@ -305,6 +306,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	be_special = sanitize_be_special(SANITIZE_LIST(be_special))
 	key_bindings = sanitize_keybindings(key_bindings)
 	favorite_outfits = SANITIZE_LIST(favorite_outfits)
+	job_assigned_profiles = SANITIZE_LIST(job_assigned_profiles)
 
 	key_bindings_by_key = get_key_bindings_by_key(key_bindings)
 
@@ -360,23 +362,32 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	savefile.set_entry("key_bindings", key_bindings)
 	savefile.set_entry("hearted_until", (hearted_until > world.realtime ? hearted_until : null))
 	savefile.set_entry("favorite_outfits", favorite_outfits)
+	savefile.set_entry("job_assigned_profiles", job_assigned_profiles)
 	savefile.save()
 	return TRUE
 
-/datum/preferences/proc/load_character(slot)
+/datum/preferences/proc/load_character(slot = default_slot)
 	SHOULD_NOT_SLEEP(TRUE)
-	if(!slot)
-		slot = default_slot
 	slot = sanitize_integer(slot, 1, max_save_slots, initial(default_slot))
+	var/original_default_slot = default_slot
 	if(slot != default_slot)
 		default_slot = slot
 		savefile.set_entry("default_slot", slot)
 
 	var/tree_key = "character[slot]"
 	var/list/save_data = savefile.get_entry(tree_key)
+	if(isnull(save_data)) // This is the case where we have a new character slot being switched to
+		for (var/datum/preference/preference as anything in get_preferences_in_priority_order()) // clear the cache in this case
+			if (preference.savefile_identifier != PREFERENCE_CHARACTER)
+				continue
+			value_cache -= preference.type
+		return FALSE
+
 	var/data_validity_integer = check_savedata_version(save_data)
 	var/data_validity_integer_darkpack = check_savedata_version_darkpack(save_data) // DARKPACK EDIT ADD
 	if(IS_DATA_OBSOLETE(data_validity_integer) || IS_DATA_OBSOLETE(data_validity_integer_darkpack)) //fatal, can't load any data // DARKPACK EDIT CHANGE
+		default_slot = original_default_slot
+		savefile.set_entry("default_slot", original_default_slot)
 		return FALSE
 
 	// Read everything into cache
@@ -425,9 +436,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	all_quirks = SANITIZE_LIST(all_quirks)
 
 	//Validate job prefs
-	for(var/j in job_preferences)
-		if(job_preferences[j] != JP_LOW && job_preferences[j] != JP_MEDIUM && job_preferences[j] != JP_HIGH)
-			job_preferences -= j
+	for(var/job, priority in job_preferences)
+		if(priority != JP_LOW && priority != JP_MEDIUM && priority != JP_HIGH)
+			job_preferences -= job
 
 	all_quirks = SSquirks.filter_invalid_quirks(SANITIZE_LIST(all_quirks))
 
@@ -482,7 +493,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	for(var/stat_typepath in stats_list)
 		var/datum/st_stat/stat = stats_list[stat_typepath]
 		new_stats_list[stat_typepath] = list()
-		new_stats_list[stat_typepath][STAT_SCORE] = stat.get_score(include_bonus = FALSE)
+		new_stats_list[stat_typepath][STAT_SCORE] = stat.get_pure_score()
 		new_stats_list[stat_typepath][STAT_POINTS] = stat.get_points()
 		new_stats_list[stat_typepath][STAT_FREEBIE_COST_SPENT] = stat.freebie_cost_spent
 	save_data["preference_storyteller_stats"] = new_stats_list
@@ -497,6 +508,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if (!load_character(new_slot))
 		tainted_character_profiles = TRUE
 		randomise_appearance_prefs()
+		all_quirks = list()
+		recently_updated_keys |= /datum/preference/name/real_name
 		save_character()
 
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
@@ -525,6 +538,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		stack_trace("remove_current_slot() being called when there are no slots to go to, the client should prevent this")
 		return
 
+	discipline_levels = list() // DARKPACK EDIT ADD - remove disciplines when removing a character slot
 	savefile.remove_entry("character[default_slot]")
 	tainted_character_profiles = TRUE
 	switch_to_slot(closest_slot)
