@@ -26,8 +26,6 @@
 	/// Flags for stats, such as if it affects health.
 	var/stat_flags = NONE
 
-	/// If the user can spend points on that stat.
-	var/editable = TRUE
 	/// LAZYLIST. A dictionary of modifiers to this attribute.
 	var/list/modifiers
 	/// LAZYLIST. A dictionary of auto success scores to this attribute.
