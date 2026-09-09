@@ -22,7 +22,7 @@
 	description = "Affects your maximum health. Used in Quietus."
 	subcategory = "Physical"
 
-/datum/st_stat/attribute/stamina/update_mob(mob/living/our_mob, initial)
+/datum/st_stat/attribute/physical/stamina/update_mob(mob/living/our_mob, initial)
 	our_mob.recalculate_max_health(initial)
 
 
