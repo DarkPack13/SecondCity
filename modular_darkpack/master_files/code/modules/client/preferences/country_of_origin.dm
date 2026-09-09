@@ -28,10 +28,10 @@
 	return pick(cached_values)
 
 /datum/preference/choiced/country_of_origin/create_default_value()
-	return "United States"
+	return DEFAULT_COUNTRY_NAME
 
 /datum/preference/choiced/country_of_origin/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	target.country_of_origin = value
+	target.dna.country_of_origin = value
 	var/static/list/country_language_map
 	if(!country_language_map)
 		country_language_map = list(
