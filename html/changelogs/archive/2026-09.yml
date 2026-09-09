@@ -80,3 +80,6 @@
   - image: lectern south sprite is shorter to prevent needing to pixelshift
   - spellcheck: de-SS13'd the captain-cast radio frequency
   - rscadd: start_off subtype for generators
+2026-09-09:
+  Halgmor:
+  - image: the Ductus now has a golden icon instead of sharing white with the priest
