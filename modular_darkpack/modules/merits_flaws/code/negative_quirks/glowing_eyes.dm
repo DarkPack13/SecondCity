@@ -6,7 +6,6 @@
 	ttrpg_sources = list(/datum/source_book/vtm20 = 482)
 	icon = FA_ICON_EYE
 	value = -3
-	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES
 	gain_text = span_notice("Your eyes glow with an unnatural light!")
 	lose_text = span_notice("The light in your eyes fades.")
 	failure_message = span_notice("The light in your eyes fades.")
@@ -32,41 +31,64 @@ dark.*/
 	var/mob/living/carbon/human/human_holder = astype(quirk_holder)
 	if(!human_holder)
 		return
-	if(!is_reflective)
-		ADD_TRAIT(quirk_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
+	ADD_TRAIT(quirk_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
+
+	if(!is_reflective) // If we're using the vampire version
 		human_holder.st_add_stat_mod(STAT_PERCEPTION, -1, "Glowing Eyes") // I guess this works. what would count as a sight-based roll is beyond me rn
-	else
-		ADD_TRAIT(quirk_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
+		ADD_TRAIT(quirk_holder, TRAIT_MASQUERADE_VIOLATING_EYES, QUIRK_TRAIT)
+	else // If we're not
 		var/obj/item/organ/eyes/eyes_organ = human_holder.get_organ_slot(ORGAN_SLOT_EYES)
 		eyes_organ?.flash_protect = max(eyes_organ?.flash_protect-1, FLASH_PROTECTION_HYPER_SENSITIVE)
+
 	var/obj/item/clothing/glasses/vampire/sun/new_glasses = new(human_holder.loc) // Give them glasses so they aren't immediately breaching on spawn or anything
 	human_holder.equip_to_appropriate_slot(new_glasses, TRUE)
-	RegisterSignal(quirk_holder, COMSIG_MOVABLE_MOVED, PROC_REF(on_holder_moved))
 
 /datum/quirk/darkpack/glowing_eyes/remove()
 	. = ..()
 	var/mob/living/carbon/human/human_holder = astype(quirk_holder)
 	if(!human_holder)
 		return
-	if(!is_reflective)
-		REMOVE_TRAIT(quirk_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
-	else
-		REMOVE_TRAIT(quirk_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
+	REMOVE_TRAIT(quirk_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
+
+	if(!is_reflective) // If we're using the vampire version
+		human_holder.st_remove_stat_mod(STAT_PERCEPTION, "Glowing Eyes")
+		REMOVE_TRAIT(quirk_holder, TRAIT_MASQUERADE_VIOLATING_EYES, QUIRK_TRAIT)
+	else // If we're not
 		var/obj/item/organ/eyes/eyes_organ = human_holder.get_organ_slot(ORGAN_SLOT_EYES)
 		eyes_organ?.flash_protect = min(eyes_organ?.flash_protect+1, FLASH_PROTECTION_WELDER_HYPER_SENSITIVE)
-	human_holder.st_remove_stat_mod(STAT_PERCEPTION, "Glowing Eyes")
-	UnregisterSignal(quirk_holder, COMSIG_MOVABLE_MOVED)
-	quirk_holder.remove_status_effect(/datum/status_effect/glowing_eyes_warning)
-	quirk_holder.remove_status_effect(/datum/status_effect/glowing_eyes_full)
+		quirk_holder.remove_status_effect(/datum/status_effect/glowing_eyes_warning)
+		quirk_holder.remove_status_effect(/datum/status_effect/glowing_eyes_full)
 
-/datum/quirk/darkpack/glowing_eyes/process(seconds_per_tick)
+/datum/quirk/darkpack/glowing_eyes/reflective // subtyped for organization
+	name = "Reflective Eyes"
+	desc = {"Your eyes reflect light in darkness. Whether you have a tapetum lucidum, exotic contact lenses, or some other condition, you'll frighten those you encounter in the dark.
+		This may even violate the laws your kind set to stay unknown if you are seen in the dark."}
+	value = -1
+	gain_text = span_notice("Your eyes reflect the light around you.")
+	lose_text = span_notice("The light in your eyes fades.")
+	failure_message = span_notice("Your eyes glint for a moment, then fade.")
+	quirk_flags = QUIRK_PROCESSES
+	mob_trait = null
+	allowed_splats = null
+	forbidden_splats = list(SPLAT_KINDRED)
+	is_reflective = TRUE
+
+/datum/quirk/darkpack/glowing_eyes/reflective/add(client/client_source)
+	. = ..()
+	RegisterSignal(quirk_holder, COMSIG_MOVABLE_MOVED, PROC_REF(on_holder_moved))
+
+/datum/quirk/darkpack/glowing_eyes/reflective/remove()
+	. = ..()
+	UnregisterSignal(quirk_holder, COMSIG_MOVABLE_MOVED)
+
+/datum/quirk/darkpack/glowing_eyes/reflective/process(seconds_per_tick)
 	eye_light_status()
 
-/datum/quirk/darkpack/glowing_eyes/proc/on_holder_moved(mob/living/source, atom/old_loc, dir, forced, list/old_locs)
+/datum/quirk/darkpack/glowing_eyes/reflective/proc/on_holder_moved(mob/living/source, atom/old_loc, dir, forced, list/old_locs)
 	SIGNAL_HANDLER
 	eye_light_status()
 
-/datum/quirk/darkpack/glowing_eyes/proc/eye_light_status()
+/datum/quirk/darkpack/glowing_eyes/reflective/proc/eye_light_status()
 	if(quirk_holder.IsSleeping() || quirk_holder.IsUnconscious() || quirk_holder.is_eyes_covered())
 		quirk_holder.remove_status_effect(/datum/status_effect/glowing_eyes_warning)
 		quirk_holder.remove_status_effect(/datum/status_effect/glowing_eyes_full)
@@ -144,16 +166,3 @@ dark.*/
 	glow.transform = matrix() * 2
 	glow.pixel_y = -16
 	. += glow
-
-/datum/quirk/darkpack/glowing_eyes/reflective
-	name = "Reflective Eyes"
-	desc = {"Your eyes reflect light in darkness. Whether you have a tapetum lucidum, exotic contact lenses, or some other condition, you'll frighten those you encounter in the dark.
-		This may even violate the laws your kind set to stay unknown if you are seen in the dark."}
-	value = -1
-	gain_text = span_notice("Your eyes reflect the light around you.")
-	lose_text = span_notice("The light in your eyes fades.")
-	failure_message = span_notice("Your eyes glint for a moment, then fade.")
-	mob_trait = null
-	allowed_splats = null
-	forbidden_splats = list(SPLAT_KINDRED)
-	is_reflective = TRUE
