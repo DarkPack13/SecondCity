@@ -1,12 +1,12 @@
 /mob/living/Initialize(mapload)
 	. = ..()
-	storyteller_stats = create_new_stat_prefs(storyteller_stats)
+	replace_storyteller_stats(create_new_stat_prefs(storyteller_stats))
 	become_area_sensitive(ZONE_TRAIT)
 	update_zone_hud(src, get_area(src)) // AREAS - (Zone hud)
 	RegisterSignal(src, COMSIG_MASQUERADE_VIOLATION, TYPE_PROC_REF(/atom/movable, on_masquerade_violation))
 
 /mob/living/Destroy(force)
-	storyteller_stats = null
+	clear_storyteller_stats()
 	beastmaster_minions = null
 	minion_command_components = null
 	QDEL_LAZYLIST(splats)
