@@ -15,6 +15,7 @@ import { ScreenMessages } from './ScreenMessages';
 import { ScreenPhone } from './ScreenPhone';
 import { ScreenEndpost } from './ScreenEndpost';
 import { ScreenRecents } from './ScreenRecents';
+import { ScreenSecuritySetting } from './ScreenSecuritySetting';
 import { ScreenSettings } from './ScreenSettings';
 import { ScreenSoundSettings } from './ScreenSoundSettings';
 
@@ -78,6 +79,7 @@ export type Data = {
   calling_user?: string;
   ringer: BooleanLike;
   vibration: BooleanLike;
+  password_enabled: BooleanLike;
   speaker_mode: BooleanLike;
   muted: BooleanLike;
   time: string;
@@ -108,6 +110,7 @@ export enum NavigableApps {
   IRC,
   Backgrounds,
   Settings,
+  Security,
   SoundSettings,
   Endpost,
 }
@@ -178,6 +181,8 @@ const PhysicalScreen = memo((props: {
         return <ScreenBackgrounds setApp={setApp} />;
       case NavigableApps.Settings:
         return <ScreenSettings setApp={setApp} />;
+      case NavigableApps.Security:
+        return <ScreenSecuritySetting setApp={setApp} />;
       case NavigableApps.SoundSettings:
         return <ScreenSoundSettings setApp={setApp} />;
       case NavigableApps.Endpost:
