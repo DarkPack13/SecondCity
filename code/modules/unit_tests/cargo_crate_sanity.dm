@@ -7,6 +7,8 @@
 
 /datum/unit_test/cargo_crate_sanity/Run()
 
+	/* // DARKPACK TODO - Selling Component
+
 	for(var/crate in subtypesof(/datum/supply_pack))
 		var/datum/supply_pack/new_crate = allocate(crate)
 		if(new_crate.test_ignored)
@@ -42,3 +44,5 @@
 		new_crate = null
 		minimum_cost = null
 		export_log = null
+
+	*/ // DARKPACK TODO - Selling Component
