@@ -36,7 +36,7 @@ dark.*/
 		ADD_TRAIT(quirk_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
 		human_holder.st_add_stat_mod(STAT_PERCEPTION, -1, "Glowing Eyes") // I guess this works. what would count as a sight-based roll is beyond me rn
 	else
-		ADD_TRAIT(quirk_holder, TRAIT_REFLECTIVE_EYES, QUIRK_TRAIT)
+		ADD_TRAIT(quirk_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
 		var/obj/item/organ/eyes/eyes_organ = human_holder.get_organ_slot(ORGAN_SLOT_EYES)
 		eyes_organ?.flash_protect = max(eyes_organ?.flash_protect-1, FLASH_PROTECTION_HYPER_SENSITIVE)
 	var/obj/item/clothing/glasses/vampire/sun/new_glasses = new(human_holder.loc) // Give them glasses so they aren't immediately breaching on spawn or anything
@@ -51,7 +51,7 @@ dark.*/
 	if(!is_reflective)
 		REMOVE_TRAIT(quirk_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
 	else
-		REMOVE_TRAIT(quirk_holder, TRAIT_REFLECTIVE_EYES, QUIRK_TRAIT)
+		REMOVE_TRAIT(quirk_holder, TRAIT_LUMINESCENT_EYES, QUIRK_TRAIT)
 		var/obj/item/organ/eyes/eyes_organ = human_holder.get_organ_slot(ORGAN_SLOT_EYES)
 		eyes_organ?.flash_protect = min(eyes_organ?.flash_protect+1, FLASH_PROTECTION_WELDER_HYPER_SENSITIVE)
 	human_holder.st_remove_stat_mod(STAT_PERCEPTION, "Glowing Eyes")
