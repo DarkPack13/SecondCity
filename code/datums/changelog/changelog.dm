@@ -48,6 +48,6 @@
 /datum/asset/simple/server_logos
 	assets = list(
 		"tg_16.png" = 'icons/ui/common/tg_16.png',
-		"darkpack_16.png" = 'icons/ui/common/vtm_16.png',
+		"darkpack_16.png" = 'icons/ui/common/darkpack_16.png',
 	)
 // DARKPACK EDIT ADD END
