@@ -158,6 +158,9 @@
 		our_mob.grant_partial_language(/datum/language/scottish, 25, LANGUAGE_ACADEMICS)
 		our_mob.grant_partial_language(/datum/language/irish, 25, LANGUAGE_ACADEMICS)
 		our_mob.grant_partial_language(/datum/language/korean, 25, LANGUAGE_ACADEMICS)
+		
+/datum/st_stat/ability/academics/unlink_mob(mob/living/our_mob)
+	our_mob.remove_all_partial_languages(LANGUAGE_ACADEMICS)
 
 
 /datum/st_stat/ability/computer
