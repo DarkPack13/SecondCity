@@ -1,4 +1,4 @@
-// THIS IS A DARKPACK UI FILE - SPLIT_CHANGELOG
+// SPLIT_CHANGELOG
 import dateformat from 'dateformat';
 import yaml from 'js-yaml';
 import { Component, Fragment } from 'react';
@@ -446,7 +446,7 @@ export class ChangelogContent extends Component<any, ChangelogState> {
   }
 }
 
-export const DarkpackChangelog = () => {
+export const Changelog = () => {
   return (
     <Window title="Changelog" width={675} height={650}>
       <Window.Content scrollable>

@@ -7,7 +7,7 @@
 /datum/changelog/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "DarkpackChangelog") // DARKPACK EDIT CHANGE - SPLIT_CHANGELOG - Original: ui = new(user, src, "Changelog")
+		ui = new(user, src, "Changelog")
 		ui.open()
 
 // DARKPACK EDIT ADD START - SPLIT_CHANGELOG
