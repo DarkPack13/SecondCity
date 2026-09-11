@@ -175,7 +175,11 @@ const FilterPanel = (props) => {
             })}
           </Table>
         }
-      />
+      >
+        <Button icon="cog" selected={filterVisible}>
+          Type Filter
+        </Button>
+      </Floating>
     </div>
   );
 };
