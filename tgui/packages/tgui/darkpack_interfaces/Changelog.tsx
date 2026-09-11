@@ -156,18 +156,14 @@ export class ChangelogContent extends Component<any, ChangelogState> {
     }
   }
 
-  renderChangelogEntries(authors: AuthorChanges, darkpack = false) {
+  renderChangelogEntries(authors: AuthorChanges, server) {
     return Object.entries(authors).map(([name, changes]) => (
       <Fragment key={name}>
         <h4>
-          {darkpack ? (
-            <Image
-              verticalAlign="bottom"
-              src={resolveAsset('darkpack_16.png')}
-            />
-          ) : (
-            <Image verticalAlign="bottom" src={resolveAsset('tg_16.png')} />
-          )}{' '}
+          <Image
+            verticalAlign="bottom"
+            src={resolveAsset(`${server}_16.png`)}
+          />
           {name} changed:
         </h4>
 
@@ -422,13 +418,16 @@ export class ChangelogContent extends Component<any, ChangelogState> {
           <Box ml={3}>
             {darkpackChangelog?.[date] && (
               <Section>
-                {this.renderChangelogEntries(darkpackChangelog[date], true)}
+                {this.renderChangelogEntries(
+                  darkpackChangelog[date],
+                  'darkpack',
+                )}
               </Section>
             )}
 
             {changelog?.[date] && (
               <Section mt="-20px">
-                {this.renderChangelogEntries(changelog[date])}
+                {this.renderChangelogEntries(changelog[date], 'tg')}
               </Section>
             )}
           </Box>
