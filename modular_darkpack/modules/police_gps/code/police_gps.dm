@@ -1,13 +1,10 @@
 SUBSYSTEM_DEF(police_gps)
 	name = "Police GPS"
 	wait = 5 MINUTES
+	ss_flags = SS_NO_INIT
 	priority = FIRE_PRIORITY_DEFAULT
 
-	var/list/wanted
-
-/datum/controller/subsystem/police_gps/Initialize(start_timeofday)
-	wanted = list()
-	return SS_INIT_SUCCESS
+	var/list/wanted = list()
 
 /datum/controller/subsystem/police_gps/fire()
 	update_alert()
