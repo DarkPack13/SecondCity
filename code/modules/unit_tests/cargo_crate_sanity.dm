@@ -35,14 +35,14 @@
 		// We're selling the crate & it's contents for less than the value of it's own crate, meaning you can buy and infinite number
 		if(crate_value > new_crate.get_cost())
 			TEST_FAIL("Cargo crate [new_crate.type] container sells for [crate_value], Selling for more than [new_crate.get_cost()], the cost to buy")
-		for(var/atom/stuff as anything in results.contents)
-			qdel(stuff)
-			stuff = null
+	/* // DARKPACK EDIT REMOVAL START - Selling Component
 
-		qdel(results)
-		results =  null
+	for(var/crate in subtypesof(/datum/supply_pack))
+		var/datum/supply_pack/new_crate = allocate(crate)
+		if(new_crate.test_ignored)
+@@ -42,3 +44,5 @@
 		new_crate = null
 		minimum_cost = null
 		export_log = null
 
-	*/ // DARKPACK TODO - Selling Component
+	*/ // DARKPACK EDIT REMOVAL END
