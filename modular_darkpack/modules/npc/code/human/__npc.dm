@@ -376,17 +376,23 @@
 	staying = FALSE
 
 /obj/item/proc/is_scary_weapon() // NPCs don't like seeing scary weapons
-	if(istype(src, /obj/item/instrument))
-		return FALSE
-	if(force > 20)
+	if(item_flags & NEEDS_PERMIT)
 		return TRUE
-	var/obj/item/storage/belt/sheath/sword_sheath = astype(src, /obj/item/storage/belt/sheath)
-	var/obj/item/gun/ballistic/gun = astype(src, /obj/item/gun/ballistic)
-	if(sword_sheath)
-		return !isnull(sword_sheath.stored_blade)
-	if(gun)
-		return !isnull(gun.serial_type) // we check for a serial number so NPCs dont freak out over donksoft foam guns
+	if(masquerade_violating)
+		return TRUE
 	return FALSE
+
+/obj/item/instrument/is_scary_weapon()
+	return FALSE
+
+/obj/item/storage/belt/sheath/is_scary_weapon()
+	return stored_blade?.is_scary_weapon()
+
+/obj/item/gun/ballistic/is_scary_weapon()
+	// we check for a serial number so NPCs dont freak out over donksoft foam guns
+	// This is kinda mid tho and the lack of a serial number is a terrible check for "scary gun"
+	return !!serial_type
+	// What i will acctually suggest is removing it entirely in favor of checking for permit or masquerade violating instead.
 
 /datum/proximity_monitor/advanced/violation_check_aoe/proc/check_criminal_violation(mob/living/carbon/human/entered_mob)
 	var/threatcount = 0
