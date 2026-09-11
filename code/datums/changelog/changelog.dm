@@ -7,7 +7,7 @@
 /datum/changelog/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "EffigyChangelog") // EffigyEdit Change - Changelog 2 - Original: ui = new(user, src, "Changelog")
+		ui = new(user, src, "DarkpackChangelog") // EffigyEdit Change - Changelog 2 - Original: ui = new(user, src, "Changelog")
 		ui.open()
 
 // EffigyEdit Add - Changelog 2
@@ -34,7 +34,7 @@
 
 	// EffigyEdit Change Start - Changelog 2
 	var/list/tg_files = flist("html/changelogs/archive/")
-	var/list/effigy_files = flist("html/changelogs/effigy_archive/")
+	var/list/effigy_files = flist("html/changelogs/darkpack_archive/")
 
 	// for(var/archive_file in sort_list(flist("html/changelogs/archive/")))
 	for(var/archive_file in sort_list(tg_files |= effigy_files))

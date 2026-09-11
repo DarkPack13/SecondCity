@@ -13,9 +13,9 @@ import {
 } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
-import { resolveAsset } from '../../assets';
-import { useBackend } from '../../backend';
-import { Window } from '../../layouts';
+import { resolveAsset } from '../assets';
+import { useBackend } from '../backend';
+import { Window } from '../layouts';
 
 const icons = {
   add: { icon: 'check-circle', color: 'green' },

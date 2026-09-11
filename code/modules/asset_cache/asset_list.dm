@@ -148,7 +148,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/changelog_item/New(date)
 	item_filename = SANITIZE_FILENAME("[date].yml")
 	SSassets.transport.register_asset(item_filename, file("html/changelogs/archive/" + item_filename))
-	SSassets.transport.register_asset("effigy_[item_filename]", file("html/changelogs/effigy_archive/" + item_filename)) // EffigyEdit Add - Changelog 2
+	SSassets.transport.register_asset("effigy_[item_filename]", file("html/changelogs/darkpack_archive/" + item_filename)) // EffigyEdit Add - Changelog 2
 
 /datum/asset/changelog_item/send(client)
 	if (!item_filename)

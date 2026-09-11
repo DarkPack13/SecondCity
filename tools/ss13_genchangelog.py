@@ -38,7 +38,7 @@ opt = argparse.ArgumentParser()
 opt.add_argument('ymlDir', help='The directory of YAML changelogs we will use.')
 
 args = opt.parse_args()
-archiveDir = os.path.join(args.ymlDir, 'effigy_archive') # EffigyEdit Change - Changelog 2 - Original: archiveDir = os.path.join(args.ymlDir, 'archive')
+archiveDir = os.path.join(args.ymlDir, 'darkpack_archive') # EffigyEdit Change - Changelog 2 - Original: archiveDir = os.path.join(args.ymlDir, 'archive')
 
 all_changelog_entries = {}
 
