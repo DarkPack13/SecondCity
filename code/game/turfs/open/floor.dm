@@ -60,7 +60,6 @@
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
-			break_tile()
 		if(EXPLODE_HEAVY)
 			switch(rand(1, 3))
 				if(1)
@@ -81,6 +80,7 @@
 					*/
 					break_tile()
 					hotspot_expose(1000,CELL_VOLUME)
+					//DARKPACK EDIT END
 					if(prob(33))
 						new /obj/item/stack/sheet/iron(src)
 		if(EXPLODE_LIGHT)
