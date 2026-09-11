@@ -48,19 +48,19 @@
 	var/old_value = stat_path.get_pure_score()
 
 
-	if(!stat_path.can_increase_score(1)) // Have we reached the max_score of the stat?
+	if(!stat_path.can_change_score(1, preferences.preference_storyteller_stats, care_about_clamp = TRUE)) // Have we reached the max_score of the stat?
 		return FALSE // If we have, then return early.
 
 	if((stat_path.get_pure_score() + 1) > stat_path.starting_score)
-		if(parent_point_stat?.can_decrease_points(1)) // Can we spend points on this stat?
-			parent_point_stat.decrease_points(1) // Spend a point.
+		if(parent_point_stat?.can_change_points(-1)) // Can we spend points on this stat?
+			parent_point_stat.change_points(-1) // Spend a point.
 		else
 			if(freebie_point_stat.can_decrease_freebie_points(stat_path.freebie_point_cost)) // Can we spend freebie points instead?
 				freebie_point_stat.decrease_freebie_points(stat_path.freebie_point_cost) // If we can spend freebie points, decrease them.
 			else
 				return FALSE // If we can't spend freebie points, then return early.
 
-	stat_path.increase_score(1) // By this point we know we have spend either a point, or the appropriate freebie cost for this stat, and it is not max_score. So increase it by one.
+	stat_path.change_score(1, preferences.preference_storyteller_stats) // By this point we know we have spend either a point, or the appropriate freebie cost for this stat, and it is not max_score. So increase it by one.
 
 	if(stat_path.stat_flags & AFFECTS_STATS)
 		update_middleware_stats(preferences.preference_storyteller_stats)
@@ -83,18 +83,18 @@
 	var/datum/st_stat/freebie_point_stat = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]
 	var/old_value = stat_path.get_pure_score()
 
-	if(!stat_path.can_decrease_score(1))
+	if(!stat_path.can_change_score(-1, preferences.preference_storyteller_stats, care_about_clamp = TRUE))
 		return FALSE
 
 	if((stat_path.get_pure_score() - 1) >= stat_path.starting_score)
 		if(freebie_point_stat.can_increase_freebie_points(stat_path.freebie_point_cost)) // Can we regain freebie points?
 			freebie_point_stat.increase_freebie_points(stat_path.freebie_point_cost) // Regain freebie points.
 		else if(parent_point_stat)
-			parent_point_stat.increase_points(1) // Regain a score point.
+			parent_point_stat.change_points(1) // Regain a score point.
 		else
 			return FALSE
 
-	stat_path.decrease_score(1) // By this point we know we have regained either a point, or the appropriate freebie cost for this stat, and it is not min_score. So decrease it by one.
+	stat_path.change_score(-1, preferences.preference_storyteller_stats) // By this point we know we have regained either a point, or the appropriate freebie cost for this stat, and it is not min_score. So decrease it by one.
 
 	if(stat_path.stat_flags & AFFECTS_STATS)
 		update_middleware_stats(preferences.preference_storyteller_stats)

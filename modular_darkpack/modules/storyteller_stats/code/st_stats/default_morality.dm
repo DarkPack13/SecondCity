@@ -7,3 +7,10 @@
 	//freebie_point_cost = FREEBIE_COST_HUMANITY
 	editable = FALSE
 	var/datum/morality/morality_path
+
+/datum/st_stat/morality_path/morality/can_have_stat(mob/owner)
+	. = ..()
+
+	if(!get_vampire_splat(owner))
+		return FALSE
+	return TRUE

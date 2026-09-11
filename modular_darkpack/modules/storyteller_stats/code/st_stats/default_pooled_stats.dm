@@ -4,18 +4,20 @@
 	subcategory = "Willpower"
 	freebie_point_cost = FREEBIE_COST_WILLPOWER
 	stat_flags = AFFECTS_STATS
+	temporary_pool = /datum/st_stat/pooled/temporary_willpower
 
 /datum/st_stat/pooled/temporary_willpower
 	name = "Temporary Willpower"
 	subcategory = "Willpower"
 	description = "A character's inner drive and competence at overcoming unfavorable odds. Used for spendature."
 	editable = FALSE
-
+	permanent_pool = /datum/st_stat/pooled/permanent_willpower
 
 /datum/st_stat/pooled/gnosis
 	name = "Permanent Gnosis"
 	subcategory = "Gnosis"
 	freebie_point_cost = FREEBIE_COST_GNOSIS
+	temporary_pool = /datum/st_stat/pooled/temporary_gnosis
 
 /datum/st_stat/pooled/gnosis/can_have_stat(mob/owner)
 	if(!get_werewolf_splat(owner))
@@ -27,6 +29,7 @@
 	name = "Temporary Gnosis"
 	subcategory = "Gnosis"
 	editable = FALSE
+	temporary_pool = /datum/st_stat/pooled/temporary_gnosis
 
 /datum/st_stat/pooled/temporary_gnosis/can_have_stat(mob/owner)
 	if(!get_werewolf_splat(owner))
@@ -38,6 +41,7 @@
 	name = "Permanent Rage"
 	subcategory = "Rage"
 	freebie_point_cost = FREEBIE_COST_RAGE
+	temporary_pool = /datum/st_stat/pooled/temporary_rage
 
 /datum/st_stat/pooled/rage/can_have_stat(mob/owner)
 	if(!get_werewolf_splat(owner))
@@ -49,6 +53,7 @@
 	name = "Temporary Rage"
 	subcategory = "Rage"
 	editable = FALSE
+	permanent_pool = /datum/st_stat/pooled/temporary_rage
 
 /datum/st_stat/pooled/temporary_rage/can_have_stat(mob/owner)
 	if(!get_werewolf_splat(owner))

@@ -26,6 +26,11 @@
 	/// Flags for stats, such as if it affects health.
 	var/stat_flags = NONE
 
+	/// The linked that that this controls its max pool of
+	var/datum/st_stat/temporary_pool
+	/// Stat pool we religate our true max score to.
+	var/datum/st_stat/permanent_pool
+
 	/// LAZYLIST. A dictionary of modifiers to this attribute.
 	var/list/modifiers
 	/// LAZYLIST. A dictionary of auto success scores to this attribute.
@@ -68,49 +73,41 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return auto_success_score
 
-/datum/st_stat/proc/can_set_score(amount)
+/datum/st_stat/proc/can_set_score(amount, list/stat_list, care_about_clamp = FALSE)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	if((amount < min_score) || (amount > max_score))
-		return FALSE
+	/*
+	 * Not really needed in alot of situations If we are asking "is this value too high or low" we should check that manually,
+	 * otherwise we have situations like "refill willpower by 10" but it gets blocked because the value is technicly over the max but we dont care.
+	*/
+	if(care_about_clamp)
+		return amount >= min_score && amount <= get_effective_max_score()
 	return TRUE
 
-// This proc is only ever supposed to be used in stat_pref_middleware.dm for preferences regarding increasing the stat.
-/datum/st_stat/proc/can_increase_score(amount)
+/datum/st_stat/proc/can_change_score(amount, list/stat_list, care_about_clamp = FALSE)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	var/new_score = score + amount
-	if(new_score > max_score)
-		return FALSE
-	return TRUE
+	return can_set_score(score + amount, stat_list, care_about_clamp)
 
-// This proc is only ever supposed to be used in stat_pref_middleware.dm for preferences regarding decreasing the stat.
-/datum/st_stat/proc/can_decrease_score(amount)
+/datum/st_stat/proc/set_score(amount, list/stat_list)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	var/new_score = score - amount
-	if(new_score < min_score)
+	if(!can_set_score(amount, stat_list))
 		return FALSE
-	return TRUE
+	score = clamp(amount, min_score, get_effective_max_score())
+	return score
 
-/datum/st_stat/proc/set_score(amount)
+/datum/st_stat/proc/change_score(amount, list/stat_list)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	if(!can_set_score(amount))
-		return FALSE
-	score = clamp(amount, min_score, max_score)
-	return TRUE
+	return set_score(score + amount, stat_list)
 
-/datum/st_stat/proc/increase_score(amount)
-	SHOULD_NOT_OVERRIDE(TRUE)
-	if(!can_increase_score(amount))
-		return FALSE
-	score = clamp(score + amount, min_score, max_score)
-	return TRUE
+/// Returns the effective max score, relying on a teathered max score when relevent.
+/datum/st_stat/proc/get_effective_max_score(list/stat_list)
+	if(permanent_pool && stat_list)
+		if(stat_list[permanent_pool])
+			var/datum/st_stat/permanent_stat = stat_list[permanent_pool]
+			return permanent_stat.get_score()
+		else
+			stack_trace("[src] has a defined perm pool but failed to find it in passed stat list")
 
-/datum/st_stat/proc/decrease_score(amount)
-	SHOULD_NOT_OVERRIDE(TRUE)
-	if(!can_decrease_score(amount))
-		return FALSE
-	score = clamp(score - amount, min_score, max_score)
-	return TRUE
-
+	return max_score
 // Modifiers
 
 /datum/st_stat/proc/add_stat_mod(amount, source)
@@ -172,42 +169,26 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return points
 
-/datum/st_stat/proc/set_points(amount)
+/datum/st_stat/proc/can_set_points(amount, list/stat_list)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	points = max(amount, 0)
 	return TRUE
+	// return amount >= min_points && amount <= max_points
 
-/datum/st_stat/proc/increase_points(amount)
+/datum/st_stat/proc/can_change_points(amount, list/stat_list)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	points += amount
-	return TRUE
+	return can_set_points(points + amount, stat_list)
 
-/datum/st_stat/proc/can_decrease_points(amount)
+/datum/st_stat/proc/set_points(amount, list/stat_list)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	var/new_points = points - amount
-	if(new_points < 0)
+	if(!can_set_points(amount, stat_list))
 		return FALSE
+	points = amount
+	// points = clamp(amount, min_points, max_points)
 	return TRUE
 
-/datum/st_stat/proc/decrease_points(amount)
+/datum/st_stat/proc/change_points(amount, list/stat_list)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	if(!can_decrease_points(amount))
-		return FALSE
-	points -= amount
-	return TRUE
-
-/datum/st_stat/proc/can_change_points(amount)
-	if(amount < 0)
-		return can_decrease_points(-amount)
-	else if(amount > 0)
-		return TRUE// return can_increase_points(amount)
-	return TRUE
-
-/datum/st_stat/proc/change_points(amount)
-	if(amount < 0)
-		return decrease_points(-amount)
-	else if(amount > 0)
-		return increase_points(amount)
+	return set_points(points + amount, stat_list)
 
 // Freebie Points
 

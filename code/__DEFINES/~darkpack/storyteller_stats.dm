@@ -77,17 +77,19 @@
 // Parent stats, mainly used for point allocation in preferences.
 
 #define STAT_CATEGORY_ATTRIBUTE "Attributes"
-#define STAT_SUBCATEGORY_MENTAL "Mental"
-#define STAT_SUBCATEGORY_SOCIAL "Social"
 #define STAT_SUBCATEGORY_PHYSICAL "Physical"
+#define STAT_SUBCATEGORY_SOCIAL "Social"
+#define STAT_SUBCATEGORY_MENTAL "Mental"
 
 #define STAT_CATEGORY_ABILITY "Abilities"
 #define STAT_SUBCATEGORY_TALENTS "Talents"
 #define STAT_SUBCATEGORY_SKILLS "Skills"
 #define STAT_SUBCATEGORY_KNOWLEDGES "Knowledges"
 
+#define STAT_CATEGORY_ADVANTAGES "Advantages"
+#define STAT_SUBCATEGORY_VIRTUES "Virtues"
+
 #define STAT_CATEGORY_POOLED "Pooled"
-#define STAT_CATEGORY_VIRTUES "Virtues"
 
 // Defines used for saving of stats.
 #define STAT_SCORE "score"

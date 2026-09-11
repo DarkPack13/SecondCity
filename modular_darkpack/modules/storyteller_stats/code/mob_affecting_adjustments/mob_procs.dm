@@ -14,18 +14,14 @@
 /// Set a specific mob's stat from its stats list.
 /mob/living/proc/st_set_stat(stat_path, amount)
 	var/datum/st_stat/given_stat = storyteller_stats[stat_path]
-	var/score = given_stat?.set_score(amount)
+	var/score = given_stat?.set_score(amount, storyteller_stats)
 	given_stat.update_mob(src)
 	return score
 
 /// Changes a specific mob's stat from its stats list by the given amount.
 /mob/living/proc/st_change_stat(stat_path, amount)
 	var/datum/st_stat/given_stat = storyteller_stats[stat_path]
-	var/score
-	if(amount > 0)
-		score = given_stat?.increase_score(amount)
-	else
-		score = given_stat?.decrease_score(-amount)
+	var/score = given_stat?.change_score(amount, storyteller_stats)
 	given_stat.update_mob(src)
 	return score
 
