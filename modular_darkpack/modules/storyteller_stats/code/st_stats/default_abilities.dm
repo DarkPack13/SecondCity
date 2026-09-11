@@ -107,10 +107,9 @@
 	description = "Affects your character's familiarity with academics and literature. Affects how many languages your character knows. At 0 points, your character will only know one language."
 
 /datum/st_stat/ability/academics/update_mob(mob/living/our_mob, initial)
-
-	var/current_score = get_score()
 	our_mob.remove_all_partial_languages(LANGUAGE_ACADEMICS)
-
+	
+	var/current_score = get_score()
 	// level 1 - english, spanish, french, german
 	if(current_score >= 1)
 		our_mob.grant_partial_language(/datum/language/common, 25, LANGUAGE_ACADEMICS)
