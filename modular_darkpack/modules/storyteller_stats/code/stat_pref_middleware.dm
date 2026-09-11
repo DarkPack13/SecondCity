@@ -18,7 +18,7 @@
 	data["stats"] = list()
 	for(var/typepath in preferences.preference_storyteller_stats)
 		var/datum/st_stat/stat = preferences.preference_storyteller_stats[typepath]
-		if(!stat.can_have_stat(mob_to_check))
+		if(!stat.can_see_stat(mob_to_check))
 			continue
 
 		var/list/stat_data = list()

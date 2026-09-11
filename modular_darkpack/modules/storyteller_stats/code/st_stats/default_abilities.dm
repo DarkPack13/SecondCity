@@ -17,7 +17,7 @@
 	description = "Awareness is an instinctual reaction to the presence of the supernatural. Used in vampiric disciplines."
 
 // Awareness is functionally equivelent and replaced by primal urge.
-/datum/st_stat/ability/talent/awareness/can_have_stat(mob/owner)
+/datum/st_stat/ability/talent/awareness/can_see_stat(mob/owner)
 	if(get_werewolf_splat(owner))
 		return FALSE
 	return TRUE
@@ -48,7 +48,7 @@
 	name = "Primal-Urge"
 	description = "Your characters connection to their bestial nature, and a measure of their gut feeling and insticts."
 
-/datum/st_stat/ability/talent/primary_urge/can_have_stat(mob/owner)
+/datum/st_stat/ability/talent/primary_urge/can_see_stat(mob/owner)
 	if(!get_werewolf_splat(owner))
 		return FALSE
 	return TRUE
@@ -155,7 +155,6 @@
 	UnregisterSignal(our_mob, COMSIG_LIVING_OPERATING_ON)
 
 /datum/st_stat/ability/knowledge/occult
-	subcategory = "Knowledges"
 	name = "Occult"
 	description = "Affects your character's knowledge of esoteric and occult knowledge and concepts. Used in magic disciplines and affects your magical rituals. At occult 3 or higher, you can identify magical artifacts."
 
@@ -167,7 +166,7 @@
 /datum/st_stat/ability/knowledge/rituals
 	name = "Rituals"
 
-/datum/st_stat/ability/knowledge/rituals/can_have_stat(mob/owner)
+/datum/st_stat/ability/knowledge/rituals/can_see_stat(mob/owner)
 	if(!get_werewolf_splat(owner))
 		return FALSE
 	return TRUE
@@ -188,7 +187,7 @@
 	description = "Affects your character's familiarity with machines, devices, and electrical systems."
 
 // I guess wolfs just use computer or science???
-/datum/st_stat/ability/knowledge/technology/can_have_stat(mob/owner)
+/datum/st_stat/ability/knowledge/technology/can_see_stat(mob/owner)
 	if(get_werewolf_splat(owner))
 		return FALSE
 	return TRUE

@@ -228,5 +228,6 @@
 /datum/st_stat/proc/update_mob(mob/living/our_mob, initial)
 	return
 
-/datum/st_stat/proc/can_have_stat(mob/owner)
+/// Wether or not the stat can be seen on the character sheet, values are still often tracked for sanity reasons.
+/datum/st_stat/proc/can_see_stat(mob/owner)
 	return TRUE

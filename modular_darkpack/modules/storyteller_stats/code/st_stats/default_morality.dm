@@ -8,7 +8,7 @@
 	editable = FALSE
 	var/datum/morality/morality_path
 
-/datum/st_stat/morality_path/morality/can_have_stat(mob/owner)
+/datum/st_stat/morality_path/morality/can_see_stat(mob/owner)
 	. = ..()
 
 	if(!get_vampire_splat(owner))

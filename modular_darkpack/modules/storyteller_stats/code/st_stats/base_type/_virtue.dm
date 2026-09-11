@@ -8,7 +8,7 @@
 	freebie_point_cost = FREEBIE_COST_VIRTUE
 	stat_flags = AFFECTS_STATS
 
-/datum/st_stat/virtue/can_have_stat(mob/owner)
+/datum/st_stat/virtue/can_see_stat(mob/owner)
 	if(!get_vampire_splat(owner))
 		return FALSE
 	return TRUE

@@ -5,13 +5,11 @@
 /datum/st_stat/attribute/physical/strength
 	name = "Strength"
 	description = "Affects your unarmed attack damage multiplier. Increases your chances to knock down an opponent in unarmed combat."
-	subcategory = "Physical"
 
 
 /datum/st_stat/attribute/physical/dexterity
 	name = "Dexterity"
 	description = "Affects your speed and melee weapon accuracy. Increases your defense against being knocked down in unarmed combat. Increases the speed of certain actions."
-	subcategory = "Physical"
 
 /datum/st_stat/attribute/physical/dexterity/update_mob(mob/living/our_mob, initial)
 	our_mob.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/dexterity, multiplicative_slowdown = -(get_score() / 20))
@@ -20,7 +18,6 @@
 /datum/st_stat/attribute/physical/stamina
 	name = "Stamina"
 	description = "Affects your maximum health. Used in Quietus."
-	subcategory = "Physical"
 
 /datum/st_stat/attribute/physical/stamina/update_mob(mob/living/our_mob, initial)
 	our_mob.recalculate_max_health(initial)

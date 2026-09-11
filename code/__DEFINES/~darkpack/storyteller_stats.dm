@@ -90,6 +90,9 @@
 #define STAT_SUBCATEGORY_VIRTUES "Virtues"
 
 #define STAT_CATEGORY_POOLED "Pooled"
+#define STAT_SUBCATEGORY_WILLPOWER "Willpower"
+#define STAT_SUBCATEGORY_GNOSIS "Gnosis"
+#define STAT_SUBCATEGORY_RAGE "Rage"
 
 // Defines used for saving of stats.
 #define STAT_SCORE "score"
