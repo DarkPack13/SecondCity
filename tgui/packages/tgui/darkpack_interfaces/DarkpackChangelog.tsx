@@ -1,3 +1,4 @@
+// THIS IS A DARKPACK UI FILE - SPLIT_CHANGELOG
 import dateformat from 'dateformat';
 import yaml from 'js-yaml';
 import { Component, Fragment } from 'react';
@@ -6,6 +7,7 @@ import {
   Button,
   Dropdown,
   Icon,
+  Image,
   Section,
   Stack,
   Table,
@@ -51,6 +53,7 @@ type ChangelogYaml = Record<string, AuthorChanges>;
 
 type ChangelogState = {
   loaded_text: ChangelogYaml | string;
+  darkpack_text: ChangelogYaml | string;
   selectedDate: string;
   selectedIndex: number;
 };
@@ -67,6 +70,7 @@ export class ChangelogContent extends Component<any, ChangelogState> {
     this.dateChoices = [];
     this.state = {
       loaded_text: 'Loading changelog data...',
+      darkpack_text: 'Loading changelog data...',
       selectedDate: '',
       selectedIndex: 0,
     };
@@ -74,6 +78,10 @@ export class ChangelogContent extends Component<any, ChangelogState> {
 
   setData(loaded_text) {
     this.setState({ loaded_text });
+  }
+
+  setEffigyData(darkpack_text) {
+    this.setState({ darkpack_text });
   }
 
   setSelectedDate(selectedDate) {
@@ -88,30 +96,51 @@ export class ChangelogContent extends Component<any, ChangelogState> {
     const maxAttempts = 6;
 
     if (attemptNumber > maxAttempts) {
-      return this.setData(`Failed to load data after ${maxAttempts} attempts`);
+      this.setData(`Failed to load data after ${maxAttempts} attempts`);
+      this.setEffigyData(`Failed to load data after ${maxAttempts} attempts`);
+      return;
     }
 
     act('get_month', { date });
 
-    fetch(resolveAsset(`${date}.yml`)).then(async (changelogData) => {
-      if (!changelogData.ok) {
-        if (attemptNumber >= maxAttempts) {
-          this.setData(`Failed to load after ${maxAttempts} attempts`);
-          return;
-        }
-
+    Promise.all([
+      fetch(resolveAsset(`${date}.yml`)),
+      fetch(resolveAsset(`darkpack_${date}.yml`)),
+    ]).then(async ([changelogData, darkpackData]) => {
+      if (!changelogData.ok && !darkpackData.ok) {
         const timeout = 50 + attemptNumber * 50;
+
         this.setData(`Loading changelog data${'.'.repeat(attemptNumber + 3)}`);
+        this.setEffigyData(
+          `Loading changelog data${'.'.repeat(attemptNumber + 3)}`,
+        );
+
         setTimeout(() => {
           this.getData(date, attemptNumber + 1);
         }, timeout);
+
         return;
       }
 
-      const result = await changelogData.text();
-      this.setData(
-        yaml.load(result, { schema: yaml.CORE_SCHEMA }) as ChangelogYaml,
-      );
+      if (changelogData.ok) {
+        const result = await changelogData.text();
+
+        this.setData(
+          yaml.load(result, {
+            schema: yaml.CORE_SCHEMA,
+          }) as ChangelogYaml,
+        );
+      }
+
+      if (darkpackData.ok) {
+        const result = await darkpackData.text();
+
+        this.setEffigyData(
+          yaml.load(result, {
+            schema: yaml.CORE_SCHEMA,
+          }) as ChangelogYaml,
+        );
+      }
     });
   };
 
@@ -119,20 +148,75 @@ export class ChangelogContent extends Component<any, ChangelogState> {
     const { data } = useBackend<ChangelogData>();
     const { dates = [] } = data;
 
-    if (dates) {
-      dates.forEach((date) => {
-        this.dateChoices.push(dateformat(date, 'mmmm yyyy', true));
-      });
+    this.dateChoices = dates.map((date) => dateformat(date, 'mmmm yyyy', true));
+
+    if (dates.length > 0) {
       this.setSelectedDate(this.dateChoices[0]);
       this.getData(dates[0]);
     }
   }
 
+  renderChangelogEntries(authors: AuthorChanges, darkpack = false) {
+    return Object.entries(authors).map(([name, changes]) => (
+      <Fragment key={name}>
+        <h4>
+          {darkpack ? (
+            <Image
+              verticalAlign="bottom"
+              src={resolveAsset('darkpack_16.png')}
+            />
+          ) : (
+            <Image verticalAlign="bottom" src={resolveAsset('tg_16.png')} />
+          )}{' '}
+          {name} changed:
+        </h4>
+
+        <Box ml={3}>
+          <Table>
+            {changes.map((change) => {
+              const changeType = Object.keys(change)[0];
+
+              return (
+                <Table.Row key={changeType + change[changeType]}>
+                  <Table.Cell
+                    className={classes([
+                      'Changelog__Cell',
+                      'Changelog__Cell--Icon',
+                    ])}
+                  >
+                    <Icon
+                      color={
+                        icons[changeType]
+                          ? icons[changeType].color
+                          : icons.unknown.color
+                      }
+                      name={
+                        icons[changeType]
+                          ? icons[changeType].icon
+                          : icons.unknown.icon
+                      }
+                    />
+                  </Table.Cell>
+
+                  <Table.Cell className="Changelog__Cell">
+                    {change[changeType]}
+                  </Table.Cell>
+                </Table.Row>
+              );
+            })}
+          </Table>
+        </Box>
+      </Fragment>
+    ));
+  }
+
   render() {
     const { data } = useBackend<ChangelogData>();
     const { dates = [] } = data;
-    const { loaded_text, selectedIndex, selectedDate } = this
-      .state as ChangelogState;
+
+    const { loaded_text, darkpack_text, selectedIndex, selectedDate } =
+      this.state;
+
     const { dateChoices } = this;
 
     const dateDropdown = dateChoices.length > 0 && (
@@ -141,13 +225,15 @@ export class ChangelogContent extends Component<any, ChangelogState> {
           <Button
             className="Changelog__Button"
             disabled={selectedIndex === 0}
-            icon={'chevron-left'}
+            icon="chevron-left"
             onClick={() => {
               const index = selectedIndex - 1;
 
               this.setData('Loading changelog data...');
+              this.setEffigyData('Loading changelog data...');
               this.setSelectedIndex(index);
               this.setSelectedDate(dateChoices[index]);
+
               window.scrollTo(
                 0,
                 document.body.scrollHeight ||
@@ -165,6 +251,7 @@ export class ChangelogContent extends Component<any, ChangelogState> {
               const index = dateChoices.indexOf(value);
 
               this.setData('Loading changelog data...');
+              this.setEffigyData('Loading changelog data...');
               this.setSelectedIndex(index);
               this.setSelectedDate(value);
               window.scrollTo(
@@ -187,6 +274,7 @@ export class ChangelogContent extends Component<any, ChangelogState> {
               const index = selectedIndex + 1;
 
               this.setData('Loading changelog data...');
+              this.setEffigyData('Loading changelog data...');
               this.setSelectedIndex(index);
               this.setSelectedDate(dateChoices[index]);
               window.scrollTo(
@@ -316,55 +404,36 @@ export class ChangelogContent extends Component<any, ChangelogState> {
       </Section>
     );
 
-    const changes =
-      typeof loaded_text === 'object' &&
-      Object.keys(loaded_text).length > 0 &&
-      Object.entries(loaded_text)
-        .reverse()
-        .map(([date, authors]) => (
-          <Section key={date} title={dateformat(date, 'd mmmm yyyy', true)}>
-            <Box ml={3}>
-              {Object.entries(authors).map(([name, changes]) => (
-                <Fragment key={name}>
-                  <h4>{name} changed:</h4>
-                  <Box ml={3}>
-                    <Table>
-                      {changes.map((change) => {
-                        const changeType = Object.keys(change)[0];
-                        return (
-                          <Table.Row key={changeType + change[changeType]}>
-                            <Table.Cell
-                              className={classes([
-                                'Changelog__Cell',
-                                'Changelog__Cell--Icon',
-                              ])}
-                            >
-                              <Icon
-                                color={
-                                  icons[changeType]
-                                    ? icons[changeType].color
-                                    : icons.unknown.color
-                                }
-                                name={
-                                  icons[changeType]
-                                    ? icons[changeType].icon
-                                    : icons.unknown.icon
-                                }
-                              />
-                            </Table.Cell>
-                            <Table.Cell className="Changelog__Cell">
-                              {change[changeType]}
-                            </Table.Cell>
-                          </Table.Row>
-                        );
-                      })}
-                    </Table>
-                  </Box>
-                </Fragment>
-              ))}
-            </Box>
-          </Section>
-        ));
+    const changelog = typeof loaded_text === 'object' ? loaded_text : null;
+
+    const darkpackChangelog =
+      typeof darkpack_text === 'object' ? darkpack_text : null;
+
+    const combinedDates = new Set([
+      ...(changelog ? Object.keys(changelog) : []),
+      ...(darkpackChangelog ? Object.keys(darkpackChangelog) : []),
+    ]);
+
+    const changes = [...combinedDates]
+      .sort()
+      .reverse()
+      .map((date) => (
+        <Section key={date} title={dateformat(date, 'd mmmm yyyy', true)}>
+          <Box ml={3}>
+            {darkpackChangelog?.[date] && (
+              <Section>
+                {this.renderChangelogEntries(darkpackChangelog[date], true)}
+              </Section>
+            )}
+
+            {changelog?.[date] && (
+              <Section mt="-20px">
+                {this.renderChangelogEntries(changelog[date])}
+              </Section>
+            )}
+          </Box>
+        </Section>
+      ));
 
     return (
       <>

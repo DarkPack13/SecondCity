@@ -7,15 +7,15 @@
 /datum/changelog/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "DarkpackChangelog") // EffigyEdit Change - Changelog 2 - Original: ui = new(user, src, "Changelog")
+		ui = new(user, src, "DarkpackChangelog") // DARKPACK EDIT CHANGE - SPLIT_CHANGELOG - Original: ui = new(user, src, "Changelog")
 		ui.open()
 
-// EffigyEdit Add - Changelog 2
+// DARKPACK EDIT ADD START - SPLIT_CHANGELOG
 /datum/changelog/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/simple/server_logos),
 	)
-// EffigyEdit Add End
+// DARKPACK EIDT ADD END
 
 /datum/changelog/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -32,22 +32,22 @@
 	var/list/data = list( "dates" = list() )
 	var/regex/ymlRegex = regex(@"\.yml", "g")
 
-	// EffigyEdit Change Start - Changelog 2
+	// DARKPACK EDIT CHANGE START - SPLIT_CHANGELOG
 	var/list/tg_files = flist("html/changelogs/archive/")
-	var/list/effigy_files = flist("html/changelogs/darkpack_archive/")
+	var/list/darkpack_files = flist("html/changelogs/darkpack_archive/")
 
 	// for(var/archive_file in sort_list(flist("html/changelogs/archive/")))
-	for(var/archive_file in sort_list(tg_files |= effigy_files))
+	for(var/archive_file in sort_list(tg_files |= darkpack_files))
 		var/archive_date = ymlRegex.Replace(archive_file, "")
 		data["dates"] = list(archive_date) + data["dates"]
-	// EffigyEdit Change End
+	// DARKPACK EDIT CHANGE END
 
 	return data
 
-// EffigyEdit Add - Changelog 2
+// DARKPACK EDIT ADD START - SPLIT_CHANGELOG
 /datum/asset/simple/server_logos
 	assets = list(
 		"tg_16.png" = 'icons/ui/common/tg_16.png',
-		"effigy_16.png" = 'icons/ui/common/vtm_32.png',
+		"darkpack_16.png" = 'icons/ui/common/vtm_16.png',
 	)
-// EffigyEdit Add End
+// DARKPACK EDIT ADD END
