@@ -315,7 +315,7 @@
 		return
 	if(prob(20)) // some RNG to if they call or not
 		return
-	if(!istype(l_store, /obj/item/smartphone) && !istype(r_store, /obj/item/smartphone))
+	if(!length(get_all_contents(/obj/item/smartphone)))
 		return
 	if(HAS_TRAIT(src, TRAIT_INCAPACITATED) || HAS_TRAIT(src, TRAIT_RESTRAINED) || staying)
 		return
