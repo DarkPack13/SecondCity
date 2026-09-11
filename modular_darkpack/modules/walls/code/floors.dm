@@ -246,7 +246,7 @@
 
 /turf/open/misc/oldgrassrandom/Initialize(mapload)
 	. = ..()
-	icon_state = "old_grass[rand(1, 4)]"
+	icon_state = "old_grass[rand(1, 3)]"
 	var/area/my_area = loc
 	if(my_area.outdoors)
 		if(check_holidays(FESTIVE_SEASON))
@@ -258,8 +258,8 @@
 /turf/open/misc/olddirt
 	name = "dirt"
 	desc = ""
-	icon = 'modular_datapack/modules/walls/icons/floors.dmi'
-	icon_state = "dirt_old"
+	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
+	icon_state = "dold"
 	footstep = FOOTSTEP_GRASS
 	barefootstep = FOOTSTEP_GRASS
 	baseturfs = /turf/open/misc/olddirt
