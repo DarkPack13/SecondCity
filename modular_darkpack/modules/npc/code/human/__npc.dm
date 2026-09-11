@@ -329,12 +329,23 @@
 		if(open_carrying)
 			crime = CRIME_OPEN_CARRYING
 		var/list/worn = list()
-		if(H.head) worn += H.head
-		if(H.wear_suit) worn += H.wear_suit
-		if(H.w_uniform) worn += H.w_uniform
-		if(H.shoes) worn += H.shoes
-		if(length(worn))
-			clothing_desc = pick(worn):name
+		var/list/visible_items = H.get_visible_items()
+		for(var/obj/item/worn_item in H.get_equipped_items())
+			if(worn_item in H.visible_items())
+				var/importance = 1
+				if(worn_item in (H.head + H.wear_suit + H.w_uniform))
+					importance = 5
+				worn[worn_item] = importance
+		var/list/seen_items = list()
+		var/items_to_spot = rand(1, st_get_stat(STAT_PERCEPTION))
+		for(var/i in 1 to items_to_spot)
+			if(!length(worn))
+				break
+			var/obj/item/picked_item = pick_weight(worn)
+			worn[picked_item] = null
+			seen_items += picked_item
+		if(length(seen_items))
+			clothing_desc = english_list(seen_items)
 	GLOB.move_manager.stop_looping(src)
 	var/saved_danger = danger_source
 	danger_source = null
