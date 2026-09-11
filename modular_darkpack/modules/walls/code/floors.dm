@@ -235,6 +235,7 @@
 
 /turf/open/misc/oldgrassrandom
 	name = "grass"
+	desc = ""
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "old_grass1"
 	footstep = FOOTSTEP_GRASS
@@ -256,6 +257,7 @@
 
 /turf/open/misc/olddirt
 	name = "dirt"
+	desc = ""
 	icon = 'modular_datapack/modules/walls/icons/floors.dmi'
 	icon_state = "dirt_old"
 	footstep = FOOTSTEP_GRASS
