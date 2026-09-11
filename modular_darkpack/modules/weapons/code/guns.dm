@@ -968,9 +968,9 @@
 /obj/item/gun/ballistic/shotgun/darkpack/grenadelauncher
 	name = "break-action grenade launcher"
 	desc = "A break action grenade launcher, designed to fire 40mm grenades. Not suggested to aim for heads or knees."
-	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
-	lefthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
-	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
+	icon = 'modular_darkpack/modules/weapons/icons/weapons48x32.dmi'
+	lefthand_file = 'modular_darkpack/modules/weapons/icons/guns_lefthand.dmi'
+	righthand_file = 'modular_darkpack/modules/weapons/icons/guns_righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
