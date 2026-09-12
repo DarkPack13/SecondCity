@@ -26,6 +26,7 @@
 	var/obj/item/organ/eyes/owners_eyes = H.get_organ_by_type(/obj/item/organ/eyes)
 	ADD_TRAIT(H, TRAIT_TRUE_NIGHT_VISION, type)
 	ADD_TRAIT(H, TRAIT_MASQUERADE_VIOLATING_EYES, type)
+	ADD_TRAIT(H, TRAIT_ABYSSAL_EYES, type)
 	owners_eyes?.refresh()
 	H.add_eye_color(COLOR_BLACK, EYE_COLOR_DISC)
 	active = TRUE
@@ -37,6 +38,7 @@
 	var/obj/item/organ/eyes/owners_eyes = H.get_organ_by_type(/obj/item/organ/eyes)
 	REMOVE_TRAIT(H, TRAIT_TRUE_NIGHT_VISION, type)
 	REMOVE_TRAIT(H, TRAIT_MASQUERADE_VIOLATING_EYES, type)
+	REMOVE_TRAIT(H, TRAIT_ABYSSAL_EYES, type)
 	owners_eyes?.refresh()
 	H.remove_eye_color(EYE_COLOR_DISC)
 	active = FALSE
@@ -54,6 +56,7 @@
 	var/obj/item/organ/eyes/owners_eyes = H.get_organ_by_type(/obj/item/organ/eyes)
 	ADD_TRAIT(H, TRAIT_TRUE_NIGHT_VISION, "pierce_the_veil_botch")
 	ADD_TRAIT(H, TRAIT_MASQUERADE_VIOLATING_EYES, "pierce_the_veil_botch")
+	ADD_TRAIT(H, TRAIT_ABYSSAL_EYES, "pierce_the_veil_botch")
 	owners_eyes?.refresh()
 	H.add_eye_color(COLOR_BLACK, EYE_COLOR_DISC)
 	to_chat(H, span_userdanger("The ritual backfires! Your eyes become inky black pits of shadow, and your vision cuts through the darkness."))
