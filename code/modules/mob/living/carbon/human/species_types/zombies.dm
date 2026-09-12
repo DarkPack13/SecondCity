@@ -54,7 +54,7 @@
 	/// Amount healed per regen tick - if 0, no regen will occur
 	var/regen_amount = 0.5
 	/// The hand to give the zombie - if null, they will have normal hands
-	//var/zombie_hand = /obj/item/mutant_hand/zombie // DARKPACK EDIT REMOVAL - Removes /tg/ zombie infection outbreak
+	var/zombie_hand = null // DARKPACK EDIT CHANGE - Removes /tg/ zombie infection outbreak - Original : var/zombie_hand = /obj/item/mutant_hand/zombie
 	/// The movespeed modifier to apply to the zombie - if null, no movespeed modifier will be applied
 	var/movespeed_mod = /datum/movespeed_modifier/zombie
 	/// % Reduction to all physical damage the zombie takes
