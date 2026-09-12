@@ -274,6 +274,7 @@
 				to_chat(user, span_warning("Your lockpick broke!"))
 				qdel(tool)
 				if(COOLDOWN_FINISHED(src, beep_cooldown))
+					SEND_SIGNAL(user, COMSIG_MOB_LOUD_STEP)		//For obfuscate; forces stealth roll.
 					playsound(src, 'modular_darkpack/modules/cars/sounds/signal.ogg', 50, FALSE)
 					COOLDOWN_START(src, beep_cooldown, 7 SECONDS)
 				return

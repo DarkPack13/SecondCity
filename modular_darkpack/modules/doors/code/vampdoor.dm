@@ -334,6 +334,7 @@
 				if(ROLL_FAILURE)
 					to_chat(user, span_warning("You failed to pick the lock."))
 				if(ROLL_BOTCH)
+					SEND_SIGNAL(user, COMSIG_MOB_LOUD_STEP)		//For obfuscate; forces stealth roll.
 					to_chat(user, span_warning("Your lockpick broke!"))
 					qdel(tool)
 		else
