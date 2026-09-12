@@ -176,9 +176,10 @@
 /datum/status_effect/zombie/on_remove()
 	var/mob/living/carbon/human/was_zombie = owner
 
+	/* // DARKPACK EDIT REMOVAL - Removes /tg/ zombie infection outbreak
 	var/obj/item/organ/tongue/zombie/old_tongue = was_zombie.get_organ_slot(ORGAN_SLOT_TONGUE)
 	var/obj/item/organ/tongue/removed_tongue_real = removed_tongue?.resolve()
-	/* // DARKPACK EDIT REMOVAL - Removes /tg/ zombie infection outbreak
+
 	if(!QDELETED(old_tongue))
 		qdel(old_tongue)
 	if(!QDELETED(removed_tongue_real))
