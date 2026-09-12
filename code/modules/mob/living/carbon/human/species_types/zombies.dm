@@ -178,16 +178,18 @@
 
 	var/obj/item/organ/tongue/zombie/old_tongue = was_zombie.get_organ_slot(ORGAN_SLOT_TONGUE)
 	var/obj/item/organ/tongue/removed_tongue_real = removed_tongue?.resolve()
+	/* // DARKPACK EDIT REMOVAL - Removes /tg/ zombie infection outbreak
 	if(!QDELETED(old_tongue))
 		qdel(old_tongue)
 	if(!QDELETED(removed_tongue_real))
 		removed_tongue_real.Insert(was_zombie, special = TRUE)
+	*/ // DARKPACK EDIT REMOVAL - Removes /tg/ zombie infection outbreak
 
 	var/obj/item/bodypart/head/head = was_zombie.get_bodypart(BODY_ZONE_HEAD)
 	if(!QDELETED(head))
 		head.can_dismember = initial(head.can_dismember)
 
-	qdel(was_zombie.GetComponent(/datum/component/mutant_hands))
+	//qdel(was_zombie.GetComponent(/datum/component/mutant_hands)) // DARKPACK EDIT REMOVAL - Removes /tg/ zombie infection outbreak
 	qdel(was_zombie.GetComponent(/datum/component/regenerator))
 	LAZYREMOVE(was_zombie.physiology.max_stun_len, max_stun_length)
 	if(!isnull(movespeed_mod))
