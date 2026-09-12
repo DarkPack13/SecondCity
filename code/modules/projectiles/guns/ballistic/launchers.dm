@@ -79,7 +79,7 @@
 	icon = 'icons/obj/weapons/guns/wide_guns.dmi'
 	icon_state = "rocketlauncher"
 	inhand_icon_state = "rocketlauncher"
-	worn_icon_state = "rocketlauncher"
+	worn_icon_state = "rocketlaunccher"
 	SET_BASE_PIXEL(-8, 0)
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/rocketlauncher
 	fire_sound = 'sound/items/weapons/gun/general/rocket_launch.ogg'
