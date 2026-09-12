@@ -8,10 +8,7 @@
 	supervisors = SUPERVISOR_TRADITIONS
 	req_admin_notify = 1
 	minimal_player_age = 14
-	exp_requirements = 180
-	exp_required_type = EXP_TYPE_CAMARILLA
-	exp_required_type_department = EXP_TYPE_CAMARILLA
-	exp_granted_type = EXP_TYPE_CAMARILLA
+	exp_requirements = EXP_REQ_HEAD
 	config_tag = "PRIMOGEN_MALKAVIAN"
 	job_flags = CITY_JOB_FLAGS
 	outfit = /datum/outfit/job/vampire/malkav
@@ -28,10 +25,21 @@
 	allowed_splats = list(SPLAT_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_MALKAVIAN, VAMPIRE_CLAN_DOMINATE_MALKAVIAN)
 
-	known_contacts = list("Prince")
+	known_contacts = list(
+		JOB_PRINCE,
+		JOB_SHERIFF,
+		JOB_SENESCHAL,
+		JOB_HARPY,
+		JOB_PRIMOGEN_BANU_HAQIM,
+		JOB_PRIMOGEN_TOREADOR,
+		JOB_PRIMOGEN_LASOMBRA,
+		JOB_PRIMOGEN_VENTRUE,
+		JOB_PRIMOGEN_NOSFERATU,
+		JOB_CHANTRY_REGENT
+	)
 
 /datum/outfit/job/vampire/malkav
-	name = "Primogen Malkavian"
+	name = JOB_PRIMOGEN_MALKAVIAN
 	jobtype = /datum/job/vampire/primogen_malkavian
 
 	ears = /obj/item/radio/headset/darkpack

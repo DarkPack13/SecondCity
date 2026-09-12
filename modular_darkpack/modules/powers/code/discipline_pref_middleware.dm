@@ -7,9 +7,10 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 	/datum/discipline/obtenebration,
 	/datum/discipline/thaumaturgy,
 	/datum/discipline/necromancy,
-	/datum/discipline/daimoinon,
 	/datum/discipline/valeren,
-	// melpominee not yet implemented but will go here
+	/datum/discipline/obeah,
+	/datum/discipline/daimoinon,
+	/datum/discipline/melpominee,
 ))
 
 // warns a player if they have no discipline dots assigned before joining
@@ -118,13 +119,6 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 	data["clan_disciplines"] = list()
 	data["clan_name"] = null
 	var/clan_value = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
-	if(clan_value)
-		var/datum/subsplat/vampire_clan/clan_datum = get_vampire_clan(clan_value)
-		if(clan_datum)
-			data["clan_name"] = clan_datum.name
-			for(var/disc_type in clan_datum.clan_disciplines)
-				if(ispath(disc_type, /datum/discipline))
-					data["clan_disciplines"] += "[disc_type]"
 
 	var/discipline_count = 0
 	var/list/counted_discs = list()
@@ -146,7 +140,7 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 	data["discipline_points_spent"] = points_spent
 	data["discipline_tier"] = budget_info["tier"]
 	data["discipline_tier_details"] = budget_info["details"]
-	data["is_trusted"] = preferences.discipline_trusted || FALSE
+	data["is_trusted"] = preferences?.has_whitelist(WHITELIST_TRUSTED)
 	data["max_trusted_generation"] = MAX_TRUSTED_GENERATION
 	data["max_public_generation"] = MAX_PUBLIC_GENERATION
 	data["highest_generation_limit"] = HIGHEST_GENERATION_LIMIT
@@ -156,20 +150,20 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 /datum/preference_middleware/disciplines/proc/get_discipline_point_budget(immortal_age)
 	if(immortal_age <= 10)
 		return list(
-			"points" = 12,
+			"points" = 5,	//Should probably be 4 due to rounded square root of 10, but we do this to give some flexibility.
 			"tier" = "Fledgling",
 			"details" ="As a Fledgling, you are still learning how to control your new powers, and face your new problems. You are much the same person as you were prior to the embrace, for good or for bad. The phrase \"Life's sucks and then you die\" leaves out how much it sucks to be dead, but you're starting to learn that first-hand. You might be recently declared dead or reported missing, and are struggling to piece together a new unlife without the support network you had when you were alive. There are a lot of rules and customs you're unfamiliar with, and older kindred look down on you. You may be alone, hiding out after a string of murders post-embrace that put you on the radar of law enforcement and the Camarilla, or under the watchful eye of your Sire learning to control yourself under their wing. Either way, you're going to need help to navigate all of this.")
 	if(immortal_age <= 100)
 		return list(
-			"points" = 14,
+			"points" = 10,	//Max age of 100, square root it for points.
 			"tier" = "Neonate",
 			"details" = "As a Neonate, you're starting to get the hang of things with your unlife. You have learned to control your urges enough to be mostly left to your own devices, but older kindred can still smell your inexperience from a mile away. Friends and family you once knew are beginning to grow old and pass away due to natural causes, leaving you with the lasting emotional scars from their absence. Any who you remain in contact with but haven't told about your embrace are likely suspicious about your lack of aging and absence during the day. As a result, you've learned to remain mostly composed, and to keep things close to the vest, especially when it comes to interacting with Kine. With your Kine touchstones dwindling or gone, you'll begin to find solace in others... Or else your humanity might start to fade with them.")
 	if(immortal_age <= 200)
 		return list(
-			"points" = 16,
+			"points" = 15,	//Max age of 200, square root it (and round up) for points.
 			"tier" = "Ancilla",
 			"details" = "As an Ancilla, you are a dignified member of kindred society. Ancient by Anarch standards, middle-aged by Camarillan. The ties you once held to your originally life have faded with the deaths of your loved ones over a century prior. You have come to find a new family along the way; either by siring childer of your own or making and keeping friendships that have lasted you through the ages. You are a composed, mature vampire that others often turn to when decisions need additional input, or important things need doing.")
-	return list("points" = 18,
+	return list("points" = 18,	//No max age, should just get access to 6+ powers based on generation and age. Leave points the same for now.
 			"tier" = "Elder",
 			"details" = "As an Elder of your clan, you are a walking history book. You have learned to keep quiet about your true age and origins, and have likely made a coterie of enemies, some alive some dead. Walking through time as the winding centipede, crawling into centuries unfamiliar as you learn and adapt to each new shifting culture. You may have emerged from torpor after a battle you may or may not remember years prior, thrust into a world you don't recognize. You likely possess a reputation for good or for bad, for something you may or may not have done hundreds of years ago. Some may take solace in your company as a familiar face, some may want to turn you to ash for a petty grievance from lifetimes prior. If your true age is discovered, the Camarilla will likely try to employ you as an enforcer due to your strength... or an aspiring lick might come along to diablerize you and take your power for themselves. To have survived this long, you're cautious, old, and cunning. Your routines are important, and you stay out of the petty squables of younger Kindred if you can help it.")
 
@@ -257,8 +251,15 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 	if(!isnewplayer(user) && ("[user.client.prefs.default_slot]" in user.persistent_client.joined_as_slots))
 		to_chat(user, span_warning("You may not adjust discipline dots of characters that have played in the current round."))
 		return FALSE
-
-	preferences.discipline_levels = list()
+	var/clan_value = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
+	if(!clan_value)
+		return FALSE
+	preferences.discipline_levels = list() // restore them to default
+	var/datum/subsplat/vampire_clan/clan_datum = get_vampire_clan(clan_value) // then give them their default clan discs. clear_discipline_levels fires from changing clans
+	if(clan_datum)
+		for(var/disc_type in clan_datum.clan_disciplines)
+			if(ispath(disc_type, /datum/discipline))
+				preferences.discipline_levels += disc_type
 	preferences.save_character()
 	return TRUE
 

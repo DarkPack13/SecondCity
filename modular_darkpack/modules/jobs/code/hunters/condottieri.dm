@@ -17,10 +17,17 @@
 		/datum/job_department/society_of_leopold,
 	)
 
+	known_contacts = list(
+		JOB_ABBE,
+		JOB_INQUISITOR,
+		JOB_NOVICE,
+		JOB_CONDOTTIERI
+	)
+
 	allowed_splats = list(SPLAT_NONE)
 
 /datum/outfit/job/vampire/condottieri
-	name = "Condottieri"
+	name = JOB_CONDOTTIERI
 	jobtype = /datum/job/vampire/condottieri
 
 	id = /obj/item/card/hunter
@@ -38,3 +45,7 @@
 	. = ..()
 	if(H.mind)
 		H.mind.set_holy_role(HOLY_ROLE_PRIEST)
+
+/datum/outfit/job/vampire/condottieri/post_equip(mob/living/carbon/human/H)
+	. = ..()
+	H.grant_language(/datum/language/latin, source = "job")

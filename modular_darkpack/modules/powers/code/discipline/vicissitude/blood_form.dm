@@ -55,6 +55,9 @@
 		regenerate_limbs.Remove(former_jellyperson)
 	former_jellyperson.RemoveElement(/datum/element/soft_landing)
 	former_jellyperson.pass_flags = NONE //Resets it to default for humans after loss.
+	for(var/obj/item/organ/bloodform_organs in former_jellyperson.organs)
+		if(istype(bloodform_organs, /obj/item/organ/brain/bloodform) || istype(bloodform_organs, /obj/item/organ/eyes/bloodform) || istype(bloodform_organs, /obj/item/organ/ears/bloodform))
+			bloodform_organs.organ_flags &= ~ORGAN_UNREMOVABLE
 	return ..()
 
 /datum/action/innate/regenerate_blood_limbs
