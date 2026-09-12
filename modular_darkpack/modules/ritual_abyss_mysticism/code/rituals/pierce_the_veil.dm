@@ -60,3 +60,4 @@
 	owners_eyes?.refresh()
 	H.add_eye_color(COLOR_BLACK, EYE_COLOR_DISC)
 	to_chat(H, span_userdanger("The ritual backfires! Your eyes become inky black pits of shadow, and your vision cuts through the darkness."))
+	qdel(src)
