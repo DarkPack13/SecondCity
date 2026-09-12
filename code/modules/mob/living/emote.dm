@@ -120,6 +120,12 @@
 	var/custom_message = user.death_message
 	if(custom_message)
 		message_animal_or_basic = custom_message
+
+	if(user.has_quirk(/datum/quirk/death_mimicry))
+		user.Unconscious(30 SECONDS, ignore_canstun=TRUE)
+		ADD_TRAIT(user, TRAIT_FAKEDEATH, QUIRK_TRAIT)
+		addtimer(TRAIT_CALLBACK_REMOVE(user, TRAIT_FAKEDEATH, QUIRK_TRAIT), 30 SECONDS)
+
 	. = ..()
 	message_animal_or_basic = initial(message_animal_or_basic)
 
@@ -173,17 +179,14 @@
 		return
 	wings.make_flap_sound(human_user)
 
-	// open/close functional wings
-	var/obj/item/organ/wings/functional/wings_functional = wings
-	if(!istype(wings_functional))
+	if(!wings.has_open_sprite)
 		return
-	var/open = FALSE
-	if(wings_functional.wings_open)
-		open = TRUE
-		wings_functional.close_wings()
+	var/open = wings.wings_open
+	if(open)
+		wings.close_wings()
 	else
-		wings_functional.open_wings()
-	addtimer(CALLBACK(wings_functional, open ? TYPE_PROC_REF(/obj/item/organ/wings/functional, open_wings) : TYPE_PROC_REF(/obj/item/organ/wings/functional, close_wings)), wing_time)
+		wings.open_wings()
+	addtimer(CALLBACK(wings, open ? TYPE_PROC_REF(/obj/item/organ/wings, open_wings) : TYPE_PROC_REF(/obj/item/organ/wings, close_wings)), wing_time)
 
 /datum/emote/living/flap/aflap
 	key = "aflap"
@@ -697,6 +700,7 @@
 	message_AI = "symphathetically yawns."
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	cooldown = 5 SECONDS
+	var/mouth_covered = FALSE // DARKPACK EDIT ADD
 
 /datum/emote/living/yawn/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
@@ -706,7 +710,7 @@
 	if(TIMER_COOLDOWN_FINISHED(user, COOLDOWN_YAWN_PROPAGATION))
 		TIMER_COOLDOWN_START(user, COOLDOWN_YAWN_PROPAGATION, cooldown * 3)
 
-	if(astype(user, /mob/living/carbon)?.obscured_slots & HIDEFACE)
+	if(mouth_covered || astype(user, /mob/living/carbon)?.obscured_slots & HIDEFACE) // DARKPACK EDIT CHANGE
 		return // if your face is obscured, skip propagation
 
 	var/propagation_distance = user.client ? 5 : 2 // mindless mobs are less able to spread yawns
@@ -714,6 +718,15 @@
 	for(var/mob/living/iter_living in view(user, propagation_distance))
 		if(iter_living.incapacitated || TIMER_COOLDOWN_RUNNING(iter_living, COOLDOWN_YAWN_PROPAGATION))
 			continue
+
+		// DARKPACK EDIT ADD START
+		if(prob(50)) // Propagation is a not a guaranteed one. Keeps it fun when it happens.
+			continue
+		if(TIMER_COOLDOWN_RUNNING(iter_living, COOLDOWN_YAWN_WITNESSED))
+			continue
+
+		TIMER_COOLDOWN_START(iter_living, COOLDOWN_YAWN_WITNESSED, cooldown) // Prevents yawns from scaling extremely hard against large crowds
+		// DARKPACK EDIT ADD END
 
 		var/dist_between = get_dist(user, iter_living)
 		var/recently_examined = FALSE // if you yawn just after someone looks at you, it forces them to yawn as well. Tradecraft!
@@ -723,8 +736,19 @@
 			if(examine_time && (world.time - examine_time < YAWN_PROPAGATION_EXAMINE_WINDOW))
 				recently_examined = TRUE
 
-		if(!recently_examined && !prob(YAWN_PROPAGATE_CHANCE_BASE - (YAWN_PROPAGATE_CHANCE_DECAY * dist_between)))
+		// DARKPACK EDIT CHANGE START
+		var/yawn_chance = YAWN_PROPAGATE_CHANCE_BASE
+		var/willpower_stat = astype(iter_living, /mob/living)?.st_get_stat(STAT_PERMANENT_WILLPOWER)
+		if(!isnull(willpower_stat))
+			if(willpower_stat <= 1)
+				yawn_chance = 75
+			else
+				yawn_chance = (10 - willpower_stat) * 2.5
+				yawn_chance = clamp(yawn_chance, 5, 50)
+
+		if(!recently_examined && !prob(yawn_chance - (YAWN_PROPAGATE_CHANCE_DECAY * dist_between)))
 			continue
+		// DARKPACK EDIT CHANGE END
 
 		var/yawn_delay = rand(0.2 SECONDS, 0.7 SECONDS) * dist_between
 		addtimer(CALLBACK(src, PROC_REF(propagate_yawn), iter_living), yawn_delay)
@@ -734,6 +758,15 @@
 	if(!istype(user) || TIMER_COOLDOWN_RUNNING(user, COOLDOWN_YAWN_PROPAGATION))
 		return
 	user.emote("yawn")
+
+// DARKPACK EDIT ADD START
+/datum/emote/living/yawn/covered
+	key = "yawncovered"
+	key_third_person = "yawncovered"
+	name = "yawn (Cover mouth)"
+	message = "covers their mouth before yawning."
+	mouth_covered = TRUE
+// DARKPACK EDIT ADD END
 
 #undef YAWN_PROPAGATE_CHANCE_BASE
 #undef YAWN_PROPAGATE_CHANCE_DECAY
@@ -845,6 +878,35 @@
 
 /datum/emote/living/custom/replace_pronoun(mob/user, message)
 	return message
+
+///Emotes only for le epic chimps
+/datum/emote/living/monkey
+	abstract_type = /datum/emote/living/monkey
+	trait_required = TRAIT_SIMIAN
+
+/datum/emote/living/monkey/gnarl
+	key = "gnarl"
+	key_third_person = "gnarls"
+	message = "gnarls and shows its teeth..."
+	message_mime = "gnarls silently, baring its teeth..."
+
+/datum/emote/living/monkey/roll
+	key = "roll"
+	key_third_person = "rolls"
+	message = "rolls."
+	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
+
+/datum/emote/living/monkey/scratch
+	key = "scratch"
+	key_third_person = "scratches"
+	message = "scratches."
+	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
+
+/datum/emote/living/monkey/sign
+	key = "sign"
+	key_third_person = "signs"
+	message_param = "signs the number %t."
+	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
 
 /datum/emote/living/inhale
 	key = "inhale"
