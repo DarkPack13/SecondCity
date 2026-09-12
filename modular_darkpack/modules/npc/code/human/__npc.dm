@@ -77,6 +77,27 @@
 
 	var/list/drop_on_death_list = null
 
+	// NPC 911 reporting phrases
+	COOLDOWN_DECLARE(call_911_cooldown)
+	var/static/list/open_carrying_phrases = list(
+		"Is that...?!",
+		"Are you carrying a weapon?!",
+		"Oh my god, are you carrying a weapon?",
+		"Someone needs to call the police, that's crazy.",
+		"Just rob a bank or something?",
+		"That's illegal, you know.",
+		"Open carrying a weapon in 2016 is crazy.",
+		"That's a crime, you know.",
+		"You should put that weapon away.",
+		"Are you crazy? You can't just carry a weapon around like that.",
+		"This is California, psycho. Put the weapon away.",
+		"In what world is it okay to open carry a weapon like that? Put it away.",
+		"It's 2016, not 1816.",
+		"The cops are going to shoot you, dude.",
+		"Crazy. You should put that away before you get shot.",
+		"Holy crap, someone call the cops! That psycho has a weapon!"
+	)
+
 /mob/living/carbon/human/npc/Initialize(mapload)
 	. = ..()
 
@@ -268,3 +289,146 @@
 
 /mob/living/carbon/human/npc/proc/ghoul_player_controlled(mob/owner)
 	message_admins("[key_name_admin(src)] has became a ghoul by [key_name_admin(owner)].")
+
+
+// Crime report handling
+/mob/living/carbon/human/npc/handle_attacked(datum/source, atom/attacker, attack_flags)
+	if(attack_flags & (ATTACKER_STAMINA_ATTACK|ATTACKER_SHOVING))
+		return
+	for(var/mob/living/carbon/human/npc/nearby_npcs in oviewers(DEFAULT_SIGHT_DISTANCE, src))
+		nearby_npcs.Aggro(attacker)
+	Aggro(attacker, TRUE)
+
+/mob/living/carbon/human/npc/Aggro(mob/living/victim, attacked = FALSE)
+	. = ..()
+	if(attacked)
+		return
+	if(aggressive)
+		return
+	INVOKE_ASYNC(src, PROC_REF(call_911), victim)
+
+/mob/living/carbon/human/npc/proc/call_911(atom/attacker, open_carrying = FALSE)
+	if(!COOLDOWN_FINISHED(src, call_911_cooldown))
+		return
+	var/area/vtm/crime_area = astype(get_area(src))
+	if(!crime_area || crime_area.zone_type != ZONE_MASQUERADE)
+		return
+	if(prob(20)) // some RNG to if they call or not
+		return
+	if(!length(get_all_contents(/obj/item/smartphone)))
+		return
+	if(HAS_TRAIT(src, TRAIT_INCAPACITATED) || HAS_TRAIT(src, TRAIT_RESTRAINED) || staying)
+		return
+	var/turf/crime_turf = get_turf(src)
+	var/crime = CRIME_BATTERY
+	var/clothing_desc = null
+	if(istype(attacker, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = attacker
+		if(istype(H.get_active_held_item(), /obj/item/gun) || istype(H.get_inactive_held_item(), /obj/item/gun))
+			crime = CRIME_FIREFIGHT
+		if(open_carrying)
+			crime = CRIME_OPEN_CARRYING
+		var/list/worn = list()
+		var/list/visible_items = H.get_visible_items()
+		for(var/obj/item/worn_item in H.get_equipped_items())
+			if(worn_item in H.visible_items())
+				var/importance = 1
+				if(worn_item in (H.head + H.wear_suit + H.w_uniform))
+					importance = 5
+				worn[worn_item] = importance
+		var/list/seen_items = list()
+		var/items_to_spot = rand(1, st_get_stat(STAT_PERCEPTION))
+		for(var/i in 1 to items_to_spot)
+			if(!length(worn))
+				break
+			var/obj/item/picked_item = pick_weight(worn)
+			worn[picked_item] = null
+			seen_items += picked_item
+		if(length(seen_items))
+			clothing_desc = english_list(seen_items)
+	GLOB.move_manager.stop_looping(src)
+	var/saved_danger = danger_source
+	danger_source = null
+	manual_emote("takes out [p_their()] phone and starts dialing 911!")
+	staying = TRUE
+	if(!do_after(src, 5 SECONDS, target = src, cog_icon = 'modular_darkpack/modules/phones/icons/phone.dmi', cog_iconstate = "phone"))
+		staying = FALSE
+		if(saved_danger)
+			danger_source = saved_danger
+		return
+	if(clothing_desc)
+		realistic_say("[pick("Police!", "Hello, police?!")] [pick(pick(socialrole.help_phrases), "Wearing [clothing_desc]!")]")
+	else
+		realistic_say("[pick("Police!", "Hello, police?!")] [pick(socialrole.help_phrases)]")
+	var/mob/living/carbon/human/H = astype(attacker, /mob/living/carbon/human)
+	if(H)
+		H.witnessed_crimes += 1
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, remove_crime_stack)), 1 MINUTES)
+		if(H.witnessed_crimes >= 10 && !H.warrant)
+			H.warrant = TRUE
+			SEND_SOUND(H, sound('modular_darkpack/modules/deprecated/sounds/suspect.ogg', volume = 75))
+			to_chat(H, span_userdanger("<b>ALL-POINTS BULLETIN ISSUED!</b>"))
+			to_chat(H, span_warning("The police are now able to track you down and will pursue you on sight. Lay low for a while and they will eventually stop looking for you."))
+		else if(!H.warrant)
+			SEND_SOUND(H, sound('modular_darkpack/modules/deprecated/sounds/sus.ogg', volume = 75))
+			to_chat(H, span_userdanger("<b>SUSPICIOUS ACTION ([crime])</b>"))
+	SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, crime, crime_turf, clothing_desc)
+	staying = FALSE
+
+/obj/item/proc/is_scary_weapon() // NPCs don't like seeing scary weapons
+	if(item_flags & NEEDS_PERMIT)
+		return TRUE
+	if(masquerade_violating)
+		return TRUE
+	return FALSE
+
+/obj/item/instrument/is_scary_weapon()
+	return FALSE
+
+/obj/item/storage/belt/sheath/is_scary_weapon()
+	return stored_blade?.is_scary_weapon()
+
+/obj/item/gun/ballistic/is_scary_weapon()
+	// we check for a serial number so NPCs dont freak out over donksoft foam guns
+	// This is kinda mid tho and the lack of a serial number is a terrible check for "scary gun"
+	return !!serial_type
+	// What i will acctually suggest is removing it entirely in favor of checking for permit or masquerade violating instead.
+
+/datum/proximity_monitor/advanced/violation_check_aoe/proc/check_criminal_violation(mob/living/carbon/human/entered_mob)
+	var/threatcount = 0
+	var/datum/job/entered_job = SSjob.get_job(entered_mob?.job)
+	if(entered_job?.departments_bitflags & DEPARTMENT_BITFLAG_POLICE)
+		return 0 // dont call 911 on the police
+	for(var/obj/item/thing in entered_mob?.held_items) //they're holding it!
+		if(thing.is_scary_weapon())
+			threatcount += 11 // 11 so that if they have 5 charisma and 5 intimidation, they still have a tiny chance of getting snitched on
+	if(entered_mob?.belt?.is_scary_weapon() || entered_mob?.back?.is_scary_weapon())
+		threatcount += 5 //not an immediate threat, but still a threat
+	return threatcount
+
+/datum/proximity_monitor/advanced/violation_check_aoe/on_entered(turf/source, atom/movable/entered, turf/old_loc)
+	. = ..()
+	var/mob/living/carbon/human/entered_mob = astype(entered, /mob/living/carbon/human)
+	var/mob/living/carbon/human/npc/host_mob = astype(host, /mob/living/carbon/human/npc)
+	if(!entered_mob || !host_mob || !entered_mob.client || istype(entered_mob, /mob/living/carbon/human/npc))
+		return
+	var/severity = check_criminal_violation(entered_mob)
+	if(!severity)
+		return
+	var/call_chance = severity - (entered_mob.st_get_stat(STAT_CHARISMA) + entered_mob.st_get_stat(STAT_INTIMIDATION))
+	if(prob(call_chance))
+		INVOKE_ASYNC(host_mob, TYPE_PROC_REF(/mob/living/carbon/human/npc, call_911), entered_mob, open_carrying = TRUE)
+		return // if they call, dont yap after
+	if(prob(1)) // if they don't call, the npc might just yap
+		host_mob.point_at(entered_mob)
+		host_mob.realistic_say(pick(host_mob.open_carrying_phrases))
+
+/mob/living/carbon/human/proc/remove_crime_stack()
+	if(QDELETED(src))
+		return
+	witnessed_crimes = max(0, witnessed_crimes - 1) // each witnessed crime stack lasts 1 minute. police pursue them after 10 stacks.
+	if(!warrant)
+		return
+	if(witnessed_crimes == 0)
+		to_chat(src, span_info("(APB) The police call off their search for you. You are no longer wanted."))
+		warrant = FALSE
