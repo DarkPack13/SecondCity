@@ -1,6 +1,10 @@
-#define BASHING_LETHAL_PROTECTION 15
-#define AGGRAVATED_PROTECTION 10
-
+/**soak probability chart
+1 Die - 49.99 / 40.01 / 10 (1)
+2 Die - 65 / 26 / 9 (1.4)
+3 Die - 73.99 / 19.9 / 6.1 (1.7)
+4 Die - 80.05 / 16.26 / 3.69 (2.1)
+5 Die - 84.4 / 13.49 / 2.1 (2.4)
+*/
 /datum/status_effect/fortitude
 	// All IDs are the same to prevent stacking multiple Fortitude statuses
 	id = "fortitude"
@@ -30,76 +34,38 @@
 	armor_type = /datum/armor/fortitude1
 
 /datum/armor/fortitude1
-	acid = 1 * AGGRAVATED_PROTECTION
-	bio = 1 * AGGRAVATED_PROTECTION
-	bomb = 1 * BASHING_LETHAL_PROTECTION
-	bullet = 1 * BASHING_LETHAL_PROTECTION
-	consume = 1 * BASHING_LETHAL_PROTECTION
-	energy = 1 * BASHING_LETHAL_PROTECTION
-	laser = 1 * BASHING_LETHAL_PROTECTION
-	fire = 1 * AGGRAVATED_PROTECTION
-	melee = 1 * BASHING_LETHAL_PROTECTION
-	wound = 1 * BASHING_LETHAL_PROTECTION
+	acid = 49.99
+	bio = 49.99
+	fire = 49.99
 
 /datum/status_effect/fortitude/two
 	armor_type = /datum/armor/fortitude2
 
 /datum/armor/fortitude2
-	acid = 2 * AGGRAVATED_PROTECTION
-	bio = 2 * AGGRAVATED_PROTECTION
-	bomb = 2 * BASHING_LETHAL_PROTECTION
-	bullet = 2 * BASHING_LETHAL_PROTECTION
-	consume = 2 * BASHING_LETHAL_PROTECTION
-	energy = 2 * BASHING_LETHAL_PROTECTION
-	laser = 2 * BASHING_LETHAL_PROTECTION
-	fire = 2 * AGGRAVATED_PROTECTION
-	melee = 2 * BASHING_LETHAL_PROTECTION
-	wound = 2 * BASHING_LETHAL_PROTECTION
+	acid = 65
+	bio = 65
+	fire = 65
 
 /datum/status_effect/fortitude/three
 	armor_type = /datum/armor/fortitude3
 
 /datum/armor/fortitude3
-	acid = 3 * AGGRAVATED_PROTECTION
-	bio = 3 * AGGRAVATED_PROTECTION
-	bomb = 3 * BASHING_LETHAL_PROTECTION
-	bullet = 3 * BASHING_LETHAL_PROTECTION
-	consume = 3 * BASHING_LETHAL_PROTECTION
-	energy = 3 * BASHING_LETHAL_PROTECTION
-	laser = 3 * BASHING_LETHAL_PROTECTION
-	fire = 3 * AGGRAVATED_PROTECTION
-	melee = 3 * BASHING_LETHAL_PROTECTION
-	wound = 3 * BASHING_LETHAL_PROTECTION
+	acid = 73.99
+	bio = 73.99
+	fire = 73.99
 
 /datum/status_effect/fortitude/four
 	armor_type = /datum/armor/fortitude4
 
 /datum/armor/fortitude4
-	acid = 4 * AGGRAVATED_PROTECTION
-	bio = 4 * AGGRAVATED_PROTECTION
-	bomb = 4 * BASHING_LETHAL_PROTECTION
-	bullet = 4 * BASHING_LETHAL_PROTECTION
-	consume = 4 * BASHING_LETHAL_PROTECTION
-	energy = 4 * BASHING_LETHAL_PROTECTION
-	laser = 4 * BASHING_LETHAL_PROTECTION
-	fire = 4 * AGGRAVATED_PROTECTION
-	melee = 4 * BASHING_LETHAL_PROTECTION
-	wound = 4 * BASHING_LETHAL_PROTECTION
+	acid = 80.05
+	bio = 80.05
+	fire = 80.05
 
 /datum/status_effect/fortitude/five
 	armor_type = /datum/armor/fortitude5
 
 /datum/armor/fortitude5
-	acid = 5 * AGGRAVATED_PROTECTION
-	bio = 5 * AGGRAVATED_PROTECTION
-	bomb = 5 * BASHING_LETHAL_PROTECTION
-	bullet = 5 * BASHING_LETHAL_PROTECTION
-	consume = 5 * BASHING_LETHAL_PROTECTION
-	energy = 5 * BASHING_LETHAL_PROTECTION
-	laser = 5 * BASHING_LETHAL_PROTECTION
-	fire = 5 * AGGRAVATED_PROTECTION
-	melee = 5 * BASHING_LETHAL_PROTECTION
-	wound = 5 * BASHING_LETHAL_PROTECTION
-
-#undef BASHING_LETHAL_PROTECTION
-#undef AGGRAVATED_PROTECTION
+	acid = 84.4
+	bio = 84.4
+	fire = 84.4
