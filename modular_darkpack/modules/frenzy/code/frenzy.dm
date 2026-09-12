@@ -6,14 +6,22 @@
 		return
 	if(IS_UNCONSCIOUS(src))
 		return
-	add_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA), FRENZY_TRAIT)
+	add_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA, TRAIT_CANNOT_FOCUS, TRAIT_ILLITERATE), FRENZY_TRAIT)
+
+	set_jitter_if_lower(1 SCENES)
+
 	message_admins("[ADMIN_LOOKUPFLW(src)] has entered frenzy[target ? " targeting [ADMIN_LOOKUPFLW(target)]": ""]. ([source])")
 	log_combat(src, (src || target), "has frenzied on because of \"[source]\" on")
 
 	if(fleeing)
 		to_chat(src, span_danger("FLEE."))
+		src.balloon_alert(src, "flee!")
+		add_traits(list(TRAIT_PACIFISM), FRENZY_TRAIT)	//Lore inaccurate, but this forces them to flee instead of ignoring rotshreck and continuing to fight.
 	else
 		to_chat(src, span_bolddanger("FRENZY."))
+		src.balloon_alert(src, "frenzy!")
+		if(get_kindred_splat(src))
+			add_traits(list(TRAIT_PERMAFANGS, TRAIT_STRONG_GRABBER), FRENZY_TRAIT)	//You're hangry and can't wait to eat.
 
 	SEND_SOUND(src, sound('modular_darkpack/modules/frenzy/sounds/frenzy.ogg', volume = 50))
 
@@ -25,7 +33,7 @@
 /mob/living/proc/exit_frenzy_mode()
 	if(!HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		return
-	remove_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA), FRENZY_TRAIT)
+	remove_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA, TRAIT_PACIFISM, TRAIT_PERMAFANGS, TRAIT_STRONG_GRABBER, TRAIT_CANNOT_FOCUS, TRAIT_ILLITERATE), FRENZY_TRAIT)
 	log_message("exited frenzy.", LOG_ATTACK, color="red")
 
 	remove_status_effect(/datum/status_effect/frenzy)
