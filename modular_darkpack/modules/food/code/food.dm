@@ -24,7 +24,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/food/icons/food_onfloor.dmi')
 	custom_price = 1
 	food_flags = FOOD_BITE_SPRITE
-	foodtypes = GRAIN|CHOCOLATE|JUNKFOOD|FRIED
+	foodtypes = JUNKFOOD|GRAIN|DAIRY|FRIED|SUGAR|BREAKFAST|CHOCOLATE
 
 /obj/item/food/pizzaslice/square
 	name = "square pizza slice"
