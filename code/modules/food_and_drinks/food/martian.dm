@@ -443,7 +443,7 @@
 		/datum/reagent/medicine/omnizine = 5,
 	)
 	tastes = list("masterful curry" = 1, "rice" = 1)
-	foodtypes = MEAT|VEGETABLES|GRAIN|FRUIT|SUGAR|CHOCOLATE  //DARKPACK EDIT ADDITION: Chocolate
+	foodtypes = MEAT|VEGETABLES|GRAIN|FRUIT|SUGAR|CHOCOLATE  //DARKPACK EDIT CHANGE: Chocolate
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_5 //Extensive and secretly guarded. Was previously 2 and I thought it was pathetic.
 	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT)

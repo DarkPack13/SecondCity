@@ -697,7 +697,7 @@
 		/obj/item/food/butterslice = 1
 	)
 	result = /obj/item/food/raw_brownie_batter
-	added_foodtypes = GRAIN|JUNKFOOD|SUGAR|CHOCOLATE //DARKPACK EDIT ADDITION: Chocolate
+	added_foodtypes = GRAIN|JUNKFOOD|SUGAR|CHOCOLATE //DARKPACK EDIT CHANGE: Chocolate
 	removed_foodtypes = MEAT|RAW|EGG
 	meal_category = MEAL_COMPONENT
 
@@ -712,7 +712,7 @@
 		/obj/item/food/butterslice = 1
 	)
 	result = /obj/item/food/peanut_butter_brownie_batter
-	added_foodtypes = GRAIN|JUNKFOOD|SUGAR|NUTS|CHOCOLATE  //DARKPACK EDIT ADDITION: Chocolate
+	added_foodtypes = GRAIN|JUNKFOOD|SUGAR|NUTS|CHOCOLATE  //DARKPACK EDIT CHANGE: Chocolate
 	removed_foodtypes = MEAT|RAW|EGG
 	meal_category = MEAL_COMPONENT
 
