@@ -601,7 +601,7 @@
 	icon_state = "thumbprint_cookie"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	tastes = list("cookie" = 2, "cherry jelly" = 3)
-	foodtypes = GRAIN|DAIRY|SUGAR|FRUIT|CHOCOLATE //DARKPACK EDIT CHANGE: Chocolate
+	foodtypes = GRAIN|DAIRY|SUGAR|FRUIT
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_3
