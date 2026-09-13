@@ -275,7 +275,7 @@ DEFINE_BITFIELD(ammo_box_multiload, list(
 #define HIS_GRACE_FORCE_BONUS 4 //How much force is gained per kill.
 
 /// ex_act() with EXPLODE_DEVASTATE severity will gib mobs with less than this much bomb armor
-#define EXPLODE_GIB_THRESHOLD 50
+#define EXPLODE_GIB_THRESHOLD 0	//DARPACK EDIT - DISABLE TILE DESTRUCTION (Original value 50, changed to 0 to disable this)
 
 #define EMP_LIGHT 2
 #define EMP_HEAVY 1

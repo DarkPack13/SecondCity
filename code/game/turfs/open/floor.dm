@@ -70,13 +70,17 @@
 					if(prob(33))
 						new /obj/item/stack/sheet/iron(src)
 				if(2)
-					ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
+					ScrapeAway(1, flags = CHANGETURF_INHERIT_AIR)	//DARPACK EDIT - LOWER DESTRUCTION (Was 2, now is 1)
 				if(3)
-					if(prob(80))
+					/*DARKPACK EDIT START - LOWER DESTRUCTION (Removes away the scraping of this 30% chance, instead now just breaks the tile)
+					if(prob(30))
 						ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 					else
 						break_tile()
+					*/
+					break_tile()
 					hotspot_expose(1000,CELL_VOLUME)
+					//DARKPACK EDIT END
 					if(prob(33))
 						new /obj/item/stack/sheet/iron(src)
 		if(EXPLODE_LIGHT)
