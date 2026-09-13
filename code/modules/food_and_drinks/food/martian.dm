@@ -1217,7 +1217,7 @@
 		/datum/reagent/consumable/nutriment/vitamin = 2,
 	)
 	tastes = list("cold pineapple" = 1, "chocolate" = 1)
-	foodtypes = SUGAR|FRUIT|PINEAPPLE
+	foodtypes = SUGAR|FRUIT|PINEAPPLE|CHOCOLATE //DARKPACK EDIT CHANGE: Chocolate
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/popsicle/sea_salt

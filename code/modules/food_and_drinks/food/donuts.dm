@@ -161,6 +161,7 @@
 	name = "chocolate donut"
 	desc = "Goes great with a glass of warm milk."
 	icon_state = "donut_choc"
+	foodtypes = GRAIN|JUNKFOOD|FRIED|CHOCOLATE //DARKPACK EDIT CHANGE: Chocolate
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
 		/datum/reagent/consumable/sugar = 3,
@@ -306,6 +307,7 @@
 	name = "chocolate jelly donut"
 	desc = "Goes great with a glass of warm milk."
 	icon_state = "jelly_choc"
+	foodtypes = GRAIN|FRIED|JUNKFOOD|FRUIT|CHOCOLATE //DARKPACK EDIT CHANGE: Chocolate
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
 		/datum/reagent/consumable/sugar = 3,
