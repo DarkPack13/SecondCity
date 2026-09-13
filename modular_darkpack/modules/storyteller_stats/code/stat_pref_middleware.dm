@@ -38,10 +38,6 @@
 /datum/preference_middleware/stats/proc/increase_stat(list/params, mob/user)
 	SHOULD_NOT_SLEEP(TRUE)
 
-	if("[user.client.prefs.default_slot]" in user.persistent_client.joined_as_slots)
-		to_chat(user, span_warning("You cannot be spawned in as this character to adjust its stats."))
-		return FALSE
-
 	var/datum/st_stat/stat_path = preferences.preference_storyteller_stats[text2path(params["stat"])]
 	var/datum/st_stat/parent_point_stat = preferences.preference_storyteller_stats[stat_path.freebie_pool_stat]
 	var/datum/st_stat/freebie_point_stat = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]

@@ -1,3 +1,4 @@
+#warn consider merging this just down into 3 stats as im unsure if we really care about the split between the first 4
 /datum/st_stat/virtue/conscience
 	name = "Conscience"
 	starting_score = 1 //All vampires by default start out with this.

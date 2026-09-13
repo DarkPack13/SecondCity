@@ -91,4 +91,25 @@
 		stat_datum.update_mob(src, initial)
 
 /datum/preferences/proc/apply_stats_from_prefs(mob/living/carbon/human/character)
-	character.replace_storyteller_stats(preference_storyteller_stats.Copy(), TRUE)
+	var/list/stats_copy = list()
+	for(var/stat_path in preference_storyteller_stats)
+		var/datum/st_stat/source_stat = preference_storyteller_stats[stat_path]
+		var/datum/st_stat/new_stat = new stat_path()
+		new_stat.set_score(source_stat.get_pure_score())
+		// new_stat.load_points(source_stat.get_points())
+		// new_stat.freebie_cost_spent = source_stat.freebie_cost_spent
+		stats_copy[stat_path] = new_stat
+
+	#warn this sucks, see if we should even be loading this tbh
+	/*
+	var/morality_pref_type = read_preference(/datum/preference/choiced/vtm_morality)
+	if(morality_pref_type)
+		var/datum/st_stat/morality_path/morality/pref_morality = preference_storyteller_stats[STAT_MORALITY]
+		var/datum/st_stat/morality_path/morality/char_morality = character.storyteller_stats[STAT_MORALITY]
+		if(pref_morality && !pref_morality.morality_path)
+			pref_morality.morality_path = new morality_pref_type()
+		if(char_morality && !char_morality.morality_path)
+			char_morality.morality_path = new morality_pref_type(character)
+	*/
+
+	character.replace_storyteller_stats(stats_copy, TRUE)

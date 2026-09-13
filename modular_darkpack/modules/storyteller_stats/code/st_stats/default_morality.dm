@@ -6,6 +6,7 @@
 	max_score = 10
 	//freebie_point_cost = FREEBIE_COST_HUMANITY
 	editable = FALSE
+	#warn this doesnt seem useful, we dont acctually use it within its own code, likely could just be on the mob?
 	var/datum/morality/morality_path
 
 /datum/st_stat/morality_path/morality/can_see_stat(mob/owner)

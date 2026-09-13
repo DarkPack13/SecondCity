@@ -205,10 +205,6 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 /datum/preference_middleware/disciplines/proc/set_discipline_level(list/params, mob/user)
 	SHOULD_NOT_SLEEP(TRUE)
 
-	if(!isnewplayer(user) && ("[user.client.prefs.default_slot]" in user.persistent_client.joined_as_slots))
-		to_chat(user, span_warning("You may not adjust discipline dots of characters that have played in the current round.")) // so people dont mess up their saves
-		return FALSE
-
 	var/discipline = params["discipline"]
 	var/new_level = text2num(params["level"])
 
@@ -248,9 +244,6 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 /datum/preference_middleware/disciplines/proc/clear_discipline_levels(list/params, mob/user)
 	SHOULD_NOT_SLEEP(TRUE)
 
-	if(!isnewplayer(user) && ("[user.client.prefs.default_slot]" in user.persistent_client.joined_as_slots))
-		to_chat(user, span_warning("You may not adjust discipline dots of characters that have played in the current round."))
-		return FALSE
 	var/clan_value = preferences.read_preference(/datum/preference/choiced/subsplat/vampire_clan)
 	if(!clan_value)
 		return FALSE
