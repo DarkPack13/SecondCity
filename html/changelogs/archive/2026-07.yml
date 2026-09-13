@@ -116,3 +116,99 @@
   lelandkemble:
   - rscadd: Added craftable anti-mech tripwires. A mech that foolishly steps on one
       will fall down and be immobilized temporarily. Don't let it fall on you!
+2026-07-22:
+  Art-gif-dotcom:
+  - bugfix: fixed dementation 4 working incorrectly
+  FalloutFalcon:
+  - bugfix: Scars wont save for vampires even if they have the box ticked
+  - code_imp: cleans up some random signal stuff
+  - bugfix: Pierced Veil should work as intended for delerium effects
+  - code_imp: changelog is generated once a day instead of a week
+  - rscadd: Endpost and Message+ now use a generic helper for displaying a notification
+      as a balloon alert.
+  - bugfix: Text messages properly use the phone numbers for the texters rather then
+      phones
+  - rscadd: The strange goat plushie has some extra interactions
+  - rscadd: Adds our plushies to a few spots that was missed, primarly the arcade
+      lootpool
+  NullDagaf:
+  - rscadd: you can now break the handcuffs apart instead of just wriggling yourself
+      out of them
+  SabKatTemp2:
+  - rscadd: Adds promethean clay merit
+2026-07-23:
+  Art-gif-dotcom:
+  - bugfix: fixed klaives not working properly
+2026-07-24:
+  TheCarnalest:
+  - qol: You can now use keybinds to select and cast Disciplines
+2026-07-25:
+  chazzyjazzy:
+  - image: adds one pixel to most clothing items to fix toes poking out
+2026-07-26:
+  Hardly:
+  - bugfix: Fixes guestbook revealing names even on masked people
+2026-07-27:
+  FalloutFalcon:
+  - rscadd: New weaker variant of acid turf.
+  - bugfix: Mobs with no defined AGG damage modifier will default to 100% taken.
+  - balance: Removed brawl/fist immunity from tendrils and golaith so they can be
+      used for adminbus/umbra
+  - bugfix: Non-water turfs now have the correct scoop-able material
+  - qol: If you have more then 5 character profiles in preferences, it displays as
+      a dropdown instead.
+2026-07-28:
+  Faengi:
+  - rscadd: Added Monochrome Vision flaw for Garou
+2026-07-29:
+  Faengi:
+  - rscadd: Added Cast-Iron Stomach as a merit
+  FalloutFalcon:
+  - bugfix: Guestbook should handle text macros better
+  - bugfix: Dogs are treated as an improper noun
+  - bugfix: Hunger is no longer accidentally soft-removed
+  - config: Hunger rate is on a config for easier tweaking
+  kimesik:
+  - bugfix: Fixed Condottieri's supervisor property.
+2026-07-30:
+  Absolucy:
+  - bugfix: Fixed a laggy hard delete related to disciplines.
+  FalloutFalcon:
+  - rscadd: Adds a large set of new ambiences to mostly replace the old ones.
+  - rscadd: Pipes and stalagmites have a chance to have dripping sounds playing
+  - rscadd: Light tubes have a chance to have an ambient buzz
+  - rscadd: Adds a `looping_sound_emitter` object for mapping that can be vareditted
+      to have a looping sound easier.
+  - bugfix: Fills in the gaps of the ambience buzzs and sounds so that Space ambience
+      no longer plays
+  - rscadd: The umbra now spawns corpses with fetishes and banes surronding them
+  - rscadd: 'Adds new minor werewolf fetish: Magpie''s Ears'
+  - rscadd: Adds merit to have a roundstart fetish owned by you.
+  - balance: Klaives are MUCH rarer from normal spawns
+  - bugfix: Improves handling for detecting a heartbeat to be more consistent
+  - code_imp: Fixes random runtimes
+  chazzyjazzy:
+  - rscadd: adds functionality for clearing masquerade breaches upon the death of
+      any mob/living, admins can also use the 'AdjustMasquerade' proc to restore people's
+      breaches now as it wasnt working before
+2026-07-31:
+  Absolucy:
+  - bugfix: made smartphone contacts lag the server less
+  Faengi:
+  - config: Added a config setting to limit high generations to a limited selection
+      of jobs
+  - rscadd: Gave the Society of Leopold intel reports to find breachers with
+  - rscadd: Added more breach phrases to the list
+  FalloutFalcon:
+  - balance: You can guestbook from a full screen width
+  - bugfix: Delirium will properly be applied
+  - admin: 2 VV topics for managing actions or gifts
+  buffyuwu:
+  - rscadd: Admins can now set generations below 8
+  chazzyjazzy:
+  - rscadd: Adds the red news reporter role which can broadcast to the city using
+      the captain-caster camera and mapped-in greenscreens as well as 'entertainment
+      monitors' and the mobile cameras
+  - rscadd: expands lore primers to help new players figure out what morality paths
+      are as well as some stuff about Garou, Clans, etc
+  - bugfix: fixes firearms recoil roll difficulty never being reset

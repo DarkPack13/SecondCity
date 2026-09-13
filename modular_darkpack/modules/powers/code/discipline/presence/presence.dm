@@ -2,7 +2,12 @@
 
 /datum/discipline/presence
 	name = "Presence"
-	desc = "Allows you to attract, sway, and control crowds through supernatural allure and emotional manipulation."
+	desc = {"Allows you to attract, sway, and control crowds through supernatural allure and emotional manipulation.
+● Awe: Charisma + Performance (difficulty 7)
+●● Dread Gaze: Charisma + Intimidation vs. Wits + Courage
+●●● Entrancement: Appearance + Empathy vs. Willpower
+●●●● Summon: Charisma + Subterfuge (difficulty 7)
+●●●●● Majesty: Courage vs. Charisma + Intimidation"}
 	icon_state = "presence"
 	power_type = /datum/discipline_power/presence
 
@@ -197,7 +202,7 @@
 		to_chat(owner, span_warning("Your terrifying presence sends [target] fleeing in terror!"))
 
 		//V20's 'dread gaze' section states that with 3 or more successes targets will find themselves scratching at the walls or fleeing against their will because they are so terrified.
-		GLOB.move_manager.move_away(target, owner, 10, target.cached_multiplicative_slowdown)
+		GLOB.move_manager.move_away(target, owner, 10, target.cached_multiplicative_slowdown, 2 MINUTES)
 
 /datum/discipline_power/presence/dread_gaze/deactivate(mob/living/carbon/human/target)
 	. = ..()

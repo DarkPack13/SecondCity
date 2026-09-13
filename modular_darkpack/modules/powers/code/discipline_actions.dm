@@ -92,7 +92,15 @@
 	owner.update_action_buttons()
 
 /datum/action/discipline/IsAvailable(feedback)
-	return discipline.current_power.can_activate_untargeted(feedback)
+	return discipline.current_power?.can_activate_untargeted(feedback)
+
+/datum/action/discipline/proc/trigger_level(mob/user, level, trigger_flags)
+	// This proc is for specific levels only, unlike switch_level() it should never roll over to 1 or the max level
+	if (discipline.level < level || level < 0)
+		return
+
+	switch_level(level - discipline.level_casting, TRUE)
+	return Trigger(user, trigger_flags)
 
 /datum/action/discipline/Trigger(mob/clicker, trigger_flags)
 	. = ..()
@@ -147,11 +155,13 @@
 	if (targeting)
 		end_targeting()
 
-	discipline.current_power = discipline.known_powers[discipline.level_casting]
+	discipline.update_current_power()
+	refresh_power_display()
 
-	// Update name and icon to the new power's
-	name = discipline.current_power.name
-	desc = discipline.current_power.desc
+// Update name, desc, and icon to the new power's
+/datum/action/discipline/proc/refresh_power_display()
+	name = discipline.current_power?.name || discipline.name
+	desc = discipline.current_power?.desc || discipline.desc
 
 	overlay_icon_state = num2text(discipline.level_casting)
 
@@ -166,7 +176,8 @@
 
 	UnregisterSignal(owner, COMSIG_MOB_CLICKON)
 	targeting = FALSE
-	client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
+	client.mouse_override_icon = initial(client.mouse_override_icon)
+	owner.update_mouse_pointer()
 
 /datum/action/discipline/proc/handle_click(mob/source, atom/target, click_parameters)
 	SIGNAL_HANDLER
@@ -180,7 +191,7 @@
 		return
 
 	//actually try to use the Discipline on the target
-	spawn()
+	ASYNC
 		if (discipline.current_power.try_activate(target))
 			end_targeting()
 
@@ -197,7 +208,20 @@
 	SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/highlight.ogg', volume = 50))
 	RegisterSignal(owner, COMSIG_MOB_CLICKON, PROC_REF(handle_click))
 	targeting = TRUE
-	client.mouse_pointer_icon = 'modular_darkpack/modules/deprecated/icons/effects/mouse_pointers/discipline.dmi'
+	client.mouse_override_icon = 'modular_darkpack/modules/deprecated/icons/effects/mouse_pointers/discipline.dmi'
+	owner.update_mouse_pointer()
+
+/datum/action/discipline/proc/select()
+	background_icon_state = "bg_discipline_selected"
+	build_all_button_icons()
+	SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/highlight.ogg', volume = 50))
+
+/datum/action/discipline/proc/unselect(swapping = TRUE)
+	background_icon_state = "bg_discipline"
+	build_all_button_icons()
+	// If you're activating another at the same time, this isn't necessary
+	if (!swapping)
+		SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/highlight.ogg', volume = 50))
 
 /atom/movable/screen/movable/action_button/Click(location, control, params)
 	if(istype(linked_action, /datum/action/discipline))
