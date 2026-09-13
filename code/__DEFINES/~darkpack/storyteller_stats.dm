@@ -66,8 +66,6 @@
 // Virtues
 #define STAT_CONSCIENCE /datum/st_stat/virtue/conscience
 #define STAT_SELF_CONTROL /datum/st_stat/virtue/self_control
-#define STAT_CONVICTION /datum/st_stat/virtue/conviction
-#define STAT_INSTINCT /datum/st_stat/virtue/instinct
 #define STAT_COURAGE /datum/st_stat/virtue/courage
 
 //Morality Path

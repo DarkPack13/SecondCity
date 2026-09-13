@@ -66,19 +66,11 @@ GLOBAL_ALIST_INIT(stat_typepath_migration, list(
 	if(stat_morality?.morality_path)
 		var/datum/st_stat/stat_conscience = preference_storyteller_stats[STAT_CONSCIENCE]
 		var/datum/st_stat/stat_self_control = preference_storyteller_stats[STAT_SELF_CONTROL]
-		var/datum/st_stat/stat_conviction = preference_storyteller_stats[STAT_CONVICTION]
-		var/datum/st_stat/stat_instinct = preference_storyteller_stats[STAT_INSTINCT]
 
-		if(stat_morality.morality_path.alignment == MORALITY_HUMANITY)
-			stat_morality.set_score(
-				clamp(stat_conscience.get_score(include_bonus = TRUE) + stat_self_control.get_score(include_bonus = TRUE), 0, 10),
-				preference_storyteller_stats
-			)
-		else if(stat_morality.morality_path.alignment == MORALITY_ENLIGHTENMENT)
-			stat_morality.set_score(
-				clamp(stat_conviction.get_score(include_bonus = TRUE) + stat_instinct.get_score(include_bonus = TRUE), 0, 10),
-				preference_storyteller_stats
-			)
+		stat_morality.set_score(
+			clamp(stat_conscience.get_score(include_bonus = TRUE) + stat_self_control.get_score(include_bonus = TRUE), 0, 10),
+			preference_storyteller_stats
+		)
 
 
 /datum/preferences/proc/load_st_stat_from_save(list/pref_save)
@@ -173,9 +165,7 @@ GLOBAL_ALIST_INIT(stat_typepath_migration, list(
 		STAT_INTELLIGENCE,
 		STAT_WITS,
 		STAT_CONSCIENCE,
-		STAT_CONVICTION,
 		STAT_SELF_CONTROL,
-		STAT_INSTINCT,
 		STAT_COURAGE
 	)
 
