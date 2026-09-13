@@ -184,3 +184,34 @@
 	name = "cartriage bag (.75 silver ball)"
 	ammo_type = /obj/item/ammo_casing/vampire/c75/silver
 
+//40mm grenade launcher rounds
+/obj/item/ammo_box/darkpack/c40mm
+	name = "explosive ammo box (40mm)"
+	icon_state = "explosive_box"
+	ammo_type = /obj/item/ammo_casing/vampire/c40mm/explosive
+	max_ammo = 6
+
+/obj/item/ammo_box/darkpack/c40mm/baton
+	name = "rubber baton ammo box (40mm)"
+	icon_state = "baton_box"
+	ammo_type = /obj/item/ammo_casing/vampire/c40mm/baton
+
+/obj/item/ammo_box/darkpack/c40mm/incendiary
+	name = "incendiary ammo box (40mm)"
+	icon_state = "incen_box"
+	ammo_type = /obj/item/ammo_casing/vampire/c40mm/incendiary
+
+/obj/item/ammo_box/darkpack/c40mm/flashbang
+	name = "flashbang ammo box (40mm)"
+	icon_state = "flash_box"
+	ammo_type = /obj/item/ammo_casing/vampire/c40mm/flashbang
+
+/obj/item/ammo_box/darkpack/c40mm/teargas
+	name = "teargas ammo box (40mm)"
+	icon_state = "teargas_box"
+	ammo_type = /obj/item/ammo_casing/vampire/c40mm/teargas
+
+/obj/item/ammo_box/darkpack/c40mm/smoke
+	name = "smoke ammo box (40mm)"
+	icon_state = "smoke_box"
+	ammo_type = /obj/item/ammo_casing/vampire/c40mm/smoke
