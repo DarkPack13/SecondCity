@@ -80,3 +80,15 @@
   - image: lectern south sprite is shorter to prevent needing to pixelshift
   - spellcheck: de-SS13'd the captain-cast radio frequency
   - rscadd: start_off subtype for generators
+2026-09-09:
+  Halgmor:
+  - image: the Ductus now has a golden icon instead of sharing white with the priest
+2026-09-10:
+  KCartridge:
+  - bugfix: Pentex/Evilcompany hat issues
+2026-09-11:
+  FalloutFalcon:
+  - bugfix: Elite and megafauna uses the same attack hand code as basic animals
+2026-09-13:
+  PotatoTomahto:
+  - rscadd: new phone call 'hold call', better phone behavior and functionalities
