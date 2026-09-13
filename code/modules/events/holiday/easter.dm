@@ -188,7 +188,7 @@
 		/datum/reagent/consumable/milk = 5
 	)
 	result = /obj/item/food/bowled/mammi
-	added_foodtypes = DAIRY | CHOCOLATE //DARKPACK EDIT ADDITION: Chocolate
+	added_foodtypes = DAIRY | CHOCOLATE // DARKPACK EDIT CHANGE - (Chocolate)
 	dish_category = DISH_CANDY
 	meal_category = MEAL_DESSERT
 
