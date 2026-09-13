@@ -96,6 +96,7 @@
 		/obj/item/food/donut/plain = 1
 	)
 	result = /obj/item/food/donut/choco
+	added_foodtypes = DAIRY|SUGAR|BREAKFAST|CHOCOLATE //DARKPACK EDIT CHANGE: Chocolate
 
 /datum/crafting_recipe/food/donut/blumpkin
 	name = "Blumpkin Donut"

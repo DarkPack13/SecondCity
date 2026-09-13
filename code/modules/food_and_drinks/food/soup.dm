@@ -34,7 +34,7 @@
 		/datum/reagent/consumable/nutriment = 11,
 		/datum/reagent/consumable/nutriment/vitamin = 2,
 	)
-	foodtypes = SUGAR | DAIRY | JUNKFOOD | GRAIN
+	foodtypes = SUGAR | DAIRY | JUNKFOOD | GRAIN | CHOCOLATE //DARKPACK EDIT ADDITION: Chocolate
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/bowled/spacylibertyduff

@@ -409,7 +409,7 @@
 /obj/item/food/popsicle/jumbo
 	name = "jumbo ice cream"
 	desc = "A luxurious ice cream covered in rich chocolate. It seems smaller than you remember it being."
-	foodtypes = CHOCOLATE | SUGAR //DARKPACK EDIT CHANGE: Chocolate
+	foodtypes = DAIRY | SUGAR | CHOCOLATE //DARKPACK EDIT CHANGE: Chocolate
 	food_reagents = list(
 		/datum/reagent/consumable/hot_coco = 4,
 		/datum/reagent/consumable/cream = 2,

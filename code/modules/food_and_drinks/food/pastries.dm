@@ -453,7 +453,7 @@
 		/datum/reagent/consumable/nutriment/vitamin = 4,
 	)
 	tastes = list("raw brownie batter" = 1)
-	foodtypes = GRAIN|DAIRY|JUNKFOOD|SUGAR
+	foodtypes = GRAIN|DAIRY|JUNKFOOD|SUGAR|CHOCOLATE //DARKPACK EDIT CHANGE: Chocolate
 	foodtypes_added_when_cooked = BREAKFAST
 	crafting_complexity = FOOD_COMPLEXITY_1
 
