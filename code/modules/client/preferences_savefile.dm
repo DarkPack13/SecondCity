@@ -424,24 +424,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// DARKPACK EDIT ADD START - STORYTELLER_STATS
 	preference_storyteller_stats = list() // Ensure we dont have our stats from our old char slot.
-	if(!stats_list)
-		preference_storyteller_stats = create_new_stat_prefs(preference_storyteller_stats)
-	for(var/stat_path in stats_list)
-		var/proper_stat_path
-		if(ispath(stat_path, /datum/st_stat))
-			// I thought when its saved it becomes a string but that seems to not always be the case?
-			// I belive its because the json handling is held in byond after the first fetch?
-			proper_stat_path = stat_path
-		else
-			proper_stat_path = text2path(stat_path)
-		if(!proper_stat_path)
-			continue
-		var/datum/st_stat/stat = new proper_stat_path()
-		stat.set_score(stats_list[stat_path][STAT_SCORE])
-		stat.set_points(stats_list[stat_path][STAT_POINTS])
-		stat.freebie_cost_spent = stats_list[stat_path][STAT_FREEBIE_COST_SPENT]
-		preference_storyteller_stats[proper_stat_path] = stat
-	update_middleware_stats(preference_storyteller_stats)
+	if(stats_list)
+		preference_storyteller_stats = load_st_stat_from_save(stats_list)
+	else
+		preference_storyteller_stats = create_new_st_stats(preference_storyteller_stats)
 	// DARKPACK EDIT ADD END
 
 	//Sanitize
@@ -501,7 +487,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// DARKPACK EDIT ADD START- STORYTELLER_STATS
 	if(!length(preference_storyteller_stats))
-		preference_storyteller_stats = create_new_stat_prefs(preference_storyteller_stats)
+		preference_storyteller_stats = create_new_st_stats(preference_storyteller_stats)
 	var/list/stats_list = preference_storyteller_stats
 	var/list/new_stats_list = list()
 	for(var/stat_typepath in stats_list)
@@ -523,6 +509,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		tainted_character_profiles = TRUE
 		randomise_appearance_prefs()
 		all_quirks = list()
+		discipline_levels = list() // DARKPACK EDIT ADD - not 100% this is needed. extra sanitization
+		preference_storyteller_stats = list() // DARKPACK EDIT ADD - not 100% this is needed. extra sanitization
 		recently_updated_keys |= /datum/preference/name/real_name
 		save_character()
 
@@ -553,6 +541,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		return
 
 	discipline_levels = list() // DARKPACK EDIT ADD - remove disciplines when removing a character slot
+	preference_storyteller_stats = list() // DARKPACK EDIT ADD - ensure stats can be washed
 	savefile.remove_entry("character[default_slot]")
 	tainted_character_profiles = TRUE
 	switch_to_slot(closest_slot)
