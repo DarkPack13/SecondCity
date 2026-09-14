@@ -249,3 +249,94 @@
 /obj/projectile/bullet/darkpack/vamp75/silver/on_hit(atom/target, blocked = FALSE, pierce_hit)
 	. = ..()
 	fera_silver_damage(target, 5) //Same as silver longsword; it's a solid silver ball. As the founding fathers intended.
+
+/obj/projectile/bullet/darkpack/c40mm
+	name = "40mm grenade"
+	damage = 5
+	stamina = 50
+	armour_penetration = 0
+	exposed_wound_bonus = 5
+	wound_bonus = 5
+	range = 10			//Avoids issue where a grenade travels across the map
+	can_hit_turfs = TRUE
+
+	//Variable for devistation range, this can gib corpses and destroy floor plating/walls. Very strong, avoid increasing unless needed.
+	var/explosive_devastation_range = 0
+	//Heavy explosion range, this should be used for epicenter. More severly injures mobs than a light explosion.
+	var/explosive_heavy_range = 0
+	//Standard explosion range, this damages and throws mobs around. Can damage stuff but won't do what devistation does.
+	var/explosive_light_range = 0
+	//Flash range, self explanitory. It's for flashbang rounds.
+	var/explosive_flash_range = 0
+	//Fire range, self explanitory. It's for the fireball the incindary round makes.
+	var/explosive_fire_range = 0
+	//For if the explosive creates a smoke plume or not.
+	var/smoke_effect = FALSE
+	//For if the explosive is silent or not. (Ex - smoke grenade, flashbang, etc. They are 'explosive' but not like a bomb.)
+	var/explosive_sound = FALSE
+
+/obj/projectile/bullet/darkpack/c40mm/on_hit(atom/target, blocked = 0, pierce_hit)
+	..()
+	if(explosive_light_range || explosive_fire_range || explosive_flash_range)
+		explosion(target, devastation_range = explosive_devastation_range, heavy_impact_range = explosive_heavy_range, light_impact_range = explosive_light_range, flame_range = explosive_fire_range, flash_range = explosive_flash_range, silent = explosive_sound, smoke = smoke_effect, adminlog = TRUE, explosion_cause = src)
+	return BULLET_ACT_HIT
+
+/obj/projectile/bullet/darkpack/c40mm/explosive
+	name = "40mm explosive"
+	//explosive_heavy_range = 2		- Don't use this for now, it causes flooring to get destroyed.
+	explosive_light_range = 4
+	explosive_flash_range = 2
+	explosive_fire_range = 2
+	smoke_effect = TRUE
+	explosive_sound = TRUE
+
+/obj/projectile/bullet/darkpack/c40mm/incendiary
+	name = "40mm incendiary"
+	explosive_light_range = 2
+	explosive_flash_range = 3
+	explosive_fire_range = 4
+	smoke_effect = TRUE
+	explosive_sound = TRUE
+
+/obj/projectile/bullet/darkpack/c40mm/incendiary/on_hit(atom/target, blocked = 0, pierce_hit)
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/victim = target
+		victim.adjust_fire_stacks(7)
+		victim.ignite_mob()
+
+/obj/projectile/bullet/darkpack/c40mm/teargas
+	name = "40mm teargas"
+
+/obj/projectile/bullet/darkpack/c40mm/teargas/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/projectile_drop, /obj/item/grenade/chem_grenade/teargas/instant)
+
+/obj/projectile/bullet/darkpack/c40mm/smoke
+	name = "40mm smoke"
+
+/obj/projectile/bullet/darkpack/c40mm/smoke/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/projectile_drop, /obj/item/grenade/smokebomb/instant)
+
+/obj/item/grenade/smokebomb/instant/Initialize(mapload)
+	. = ..()
+	if(detonate())
+		return INITIALIZE_HINT_QDEL
+
+/obj/projectile/bullet/darkpack/c40mm/flashbang
+	name = "40mm flashbang"
+	explosive_flash_range = 2
+	explosive_light_range = 1
+	smoke_effect = TRUE
+
+// Only projectile of the family with no explosive element or effect
+/obj/projectile/bullet/darkpack/c40mm/baton
+	name = "40mm baton"
+	damage = 15		//LTL, not non-lethal
+	stamina = 120	//YOUCH!!!
+	armour_penetration = 0
+	exposed_wound_bonus = 5
+	wound_bonus = 5
+	range = 18	//longer range since no impact
+	can_hit_turfs = FALSE	//So it can travel past the screens edge; doesn't do anything to floors anyway.
