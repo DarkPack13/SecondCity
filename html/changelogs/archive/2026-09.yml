@@ -89,3 +89,11 @@
 2026-09-11:
   FalloutFalcon:
   - bugfix: Elite and megafauna uses the same attack hand code as basic animals
+2026-09-13:
+  PotatoTomahto:
+  - rscadd: new phone call 'hold call', better phone behavior and functionalities
+2026-09-14:
+  JohnFulpWillard:
+  - bugfix: People from Canada know French.
+  dwinters99:
+  - config: Added 3 options for the Lunar Cycle
