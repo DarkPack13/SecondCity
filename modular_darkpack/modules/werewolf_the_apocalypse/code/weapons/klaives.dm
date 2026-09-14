@@ -18,6 +18,7 @@
 	armor_type = /datum/armor/item_claymore
 	resistance_flags = FIRE_PROOF
 	custom_materials = list(/datum/material/silver = (2 * SHEET_MATERIAL_AMOUNT))
+	rank = 4
 	spirit_type = SPIRIT_VENGEANCE
 	var/stirred_spirit = FALSE
 	var/silver_damage = 2
@@ -37,8 +38,11 @@
 	fera_silver_damage(target, silver_damage, 1) // Copyed the other silver weapon. Not super accurate.
 
 /obj/item/occult_artifact/werewolf/klaive/attack_self(mob/user, modifiers)
+	if(!identified)
+		return ..()
+
 	var/datum/splat/werewolf/werewolf_splat = get_werewolf_splat(user)
-	if(owner && identified)
+	if(owner)
 		if(stirred_spirit)
 			to_chat(user, span_warning("[src]'s spirit is already awake!"))
 			return
@@ -83,5 +87,6 @@
 	attack_difficulty = 7
 	w_class = WEIGHT_CLASS_HUGE
 	custom_materials = list(/datum/material/silver = (4 * SHEET_MATERIAL_AMOUNT))
+	rank = 5
 	silver_damage = 3
 	awakened_force = 6 LETHAL_TTRPG_DAMAGE

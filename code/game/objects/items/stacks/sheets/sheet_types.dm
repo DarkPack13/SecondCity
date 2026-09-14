@@ -123,6 +123,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	desc = "Sheets made out of iron."
 	singular_name = "iron sheet"
 	icon_state = "sheet-metal"
+	worn_icon_state = "sheet-metal"
 	inhand_icon_state = "sheet-metal"
 	mats_per_unit = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT)
 	throwforce = 10
@@ -267,6 +268,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	singular_name = "plasteel sheet"
 	desc = "This sheet is an alloy of iron and plasma."
 	icon_state = "sheet-plasteel"
+	worn_icon_state = "sheet-plasteel"
 	inhand_icon_state = "sheet-plasteel"
 	mats_per_unit = list(/datum/material/alloy/plasteel=SHEET_MATERIAL_AMOUNT)
 	material_type = /datum/material/alloy/plasteel
@@ -364,6 +366,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	desc = "One can only guess that this is a bunch of wood."
 	singular_name = "wood plank"
 	icon_state = "sheet-wood"
+	worn_icon_state = "sheet-wood"
 	inhand_icon_state = "sheet-wood"
 	icon = 'icons/obj/stack_objects.dmi'
 	mats_per_unit = list(/datum/material/wood=SHEET_MATERIAL_AMOUNT)
@@ -663,6 +666,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 	desc = "Large sheets of card, like boxes folded flat."
 	singular_name = "cardboard sheet"
 	icon_state = "sheet-card"
+	worn_icon_state = "sheet-card"
 	inhand_icon_state = "sheet-card"
 	mats_per_unit = list(/datum/material/cardboard = SHEET_MATERIAL_AMOUNT)
 	resistance_flags = FLAMMABLE
@@ -730,6 +734,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	desc = "On closer inspection, what appears to be wholly-unsuitable-for-building brass is actually more structurally stable bronze."
 	singular_name = "bronze sheet"
 	icon_state = "sheet-brass"
+	worn_icon_state = "sheet-brass"
 	inhand_icon_state = "sheet-brass"
 	icon = 'icons/obj/stack_objects.dmi'
 	mats_per_unit = list(/datum/material/bronze = SHEET_MATERIAL_AMOUNT)
@@ -819,6 +824,13 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
 
+GLOBAL_LIST_INIT(bone_recipes, list(
+	new /datum/stack_recipe("bone tile", /obj/item/stack/tile/bone, 1, 4, 20, time = 2 SECONDS, crafting_flags = NONE, category = CAT_TILES), \
+))
+
+/obj/item/stack/sheet/bone/get_main_recipes()
+	. = ..()
+	. += GLOB.bone_recipes
 
 // DARKPACK EDIT CHANGE START
 GLOBAL_LIST_INIT(plastic_recipes, list(
@@ -841,6 +853,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	desc = "Compress dinosaur over millions of years, then refine, split and mold, and voila! You have plastic."
 	singular_name = "plastic sheet"
 	icon_state = "sheet-plastic"
+	worn_icon_state = "sheet-plastic"
 	inhand_icon_state = "sheet-plastic"
 	mats_per_unit = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT)
 	throwforce = 7
@@ -870,6 +883,7 @@ GLOBAL_LIST_INIT(paperframe_recipes, list(
 	desc = "A thin wooden frame with paper attached."
 	singular_name = "paper frame"
 	icon_state = "sheet-paper"
+	worn_icon_state = "sheet-paper"
 	inhand_icon_state = "sheet-paper"
 	mats_per_unit = list(/datum/material/paper = SHEET_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/paperframes
@@ -907,6 +921,15 @@ GLOBAL_LIST_INIT(paperframe_recipes, list(
 	amount = 20
 /obj/item/stack/sheet/meat/five
 	amount = 5
+
+GLOBAL_LIST_INIT(meat_recipes, list(
+	new /datum/stack_recipe("meat tile", /obj/item/stack/tile/meat, 1, 4, 20, time = 2 SECONDS, crafting_flags = NONE, category = CAT_TILES), \
+))
+
+/obj/item/stack/sheet/meat/get_main_recipes()
+	. = ..()
+	. += GLOB.meat_recipes
+
 
 GLOBAL_LIST_INIT(pizza_sheet_recipes, list(
 	new/datum/stack_recipe("huge pizza", /obj/structure/platform/pizza, 2, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75, category = CAT_STRUCTURE), \
@@ -952,3 +975,11 @@ GLOBAL_LIST_INIT(pizza_sheet_recipes, list(
 	amount = 20
 /obj/item/stack/sheet/hauntium/five
 	amount = 5
+
+GLOBAL_LIST_INIT(hauntium_recipes, list(
+	new /datum/stack_recipe("hauntium tile", /obj/item/stack/tile/hauntium, 1, 4, 20, time = 2 SECONDS, crafting_flags = NONE, category = CAT_TILES), \
+))
+
+/obj/item/stack/sheet/hauntium/get_main_recipes()
+	. = ..()
+	. += GLOB.hauntium_recipes

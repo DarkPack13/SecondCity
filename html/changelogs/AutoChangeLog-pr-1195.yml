@@ -1,5 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - code_imp: "cleans up some random signal stuff"
-  - bugfix: "Pierced Veil should work as intended for delerium effects"
