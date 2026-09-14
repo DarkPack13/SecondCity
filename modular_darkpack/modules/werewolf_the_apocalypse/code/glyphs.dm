@@ -273,37 +273,37 @@
 
 /obj/effect/decal/garou_glyph/corax_safe
 	name = "crude marking"
-	garou_name = "safety glyph"
+	garou_name = "corax safety glyph"
 	garou_desc = "A Corax glyph that marks a space as safe."
 	icon_state = "corax_safe"
 
 /obj/effect/decal/garou_glyph/corax_danger
 	name = "strange lines"
-	garou_name = "danger glyph"
+	garou_name = "corax danger glyph"
 	garou_desc = "A Corax glyph that marks a space as dangerous."
 	icon_state = "corax_danger"
 
 /obj/effect/decal/garou_glyph/corax_wyrm_spirits
 	name = "crude symbols"
-	garou_name = "wyrm spirit glyph"
+	garou_name = "corax wyrm spirit glyph"
 	garou_desc = "A Corax glyph that warns of the presence of Wyrm spirits."
 	icon_state = "corax_wyrm_spirits"
 
 /obj/effect/decal/garou_glyph/corax_weaver_spirits
 	name = "scratch marks"
-	garou_name = "weaver spirit glyph"
+	garou_name = "corax weaver spirit glyph"
 	garou_desc = "A Corax glyph that warns of the presence of Weaver spirits."
 	icon_state = "corax_weaver_spirits"
 
 /obj/effect/decal/garou_glyph/corax_food
 	name = "dots"
-	garou_name = "food glyph"
+	garou_name = "corax food glyph"
 	garou_desc = "A Corax glyph that highlights the presence of food or a slaughter."
 	icon_state = "corax_food"
 
 /obj/effect/decal/garou_glyph/corax_party
 	name = "crude etching"
-	garou_name = "party glyph"
+	garou_name = "corax party glyph"
 	garou_desc = "A Corax glyph showcasing the locale of a party or celebration of sorts."
 	icon_state = "corax_party"
 
