@@ -1,0 +1,5 @@
+author: "Potatocrip"
+delete-after: True
+changes:
+  - rscadd: "makes pierce the veil more tabletop accurate"
+  - image: "new icon for pierce the veil's toggleable darkvision ability"
