@@ -7,7 +7,7 @@ GLOBAL_LIST_INIT(zulo_forms, list(
 // This list holds w pixel offset for the character screen form selection UI
 GLOBAL_LIST_INIT(zulo_w_offset, list(
 	"Beast" = -16,
-	"Brust" = -16,
+	"Brust" = -10,
 	// "Noble" = 0, //Nobletzi commented out for now pending a new 64x64 sprite
 ))
 // This list holds z pixel offset for the character screen form selection UI
