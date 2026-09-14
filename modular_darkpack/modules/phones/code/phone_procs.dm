@@ -61,6 +61,9 @@
 			if(opened && !always_open)
 				opened = FALSE
 				update_appearance(UPDATE_ICON_STATE)
+	if(current_state == PHONE_CALLING)
+		START_PROCESSING(SSprocessing, src)
+
 	if(current_state == PHONE_RINGING)
 		START_PROCESSING(SSprocessing, src)
 		if(ringer)
