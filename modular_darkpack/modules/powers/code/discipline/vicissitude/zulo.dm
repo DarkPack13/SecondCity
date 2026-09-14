@@ -24,6 +24,7 @@ GLOBAL_LIST_INIT(zulo_z_offset, list(
 	id = SPECIES_ZULO_FORM
 	examine_limb_id = SPECIES_ZULO_FORM
 	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
+	changesource_flags = MIRROR_BADMIN
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
 		TRAIT_VIRUSIMMUNE,
