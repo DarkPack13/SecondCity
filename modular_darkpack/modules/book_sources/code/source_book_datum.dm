@@ -55,6 +55,10 @@ GLOBAL_LIST_INIT(source_book_priority, list(
 /datum/source_book/htr3/pg
 	name = "Hunter the Reckoning Players' Guide"
 
+/datum/source_book/freak_legion
+	name = "Freak Legion: A Player's Guide to Fomori"
+	offical_status = SOURCE_OFFICAL
+  
 /datum/source_book/vtm20/vampire_wild_west
 	name = "Vampire The Wild West"
 	offical_status = SOURCE_STORYTELLER_VAULT

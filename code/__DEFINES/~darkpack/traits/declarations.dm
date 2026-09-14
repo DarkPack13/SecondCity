@@ -32,6 +32,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_BLOODY_SUCKER "bloody_sucker"
 #define TRAIT_NON_INT "non_intellectual"
 #define TRAIT_COFFIN_THERAPY "coffin_therapy"
+// If we use combat_bite instead of vamp_bite
+#define TRAIT_COMBAT_BITE "combat_bite"
 #define TRAIT_RUBICON "rubicon"
 #define TRAIT_HUNGRY "hungry"
 #define TRAIT_STAKE_RESISTANT "stake_resistant"
@@ -169,6 +171,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Mob has had atleast one tooth yanked out while having no method of regenerating it.
 #define TRAIT_TOOTH_PULLED "tooth_pulled"
 
+// Fomori Traits
+#define TRAIT_FOMORI_REGEN "fomor_regen"
+
 /// Sixth sense restricted to view range
 #define TRAIT_LOCAL_SIXTHSENSE "local_sixth_sense"
 /// If the mob can't have surgery done on it. See: Blood form Tzimisce
@@ -186,6 +191,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_EAT_FOOD "eat_food"
 #define TRAIT_EFFICIENT_DIGESTION "efficient_digestion"
 #define TRAIT_FAIR_GLABRO "fair_glabro"
+#define TRAIT_FOMORI_STIGMATA "fomori_stigmata"
+#define TRAIT_FOMORI_HIDDEN_POWER "fomori_hidden_power"
+#define TRAIT_FOMORI_SCARY_PRESENCE "fomori_scary_presence"
+#define TRAIT_FOMORI_WORMS "fomori_worms"
 #define TRAIT_GLOWING_EYES "glowing_eyes"
 #define TRAIT_GRAVE_SMELL "grave_smell"
 #define TRAIT_GRIP_OF_THE_DAMNED "grip_of_the_damned"
