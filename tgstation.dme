@@ -8124,6 +8124,7 @@
 #include "modular_darkpack\modules\storyteller_dice\code\roll_subtypes.dm"
 #include "modular_darkpack\modules\storyteller_dice\code\verbs.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\_st_stats.dm"
+#include "modular_darkpack\modules\storyteller_stats\code\allocation.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\global_procs.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\logging.dm"
 #include "modular_darkpack\modules\storyteller_stats\code\stat_pref_middleware.dm"

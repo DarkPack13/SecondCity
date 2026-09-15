@@ -31,7 +31,7 @@
 		else
 			victim.attack_hand(caster)
 
-		if(casting_splat.rage)
+		if(casting_splat.uses_rage && caster.st_get_stat(STAT_TEMPORARY_RAGE))
 			casting_splat.adjust_rage(-1)
 		else
 			caster.st_set_stat(STAT_TEMPORARY_WILLPOWER, max((caster.st_get_stat(STAT_TEMPORARY_WILLPOWER) - 1),0))

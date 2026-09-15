@@ -65,8 +65,7 @@
 
 
 /datum/subsplat/werewolf/tribe/proc/psychomania_effect(mob/living/target, mob/living/owner)
-	var/datum/splat/werewolf/shifter/garou_splat = get_shifter_splat(target)
-	if(garou_splat?.rage > 4)
+	if(owner?.st_get_stat(STAT_TEMPORARY_RAGE) > 4)
 		target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh1.ogg", 50, FALSE)
 		to_chat(target, span_cult("THE WYRMFOE IS ALL AROUND ME"))
 		new /datum/hallucination/delusion(target, TRUE, "dancer", 200, 0)
