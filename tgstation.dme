@@ -7279,6 +7279,7 @@
 #include "modular_darkpack\master_files\code\datums\mind\_mind.dm"
 #include "modular_darkpack\master_files\code\datums\quirks\_quirk.dm"
 #include "modular_darkpack\master_files\code\datums\station_traits\_station_trait.dm"
+#include "modular_darkpack\master_files\code\datums\status_effects\debuffs.dm"
 #include "modular_darkpack\master_files\code\datums\storage\subtypes\bags.dm"
 #include "modular_darkpack\master_files\code\datums\storage\subtypes\dufflebags.dm"
 #include "modular_darkpack\master_files\code\game\atoms_movable.dm"
