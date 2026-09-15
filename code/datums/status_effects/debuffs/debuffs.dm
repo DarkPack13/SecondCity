@@ -157,6 +157,11 @@
 	owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILIZED, TRAIT_BLOCK_SECHUD, TRAIT_BLOCK_MEDHUD, TRAIT_INCAPACITATED, TRAIT_FLOORED), TRAIT_STATUS_EFFECT(id))
 	owner.update_eyes() // updates eyelids
 	RegisterSignal(owner, COMSIG_MOB_STATCHANGE, PROC_REF(on_mob_statchange))
+	/* DARKPACK EDIT REMOVE - Frenzy Additions
+	RegisterSignal(owner, COMSIG_MOB_CLIENT_LOGIN, PROC_REF(show_unconscious_hud))
+	if(GET_CLIENT(owner)) // let's not waste time giving the hud to non-player characters
+		show_unconscious_hud(owner)
+	*/
 	return TRUE
 
 /datum/status_effect/knocked_out/on_creation(mob/living/new_owner, ...)
