@@ -97,3 +97,7 @@
   - bugfix: People from Canada know French.
   dwinters99:
   - config: Added 3 options for the Lunar Cycle
+2026-09-15:
+  Potatocrip:
+  - rscadd: makes pierce the veil more tabletop accurate
+  - image: new icon for pierce the veil's toggleable darkvision ability
