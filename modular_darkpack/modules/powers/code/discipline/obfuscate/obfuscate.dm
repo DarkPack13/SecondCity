@@ -29,6 +29,8 @@
 		COMSIG_LIVING_GRAB
 	)
 
+	var/datum/storyteller_roll/obfuscate_check/step_check
+
 /datum/discipline_power/obfuscate/proc/on_discipline_activation(datum/source, datum/discipline_power/activated_power, atom/target)
 	SIGNAL_HANDLER
 
@@ -62,6 +64,42 @@
 
 	deltimer(cooldown_timer)
 	cooldown_timer = addtimer(CALLBACK(src, PROC_REF(cooldown_expire)), COMBAT_COOLDOWN_LENGTH, TIMER_STOPPABLE | TIMER_DELETE_ME)
+
+// For when the caster steps on something that could break obfuscate
+/datum/storyteller_roll/obfuscate_check
+	bumper_text = "stealth check"
+	difficulty = 5
+	applicable_stats = list(STAT_WITS, STAT_STEALTH)
+	roll_output_type = ROLL_PRIVATE
+
+/datum/discipline_power/obfuscate/proc/on_loud_step(datum/source)
+	SIGNAL_HANDLER
+
+	var/roll = step_check.st_roll(owner)
+
+	if(roll == ROLL_SUCCESS)
+		return TRUE
+	else
+		to_chat(owner, span_danger("Your Obfuscation falls away as you reveal yourself!"))
+		owner.visible_message(span_warning("[owner] appears out of thin air!"))
+		try_deactivate(direct = TRUE)
+		deltimer(cooldown_timer)
+		cooldown_timer = addtimer(CALLBACK(src, PROC_REF(cooldown_expire)), COMBAT_COOLDOWN_LENGTH, TIMER_STOPPABLE | TIMER_DELETE_ME)
+
+/datum/discipline_power/obfuscate/proc/on_slip(datum/source)
+	SIGNAL_HANDLER
+
+	step_check.difficulty = 9	//You slipped, prepare for the hardest check of your unlife...
+	var/roll = step_check.st_roll(owner)
+
+	if(roll == ROLL_SUCCESS)
+		return TRUE
+	else
+		to_chat(owner, span_danger("Your Obfuscation falls away as you reveal yourself!"))
+		owner.visible_message(span_warning("[owner] appears out of thin air!"))
+		try_deactivate(direct = TRUE)
+		deltimer(cooldown_timer)
+		cooldown_timer = addtimer(CALLBACK(src, PROC_REF(cooldown_expire)), COMBAT_COOLDOWN_LENGTH, TIMER_STOPPABLE | TIMER_DELETE_ME)
 
 /datum/discipline_power/obfuscate/proc/is_seen_check()
 	for (var/mob/living/viewer in oviewers(DEFAULT_SIGHT_DISTANCE, owner))
@@ -105,6 +143,8 @@
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_move))
 	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
 	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(on_talk))
+	RegisterSignal(owner, COMSIG_MOB_SLIPPED, PROC_REF(on_slip))
+	RegisterSignal(owner, COMSIG_MOB_LOUD_STEP, PROC_REF(on_loud_step))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
@@ -116,6 +156,8 @@
 	UnregisterSignal(owner, aggressive_signals)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(owner, list(COMSIG_POWER_ACTIVATE, COMSIG_MOB_SAY))
+	UnregisterSignal(owner, list(COMSIG_MOB_SLIPPED))
+	UnregisterSignal(owner, list(COMSIG_MOB_LOUD_STEP))
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
@@ -155,6 +197,8 @@
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_move))
 	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
 	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(on_talk))
+	RegisterSignal(owner, COMSIG_MOB_SLIPPED, PROC_REF(on_slip))
+	RegisterSignal(owner, COMSIG_MOB_LOUD_STEP, PROC_REF(on_loud_step))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
@@ -167,6 +211,8 @@
 	UnregisterSignal(owner, aggressive_signals)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(owner, list(COMSIG_POWER_ACTIVATE, COMSIG_MOB_SAY))
+	UnregisterSignal(owner, list(COMSIG_MOB_SLIPPED))
+	UnregisterSignal(owner, list(COMSIG_MOB_LOUD_STEP))
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
@@ -335,6 +381,8 @@
 	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal))
 	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
 	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(on_talk))
+	RegisterSignal(owner, COMSIG_MOB_SLIPPED, PROC_REF(on_slip))
+	RegisterSignal(owner, COMSIG_MOB_LOUD_STEP, PROC_REF(on_loud_step))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
@@ -348,6 +396,8 @@
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
 	UnregisterSignal(owner, list(COMSIG_POWER_ACTIVATE, COMSIG_MOB_SAY))
+	UnregisterSignal(owner, list(COMSIG_MOB_SLIPPED))
+	UnregisterSignal(owner, list(COMSIG_MOB_LOUD_STEP))
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
@@ -373,6 +423,8 @@
 	RegisterSignals(owner, aggressive_signals, PROC_REF(on_combat_signal))
 	RegisterSignal(owner, COMSIG_POWER_ACTIVATE, PROC_REF(on_discipline_activation))
 	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(on_talk))
+	RegisterSignal(owner, COMSIG_MOB_SLIPPED, PROC_REF(on_slip))
+	RegisterSignal(owner, COMSIG_MOB_LOUD_STEP, PROC_REF(on_loud_step))
 
 	for(var/mob/living/carbon/human/npc/NPC in GLOB.npc_list)
 		if (NPC.danger_source == owner)
@@ -383,6 +435,8 @@
 	. = ..()
 	UnregisterSignal(owner, aggressive_signals)
 	UnregisterSignal(owner, list(COMSIG_POWER_ACTIVATE, COMSIG_MOB_SAY))
+	UnregisterSignal(owner, list(COMSIG_MOB_SLIPPED))
+	UnregisterSignal(owner, list(COMSIG_MOB_LOUD_STEP))
 
 	REMOVE_TRAIT(owner, TRAIT_OBFUSCATED, OBFUSCATE_TRAIT)
 
