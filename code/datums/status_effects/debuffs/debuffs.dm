@@ -177,10 +177,28 @@
 	owner.remove_status_effect(/datum/status_effect/grouped/static_look, TRAIT_STATUS_EFFECT(id))	//DARKPACK EDIT ADD - Static look on unconscious
 	owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILIZED, TRAIT_BLOCK_SECHUD, TRAIT_BLOCK_MEDHUD, TRAIT_INCAPACITATED, TRAIT_FLOORED), TRAIT_STATUS_EFFECT(id))
 	owner.update_eyes() // updates eyelids
-	UnregisterSignal(owner, list(COMSIG_MOB_STATCHANGE))	//DARKPACK EDIT CHANGE - Unconsicious hud responsibility has been given to static_look status effect.
+	UnregisterSignal(owner, list(COMSIG_MOB_STATCHANGE))	//DARKPACK EDIT CHANGE - static_look effect - original: UnregisterSignal(owner, list(COMSIG_MOB_CLIENT_LOGIN, COMSIG_MOB_STATCHANGE))
+	//if(GET_CLIENT(owner)) DARKPACK EDIT REMOVAL - Frenzy Additions
+	//	hide_unconscious_hud(owner) DARKPACK EDIT REMOVAL - Frenzy Additions
+
 
 /datum/status_effect/knocked_out/tick(seconds_between_ticks)
 	owner.adjust_stamina_loss(-3 * seconds_between_ticks)
+
+/* // DARKPACK EDIT REMOVAL  - Frenzy Additions
+/// Global list of images that correspond to a mob's unconscious appearance
+GLOBAL_LIST_EMPTY(unconscious_appearances)
+
+/datum/status_effect/knocked_out/proc/show_unconscious_hud(mob/living/source)
+	SIGNAL_HANDLER
+
+	source.client?.images += (GLOB.unconscious_appearances - source.unconscious_appearance)
+
+/datum/status_effect/knocked_out/proc/hide_unconscious_hud(mob/living/source)
+	SIGNAL_HANDLER
+
+	source.client?.images -= GLOB.unconscious_appearances
+*/ // DARKPACK EDIT REMOVAL - Frenzy Additions
 
 /datum/status_effect/knocked_out/proc/on_mob_statchange(mob/living/source, ...)
 	SIGNAL_HANDLER
