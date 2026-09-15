@@ -369,8 +369,8 @@
 
 /obj/effect/decal/garou_glyph/impergium
 	name = "fear-inducing glyph"
-	garou_name = " glyph"
-	garou_desc = "A glyph that represents the ."
+	garou_name = "impergium glyph"
+	garou_desc = "A glyph that represents the Impergium, the time when Garou hunted man also known as the First War."
 	icon_state = "impergium"
 
 /obj/effect/decal/garou_glyph/litany
