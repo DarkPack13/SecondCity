@@ -11,7 +11,7 @@
 		/datum/discipline/presence,
 		/datum/discipline/serpentis
 	)
-	clan_traits = list(
+	subsplat_traits = list(
 		TRAIT_LIGHT_WEAKNESS
 	)
 	male_clothes = /obj/item/clothing/under/vampire/slickback

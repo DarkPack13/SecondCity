@@ -150,6 +150,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NO_LYING_ANGLE "no_lying_angle"
 // Expensive but allows us to ensure there resting gets updated.
 #define TRAIT_TRANSFORM_UPDATES_ICON "transform_updates_icon"
+#define TRAIT_OPENS_MOONGATES "opens_moongates"
+/// Friends and allowed to interact with the main gaian caern
+#define TRAIT_GAIA_CAERN_FRIEND "gaia_caern_friend"
 // Fera both grants a flight ability, and has the sprites to support such a thing. (Presently only designed to supprot feral form.)
 #define TRAIT_FERA_FLIGHT "fera_flight"
 #define TRAIT_SILVER_WEAKNESS "silver_weakness"
@@ -174,6 +177,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// If the mob can't have surgery done on it. See: Blood form Tzimisce
 #define TRAIT_SURGERY_INAPPLICABLE "surgery_inapplicable"
 // BELOW ARE ALL MERITS/FLAWS
+#define TRAIT_ABYSSAL_EYES "abyssal_eyes"
 #define TRAIT_ACUTE_HEARING "acute_hearing"
 #define TRAIT_ANIMAL_MUSK "animal_musk"
 #define TRAIT_ANTHROPIC_TASTE "anthropic_taste"
