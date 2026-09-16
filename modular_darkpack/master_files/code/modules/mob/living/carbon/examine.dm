@@ -72,8 +72,8 @@
 
 	if((!is_eyes_covered()) && HAS_TRAIT(src, TRAIT_REFLECTIVE_EYES))
 		. += span_warning("[p_Their()] eyes shine unnaturally!<br>")
-	
-  if((!is_eyes_covered()) && HAS_TRAIT(src, TRAIT_ABYSSAL_EYES))
+
+  	if((!is_eyes_covered()) && HAS_TRAIT(src, TRAIT_ABYSSAL_EYES))
 		. += span_warning("[p_Their()] eyes are filled with an inky darkness!<br>")
 
 	if(!(obscured_slots & HIDEFACE))
