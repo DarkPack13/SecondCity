@@ -1,0 +1,8 @@
+author: "SabbyKat"
+delete-after: True
+changes:
+  - refactor: "refactored Zulo Form functionality into carbon form code."
+  - rscadd: "added new Zulo Form Sprite."
+  - code_imp: "changed some zulo preference code."
+  - rscdel: "removed old Zulo basicmob code"
+  - balance: "implemented Zulo form with closer parity to TT"
