@@ -1,0 +1,4 @@
+author: "breadcrombs, Wolf-751"
+delete-after: True
+changes:
+  - balance: "Bone crafting now takes time when used on a dead body"
