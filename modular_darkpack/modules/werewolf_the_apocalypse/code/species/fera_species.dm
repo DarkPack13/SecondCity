@@ -217,6 +217,7 @@
 	name = "bestial form"
 	id = SPECIES_FERA_BESTIAL
 	shift_difficulty = 7
+	species_language_holder = /datum/language_holder/garou
 	fallback_icon = 'modular_darkpack/modules/werewolf_the_apocalypse/icons/garou_forms/glabro.dmi'
 	veil_breaching_form = TRUE
 	bodypart_overrides = list(
@@ -279,13 +280,14 @@
 	veil_breaching_form = TRUE
 
 	skinned_type = /obj/item/stack/sheet/animalhide/generic
+	species_language_holder = /datum/language_holder/crinos
 	mutanttongue = /obj/item/organ/tongue/fera
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera/aggravated,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera/aggravated,
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera/aggravated,
-		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera,
-		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera/heavy,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera/heavy,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/fera,
 	)
 
@@ -319,12 +321,13 @@
 	skinned_type = /obj/item/stack/sheet/animalhide/generic
 	mutantbrain = /obj/item/organ/brain/fera
 	mutanttongue = /obj/item/organ/tongue/fera
+	species_language_holder = /datum/language_holder/primal
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera/aggravated,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera/aggravated,
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/fera/aggravated,
-		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera,
-		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/fera/heavy,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/fera/heavy,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/fera,
 	)
 
@@ -358,6 +361,7 @@
 	skinned_type = /obj/item/stack/sheet/animalhide/generic
 	mutantbrain = /obj/item/organ/brain/fera
 	mutanttongue = /obj/item/organ/tongue/fera
+	species_language_holder = /datum/language_holder/primal
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/fera,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/fera,
