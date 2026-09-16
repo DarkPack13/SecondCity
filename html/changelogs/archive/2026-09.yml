@@ -101,3 +101,14 @@
   Potatocrip:
   - rscadd: makes pierce the veil more tabletop accurate
   - image: new icon for pierce the veil's toggleable darkvision ability
+2026-09-16:
+  JohnFulpWillard:
+  - admin: Changed the Mentor system, which now uses TGUI.
+  PotatoTomahto:
+  - balance: ifaks contain a wound analyzer instead of health analyzer
+  SabbyKat:
+  - refactor: refactored Zulo Form functionality into carbon form code.
+  - rscadd: added new Zulo Form Sprite.
+  - code_imp: changed some zulo preference code.
+  - rscdel: removed old Zulo basicmob code
+  - balance: implemented Zulo form with closer parity to TT
