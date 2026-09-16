@@ -130,23 +130,35 @@
 
 	var/roll = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/bonecrafting)
 
-	if(target.stat >= HARD_CRIT)
+	if(target.stat == DEAD)
+		if(!do_after(
+			owner,
+			3 SECONDS,
+			target = target,
+			timed_action_flags = DO_AFTER_CHECK_NEXT_MOVE | IGNORE_INCAPACITATED
+		))
+			to_chat(owner, span_warning("You stopped before vivasecting the [target]'s corpse."))
+			return FALSE
+		if(QDELETED(target))
+			return FALSE
 		if(target.stat != DEAD)
-			target.death()
+			return FALSE
 		var/obj/item/bodypart/arm/right/r_arm = target.get_bodypart(BODY_ZONE_R_ARM)
 		var/obj/item/bodypart/arm/left/l_arm = target.get_bodypart(BODY_ZONE_L_ARM)
 		var/obj/item/bodypart/leg/right/r_leg = target.get_bodypart(BODY_ZONE_R_LEG)
 		var/obj/item/bodypart/leg/left/l_leg = target.get_bodypart(BODY_ZONE_L_LEG)
 		var/obj/item/bodypart/head = target.get_bodypart(BODY_ZONE_HEAD)
+		var/obj/item/bodypart/chest = target.get_bodypart(BODY_ZONE_CHEST)
 		r_arm?.drop_limb()
 		l_arm?.drop_limb()
 		r_leg?.drop_limb()
 		l_leg?.drop_limb()
 		head?.drop_organs()
+		chest?.drop_organs()
 		new /obj/item/stack/sheet/meat/twenty(target.loc)
 		new /obj/item/guts(target.loc)
 		new /obj/item/spine(target.loc)
-		qdel(target)
+		target.gib(DROP_ALL_REMAINS)
 	else
 		target.emote("scream")
 		var/target_zone = owner.zone_selected
