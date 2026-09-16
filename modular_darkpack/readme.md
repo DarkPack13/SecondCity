@@ -377,7 +377,7 @@ If that is not possible, you can wrap your edit in curly brackets e.g.
 // THIS IS A DARKPACK UI FILE
 ```
 
-This way they are easily identifiable as modular TGUI .tsx/.jsx files. You do not have to do anything further, and there will never be any need for a darkpack edit comment in a modular TGUI file.
+This way they are easily identifiable as modular TGUI .tsx/.jsx files. You do not have to do anything further, and there will never be any need for a Darkpack edit comment in a modular TGUI file.
 
 <!-- ## Exemplary PR's // TODO: REPLACE THESE!
 
