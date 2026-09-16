@@ -296,7 +296,7 @@
 	icon_state = "corax_weaver_spirits"
 
 /obj/effect/decal/garou_glyph/corax_food
-	name = "dots"
+	name = "oddly arranged dots"
 	garou_name = "corax food glyph"
 	garou_desc = "A Corax glyph that highlights the presence of food or a slaughter."
 	icon_state = "corax_food"
@@ -333,7 +333,7 @@
 
 /obj/effect/decal/garou_glyph/house_crescent_moon
 	name = "curved glyph"
-	garou_name = " glyph"
+	garou_name = "house crescent moon glyph"
 	garou_desc = "A glyph that represents House Crescent Moon, one of the seven houses of the Silver Fang tribe."
 	icon_state = "house_crescent_moon"
 
@@ -537,7 +537,7 @@
 
 /obj/effect/decal/garou_glyph/unicorn
 	name = "noble glyph"
-	garou_name = " glyph"
+	garou_name = "unicorn glyph"
 	garou_desc = "A glyph that represents Unicorn, the totem spirit of the Children of Gaia."
 	icon_state = "unicorn"
 
