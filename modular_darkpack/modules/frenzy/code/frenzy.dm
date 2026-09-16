@@ -20,7 +20,7 @@
 		to_chat(src, span_bolddanger("FRENZY."))
 		src.balloon_alert(src, "frenzy!")
 		if(get_kindred_splat(src))
-			apply_status_effect(/datum/status_effect/frenzy/wassail, target)
+			apply_status_effect(/datum/status_effect/frenzy/vampire_hunger, target)
 		else
 			apply_status_effect(/datum/status_effect/frenzy, target)
 

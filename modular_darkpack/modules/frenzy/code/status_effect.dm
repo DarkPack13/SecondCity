@@ -64,7 +64,7 @@
 	if(seconds_alone >= 15)
 		qdel(src)
 
-/datum/status_effect/frenzy/wassail	//Vampire hunger frenzy
+/datum/status_effect/frenzy/vampire_hunger
 	id = "hunger frenzy"
 	frenzy_traits = list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA, TRAIT_CANNOT_FOCUS, TRAIT_ILLITERATE, TRAIT_PERMAFANGS, TRAIT_STRONG_GRABBER)
 
