@@ -18,7 +18,6 @@
 		"Tower Employee",
 		"Tower Cleaner",
 		"Tower Assistant",
-		"Tower Security Guard",
 		"Tower Personal Driver",
 		"Tower Personal Attendant"
 	)
