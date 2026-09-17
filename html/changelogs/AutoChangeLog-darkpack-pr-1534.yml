@@ -1,4 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - rscadd: "TG and Darkpack changelogs are split by icons instead of just deleting all the TG ones."
