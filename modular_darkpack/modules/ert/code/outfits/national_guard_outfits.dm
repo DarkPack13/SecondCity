@@ -16,7 +16,7 @@
 		/obj/item/knife/vamp = 1,
 		/obj/item/storage/medkit/darkpack/ifak = 1,
 		/obj/item/megaphone = 1,
-		/obj/item/clothing/mask/gas/darkpack_ert = 1,
+		/obj/item/clothing/mask/gas/darkpack/military = 1,
 	)
 
 /datum/outfit/job/vampire/ert/national_guard/medic
@@ -39,7 +39,7 @@
 		/obj/item/storage/medkit/darkpack/combat = 1,
 		/obj/item/storage/medkit/darkpack/burn = 1,
 		/obj/item/storage/medkit/darkpack/brute = 1,
-		/obj/item/clothing/mask/gas/darkpack_ert = 1,
+		/obj/item/clothing/mask/gas/darkpack/military = 1,
 	)
 
 /datum/outfit/job/vampire/ert/national_guard/rifleman
@@ -61,7 +61,7 @@
 		/obj/item/grenade/flashbang = 1,
 		/obj/item/grenade/chem_grenade/teargas = 1,
 		/obj/item/storage/medkit/darkpack/ifak = 1,
-		/obj/item/clothing/mask/gas/darkpack_ert = 1,
+		/obj/item/clothing/mask/gas/darkpack/military = 1,
 	)
 
 /datum/outfit/job/vampire/ert/national_guard/explosives
@@ -73,7 +73,7 @@
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	suit = /obj/item/clothing/suit/vampire/eod
 	head = /obj/item/clothing/head/vampire/eod
-	mask = /obj/item/clothing/mask/gas/darkpack_ert
+	mask = /obj/item/clothing/mask/gas/darkpack/military
 	id = /obj/item/card/swat
 	backpack_contents = list(
 		/obj/item/storage/box/syndie_kit/frag_grenades = 1,
@@ -96,7 +96,7 @@
 	r_hand = /obj/item/gun/ballistic/automatic/darkpack/autosniper
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	suit = /obj/item/clothing/suit/vampire/vest/army
-	mask = /obj/item/clothing/mask/gas/darkpack_ert
+	mask = /obj/item/clothing/mask/gas/darkpack/military
 	head = /obj/item/clothing/head/beret
 	id = /obj/item/card/swat
 	backpack_contents = list(
