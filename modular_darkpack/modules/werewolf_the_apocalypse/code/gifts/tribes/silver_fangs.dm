@@ -58,13 +58,11 @@
 		return COMPONENT_SKIP_ATTACK
 	return NONE // meh
 
-/datum/status_effect/falcons_grasp/proc/apply_grapple_mod(mob/living/source, datum/storyteller_roll/roll_datum, atom/target)
+/datum/status_effect/falcons_grasp/proc/apply_grapple_mod(mob/living/roller, datum/storyteller_roll/roll_datum, atom/target, atom/using_item, bonus, difficulty)
 	SIGNAL_HANDLER
 
 	if(istype(roll_datum, /datum/storyteller_roll/grappling))
-		return 3
-
-	return 0
+		*bonus += 3
 
 
 /atom/movable/screen/alert/status_effect/gift/falcons_grasp

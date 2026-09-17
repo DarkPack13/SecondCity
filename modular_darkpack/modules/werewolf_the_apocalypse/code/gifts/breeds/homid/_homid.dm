@@ -133,7 +133,7 @@
 		qdel(src)
 
 /datum/status_effect/apecrafts_blessings/on_remove()
-	to_chat(owner, span_warning("Your strength subsides, the pain of your wounds creeping back in..."))
+	to_chat(owner, span_warning("The power in your hands wanes.."))
 	UnregisterSignal(owner, COMSIG_LIVING_PRE_DICE_ROLLED)
 
 

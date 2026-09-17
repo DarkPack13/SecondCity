@@ -1,5 +1,5 @@
 /datum/action/cooldown/power/gift/hares_leap
-	name = "Hares Leap"
+	name = "Hare's Leap"
 	desc = {"The player makes a reflexive Strength + Athletics roll (difficulty 7) to activate this Gift.
 	If successful, the character's leaping distances are doubled for a scene — or tripled for a single turn with the expenditure of a Willpower point"}
 	button_icon_state = "hares_leap"
