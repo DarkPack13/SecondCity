@@ -7470,6 +7470,7 @@
 #include "modular_darkpack\modules\clothes\code\neck.dm"
 #include "modular_darkpack\modules\clothes\code\suit.dm"
 #include "modular_darkpack\modules\clothes\code\under.dm"
+#include "modular_darkpack\modules\clothes\code\greyscale_configs\greyscale_masks.dm"
 #include "modular_darkpack\modules\combat\code\combat_config.dm"
 #include "modular_darkpack\modules\combat\code\directional_attack.dm"
 #include "modular_darkpack\modules\combat\code\swing.dm"
