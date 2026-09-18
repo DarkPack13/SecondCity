@@ -1,6 +1,7 @@
 /mob/living/carbon/human/proc/drinksomeblood(mob/living/drunk_from, first_drink = FALSE)
 	COOLDOWN_START(src, drinkblood_use_cd, 3 SECONDS)
 	update_drinking_overlay(drunk_from)
+	drunk_from.apply_status_effect(/datum/status_effect/kissed) // CRIMSON EDIT ADD - temporary
 
 	if(HAS_TRAIT(src, TRAIT_VICTIM_OF_THE_MASQUERADE))
 		var/datum/quirk/darkpack/victim_of_the_masquerade/votm = src.get_quirk(/datum/quirk/darkpack/victim_of_the_masquerade)
