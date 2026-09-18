@@ -112,3 +112,14 @@ DISCIPLINE_KEYBINDS
 ## 2 - A player can only teach in clan disciplines (A Gangrel can teach a Tremere Protean, but the Tremere can't teach anyone Protean)
 ## 3 - Discipline teaching is fully disabled (no one will be able to teach anyone anything)
 DISCIPLINE_TEACHING 0
+## Configs how long between full moons. Defaults to realtime (default: 29.530588)
+LUNAR_CYCLE_INTERVAL 29.530588
+
+## Configs what kind of Lunar Cycle we want to use. A malformed number will result in a permanent new moon
+## 0 = Use LUNAR_CYCLE_INTERVAL (Default)
+## 1 = Lunar cycle advances every LUNAR_CYCLE_ROUNDS
+## 2 = Lunar cycle is random per round
+LUNAR_CYCLE_TYPE 0
+
+## If using LUNAR_CYCLE_TYPE 1, how many rounds does the moonphase last? (default: 1)
+LUNAR_CYCLE_ROUNDS 1
