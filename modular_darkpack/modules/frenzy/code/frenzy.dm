@@ -34,6 +34,8 @@
 		return
 	log_message("exited frenzy.", LOG_ATTACK, color="red")
 
+	remove_status_effect(/datum/status_effect/frenzy/vampire_hunger)
+	remove_status_effect(/datum/status_effect/frenzy/flee)
 	remove_status_effect(/datum/status_effect/frenzy)
 
 /datum/storyteller_roll/frenzy
