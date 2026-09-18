@@ -130,3 +130,9 @@
       only.
   breadcrombs, Wolf-751:
   - balance: Bone crafting now takes time when used on a dead body
+2026-09-18:
+  JohnFulpWillard:
+  - spellcheck: Removes mentions of Station in the roundend report.
+  chazzyjazzy:
+  - refactor: removes violation_observer component and prox monitor, bringing it to
+      /atom/movable
