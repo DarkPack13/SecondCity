@@ -97,8 +97,9 @@
 	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_SPEAK
 	range = 7
 	multi_activate = FALSE
+	cancelable = TRUE
 	cooldown_length = 15 SECONDS
-	duration_length = 10 SECONDS
+	duration_length = 1 SCENES
 	vitae_cost = 1
 	var/successes = 0
 	var/list/affected_targets = list()
@@ -137,7 +138,7 @@
 		var/mob/living/carbon/target = potential_targets[i]
 		apply_presence_overlay(target)
 		to_chat(target, span_yellowteamradio("You feel extremely attracted to and persuaded by [owner]'s words, no matter what they're saying!"))
-		target.apply_status_effect(STATUS_EFFECT_AWE)
+		target.apply_status_effect(STATUS_EFFECT_AWE, owner)
 		affected_targets += target
 
 	var/affected_count = length(affected_targets)
@@ -149,6 +150,7 @@
 /datum/discipline_power/presence/awe/deactivate()
 	. = ..()
 	for(var/mob/living/carbon/target in affected_targets)
+		target.remove_status_effect(STATUS_EFFECT_AWE)
 		target.remove_overlay(POWERS_LAYER)
 	affected_targets.Cut()
 
