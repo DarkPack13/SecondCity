@@ -72,14 +72,15 @@
 	head = /obj/item/clothing/head/vampire/eod
 	id = /obj/item/card/swat
 	backpack_contents = list(
-		/obj/item/grenade/frag = 1,
-		/obj/item/grenade/flashbang = 1,
-		/obj/item/grenade/smokebomb = 1,
-		/obj/item/molotov = 1,
+		/obj/item/ammo_casing/vampire/c40mm = 1,
+		/obj/item/ammo_casing/vampire/c40mm/incendiary = 1,
+		/obj/item/ammo_casing/vampire/c40mm/smoke = 1,
+		/obj/item/ammo_casing/vampire/c40mm/flashbang = 1,
 		/obj/item/gun/ballistic/automatic/darkpack/uzi = 1,
+		/obj/item/ammo_casing/vampire/c9mm = 1,
 		/obj/item/liquid_flamethrower = 1,
 	)
-	r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher
+	r_hand = /obj/item/gun/ballistic/shotgun/darkpack/grenadelauncher
 
 /datum/outfit/job/vampire/ert/national_guard/marksman
 	name = "National Guard Marksman"
