@@ -971,6 +971,7 @@
 	icon = 'modular_darkpack/modules/weapons/icons/weapons48x32.dmi'
 	lefthand_file = 'modular_darkpack/modules/weapons/icons/guns_lefthand.dmi'
 	righthand_file = 'modular_darkpack/modules/weapons/icons/guns_righthand.dmi'
+	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_guns.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
