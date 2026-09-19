@@ -104,5 +104,6 @@
 	user.log_message("reset all stats to default values on '[real_name]'", LOG_STATS)
 
 	preferences.preference_storyteller_stats = list()
+	preferences.all_quirks = list()
 	preferences.preference_storyteller_stats = create_new_stat_prefs(preferences.preference_storyteller_stats)
 	return TRUE
