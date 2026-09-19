@@ -1,7 +1,7 @@
 /datum/bodypart_overlay/simple/fomor_claws
 	icon_state = "claw"
 	icon = 'modular_darkpack/modules/fomori/icons/fomori_inhand_right.dmi'
-	layers = POWERS_LAYER
+	layers = list(EXTERNAL_ADJACENT = POWERS_LAYER)
 	var/bodyzone = BODY_ZONE_R_ARM
 	var/obj/item/bodypart/assigned_bodyzone
 

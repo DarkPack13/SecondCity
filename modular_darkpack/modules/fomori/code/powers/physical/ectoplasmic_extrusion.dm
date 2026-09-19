@@ -25,7 +25,7 @@
 /datum/bodypart_overlay/simple/ectoplasmic_extrusion // Freak Legion pg.32
 	icon_state = "ectoplasmic_extrusion"
 	icon = 'modular_darkpack/modules/fomori/icons/fomori_sprite_accessories.dmi'
-	layers = LOW_FACEMASK_LAYER
+	layers = list(EXTERNAL_ADJACENT = LOW_FACEMASK_LAYER)
 
 /datum/action/cooldown/power/fomori_power/ectoplasmic_extrusion
 	name = "Ectoplasmic Extrusion"

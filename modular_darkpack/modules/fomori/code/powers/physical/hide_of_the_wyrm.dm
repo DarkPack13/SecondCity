@@ -1,7 +1,7 @@
 /datum/bodypart_overlay/simple/hide_of_the_wyrm // Freak Legion pg.33
 	icon_state = "hide_of_the_wyrm"
 	icon = 'modular_darkpack/modules/fomori/icons/fomori_sprite_accessories.dmi'
-	layers = EXTERNAL_FRONT
+	layers = list(EXTERNAL_ADJACENT = EXTERNAL_FRONT)
 
 /datum/action/cooldown/power/fomori_power/hide_of_the_wyrm
 	name = "Hide of the Wyrm"

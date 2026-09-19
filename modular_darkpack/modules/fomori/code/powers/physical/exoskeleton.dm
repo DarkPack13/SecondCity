@@ -1,7 +1,7 @@
 /datum/bodypart_overlay/simple/fomor_exoskeleton // Freak Legion pg.32
 	icon_state = "exoskeleton"
 	icon = 'modular_darkpack/modules/fomori/icons/fomori_sprite_accessories.dmi'
-	layers = BENEATH_HAIR_LAYER
+	layers = list(EXTERNAL_ADJACENT = BENEATH_HAIR_LAYER)
 	var/bodyzone = BODY_ZONE_CHEST
 	var/obj/item/bodypart/assigned_bodyzone
 
@@ -12,12 +12,12 @@
 /datum/bodypart_overlay/simple/fomor_exoskeleton/r_arm
 	icon_state = "exoskeleton-r_arm"
 	bodyzone = BODY_ZONE_R_ARM
-	layers = POWERS_LAYER
+	layers = list(EXTERNAL_ADJACENT = POWERS_LAYER)
 
 /datum/bodypart_overlay/simple/fomor_exoskeleton/l_arm
 	icon_state = "exoskeleton-l_arm"
 	bodyzone = BODY_ZONE_L_ARM
-	layers = HALO_LAYER
+	layers = list(EXTERNAL_ADJACENT = HALO_LAYER)
 
 /datum/bodypart_overlay/simple/fomor_exoskeleton/r_leg
 	icon_state = "exoskeleton-r_leg"

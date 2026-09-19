@@ -34,6 +34,9 @@
 
 /datum/action/cooldown/power/fomori_power/Grant(mob/granted_to)
 	. = ..()
+	if(HAS_TRAIT(granted_to, TRAIT_FOMORI_HIDDEN_POWER))
+		return
+
 	if(!istype(granted_to, /mob/living/carbon/human/dummy) && !isnull(fomor_part))
 		add_feature()
 

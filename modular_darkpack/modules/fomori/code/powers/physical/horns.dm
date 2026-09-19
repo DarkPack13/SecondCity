@@ -46,7 +46,7 @@
 /datum/bodypart_overlay/simple/fomor_horns // Freak Legion pg.31
 	icon_state = "horns"
 	icon = 'modular_darkpack/modules/fomori/icons/fomori_sprite_accessories.dmi'
-	layers = LOW_FACEMASK_LAYER
+	layers = list(EXTERNAL_ADJACENT = LOW_FACEMASK_LAYER)
 
 /datum/action/cooldown/power/fomori_power/horns
 	name = "Horns"
