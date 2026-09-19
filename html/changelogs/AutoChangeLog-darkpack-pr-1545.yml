@@ -1,0 +1,5 @@
+author: "cam_dev"
+delete-after: True
+changes:
+  - qol: "added charcoal pen to loadout menu"
+  - image: "96 new glyphs for fera splats to draw"
