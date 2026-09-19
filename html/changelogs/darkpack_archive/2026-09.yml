@@ -112,3 +112,27 @@
   - code_imp: changed some zulo preference code.
   - rscdel: removed old Zulo basicmob code
   - balance: implemented Zulo form with closer parity to TT
+2026-09-17:
+  ChiropterousHoarder, dwinters99, buffyuwu:
+  - rscadd: Added variant of Glowing Eyes for non-kindred that only breaches in near-total
+      darkness and increases flash sensitivity
+  FalloutFalcon:
+  - rscadd: TG and Darkpack changelogs are split by icons instead of just deleting
+      all the TG ones.
+  - bugfix: Fixes beastmaster targeting behavior
+  JohnFulpWillard:
+  - bugfix: Guestbook now has a scrollbar.
+  KCartridge:
+  - bugfix: fix primogen and crosses directional sprites
+  Uristthedorf:
+  - balance: Frenzy balancing
+  - bugfix: Methuselah thirst flaw now properly enforces feeding on supernaturals
+      only.
+  breadcrombs, Wolf-751:
+  - balance: Bone crafting now takes time when used on a dead body
+2026-09-18:
+  JohnFulpWillard:
+  - spellcheck: Removes mentions of Station in the roundend report.
+  chazzyjazzy:
+  - refactor: removes violation_observer component and prox monitor, bringing it to
+      /atom/movable
