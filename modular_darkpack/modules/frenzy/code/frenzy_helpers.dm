@@ -25,7 +25,6 @@
 /// Find targets to ATTACK while frenzying
 /mob/living/proc/get_frenzy_victims(range = DEFAULT_SIGHT_DISTANCE)
 	var/list/victims = list()
-	var/list/blood_splatters = list()
 
 	for(var/obj/effect/decal/cleanable/blood/blood_decal in oview(range, src))
 		victims += blood_decal
