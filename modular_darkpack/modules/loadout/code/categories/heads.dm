@@ -1,3 +1,15 @@
+/datum/loadout_item/head/brown_bandana
+	name = "Bandana (Brown)"
+	item_path = /obj/item/clothing/head/vampire/bandana
+
+/datum/loadout_item/head/red_bandana
+	name = "Bandana (Red)"
+	item_path = /obj/item/clothing/head/vampire/bandana/red
+
+/datum/loadout_item/head/black_bandana
+	name = "Bandana (Black)"
+	item_path = /obj/item/clothing/head/vampire/bandana/black
+
 /datum/loadout_item/head/baseball_cap
 	name = "Baseball Cap"
 	item_path = /obj/item/clothing/head/vampire/baseballcap
