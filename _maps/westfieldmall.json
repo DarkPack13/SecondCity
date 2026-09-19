@@ -16,12 +16,12 @@
 	"traits": [
 		{
 			"Up": 1,
-			"Baseturf": "/turf/open/misc/dirt/vamp"
+			"Baseturf": "/turf/open/misc/dirt"
 		},
 		{
 			"Up": 1,
 			"Down": -1,
-			"Baseturf": "/turf/open/misc/dirt/vamp"
+			"Baseturf": "/turf/open/misc/dirt"
 		},
 		{
 			"Up": 1,
