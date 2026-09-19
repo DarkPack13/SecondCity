@@ -1,0 +1,4 @@
+author: "PotatoTomahto"
+delete-after: True
+changes:
+  - rscadd: "you can now always see the adjective of an examined person (if you can see their face)"
