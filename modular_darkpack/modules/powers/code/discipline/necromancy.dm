@@ -219,7 +219,8 @@
 
 			ADD_TRAIT(corpsebuff, TRAIT_NOSOFTCRIT, NECROMANCY_TRAIT)
 			ADD_TRAIT(corpsebuff, TRAIT_NOHARDCRIT, NECROMANCY_TRAIT)
-			//ADD_TRAIT(corpsebuff, TRAIT_IGNOREDAMAGESLOWDOWN, NECROMANCY_TRAIT)
+			ADD_TRAIT(corpsebuff, TRAIT_ANALGESIA, NECROMANCY_TRAIT)
+			corpsebuff.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 			corpsebuff.add_movespeed_modifier(/datum/movespeed_modifier/corpsebuff)
 			corpsebuff.do_jitter_animation(2 SECONDS)
 		else //everyone else eats tox and CC
@@ -251,7 +252,8 @@
 				part.brute_modifier = initial(part.brute_modifier)
 			REMOVE_TRAIT(corpsebuff, TRAIT_NOSOFTCRIT, NECROMANCY_TRAIT)
 			REMOVE_TRAIT(corpsebuff, TRAIT_NOHARDCRIT, NECROMANCY_TRAIT)
-			//REMOVE_TRAIT(corpsebuff, TRAIT_IGNOREDAMAGESLOWDOWN, NECROMANCY_TRAIT)
+			REMOVE_TRAIT(corpsebuff, TRAIT_ANALGESIA, NECROMANCY_TRAIT)
+			corpsebuff.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 			corpsebuff.remove_movespeed_modifier(/datum/movespeed_modifier/corpsebuff)
 		else
 			corpsebuff.remove_movespeed_modifier(/datum/movespeed_modifier/corpsenerf)
