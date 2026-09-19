@@ -1,0 +1,111 @@
+/obj/item/melee/body_barbs // Largely copied from changeling armblade // Freak Legion pg.30
+	name = "body barb"
+	icon = 'modular_darkpack/modules/fomori/icons/fomori_items48x32.dmi'
+	icon_state = "body_barb"
+	inhand_icon_state = "body_barb"
+	lefthand_file = 'modular_darkpack/modules/fomori/icons/fomori_inhand_left.dmi'
+	righthand_file = 'modular_darkpack/modules/fomori/icons/fomori_inhand_right.dmi'
+	item_flags = ABSTRACT | DROPDEL
+	w_class = WEIGHT_CLASS_HUGE
+	force = 10
+	damtype = AGGRAVATED
+	throwforce = 0
+	throw_range = 0
+	throw_speed = 0
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
+	wound_bonus = 10
+	exposed_wound_bonus = 10
+	armour_penetration = 35
+	attack_verb_continuous = list("attacks", "slashes", "slices", "tears", "lacerates", "rips", "dices", "cuts")
+	attack_verb_simple = list("attack", "slash", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	sharpness = SHARP_EDGED
+	wound_bonus = 10
+	exposed_wound_bonus = 10
+	armour_penetration = 35
+	var/list/alt_continuous = list("stabs", "pierces", "impales")
+	var/list/alt_simple = list("stab", "pierce", "impale")
+
+	attack_difficulty = 7
+
+	abstract_type = /obj/item/melee/body_barbs
+
+	ttrpg_sources = list(/datum/source_book/freak_legion = 30)
+
+/obj/item/melee/body_barbs/Initialize(mapload,silent) // Largely copied from changeling armblade
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, INNATE_TRAIT)
+	alt_continuous = string_list(alt_continuous)
+	alt_simple = string_list(alt_simple)
+	AddComponent(/datum/component/alternative_sharpness, SHARP_POINTY, alt_continuous, alt_simple, -5)
+	AddComponent(/datum/component/butchering, \
+	speed = 6 SECONDS, \
+	effectiveness = 80, \
+	)
+
+/datum/bodypart_overlay/simple/fomor_body_barbs
+	icon_state = "body_barb"
+	icon = 'modular_darkpack/modules/fomori/icons/fomori_inhand_right.dmi'
+	layers = POWERS_LAYER
+	var/bodyzone = BODY_ZONE_R_ARM
+	var/obj/item/bodypart/assigned_bodyzone
+
+/datum/bodypart_overlay/simple/fomor_body_barbs/l_arm
+	icon_state = "body_barb"
+	icon = 'modular_darkpack/modules/fomori/icons/fomori_inhand_left.dmi'
+	bodyzone = BODY_ZONE_L_ARM
+
+/datum/action/cooldown/power/fomori_power/weapon/body_barbs
+	name = "Body Barbs"
+	desc = "Use the grotesque spikes on your body to amplify your brawling ability."
+	button_icon_state = "body_barbs"
+	rank = 1 // of 5 // Determines how many extra dice we get, 2 points and 1 dice/level
+	weapon_type = /obj/item/melee/body_barbs
+	sheathe_text = "Your body barbs retract into your arms."
+
+	var/list/overlay_list = list()
+	var/r_arm_overlay = /datum/bodypart_overlay/simple/fomor_body_barbs
+	var/l_arm_overlay = /datum/bodypart_overlay/simple/fomor_body_barbs/l_arm
+
+/datum/action/cooldown/power/fomori_power/weapon/body_barbs/Activate(atom/target)
+	. = ..()
+	weapon.force = rank LETHAL_TTRPG_DAMAGE
+	weapon_offhand.force = rank LETHAL_TTRPG_DAMAGE
+
+	if(deployed)
+		owner.visible_message(span_warning("A pair of grotesque barbs extend from [owner]\'s arms!"), \
+			span_warning("Your body barbs extend from your arms."), \
+			span_hear("You hear organic matter ripping and tearing!"))
+		SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
+
+/datum/action/cooldown/power/fomori_power/weapon/body_barbs/two
+	rank = 2
+
+/datum/action/cooldown/power/fomori_power/weapon/body_barbs/three
+	rank = 3
+
+/datum/action/cooldown/power/fomori_power/weapon/body_barbs/four
+	rank = 4
+/datum/action/cooldown/power/fomori_power/weapon/body_barbs/five
+	rank = 5
+
+/datum/action/cooldown/power/fomori_power/weapon/body_barbs/add_feature()
+	var/mob/living/carbon/human/fomor = owner
+
+	overlay_list = list(new r_arm_overlay, new l_arm_overlay)
+
+	for(var/datum/bodypart_overlay/simple/fomor_body_barbs/bp_overlay in overlay_list)
+		bp_overlay.assigned_bodyzone = fomor?.get_bodypart(bp_overlay.bodyzone)
+		if(isnull(bp_overlay.assigned_bodyzone))
+			qdel(bp_overlay)
+			continue
+		bp_overlay.assigned_bodyzone.add_bodypart_overlay(bp_overlay)
+
+///removes the fomor feature
+/datum/action/cooldown/power/fomori_power/weapon/body_barbs/remove_feature()
+	var/mob/living/carbon/human/fomor = owner
+	if(HAS_TRAIT(owner, TRAIT_FOMORI_HIDDEN_POWER))
+		for(var/datum/bodypart_overlay/simple/fomor_body_barbs/bp_overlay in overlay_list)
+			bp_overlay.assigned_bodyzone = fomor?.get_bodypart(bp_overlay.bodyzone)
+			bp_overlay.assigned_bodyzone.remove_bodypart_overlay(bp_overlay)
+			qdel(bp_overlay)
+		overlay_list = list()
