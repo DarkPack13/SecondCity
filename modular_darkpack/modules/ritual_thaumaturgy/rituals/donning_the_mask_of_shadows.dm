@@ -9,7 +9,7 @@
 
 /obj/ritual_rune/thaumaturgy/donning_the_mask_of_shadows/complete()
 	. = ..()
-	last_activator.apply_status_effect(/datum/status_effect/mask_of_shadows, ritual_roll_datum.last_sucess_amount MINUTES)
+	last_activator.apply_status_effect(/datum/status_effect/mask_of_shadows, last_sucess_amount MINUTES)
 	qdel(src)
 
 /datum/status_effect/mask_of_shadows

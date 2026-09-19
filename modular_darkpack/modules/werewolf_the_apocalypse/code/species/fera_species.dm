@@ -102,7 +102,6 @@
 /datum/species/human/shifter/proc/get_fur_color(mob/living/carbon/human/human)
 	return human.dna.features[FEATURE_FERA_FUR_COLOR] || "black"
 
-
 /datum/species/human/shifter/proc/get_feature_icon_state(mob/living/carbon/human/human, feature_key)
 	var/feature_dna = human.dna.features[feature_key]
 	if(!feature_dna)
@@ -123,7 +122,7 @@
 	if(shifter_splat)
 		icon_to_use = shifter_splat.mob_icons[id]
 
-	return icon_to_use ? icon_to_use : fallback_icon
+	return icon_to_use || fallback_icon
 
 /datum/species/human/shifter/update_body_parts(mob/living/carbon/human/human)
 	if(!custom_body_render)
@@ -279,6 +278,8 @@
 	)
 	form_causes_delirium = TRUE
 	veil_breaching_form = TRUE
+
+	skinned_type = /obj/item/stack/sheet/animalhide/generic
 	species_language_holder = /datum/language_holder/crinos
 	mutanttongue = /obj/item/organ/tongue/fera
 	bodypart_overrides = list(
@@ -317,6 +318,7 @@
 	)
 	veil_breaching_form = TRUE
 
+	skinned_type = /obj/item/stack/sheet/animalhide/generic
 	mutantbrain = /obj/item/organ/brain/fera
 	mutanttongue = /obj/item/organ/tongue/fera
 	species_language_holder = /datum/language_holder/primal
@@ -356,6 +358,7 @@
 		TRAIT_NO_CUFF,
 	)
 
+	skinned_type = /obj/item/stack/sheet/animalhide/generic
 	mutantbrain = /obj/item/organ/brain/fera
 	mutanttongue = /obj/item/organ/tongue/fera
 	species_language_holder = /datum/language_holder/primal
@@ -397,6 +400,7 @@
 
 	if(HAS_TRAIT(human, TRAIT_FERA_FLIGHT))
 		REMOVE_TRAIT(human, TRAIT_WADDLING, INNATE_TRAIT)
+
 
 /datum/movespeed_modifier/shifter
 	abstract_type = /datum/movespeed_modifier/shifter
