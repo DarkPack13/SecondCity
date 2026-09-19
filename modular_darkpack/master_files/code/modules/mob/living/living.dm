@@ -1,6 +1,6 @@
 /mob/living/Initialize(mapload)
 	. = ..()
-	replace_storyteller_stats(create_new_stat_prefs(storyteller_stats))
+	replace_storyteller_stats(create_new_st_stats(storyteller_stats))
 	become_area_sensitive(ZONE_TRAIT)
 	update_zone_hud(src, get_area(src)) // AREAS - (Zone hud)
 	RegisterSignal(src, COMSIG_MASQUERADE_VIOLATION, TYPE_PROC_REF(/atom/movable, on_masquerade_violation))

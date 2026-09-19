@@ -33,9 +33,8 @@
 
 	//before going any further, roll either conscience or conviction to determine if we actually lose path/humanity
 	if(humanity_change < 0)
-		var/stat_to_roll = is_enlightenment ? STAT_CONVICTION : STAT_CONSCIENCE
 		var/datum/storyteller_roll/degeneration_roll = new()
-		degeneration_roll.applicable_stats = list(stat_to_roll)
+		degeneration_roll.applicable_stats = list(STAT_CONSCIENCE)
 		degeneration_roll.difficulty = difficulty
 		degeneration_roll.roll_output_type = ROLL_PRIVATE_ADMIN
 		var/roll_result = degeneration_roll.st_roll(owner)

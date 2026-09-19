@@ -1,5 +1,5 @@
 /datum/storyteller_roll/gift/enemy_ways
-	applicable_stats = list(STAT_PERCEPTION)
+	applicable_stats = list(STAT_PERCEPTION, STAT_PRIMAL_URGE)
 	difficulty = 7
 	numerical = TRUE // More successes can give more information but i didnt have any good ideas for rn.
 
@@ -23,7 +23,7 @@
 
 	var/datum/storyteller_roll/gift/enemy_ways/roll_datum = new()
 	// More successes normally grants geater information.
-	var/roll_result = roll_datum.st_roll(owner, bonus = PRIMAL_URGE_PLACEHOLDER)
+	var/roll_result = roll_datum.st_roll(owner)
 	if(roll_result <= 0)
 		return TRUE
 
