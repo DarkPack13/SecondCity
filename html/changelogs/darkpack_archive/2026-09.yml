@@ -136,3 +136,18 @@
   chazzyjazzy:
   - refactor: removes violation_observer component and prox monitor, bringing it to
       /atom/movable
+2026-09-20:
+  JohnFulpWillard:
+  - qol: Anesthetic tanks no longer spits n2o into the air anymore.
+  PotatoTomahto:
+  - rscadd: you can now always see the adjective of an examined person (if you can
+      see their face)
+  Stutternov:
+  - rscadd: Adds armor to warform species similar to that of active Fortitude 4.
+  Uristthedorf:
+  - rscadd: Obfuscate hides your footsteps
+  cam_dev:
+  - qol: added charcoal pen to loadout menu
+  - image: 96 new glyphs for fera splats to draw
+  ewer-real:
+  - bugfix: Crossbow bolt sprite restored.
