@@ -82,6 +82,8 @@
 	frenzy_roll.difficulty = difficulty
 	var/frenzy_result = frenzy_roll.st_roll(src, fire)
 	if(frenzy_result <= 0)
+		if(!fire)
+			fire = src
 		enter_frenzy_mode(fire, TRUE, "Rotshreck")
 		return
 	successes += frenzy_result
