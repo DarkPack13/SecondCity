@@ -169,9 +169,10 @@
 			animate(pixel_w = -2, time = 0.1 SECONDS, flags = ANIMATION_RELATIVE|ANIMATION_CONTINUE)
 			animate(pixel_w = 2, time = 0.1 SECONDS, flags = ANIMATION_RELATIVE|ANIMATION_CONTINUE)
 		animate(pixel_w = -1, time = 0.1 SECONDS, flags = ANIMATION_RELATIVE)
-		balloon_alert_to_viewers("[app]:[title]", vision_distance = SAMETILE_MESSAGE_RANGE)
 	if(ringer)
 		playsound(src, 'modular_darkpack/modules/phones/sounds/text_receive.ogg', 50, TRUE, 0, 2) // This could prob use a better notification
+	if(vibration || ringer)
+		balloon_alert_to_viewers("[app]:[title]", vision_distance = SAMETILE_MESSAGE_RANGE)
 
 #undef VIBRATION_LOOP_DURATION
 
