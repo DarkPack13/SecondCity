@@ -151,3 +151,6 @@
   - image: 96 new glyphs for fera splats to draw
   ewer-real:
   - bugfix: Crossbow bolt sprite restored.
+2026-09-21:
+  JohnFulpWillard:
+  - bugfix: Mentorhelp now uses proper symbols.
