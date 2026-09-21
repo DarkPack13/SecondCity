@@ -13,4 +13,5 @@
 
 /atom/movable/screen/alert/status_effect/awe
 	name = "Awe"
+	desc = "That person seems alluring... I feel captivated by their presence. I need to get closer."
 	icon_state = "hypnosis"
