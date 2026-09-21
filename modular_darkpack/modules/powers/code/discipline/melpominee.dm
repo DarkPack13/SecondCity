@@ -169,8 +169,6 @@
 	var/mob/living/caster = owner
 
 	var/datum/storyteller_roll/phantom_speaker/roll_datum = new()
-	if(HAS_TRAIT(owner, TRAIT_ENCHANTING_VOICE))
-		roll_datum.difficulty -= 2
 	var/roll_result = roll_datum.st_roll(caster)
 
 	if(roll_result < ROLL_SUCCESS)
@@ -208,18 +206,6 @@
  * The Daughter chooses an emotion and anyone who fails a Wits + Awareness check against her roll will begin to feel that emotion
  *
  */
-/datum/storyteller_roll/madrigal
-	bumper_text = "Madrigal"
-	difficulty = 7
-	successes_needed = 1
-	applicable_stats = list(STAT_WITS, STAT_PERFORMANCE)
-	numerical = TRUE
-	roll_output_type = ROLL_PRIVATE
-	spammy_roll = TRUE
-
-/datum/storyteller_roll/madrigal/victim
-	applicable_stats = list(STAT_WITS, STAT_AWARENESS)
-
 /datum/discipline_power/melpominee/madrigal
 	name = "Madrigal"
 	desc = "Sing a siren song, swaying the emotions of all around you."
@@ -233,18 +219,12 @@
 
 /datum/discipline_power/melpominee/madrigal/activate()
 	. = ..()
-	var/datum/storyteller_roll/madrigal/roll_datum = new()
-	if(HAS_TRAIT(owner, TRAIT_ENCHANTING_VOICE))
-		roll_datum.difficulty -= 2
-	var/our_power = roll_datum.st_roll(owner)
+	var/our_power = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_WITS, STAT_PERFORMANCE), numerical = TRUE)
 	var/emotion = tgui_input_list(owner, "What emotion do you wish to incite?", "Madrigal", GLOB.emotion_to_quality)
 
 	for(var/mob/living/carbon/member in ohearers(7, owner))
 		audience += member
-		var/datum/storyteller_roll/madrigal/victim/victim_roll = new()
-		if(HAS_TRAIT(member, TRAIT_COLDLY_LOGICAL))
-			victim_roll.difficulty -= 1
-		var/their_power = victim_roll.st_roll(member, owner)
+		var/their_power = SSroll.storyteller_roll_datum(member, difficulty = 7, applic_stats = list(STAT_WITS, STAT_AWARENESS), numerical = TRUE)
 		if(our_power > their_power)
 			set_emotion(member, emotion)
 
@@ -347,10 +327,17 @@
 	else
 		listener_list = ohearers(owner, 7)
 
-		for(var/mob/living/carbon/listener in listener_list)
-		var/our_power = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/sirens_beckoning, 0, listener.st_get_stat(STAT_TEMPORARY_WILLPOWER))
+	for(var/mob/living/carbon/listener in listener_list)
+		/datum/storyteller_roll/sirens_beckoning/roll_datum = new()
+		if(HAS_TRAIT(owner, TRAIT_ENCHANTING_VOICE))
+			roll_datum.difficulty -= 2
+		var/our_power = roll_datum.st_roll(caster)
 		cumulative_our_power[listener] += our_power
-		var/their_power = SSroll.storyteller_roll_datum(listener, owner, /datum/storyteller_roll/sirens_beckoning/victim, 0, owner.st_get_stat(STAT_APPEARANCE) + owner.st_get_stat(STAT_PERFORMANCE))
+
+		/datum/storyteller_roll/sirens_beckoning/victim/victim_roll = new()
+		if(HAS_TRAIT(owner, TRAIT_COLDLY_LOGICAL))
+			victim_roll.difficulty -= 1
+		var/our_power = roll_datum.st_roll(caster)
 		cumulative_list[listener] += their_power
 		if(our_power > their_power && should_run_effect(listener))
 			effect(listener)
