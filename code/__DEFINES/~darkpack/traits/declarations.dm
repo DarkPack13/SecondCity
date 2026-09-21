@@ -185,6 +185,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_BEACON_OF_THE_UNHOLY "beacon_of_the_unholy"
 #define TRAIT_BETRAYERS_MARK "betrayers_mark"
 #define TRAIT_CALM_HEART "calm_heart"
+#define TRAIT_COLDLY_LOGICAL "coldly_logical"
 #define TRAIT_DISFIGURED_APPEARANCE "disfigured_appearance"
 #define TRAIT_DULLFANGS "dullfangs"
 #define TRAIT_EAT_FOOD "eat_food"
