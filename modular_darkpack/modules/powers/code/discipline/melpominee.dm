@@ -337,7 +337,7 @@
 		/datum/storyteller_roll/sirens_beckoning/victim/victim_roll = new()
 		if(HAS_TRAIT(owner, TRAIT_COLDLY_LOGICAL))
 			victim_roll.difficulty -= 1
-		var/our_power = roll_datum.st_roll(caster)
+		var/our_power = victim_roll.st_roll(caster)
 		cumulative_list[listener] += their_power
 		if(our_power > their_power && should_run_effect(listener))
 			effect(listener)
