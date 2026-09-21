@@ -132,6 +132,9 @@
 	if((!(owner.obscured_slots & HIDEFACE))&(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE))) // Are we visibly disfigured?
 		theirpower += 2
 
+	if(HAS_TRAIT(owner, TRAIT_ENCHANTING_VOICE))
+		theirpower -= 2
+
 	if(!get_kindred_splat(target)) // Is our target mortal?
 		if(HAS_TRAIT(owner, TRAIT_GRAVE_SMELL)) // Are we stinky?
 			theirpower += 1
