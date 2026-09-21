@@ -196,6 +196,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_HORRIFIC_APPEARANCE "horrific_appearance"
 #define TRAIT_HUGE_SIZE "huge_size"
 #define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERNMENT
+#define TRAIT_IRON_WILL "iron_will"
 #define TRAIT_MERIT_UNTAMABLE "merit_untamable"
 #define TRAIT_METAMORPH "metamorph"
 #define TRAIT_MONSTROUS "monstrous"

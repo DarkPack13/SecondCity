@@ -116,6 +116,9 @@
 
 	var/theirpower = target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
 
+	if(HAS_TRAIT(target, TRAIT_IRON_WILL))
+		theirpower += 3
+
 	//tremere have built-in safeguards to easily dominate their stone servitors
 	if(HAS_TRAIT(target, TRAIT_WEAK_TO_DOMINATE))
 		theirpower -= 2
