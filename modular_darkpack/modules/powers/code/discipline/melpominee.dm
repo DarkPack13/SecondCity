@@ -329,12 +329,14 @@
 
 	for(var/mob/living/carbon/listener in listener_list)
 		var/datum/storyteller_roll/sirens_beckoning/roll_datum = new()
+		roll_datum.difficulty = listener.st_get_stat(STAT_TEMPORARY_WILLPOWER)
 		if(HAS_TRAIT(owner, TRAIT_ENCHANTING_VOICE))
 			roll_datum.difficulty -= 2
 		var/our_power = roll_datum.st_roll(owner, listener)
 		cumulative_our_power[listener] += our_power
 
 		var/datum/storyteller_roll/sirens_beckoning/victim/victim_roll = new()
+		victim_roll.difficulty = owner.st_get_stat(STAT_APPEARANCE) + owner.st_get_stat(STAT_PERFORMANCE)
 		if(HAS_TRAIT(listener, TRAIT_COLDLY_LOGICAL))
 			victim_roll.difficulty -= 1
 		var/their_power = victim_roll.st_roll(listener)

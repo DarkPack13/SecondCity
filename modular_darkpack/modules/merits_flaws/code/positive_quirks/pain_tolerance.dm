@@ -10,10 +10,10 @@
 	included_clans = list(VAMPIRE_CLAN_TZIMISCE)
 	failure_message = "You feel like your tolerance for pain is back to average"
 
-/datum/quirk/numb/add(client/client_source)
+/datum/quirk/darkpack/pain_tolerance/add(client/client_source)
 	quirk_holder.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	quirk_holder.add_traits(list(TRAIT_ANALGESIA, TRAIT_NO_DAMAGE_OVERLAY), QUIRK_TRAIT)
 
-/datum/quirk/numb/remove(client/client_source)
+/datum/quirk/darkpack/pain_tolerance/remove(client/client_source)
 	quirk_holder.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	quirk_holder.remove_traits(list(TRAIT_ANALGESIA, TRAIT_NO_DAMAGE_OVERLAY), QUIRK_TRAIT)
