@@ -323,6 +323,8 @@
 				addtimer(CALLBACK(akimbo_gun, TYPE_PROC_REF(/obj/item/gun, shoot_with_empty_chamber), shooter), 0.1 SECONDS)
 			else
 				bonus_spread = dual_wield_spread
+				if(HAS_TRAIT(shooter, TRAIT_AMBIDEXTROUS))
+					bonus_spread /= 2
 				addtimer(CALLBACK(akimbo_gun, TYPE_PROC_REF(/obj/item/gun, process_fire), target, shooter, TRUE, params, null, bonus_spread), 0.1 SECONDS)
 	process_fire(target, shooter, TRUE, params, null, bonus_spread)
 

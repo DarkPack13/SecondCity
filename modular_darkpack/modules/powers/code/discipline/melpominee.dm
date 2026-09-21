@@ -328,16 +328,16 @@
 		listener_list = ohearers(owner, 7)
 
 	for(var/mob/living/carbon/listener in listener_list)
-		/datum/storyteller_roll/sirens_beckoning/roll_datum = new()
+		var/datum/storyteller_roll/sirens_beckoning/roll_datum = new()
 		if(HAS_TRAIT(owner, TRAIT_ENCHANTING_VOICE))
 			roll_datum.difficulty -= 2
-		var/our_power = roll_datum.st_roll(caster)
+		var/our_power = roll_datum.st_roll(owner, listener)
 		cumulative_our_power[listener] += our_power
 
-		/datum/storyteller_roll/sirens_beckoning/victim/victim_roll = new()
-		if(HAS_TRAIT(owner, TRAIT_COLDLY_LOGICAL))
+		var/datum/storyteller_roll/sirens_beckoning/victim/victim_roll = new()
+		if(HAS_TRAIT(listener, TRAIT_COLDLY_LOGICAL))
 			victim_roll.difficulty -= 1
-		var/our_power = victim_roll.st_roll(caster)
+		var/their_power = victim_roll.st_roll(listener)
 		cumulative_list[listener] += their_power
 		if(our_power > their_power && should_run_effect(listener))
 			effect(listener)
