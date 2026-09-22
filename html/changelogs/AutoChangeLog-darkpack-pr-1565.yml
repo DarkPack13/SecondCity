@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - bugfix: "Frenzy, resist pain, Cold of the Grave now all acctually ignore pain slowdowns"
+  - bugfix: "Abilities that resist pain now consistently only ignore PAIN slowdowns"
