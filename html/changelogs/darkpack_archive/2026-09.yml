@@ -154,3 +154,6 @@
 2026-09-21:
   JohnFulpWillard:
   - bugfix: Mentorhelp now uses proper symbols.
+2026-09-22:
+  JohnFulpWillard:
+  - bugfix: Setting your phone to silent mode is now more silent.
