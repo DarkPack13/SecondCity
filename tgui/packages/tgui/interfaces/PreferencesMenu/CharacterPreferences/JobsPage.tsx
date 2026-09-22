@@ -301,7 +301,7 @@ function JobRow(props: JobRowProps) {
             >
               <Tooltip content={job.description} position="bottom-start">
                 {
-                  // DARKPACK EDIT CHANGE START - ALTERNATIVE_JOB_TITLES - ORIGINAL:
+                  // DARKPACK EDIT CHANGE START - ALTERNATIVE_JOB_TITLES - ORIGINAL: {name}
                   !job.alt_titles ? (
                     name
                   ) : (
