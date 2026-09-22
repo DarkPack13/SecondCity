@@ -544,6 +544,7 @@ export function JobsPage() {
         </Stack.Item>
       </Stack>
       <Stack vertical fill>
+        {/* // DARKPACK EDIT CHANGE, ORIGINAL: 15 */}
         <Stack.Item mt={10}>
           <Stack fill g={1} className="PreferencesMenu__Jobs">
             {
