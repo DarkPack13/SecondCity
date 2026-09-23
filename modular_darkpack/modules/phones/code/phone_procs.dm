@@ -56,11 +56,13 @@
 	if(current_state == PHONE_AVAILABLE)
 		dialed_number = null
 		incoming_phone_number = null
+	if(current_state == PHONE_CALLING)
+		START_PROCESSING(SSprocessing, src)
+
 	if(current_state == PHONE_RINGING)
 		START_PROCESSING(SSprocessing, src)
 		if(ringer)
 			add_shared_particles(/particles/phone_ringing, particle_flags = PARTICLE_ATTACH_MOB)
-
 	else if(current_state == PHONE_IN_CALL || current_state == PHONE_AVAILABLE)
 		if(phone_ringing_timer)
 			deltimer(phone_ringing_timer)
@@ -169,7 +171,8 @@
 		animate(pixel_w = -1, time = 0.1 SECONDS, flags = ANIMATION_RELATIVE)
 	if(ringer)
 		playsound(src, 'modular_darkpack/modules/phones/sounds/text_receive.ogg', 50, TRUE, 0, 2) // This could prob use a better notification
-	balloon_alert_to_viewers("[app]:[title]", vision_distance = SAMETILE_MESSAGE_RANGE)
+	if(vibration || ringer)
+		balloon_alert_to_viewers("[app]:[title]", vision_distance = SAMETILE_MESSAGE_RANGE)
 
 #undef VIBRATION_LOOP_DURATION
 
@@ -195,10 +198,12 @@
 	set_phone_state(PHONE_IN_CALL)
 	calling_smartphone.set_phone_state(PHONE_IN_CALL)
 
+	// turn masq stuff on
+	toggle_masquerade_sensitivity(TRUE)
+	calling_smartphone.toggle_masquerade_sensitivity(TRUE)
+
 	phone_radio.canhear_range = 1
 	calling_smartphone.phone_radio.canhear_range = 1
-	muted = FALSE
-	calling_smartphone.muted = FALSE
 
 // Internal only proc, used for ending a calll connection.
 /obj/item/smartphone/proc/terminate_call_connection()
@@ -223,14 +228,19 @@
 	set_phone_state(PHONE_AVAILABLE)
 	calling_smartphone.set_phone_state(PHONE_AVAILABLE)
 
-// Internal only proc, used for setting a phone's internal radio.
+	// turn masq stuff off
+	toggle_masquerade_sensitivity(FALSE)
+	calling_smartphone.toggle_masquerade_sensitivity(FALSE)
+
+// Internal only proc, used for setting a phone's internal radio when accepting and terminating calls.
 /obj/item/smartphone/proc/set_phone_radio(enabled)
 	PROTECTED_PROC(TRUE)
 
 	if(enabled)
 		phone_radio.set_frequency(secure_frequency)
-		phone_radio.set_broadcasting(TRUE)
-		phone_radio.set_listening(TRUE)
+		phone_radio.should_be_broadcasting = TRUE
+		phone_radio.should_be_listening = TRUE
+		phone_radio.set_on(TRUE)
 	else
 		phone_radio.set_frequency(0)
 		phone_radio.set_broadcasting(FALSE)
