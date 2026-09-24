@@ -12,6 +12,7 @@
 
 /datum/quirk/darkpack/iron_will/human
 	name = "Iron Will (Non-Vampire)"
-	value = 4 // Hunters Hunted 1st edition
+	ttrpg_sources = list(/datum/source_book/huntershunted1 = 60) // Hunters Hunted 1st edition
+	value = 4
 	allowed_splats = null
 	forbidden_splats = list(SPLAT_KINDRED)
