@@ -3,7 +3,7 @@
 
 	/**
 	 * The difficulty of a roll.
-	 * As a reference, three is trivial, six is standard, nine is extremely difficulty.
+	 * As a reference, three is trivial, six is standard, nine is extremely difficult.
 	 */
 	var/difficulty = 6
 	var/bonus = 0
