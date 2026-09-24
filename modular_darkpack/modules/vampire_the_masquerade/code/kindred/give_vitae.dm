@@ -23,7 +23,12 @@
 	if(target == owner)
 		return FALSE
 
-	var/choice = tgui_alert(owner, "", "Give Vitae", list("Feed Blood", "Teach Discipline", "Cancel"))
+	var/list/options = list("Feed Blood")
+	if(CONFIG_GET(number/discipline_teaching) != DISCIPLINE_TEACHING_DISABLED)
+		options += "Teach Discipline"
+	options += "Cancel"
+
+	var/choice = tgui_alert(owner, "", "Give Vitae", options)
 	if(QDELETED(owner) || QDELETED(target))
 		return FALSE
 	if(!choice || choice == "Cancel")
