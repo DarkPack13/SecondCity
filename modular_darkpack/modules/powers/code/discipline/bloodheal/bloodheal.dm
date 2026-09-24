@@ -13,7 +13,7 @@
 	bumper_text = "Bloodheal"
 	difficulty = 8
 	applicable_stats = list(STAT_STAMINA, STAT_SURVIVAL)
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_FLAG_ROLLER
 
 /datum/discipline_power/bloodheal
 	name = "Bloodheal power name"
