@@ -35,6 +35,8 @@
 	var/splat_biotypes
 	/// Base type of the powers that this splat has
 	var/power_type
+	/// Whether or not we use the MASQUERADE or the VEIL
+	var/uses_veil
 
 	/// If examining the pulled tooth of the splat can gain some indication of what it is.
 	var/tooth_fingerprint = FALSE
