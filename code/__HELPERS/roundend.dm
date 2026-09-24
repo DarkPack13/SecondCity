@@ -330,7 +330,7 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 	//Station Goals
 	parts += goal_report()
 	//Economy & Money
-	parts += market_report()
+//	parts += market_report() //DARKPACK EDIT - ROUNDEND REPORT
 	//Player Achievements
 	parts += cheevo_report()
 
@@ -340,15 +340,16 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 
 /datum/controller/subsystem/ticker/proc/survivor_report(popcount)
 	var/list/parts = list()
-	var/station_evacuated = EMERGENCY_ESCAPED_OR_ENDGAMED
+	var/station_evacuated = FALSE //DARKPACK EDIT - ROUNDEND REPORT - ORIGINAL: EMERGENCY_ESCAPED_OR_ENDGAMED
 
 	if(GLOB.round_id)
 		var/statspage = CONFIG_GET(string/roundstatsurl)
 		var/info = statspage ? "<a href='byond://?action=openLink&link=[url_encode(statspage)][GLOB.round_id]'>[GLOB.round_id]</a>" : GLOB.round_id
 		parts += "[FOURSPACES]Round ID: <b>[info]</b>"
-	parts += "[FOURSPACES]Map: [SSmapping.current_map?.return_map_name()]"
-	parts += "[FOURSPACES]Shift Duration: <B>[DisplayTimeText(world.time - SSticker.round_start_time)]</B>"
-	parts += "[FOURSPACES]Station Integrity: <B>[GLOB.station_was_nuked ? span_redtext("Destroyed") : "[popcount["station_integrity"]]%"]</B>"
+	parts += "[FOURSPACES]World Map: [SSmapping.current_map?.return_map_name()]" //DARKPACK EDIT - ROUNDEND REPORT
+	parts += "[FOURSPACES]Round Duration: <B>[DisplayTimeText(world.time - SSticker.round_start_time)]</B>" //DARKPACK EDIT - ROUNDEND REPORT
+//	parts += "[FOURSPACES]Station Integrity: <B>[GLOB.station_was_nuked ? span_redtext("Destroyed") : "[popcount["station_integrity"]]%"]</B>" //DARKPACK EDIT - ROUNDEND REPORT
+
 	var/total_players = GLOB.joined_player_list.len
 	if(total_players)
 		parts+= "[FOURSPACES]Total Population: <B>[total_players]</B>"
