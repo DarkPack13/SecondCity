@@ -29,7 +29,7 @@
 
 /datum/action/cooldown/power/fomori_power/ectoplasmic_extrusion
 	name = "Ectoplasmic Extrusion"
-	desc = "(UNIMPLEMENTED) Sprout grotesque tendrils from your back to use as extra hands or as a weapon."
+	desc = "Sprout grotesque tendrils from your back to use as extra hands or as a weapon."
 	button_icon_state = "ectoplasmic_extrusion"
 	rank = 1
 
@@ -67,8 +67,8 @@
 	lower_left = new
 	lower_right = new
 	var/ecto_list = list(upper_left, upper_right, lower_left, lower_right)
-	human_owner.hand_bodyparts.len = 6
-	human_owner.held_items.len = 6
+	human_owner.hand_bodyparts.len += 4
+	human_owner.held_items.len += 4
 	for(var/obj/item/bodypart/new_part in ecto_list)
 		human_owner.hand_bodyparts[ecto_list[new_part]] = new_part
 		new_part.try_attach_limb(human_owner, TRUE)
@@ -86,8 +86,8 @@
 		human_owner.hand_bodyparts[new_part] = null
 		new_part.drop_limb(dismembered = FALSE, move_to_floor = FALSE)
 
-	human_owner.hand_bodyparts.len = 2
-	human_owner.held_items.len = 2
+	human_owner.hand_bodyparts.len -= 4
+	human_owner.held_items.len -= 4
 
 	human_owner.hud_used.build_hand_slots(update_hud = TRUE)
 	var/atom/movable/screen/healthdoll/doll = human_owner.hud_used.screen_objects[HUD_MOB_HEALTHDOLL]

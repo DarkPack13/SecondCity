@@ -71,10 +71,11 @@
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/fangs, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/chameleon_coloration, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/darksight, 1)
-	owner.give_st_power(/datum/action/cooldown/power/fomori_power/exoskeleton, 1)
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/exoskeleton, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/regeneration, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/hide_of_the_wyrm, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/infectious_touch, 1)
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/ectoplasmic_extrusion, 1)
 
 	// MENTAL POWERS
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/berserker, 1) // need pointbuy
