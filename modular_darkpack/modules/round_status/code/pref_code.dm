@@ -2,16 +2,16 @@
 /mob/living/carbon/human/proc/write_preference_midround(datum/preference/preference, preference_value)
 	if(!(client?.prefs))
 		return FALSE
-	var/can_save = can_save_midround()
-	return client.prefs.write_preference_midround(GLOB.preference_entries[preference], preference_value, src, can_save)
+	var/fail_to_save_reason = cant_save_midround_reason()
+	return client.prefs.write_preference_midround(GLOB.preference_entries[preference], preference_value, src, fail_to_save_reason)
 
 /// Wrapper for write_preference to prevent writing for non-canon events like EORG
 /// Returns TRUE for a successful preference application.
 /// Returns FALSE if it is invalid or the round was not canon.
-/datum/preferences/proc/write_preference_midround(datum/preference/preference, preference_value, mob/user, can_save)
-	if(istext(can_save))
-		to_chat(parent, span_warning("Cannot save preference: [preference.savefile_key]; [can_save]"))
-		user.log_message("failed to write pref: [preference.savefile_key] due to; [can_save]", LOG_STATS)
+/datum/preferences/proc/write_preference_midround(datum/preference/preference, preference_value, mob/user, fail_to_save_reason)
+	if(fail_to_save_reason)
+		to_chat(parent, span_warning("Cannot save preference: [preference.savefile_key]; [fail_to_save_reason]"))
+		user.log_message("failed to write pref: [preference.savefile_key] due to; [fail_to_save_reason]", LOG_STATS)
 		return FALSE
 
 	to_chat(parent, span_info("Saved preference: [preference.savefile_key] to \"[preference_value]\""))
@@ -20,7 +20,7 @@
 	save_character()
 	return result
 
-/mob/living/carbon/human/proc/can_save_midround()
+/mob/living/carbon/human/proc/cant_save_midround_reason()
 	if(!GLOB.canon_event)
 		return "current round is not canon."
 	if(HAS_TRAIT(src, TRAIT_NO_CANON))
@@ -38,4 +38,4 @@
 	else if(!("[client.prefs.default_slot]" in persistent_client.joined_as_slots))
 		return "selected character sheet not spawned in."
 
-	return TRUE
+	return FALSE

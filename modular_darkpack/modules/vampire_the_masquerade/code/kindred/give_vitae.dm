@@ -114,7 +114,7 @@
 	student.reagents.expose(student, INGEST, 1, FALSE)
 
 	var/discipline_type = disc_type[chosen]
-	var/can_save = student.can_save_midround()
+	var/fail_to_save_reason = student.cant_save_midround_reason()
 	if(discipline_type)
 		var/datum/splat/vampire/student_splat = student ? get_splat_with_discipline(student) : null
 		if(student_splat && !student_splat.get_power(discipline_type))
@@ -128,7 +128,7 @@
 				message_admins("[ADMIN_LOOKUPFLW(owner)] tried to teach [chosen] to [ADMIN_LOOKUPFLW(student)], but doing so would've made [key_name(student)]'s sheet invalid due to the following: [violations]")
 				return FALSE
 			student.give_st_power(discipline_type, 1)
-			if(student.client?.prefs && !istext(can_save))
+			if(student.client?.prefs && !fail_to_save_reason)
 				student.client.prefs.discipline_levels["[discipline_type]"] = 1
 				student.client.prefs.save_character()
 
