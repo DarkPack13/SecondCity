@@ -1,7 +1,13 @@
 // THIS IS A DARKPACK UI FILE
-import { Button, Stack, Tooltip, AnimatedNumber, Section } from 'tgui-core/components';
+import {
+  Button,
+  Stack,
+  Tooltip,
+  AnimatedNumber,
+  Section,
+} from 'tgui-core/components';
 import { useBackend } from 'tgui/backend';
-import type {  PreferencesMenuData } from '../types';
+import type { PreferencesMenuData } from '../types';
 
 export function StatsPage() {
   const { act, data } = useBackend<PreferencesMenuData>();
@@ -12,7 +18,9 @@ export function StatsPage() {
   if (!stats || Object.keys(stats).length === 0) return null;
 
   const pointStats = Object.entries(stats)
-    .filter(([path, statData]) => path === statData.abstract_type && statData.name)
+    .filter(
+      ([path, statData]) => path === statData.freebie_type && statData.name,
+    )
     .map(([path, statData]) => ({
       path,
       name: statData.name, // Display name for the points stat
@@ -22,7 +30,7 @@ export function StatsPage() {
   // Group by category → subcategory using subtypes() order
   const grouped: Record<string, Record<string, string[]>> = {};
   Object.entries(stats).forEach(([path, statData]) => {
-    if (path === statData.abstract_type) return;
+    if (path === statData.freebie_type) return;
     const category = statData.category;
     const subcategory = statData.subcategory ?? 'General';
     if (!grouped[category]) grouped[category] = {};
@@ -36,24 +44,38 @@ export function StatsPage() {
       <Stack.Item className="PreferencesMenu__Stats__header">
         <Stack>
           <Stack.Item>
-            <Button
-              className="reset-button"
-              icon="trash"
-              onClick={() => act('reset_stats')}
-              color="red"
-              tooltip="Reset Stats"
-              tooltipPosition="top"
-            />
+            <Stack vertical>
+              <Stack.Item>
+                <Button
+                  className="reset-button"
+                  icon="trash"
+                  onClick={() => act('reset_stats')}
+                  color="red"
+                  tooltip="Reset Stats"
+                  tooltipPosition="top"
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  className="reset-button"
+                  icon="info"
+                  color="white"
+                  tooltip="Stats are based on WhiteWolf's WoD V20 Storyteller System.
+                  Its strongly recommended that stats are the last thing you set on a character to avoid issues."
+                  tooltipPosition="bottom"
+                />
+              </Stack.Item>
+            </Stack>
           </Stack.Item>
           <Stack.Item>
-          {pointStats.map((pointStat) => (
-            <Section inline my='10px' mx='5px' key={pointStat.path}>
-              <Stack.Item inline my='10px' mx='5px' key={pointStat.path}>
-              <b>{pointStat.name}: </b>
-              <AnimatedNumber value={pointStat.points} />
-              </Stack.Item>
-            </Section>
-          ))}
+            {pointStats.map((pointStat) => (
+              <Section inline my="10px" mx="5px" key={pointStat.path}>
+                <Stack.Item inline my="10px" mx="5px" key={pointStat.path}>
+                  <b>{pointStat.name}: </b>
+                  <AnimatedNumber value={pointStat.points} />
+                </Stack.Item>
+              </Section>
+            ))}
           </Stack.Item>
         </Stack>
       </Stack.Item>
@@ -74,7 +96,7 @@ export function StatsPage() {
                   {paths.map((statPath) => {
                     const statData = stats[statPath];
                     const score = statData.score;
-                    const bonus_score = statData.bonus_score
+                    const bonus_score = statData.bonus_score;
                     const max = statData.max_score;
                     const label = statData.name;
                     const editable = statData.editable;
@@ -115,7 +137,9 @@ export function StatsPage() {
                               <Stack.Item className="stat-dots">
                                 <span className="filled">{filled}</span>
                                 <span className="empty">{empty}</span>
-                                <span className="filled_bonus">{filled_bonus}</span>
+                                <span className="filled_bonus">
+                                  {filled_bonus}
+                                </span>
                               </Stack.Item>
                             </Stack>
                           </Stack.Item>

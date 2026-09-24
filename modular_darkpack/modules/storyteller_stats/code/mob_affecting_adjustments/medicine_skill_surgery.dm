@@ -1,5 +1,5 @@
 //Function for giving a player upgraded wound tending based on their current medical skill
-/datum/st_stat/ability/medicine/proc/check_medicine_wound_tending(mob/living/source, atom/movable/operating_on, list/possible_operations)
+/datum/st_stat/ability/knowledge/medicine/proc/check_medicine_wound_tending(mob/living/source, atom/movable/operating_on, list/possible_operations)
 	SIGNAL_HANDLER
 
 	var/medicine = source.st_get_stat(STAT_MEDICINE)

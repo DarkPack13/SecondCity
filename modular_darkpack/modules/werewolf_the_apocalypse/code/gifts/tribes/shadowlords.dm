@@ -4,7 +4,7 @@
 	button_icon_state = "aura_of_confidence"
 	rank = 1
 
-// Effect is permenent
+// Effect is permenant
 /datum/action/cooldown/power/gift/aura_of_confidence/Grant(mob/granted_to)
 	. = ..()
 	ADD_TRAIT(granted_to, TRAIT_AURA_OF_CONFIDENCE, GIFT_TRAIT)

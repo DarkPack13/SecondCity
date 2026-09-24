@@ -58,6 +58,10 @@ ADMIN_VERB_AND_CONTEXT_MENU(matrix_mob_verb, R_ADMIN, "Matrix Mob", "Matrix (des
 
 	GLOB.joined_player_list -= despawning_mob.ckey
 
+	// A much more complete removal and thus bypass `RESPAWN_FLAG_NEW_CHARACTER` and stat sheet stuff as we should be all cleared.
+	if(despawning_mob.persistent_client && despawning_mob.mind?.original_character_slot_index)
+		LAZYREMOVE(despawning_mob.persistent_client.joined_as_slots, despawning_mob.mind.original_character_slot_index)
+
 	SSmasquerade.matrix_masquerade_breacher(despawning_mob, TRUE)
 	despawning_mob.client?.prefs?.save_character()
 	despawning_mob.ghostize(FALSE)

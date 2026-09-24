@@ -47,6 +47,7 @@
 	applicable_stats = list(STAT_COURAGE)
 
 /datum/storyteller_roll/frenzy/kindred
+	applicable_stats = list(STAT_SELF_CONTROL)
 
 // Specificly kindred as I dont really think brujah are meant to rotschreck easier.
 /datum/storyteller_roll/frenzy/kindred/calculate_used_difficulty(mob/living/roller)
@@ -63,6 +64,7 @@
 		. += 2
 
 /datum/storyteller_roll/frenzy/rage
+	applicable_stats = list(STAT_TEMPORARY_RAGE)
 
 /datum/storyteller_roll/frenzy/rage/calculate_used_difficulty(mob/living/roller)
 	. = ..()
@@ -95,9 +97,7 @@
 	if(!get_kindred_splat(src))
 		return
 
-	var/stat_to_roll = is_enlightenment() ? STAT_INSTINCT : STAT_SELF_CONTROL
 	var/datum/storyteller_roll/frenzy/kindred/frenzy_roll = new()
-	frenzy_roll.applicable_stats = list(stat_to_roll)
 	frenzy_roll.difficulty = difficulty
 	var/frenzy_result = frenzy_roll.st_roll(src, target)
 	if(frenzy_result <= 0)
@@ -123,7 +123,7 @@
 
 	var/datum/storyteller_roll/frenzy/rage/frenzy_roll = new()
 	frenzy_roll.difficulty = difficulty
-	var/frenzy_result = frenzy_roll.st_roll(src, target, shifter_splat.rage)
+	var/frenzy_result = frenzy_roll.st_roll(src, target)
 	if(frenzy_result >= 5)
 		enter_frenzy_mode(target, TRUE, "Rage")
 	return frenzy_result
