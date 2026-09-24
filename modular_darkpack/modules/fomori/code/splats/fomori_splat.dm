@@ -16,6 +16,7 @@
 	uses_veil = TRUE
 	COOLDOWN_DECLARE(passive_healing_cd)
 	COOLDOWN_DECLARE(worms_cd)
+	COOLDOWN_DECLARE(check_masq_violating_cooldown)
 
 /datum/splat/werewolf/fomori/splat_life(seconds_per_tick)
 	if(HAS_TRAIT(owner, TRAIT_FOMORI_REGEN))
@@ -28,11 +29,36 @@
 			guy.apply_status_effect(/datum/status_effect/scary_presence, owner)
 
 	if(HAS_TRAIT(owner, TRAIT_FOMORI_WORMS))
-		if(COOLDOWN_FINISHED(src, worms_cd) && prob(50)) // Roughly once per min
+		if(COOLDOWN_FINISHED(src, worms_cd) && prob(25)) // Roughly once per 2 min
 			owner.visible_message(span_warning("Something beneath [owner]'s skin writhes grotesquely."), \
 				span_warning("The corrupted worms beneath your skin writhe as they devour you from the inside."))
 			owner.apply_damage(1, BRUTE, forced = TRUE, spread_damage = TRUE, wound_clothing = FALSE)
 			COOLDOWN_START(src, worms_cd, 6 TURNS)
+
+	if(COOLDOWN_FINISHED(src, check_masq_violating_cooldown))
+		var/violate_masq = FALSE
+		for(var/datum/action/cooldown/power/fomori_power/power in owner.actions)
+			var/our_part = power.fomor_part // We're doing our part!
+			if(!power.masq_violating_overlay) // We don't even violate the masquerade! Wtf!!
+				continue
+			if(HAS_TRAIT(owner, TRAIT_FOMORI_HIDDEN_POWER) && !power.deployed) // We're hidden and not deployed
+				continue
+			if(ispath(our_part)) // Checking if we're instantiated
+				continue
+			if(isnull(our_part)) // Do we even exist?
+				continue
+
+			// RECAP: If we got here, we...
+			// - Violate the Masquerade
+			// - Are visible
+			// - Are instantiated
+			// - Exist
+			violate_masq = TRUE
+
+		if(violate_masq)
+			SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
+
+		COOLDOWN_START(src, check_masq_violating_cooldown, 2 TURNS)
 
 /mob/living/carbon/human/splat/fomori
 	auto_splats = list(/datum/splat/werewolf/fomori)
@@ -45,7 +71,7 @@
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/fangs, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/chameleon_coloration, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/darksight, 1)
-//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/exoskeleton, 1)
+	owner.give_st_power(/datum/action/cooldown/power/fomori_power/exoskeleton, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/regeneration, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/hide_of_the_wyrm, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/infectious_touch, 1)
