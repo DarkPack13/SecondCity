@@ -1,4 +1,0 @@
-author: "JohnFulpWillard"
-delete-after: True
-changes:
-  - bugfix: "Jobs with alt titles now have their job description & won't cut off alt title names in the menu anymore."

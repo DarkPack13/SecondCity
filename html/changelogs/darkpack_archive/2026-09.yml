@@ -161,3 +161,7 @@
   FalloutFalcon:
   - bugfix: Frenzy, resist pain, Cold of the Grave now all acctually ignore pain slowdowns
   - bugfix: Abilities that resist pain now consistently only ignore PAIN slowdowns
+2026-09-24:
+  JohnFulpWillard:
+  - bugfix: Jobs with alt titles now have their job description & won't cut off alt
+      title names in the menu anymore.
