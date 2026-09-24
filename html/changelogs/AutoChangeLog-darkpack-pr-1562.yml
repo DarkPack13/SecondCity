@@ -1,0 +1,4 @@
+author: "halgmor"
+delete-after: True
+changes:
+  - rscadd: "Alert capacity increased from 5 to 12."
