@@ -56,7 +56,7 @@ GLOBAL_LIST_EMPTY(cargo_landing_spots)
 	return ..()
 
 /obj/machinery/computer/cargo/express/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
-	if (tool.GetID() && allowed(user))
+	if (istype(tool, /obj/item/card/supplytech) || istype(tool, /obj/item/card/dealer)) // DARKPACK EDIT CHANGE - ORIGINAL: if (tool.GetID() && allowed(user))
 		locked = !locked
 		to_chat(user, span_notice("You [locked ? "lock" : "unlock"] the interface."))
 		return ITEM_INTERACT_SUCCESS
@@ -98,7 +98,7 @@ GLOBAL_LIST_EMPTY(cargo_landing_spots)
 
 // DARKPACK EDIT ADD START - (Putting cash into the cargo console)
 /obj/machinery/computer/cargo/express/click_alt(mob/user)
-	if(!allowed(user))
+	if(locked)
 		balloon_alert(user, "access denied!")
 		return
 	var/datum/bank_account/account = SSeconomy.get_dep_account(cargo_account)
