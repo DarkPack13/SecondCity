@@ -1,0 +1,4 @@
+author: "JohnFulpWillard"
+delete-after: True
+changes:
+  - bugfix: "Latex gloves now behave more similar to how we've come to expect them to be."
