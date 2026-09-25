@@ -16,8 +16,9 @@
 /datum/discipline/dementation/post_gain()
 	. = ..()
 	owner.add_quirk(/datum/quirk/darkpack/derangement)
-	var/datum/action/cooldown/malk_hivemind/hivemind = new(owner, null, src)
-	hivemind.Grant(owner)
+	if(owner.is_clan(/datum/subsplat/vampire_clan/malkavian))
+		var/datum/action/cooldown/malk_hivemind/hivemind = new(owner, null, src)
+		hivemind.Grant(owner)
 
 	LAZYADD(madness_network, owner)
 	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_say))
@@ -25,7 +26,8 @@
 
 /datum/discipline/dementation/post_loss()
 	var/datum/action/cooldown/malk_hivemind/hivemind = locate() in owner.actions
-	hivemind.Remove(owner)
+	if(hivemind)
+		hivemind.Remove(owner)
 	owner.add_quirk(/datum/quirk/darkpack/derangement)
 
 	LAZYREMOVE(madness_network, owner)
