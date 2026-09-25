@@ -34,6 +34,8 @@
 	var/obj/machinery/camera/internal_camera
 	/// The "virtual" radio inside of the the physical camera, a la microphone
 	var/obj/item/radio/entertainment/microphone/internal_radio
+	/// DARKPACK EDIT ADD - Variable for knowing who to add/remove masquerade violating component from
+	var/mob/living/carbon/wielding_carbon
 
 /obj/item/broadcast_camera/Initialize(mapload)
 	. = ..()
@@ -81,10 +83,13 @@
 	if(!iscarbon(loc))
 		return
 	active = TRUE
-	toggle_masquerade_sensitivity(TRUE)	//DARKPACK EDIT ADD - Broadcast cameras masquerade breach.
 	update_icon_state()
+
+	//DARKPACK EDIT START
 	/// The carbon who wielded the camera, allegedly
-	var/mob/living/carbon/wielding_carbon = loc
+	wielding_carbon = loc
+	wielding_carbon.toggle_masquerade_sensitivity(TRUE)	//Broadcast cameras masquerade breach.
+	//DARKPACK EDIT END
 
 	// INTERNAL CAMERA
 	internal_camera = new(wielding_carbon) // Cameras for some reason do not work inside of obj's
@@ -109,9 +114,11 @@
 	update_icon_state()
 	QDEL_NULL(internal_camera)
 	QDEL_NULL(internal_radio)
-	toggle_masquerade_sensitivity(FALSE)	//DARKPACK EDIT ADD - Broadcast cameras masquerade breach.
 
 	stop_broadcasting_network(camera_networks)
+
+
+	wielding_carbon.toggle_masquerade_sensitivity(FALSE)	//DARKPACK EDIT ADD - Broadcast cameras masquerade breach.
 
 	set_light_on(FALSE)
 	playsound(source = src, soundin = 'sound/machines/terminal/terminal_prompt_deny.ogg', vol = 20, vary = FALSE, ignore_walls = FALSE)
