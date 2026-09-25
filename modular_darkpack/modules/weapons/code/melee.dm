@@ -423,6 +423,10 @@
 	//grid_height = 1 GRID_BOXES
 	var/broken = FALSE
 
+/obj/item/melee/vamp/brick/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/falling_hazard, damage = 60, wound_bonus = 20, hardhat_safety = TRUE, crushes = FALSE, impact_sound = 'sound/items/weapons/genhit3.ogg')
+
 /obj/item/melee/vamp/brick/after_throw(datum/callback/callback)
 	if(prob(75))
 		broken = FALSE
