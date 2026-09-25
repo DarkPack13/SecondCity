@@ -81,6 +81,7 @@
 	if(!iscarbon(loc))
 		return
 	active = TRUE
+	toggle_masquerade_sensitivity(TRUE)	//DARKPACK EDIT ADD - Broadcast cameras masquerade breach.
 	update_icon_state()
 	/// The carbon who wielded the camera, allegedly
 	var/mob/living/carbon/wielding_carbon = loc
@@ -108,6 +109,7 @@
 	update_icon_state()
 	QDEL_NULL(internal_camera)
 	QDEL_NULL(internal_radio)
+	toggle_masquerade_sensitivity(FALSE)	//DARKPACK EDIT ADD - Broadcast cameras masquerade breach.
 
 	stop_broadcasting_network(camera_networks)
 

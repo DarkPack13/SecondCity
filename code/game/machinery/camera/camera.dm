@@ -115,6 +115,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, 0)
 /obj/machinery/camera/Initialize(mapload)
 	. = ..()
 
+	toggle_masquerade_sensitivity(TRUE)	//DARKPACK EDIT ADD - SECURITY CAMERAS BREACH MASQUERADE
+
 	for(var/network_name in network)
 		network -= network_name
 		network += LOWER_TEXT(network_name)
@@ -377,6 +379,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, 0)
 		triggerCameraAlarm()
 		if(!QDELETED(src)) //We'll be doing it anyway in destroy
 			addtimer(CALLBACK(src, PROC_REF(cancelCameraAlarm)), 10 SECONDS)
+		toggle_masquerade_sensitivity()	//DARKPACK EDIT ADD - Security cameras masquerade breach.
 	if(displaymessage)
 		if(user)
 			visible_message(span_danger("[user] [change_msg] [src]!"))
