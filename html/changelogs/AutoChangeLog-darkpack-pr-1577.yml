@@ -1,0 +1,5 @@
+author: "halgmor"
+delete-after: True
+changes:
+  - balance: "The supply console is now restricted to Supply Technicians and the Dealer."
+  - spellcheck: "Changed the supply console's description."
