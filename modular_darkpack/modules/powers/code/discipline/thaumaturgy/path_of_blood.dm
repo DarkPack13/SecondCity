@@ -311,8 +311,8 @@
 	aggravating = TRUE
 	hostile = TRUE
 	violates_masquerade = TRUE
-	var/success_multiplier_npc = 200 // a single success kills an NPC
-	var/success_multiplier_player = 20
+	var/success_multiplier_mortal = 200 // a single success kills an mortal VTM V5 pg. 274
+	var/success_multiplier_supernatural = 20
 
 	grouped_powers = list(
 		/datum/discipline_power/thaumaturgy/a_taste_for_blood,
@@ -327,7 +327,7 @@
 	target.visible_message(span_danger("As [owner] touches [target], their body seems to boil!"), span_userdanger("As [owner] touches you, your body feels like it's boiling in a pool of lava!"))
 	playsound(target, pick('sound/effects/wounds/sizzle1.ogg', 'sound/effects/wounds/sizzle2.ogg'), 50, TRUE)
 	target.adjust_blood_pool(-success_count)
-	if(isnpc(target))
-		target.apply_damage(success_count * success_multiplier_npc + owner.thaum_damage_plus, AGGRAVATED)
+	if(ismundane(target))
+		target.apply_damage(success_count * success_multiplier_mortal + owner.thaum_damage_plus, AGGRAVATED)
 	else
-		target.apply_damage(success_count * success_multiplier_player + owner.thaum_damage_plus, AGGRAVATED)
+		target.apply_damage(success_count * success_multiplier_supernatural + owner.thaum_damage_plus, AGGRAVATED)
