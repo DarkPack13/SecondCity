@@ -414,6 +414,7 @@
 	// Made up
 	force = 2 TTRPG_DAMAGE
 	throwforce = 2 TTRPG_DAMAGE
+	throw_range = 4
 
 	attack_verb_continuous = list("bludgeons", "bashes", "beats")
 	attack_verb_simple = list("bludgeon", "bash", "beat", "smacks")
