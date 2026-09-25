@@ -9,7 +9,7 @@
 	clan_disciplines = list(
 		/datum/discipline/auspex,
 		/datum/discipline/dementation,
-		/datum/discipline/obfuscate
+		/datum/discipline/obfuscate,
 	)
 	male_clothes = /obj/item/clothing/under/vampire/malkavian
 	female_clothes = /obj/item/clothing/under/vampire/malkavian/female
@@ -24,7 +24,7 @@
 	clan_disciplines = list(
 		/datum/discipline/auspex,
 		/datum/discipline/dominate,
-		/datum/discipline/obfuscate
+		/datum/discipline/obfuscate,
 	)
 
 /datum/subsplat/vampire_clan/malkavian/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
