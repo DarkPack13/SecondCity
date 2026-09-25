@@ -20,19 +20,20 @@
 		var/datum/action/cooldown/malk_hivemind/hivemind = new(owner, null, src)
 		hivemind.Grant(owner)
 
-	LAZYADD(madness_network, owner)
-	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_say))
-	RegisterSignal(owner, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hear))
+		LAZYADD(madness_network, owner)
+		RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_say))
+		RegisterSignal(owner, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hear))
 
 /datum/discipline/dementation/post_loss()
 	var/datum/action/cooldown/malk_hivemind/hivemind = locate() in owner.actions
 	if(hivemind)
 		hivemind.Remove(owner)
-	owner.add_quirk(/datum/quirk/darkpack/derangement)
+	owner.remove_quirk(/datum/quirk/darkpack/derangement)
 
-	LAZYREMOVE(madness_network, owner)
-	UnregisterSignal(owner, COMSIG_MOB_SAY)
-	UnregisterSignal(owner, COMSIG_MOVABLE_HEAR)
+	if(LAZYLEN(madness_network) && (owner in madness_network))
+		LAZYREMOVE(madness_network, owner)
+		UnregisterSignal(owner, COMSIG_MOB_SAY)
+		UnregisterSignal(owner, COMSIG_MOVABLE_HEAR)
 	return ..()
 
 /datum/discipline/dementation/proc/handle_say(mob/living/source, list/speech_args)
