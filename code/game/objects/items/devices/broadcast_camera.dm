@@ -34,8 +34,7 @@
 	var/obj/machinery/camera/internal_camera
 	/// The "virtual" radio inside of the the physical camera, a la microphone
 	var/obj/item/radio/entertainment/microphone/internal_radio
-	/// DARKPACK EDIT ADD - Variable for knowing who to add/remove masquerade violating component from
-	var/mob/living/carbon/wielding_carbon
+	var/mob/living/carbon/wielding_carbon	/// DARKPACK EDIT ADD - Variable for knowing who to add/remove masquerade violating component from
 
 /obj/item/broadcast_camera/Initialize(mapload)
 	. = ..()
