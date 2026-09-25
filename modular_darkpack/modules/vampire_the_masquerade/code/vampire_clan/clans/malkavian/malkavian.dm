@@ -14,7 +14,6 @@
 	male_clothes = /obj/item/clothing/under/vampire/malkavian
 	female_clothes = /obj/item/clothing/under/vampire/malkavian/female
 	subsplat_keys = /obj/item/vamp/keys/malkav
-	var/list/mob/living/madness_network
 
 /datum/subsplat/vampire_clan/malkavian/dominate
 	name = "Dominate Malkavian"
@@ -29,50 +28,17 @@
 
 /datum/subsplat/vampire_clan/malkavian/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
 	. = ..()
-
-	var/datum/action/cooldown/malk_hivemind/hivemind = new(gaining_mob)
 	var/datum/action/cooldown/malk_speech/malk_font = new(gaining_mob)
-	hivemind.Grant(gaining_mob)
 	malk_font.Grant(gaining_mob)
-	gaining_mob.add_quirk(/datum/quirk/darkpack/derangement)
-
-	// Madness Network handling
-	LAZYADD(madness_network, gaining_mob)
-	RegisterSignal(gaining_mob, COMSIG_MOB_SAY, PROC_REF(handle_say), override = TRUE)
-	RegisterSignal(gaining_mob, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hear), override = TRUE)
 
 /datum/subsplat/vampire_clan/malkavian/on_lose(mob/living/carbon/human/losing_mob)
 	. = ..()
 
 	for (var/datum/action/cooldown/malkavian_action in losing_mob.actions)
-		if (!istype(malkavian_action, /datum/action/cooldown/malk_hivemind) && !istype(malkavian_action, /datum/action/cooldown/malk_speech))
+		if (!istype(malkavian_action, /datum/action/cooldown/malk_speech))
 			continue
 		malkavian_action.Remove(losing_mob)
-
-	// Remove Madness Network
-	LAZYREMOVE(madness_network, losing_mob)
-	UnregisterSignal(losing_mob, COMSIG_MOB_SAY)
-	UnregisterSignal(losing_mob, COMSIG_MOVABLE_HEAR)
-
-/datum/subsplat/vampire_clan/malkavian/proc/handle_say(mob/living/source, list/speech_args)
-	SIGNAL_HANDLER
-
-	if (!prob(20))
 		return
-
-	say_in_madness_network(speech_args[SPEECH_MESSAGE])
-
-/datum/subsplat/vampire_clan/malkavian/proc/handle_hear(mob/living/source, list/hearing_args)
-	SIGNAL_HANDLER
-
-	if(!prob(3))
-		return
-
-	say_in_madness_network(hearing_args[HEARING_RAW_MESSAGE])
-
-/datum/subsplat/vampire_clan/malkavian/proc/say_in_madness_network(message)
-	for (var/mob/living/malkavian in madness_network)
-		to_chat(malkavian, span_ghostalert(message))
 
 /datum/action/cooldown/malk_hivemind
 	name = "Hivemind"
@@ -82,6 +48,16 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	vampiric = TRUE
 	cooldown_time = 5 SECONDS
+
+	var/datum/discipline/dementation/dementation_ability
+
+/datum/action/cooldown/malk_hivemind/New(Target, original, datum/discipline/dementation/dementation_ability)
+	. = ..()
+	src.dementation_ability = dementation_ability
+
+/datum/action/cooldown/malk_hivemind/Destroy()
+	dementation_ability = null
+	return ..()
 
 /datum/action/cooldown/malk_hivemind/Trigger(mob/clicker, trigger_flags, atom/target)
 	. = ..()
@@ -93,7 +69,7 @@
 	if(!new_thought)
 		return
 	StartCooldown()
-	clan_malkavian.say_in_madness_network(new_thought)
+	dementation_ability.say_in_madness_network(new_thought)
 	message_admins("[ADMIN_LOOKUPFLW(usr)] said \"[new_thought]\" through the Madness Network.")
 	log_game("[key_name(usr)] said \"[new_thought]\" through the Madness Network.")
 

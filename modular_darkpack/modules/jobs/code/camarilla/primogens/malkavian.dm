@@ -35,7 +35,7 @@
 		JOB_PRIMOGEN_LASOMBRA,
 		JOB_PRIMOGEN_VENTRUE,
 		JOB_PRIMOGEN_NOSFERATU,
-		JOB_CHANTRY_REGENT
+		JOB_CHANTRY_REGENT,
 	)
 
 /datum/outfit/job/vampire/malkav
@@ -50,4 +50,10 @@
 	shoes = /obj/item/clothing/shoes/vampire/jackboots
 	head = /obj/item/clothing/head/vampire/malkav
 	l_pocket = /obj/item/smartphone/malkavian_primo
-	backpack_contents = list(/obj/item/vamp/keys/malkav/primogen=1, /obj/item/card/credit/elder=1, /obj/item/card/whip, /obj/item/card/steward, /obj/item/card/myrmidon)
+	backpack_contents = list(
+		/obj/item/vamp/keys/malkav/primogen = 1,
+		/obj/item/card/credit/elder = 1,
+		/obj/item/card/whip,
+		/obj/item/card/steward,
+		/obj/item/card/myrmidon,
+	)
