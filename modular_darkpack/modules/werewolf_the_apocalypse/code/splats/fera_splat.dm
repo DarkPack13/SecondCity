@@ -136,11 +136,21 @@
 	/// Type path of the animal we look like in our feral form
 	var/mob/living/basic/mimmicing_animal
 	COOLDOWN_DECLARE(passive_healing_cd)
+	COOLDOWN_DECLARE(exertion_healing_cd)
 	COOLDOWN_DECLARE(passive_regrowth_cd)
 	COOLDOWN_DECLARE(gnosis_regain_cd)
 
 	/// Emote uses for activations of gifts and other things
 	var/warcry_emote = "howl"
+
+	/// Type of signals being checked for relating to per-tick healing
+	var/static/list/check_exertion_signals = list(
+		COMSIG_MOB_ATTACK_HAND,
+		COMSIG_MOB_FIRED_GUN,
+		COMSIG_PROJECTILE_PREHIT,
+		COMSIG_ATOM_ATTACKBY,
+		COMSIG_MOB_ITEM_ATTACK
+	)
 
 /datum/splat/werewolf/shifter/on_gain()
 	. = ..()
@@ -148,6 +158,7 @@
 	add_power(/datum/action/cooldown/power/gift/howling)
 	COOLDOWN_START(src, passive_regrowth_cd, 8 MINUTES)
 
+	RegisterSignals(owner, check_exertion_signals, PROC_REF(check_exertion))
 	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(revert_to_breed_form))
 
 /datum/splat/werewolf/shifter/on_lose_or_destroy()
@@ -156,6 +167,7 @@
 		owner.set_species(/datum/species/human)
 
 	remove_power(/datum/action/cooldown/power/gift/howling)
+	UnregisterSignal(owner, check_exertion_signals)
 	UnregisterSignal(owner, COMSIG_LIVING_DEATH)
 
 /datum/splat/werewolf/shifter/splat_life(seconds_per_tick)
@@ -163,6 +175,23 @@
 	// Crinos heal in all forms. Lupus and homid born dont heal FAST FAST in their breed form.
 	// their fast healing is represented in day/days in breed-form so we just dont.
 	var/can_passively_heal = !(is_breed_form() && (get_breed_form_species() != /datum/species/human/shifter/war))
+
+	// For if you have been engaged in combat, you need to roll stamina at diff of 8. (Pg. 256)
+	if(can_passively_heal)
+		if(!COOLDOWN_FINISHED(src, exertion_healing_cd) && COOLDOWN_FINISHED(src, passive_healing_cd))
+			var/datum/storyteller_roll/exertion_check/exertion_roll
+			if(!exertion_roll)
+				exertion_roll = new()
+			var/roll_result = exertion_roll.st_roll(owner, src)
+			switch(roll_result)		//No to-chats needed for this really unless you botch, don't think we need to spam the chat-box unless it's a botch.
+				if(ROLL_FAILURE)
+					COOLDOWN_START(src, passive_healing_cd, 1 TURNS)	//Normal delay, you just don't heal this tick.
+					return
+				if(ROLL_BOTCH)
+					to_chat(owner, span_danger("You are too physically exerted for your body to heal itself."))
+					COOLDOWN_START(src, passive_healing_cd, 1 SCENES)	// Basically a 3 minute cooldown rather than the book's stated 'had a chance to rest'.
+					return
+
 	if(COOLDOWN_FINISHED(src, passive_healing_cd))
 		if(can_passively_heal)
 			// 2 to represent lethal. Fera passive regen closes burn, but not aggravated damage.
@@ -192,6 +221,16 @@
 				if(!guy.affected_by_delirium())
 					continue
 				guy.apply_status_effect(STATUS_EFFECT_DELIRIUM, owner)
+
+/datum/storyteller_roll/exertion_check
+	bumper_text = "Healing Roll (Combat)"
+	difficulty = 8
+	applicable_stats = list(STAT_STAMINA)
+	roll_output_type = ROLL_PRIVATE
+	spammy_roll = TRUE
+
+/datum/splat/werewolf/shifter/proc/check_exertion()
+	COOLDOWN_START(src, exertion_healing_cd, 3 TURNS)	//Basically checks if you've been attacked/done attacking in the last ~15 seconds.
 
 /datum/splat/werewolf/shifter/proc/causes_delirium()
 	var/datum/species/human/shifter/shifter_species = owner.dna.species
