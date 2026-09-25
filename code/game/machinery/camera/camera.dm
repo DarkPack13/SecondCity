@@ -389,7 +389,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, 0)
 		playsound(src, 'sound/items/tools/wirecutter.ogg', 100, TRUE)
 	update_appearance() //update Initialize() if you remove this.
 	calculate_active_power()
-	toggle_masquerade_sensitivity()	//DARKPACK EDIT ADD - Security cameras masquerade breach.
+	toggle_masquerade_sensitivity()	//DARKPACK EDIT ADD - Security cameras masquerade breach. Toggles when camera is toggled.
 
 	// now disconnect anyone using the camera
 	//Apparently, this will disconnect anyone even if the camera was re-activated.
