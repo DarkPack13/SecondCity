@@ -10,6 +10,7 @@
 		new /datum/data/vending_product("scythe", /obj/item/scythe/vamp, 2000),
 		new /datum/data/vending_product("shovel", /obj/item/shovel/vamp, 800),
 		new /datum/data/vending_product("box of light bulbs", /obj/item/storage/box/lights/mixed, 80),
+		new /datum/data/vending_product("camera assembly", /obj/item/wallframe/camera, 500),
 		new /datum/data/vending_product("construction vest", /obj/item/clothing/suit/hazardvest, 80)
 	)
 	product_types = list(
