@@ -227,6 +227,7 @@
 	difficulty = 8
 	applicable_stats = list(STAT_STAMINA)
 	roll_output_type = ROLL_PRIVATE
+	spammy_roll = TRUE
 
 /datum/splat/werewolf/shifter/proc/check_exertion()
 	COOLDOWN_START(src, exertion_healing_cd, 3 TURNS)	//Basically checks if you've been attacked/done attacking in the last ~15 seconds.
