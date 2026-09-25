@@ -379,7 +379,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, 0)
 		triggerCameraAlarm()
 		if(!QDELETED(src)) //We'll be doing it anyway in destroy
 			addtimer(CALLBACK(src, PROC_REF(cancelCameraAlarm)), 10 SECONDS)
-		toggle_masquerade_sensitivity()	//DARKPACK EDIT ADD - Security cameras masquerade breach.
 	if(displaymessage)
 		if(user)
 			visible_message(span_danger("[user] [change_msg] [src]!"))
@@ -390,6 +389,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, 0)
 		playsound(src, 'sound/items/tools/wirecutter.ogg', 100, TRUE)
 	update_appearance() //update Initialize() if you remove this.
 	calculate_active_power()
+	toggle_masquerade_sensitivity()	//DARKPACK EDIT ADD - Security cameras masquerade breach.
 
 	// now disconnect anyone using the camera
 	//Apparently, this will disconnect anyone even if the camera was re-activated.
