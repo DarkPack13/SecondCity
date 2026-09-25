@@ -1,0 +1,6 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - rscadd: "adds validation to discipline points upon trying to enter the round - if they have an illegal amount of discipline points, theyre barred from joining"
+  - bugfix: "disciplines being transferred between sheets should no longer happen"
+  - config: "config option for discipline teaching allowing servers to pick 'full' 'rares disabled' 'in clans only' or 'disabled'"
