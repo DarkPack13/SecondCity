@@ -177,3 +177,26 @@
   - balance: reduced Shroudsight cooldown times and removed TT-inaccurate BP cost
   halgmor:
   - rscadd: Alert capacity increased from 5 to 12.
+2026-09-26:
+  JohnFulpWillard:
+  - bugfix: You can no longer spam bloodheals all at once.
+  - balance: Throw bricks at people.
+  SabbyKat:
+  - rscadd: Added Presence 1 Awe caster's name to Awe status effect moodlet pop-up
+      text
+  - balance: Increased Presence Awe duration to TT-accurate 1 Scene
+  breadcrombs:
+  - rscadd: Added 3 new merits relating to social, these are Iron Will, Coldly Logic,
+      Enchanting Voice.
+  - rscadd: Added 2 new merit regarding firearms, which are Poor Aim and Ambidextrous
+  - rscadd: Added 1 new clan specific merit for Tzimisce ghouls and vampires, which
+      is Pain Tolerance
+  chazzyjazzy:
+  - rscadd: adds validation to discipline points upon trying to enter the round -
+      if they have an illegal amount of discipline points, theyre barred from joining
+  - bugfix: disciplines being transferred between sheets should no longer happen
+  - config: config option for discipline teaching allowing servers to pick 'full'
+      'rares disabled' 'in clans only' or 'disabled'
+  halgmor:
+  - balance: The supply console is now restricted to Supply Technicians and the Dealer.
+  - spellcheck: Changed the supply console's description.
