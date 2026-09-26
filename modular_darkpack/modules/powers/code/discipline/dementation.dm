@@ -11,9 +11,50 @@
 	power_type = /datum/discipline_power/dementation
 	signature_clan = VAMPIRE_CLAN_MALKAVIAN
 
+	var/static/list/mob/living/madness_network
+
 /datum/discipline/dementation/post_gain()
 	. = ..()
 	owner.add_quirk(/datum/quirk/darkpack/derangement)
+	if(owner.is_clan(/datum/subsplat/vampire_clan/malkavian))
+		var/datum/action/cooldown/malk_hivemind/hivemind = new(owner, null, src)
+		hivemind.Grant(owner)
+
+		LAZYADD(madness_network, owner)
+		RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_say))
+		RegisterSignal(owner, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hear))
+
+/datum/discipline/dementation/post_loss()
+	var/datum/action/cooldown/malk_hivemind/hivemind = locate() in owner.actions
+	if(hivemind)
+		hivemind.Remove(owner)
+	owner.remove_quirk(/datum/quirk/darkpack/derangement)
+
+	if(LAZYLEN(madness_network) && (owner in madness_network))
+		LAZYREMOVE(madness_network, owner)
+		UnregisterSignal(owner, COMSIG_MOB_SAY)
+		UnregisterSignal(owner, COMSIG_MOVABLE_HEAR)
+	return ..()
+
+/datum/discipline/dementation/proc/handle_say(mob/living/source, list/speech_args)
+	SIGNAL_HANDLER
+
+	if (!prob(20))
+		return
+
+	say_in_madness_network(speech_args[SPEECH_MESSAGE])
+
+/datum/discipline/dementation/proc/handle_hear(mob/living/source, list/hearing_args)
+	SIGNAL_HANDLER
+
+	if(!prob(3))
+		return
+
+	say_in_madness_network(hearing_args[HEARING_RAW_MESSAGE])
+
+/datum/discipline/dementation/proc/say_in_madness_network(message)
+	for (var/mob/living/malkavian in madness_network)
+		to_chat(malkavian, span_ghostalert(message))
 
 /datum/discipline_power/dementation
 	name = "Dementation power name"
