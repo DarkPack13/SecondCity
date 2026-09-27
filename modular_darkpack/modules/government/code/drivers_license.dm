@@ -58,7 +58,7 @@
 
 /obj/item/identification/drivers_license/state_issued_id
 	name = "state issued identification"
-	desc = "An identification card issued by the state of California to serve as a valid form of identification. <b>Does NOT qualify as a license to drive!</b>"
+	desc = "An identification card issued by the state of " + DEFAULT_STATE_NAME + " to serve as a valid form of identification. <b>Does NOT qualify as a license to drive!</b>"
 	icon = 'modular_darkpack/modules/government/icons/docs.dmi'
 	icon_state = "state_id"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/government/icons/docsonfloor.dmi')
