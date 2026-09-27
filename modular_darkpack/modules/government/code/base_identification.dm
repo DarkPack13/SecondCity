@@ -1,6 +1,13 @@
 /obj/item/identification
-	w_class = WEIGHT_CLASS_SMALL
-	slot_flags = ITEM_SLOT_ID
+	icon = 'modular_darkpack/modules/government/icons/docs.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/government/icons/docsonfloor.dmi')
+	inhand_icon_state = "card-id"
+	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+	w_class = WEIGHT_CLASS_TINY
+	pickup_sound = 'sound/items/handling/id_card/id_card_pickup1.ogg'
+	drop_sound = 'sound/items/handling/id_card/id_card_drop1.ogg'
+	sound_vary = TRUE
 
 	// Owner information
 	var/owner = ""
