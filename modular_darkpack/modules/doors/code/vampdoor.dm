@@ -41,6 +41,9 @@
 /obj/structure/vampdoor/Initialize(mapload)
 	. = ..()
 
+	if(mapload)
+		GLOB.city_door_lock_ids |= lock_id
+
 	register_context()
 
 	var/static/list/loc_connections = list(
@@ -118,15 +121,18 @@
 	. = ..()
 	fix_door()
 
-/obj/structure/vampdoor/proc/break_door(mob/user)
+/obj/structure/vampdoor/proc/break_door(mob/living/user)
 	if(door_broken)
 		return FALSE
 	playsound(get_turf(src), 'modular_darkpack/master_files/sounds/effects/door/get_bent.ogg', 100, FALSE)
 	var/obj/item/shield/door/broken_door = new(get_turf(src))
 	broken_door.icon_state = base_icon_state
 	if(user)
+		user.log_message("broke [src][lock_id ? " with a access of [lock_id]": ""].", LOG_GAME)
+		var/strength_dots = user.st_get_stat(STAT_STRENGTH)
+		var/throw_distance = clamp(rand(strength_dots - 1, strength_dots + 1) - bash_successes_needed, 0, 5)
 		var/atom/throw_target = get_edge_target_turf(src, user.dir)
-		broken_door.throw_at(throw_target, rand(2, 4), 4, user)
+		broken_door.throw_at(throw_target, throw_distance, 4, user)
 	name = "door frame"
 	desc = "An empty door frame. Someone removed the door by force. A special door repair kit should be able to fix this."
 	door_broken = TRUE
@@ -234,6 +240,7 @@
 					if(do_after(human_user, 1 TURNS, src))
 						proc_unlock(50)
 						break_door(human_user)
+						take_damage(bash_roll.last_sucess_amount * 10, BRUTE, MELEE)
 					else
 						to_chat(human_user, span_danger("You must be standing next to the door to break it down."))
 				if(ROLL_FAILURE)
@@ -322,6 +329,7 @@
 				if(ROLL_SUCCESS)
 					to_chat(user, span_notice("You pick the lock."))
 					locked = FALSE
+					user.log_message("lockpicked [src][lock_id ? " with a access of [lock_id]": ""].", LOG_GAME)
 					return TRUE
 				if(ROLL_FAILURE)
 					to_chat(user, span_warning("You failed to pick the lock."))

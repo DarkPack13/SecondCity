@@ -306,7 +306,7 @@
 /obj/item/gun/ballistic/automatic/darkpack/mac10
 	name = "\improper Braddock .45"
 	desc = "A box filled with bullets. The high cyclic rate and low weight means it's only good for spraying and then praying. Uses .45 caliber rounds."
-	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
+	icon = 'modular_darkpack/modules/weapons/icons/weapons48x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "mac10"
 	inhand_icon_state = "mac10"
@@ -377,7 +377,7 @@
 /obj/item/gun/ballistic/automatic/darkpack/mp7
 	name = "\improper HK MP7"
 	desc = "A Machine Pistol recently adopted by the German Military. Comes loaded with armor-piercing rounds, use responsibly."
-	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
+	icon = 'modular_darkpack/modules/weapons/icons/weapons48x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "mp7"
 	inhand_icon_state = "mp7"
@@ -490,12 +490,23 @@
 	mag_display = TRUE
 	fire_sound = 'modular_darkpack/modules/deprecated/sounds/ak.ogg'
 	masquerade_violating = TRUE
+	can_be_sawn_off	= TRUE
 	serial_type = "KA"
 	var/rof = 0.2 SECONDS //300 RPM
 
 /obj/item/gun/ballistic/automatic/darkpack/ak74/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, rof)
+
+/obj/item/gun/ballistic/automatic/darkpack/ak74/sawn
+	name = "sawn-off Kalashnikov's Automatic Rifle 74"
+	desc = "Pretty old, but also easy fireable and cleanable by vodka. This one has had its stock removed and the barrel chopped; it's a miracle it still cycles! Uses 5.45 rounds."
+	icon_state = "ak74_sawn"
+	inhand_icon_state = "ak74_sawn"
+	worn_icon_state = "sks"
+	w_class = WEIGHT_CLASS_NORMAL
+	weapon_weight = WEAPON_MEDIUM
+	recoil = 8	//Increased recoil due to sawing off the stock on a full-auto. Bootleg draco.
 
 /obj/item/ammo_box/magazine/darkpackaug
 	name = "AUG magazine (5.56mm)"
@@ -565,6 +576,50 @@
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, rof)
 
+/obj/item/ammo_box/magazine/darkpack762x51fal
+	name = "battle rifle magazine (7.62x51mm)"
+	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
+	icon_state = "308mag"
+	ammo_type = /obj/item/ammo_casing/vampire/c762x51mm
+	caliber = CALIBER_762NATO
+	max_ammo = 20
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
+
+/obj/item/gun/ballistic/automatic/darkpack/fal
+	name = "battle rifle"
+	desc = "A hard hitting rifle firing a full power 7.62 cartridge."
+	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	icon_state = "fal"
+	inhand_icon_state = "fal"
+	worn_icon_state = "fal"
+	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_MEDIUM
+	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack762x51fal
+	burst_size = 1
+	fire_delay = 3
+	spread = 2
+	recoil = 5
+	bolt_type = BOLT_TYPE_LOCKING
+	show_bolt_icon = FALSE
+	mag_display = TRUE
+	fire_sound = 'modular_darkpack/modules/deprecated/sounds/sniper.ogg'
+	masquerade_violating = FALSE
+	serial_type = "BR"
+
+/obj/item/gun/ballistic/automatic/darkpack/fal/automatic
+	name = "military battle rifle"
+	desc = "A hard hitting rifle firing a full power 7.62 cartridge. This one is a military variant capable of automatic fire."
+	icon_state = "falgreen"
+	inhand_icon_state = "falgreen"
+	worn_icon_state = "falgreen"
+	var/rof = 0.2 SECONDS //300 RPM
+
+/obj/item/gun/ballistic/automatic/darkpack/fal/automatic/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/automatic_fire, rof)
+
 /obj/item/ammo_box/magazine/internal/darkpack/lever
 	name = "lever action internal magazine"
 	ammo_type = /obj/item/ammo_casing/vampire/c44
@@ -592,16 +647,29 @@
 	internal_magazine = TRUE
 	fire_sound = 'modular_darkpack/modules/weapons/sounds/lever.ogg'
 	vary_fire_sound = FALSE
+	can_be_sawn_off	= TRUE
 	rack_sound = 'modular_darkpack/modules/weapons/sounds/bolt/lever_out.ogg'
 	bolt_drop_sound = 'modular_darkpack/modules/weapons/sounds/bolt/lever_in.ogg'
 	tac_reloads = FALSE
 	recoil = 3
 	fire_delay = 1					//It's bolt-action. Fast as you can go really; which is still pretty slow.
 	burst_size = 1
-	slot_flags = ITEM_SLOT_BACK
+	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	projectile_damage_multiplier = 1.5 //~52 damage vs 35 base .44 damage. It's ok, on par with 5.56 but lower pen and slower to fire due to bolt action.
 	masquerade_violating = FALSE
 	serial_type = "WN"
+
+/obj/item/ammo_box/magazine/internal/darkpack/lever/sawnoff
+	name = "mares leg lever action internal magazine"
+	max_ammo = 8	//7+1
+
+/obj/item/gun/ballistic/rifle/darkpack/lever/sawnoff
+	name = "mares leg lever action carbine"
+	desc = "A .44 caliber lever action rifle, perfect for casual hunters, reenactors, and urban cowboys. This one has had its barrel and stock sawn down."
+	icon_state = "lever_sawn"
+	inhand_icon_state = "lever_sawn"
+	w_class = WEIGHT_CLASS_NORMAL
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/darkpack/lever/sawnoff
 
 /obj/item/ammo_box/magazine/internal/vampire/sniper
 	name = "sniper rifle internal magazine"
@@ -647,7 +715,7 @@
 /obj/item/gun/ballistic/automatic/darkpack/autosniper
 	name = "auto-sniper rifle"
 	desc = "A semi-automatic marksman rifle. This particular model is very popular in video games as of late."
-	icon = 'modular_darkpack/modules/deprecated/icons/48x32.dmi'
+	icon = 'modular_darkpack/modules/weapons/icons/weapons48x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "psg1"
 	inhand_icon_state = "psg1"
@@ -677,8 +745,8 @@
 	serial_type = "DS"
 
 /obj/item/ammo_box/magazine/vamp762x51PSG1
-	name = "PSG1 magazine (7.62x51mm)"
-	desc = "A magazine for the PSG1 loaded in 7.62 NATO."
+	name = "Auto-sniper magazine (7.62 NATO)"
+	desc = "A magazine for an Automatic Sniper rifle loaded in 7.62 NATO."
 	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
 	//lefthand_file = 'code/modules/wod13/lefthand.dmi'
 	//righthand_file = 'code/modules/wod13/righthand.dmi'
@@ -712,12 +780,26 @@
 	recoil = 6
 	fire_delay = 6
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/vampshotgun
-	can_be_sawn_off	= FALSE
+	can_be_sawn_off	= TRUE
 	fire_sound = 'modular_darkpack/modules/deprecated/sounds/pomp.ogg'
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
 	custom_price = 1000
 	serial_type = "L"
+
+/obj/item/ammo_box/magazine/internal/vampshotgun/sawnoff
+	name = "sawn-off shotgun internal magazine"
+	max_ammo = 4
+
+/obj/item/gun/ballistic/shotgun/vampire/sawnoff
+	name = "sawn-off shotgun"
+	desc = "A traditional shotgun that's been shortened.. probably illegally. Sports a three-round tube magazine."
+	icon_state = "pomp_sawn"
+	inhand_icon_state = "pomp_sawn"
+	recoil = 10
+	w_class = WEIGHT_CLASS_NORMAL
+	weapon_weight = WEAPON_MEDIUM
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/vampshotgun/sawnoff
 
 /obj/item/ammo_box/magazine/internal/darkpack_dbarrel
 	name = "double barrel internal magazine"
@@ -765,6 +847,7 @@
 //Unique sawn-off checks
 /obj/item/gun/ballistic/shotgun/vampire/doublebarrel/sawoff(mob/user, obj/item/saw, handle_modifications = TRUE)
 	. = ..()
+	w_class = WEIGHT_CLASS_NORMAL	//Lets you stow it in a bag
 	weapon_weight = WEAPON_MEDIUM	//Lets you one-hand it on sawing.
 
 /obj/item/ammo_box/magazine/darkpackautoshot
@@ -853,6 +936,7 @@
 	spread = 14
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
+	can_be_sawn_off	= TRUE
 	projectile_damage_multiplier = 1.5 //150 damage; it is a single-shot.
 	serial_shown = FALSE	//No serial, it's a musket.
 	actions_types = list()
@@ -860,3 +944,15 @@
 /obj/item/gun/ballistic/automatic/darkpack/musket/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	..()
 	new /obj/effect/particle_effect/fluid/smoke(get_ranged_target_turf(user, user.dir, 1))
+
+/obj/item/gun/ballistic/automatic/darkpack/musket/sawn
+	name = "butchered antique musket"
+	desc = "A antique musket, likely from the mid 19th century that- wh.. why the fuck would you do this to a musket!?"
+	icon_state = "musket_sawn"
+	inhand_icon_state = "musket_sawn"
+	w_class = WEIGHT_CLASS_NORMAL
+	weapon_weight = WEAPON_LIGHT	//TALLY HOOOO!!!
+	recoil = 12
+	spread = 25		//+25 from sawing off anyway, good fucking luck
+	w_class = WEIGHT_CLASS_NORMAL
+	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT

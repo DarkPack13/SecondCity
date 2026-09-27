@@ -30,6 +30,9 @@
 	icon = 'modular_darkpack/modules/decor/icons/rack.dmi'
 	icon_state = "fruit_stand"
 
+/obj/structure/rack/metal
+	icon = 'modular_darkpack/modules/decor/icons/rack.dmi'
+	icon_state = "metal"
 
 // Soft deprecated.
 /obj/structure/rack/food

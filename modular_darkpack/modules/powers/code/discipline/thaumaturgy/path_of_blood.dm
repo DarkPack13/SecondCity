@@ -1,6 +1,12 @@
 /datum/discipline/thaumaturgy
 	name = "Thaumaturgy"
-	desc = "Opens the secrets of blood magic and how you use it, allows to steal other's blood. Violates Masquerade."
+	desc = {"Opens the secrets of blood magic and how you use it, allows to steal other's blood. Violates Masquerade.
+	Difficulty scales depending on the dots used.
+● A Taste for Blood: Permanent Willpower
+●● Blood Rage: Permanent Willpower
+●●● Blood of Potency: Permanent Willpower
+●●●● Theft of Vitae: Permanent Willpower
+●●●●● Cauldron of Blood: Permanent Willpower"}
 	icon_state = "thaumaturgy"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/thaumaturgy
@@ -19,6 +25,12 @@
 		if(istype(action, /datum/action/ritual_drawing/thaumaturgy))
 			qdel(action)
 
+
+/datum/storyteller_roll/thaumaturgy
+	applicable_stats = list(STAT_PERMANENT_WILLPOWER)
+	numerical = TRUE
+
+
 /datum/discipline_power/thaumaturgy
 	name = "Thaumaturgy power name"
 	desc = "Thaumaturgy power description"
@@ -36,7 +48,7 @@
 /datum/discipline_power/thaumaturgy/activate(atom/target)
 	. = ..()
 	//Thaumaturgy powers have different effects based off the amount of successes. I dont want to copy paste the code, so this is being put here.
-	success_count = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, roller = owner)
+	success_count = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/thaumaturgy, difficulty = (level + 3))
 	if(success_count < 0)
 		thaumaturgy_botch_effect()
 		return TRUE
@@ -74,6 +86,7 @@
 	aggravating = FALSE
 	hostile = FALSE
 	violates_masquerade = FALSE
+	frenzy_usable = FALSE
 
 	grouped_powers = list(
 		/datum/discipline_power/thaumaturgy/blood_rage,
@@ -151,6 +164,7 @@
 	aggravating = FALSE
 	hostile = FALSE
 	violates_masquerade = FALSE
+	frenzy_usable = FALSE
 
 	grouped_powers = list(
 		/datum/discipline_power/thaumaturgy/a_taste_for_blood,
@@ -187,6 +201,7 @@
 	aggravating = FALSE
 	hostile = FALSE
 	violates_masquerade = FALSE
+	frenzy_usable = FALSE
 
 	grouped_powers = list()
 	var/activated = FALSE

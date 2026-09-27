@@ -2,7 +2,7 @@
 	category_name = "Masks"
 	category_ui_icon = FA_ICON_MASK
 	type_to_generate = /datum/loadout_item/mask
-	tab_order = /datum/loadout_category/head::tab_order + 12
+	tab_order = /datum/loadout_category/head::tab_order + 4
 
 /datum/loadout_item/mask
 	abstract_type = /datum/loadout_item/mask

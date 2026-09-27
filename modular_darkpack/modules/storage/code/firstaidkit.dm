@@ -139,6 +139,7 @@
 	desc = "An Individual First-Aid Kit, for when it's just you and me."
 	icon_state = "firstaid_ifak"
 	inhand_icon_state = "firstaid_ifak"
+	custom_price = 20
 
 /obj/item/storage/medkit/darkpack/ifak/PopulateContents()
 	if(empty)
@@ -146,7 +147,7 @@
 	var/static/items_inside = list(
 		/obj/item/reagent_containers/hypospray/medipen/ifak = 3,
 		/obj/item/stack/medical/wrap/gauze = 1,
-		/obj/item/healthanalyzer = 1,
+		/obj/item/healthanalyzer/simple = 1,
 	)
 	generate_items_inside(items_inside,src)
 

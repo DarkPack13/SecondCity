@@ -23,3 +23,14 @@ export const lame_leg: FeatureChoiced = {
   name: 'Lame Leg',
   component: FeatureDropdownInput,
 };
+
+export const acute_sense: FeatureChoiced = {
+  name: 'Acute Sense',
+  component: FeatureDropdownInput,
+};
+
+export const fetish_merit: FeatureChoiced = {
+  name: 'Fetish',
+  description: 'Choice of fetish.',
+  component: FeatureDropdownInput,
+};

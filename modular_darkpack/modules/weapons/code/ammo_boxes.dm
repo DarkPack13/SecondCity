@@ -104,7 +104,11 @@
 	max_ammo = 60
 
 // 4.6mm HK // DARKPACK TODO: Ammo box for 4.6mm NATO
-///obj/item/ammo_box/darkpack/c46pdw
+/obj/item/ammo_box/darkpack/c46pdw
+	name = "ammo box (4.6mm)"
+	icon_state = "46box"
+	ammo_type = /obj/item/ammo_casing/vampire/c46pdw
+	max_ammo = 100
 
 // 12 Gauge
 /obj/item/ammo_box/darkpack/c12g

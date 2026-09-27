@@ -19,7 +19,7 @@
 	. = ..()
 	if(src.ranged == FALSE)
 		return TRUE
-	range_successes = SSroll.storyteller_roll(dice = owner.st_get_stat(STAT_PERMANENT_WILLPOWER), difficulty = (level + 3), numerical = TRUE, roller = owner)
+	range_successes = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/thaumaturgy, difficulty = (level + 3))
 	switch(range_successes)
 		if(-INFINITY to 0)
 			to_chat(owner, "You fail to conjure flames anywhere further than your own hand.")

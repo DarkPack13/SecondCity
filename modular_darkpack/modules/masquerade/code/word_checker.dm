@@ -6,16 +6,17 @@
 		return FALSE
 
 	var/dist = get_dist(speaker, src) - message_range
-	if(dist > 0 && dist <= EAVESDROP_EXTRA_RANGE && !HAS_TRAIT(src, TRAIT_GOOD_HEARING))
+	if(dist > 0 && dist <= EAVESDROP_RANGE && !HAS_TRAIT(src, TRAIT_GOOD_HEARING))
 		raw_message = stars(raw_message)
-	if(message_range != INFINITY && dist > EAVESDROP_EXTRA_RANGE && !HAS_TRAIT(src, TRAIT_GOOD_HEARING))
+	if(message_range != INFINITY && dist > EAVESDROP_RANGE && !HAS_TRAIT(src, TRAIT_GOOD_HEARING))
 		return FALSE
 
 	if(!has_language(message_language))
 		return FALSE
 
 	var/treated_message = translate_language(speaker, message_language, raw_message, spans, message_mods)
-	if(LOWER_TEXT(MASQUERADE_FILTER_CHECK(treated_message)))
+	var/is_breach = MASQUERADE_FILTER_CHECK(LOWER_TEXT(treated_message))
+	if(is_breach)
 		SEND_SIGNAL(src, COMSIG_SEEN_MASQUERADE_VIOLATION, speaker)
 	return TRUE
 
@@ -27,7 +28,8 @@
 			return
 		var/message = compose_message(hearing_args[HEARING_SPEAKER], hearing_args[HEARING_LANGUAGE], hearing_args[HEARING_RAW_MESSAGE], hearing_args[HEARING_RADIO_FREQ], hearing_args[HEARING_RADIO_FREQ_NAME], hearing_args[HEARING_RADIO_FREQ_COLOR], hearing_args[HEARING_SPANS], hearing_args[HEARING_MESSAGE_MODE], FALSE)
 		SSmasquerade.log_phone_message(message, source)
-		if(MASQUERADE_FILTER_CHECK(LOWER_TEXT(hearing_args[HEARING_RAW_MESSAGE])))
+		var/is_breach = MASQUERADE_FILTER_CHECK(LOWER_TEXT(hearing_args[HEARING_RAW_MESSAGE]))
+		if(is_breach)
 			SEND_SIGNAL(src, COMSIG_SEEN_MASQUERADE_VIOLATION, hearing_args[HEARING_SPEAKER])
 
 #undef MASQUERADE_FILTER_CHECK

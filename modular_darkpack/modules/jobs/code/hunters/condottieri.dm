@@ -5,7 +5,7 @@
 	faction = FACTION_CITY
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = SUPERVISOR_SHERIFF
+	supervisors = SUPERVISOR_SOCIETY_OF_LEOPOLD
 	minimal_player_age = 7
 
 	config_tag = "CONDOTTIERI"
@@ -13,15 +13,21 @@
 	outfit = /datum/outfit/job/vampire/condottieri
 
 	display_order = JOB_DISPLAY_ORDER_CONDOTTIERI
-	department_for_prefs = /datum/job_department/society_of_leopold
 	departments_list = list(
 		/datum/job_department/society_of_leopold,
+	)
+
+	known_contacts = list(
+		JOB_ABBE,
+		JOB_INQUISITOR,
+		JOB_NOVICE,
+		JOB_CONDOTTIERI
 	)
 
 	allowed_splats = list(SPLAT_NONE)
 
 /datum/outfit/job/vampire/condottieri
-	name = "Condottieri"
+	name = JOB_CONDOTTIERI
 	jobtype = /datum/job/vampire/condottieri
 
 	id = /obj/item/card/hunter
@@ -33,4 +39,13 @@
 	glasses = /obj/item/clothing/glasses/vampire/sun
 	r_pocket = /obj/item/vamp/keys/hunter
 	l_pocket = /obj/item/smartphone/condottieri
-	backpack_contents = list(/obj/item/vampire_stake=1, /obj/item/card/credit=1, /obj/item/vampirebook/bible=1)
+	backpack_contents = list(/obj/item/vampire_stake=1,  /obj/item/intel_report=1, /obj/item/card/credit=1, /obj/item/vampirebook/bible=1)
+
+/datum/outfit/job/vampire/condottieri/pre_equip(mob/living/carbon/human/H)
+	. = ..()
+	if(H.mind)
+		H.mind.set_holy_role(HOLY_ROLE_PRIEST)
+
+/datum/outfit/job/vampire/condottieri/post_equip(mob/living/carbon/human/H)
+	. = ..()
+	H.grant_language(/datum/language/latin, source = "job")

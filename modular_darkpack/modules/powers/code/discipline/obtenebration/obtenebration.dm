@@ -1,6 +1,11 @@
 /datum/discipline/obtenebration
 	name = "Obtenebration"
-	desc = "Controls the darkness around you."
+	desc = {"Controls the darkness around you.
+● Shadow Play: Passive
+●● Shroud of Night: Manipulation + Occult (difficulty 7)
+●●● Arms of the Abyss: Manipulation + Occult (difficulty 7)
+●●●● Black Metamorphosis: Manipulation + Courage (difficulty 7)
+●●●●● Tenebrous Form: Passive"}
 	icon_state = "obtenebration"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/obtenebration
@@ -46,6 +51,7 @@
 	multi_activate = TRUE
 	duration_length = 1 SCENES
 	cooldown_length = 1 TURNS
+	frenzy_usable = FALSE
 
 	var/list/shadows = list() // A list of all active shadows
 	var/datum/action/clear_shadows/cbutton // The button to clear everything
@@ -96,7 +102,7 @@
 	cooldown_length = 5 SECONDS
 
 /datum/discipline_power/obtenebration/shroud_of_night/pre_activation_checks(atom/target)
-	if(SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_OCCULT), 7, owner))
+	if(SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_MANIPULATION, STAT_OCCULT)))
 		return TRUE
 	return FALSE
 
@@ -119,12 +125,11 @@
 	cooldown_length = 1 TURNS
 
 	var/list/active_tentacles = list()
-	var/aggro_mode = "Aggressive"
+	var/aggro_mode = ABYSS_TENTACLE_MODE_AGGRESSIVE
 
 /datum/discipline_power/obtenebration/arms_of_the_abyss/activate(atom/target)
 	. = ..()
 	var/turf/target_turf = get_turf(target)
-	var/dice = (owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_OCCULT))
 
 	if(target_turf && target_turf.get_lumcount() <= 0.4)
 		// Remove any existing tentacles first
@@ -134,7 +139,7 @@
 				qdel(T)
 		active_tentacles.Cut()
 
-		var/roll = SSroll.storyteller_roll(dice, 7, owner, numerical = TRUE)
+		var/roll = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_MANIPULATION, STAT_OCCULT), numerical = TRUE)
 		var/has_action = !!(locate(/datum/action/aggro_mode) in owner.actions)
 
 		if(!has_action)
@@ -158,7 +163,7 @@
 
 			// if we ended up making a new tentacle add it to our list and inherit set aggro_mode
 			if(new_tentacle)
-				new_tentacle.aggro_mode = aggro_mode
+				new_tentacle.ai_controller?.set_blackboard_key(BB_ABYSS_TENTACLE_MODE, aggro_mode)
 				active_tentacles += new_tentacle
 	else
 		to_chat(usr, span_warning("The area is too bright for the shadows to manifest!"))
@@ -200,7 +205,7 @@
 /datum/discipline_power/obtenebration/black_metamorphosis/activate()
 	. = ..()
 	activating = FALSE
-	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_COURAGE), 7, owner)
+	var/roll = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_MANIPULATION, STAT_COURAGE))
 	switch(roll)
 		if(ROLL_SUCCESS)
 			successful = TRUE
@@ -239,6 +244,8 @@
 	cooldown_length = 1 TURNS
 	var/activating = FALSE
 	var/saved_brute_mod = 1
+	var/saved_burn_mod = 1
+	var/saved_aggravated_mod = 1
 	var/saved_clone_mod = 1
 	var/saved_stamina_mod = 1
 	var/saved_brain_mod = 1
@@ -273,8 +280,10 @@
 	playsound(owner.loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
 	saved_brute_mod = owner.physiology.brute_mod
 	owner.physiology.brute_mod = 0
-	//saved_clone_mod = owner.physiology.clone_mod
-	//owner.physiology.clone_mod = 0
+	saved_burn_mod = owner.physiology.burn_mod
+	owner.physiology.burn_mod = 2
+	saved_aggravated_mod= owner.physiology.aggravated_mod
+	owner.physiology.aggravated_mod = 0
 	saved_stamina_mod = owner.physiology.stamina_mod
 	owner.physiology.stamina_mod = 0
 	saved_brain_mod = owner.physiology.brain_mod
@@ -286,6 +295,7 @@
 	ADD_TRAIT(owner, TRAIT_NOBLOOD, MAGIC_TRAIT)
 	ADD_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT) // Can't physically attack while in this form
 	//ADD_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT) // Flying to simulate being unaffected by gravity
+	ADD_TRAIT(owner, TRAIT_PIERCEIMMUNE, MAGIC_TRAIT)	//Stops bullets from embedding and taser electrodes no longer connect
 	owner.pass_flags |= (PASSDOORS | PASSTABLE | PASSSTRUCTURE) // Phase through doors & fences / tables / machines, dumpsters, barrels, lampposts
 
 
@@ -297,7 +307,8 @@
 	to_chat(owner, span_notice("You return to your normal form."))
 	playsound(owner.loc, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
 	owner.physiology.brute_mod = saved_brute_mod
-	//owner.physiology.clone_mod = saved_clone_mod
+	owner.physiology.burn_mod = saved_burn_mod
+	owner.physiology.aggravated_mod = saved_aggravated_mod
 	owner.physiology.stamina_mod = saved_stamina_mod
 	owner.physiology.brain_mod = saved_brain_mod
 	animate(owner, color = initial(owner.color), time = 1 SECONDS, loop = 1)
@@ -307,6 +318,7 @@
 	REMOVE_TRAIT(owner, TRAIT_NOBLOOD, MAGIC_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_PACIFISM, MAGIC_TRAIT)
 	//REMOVE_TRAIT(owner, TRAIT_MOVE_FLYING, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_PIERCEIMMUNE, MAGIC_TRAIT)	//Stops bullets from embedding and taser electrodes no longer connect
 	owner.pass_flags &= ~(PASSDOORS | PASSTABLE | PASSSTRUCTURE)
 
 	owner.density = saved_density
@@ -317,9 +329,9 @@
 /datum/action/aggro_mode
 	name = "Tentacle Control"
 	desc = "Switches the aggro mode of your Arms of the Abyss"
-	button_icon = 'icons/hud/screen_glass.dmi'
+	button_icon = 'modular_darkpack/master_files/icons/hud/screen_gen.dmi'
 	button_icon_state = "harm"
-	var/current_mode = "Aggressive"
+	var/current_mode = ABYSS_TENTACLE_MODE_AGGRESSIVE
 	var/datum/discipline_power/obtenebration/arms_of_the_abyss/abyss_power
 
 /datum/action/aggro_mode/New(Target)
@@ -341,9 +353,9 @@
 		return
 
 	var/list/options = list(
-		"Aggressive" = "Aggressive (grab and damage targets)",
-		"Control" = "Control (grab and restrain without damage)",
-		"Passive" = "Passive (don't attack or grab)"
+		ABYSS_TENTACLE_MODE_AGGRESSIVE = "Aggressive (grab and damage targets)",
+		ABYSS_TENTACLE_MODE_CONTROL = "Control (grab and restrain without damage)",
+		ABYSS_TENTACLE_MODE_PASSIVE = "Passive (don't attack or grab)"
 	)
 
 	var/select = tgui_input_list(tentacle_owner, "Select tentacle behaviour", "Tentacle Mode", options)
@@ -357,13 +369,13 @@
 	var/tentacles = 0
 	for(var/mob/living/basic/abyss_tentacle/T in abyss_power?.active_tentacles)
 		if(T && !QDELETED(T))
-			var/was_passive = (T.aggro_mode == "Passive")
-			T.aggro_mode = select
+			var/was_passive = (T.ai_controller?.blackboard[BB_ABYSS_TENTACLE_MODE] == ABYSS_TENTACLE_MODE_PASSIVE)
+			T.ai_controller?.set_blackboard_key(BB_ABYSS_TENTACLE_MODE, abyss_power.aggro_mode)
 			tentacles++
 
-			if(select == "Passive" && T.grabbed_mob)
+			if(select == ABYSS_TENTACLE_MODE_PASSIVE && T.ai_controller?.blackboard[BB_ABYSS_TENTACLE_GRABBED])
 				T.release_grabbed_mob()
-			else if(was_passive && select != "Passive")
+			else if(was_passive && select != ABYSS_TENTACLE_MODE_PASSIVE)
 				T.recently_released.Cut()
 
 	if(tentacles)
@@ -372,11 +384,11 @@
 
 /datum/action/aggro_mode/proc/update_button_icon()
 	switch(current_mode)
-		if("Aggressive")
+		if(ABYSS_TENTACLE_MODE_AGGRESSIVE)
 			button_icon_state = "harm"
-		if("Control")
+		if(ABYSS_TENTACLE_MODE_CONTROL)
 			button_icon_state = "grab"
-		if("Passive")
+		if(ABYSS_TENTACLE_MODE_PASSIVE)
 			button_icon_state = "disarm"
 	build_all_button_icons()
 

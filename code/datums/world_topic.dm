@@ -201,7 +201,7 @@
 	.["respawn"] = config ? !!CONFIG_GET(flag/allow_respawn) : FALSE // show respawn as true regardless of "respawn as char" or "free respawn"
 	.["enter"] = !LAZYACCESS(SSlag_switch.measures, DISABLE_NON_OBSJOBS)
 	.["ai"] = CONFIG_GET(flag/allow_ai)
-	.["host"] = world.host ? world.host : null
+	.["host"] = world?.host || CONFIG_GET(string/hostedby)
 	.["round_id"] = GLOB.round_id
 	.["players"] = GLOB.clients.len
 	.["revision"] = GLOB.revdata.commit
@@ -247,6 +247,8 @@
 		// Shuttle status, see /__DEFINES/stat.dm
 		.["shuttle_timer"] = SSshuttle.emergency.timeLeft()
 		// Shuttle timer, in seconds
+
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_WORLD_TOPIC_STATUS, .) // DARKPACK EDIT ADD
 
 /datum/world_topic/create_news_channel
 	keyword = "create_news_channel"

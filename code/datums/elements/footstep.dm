@@ -43,7 +43,7 @@
 			src.volume = 90*volume
 		if(FOOTSTEP_MOB_SLIME)
 			footstep_sounds = 'sound/effects/footstep/slime1.ogg'
-			src.volume = 90*volume
+			src.volume = 20*volume
 		if(FOOTSTEP_OBJ_MACHINE)
 			footstep_sounds = 'sound/effects/bang.ogg'
 			src.volume = 90*volume
@@ -196,6 +196,9 @@
 	if(HAS_TRAIT(source, TRAIT_LIGHT_STEP))
 		volume_multiplier = 0.6
 		range_adjustment = -2
+
+	if(HAS_TRAIT(source, TRAIT_OBFUSCATED))	// DARKPACK EDIT ADD START - POWERS - Cancels footstep noise
+		return // DARKPACK EDIT ADD END - POWERS
 
 	// list returned by playsound() filled by client mobs who heard the footstep. given to play_fov_effect()
 	var/list/heard_clients

@@ -101,6 +101,7 @@
 		var/obj/item/stack/sheet_module = added_module
 		if(ispath(sheet_module.source, /datum/robot_energy_storage))
 			sheet_module.source = get_or_create_estorage(sheet_module.source)
+			LAZYADD(sheet_module.source.linked_modules, sheet_module)
 
 		if(istype(sheet_module.source))
 			sheet_module.cost = max(sheet_module.cost, 1) // Must not cost 0 to prevent div/0 errors.
@@ -389,6 +390,7 @@
 		/obj/item/construction/rcd/borg,
 		/obj/item/pipe_dispenser,
 		/obj/item/extinguisher,
+		/obj/item/weldingtool/largetank/cyborg,
 		/obj/item/borg/cyborg_omnitool/engineering,
 		/obj/item/borg/cyborg_omnitool/engineering,
 		/obj/item/t_scanner,
@@ -412,6 +414,7 @@
 	model_select_icon = "engineer"
 	model_traits = list(TRAIT_NEGATES_GRAVITY)
 	hat_offset = list("north" = list(0, -4), "south" = list(0, -4), "east" = list(4, -4), "west" = list(-4, -4))
+	///Weakref to the night vision action
 	var/datum/weakref/night_vision_ref
 
 /datum/action/cooldown/borg_meson
@@ -428,10 +431,12 @@
 	borg.update_sight()
 
 /obj/item/robot_model/engineering/be_transformed_to(obj/item/robot_model/old_model, forced = FALSE)
-	var/datum/action/cooldown/borg_meson/night_vision = new(loc)
 	. = ..()
 	if(!.)
 		return
+
+	//Grant night vision action
+	var/datum/action/cooldown/borg_meson/night_vision = new(loc)
 	night_vision.Grant(loc)
 	night_vision_ref = WEAKREF(night_vision)
 
@@ -443,6 +448,7 @@
 	name = "Janitor"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
+		/obj/item/borg/cleaner_box,
 		/obj/item/screwdriver/cyborg,
 		/obj/item/crowbar/cyborg,
 		/obj/item/stack/tile/iron/base/cyborg, // haha jani will have old tiles >:D
@@ -920,6 +926,9 @@
 	..()
 	var/mob/living/silicon/robot/cyborg = loc
 	cyborg.remove_faction(FACTION_SILICON) //ai turrets
+	add_minimap_blip(cyborg, MINIMAP_NUKEOP_BORG_BLIP, "combatborg")
+	var/datum/action/minimap/nuclear/tacmap_action = new
+	tacmap_action.Grant(cyborg)
 
 /obj/item/robot_model/syndicate/remove_module(obj/item/removed_module)
 	..()
@@ -952,6 +961,13 @@
 	model_traits = list(TRAIT_PUSHIMMUNE)
 	hat_offset = list("north" = list(0, 3), "south" = list(0, 3), "east" = list(-1, 3), "west" = list(1, 3))
 
+/obj/item/robot_model/syndicate_medical/rebuild_modules()
+	..()
+	var/mob/living/silicon/robot/cyborg = loc
+	add_minimap_blip(cyborg, MINIMAP_NUKEOP_BORG_BLIP, "mediborg")
+	var/datum/action/minimap/nuclear/tacmap_action = new
+	tacmap_action.Grant(cyborg)
+
 /obj/item/robot_model/saboteur
 	name = "Syndicate Saboteur"
 	basic_modules = list(
@@ -960,6 +976,7 @@
 		/obj/item/pipe_dispenser,
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/extinguisher,
+		/obj/item/weldingtool/largetank/cyborg,
 		/obj/item/analyzer,
 		/obj/item/borg/cyborg_omnitool/engineering,
 		/obj/item/borg/cyborg_omnitool/engineering,
@@ -981,6 +998,13 @@
 	hat_offset = list("north" = list(0, -4), "south" = list(0, -4), "east" = list(4, -4), "west" = list(-4, -4))
 	canDispose = TRUE
 	var/datum/weakref/thermal_vision_ref
+
+/obj/item/robot_model/saboteur/rebuild_modules()
+	..()
+	var/mob/living/silicon/robot/cyborg = loc
+	add_minimap_blip(cyborg, MINIMAP_NUKEOP_BORG_BLIP, "engiborg")
+	var/datum/action/minimap/nuclear/tacmap_action = new
+	tacmap_action.Grant(cyborg)
 
 /datum/action/cooldown/borg_thermal
 	name = "Toggle Thermal Night Vision"
@@ -1045,6 +1069,8 @@
 	var/energy
 	///Whether this resource should refill from the aether inside a charging station.
 	var/renewable = TRUE
+	///Lazylist of all modules linked to this energy storage, so using one will update all.
+	var/list/obj/item/stack/linked_modules
 
 /datum/robot_energy_storage/New(obj/item/robot_model/model)
 	energy = max_energy
@@ -1052,6 +1078,10 @@
 		model.storages |= src
 		RegisterSignal(model.robot, COMSIG_MOB_GET_STATUS_TAB_ITEMS, PROC_REF(get_status_tab_item))
 		RegisterSignal(model, COMSIG_QDELETING, PROC_REF(unregister_from_model))
+
+/datum/robot_energy_storage/Destroy(force)
+	LAZYCLEARLIST(linked_modules)
+	return ..()
 
 /datum/robot_energy_storage/proc/unregister_from_model(obj/item/robot_model/model)
 	SIGNAL_HANDLER
@@ -1074,6 +1104,8 @@
 
 /datum/robot_energy_storage/proc/add_charge(amount)
 	energy = min(energy + amount, max_energy)
+	for(var/obj/item/stack/modules as anything in linked_modules)
+		modules.update_appearance(UPDATE_NAME)
 
 /datum/robot_energy_storage/material
 	name = "generic material storage"

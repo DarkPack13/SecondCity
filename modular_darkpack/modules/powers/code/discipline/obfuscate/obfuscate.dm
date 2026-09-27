@@ -3,7 +3,12 @@
 
 /datum/discipline/obfuscate
 	name = "Obfuscate"
-	desc = "Makes you less noticable for living and un-living beings."
+	desc = {"Makes you less noticable for living and un-living beings.
+● Cloak of Shadows: Passive
+●● Unseen Presence: Passive
+●●● Mask of a Thousand Faces: Manipulation + Performance (difficulty 7)
+●●●● Vanish from the Mind's Eye: Charisma + Stealth (difficulty 6)
+●●●●● Cloak the Gathering: Passive"}
 	icon_state = "obfuscate"
 	power_type = /datum/discipline_power/obfuscate
 
@@ -65,7 +70,7 @@
 			continue
 
 		//the corpses are not watching you
-		if (viewer.is_blind() || (viewer.stat >= UNCONSCIOUS))
+		if (viewer.is_blind() || IS_UNCONSCIOUS(viewer))
 			continue
 
 		to_chat(owner, span_warning("You cannot use [src] while you're being observed!"))
@@ -89,6 +94,7 @@
 		/datum/discipline_power/obfuscate/vanish_from_the_minds_eye,
 		/datum/discipline_power/obfuscate/cloak_the_gathering
 	)
+	frenzy_usable = FALSE
 
 /datum/discipline_power/obfuscate/cloak_of_shadows/pre_activation_checks()
 	. = ..()
@@ -131,6 +137,7 @@
 	level = 2
 	check_flags = DISC_CHECK_CAPABLE
 	vitae_cost = 0
+	frenzy_usable = FALSE
 
 	toggled = TRUE
 
@@ -184,6 +191,7 @@
 	level = 3
 	check_flags = DISC_CHECK_CAPABLE
 	vitae_cost = 0 // vitae cost handled in activate()
+	frenzy_usable = FALSE
 
 	toggled = TRUE
 	grouped_powers = list(
@@ -214,6 +222,9 @@
 	. = ..()
 	RegisterSignal(owner, COMSIG_MOB_EXAMINATE, PROC_REF(store_target_in_list))
 
+/datum/discipline_power/obfuscate/mask_of_a_thousand_faces/post_loss()
+	UnregisterSignal(owner, COMSIG_MOB_EXAMINATE)
+
 /datum/discipline_power/obfuscate/mask_of_a_thousand_faces/pre_activation_checks()
 	owner_splat = get_kindred_splat(owner)
 	if(!LAZYLEN(cached_targets))
@@ -223,7 +234,7 @@
 	if(!is_seen_check())
 		return FALSE
 
-	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_MANIPULATION) + owner.st_get_stat(STAT_PERFORMANCE), 7, owner)
+	var/roll = SSroll.storyteller_roll_datum(owner, difficulty = 7, applic_stats = list(STAT_MANIPULATION, STAT_PERFORMANCE))
 	if(roll == ROLL_SUCCESS)
 		return TRUE
 
@@ -268,10 +279,12 @@
 	if(target_splat?.clan?.alt_sprite)
 		owner.set_body_sprite(target_splat.clan.alt_sprite, target_splat.clan.alt_sprite_greyscale, TRUE)
 	else
-		if(owner_splat.clan && (TRAIT_MASQUERADE_VIOLATING_FACE in owner_splat.clan.clan_traits))
-			REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, CLAN_TRAIT)
-		if(owner_splat.clan && (TRAIT_MASQUERADE_VIOLATING_EYES in owner_splat.clan.clan_traits))
-			REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES, CLAN_TRAIT)
+		if(owner_splat.clan && (TRAIT_MASQUERADE_VIOLATING_FACE in owner_splat.clan.subsplat_traits))
+			REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, SUBSPLAT_TRAIT)
+		if(owner_splat.clan && (TRAIT_MASQUERADE_VIOLATING_EYES in owner_splat.clan.subsplat_traits))
+			REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES, SUBSPLAT_TRAIT)
+		if(original_sprite == "rotten4" || original_sprite == "rotten3")
+			REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, MAGIC_TRAIT)
 		owner.set_body_sprite(SPECIES_HUMAN, TRUE, TRUE)
 
 	owner.updateappearance(mutcolor_update = TRUE)
@@ -286,10 +299,12 @@
 	original_dna.copy_dna(owner.dna, 0)
 	owner.name = original_name
 
-	if(owner_splat.clan && (TRAIT_MASQUERADE_VIOLATING_FACE in owner_splat.clan.clan_traits))
-		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, CLAN_TRAIT)
-	if(owner_splat.clan && (TRAIT_MASQUERADE_VIOLATING_EYES in owner_splat.clan.clan_traits))
-		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES, CLAN_TRAIT)
+	if(owner_splat.clan && (TRAIT_MASQUERADE_VIOLATING_FACE in owner_splat.clan.subsplat_traits))
+		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, SUBSPLAT_TRAIT)
+	if(owner_splat.clan && (TRAIT_MASQUERADE_VIOLATING_EYES in owner_splat.clan.subsplat_traits))
+		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES, SUBSPLAT_TRAIT)
+	if(original_sprite == "rotten4" || original_sprite == "rotten3")
+		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, MAGIC_TRAIT)
 
 	owner.set_body_sprite(original_sprite, original_sprite_greyscale, TRUE)
 	owner.updateappearance(mutcolor_update = TRUE)
@@ -313,7 +328,7 @@
 	)
 
 /datum/discipline_power/obfuscate/vanish_from_the_minds_eye/pre_activation_checks(atom/target)
-	var/roll = SSroll.storyteller_roll(owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_STEALTH), 6, owner)
+	var/roll = SSroll.storyteller_roll_datum(owner, applic_stats = list(STAT_CHARISMA, STAT_STEALTH))
 	if(roll == ROLL_SUCCESS)
 		return TRUE
 	return FALSE
@@ -347,6 +362,7 @@
 	level = 5
 	check_flags = DISC_CHECK_CAPABLE
 	vitae_cost = 0
+	frenzy_usable = FALSE
 
 	toggled = TRUE
 

@@ -4,20 +4,27 @@
 /mob/living/proc/enter_frenzy_mode(atom/target, fleeing = FALSE, source = "Unknown cause")
 	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		return
-	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+	if(IS_UNCONSCIOUS(src))
 		return
-	add_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA), FRENZY_TRAIT)
-	message_admins("[ADMIN_LOOKUPFLW(src)] has entered frenzy[target ? " targeting [ADMIN_LOOKUPFLW(src)]": ""]. ([source])")
-	log_message("entered frenzy.", LOG_GAME)
+
+	set_jitter_if_lower(1 SCENES)
+
+	message_admins("[ADMIN_LOOKUPFLW(src)] has entered frenzy[target ? " targeting [ADMIN_LOOKUPFLW(target)]": ""]. ([source])")
+	log_combat(src, (src || target), "has frenzied on because of \"[source]\" on")
 
 	if(fleeing)
 		to_chat(src, span_danger("FLEE."))
+		src.balloon_alert(src, "flee!")
+		apply_status_effect(/datum/status_effect/frenzy/flee, target)
 	else
 		to_chat(src, span_bolddanger("FRENZY."))
+		src.balloon_alert(src, "frenzy!")
+		if(get_kindred_splat(src))
+			apply_status_effect(/datum/status_effect/frenzy/vampire_hunger, target)
+		else
+			apply_status_effect(/datum/status_effect/frenzy, target)
 
 	SEND_SOUND(src, sound('modular_darkpack/modules/frenzy/sounds/frenzy.ogg', volume = 50))
-
-	apply_status_effect(/datum/status_effect/frenzy, target)
 
 	// This is assuming no other interaction happens to remove it before this.
 	addtimer(CALLBACK(src, PROC_REF(exit_frenzy_mode)), 1 SCENES)
@@ -25,17 +32,18 @@
 /mob/living/proc/exit_frenzy_mode()
 	if(!HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		return
-	remove_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA), FRENZY_TRAIT)
-	log_message("exited frenzy.", LOG_GAME)
+	log_message("exited frenzy.", LOG_ATTACK, color="red")
 
 	remove_status_effect(/datum/status_effect/frenzy)
 
 /datum/storyteller_roll/frenzy
 	abstract_type = /datum/storyteller_roll/frenzy
 	bumper_text = "frenzy"
+	roll_output_type = ROLL_PRIVATE_AND_TARGET
 	numerical = TRUE
 
 /datum/storyteller_roll/frenzy/rotschreck
+	bumper_text = "rotschrek"
 	applicable_stats = list(STAT_COURAGE)
 
 /datum/storyteller_roll/frenzy/kindred
@@ -46,6 +54,8 @@
 	// V20 p.51
 	if(HAS_TRAIT(roller, TRAIT_DIFFICULT_FRENZY))
 		. += 2
+	if(HAS_TRAIT(roller, TRAIT_UNCONTROLLABLE))
+		. = 10
 
 /datum/storyteller_roll/frenzy/kindred/calculate_used_dice(mob/living/roller, bonus)
 	. = ..()
@@ -61,7 +71,7 @@
 
 
 /mob/living/proc/trigger_rotschreck(atom/fire, difficulty = 6, successes = 0)
-	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+	if(IS_UNCONSCIOUS(src))
 		return
 	if(!get_kindred_splat(src))
 		return
@@ -80,7 +90,7 @@
 
 
 /mob/living/proc/trigger_kindred_frenzy(atom/target, difficulty = 6, successes = 0, flavor_text = "Something")
-	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+	if(IS_UNCONSCIOUS(src))
 		return
 	if(!get_kindred_splat(src))
 		return
@@ -105,7 +115,7 @@
 
 
 /mob/living/proc/trigger_rage_frenzy(atom/target, difficulty = 6, successes = 0)
-	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+	if(IS_UNCONSCIOUS(src))
 		return
 	var/datum/splat/werewolf/shifter/shifter_splat = get_shifter_splat(src)
 	if(!shifter_splat)
@@ -119,9 +129,8 @@
 	return frenzy_result
 
 
-/mob/living/carbon/human/proc/manual_frenzy_roll(atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
-	set name = "Manual Frenzy Roll"
-	set desc = "Trigger a roll for a frenzy"
+GAME_VERB_PROC_DESC(/mob/living/carbon/human, manual_frenzy_roll, "Manual Frenzy Roll", "Trigger a roll for a frenzy", null)
+	VERB_ARG_TYPED(AM, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_VIEW, /mob/living)
 
 	if(!istype(AM))
 		return
@@ -134,9 +143,8 @@
 		trigger_kindred_frenzy(AM)
 
 // Used by the berserker merit. or possibly even for that one vampire thing of riding the frenzy in future?
-/mob/living/carbon/human/proc/manual_frenzy(atom/movable/AM as mob|obj in oview(DEFAULT_SIGHT_DISTANCE))
-	set name = "Manual Frenzy"
-	set desc = "Enter a frenzy at will"
+GAME_VERB_PROC_DESC(/mob/living/carbon/human, manual_frenzy, "Manual Frenzy", "Enter a frenzy at will", null)
+	VERB_ARG_TYPED(AM, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_VIEW, /mob/living)
 
 	if(!istype(AM))
 		return

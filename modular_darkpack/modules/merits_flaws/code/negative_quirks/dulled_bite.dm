@@ -1,7 +1,7 @@
-// V20 p. 481
 /datum/quirk/darkpack/dulled_bite
 	name = "Dulled Bite"
 	desc = "For some reason your fangs never developed fully, or they may not have manifested at all. When feeding, you need to find some other method of making the blood flow. A number of Caitiff and high Generation vampires often manifest this Flaw."
+	ttrpg_sources = list(/datum/source_book/vtm20 = 481)
 	value = -2
 	mob_trait = TRAIT_DULLFANGS
 	gain_text = span_notice("Your fangs feel dull.")
@@ -26,11 +26,11 @@
 
 /datum/status_effect/dull_fangs/on_apply()
 	. = ..()
-	ADD_TRAIT(owner, TRAIT_DULLFANGS, MAGIC_TRAIT)
+	ADD_TRAIT(owner, TRAIT_DULLFANGS, TRAIT_GENERIC)
 
 /datum/status_effect/dull_fangs/on_remove()
 	. = ..()
-	REMOVE_TRAIT(owner, TRAIT_DULLFANGS, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_DULLFANGS, TRAIT_GENERIC)
 
 /datum/status_effect/dull_fangs/permanent // Applied when pliers are used on vampires without the dulled bite quirk.
 	id = "dulled_fangs_permanent"

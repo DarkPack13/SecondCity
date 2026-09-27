@@ -5,12 +5,15 @@
 	total_positions = -1
 	spawn_positions = -1
 	outfit = /datum/outfit/job/vampire/citizen
-	exp_granted_type = EXP_TYPE_KINDRED
 	config_tag = "CITIZEN"
 	display_order = JOB_DISPLAY_ORDER_CITIZEN
-	department_for_prefs = /datum/job_department/citizen
+	departments_list = list(
+		/datum/job_department/citizen
+	)
 	job_flags = CITY_JOB_FLAGS
-	minimal_masquerade = 0
+	maximal_generation = 11
+	maximum_immortal_age = 100
+	minimum_masquerade = 0
 	alt_titles = list(
 		"Citizen",
 		"Private Investigator",

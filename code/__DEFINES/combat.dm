@@ -72,7 +72,7 @@
 #define CANKNOCKDOWN (1<<1)
 /// If set, this mob can be knocked unconscious via status effect.
 /// NOTE, does not mean immune to sleep. Unconscious and sleep are two different things.
-/// NOTE, does not relate to the unconscious stat either. Only the status effect.
+/// NOTE, does not relate to the unconscious trait either. Only the status effect.
 #define CANUNCONSCIOUS (1<<2)
 /// If set, this mob can be grabbed or pushed when bumped into
 #define CANPUSH (1<<3)
@@ -125,7 +125,7 @@ DEFINE_BITFIELD(status_flags, list(
 #define GRAB_SUCCESS 2
 
 //Grab breakout odds
-//#define BASE_GRAB_RESIST_CHANCE 60 //base chance for whether or not you can escape from a grab // DARKPACK EDIT REMOVAL - STORYTELLER_DICE
+#define BASE_GRAB_RESIST_CHANCE 60 //base chance for whether or not you can escape from a grab
 
 //slowdown when in softcrit. Note that crawling slowdown will also apply at the same time!
 #define SOFTCRIT_ADD_SLOWDOWN 2

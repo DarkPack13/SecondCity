@@ -18,30 +18,31 @@
 			contacts |= new_phone_contact
 
 // Gets the displayed contact's name if they are in contacts or published. If not, show the number.
-/obj/item/smartphone/proc/get_number_contact_name()
+/obj/item/smartphone/proc/get_number_contact_name(contact_num)
 	var/output_user
-	var/calling = incoming_phone_number
-	if(dialed_number)
-		calling = dialed_number
+	if(!contact_num)
+		CRASH("Trying to get a contact number with a bad input.")
+
 	// Default to the contact name calling the phone.
 	for(var/datum/phonecontact/contact in contacts)
-		if(contact.number == calling)
+		if(contact.number == contact_num)
 			output_user = contact.name
 	// If we dont have a contact name, refer to the published listings.
 	if(!output_user)
 		for(var/contact in SSphones.published_phone_numbers)
-			if(calling == SSphones.published_phone_numbers[contact])
+			if(contact_num == SSphones.published_phone_numbers[contact])
 				output_user = contact
 	// Not in our contacts or published listings? Then resolve to showing the phone number.
 	if(!output_user)
-		output_user = "+" + calling
+		output_user = "+" + contact_num
 	return output_user
 
 // Helper proc to add a history log to the phone's records.
 /obj/item/smartphone/proc/add_phone_call_history(call_type, call_type_tooltip)
 	var/datum/phone_history/new_contact = new()
-	new_contact.name = get_number_contact_name()
-	new_contact.number = dialed_number ? dialed_number : incoming_phone_number
+	var/caller_num = dialed_number ? dialed_number : incoming_phone_number
+	new_contact.name = get_number_contact_name(caller_num)
+	new_contact.number = caller_num
 	new_contact.call_type = call_type
 	new_contact.call_type_tooltip = call_type_tooltip
 	new_contact.time = server_timestamp("hh:mm:ss", ic_time = TRUE)
@@ -55,20 +56,22 @@
 	if(current_state == PHONE_AVAILABLE)
 		dialed_number = null
 		incoming_phone_number = null
+	if(current_state == PHONE_CALLING)
+		START_PROCESSING(SSprocessing, src)
+
 	if(current_state == PHONE_RINGING)
 		START_PROCESSING(SSprocessing, src)
 		if(ringer)
-			setup_particles()
-
-	if(current_state == PHONE_IN_CALL || current_state == PHONE_AVAILABLE)
+			add_shared_particles(/particles/phone_ringing, particle_flags = PARTICLE_ATTACH_MOB)
+	else if(current_state == PHONE_IN_CALL || current_state == PHONE_AVAILABLE)
 		if(phone_ringing_timer)
 			deltimer(phone_ringing_timer)
-		if(particle_generator)
-			QDEL_NULL(particle_generator)
+			phone_ringing_timer = null
+		remove_shared_particles(/particles/phone_ringing, delete_on_empty = FALSE)
 		STOP_PROCESSING(SSprocessing, src)
 
 /obj/item/smartphone/proc/check_missing_sim_card(mob/user)
-	if(phone_flags & PHONE_NO_SIM)
+	if(QDELETED(sim_card))
 		balloon_alert(user, "no SIM!")
 		return TRUE
 	return FALSE
@@ -158,6 +161,19 @@
 	if(ringer)
 		playsound(src, call_sound, 50, TRUE, 0, 2)
 
+// App really ought to be a datum. Whateverrrrr
+/obj/item/smartphone/proc/receive_notification(app, title, body)
+	if(vibration)
+		animate(src, pixel_w = 1, time = 0.1 SECONDS, flags = ANIMATION_RELATIVE|ANIMATION_PARALLEL)
+		for(var/i in 1 to VIBRATION_LOOP_DURATION / (0.2 SECONDS)) //desired total duration divided by the iteration duration to give the necessary iteration count
+			animate(pixel_w = -2, time = 0.1 SECONDS, flags = ANIMATION_RELATIVE|ANIMATION_CONTINUE)
+			animate(pixel_w = 2, time = 0.1 SECONDS, flags = ANIMATION_RELATIVE|ANIMATION_CONTINUE)
+		animate(pixel_w = -1, time = 0.1 SECONDS, flags = ANIMATION_RELATIVE)
+	if(ringer)
+		playsound(src, 'modular_darkpack/modules/phones/sounds/text_receive.ogg', 50, TRUE, 0, 2) // This could prob use a better notification
+	if(vibration || ringer)
+		balloon_alert_to_viewers("[app]:[title]", vision_distance = SAMETILE_MESSAGE_RANGE)
+
 #undef VIBRATION_LOOP_DURATION
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -182,10 +198,12 @@
 	set_phone_state(PHONE_IN_CALL)
 	calling_smartphone.set_phone_state(PHONE_IN_CALL)
 
+	// turn masq stuff on
+	toggle_masquerade_sensitivity(TRUE)
+	calling_smartphone.toggle_masquerade_sensitivity(TRUE)
+
 	phone_radio.canhear_range = 1
 	calling_smartphone.phone_radio.canhear_range = 1
-	muted = FALSE
-	calling_smartphone.muted = FALSE
 
 // Internal only proc, used for ending a calll connection.
 /obj/item/smartphone/proc/terminate_call_connection()
@@ -210,14 +228,19 @@
 	set_phone_state(PHONE_AVAILABLE)
 	calling_smartphone.set_phone_state(PHONE_AVAILABLE)
 
-// Internal only proc, used for setting a phone's internal radio.
+	// turn masq stuff off
+	toggle_masquerade_sensitivity(FALSE)
+	calling_smartphone.toggle_masquerade_sensitivity(FALSE)
+
+// Internal only proc, used for setting a phone's internal radio when accepting and terminating calls.
 /obj/item/smartphone/proc/set_phone_radio(enabled)
 	PROTECTED_PROC(TRUE)
 
 	if(enabled)
 		phone_radio.set_frequency(secure_frequency)
-		phone_radio.set_broadcasting(TRUE)
-		phone_radio.set_listening(TRUE)
+		phone_radio.should_be_broadcasting = TRUE
+		phone_radio.should_be_listening = TRUE
+		phone_radio.set_on(TRUE)
 	else
 		phone_radio.set_frequency(0)
 		phone_radio.set_broadcasting(FALSE)

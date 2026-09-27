@@ -51,7 +51,7 @@
 #define RADIO_TOKEN_ENTERTAINMENT ":p"
 #define RADIO_COLOR_ENTERTAIMENT "#79c5a8"
 
-#define STATUS_DISPLAY_RELAY "Captain-Cast"
+#define STATUS_DISPLAY_RELAY "City-Cast" // DARKPACK EDIT CHANGE - Despess
 
 #define RADIO_CHANNEL_SYNDICATE "Syndicate"
 #define RADIO_KEY_SYNDICATE "t"
@@ -211,3 +211,7 @@
 #define RADIO_SPECIAL_CENTCOM (1<<1)
 ///Bitflag for if a headset can use the binary radio channel
 #define RADIO_SPECIAL_BINARY (1<<2)
+
+/// Past this amount of compression, the resulting gibberish will actually
+/// replace characters, making it even harder to understand.
+#define COMPRESSION_REPLACE_CHARACTER_THRESHOLD 30

@@ -262,6 +262,7 @@
 	 */
 	desc = "The clothes of the boys in blue. Did you know that 40% of Cops have heard of " + EVIL_COMPANY + "? Google 40% of Cops for more information."
 	icon_state = "police"
+	custom_price = 20
 
 /obj/item/clothing/under/vampire/police/long
 	name = "police uniform"
@@ -522,3 +523,12 @@
 	desc = "A white designer suitskirt with a green dress shirt. This one has an Endron International tag on it!"
 	icon_state = "pentex_executiveskirt"
 
+/obj/item/clothing/under/vampire/gown_black
+	name = "black gown"
+	desc = "An expensive black gown."
+	icon_state = "gown_black"
+
+/obj/item/clothing/under/vampire/gown_white
+	name = "white gown"
+	desc = "An expensive white gown."
+	icon_state = "gown_white"

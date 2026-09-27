@@ -432,7 +432,7 @@
 	result = /obj/item/food/donkpocket/deluxe
 	dish_category = DISH_PASTRY
 	removed_foodtypes = BREAKFAST
-	crafting_flags = parent_type::crafting_flags | CRAFT_MUST_BE_LEARNED
+	// crafting_flags = parent_type::crafting_flags | CRAFT_MUST_BE_LEARNED // DARKPACK EDIT REMOVAL - (Causes a strange compile fail i dont care to fix.)
 
 /datum/crafting_recipe/food/donkpocket/deluxe/nocarb
 	time = 1.5 SECONDS
@@ -694,7 +694,7 @@
 		/obj/item/food/butterslice = 1
 	)
 	result = /obj/item/food/raw_brownie_batter
-	added_foodtypes = GRAIN|JUNKFOOD|BREAKFAST|SUGAR
+	added_foodtypes = GRAIN|JUNKFOOD|SUGAR
 	removed_foodtypes = MEAT|RAW|EGG
 	meal_category = MEAL_COMPONENT
 
@@ -709,7 +709,7 @@
 		/obj/item/food/butterslice = 1
 	)
 	result = /obj/item/food/peanut_butter_brownie_batter
-	added_foodtypes = GRAIN|JUNKFOOD|BREAKFAST|SUGAR|NUTS
+	added_foodtypes = GRAIN|JUNKFOOD|SUGAR|NUTS
 	removed_foodtypes = MEAT|RAW|EGG
 	meal_category = MEAL_COMPONENT
 

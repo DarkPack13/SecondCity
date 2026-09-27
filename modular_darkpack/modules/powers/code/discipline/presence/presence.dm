@@ -2,7 +2,12 @@
 
 /datum/discipline/presence
 	name = "Presence"
-	desc = "Allows you to attract, sway, and control crowds through supernatural allure and emotional manipulation."
+	desc = {"Allows you to attract, sway, and control crowds through supernatural allure and emotional manipulation.
+● Awe: Charisma + Performance (difficulty 7)
+●● Dread Gaze: Charisma + Intimidation vs. Wits + Courage
+●●● Entrancement: Appearance + Empathy vs. Willpower
+●●●● Summon: Charisma + Subterfuge (difficulty 7)
+●●●●● Majesty: Courage vs. Charisma + Intimidation"}
 	icon_state = "presence"
 	power_type = /datum/discipline_power/presence
 
@@ -19,7 +24,7 @@
 //lets not have people be able to cast this through walls
 
 
-/datum/discipline_power/presence/proc/presence_check(mob/living/carbon/human/owner, mob/living/carbon/human/target, owner_stat, difficulty)
+/datum/discipline_power/presence/proc/presence_check(mob/living/carbon/human/owner, mob/living/carbon/human/target, using_stats, difficulty)
 	if(!ishuman(target))
 		return FALSE
 
@@ -30,7 +35,26 @@
 	//is the difficulty pre-defined? if not, its probably their willpower.
 	var/theirpower = difficulty || target.st_get_stat(STAT_TEMPORARY_WILLPOWER)
 
-	var/successes = SSroll.storyteller_roll(owner_stat, difficulty = theirpower, roller = owner, numerical = TRUE)
+	// Do we have traits to modify our difficulties?
+	if((!(owner.obscured_slots & HIDEFACE))&(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE))) // Are we visibly disfigured?
+		theirpower += 2 // Increase the difficulty by two.
+
+	if(HAS_TRAIT(owner, TRAIT_ENCHANTING_VOICE))
+		theirpower -= 2
+
+	if(HAS_TRAIT(target, TRAIT_COLDLY_LOGICAL))
+		theirpower += 1
+
+	if(HAS_TRAIT(target, TRAIT_IN_FRENZY))
+		theirpower += 2
+
+	if(!get_kindred_splat(target)) // Is our target mortal?
+		if(HAS_TRAIT(owner, TRAIT_GRAVE_SMELL)) // Are we stinky?
+			theirpower += 1
+		if((HAS_TRAIT(owner, TRAIT_GLOWING_EYES)) && (!owner.is_eyes_covered()) && (STAT_INTIMIDATION in using_stats)) // Are we intimidating a mortal with uncovered eyes?
+			theirpower -= 1
+
+	var/successes = SSroll.storyteller_roll_datum(owner, target, difficulty = theirpower, applic_stats = using_stats, numerical = TRUE)
 
 	//botch
 	if(successes < 0)
@@ -67,6 +91,12 @@
 			sorted += target
 	return sorted
 
+
+/datum/storyteller_roll/presence_awe
+	difficulty = 7
+	applicable_stats = list(STAT_CHARISMA, STAT_PERFORMANCE)
+	numerical = TRUE
+
 // AWE
 /datum/discipline_power/presence/awe
 	name = "Awe"
@@ -76,17 +106,19 @@
 	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_SPEAK
 	range = 7
 	multi_activate = FALSE
+	cancelable = TRUE
 	cooldown_length = 15 SECONDS
-	duration_length = 10 SECONDS
+	duration_length = 1 SCENES
 	vitae_cost = 1
 	var/successes = 0
 	var/list/affected_targets = list()
+	frenzy_usable = FALSE
 
 /datum/discipline_power/presence/awe/pre_activation_checks()
-	.=..()
+	. = ..()
 
 	//charisma + performance
-	successes = SSroll.storyteller_roll(owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_PERFORMANCE), difficulty = 7, roller = owner, numerical = TRUE)
+	successes = SSroll.storyteller_roll_datum(owner, roll_datum = /datum/storyteller_roll/presence_awe)
 	if(successes > 0)
 		return TRUE
 
@@ -116,7 +148,7 @@
 		var/mob/living/carbon/target = potential_targets[i]
 		apply_presence_overlay(target)
 		to_chat(target, span_yellowteamradio("You feel extremely attracted to and persuaded by [owner]'s words, no matter what they're saying!"))
-		target.apply_status_effect(STATUS_EFFECT_AWE)
+		target.apply_status_effect(STATUS_EFFECT_AWE, owner)
 		affected_targets += target
 
 	var/affected_count = length(affected_targets)
@@ -128,6 +160,7 @@
 /datum/discipline_power/presence/awe/deactivate()
 	. = ..()
 	for(var/mob/living/carbon/target in affected_targets)
+		target.remove_status_effect(STATUS_EFFECT_AWE)
 		target.remove_overlay(POWERS_LAYER)
 	affected_targets.Cut()
 
@@ -149,7 +182,7 @@
 /datum/discipline_power/presence/dread_gaze/pre_activation_checks(mob/living/target)
 
 	//charisma + intimidation, difficulty equal to the victims wits + courage
-	successes = presence_check(owner, target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), difficulty = (target.st_get_stat(STAT_WITS) + target.st_get_stat(STAT_COURAGE)))
+	successes = presence_check(owner, target, list(STAT_CHARISMA, STAT_INTIMIDATION), difficulty = (target.st_get_stat(STAT_WITS) + target.st_get_stat(STAT_COURAGE)))
 	if(successes > 0)
 		return TRUE
 
@@ -181,7 +214,7 @@
 		to_chat(owner, span_warning("Your terrifying presence sends [target] fleeing in terror!"))
 
 		//V20's 'dread gaze' section states that with 3 or more successes targets will find themselves scratching at the walls or fleeing against their will because they are so terrified.
-		GLOB.move_manager.move_away(target, owner, 10, target.cached_multiplicative_slowdown)
+		GLOB.move_manager.move_away(target, owner, 10, target.cached_multiplicative_slowdown, 2 MINUTES)
 
 /datum/discipline_power/presence/dread_gaze/deactivate(mob/living/carbon/human/target)
 	. = ..()
@@ -200,10 +233,11 @@
 	duration_length = 5 SECONDS
 	vitae_cost = 1
 	var/successes = 0
+	frenzy_usable = FALSE
 
 /datum/discipline_power/presence/entrancement/pre_activation_checks(mob/living/target)
 
-	successes = presence_check(owner, target, owner.st_get_stat(STAT_APPEARANCE) + owner.st_get_stat(STAT_EMPATHY))
+	successes = presence_check(owner, target, list(STAT_APPEARANCE, STAT_EMPATHY))
 	if(successes > 0)
 		return TRUE
 
@@ -244,6 +278,7 @@
 	vitae_cost = 1
 	var/successes = 0
 	var/mob/living/carbon/human/summon_target
+	frenzy_usable = FALSE
 
 /datum/discipline_power/presence/summon/pre_activation_checks(mob/living/target)
 	var/summon_target_name = tgui_input_text(owner, "Summon Target:", "Summon Target")
@@ -262,7 +297,7 @@
 
 	//this ability has a difficulty of 4 or 5 or something for people the summoner has met, and 8 for those they've only met briefly.
 	//i thought that was too low and the ability for the misuse of this disc caused me to raise it to 7 difficulty
-	successes = presence_check(owner, summon_target, owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_SUBTERFUGE), 7)
+	successes = presence_check(owner, summon_target, list(STAT_CHARISMA, STAT_SUBTERFUGE), 7)
 	if(successes > 0)
 		return TRUE
 
@@ -314,6 +349,7 @@
 	willpower_cost = 1
 	violates_masquerade = TRUE
 	var/list/affected_targets = list()
+	frenzy_usable = FALSE
 
 /datum/discipline_power/presence/majesty/pre_activation_checks(mob/living/target)
 	return TRUE
@@ -325,8 +361,9 @@
 		if(hearer == owner)
 			continue
 
+		var/roll_difficulty = owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION)
 		//'the victim must make a courage roll with a difficulty equal to the caster's charisma + intimidation to a maximum of 10'
-		var/hearer_successes = SSroll.storyteller_roll(hearer.st_get_stat(STAT_COURAGE), difficulty = owner.st_get_stat(STAT_CHARISMA) + owner.st_get_stat(STAT_INTIMIDATION), roller = hearer, numerical = TRUE)
+		var/hearer_successes = SSroll.storyteller_roll_datum(hearer, owner, difficulty = roll_difficulty, applic_stats = list(STAT_COURAGE), numerical = TRUE)
 		hearer_successes = max(0, hearer_successes)
 
 		apply_presence_overlay(hearer, 3 MINUTES)

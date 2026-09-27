@@ -1,3 +1,8 @@
+/datum/storyteller_roll/comforting_darkness
+	difficulty = 8
+	applicable_stats = list(STAT_STAMINA, STAT_OCCULT)
+	numerical = TRUE
+
 /obj/ritual_rune/abyss/comforting_darkness
 	name = "comforting darkness"
 	desc = "Use the power of the abyss to mend the wounds of yourself and others."
@@ -12,7 +17,6 @@
 	var/list/heal_targets = list()
 	var/turf/rune_location = get_turf(src)
 	var/mob/living/carbon/human/invoker = last_activator
-	var/dice = (invoker.st_get_stat(STAT_STAMINA) + invoker.st_get_stat(STAT_OCCULT))
 	var/ckey = invoker.ckey
 
 	// Can't use the ritual again until the debt is paid
@@ -34,7 +38,7 @@
 	if(ckey in roll_cache)
 		roll = roll_cache[ckey]
 	else
-		roll = SSroll.storyteller_roll(dice, 8, invoker, numerical = TRUE)
+		roll = SSroll.storyteller_roll_datum(invoker, roll_datum = /datum/storyteller_roll/comforting_darkness)
 		roll_cache[ckey] = roll
 
 	if(roll >= 1)

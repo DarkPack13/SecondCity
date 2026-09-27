@@ -1,10 +1,9 @@
-/* // DARKPACK EDIT REMOVAL START - Loadout categories
 /// Inhand items (Moves overrided items to backpack)
 /datum/loadout_category/inhands
 	category_name = "Inhand"
 	category_ui_icon = FA_ICON_BRIEFCASE
 	type_to_generate = /datum/loadout_item/inhand
-	tab_order = /datum/loadout_category/head::tab_order + 4
+	tab_order = /datum/loadout_category/head::tab_order + 11 // DARKPACK EDIT CHANGE
 
 /datum/loadout_item/inhand
 	abstract_type = /datum/loadout_item/inhand
@@ -29,7 +28,8 @@
 	name = "Briefcase (Leather)"
 	item_path = /obj/item/storage/briefcase
 
+/* // DARKPACK EDIT REMOVAL
 /datum/loadout_item/inhand/briefcase_secure
 	name = "Briefcase (Secure)"
 	item_path = /obj/item/storage/briefcase/secure
-*/ // DARKPACK EDIT REMOVAL END - Loadout categories
+*/

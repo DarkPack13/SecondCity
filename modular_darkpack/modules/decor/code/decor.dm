@@ -33,101 +33,50 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
-/obj/structure/lamppost
+/obj/machinery/light/floor/lamppost
 	name = "lamppost"
 	desc = "Gives some light to the streets."
 	icon = 'modular_darkpack/modules/decor/icons/lamppost.dmi'
-	base_icon_state = "base"
-	layer = SPACEVINE_LAYER // Cant even with flav bro - Fallcon
+	icon_state = "base"
+	bulb_colour = "#ffde9b"
+	allow_break_on_init = FALSE
+	plane = GAME_PLANE
 	pixel_w = -32
+	layer = SPACEVINE_LAYER
 	anchored = TRUE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
-	var/number_of_lamps
-	var/list/my_lights = list()
+	flourescent = FALSE // I dont think they are.
 
-/obj/structure/lamppost/Initialize(mapload)
+/obj/machinery/light/floor/lamppost/Initialize(mapload)
 	. = ..()
 	var/area/vtm/my_area = get_area(src)
 	if(check_holidays(FESTIVE_SEASON))
 		if(istype(my_area) && my_area.outdoors)
 			icon_state = "[initial(icon_state)]-snow"
-	RegisterSignal(my_area, COMSIG_AREA_POWER_CHANGE, PROC_REF(on_power_change))
-	// DARKPACK TODO - fuseboxes and areas aren't meaningfully connected to each other, and thusly aren't meaningfully connected to lights/devices that may need poer.
-	// TLDR we need to basically re-evaluate how we approach power... the current system is flavcode spaghetti shit.
-	if(my_area.powered(AREA_USAGE_LIGHT))
-		create_lights()
+	update_appearance()
 
-/obj/structure/lamppost/proc/on_power_change(area/A)
-	SIGNAL_HANDLER
+// note - change this when we get more robust lamppost sprites - for now we only have one for each lamppost type
+/obj/machinery/light/floor/lamppost/update_icon_state()
+	.=..()
+	icon_state = initial(icon_state)
 
-
-	if(A.power_light)
-		create_lights()
-	else
-		QDEL_LIST(my_lights)
-
-/obj/structure/lamppost/proc/create_lights()
-	QDEL_LIST(my_lights)
-	switch(number_of_lamps)
-		if(1)
-			new_light(get_step(loc, dir))
-		if(2)
-			new_light(get_step(loc, dir))
-			new_light(get_step(loc, turn(dir, 180)))
-		if(3)
-			new_light(get_step(loc, dir))
-			new_light(get_step(loc, turn(dir, -90)))
-			new_light(get_step(loc, turn(dir, 90)))
-		if(4)
-			new_light(get_step(loc, NORTH))
-			new_light(get_step(loc, SOUTH))
-			new_light(get_step(loc, EAST))
-			new_light(get_step(loc, WEST))
-		else
-			new_light(loc)
-
-/obj/structure/lamppost/proc/new_light(location)
-	my_lights += new /obj/effect/decal/lamplight(location)
-
-/obj/structure/lamppost/Destroy(force)
-	UnregisterSignal(get_area(src), COMSIG_AREA_POWER_CHANGE)
-	QDEL_LIST(my_lights)
-	. = ..()
-
-
-/obj/effect/decal/lamplight
-	alpha = 0
-
-// DARKPACK TODO - Fix lol.
-/obj/effect/decal/lamplight/NeverShouldHaveComeHere(turf/here_turf)
-	return FALSE
-
-/obj/effect/decal/lamplight/Initialize(mapload)
-	. = ..()
-	set_light(4, 3, "#ffde9b")
-
-/obj/structure/lamppost/one
+/obj/machinery/light/floor/lamppost/one
 	icon_state = "one"
-	number_of_lamps = 1
 
-/obj/structure/lamppost/two
+/obj/machinery/light/floor/lamppost/two
 	icon_state = "two"
-	number_of_lamps = 2
 
-/obj/structure/lamppost/three
+/obj/machinery/light/floor/lamppost/three
 	icon_state = "three"
-	number_of_lamps = 3
 
-/obj/structure/lamppost/four
+/obj/machinery/light/floor/lamppost/four
 	icon_state = "four"
-	number_of_lamps = 4
 
-/obj/structure/lamppost/sidewalk
+/obj/machinery/light/floor/lamppost/sidewalk
 	icon_state = "civ"
-	number_of_lamps = 5
 
-/obj/structure/lamppost/sidewalk/chinese
+/obj/machinery/light/floor/lamppost/sidewalk/chinese
 	icon_state = "chinese"
 
 /obj/structure/trafficlight
@@ -192,7 +141,7 @@
 
 /obj/structure/trashbag/Initialize(mapload)
 	. = ..()
-	icon_state = "garbage[rand(7, 9)]"
+	icon_state = "garbage[rand(3, 6)]"
 
 /obj/structure/trashbag/Destroy()
 	new /obj/effect/spawner/random/trash/garbage(loc)
@@ -239,12 +188,25 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
+
 /obj/structure/vampipe
 	name = "pipes"
 	icon = 'modular_darkpack/modules/decor/icons/pipes.dmi'
 	icon_state = "piping1"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
+	var/datum/looping_sound/slow_drip/looping_drips
+	var/drip_chance = 1
+
+/obj/structure/vampipe/Initialize(mapload)
+	. = ..()
+	if(prob(drip_chance))
+		looping_drips = new(src, TRUE)
+
+/obj/structure/vampipe/Destroy(force)
+	. = ..()
+	QDEL_NULL(looping_drips)
+
 
 /obj/structure/vamproofwall
 	name = "wall"
@@ -331,19 +293,51 @@
 
 /obj/structure/barrels
 	name = "barrel"
-	desc = "Storage some liquids."
+	desc = "Store some liquids."
 	icon = 'modular_darkpack/modules/decor/icons/barrels.dmi'
 	icon_state = "barrel1"
+	base_icon_state = "barrel"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
+	var/variants = 12
 
 /obj/structure/barrels/rand
 	icon_state = "barrel2"
 
 /obj/structure/barrels/rand/Initialize(mapload)
 	. = ..()
-	icon_state = "barrel[rand(1, 12)]"
+	icon_state = "[base_icon_state][rand(1, variants)]"
+
+/obj/structure/barrels/plural
+	name = "barrels"
+	desc = "Store some liquids."
+	icon = 'modular_darkpack/modules/decor/icons/barrels.dmi'
+	icon_state = "barrels1"
+	base_icon_state = "barrels"
+	layer = ABOVE_ALL_MOB_LAYER
+	anchored = TRUE
+	density = TRUE
+
+/obj/structure/barrels/rand/plural
+	icon_state = "barrels2"
+	base_icon_state = "barrels"
+	variants = 18
+
+/obj/structure/barrels/rusty
+	name = "barrels"
+	desc = "Used to store some liquids."
+	icon = 'modular_darkpack/modules/decor/icons/barrels.dmi'
+	icon_state = "rustybarrels1"
+	base_icon_state = "rustybarrels"
+	layer = ABOVE_ALL_MOB_LAYER
+	anchored = TRUE
+	density = TRUE
+
+/obj/structure/barrels/rand/rusty
+	icon_state = "rustybarrels2"
+	base_icon_state = "rustybarrels"
+	variants = 6
 
 /obj/structure/bricks
 	name = "bricks"
@@ -353,6 +347,43 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
+
+/obj/structure/tire
+	name = "tire"
+	desc = "It's a tire."
+	icon = 'modular_darkpack/modules/decor/icons/alleyway.dmi'
+	icon_state = "tire"
+	anchored = TRUE
+	density = FALSE
+
+/obj/structure/tire/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/elevation, pixel_shift = 14)
+
+/obj/structure/tire/big
+	icon_state = "bigtire"
+	density = TRUE
+
+/obj/structure/tire/big/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
+/obj/structure/pallets
+	name = "pallets"
+	desc = "Great for burning and blocking the player in cheap 2005 FPS games."
+	icon = 'modular_darkpack/modules/decor/icons/alleyway_32x48.dmi'
+	icon_state = "pallets1"
+	layer = ABOVE_ALL_MOB_LAYER
+	anchored = TRUE
+	density = TRUE
+
+/obj/structure/pallets/rand
+	icon_state = "pallets2"
+
+/obj/structure/pallets/rand/Initialize(mapload)
+	. = ..()
+	if(icon_state == src::icon_state)
+		icon_state = "pallets[rand(1, 2)]"
 
 /obj/effect/decal/pallet
 	name = "pallet"
@@ -579,8 +610,7 @@
 
 	var/list/myriad_targets = list()
 	for(var/mob/living/target in loc)
-		if(!IS_DEAD_OR_INCAP(target))
-			myriad_targets += target
+		myriad_targets += target
 
 	if(length(myriad_targets) < 20)
 		visible_message(span_warning("The markings pulse with a small flash of red light, then fall dark."))
@@ -704,9 +734,22 @@
 
 /obj/structure/fluff/tv
 	name = "\improper TV"
-	desc = "A slightly battered looking TV. Various infomercials play on a loop, accompanied by a jaunty tune."
+	desc = "A slightly battered looking TV. It's off"
 	icon = 'modular_darkpack/modules/decor/icons/television.dmi'
+	icon_state = "tv_off"
+	density = TRUE
+
+/obj/structure/fluff/tv/news
+	desc = "A slightly battered looking TV. Looks like you're not on the news... this time."
 	icon_state = "tv_news"
+
+/obj/structure/fluff/tv/nature
+	desc = "A slightly battered looking TV. A documentary about a rabbit named 'Lepix'."
+	icon_state = "tv_nature"
+
+/obj/structure/fluff/tv/analog
+	desc = "A slightly battered looking TV. It might be broken."
+	icon_state = "tv_analog"
 
 /obj/structure/fluff/tv/order
 	name = "order screen"

@@ -1,6 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - balance: "Reworks melee to roll damage based off two rolls (to parody the TTRPG and brawl)"
-  - balance: "Protean claws use brawl"
-  - refactor: "Removes snowflake protean claws damage buff in favor of generic melee code"

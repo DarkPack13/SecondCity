@@ -8,6 +8,7 @@
 	var/list/rituals = list()
 	var/rune_type //ritual_rune/abyss, ritual_rune/thaumaturgy, etc
 	var/static/list/ritual_cache = list()
+	var/discipline_type // set in subtypes, such as arcane tome having discipline_type = /datum/discipline/thaumaturgy
 
 /obj/item/ritual_tome/Initialize(mapload)
 	. = ..()
@@ -32,17 +33,20 @@
 		if(reader.st_get_stat(STAT_OCCULT) < 3)
 			to_chat(reader, span_cult("A strange book that looks like it belongs in a dusty Library or a garage sale. You find yourself not caring, or understanding, too much about it."))
 			return
-
 	display_rituals(reader)
 
-/obj/item/ritual_tome/proc/display_rituals(mob/user)
-	for(var/obj/ritual_rune/R in rituals)
-		var/requirements = get_ritual_requirements(R)
-		var/level = get_ritual_level(R)
-		var/ritual_name = R.ritual_name
-		var/ritual_desc = R.desc
+// code/_HELPERS/_lists.dm. used in sort_list to sort a list by ritual level
+/proc/compare_ritual_levels_ascend(obj/ritual_rune/A, obj/ritual_rune/B)
+	return A.level - B.level
 
-		to_chat(user, span_cult("[level] <b>[ritual_name]</b> - [ritual_desc][requirements ? " Requirements: [requirements]." : ""]"))
+/obj/item/ritual_tome/proc/display_rituals(mob/living/user)
+	var/list/sorted_rituals = sort_list(rituals, GLOBAL_PROC_REF(compare_ritual_levels_ascend))
+	var/user_level = discipline_type ? (user.get_discipline_dots(discipline_type) || user.st_get_stat(STAT_OCCULT)) : user.st_get_stat(STAT_OCCULT)
+	for(var/obj/ritual_rune/R in sorted_rituals)
+		if(R.level > user_level)
+			continue
+		var/requirements = get_ritual_requirements(R)
+		to_chat(user, span_cult("[get_ritual_level(R)] <b>[R.ritual_name]</b> - [R.desc][requirements ? " Requirements: [requirements]." : ""]"))
 
 /obj/item/ritual_tome/proc/get_ritual_requirements(obj/ritual_rune/rune)
 	if(!islist(rune.sacrifices) || !length(rune.sacrifices))

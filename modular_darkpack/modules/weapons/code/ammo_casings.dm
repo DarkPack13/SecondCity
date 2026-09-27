@@ -105,8 +105,8 @@
 	desc = "A 4.6mm bullet casing."
 	caliber = CALIBER_46HK
 	projectile_type = /obj/projectile/bullet/darkpack/vamp46mm
-	icon_state = "556" //placeholder sprite
-	base_icon_state = "556"//placeholder sprite
+	icon_state = "46"
+	base_icon_state = "46"
 
 /obj/item/ammo_casing/vampire/c556mm/incendiary
 	projectile_type = /obj/projectile/bullet/darkpack/vamp556mm/incendiary
@@ -149,7 +149,7 @@
 	name = "12g dragon's breath shell casing"
 	desc = "An incendiary 12g shell casing."
 	projectile_type = /obj/projectile/bullet/darkpack/dragonsbreath
-	pellets = 8
+	pellets = 6		//Decresed due to damage output + firestacks
 	variance = 25
 	icon_state = "12d"
 	base_icon_state = "12d"
@@ -159,7 +159,7 @@
 	name = "bolt"
 	desc = "Welcome to the Middle Ages!"
 	projectile_type = /obj/projectile/bullet/crossbow_bolt
-	caliber = CALIBER_FOAM
+	caliber = CALIBER_CROSSBOWBOLT
 	icon_state = "arrow"
 	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')

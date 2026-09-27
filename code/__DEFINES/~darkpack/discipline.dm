@@ -47,3 +47,28 @@
 #define POWER_TYPE_DISCIPLINE "discipline"
 ///Power is a Chi Art of the Kindred of the East game line
 #define POWER_TYPE_CHI_ART "chi_art"
+
+// Defines for Discipline keybindings
+/// How many keybinds you get for selecting Disciplines, should be the maximum amount of Disciplines players can normally have.
+/// NOTE: If you set this to zero with the keybinds enabled, players can only use them for Bloodheal.
+#define DISCIPLINE_SELECTION_KEYBINDS_AMOUNT 5
+/// How many keybinds you get for activating Discipline powers, should be the maximum level players can normally have in Disciplines
+#define DISCIPLINE_ACTIVATION_KEYBINDS_AMOUNT 5
+/// Category for the keybinds where you select a Discipline and then activate its powers
+#define CATEGORY_DISCIPLINES "DISCIPLINES"
+/// Category for the keybinds where you activate individual powers
+#define CATEGORY_DISCIPLINE_POWERS "DISCIPLINE POWERS"
+
+#define ABYSS_TENTACLE_MODE_AGGRESSIVE "Aggressive"
+#define ABYSS_TENTACLE_MODE_CONTROL "Control"
+#define ABYSS_TENTACLE_MODE_PASSIVE "Passive"
+
+// Defines for Discipline budgets
+// Fledgling - immortal age 0-10
+// Neonate - immortal age 11-100
+// Ancillae - immortal age 101-200
+// Elder - immortal age 201+
+#define DISCIPLINE_BUDGET_FLEDGLING 5
+#define DISCIPLINE_BUDGET_NEONATE 10
+#define DISCIPLINE_BUDGET_ANCILLAE 15
+#define DISCIPLINE_BUDGET_ELDER 18

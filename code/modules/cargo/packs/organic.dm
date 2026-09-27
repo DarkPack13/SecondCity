@@ -17,6 +17,7 @@
 	crate_name = "beekeeper suits"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
+/* // DARKPACK EDIT REMOVAL - (Removing Monkey Cubes and Bees)
 /datum/supply_pack/organic/hydroponics/beekeeping_fullkit
 	name = "Beekeeping Starter Crate"
 	desc = "BEES BEES BEES. Contains three honey frames, a beekeeper suit and helmet, \
@@ -31,6 +32,7 @@
 				)
 	crate_name = "beekeeping starter crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
+*/
 
 /datum/supply_pack/organic/randomized
 	test_ignored = TRUE
@@ -66,7 +68,7 @@
 	contains = list(
 		/obj/item/food/grown/citrus/lime,
 		/obj/item/food/grown/citrus/orange,
-		/obj/item/food/grown/watermelon,
+		/obj/item/food/grown/melonlike/watermelon,
 		/obj/item/food/grown/apple,
 		/obj/item/food/grown/berries,
 		/obj/item/food/grown/citrus/lemon,
@@ -81,7 +83,7 @@
 		/obj/item/food/grown/corn,
 		/obj/item/food/grown/tomato,
 		/obj/item/food/grown/potato,
-		/obj/item/food/grown/carrot,
+		/obj/item/food/grown/carrotlike/carrot,
 		/obj/item/food/grown/mushroom/chanterelle,
 		/obj/item/food/grown/onion,
 		/obj/item/food/grown/pumpkin,
@@ -118,7 +120,7 @@
 	desc = "Get things cooking with this crate full of useful ingredients! \
 		Contains a dozen eggs, three bananas, and some flour, rice, milk, \
 		soymilk, salt, pepper, enzyme, sugar, and monkeymeat."
-	cost = CARGO_CRATE_VALUE * 2
+	cost = CARGO_CRATE_VALUE * 3 // DARKPACK EDIT CHANGE - Unit test failure? - Original: 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/reagent_containers/condiment/flour,
 					/obj/item/reagent_containers/condiment/rice,
 					/obj/item/reagent_containers/condiment/milk,
@@ -399,7 +401,7 @@
 	Contains a full barrel of Nanotrasen brewed, low-grade alcoholic beverage, \
 	perfect for getting loose after a hard day of not dying."
 	cost = CARGO_CRATE_VALUE * 6.25
-	contains = list(/obj/structure/reagent_dispensers/beerkeg)
+	contains = list(/obj/structure/reagent_dispensers/keg/beer)
 	crate_name = "beer keg crate"
 	crate_type = /obj/structure/closet/crate/wooden
 
@@ -409,7 +411,7 @@
 	A single bite will transport you back to the taste of yesterday's prison rations. \
 	Contains a serving dish filled with Nutraslop."
 	cost = CARGO_CRATE_VALUE * 4
-	contains = list(/obj/structure/reagent_dispensers/servingdish)
+	contains = list(/obj/structure/reagent_dispensers/servingdish/unanchored)
 	crate_name = "nutraslop serving dish crate"
 
 
