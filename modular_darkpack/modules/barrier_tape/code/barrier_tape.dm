@@ -4,6 +4,7 @@
 	icon_state = "tape"
 	abstract_type = /obj/item/barrier_tape
 	w_class = WEIGHT_CLASS_SMALL
+	custom_price = 15
 	var/turf/start
 	var/turf/end
 	var/tape_type = /obj/structure/barrier_tape
@@ -12,48 +13,43 @@
 /obj/item/barrier_tape/update_overlays()
 	. = ..()
 	if(ismob(loc))
-		var/image/overlay = image(icon = src.icon)
-		overlay.appearance_flags = RESET_COLOR
-		if(!placing)
-			overlay.icon_state = "start"
-		else
-			overlay.icon_state = "stop"
-		. += overlay
+		. += mutable_appearance(icon, placing ? "stop" : "start", appearance_flags = RESET_COLOR|KEEP_APART)
 
 
 /obj/item/barrier_tape/dropped(mob/user, silent)
 	. = ..()
-	update_icon(UPDATE_ICON)
+	update_appearance(UPDATE_ICON)
 
 /obj/item/barrier_tape/pickup(mob/user)
 	. = ..()
-	update_icon(UPDATE_ICON)
+	update_appearance(UPDATE_ICON)
 
 /obj/item/barrier_tape/attack_hand(mob/user, list/modifiers)
 	. = ..()
-	update_icon(UPDATE_ICON)
+	update_appearance(UPDATE_ICON)
 
 /obj/item/barrier_tape/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(istype(interacting_with, /obj/structure/vampdoor))
 		var/turf/T = get_turf(interacting_with)
 		var/obj/structure/barrier_tape/P = new tape_type(T)
-		update_icon(UPDATE_ICON)
+		update_appearance(UPDATE_ICON)
 		P.layer = ABOVE_ALL_MOB_LAYER + 0.1
 		to_chat(user, span_notice("You finish placing [src]."))
 		return ITEM_INTERACT_SUCCESS
 
 /obj/item/barrier_tape/attack_self(mob/user, modifiers)
-	if(!do_after(user, 1 SECONDS, src))
+	. = ..()
+	if(!do_after(user, 3 SECONDS, src))
 		return FALSE
 
 	if(!placing)
 		start = get_turf(src)
 		to_chat(user, span_notice("You place the first end of [src]."))
 		placing = TRUE
-		update_icon(UPDATE_ICON)
+		update_appearance(UPDATE_ICON)
 	else
 		placing = FALSE
-		update_icon(UPDATE_ICON)
+		update_appearance(UPDATE_ICON)
 		end = get_turf(src)
 		if(start.y != end.y && start.x != end.x || start.z != end.z)
 			to_chat(user, span_notice("[src] can only be laid horizontally or vertically."))
@@ -66,11 +62,13 @@
 			if(d)
 				d = d/abs(d)
 			end = get_turf(locate(end.x,end.y+d,end.z))
+			dir = NORTH + SOUTH
 		else
 			var/d = end.x-start.x
 			if(d)
 				d = d/abs(d)
 			end = get_turf(locate(end.x+d,end.y,end.z))
+			dir = EAST + WEST
 
 		var/can_place = TRUE
 		while(current_turf != end && can_place)
@@ -96,7 +94,7 @@
 			if(!existing_tape)
 				var/obj/structure/barrier_tape/P = new tape_type(current_turf)
 				P.tape_dir = dir
-				update_icon(UPDATE_ICON)
+				P.update_appearance(UPDATE_ICON)
 			current_turf = get_step_towards(current_turf,end)
 		to_chat(user, span_notice("You finish placing [src]."))
 		return TRUE
@@ -120,6 +118,7 @@
 /obj/structure/barrier_tape/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/contextual_screentip_bare_hands, lmb_text = "Lift", lmb_text_combat_mode = "Tear")
+	update_appearance()
 
 /obj/structure/barrier_tape/CanAllowThrough(atom/movable/mover, border_dir)
 	. = ..()
@@ -168,11 +167,14 @@
 
 
 /obj/structure/barrier_tape/attack_hand(mob/living/user, list/modifiers)
+	. = ..()
 	if(user.combat_mode)
 		user.visible_message(span_notice("[user] tears down [src]!"))
 		playsound(src, 'sound/items/poster/poster_ripped.ogg', 100, TRUE)
 		atom_destruction(MELEE)
 	else
+		if(lifted)
+			return
 		user.visible_message(span_notice("[user] lifts [src], allowing passage."))
 		for(var/obj/structure/barrier_tape/connected_tape in get_connected_tape())
 			connected_tape.lift_tape()
@@ -196,7 +198,7 @@
 /obj/structure/barrier_tape/proc/crumple()
 	if(!crumpled)
 		crumpled = TRUE
-		update_icon(UPDATE_ICON)
+		update_appearance(UPDATE_ICON)
 		name = "crumpled [name]"
 
 // Returns a list of all tape objects connected to src, including itself.

@@ -4,6 +4,7 @@
 	tape_type = /obj/structure/barrier_tape/police
 	color = COLOR_YELLOW
 
+
 /obj/structure/barrier_tape/police
 	name = "police tape"
 	desc = "A length of police tape. Do not cross."
