@@ -54,6 +54,8 @@
 		if((HAS_TRAIT(owner, TRAIT_GLOWING_EYES)) && (!owner.is_eyes_covered()) && (STAT_INTIMIDATION in using_stats)) // Are we intimidating a mortal with uncovered eyes?
 			theirpower -= 1
 
+	theirpower = clamp(theirpower, 0, 10)
+
 	var/successes = SSroll.storyteller_roll_datum(owner, target, difficulty = theirpower, applic_stats = using_stats, numerical = TRUE)
 
 	//botch

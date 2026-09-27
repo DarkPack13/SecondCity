@@ -157,6 +157,8 @@
 	if(target.conditioner?.resolve())
 		theirpower += 3
 
+	theirpower = clamp(theirpower, 0, 10)
+
 	// This var needs to go after everything that changes theirpower.
 	var/mypower = SSroll.storyteller_roll_datum(owner, target, difficulty = theirpower, applic_stats = owner_stat, numerical = TRUE)
 
