@@ -6,15 +6,18 @@
 	w_class = WEIGHT_CLASS_SMALL
 	custom_price = 15
 	var/turf/start
-	var/turf/end
 	var/tape_type = /obj/structure/barrier_tape
 	var/placing = FALSE
+	var/datum/beam/tether
 
 /obj/item/barrier_tape/update_overlays()
 	. = ..()
 	if(ismob(loc))
 		. += mutable_appearance(icon, placing ? "stop" : "start", appearance_flags = RESET_COLOR|KEEP_APART)
 
+/obj/item/barrier_tape/Destroy(force)
+	. = ..()
+	QDEL_NULL(tether)
 
 /obj/item/barrier_tape/dropped(mob/user, silent)
 	. = ..()
@@ -39,18 +42,18 @@
 
 /obj/item/barrier_tape/attack_self(mob/user, modifiers)
 	. = ..()
-	if(!do_after(user, 3 SECONDS, src))
-		return FALSE
 
 	if(!placing)
+		if(!do_after(user, 3 SECONDS, src))
+			return FALSE
+
 		start = get_turf(src)
 		to_chat(user, span_notice("You place the first end of [src]."))
 		placing = TRUE
 		update_appearance(UPDATE_ICON)
+		tether = start.Beam(user, "tape_v_0", 'modular_darkpack/modules/barrier_tape/icons/barriertape.dmi', beam_color = color, layer = BELOW_MOB_LAYER)
 	else
-		placing = FALSE
-		update_appearance(UPDATE_ICON)
-		end = get_turf(src)
+		var/turf/end = get_turf(src)
 		if(start.y != end.y && start.x != end.x || start.z != end.z)
 			to_chat(user, span_notice("[src] can only be laid horizontally or vertically."))
 			return
@@ -85,6 +88,9 @@
 			to_chat(user, span_notice("You can't run \the [src] through that!"))
 			return
 
+		if(!do_after(user, 3 SECONDS, src))
+			return FALSE
+
 		current_turf = start
 		var/existing_tape = FALSE
 		while(current_turf != end)
@@ -95,8 +101,14 @@
 				var/obj/structure/barrier_tape/P = new tape_type(current_turf)
 				P.tape_dir = dir
 				P.update_appearance(UPDATE_ICON)
-			current_turf = get_step_towards(current_turf,end)
+			current_turf = get_step_towards(current_turf, end)
 		to_chat(user, span_notice("You finish placing [src]."))
+
+		QDEL_NULL(tether)
+		start = null
+		placing = FALSE
+		update_appearance(UPDATE_ICON)
+
 		return TRUE
 
 
@@ -108,7 +120,10 @@
 	abstract_type = /obj/structure/barrier_tape
 	anchored = TRUE
 	density = TRUE
-	max_integrity = 20
+	max_integrity = 10
+	pass_flags_self = LETPASSTHROW
+	projectile_cover = TRUE
+	projectile_pass_rate = 90
 	var/lifted = FALSE
 	var/crumpled = FALSE
 	var/tape_dir = 0
