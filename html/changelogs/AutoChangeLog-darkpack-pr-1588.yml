@@ -1,0 +1,4 @@
+author: "breadcrombs"
+delete-after: True
+changes:
+  - bugfix: "Mytherceria can no longer get undroppable items"
