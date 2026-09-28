@@ -9,6 +9,7 @@
 	var/tape_type = /obj/structure/barrier_tape
 	var/placing = FALSE
 	var/datum/beam/tether
+	var/place_distance = 15
 
 /obj/item/barrier_tape/update_overlays()
 	. = ..()
@@ -21,7 +22,7 @@
 
 /obj/item/barrier_tape/dropped(mob/user, silent)
 	. = ..()
-	update_appearance(UPDATE_ICON)
+	cancel_place()
 
 /obj/item/barrier_tape/pickup(mob/user)
 	. = ..()
@@ -44,37 +45,48 @@
 	. = ..()
 
 	if(!placing)
-		if(!do_after(user, 3 SECONDS, src))
+		if(!do_after(user, 1 SECONDS, src))
 			return FALSE
 
 		start = get_turf(src)
 		to_chat(user, span_notice("You place the first end of [src]."))
 		placing = TRUE
 		update_appearance(UPDATE_ICON)
-		tether = start.Beam(user, "tape_v_0", 'modular_darkpack/modules/barrier_tape/icons/barriertape.dmi', beam_color = color, layer = BELOW_MOB_LAYER)
+		tether = start.Beam(
+			user,
+			"tape_v_0",
+			'modular_darkpack/modules/barrier_tape/icons/barriertape.dmi',
+			maxdistance = place_distance,
+			beam_color = color,
+			layer = BELOW_MOB_LAYER
+		)
+		RegisterSignal(tether, COMSIG_QDELETING, PROC_REF(cancel_place))
 	else
 		var/turf/end = get_turf(src)
+		if(start == end)
+			cancel_place()
+			return TRUE
+
 		if(start.y != end.y && start.x != end.x || start.z != end.z)
 			to_chat(user, span_notice("[src] can only be laid horizontally or vertically."))
 			return
 
 		var/turf/current_turf = start
-		var/dir = 0
+		var/midsection_dir = 0
+		var/creation_dir = get_dir(start, end)
 		if(start.x == end.x)
 			var/d = end.y-start.y
 			if(d)
 				d = d/abs(d)
-			end = get_turf(locate(end.x,end.y+d,end.z))
-			dir = NORTH + SOUTH
+			midsection_dir = NORTH + SOUTH
 		else
 			var/d = end.x-start.x
 			if(d)
 				d = d/abs(d)
-			end = get_turf(locate(end.x+d,end.y,end.z))
-			dir = EAST + WEST
+			midsection_dir = EAST + WEST
 
 		var/can_place = TRUE
-		while(current_turf != end && can_place)
+		while(can_place)
 			if(current_turf.density || istype(current_turf, /turf/open/space))
 				can_place = FALSE
 			else
@@ -82,6 +94,8 @@
 					if(!istype(O, /obj/structure/barrier_tape) && O.density)
 						can_place = FALSE
 						break
+			if(current_turf == end)
+				break
 			current_turf = get_step_towards(current_turf,end)
 
 		if(!can_place)
@@ -93,24 +107,39 @@
 
 		current_turf = start
 		var/existing_tape = FALSE
-		while(current_turf != end)
+		while(TRUE)
+			var/using_dir
+			if(current_turf == start)
+				using_dir = creation_dir
+			else if(current_turf == end)
+				using_dir = turn(creation_dir, 180)
+			else
+				using_dir = midsection_dir
 			for(var/obj/structure/barrier_tape/tape_on_turf in current_turf)
-				if(tape_on_turf.tape_dir == dir)
+				if(tape_on_turf.tape_dir == using_dir)
 					existing_tape = TRUE
 			if(!existing_tape)
 				var/obj/structure/barrier_tape/P = new tape_type(current_turf)
-				P.tape_dir = dir
+				P.tape_dir = using_dir
 				P.update_appearance(UPDATE_ICON)
+			if(current_turf == end)
+				break
 			current_turf = get_step_towards(current_turf, end)
 		to_chat(user, span_notice("You finish placing [src]."))
 
-		QDEL_NULL(tether)
-		start = null
-		placing = FALSE
-		update_appearance(UPDATE_ICON)
+		cancel_place()
 
 		return TRUE
 
+/obj/item/barrier_tape/proc/cancel_place()
+	if(QDELETED(tether))
+		tether = null
+	else
+		QDEL_NULL(tether)
+
+	start = null
+	placing = FALSE
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/barrier_tape
 	name = "barrier tape"
@@ -137,13 +166,18 @@
 
 /obj/structure/barrier_tape/CanAllowThrough(atom/movable/mover, border_dir)
 	. = ..()
-	if(.)
-		return .
-	if(mover.pass_flags & PASSGLASS)
+	if(density && isliving(mover)) // You Shall Not Pass!
+		var/mob/living/living_mover = mover
+		if(living_mover.body_position == STANDING_UP && living_mover.mob_size != MOB_SIZE_SMALL && !(HAS_TRAIT(living_mover, TRAIT_VENTCRAWLER_ALWAYS) || HAS_TRAIT(living_mover, TRAIT_VENTCRAWLER_NUDE)))
+			return FALSE //If you're not laying down, or a small creature, or a ventcrawler, then no pass.
 		return TRUE
-	if(lifted)
+
+/obj/structure/barrier_tape/CanAStarPass(to_dir, datum/can_pass_info/pass_info)
+	if(density && pass_info.is_living)
+		if(pass_info.can_ventcrawl && pass_info.mob_size != MOB_SIZE_SMALL)
+			return FALSE
 		return TRUE
-	return FALSE
+	return ..()
 
 /obj/structure/barrier_tape/update_icon_state()
 	. = ..()
@@ -196,8 +230,9 @@
 
 /obj/structure/barrier_tape/atom_deconstruct(disassembled)
 	. = ..()
-	var/obj/effect/decal/cleanable/plastic/trash = new(drop_location())
-	transfer_fingerprints_to(trash)
+	if(prob(50))
+		var/obj/effect/decal/cleanable/plastic/trash = new(drop_location())
+		transfer_fingerprints_to(trash)
 
 /obj/structure/barrier_tape/proc/lift_tape()
 	lifted = TRUE
@@ -231,13 +266,13 @@
 	var/list/obj/structure/barrier_tape/tapeline = list()
 	for (var/obj/structure/barrier_tape/T in get_turf(src))
 		tapeline += T
-	for(var/dir in dirs)
-		var/turf/current_turf = get_step(src, dir)
+	for(var/midsection_dir in dirs)
+		var/turf/current_turf = get_step(src, midsection_dir)
 		var/not_found = 0
 		while (!not_found)
 			not_found = 1
 			for (var/obj/structure/barrier_tape/T in current_turf)
 				tapeline += T
 				not_found = 0
-			current_turf = get_step(current_turf, dir)
+			current_turf = get_step(current_turf, midsection_dir)
 	return tapeline
