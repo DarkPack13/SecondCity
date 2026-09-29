@@ -810,14 +810,14 @@
 	masquerade_violating = FALSE
 
 /obj/item/gun/ballistic/shotgun/vampire/remington
-	name = "\improper Remington 11-87"
+	name = "remington 1187"
 	desc = "A modern gas-operated shotgun with a textured polycarbonate body... wasnt this in some movie?"
 	icon_state = "1187"
 	inhand_icon_state = "1187"
 	worn_icon_state = "1187"
 	recoil = 4 //Gas Operated mechanism reduces the recoil
 	fire_delay = 5
-	//can_suppress = TRUE
+	can_suppress = TRUE
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/remington
 	suppressed_sound = 'modular_darkpack/modules/weapons/sounds/1187_silenced.ogg'
 	fire_sound = 'modular_darkpack/modules/weapons/sounds/1187.ogg'
@@ -830,7 +830,7 @@
 	max_ammo = 4
 
 /obj/item/gun/ballistic/shotgun/vampire/remington/sawnoff
-	name = "\improper Sawn-Off Remington 11-87"
+	name = "sawn-off remington 1187"
 	desc = "A Remington 11-87 shotgun that's had the barrel extension crudely sawn off.. this is definitely illegal"
 	icon_state = "1187_sawn"
 	inhand_icon_state = "1187_sawn"
@@ -842,9 +842,9 @@
 	accepted_magazine_type = /obj/item/gun/ballistic/shotgun/vampire/remington/sawnoff
 
 
-/obj/item/gun/ballistic/shotgun/vampire/remington/shoot_live_shot(mob/living/user)
-	..()
-	rack()
+///obj/item/gun/ballistic/shotgun/vampire/remington/shoot_live_shot(mob/living/user)
+	//..()
+	//rack()
 
 //Suppressor code is currently borking during unit tests, so i'm just gonna get rid of it and see if that helps
 obj/item/suppressor/darkpack_oil
