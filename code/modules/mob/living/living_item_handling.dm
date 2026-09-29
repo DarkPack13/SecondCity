@@ -81,7 +81,7 @@
 		extra_throw_range += potential_spine.added_throw_range
 
 	// DARKPACK EDIT ADD START - Strength Based Throw Speed
-	var/strength = src.st_get_stat(STAT_STRENGTH)
+	var/strength = st_get_stat(STAT_STRENGTH)
 	power_throw += strength/5
 	// DARKPACK EDIT ADD END
 
