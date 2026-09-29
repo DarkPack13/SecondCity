@@ -40,9 +40,6 @@
 /datum/preference/choiced/fake_gender/init_possible_values()
 	return list("M", "F", "X")
 
-/datum/preference/choiced/fake_gender/create_default_value()
-	return pick(list("M", "F", "X"))
-
 /datum/preference/choiced/fake_gender/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.fake_gender = value
 	return
