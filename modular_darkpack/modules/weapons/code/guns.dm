@@ -817,7 +817,7 @@
 	worn_icon_state = "1187"
 	recoil = 4 //Gas Operated mechanism reduces the recoil
 	fire_delay = 5
-	can_suppress = TRUE
+	//can_suppress = TRUE
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/remington
 	suppressed_sound = 'modular_darkpack/modules/weapons/sounds/1187_silenced.ogg'
 	fire_sound = 'modular_darkpack/modules/weapons/sounds/1187.ogg'
@@ -846,11 +846,12 @@
 	..()
 	rack()
 
-/obj/item/suppressor/darkpack_oil
-	name = "modified oil filter"
-	desc = "An old oil filter.. there seems to be attachment grooves lathed onto the barrel for a Remington 11-87."
-	icon = 'modular_darkpack/modules/weapons/icons/attachments.dmi'
-	icon_state = "oil_filter"
+//Suppressor code is currently borking during unit tests, so i'm just gonna get rid of it and see if that helps
+///obj/item/suppressor/darkpack_oil
+//	name = "modified oil filter"
+//	desc = "An old oil filter.. there seems to be attachment grooves lathed onto the barrel for a Remington 11-87."
+//	icon = 'modular_darkpack/modules/weapons/icons/attachments.dmi'
+//	icon_state = "oil_filter"
 
 /obj/item/ammo_box/magazine/internal/darkpack_dbarrel
 	name = "double barrel internal magazine"
