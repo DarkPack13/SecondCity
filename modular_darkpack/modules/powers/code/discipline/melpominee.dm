@@ -171,7 +171,6 @@
 	var/datum/storyteller_roll/phantom_speaker/roll_datum = new()
 	if(HAS_TRAIT(owner, TRAIT_ENCHANTING_VOICE))
 		roll_datum.difficulty -= 2
-	roll_datum.difficulty = clamp(roll_datum.difficulty, 0, 10)
 	var/roll_result = roll_datum.st_roll(caster)
 
 	if(roll_result < ROLL_SUCCESS)
@@ -225,7 +224,6 @@
 	var/our_difficulty = 7
 	if(HAS_TRAIT(owner, TRAIT_ENCHANTING_VOICE))
 		our_difficulty -= 2
-	our_difficulty = clamp(our_difficulty, 0, 10)
 	var/our_power = SSroll.storyteller_roll_datum(owner, difficulty = our_difficulty, applic_stats = list(STAT_WITS, STAT_PERFORMANCE), numerical = TRUE)
 	var/emotion = tgui_input_list(owner, "What emotion do you wish to incite?", "Madrigal", GLOB.emotion_to_quality)
 
@@ -234,7 +232,6 @@
 		var/their_difficulty = 7
 		if(HAS_TRAIT(member, TRAIT_COLDLY_LOGICAL))
 			their_difficulty -= 1
-		their_difficulty = clamp(their_difficulty, 0, 10)
 		var/their_power = SSroll.storyteller_roll_datum(member, difficulty = their_difficulty, applic_stats = list(STAT_WITS, STAT_AWARENESS), numerical = TRUE)
 		if(our_power > their_power)
 			set_emotion(member, emotion)
@@ -342,14 +339,12 @@
 		var/our_difficulty = listener.st_get_stat(STAT_TEMPORARY_WILLPOWER)
 		if(HAS_TRAIT(owner, TRAIT_ENCHANTING_VOICE))
 			our_difficulty -= 2
-		our_difficulty = clamp(our_difficulty, 0, 10)
 		var/our_power = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/sirens_beckoning, 0,  difficulty = our_difficulty)
 		cumulative_our_power[listener] += our_power
 
 		var/their_difficulty = owner.st_get_stat(STAT_APPEARANCE) + owner.st_get_stat(STAT_PERFORMANCE)
 		if(HAS_TRAIT(listener, TRAIT_COLDLY_LOGICAL))
 			their_difficulty -= 1
-		their_difficulty = clamp(their_difficulty, 0, 10)
 		var/their_power = SSroll.storyteller_roll_datum(listener, owner, /datum/storyteller_roll/sirens_beckoning/victim, 0, difficulty = their_difficulty)
 		cumulative_list[listener] += their_power
 		if(our_power > their_power && should_run_effect(listener))
