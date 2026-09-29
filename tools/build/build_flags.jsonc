@@ -37,16 +37,8 @@
 				// value is the map's identifier from maps.txt, label is what
 				// appears in the build flags force map dropdown.
 				{ "value": "", "label": "default (cached next map or default map)" },
-				{ "value": "deltastation", "label": "Delta Station" },
-				{ "value": "icebox", "label": "Ice Box Station" },
-				{ "value": "metastation", "label": "MetaStation" },
-				{ "value": "tramstation", "label": "Tramstation" },
-				{ "value": "nebulastation", "label": "NebulaStation" },
-				{ "value": "kilostation", "label": "Kilostation" },
-				{ "value": "catwalkstation", "label": "Catwalk Station" },
-				{ "value": "gateway_test", "label": "Gateway Test (test)" },
-				{ "value": "multiz_debug", "label": "MultiZ Debug (test)" },
-				{ "value": "runtimestation", "label": "Runtime Station (low memory)" },
+				{ "value": "westfieldmall", "label": "Westfield Mall" },
+				{ "value": "runtimetown", "label": "Runtime Town (low memory)" },
 				{
 					"value": "runtimestation_minimal",
 					"label": "Minimal Runtime Station. Only works with minimal CentCom.",
