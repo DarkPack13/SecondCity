@@ -1,6 +1,0 @@
-author: "TheColorCyan"
-delete-after: True
-changes:
-  - rscadd: "Burning Blade ritual can now enchant 4 more weapons: rapier, sabre, knife and a longsword"
-  - qol: "You can see what you can enchant with Burning Blade by double examining it"
-  - bugfix: "Fixed rapier inhand icon being wrong"
