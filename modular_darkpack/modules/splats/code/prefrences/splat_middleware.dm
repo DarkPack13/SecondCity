@@ -17,7 +17,7 @@
 		var/datum/splat/splat_type = GLOB.splat_list[splat_id]
 
 		var/datum/splat/my_splat = dummy.add_splat(splat_type)
-		dummy.equipOntutfit(/datum/outfit, visuals_only = TRUE)
+		dummy.equipOutfit(/datum/outfit, visuals_only = TRUE)
 		my_splat.prepare_human_for_preview(dummy)
 
 		var/datum/universal_icon/dummy_icon = get_flat_uni_icon(dummy)
