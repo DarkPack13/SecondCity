@@ -200,3 +200,6 @@
   halgmor:
   - balance: The supply console is now restricted to Supply Technicians and the Dealer.
   - spellcheck: Changed the supply console's description.
+2026-09-28:
+  JohnFulpWillard:
+  - bugfix: Admins that aren't also Mentors can now use the Mentor submenu

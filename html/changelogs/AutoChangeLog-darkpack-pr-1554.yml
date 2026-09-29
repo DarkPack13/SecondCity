@@ -1,0 +1,6 @@
+author: "SELFHELL"
+delete-after: True
+changes:
+  - balance: "National Guard has gotten new equipment issued"
+  - bugfix: "SFPD SWAT has lost critical corporate backin"
+  - balance: "Local Endron Branches have freed up room in the budget for new PPE"
