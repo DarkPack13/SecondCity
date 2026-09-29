@@ -117,4 +117,4 @@ GLOBAL_LIST_INIT(music_assoc,list(
 	MUSIC_SANTAMONICA = list('modular_darkpack/modules/ambience/sounds/music/santamonica.ogg'),
 	MUSIC_SAFE = list('modular_darkpack/modules/ambience/sounds/music/volition.ogg', 'modular_darkpack/modules/ambience/sounds/music/safe_room.ogg'),
 	MUSIC_ENDRON = list ('modular_darkpack/modules/ambience/sounds/music/endron_for_the_planet.ogg'),
-	MUSIC_CAERN = list ('modular_darkpack/modules/ambbience/sounds/music/lux_umbrae.ogg')))
+	MUSIC_CAERN = list ('modular_darkpack/modules/ambience/sounds/music/lux_umbrae.ogg')))
