@@ -1,11 +1,12 @@
 /datum/data/vending_product
 	var/icon_dimension
 
-/datum/data/vending_product/New(name, path, price, amount = -1)
+/datum/data/vending_product/New(name, path, price, amount = -1, masquerade = 25)
 	src.name = name
 	src.product_path = path
 	src.price = price
 	src.amount = amount
+	src.masquerade = masquerade
 
 	var/obj/item/item = product_path
 	if(!item)
