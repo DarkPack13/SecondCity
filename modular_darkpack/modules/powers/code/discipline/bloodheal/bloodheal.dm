@@ -100,8 +100,6 @@
 		eyes = new eyes_type()
 		eyes.Insert(owner, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 	owner.cure_blind(NO_EYES)
-	if(!owner.has_quirk(/datum/quirk/item_quirk/blindness))
-		owner.cure_blind(QUIRK_TRAIT)
 	owner.cure_blind(EYE_DAMAGE)
 	if(!owner.has_quirk(/datum/quirk/item_quirk/nearsighted))
 		owner.cure_nearsighted(QUIRK_TRAIT)
