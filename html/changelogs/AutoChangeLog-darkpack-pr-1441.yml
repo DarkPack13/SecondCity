@@ -1,4 +1,0 @@
-author: "chazzyjazzy"
-delete-after: True
-changes:
-  - refactor: "removes violation_observer component and prox monitor, bringing it to /atom/movable"
