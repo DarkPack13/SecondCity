@@ -188,7 +188,7 @@
 					COOLDOWN_START(src, passive_healing_cd, 1 TURNS)	//Normal delay, you just don't heal this tick.
 					return
 				if(ROLL_BOTCH)
-					to_chat(owner, span_danger("You are too physically exerted for your body to heal itself."))
+					to_chat(owner, span_danger("You are too physically exerted for your body to heal itself! (Botched combat healing roll, 3 minute cooldown)"))
 					COOLDOWN_START(src, passive_healing_cd, 1 SCENES)	// Basically a 3 minute cooldown rather than the book's stated 'had a chance to rest'.
 					return
 
