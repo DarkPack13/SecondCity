@@ -94,7 +94,7 @@
 	toggle_masquerade_sensitivity(TRUE)
 	return INITIALIZE_HINT_LATELOAD
 
-/mob/living/carbon/human/npc/LateInitialize(mapload)
+/mob/living/carbon/human/npc/LateInitialize()
 	if (role_weapons_chances.Find(type))
 		for(var/weapon in role_weapons_chances[type])
 			if(prob(role_weapons_chances[type][weapon]))
@@ -270,3 +270,9 @@
 
 /mob/living/carbon/human/npc/proc/ghoul_player_controlled(mob/owner)
 	message_admins("[key_name_admin(src)] has became a ghoul by [key_name_admin(owner)].")
+
+//Blood is handled by handle_blood, let's let organs decay, but nothing while they are alive.
+/mob/living/carbon/human/npc/handle_organs(seconds_per_tick)
+	if(stat != DEAD)
+		return
+	return ..()
