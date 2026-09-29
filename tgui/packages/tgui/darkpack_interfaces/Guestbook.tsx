@@ -1,9 +1,9 @@
 // THIS IS A DARKPACK UI FILE
 
-import { useBackend } from '../backend';
-import { Stack, Button, Input, Section, Box } from 'tgui-core/components';
-import { Window } from '../layouts';
 import { useState } from 'react';
+import { Box, Button, Input, Section, Stack } from 'tgui-core/components';
+import { useBackend } from '../backend';
+import { Window } from '../layouts';
 
 type Info = {
   names: NameData[];
@@ -18,11 +18,13 @@ export const Guestbook = (props, context) => {
   const { act, data } = useBackend<Info>();
   const { names = [] } = data;
 
-  const [lastNameBeforeEdit, setLastNameBeforeEdit] = useState<string | null>('lastNameBeforeEdit');
+  const [lastNameBeforeEdit, setLastNameBeforeEdit] = useState<string | null>(
+    'lastNameBeforeEdit',
+  );
 
   return (
     <Window title="Guestbook" width={400} height={500}>
-      <Window.Content>
+      <Window.Content scrollable>
         {(!names.length && <Section>{'No known names!'}</Section>) || (
           <Stack vertical fill scrollable>
             {names.map((name) => (

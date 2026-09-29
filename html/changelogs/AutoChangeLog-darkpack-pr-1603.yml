@@ -1,0 +1,5 @@
+author: "breadcrombs"
+delete-after: True
+changes:
+  - rscadd: "High strength increases throwing speed"
+  - rscadd: "Each point of medicine increases surgery speed by 2%"
