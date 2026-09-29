@@ -46,7 +46,6 @@ GLOBAL_LIST_EMPTY(madness_network)
 		if (!istype(malkavian_action, /datum/action/cooldown/malk_hivemind) && !istype(malkavian_action, /datum/action/cooldown/malk_speech))
 			continue
 		malkavian_action.Remove(losing_mob)
-		return
 	GLOB.madness_network -= losing_mob
 	UnregisterSignal(losing_mob, COMSIG_MOB_SAY)
 	UnregisterSignal(losing_mob, COMSIG_MOVABLE_HEAR)
