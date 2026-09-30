@@ -270,9 +270,3 @@
 
 /mob/living/carbon/human/npc/proc/ghoul_player_controlled(mob/owner)
 	message_admins("[key_name_admin(src)] has became a ghoul by [key_name_admin(owner)].")
-
-//Blood is handled by handle_blood, let's let organs decay, but nothing while they are alive.
-/mob/living/carbon/human/npc/handle_organs(seconds_per_tick)
-	if(stat != DEAD)
-		return
-	return ..()
