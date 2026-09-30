@@ -329,7 +329,7 @@
 	target.adjust_blood_pool(-success_count)
 	var/damage_mult = 1
 	if(isnpc(target))
-		var/mob/living/carbon/human/npc/npc_source = source
+		var/mob/living/carbon/human/npc/npc_source = target
 		if(npc_source.client)
 			damage_mult = 4 // increased damage against npcs so a single success kills an mortal NPC
 	if(ismundane(target))
