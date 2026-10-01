@@ -62,6 +62,10 @@
 				var/pref_state = user.client.prefs.read_preference(/datum/preference/choiced/state_of_origin)
 				if(pref_state)
 					country_of_origin = "[pref_state], United States"
+			if(pref_country == "Canada")
+				var/pref_province = user.client.prefs.read_preference(/datum/preference/choiced/province_of_origin)
+				if(pref_province)
+					country_of_origin = "[pref_province], Canada"
 
 /obj/item/passport/examine(mob/user)
 	. = ..()

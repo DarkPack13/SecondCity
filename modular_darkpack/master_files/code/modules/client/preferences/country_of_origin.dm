@@ -57,6 +57,45 @@
 	var/country = preferences.read_preference(/datum/preference/choiced/country_of_origin)
 	return (country == "United States")
 
+/datum/preference/choiced/province_of_origin
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "province_of_origin"
+	can_randomize = FALSE
+
+/datum/preference/choiced/province_of_origin/init_possible_values()
+	return list(
+		"British Columbia", "Alberta", "Saskatchewan", "Manitoba", "Ontario", "Quebec", "New Brunswick",
+		"Nova Scotia", "Prince Edward Island", "Newfoundland and Labrador", "Yukon", "Northwest Territories",
+		"Nunvaut",
+	)
+
+/datum/preference/choiced/province_of_origin/create_default_value()
+	return "Ontario"
+
+/datum/preference/choiced/province_of_origin/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	var/static/list/province_language_map
+	if(!province_language_map)
+		province_language_map = list(
+			// french-speaking countries
+			"Quebec" = list(/datum/language/french),
+			"New Brunswick" = list(/datum/language/french),
+			"Yukon" = list(/datum/language/french),
+		)
+	var/list/languages = province_language_map[value]
+	if(!languages)
+		return
+	for(var/language_type in languages)
+		if(!target.has_language(language_type))
+			target.grant_language(language_type, SPOKEN_LANGUAGE|UNDERSTOOD_LANGUAGE, source = "country_of_origin")
+
+/datum/preference/choiced/province_of_origin/is_accessible(datum/preferences/preferences)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/country = preferences.read_preference(/datum/preference/choiced/country_of_origin)
+	return (country == "Canada")
+
 /datum/preference/choiced/country_of_origin/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	var/static/list/country_language_map
 	if(!country_language_map)
@@ -114,7 +153,6 @@
 			"Belgium" = list(/datum/language/french),
 			"Benin" = list(/datum/language/french),
 			"Burkina Faso" = list(/datum/language/french),
-			"Canada" = list(/datum/language/french),
 			"Cameroon" = list(/datum/language/french),
 			"Central African Republic" = list(/datum/language/french),
 			"Chad" = list(/datum/language/french),

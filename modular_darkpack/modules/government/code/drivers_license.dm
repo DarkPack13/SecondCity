@@ -41,6 +41,10 @@
 			var/pref_state = user.client.prefs.read_preference(/datum/preference/choiced/state_of_origin)
 			if(pref_state)
 				issuing_state = pref_state
+		if(pref_country == "Canada")
+			var/pref_province = user.client.prefs.read_preference(/datum/preference/choiced/province_of_origin)
+			if(pref_province)
+				issuing_state = pref_province
 
 /obj/item/card/drivers_license/examine(mob/user)
 	. = ..()
