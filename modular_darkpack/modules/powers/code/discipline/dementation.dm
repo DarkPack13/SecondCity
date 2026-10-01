@@ -265,26 +265,37 @@ Methuselah.”
 	if(!do_after(owner, 2 TURNS))
 		return FALSE
 
+	var/list/available_options = list("Biological Age")
+	var/datum/subsplat/vampire_clan/clan = target.get_clan()
+	if(clan)
+		available_options += list("Clan")
+	var/immortalage = target?.client?.prefs.read_preference(/datum/preference/numeric/immortal_age)
+	if(immortalage > 0)
+		available_options += list("Immortal Age")
+	var/datum/subsplat/werewolf/tribe = target.get_our_tribe()
+	if(tribe)
+		available_options += list("Tribe")
+
 	switch(chosen_option)
 		if("Secrets")
 			open_chaos_eyes_window(target)
 		if("Information")
-			switch(pick("Age", "Clan", "Tribe"))
-				if("Age")
-					var/total_age = target.chronological_age
-					var/determined_age = "but can't seem to find anything."
-					if(total_age < 100)
+			switch(pick(available_options))
+				if("Immortal Age")
+					var/determined_age = "[target] is not a year older than their body."
+					if(immortalage < 100)
 						determined_age = "[target] is less than a century old."
-					else if(total_age < 200)
+					else if(immortalage < 200)
 						determined_age = "[target] is in their second century."
 					else
-						determined_age = "[target] is an elder."
-					owner.malkavian_voices("You search [target]'s mind for information about their age... [determined_age]", range=4)
+						determined_age = "[target] bears the burden of time."
+					owner.malkavian_voices("[determined_age]", range=4)
+				if("Biological Age")
+					var/biologicalage = target.age
+					owner.malkavian_voices("The body of [target] looks to have [biologicalage] years to it.", range=4)
 				if("Clan")
-					var/datum/subsplat/vampire_clan/clan = target.get_clan()
 					owner.malkavian_voices("[target]'s bloodline is of [clan.name] descent", range=4)
 				if("Tribe")
-					var/datum/subsplat/werewolf/tribe = target.get_our_tribe()
 					owner.malkavian_voices("[target] heart belongs to the [tribe.name]", range=4)
 
 
