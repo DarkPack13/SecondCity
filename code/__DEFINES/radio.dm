@@ -99,7 +99,7 @@
 #define RADIO_TOKEN_ENDRON ":d"
 #define RADIO_COLOR_ENDRON "#ff4800"
 
-#define RADIO_CHANNEL_CORAX "Corax"
+#define RADIO_CHANNEL_CORAX "Helios"
 #define RADIO_KEY_CORAX "x"
 #define RADIO_TOKEN_CORAX ":dx"
 #define RADIO_COLOR_CORAX "#1d307c"
