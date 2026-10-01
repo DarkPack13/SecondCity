@@ -33,6 +33,7 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "state_of_origin"
 	can_randomize = FALSE
+	must_be_accessible = TRUE
 
 /datum/preference/choiced/state_of_origin/init_possible_values()
 	return list(
@@ -62,6 +63,7 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "province_of_origin"
 	can_randomize = FALSE
+	must_be_accessible = TRUE
 
 /datum/preference/choiced/province_of_origin/init_possible_values()
 	return list(
