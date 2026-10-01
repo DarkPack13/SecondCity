@@ -131,7 +131,8 @@ GLOBAL_LIST_INIT(derangement_phrases,list(
 /datum/hallucination/malk/object/start()
 	return hallucinator.malkavian_voices()
 
-/mob/living/proc/malkavian_voices()
+/// used by both malkavian derangement and dementation 3 "eyes of chaos"
+/mob/living/proc/malkavian_voices(dementationtext)
 	var/static/list/audible_hallucinations = GLOB.derangement_phrases
 	var/list/objects = list()
 
@@ -150,12 +151,14 @@ GLOBAL_LIST_INIT(derangement_phrases,list(
 		return
 
 	var/obj/speaker = pick_weight(objects)
-	var/speech = spooky_font_replace(pick(audible_hallucinations))
+	if(!dementationtext)
+		dementationtext = pick(audible_hallucinations)
+		playsound_local(src, audible_hallucinations[dementationtext], vol = 20, vary = TRUE)
+	dementationtext = spooky_font_replace(dementationtext)
 	var/language = get_random_understood_language()
-	var/message = compose_message(speaker, language, speech)
-	playsound_local(src, audible_hallucinations[speech], vol = 20, vary = TRUE)
+	var/message = compose_message(speaker, language, dementationtext)
 	if(client.prefs.read_preference(/datum/preference/toggle/see_rc_emotes))
-		create_chat_message(speaker, language, speech, spans = list("italics"))
+		create_chat_message(speaker, language, dementationtext, spans = list("italics"))
 	to_chat(src, span_cult_italic(message))
 
 	return TRUE
