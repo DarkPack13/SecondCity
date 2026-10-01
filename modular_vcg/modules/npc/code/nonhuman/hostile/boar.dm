@@ -23,10 +23,6 @@
 
 /mob/living/basic/pig/vampire/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(on_attacked))
-	AddElement(/datum/element/pet_bonus, "SKRRRREEEE")
-	AddElement(/datum/element/ai_retaliate)
-	AddElement(/datum/element/ai_flee_while_injured)
 
 	bloodquality = BLOOD_QUALITY_LOW
 	bloodpool = 4
