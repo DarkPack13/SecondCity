@@ -1,7 +1,7 @@
 /datum/data/vending_product
 	var/icon_dimension
 
-/datum/data/vending_product/New(name, path, price, amount = -1, masquerade = 25)
+/datum/data/vending_product/New(name, path, price, amount = -1, masquerade = MASQUERADE_MAX_LEVEL)
 	src.name = name
 	src.product_path = path
 	src.price = price
