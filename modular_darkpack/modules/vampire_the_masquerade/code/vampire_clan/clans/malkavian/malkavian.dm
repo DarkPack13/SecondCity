@@ -35,6 +35,8 @@ GLOBAL_LIST_EMPTY(madness_network)
 	var/datum/action/cooldown/malk_speech/malk_font = new(gaining_mob)
 	malk_font.Grant(gaining_mob)
 
+	gaining_mob.add_quirk(/datum/quirk/darkpack/derangement)
+
 	GLOB.madness_network += gaining_mob
 	RegisterSignal(gaining_mob, COMSIG_MOB_SAY, PROC_REF(handle_say))
 	RegisterSignal(gaining_mob, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hear))
@@ -46,6 +48,9 @@ GLOBAL_LIST_EMPTY(madness_network)
 		if (!istype(malkavian_action, /datum/action/cooldown/malk_hivemind) && !istype(malkavian_action, /datum/action/cooldown/malk_speech))
 			continue
 		malkavian_action.Remove(losing_mob)
+
+	losing_mob.remove_quirk(/datum/quirk/darkpack/derangement)
+
 	GLOB.madness_network -= losing_mob
 	UnregisterSignal(losing_mob, COMSIG_MOB_SAY)
 	UnregisterSignal(losing_mob, COMSIG_MOVABLE_HEAR)
