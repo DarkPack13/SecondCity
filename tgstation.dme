@@ -8443,6 +8443,7 @@
 #include "modular_vcg\modules\npc\code\nonhuman\friendly\deer.dm"
 #include "modular_vcg\modules\npc\code\nonhuman\friendly\hare.dm"
 #include "modular_vcg\modules\npc\code\nonhuman\friendly\mudcrab.dm"
+#include "modular_vcg\modules\npc\code\nonhuman\friendly\sheep.dm"
 #include "modular_vcg\modules\npc\code\nonhuman\hostile\blackbear.dm"
 #include "modular_vcg\modules\npc\code\nonhuman\hostile\boar.dm"
 #include "modular_vcg\modules\ooc_pronouns\code\ooc.dm"
