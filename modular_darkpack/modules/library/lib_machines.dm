@@ -3,5 +3,5 @@
 	var/library_type = "library"
 
 /obj/machinery/computer/libraryconsole/bookmanagement/corax
-	name = "corax book inventory management console"
+	name = "helios book inventory management console"
 	library_type = "corax"
