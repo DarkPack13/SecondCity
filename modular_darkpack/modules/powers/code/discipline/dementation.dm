@@ -242,8 +242,8 @@ Methuselah.”
 	cooldown_length = 5 TURNS
 	duration_length = 1 TURNS
 	activate_sound = null // dont play a sound
-	vitae_cost = 5
-	var/choice_options = list("Secrets", "Age")
+	vitae_cost = 1
+	var/list/choice_options = list("Secrets", "Age", "Clan",)
 	var/datum/tgui_window/eyes_of_chaos_window
 
 /datum/discipline_power/dementation/eyes_of_chaos/proc/update_choices()
@@ -278,6 +278,9 @@ Methuselah.”
 			else
 				determined_age = "[target] is an elder."
 			to_chat(owner, span_abductor("You search [target]'s mind for information about their age... [determined_age]"))
+		if("Clan")
+			var/datum/subsplat/vampire_clan/clan = target.get_clan()
+			to_chat(owner, space_abductor("[target]'s bloodline is of [clan.name] descent"))
 
 
 /datum/discipline_power/dementation/eyes_of_chaos/pre_activation_checks(mob/living/carbon/human/target)
