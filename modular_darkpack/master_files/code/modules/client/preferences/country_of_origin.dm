@@ -79,7 +79,7 @@
 	var/static/list/province_language_map
 	if(!province_language_map)
 		province_language_map = list(
-			// french-speaking countries
+			// french-speaking provinces
 			"Quebec" = list(/datum/language/french),
 			"New Brunswick" = list(/datum/language/french),
 			"Yukon" = list(/datum/language/french),
