@@ -132,11 +132,11 @@ GLOBAL_LIST_INIT(derangement_phrases,list(
 	return hallucinator.malkavian_voices()
 
 /// used by both malkavian derangement and dementation 3 "eyes of chaos"
-/mob/living/proc/malkavian_voices(dementationtext)
+/mob/living/proc/malkavian_voices(dementationtext, range=7)
 	var/static/list/audible_hallucinations = GLOB.derangement_phrases
 	var/list/objects = list()
 
-	for(var/obj/object in view(src))
+	for(var/obj/object in view(range, src))
 		if((object.invisibility > see_invisible) || !object.loc || !object.name || (object in contents))
 			continue
 		var/weight = 1

@@ -243,7 +243,7 @@ Methuselah.”
 	duration_length = 1 TURNS
 	activate_sound = null // dont play a sound
 	vitae_cost = 1
-	var/list/choice_options = list("Secrets", "Age", "Clan",)
+	var/list/choice_options = list("Secrets", "Information",)
 	var/datum/tgui_window/eyes_of_chaos_window
 
 /datum/discipline_power/dementation/eyes_of_chaos/proc/update_choices()
@@ -268,18 +268,31 @@ Methuselah.”
 	switch(chosen_option)
 		if("Secrets")
 			open_chaos_eyes_window(target)
-		if("Age")
-			var/total_age = target.chronological_age
-			var/determined_age = "but can't seem to find anything."
-			if(total_age < 100)
-				determined_age = "[target] is less than a century old."
-			else if(total_age < 200)
-				determined_age = "[target] is in their second century."
-			else
-				determined_age = "[target] is an elder."
-			to_chat(owner, span_abductor("You search [target]'s mind for information about their age... [determined_age]"))
+		if("Information")
+			switch(pick("Age", "Clan", "Tribe"))
+				if("Age")
+					var/total_age = target.chronological_age
+					var/determined_age = "but can't seem to find anything."
+					if(total_age < 100)
+						determined_age = "[target] is less than a century old."
+					else if(total_age < 200)
+						determined_age = "[target] is in their second century."
+					else
+						determined_age = "[target] is an elder."
+					owner.malkavian_voices("You search [target]'s mind for information about their age... [determined_age]", range=4)
+				if("Clan")
+					var/datum/subsplat/vampire_clan/clan = target.get_clan()
+					owner.malkavian_voices("[target]'s bloodline is of [clan.name] descent", range=4)
+				if("Tribe")
+					var/datum/subsplat/werewolf/tribe = target.get_our_tribe()
+					owner.malkavian_voices("[target] heart belongs to the [tribe.name]", range=4)
 
 
+
+// Define behaviour for "Information Hallucination Text" - Ensure it spawns in visbility, nearby, understandable, private in text and runechat and what it can spawn as //
+
+// have information text appear in nearby areas rather than in user chat, pick from a hat of X applicable information and space the text out a little so it isn't all at once. //
+// Immortal Age, Clan, Tribe, Exploitative Info, Gifts, Disciplines, Biological Age,
 /datum/discipline_power/dementation/eyes_of_chaos/pre_activation_checks(mob/living/carbon/human/target)
 	var/mypower = SSroll.storyteller_roll_datum(owner, target, difficulty = 7, applic_stats = list(STAT_PERCEPTION, STAT_OCCULT), numerical = FALSE)
 	switch(mypower)
