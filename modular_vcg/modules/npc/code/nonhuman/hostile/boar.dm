@@ -25,7 +25,7 @@
 	. = ..()
 
 	bloodquality = BLOOD_QUALITY_LOW
-	bloodpool = 4
+	bloodpool = 4 // Vampire: the Masquerade V20 editon page 388
 	maxbloodpool = 4
 
 /mob/living/basic/pig/vampire/proc/on_attacked(datum/source, atom/attacker, attack_flags)

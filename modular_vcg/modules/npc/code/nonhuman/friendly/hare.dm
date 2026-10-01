@@ -22,14 +22,13 @@
 	response_harm_simple = "kick"
 	attack_verb_continuous = "kicks"
 	attack_verb_simple = "kick"
-	butcher_results = list(/obj/item/food/meat/slab/grassfed = 1)
-	unsuitable_cold_damage = 0.7 // Cold damage is 0.5 here to account for low health on the rabbit.
-	unsuitable_heat_damage = 0.7 // Heat damage is 0.5 here to account for low health on the rabbit.
-	ai_controller = /datum/ai_controller/basic_controller/rabbit
-
 	bloodquality = BLOOD_QUALITY_LOW
-	bloodpool = 2
-	maxbloodpool = 2
+	bloodpool = 1
+	maxbloodpool = 1
+	butcher_results = list(/obj/item/food/meat/slab/grassfed = 2)
+	unsuitable_cold_damage = 0.7 // Cold damage is 0.7 here to account for low health on the large hare.
+	unsuitable_heat_damage = 0.7 // Heat damage is 0.7 here to account for low health on the large hare.
+	ai_controller = /datum/ai_controller/basic_controller/rabbit
 
 /datum/emote/hare
 	abstract_type = /datum/emote/hare

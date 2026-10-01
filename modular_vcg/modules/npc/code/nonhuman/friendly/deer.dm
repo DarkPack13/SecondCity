@@ -5,6 +5,8 @@
 	icon_state = "deer"
 	icon_living = "deer"
 	icon_dead = "deer_dead"
+	bloodpool = 3 //nerfs deer blood from being beyond 5 to 3 like in the tabletop
+	maxbloodpool = 3
 
 /mob/living/basic/deer/Initialize(mapload)
 	. = ..()

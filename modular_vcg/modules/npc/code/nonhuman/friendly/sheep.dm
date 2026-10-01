@@ -5,3 +5,6 @@
 	icon_state = "sheep"
 	icon_living = "sheep"
 	icon_dead = "sheep_dead"
+	bloodquality = BLOOD_QUALITY_LOW
+	bloodpool = 3 // Vampire: the Masquerade V20 editon page 388
+	maxbloodpool = 3
