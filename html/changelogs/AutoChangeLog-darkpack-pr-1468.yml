@@ -1,0 +1,5 @@
+author: "SELFHELL"
+delete-after: True
+changes:
+  - rscadd: "Remington Arms has had a restock in San-Francisco."
+  - rscadd: "New SFX for the 11-87 Shotgun"
