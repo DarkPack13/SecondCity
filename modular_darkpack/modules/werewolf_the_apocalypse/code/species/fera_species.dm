@@ -430,17 +430,11 @@
 	. = ..()
 	if (!.)
 		return
-
-	if (ishuman(owner))
-		var/mob/living/carbon/human/human_owner = owner
-		human_owner.physiology.armor = human_owner.physiology.armor.add_other_armor(/datum/armor/werewolf)
+	owner.add_inner_armor(/datum/armor/werewolf)
 
 /datum/status_effect/werewolf_soaking/on_remove()
 	. = ..()
-
-	if (ishuman(owner))
-		var/mob/living/carbon/human/human_owner = owner
-		human_owner.physiology.armor = human_owner.physiology.armor.subtract_other_armor(/datum/armor/werewolf)
+	owner.remove_inner_armor(/datum/armor/werewolf)
 
 // Equal to Fortitude 4; 4x15 (60) for bash, 4x10 (40) for agg on fort 4
 // If it's too weak you can tune up to Fort 5 (75 bash and 60 agg) but that felt too strong when tried w/ Garou passive regen values.
