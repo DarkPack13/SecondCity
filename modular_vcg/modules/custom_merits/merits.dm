@@ -46,7 +46,7 @@
 	name = "Armblade"
 	desc = "Through vicissitude one of your arms has been given a horrifyingly sharp bone blade that is concealed."
 	value = 5
-	icon = FA_ICON_HOUSE_USER
+	icon = FA_ICON_PERSON_RIFLE
 	allowed_splats = list(SPLAT_GHOUL)
 	included_clans = list(VAMPIRE_CLAN_TZIMISCE)
 
