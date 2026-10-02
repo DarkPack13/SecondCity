@@ -1,0 +1,4 @@
+author: "JohnFulpWillard"
+delete-after: True
+changes:
+  - image: "Changed splat icons, the pref menu should now open a little faster."
