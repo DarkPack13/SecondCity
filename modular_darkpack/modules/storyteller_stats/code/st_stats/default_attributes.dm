@@ -20,7 +20,9 @@
 
 /datum/st_stat/attribute/stamina/update_mob(mob/living/our_mob, initial)
 	our_mob.recalculate_max_health(initial)
-
+	if(ishuman(our_mob))
+		var/mob/living/carbon/human/human_owner = our_mob
+		human_owner.recalculate_max_armor(initial)
 
 /datum/st_stat/attribute/charisma
 	name = "Charisma"
