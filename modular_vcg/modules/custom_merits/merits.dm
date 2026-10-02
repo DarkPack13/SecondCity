@@ -45,7 +45,7 @@
 /datum/quirk/darkpack/ghoul_armblade
 	name = "Armblade"
 	desc = "Through vicissitude one of your arms has been given a horrifyingly sharp bone blade that is concealed."
-	value = 4
+	value = 5
 	icon = FA_ICON_HOUSE_USER
 	allowed_splats = list(SPLAT_GHOUL)
 	included_clans = list(VAMPIRE_CLAN_TZIMISCE)
