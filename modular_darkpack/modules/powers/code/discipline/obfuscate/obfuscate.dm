@@ -218,7 +218,7 @@
 	to_chat(owner, span_info("You get a good look at your target and memorize their features."))
 	LAZYSET(cached_targets, target.name, list("image" = target_image, "target" = target))
 
-/datum/discipline_power/obfuscate/mask_of_a_thousand_faces/post_gain()
+/datum/discipline_power/obfuscate/mask_of_a_thousand_faces/post_gain(post_gain_applied)
 	. = ..()
 	RegisterSignal(owner, COMSIG_MOB_EXAMINATE, PROC_REF(store_target_in_list))
 
