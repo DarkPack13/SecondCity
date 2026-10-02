@@ -63,6 +63,11 @@
 			client.mob.do_verb(entry)
 			return TRUE
 		// DARKPACK EDIT ADD END
+		// DARKPACK EDIT ADD START - MENTORS
+		if(MENTOR_CHANNEL)
+			client.cmd_mentor_say(entry)
+			return TRUE
+		// DARKPACK EDIT ADD END
 	return FALSE
 
 /**
