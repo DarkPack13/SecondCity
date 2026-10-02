@@ -142,8 +142,8 @@
 				student.client.prefs.discipline_levels["[discipline_type]"] = 0
 				student.client.prefs.save_character()
 
-	owner.log_message("taught [chosen] to [key_name(student)]. Pref save info: [can_save]", LOG_STATS)
-	message_admins("[ADMIN_LOOKUPFLW(owner)] taught [chosen] to [ADMIN_LOOKUPFLW(student)]. Pref save info: [can_save]")
+	owner.log_message("taught [chosen] to [key_name(student)]. Pref save info: [fail_to_save_reason || "can save"]", LOG_STATS)
+	message_admins("[ADMIN_LOOKUPFLW(owner)] taught [chosen] to [ADMIN_LOOKUPFLW(student)]. Pref save info: [fail_to_save_reason || "can save"]")
 	return TRUE
 
 // darkpack_config_entries.dm & darkpack_config.txt for server settings regarding discipline teaching permissions
