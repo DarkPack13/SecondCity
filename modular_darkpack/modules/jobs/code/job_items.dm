@@ -171,15 +171,15 @@
 	name = "gothic cross"
 	icon_state = "hunter_gothic"
 
-/obj/item/card/hunter/attack_self(mob/user)
+/obj/item/card/hunter/attack_self(mob/living/user)
 	. = ..()
 	if(!user.mind)
 		return
 	if(!user.mind?.holy_role)
 		return
-	if(!COOLDOWN_FINISHED(user, cross_flash_cooldown))
+	if(!COOLDOWN_FINISHED(user, true_faith_cd))
 		return
-	COOLDOWN_START(user, cross_flash_cooldown, 30 SECONDS)
+	COOLDOWN_START(user, true_faith_cd, 30 SECONDS)
 	do_sparks(rand(5, 9), FALSE, user)
 	playsound(user.loc, 'modular_darkpack/modules/jobs/sounds/cross.ogg', 100, FALSE, 8, 0.9)
 	for(var/mob/living/M in get_hearers_in_view(4, src))
@@ -203,10 +203,10 @@
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		return
-	if(!COOLDOWN_FINISHED(user, cross_flash_cooldown))
+	if(!COOLDOWN_FINISHED(user, true_faith_cd))
 		return
 	if(HAS_TRAIT(target, TRAIT_REPELLED_BY_HOLINESS) && target != user && !target.mind?.holy_role)
-		COOLDOWN_START(user, cross_flash_cooldown, 30 SECONDS)
+		COOLDOWN_START(user, true_faith_cd, 30 SECONDS)
 		lightningbolt(target)
 		to_chat(target, span_userdanger("The gods have punished you for your sins!"))
 
