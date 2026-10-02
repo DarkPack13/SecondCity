@@ -29,6 +29,7 @@
 	mask_action = new(owner)
 	mask_action.Grant(owner)
 	ADD_TRAIT(owner, TRAIT_SILENT_FOOTSTEPS, MAGIC_TRAIT)
+	ADD_TRAIT(owner, TRAIT_UNKNOWN_APPEARANCE, MAGIC_TRAIT)
 
 /datum/status_effect/mask_of_shadows/on_remove()
 	owner.alpha = 255
@@ -37,6 +38,7 @@
 		mask_action.Remove(owner)
 		qdel(mask_action)
 	REMOVE_TRAIT(owner, TRAIT_SILENT_FOOTSTEPS, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_UNKNOWN_APPEARANCE, MAGIC_TRAIT)
 	return ..()
 
 /datum/action/remove_mask_of_shadows_action
