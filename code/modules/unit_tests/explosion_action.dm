@@ -35,8 +35,10 @@
 	TEST_ASSERT_EQUAL(test_simple_animal.health, MAX_LIVING_HEALTH - 60, "EX_ACT() with EXPLODE_HEAVY severity should have done 60 damage to a simple animal!")
 	test_simple_animal.revive(ADMIN_HEAL_ALL)
 
+	/* //DARKPACK EDIT REMOVE - EXPLOSION GIBBING - (We have disabled devistation gibbing mobs inherantly.)
 	EX_ACT(test_simple_animal, EXPLODE_DEVASTATE) // this should gib.
 	TEST_ASSERT(QDELETED(test_simple_animal), "EX_ACT() with EXPLODE_DEVASTATE severity should have gibbed a simple animal!")
+	*/ //DARKPACK EDIT END
 	// End of the simple-animal checks. No more simple animals beyond this point.
 
 	// Now let's be safe and check basic mobs (they're the future, man)
@@ -55,8 +57,10 @@
 	TEST_ASSERT_EQUAL(test_basic_animal.health, MAX_LIVING_HEALTH - 60, "EX_ACT() with EXPLODE_HEAVY severity should have done 60 damage to a basic animal!")
 	test_basic_animal.revive(ADMIN_HEAL_ALL)
 
-	EX_ACT(test_basic_animal, EXPLODE_DEVASTATE) // this should gib.
-	TEST_ASSERT(QDELETED(test_basic_animal), "EX_ACT() with EXPLODE_DEVASTATE severity should have gibbed a basic animal!")
+	/* // DARKPACK EDIT REMOVE - EXPLOSION GIBBING
+	// EX_ACT(test_basic_animal, EXPLODE_DEVASTATE) // this should gib.
+	// TEST_ASSERT(QDELETED(test_basic_animal), "EX_ACT() with EXPLODE_DEVASTATE severity should have gibbed a basic animal!")
+	*/ // DARKPACK EDIT END
 
 	// Aliens have their own implementation too.
 	var/mob/living/carbon/alien/test_alien = allocate(/mob/living/carbon/alien)
