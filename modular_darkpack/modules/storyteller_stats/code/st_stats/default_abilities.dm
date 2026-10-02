@@ -127,7 +127,7 @@
 		our_mob.grant_partial_language(/datum/language/french, 50, LANGUAGE_ACADEMICS)
 		our_mob.grant_partial_language(/datum/language/german, 50, LANGUAGE_ACADEMICS)
 
-	// level 3 - czech, tagalog, ukrainian, welsh, armenian, adds addtl 10 to common spanish french german (-> 75)
+	// level 3 - czech, tagalog, ukrainian, welsh, armenian, adds addtl 10 to common spanish french german (-> 60)
 	if(current_score >= 3)
 		our_mob.grant_partial_language(/datum/language/czech, 25, LANGUAGE_ACADEMICS)
 		our_mob.grant_partial_language(/datum/language/tagalog, 25, LANGUAGE_ACADEMICS)
@@ -160,6 +160,8 @@
 		our_mob.grant_partial_language(/datum/language/korean, 25, LANGUAGE_ACADEMICS)
 		
 /datum/st_stat/ability/academics/unlink_mob(mob/living/our_mob)
+	if(QDELING(our_mob))
+		return
 	our_mob.remove_all_partial_languages(LANGUAGE_ACADEMICS)
 
 
