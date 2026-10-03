@@ -1,5 +1,0 @@
-author: "JohnFulpWillard"
-delete-after: True
-changes:
-  - bugfix: "Malkavians are now insane."
-  - bugfix: "Dominate Malkavians and Regular Malkavians now share the same web."

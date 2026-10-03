@@ -1,4 +1,0 @@
-author: "Breadcrombs, CCC23"
-delete-after: True
-changes:
-  - bugfix: "True Faith crosses now affects everyone regardless of wearing flash protection or not as well as not flashing the user, cooldown on this has also been made to be per item/cross."
