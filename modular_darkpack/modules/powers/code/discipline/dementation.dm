@@ -280,24 +280,29 @@ Methuselah.”
 		if("Secrets")
 			open_chaos_eyes_window(target)
 		if("Information")
-			switch(pick(available_options))
-				if("Immortal Age")
-					var/determined_age = "[target] is not a year older than their body."
-					if(immortalage < 100)
-						determined_age = "[target] is less than a century old."
-					else if(immortalage < 200)
-						determined_age = "[target] is in their second century."
-					else
-						determined_age = "[target] bears the burden of time."
-					owner.malkavian_voices("[determined_age]", range=4)
-				if("Biological Age")
-					var/biologicalage = target.age
-					owner.malkavian_voices("The body of [target] looks to have [biologicalage] years to it.", range=4)
-				if("Clan")
-					owner.malkavian_voices("[target]'s bloodline is of [clan.name] descent", range=4)
-				if("Tribe")
-					owner.malkavian_voices("[target] heart belongs to the [tribe.name]", range=4)
-
+			var/list/selected_options = list()
+			for(var/i in 1 to 3)
+				selected_options += pick_n_take(available_options)
+//figure out timer tmmr melatonin running my game down
+			for(var/option in selected_options)
+				switch(option)
+					if("Immortal Age")
+						var/determined_age = "[target] is not a year older than their body."
+						if(immortalage < 100)
+							determined_age = "[target] is less than a century old."
+						else if(immortalage < 200)
+							determined_age = "[target] is in their second century."
+						else
+							determined_age = "[target] bears the crushing burden of time."
+						owner.malkavian_voices("[determined_age]", range=4)
+					if("Biological Age")
+						var/biologicalage = target.age
+						owner.malkavian_voices("The body of [target] looks to have [biologicalage] years to it.", range=4)
+					if("Clan")
+						owner.malkavian_voices("[target]'s bloodline is of [clan.name] descent", range=4)
+					if("Tribe")
+						owner.malkavian_voices("[target] heart belongs to the [tribe.name]", range=4)
+				sleep(2 SECONDS)
 
 
 // Define behaviour for "Information Hallucination Text" - Ensure it spawns in visbility, nearby, understandable, private in text and runechat and what it can spawn as //
