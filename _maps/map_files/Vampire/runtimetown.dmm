@@ -30,6 +30,10 @@
 /obj/machinery/light/floor/lamppost/one,
 /turf/open/floor/plating/sidewalk,
 /area/vtm/outside/pacificheights)
+"aK" = (
+/obj/effect/spawner/xmastree,
+/turf/open/floor/plating/rough,
+/area/vtm/interior/techshop)
 "aL" = (
 /obj/machinery/light/directional/west,
 /turf/open/floor/wood/smooth/old,
@@ -497,6 +501,7 @@
 /obj/machinery/button/door/directional/north{
 	id = "debughouse"
 	},
+/obj/effect/spawner/holiday_spawner/porch,
 /turf/open/misc/beach/vamp,
 /area/vtm/outside/pacificheights)
 "jg" = (
@@ -4380,7 +4385,7 @@ pN
 Id
 Id
 Id
-Id
+aK
 xZ
 Id
 Id
