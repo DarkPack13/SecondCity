@@ -1,0 +1,4 @@
+author: "JohnFulpWillard"
+delete-after: True
+changes:
+  - bugfix: "Gangrels turning their transformation ability off will now lose their Discipline Active alert."
