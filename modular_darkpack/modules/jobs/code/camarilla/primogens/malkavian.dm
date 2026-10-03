@@ -19,6 +19,8 @@
 		/datum/job_department/camarilla,
 	)
 
+	tgui_icon = FA_ICON_CROWN
+
 	minimal_generation = 12
 	minimum_immortal_age = 5 // Actually Malkavian Primo is whoever showed for work that day. Crazy bunch.
 	minimum_masquerade = 5
