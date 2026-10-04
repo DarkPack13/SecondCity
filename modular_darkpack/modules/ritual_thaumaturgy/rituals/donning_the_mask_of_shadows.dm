@@ -28,8 +28,8 @@
 	owner.color = "#5f5f5f"
 	mask_action = new(owner)
 	mask_action.Grant(owner)
-	ADD_TRAIT(owner, TRAIT_SILENT_FOOTSTEPS, MAGIC_TRAIT)
-	ADD_TRAIT(owner, TRAIT_UNKNOWN_APPEARANCE, MAGIC_TRAIT)
+	ADD_TRAIT(owner, TRAIT_SILENT_FOOTSTEPS, TRAIT_STATUS_EFFECT(id))
+	ADD_TRAIT(owner, TRAIT_UNKNOWN_APPEARANCE, TRAIT_STATUS_EFFECT(id))
 
 /datum/status_effect/mask_of_shadows/on_remove()
 	owner.alpha = 255
