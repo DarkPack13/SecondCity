@@ -208,15 +208,6 @@ GLOBAL_LIST_INIT(derangement_phrases,list(
 	desc = "... but, that can't be her, can it?"
 	image_state = ""
 
-/obj/effect/client_image_holder/hallucination/your_mother/proc/mothers_outfit()
-	return /datum/outfit/yourmother
-
-/obj/effect/client_image_holder/hallucination/your_mother/malk/mothers_outfit()
-	var/static/list/outfits
-	if(!outfits)
-		outfits = subtypesof(/datum/outfit/mafia)
-	return pick(outfits)
-
 // the random hallucination type will store overrides and extensions of basegame hallucinations, as well as untouched basegame hallucinations like eyes_in_the_dark
 /datum/hallucination/malk/random
 	var/list/hallucinations = list(/datum/hallucination/eyes_in_dark, /datum/hallucination/your_mother/malk, /datum/hallucination/blood_flow/malk)
