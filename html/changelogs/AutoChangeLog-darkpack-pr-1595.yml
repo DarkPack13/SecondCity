@@ -1,0 +1,4 @@
+author: "Uristthedorf"
+delete-after: True
+changes:
+  - bugfix: "Serpentis 1 no longer implies that it can mind control you."
