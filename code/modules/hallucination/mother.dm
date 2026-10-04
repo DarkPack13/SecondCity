@@ -83,7 +83,7 @@
 	var/mob/living/hallucinator = parent.hallucinator
 	if (ishuman(hallucinator) && !isplasmaman(hallucinator)) //Plasmapeople don't have parents in a traditional sense, so their mother is different.
 		var/mob/living/carbon/dna_haver = hallucinator
-		image_icon = image(get_dynamic_human_appearance(/datum/outfit/yourmother, dna_haver.dna.species.type))
+		image_icon = image(get_dynamic_human_appearance(mothers_outfit(), dna_haver.dna.species.type)) // DARKPACK EDIT CHANGE - MERITS_FLAWS
 		return ..()
 
 	if (isplasmaman(hallucinator))

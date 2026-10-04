@@ -163,10 +163,10 @@ GLOBAL_LIST_INIT(derangement_phrases,list(
 	mother = /obj/effect/client_image_holder/hallucination/your_mother/malk
 
 /datum/hallucination/your_mother/malk/start()
-	var/mob/living/carbon/human/malk = hallucinator
-	var/age = malk.chronological_age
-	if(!malk.client || IS_UNCONSCIOUS(malk))
+	var/mob/living/carbon/human/malk = astype(hallucinator)
+	if(!malk?.client || IS_UNCONSCIOUS(malk))
 		return FALSE
+	var/age = malk.chronological_age
 
 	var/list/spawn_locs = list()
 	for(var/turf/open/floor in view(malk, 4))
@@ -208,19 +208,14 @@ GLOBAL_LIST_INIT(derangement_phrases,list(
 	desc = "... but, that can't be her, can it?"
 	image_state = ""
 
-/obj/effect/client_image_holder/hallucination/your_mother/malk/Initialize(mapload, list/mobs_which_see_us, datum/hallucination/parent)
-	var/mob/living/carbon/human/hallucinator = parent.hallucinator
-	var/outfits = subtypesof(/datum/outfit/mafia)
-	if (ishuman(hallucinator))
-		var/mob/living/carbon/dna_haver = hallucinator
-		image_icon = image(get_dynamic_human_appearance(pick(outfits), dna_haver.dna.species.type))
-		return ..()
+/obj/effect/client_image_holder/hallucination/your_mother/proc/mothers_outfit()
+	return /datum/outfit/yourmother
 
-	image_icon = hallucinator.icon
-	image_state = hallucinator.icon_state
-	image_pixel_x = hallucinator.pixel_x
-	image_pixel_y = hallucinator.pixel_y
-	return ..()
+/obj/effect/client_image_holder/hallucination/your_mother/malk/mothers_outfit()
+	var/static/list/outfits
+	if(!outfits)
+		outfits = subtypesof(/datum/outfit/mafia)
+	return pick(outfits)
 
 // the random hallucination type will store overrides and extensions of basegame hallucinations, as well as untouched basegame hallucinations like eyes_in_the_dark
 /datum/hallucination/malk/random
