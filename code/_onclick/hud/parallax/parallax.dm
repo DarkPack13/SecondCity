@@ -350,7 +350,7 @@
 	if(draw_old_space)
 		parallax_layers_cached += new /atom/movable/screen/parallax_layer/old(null, null, src)
 
-	parallax_layers_cached += new /atom/movable/screen/parallax_layer/umbra(null, null, owner) // DARKPACK EDIT ADD - UMBRA
+	parallax_layers_cached += new /atom/movable/screen/parallax_layer/umbra(null, null, src) // DARKPACK EDIT ADD - UMBRA
 
 	display_layers()
 
