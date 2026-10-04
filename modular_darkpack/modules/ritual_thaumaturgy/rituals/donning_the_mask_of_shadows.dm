@@ -37,8 +37,8 @@
 	if(mask_action)
 		mask_action.Remove(owner)
 		qdel(mask_action)
-	REMOVE_TRAIT(owner, TRAIT_SILENT_FOOTSTEPS, MAGIC_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_UNKNOWN_APPEARANCE, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_SILENT_FOOTSTEPS, TRAIT_STATUS_EFFECT(id))
+	REMOVE_TRAIT(owner, TRAIT_UNKNOWN_APPEARANCE, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
 /datum/action/remove_mask_of_shadows_action
