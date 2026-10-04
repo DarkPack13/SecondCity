@@ -244,15 +244,15 @@
 	vitae_cost = 0
 
 /datum/discipline_power/visceratika/armor_of_terra/post_gain()
-	owner.physiology.brute_mod *= 0.8
-	owner.physiology.heat_mod *= 0.5
+	MODIFY_PHYSIOLOGY(owner, BRUTE, 0.8)
+	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_HEAT, 0.5)
 	ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, DISCIPLINE_TRAIT(type))
 	if (!owner.is_clan(/datum/subsplat/vampire_clan/gargoyle))
 		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT(type))
 
 /datum/discipline_power/visceratika/armor_of_terra/post_loss()
-	owner.physiology.brute_mod *= 1.25
-	owner.physiology.heat_mod *= 2
+	MODIFY_PHYSIOLOGY(owner, BRUTE, 1.25)
+	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_HEAT, 2)
 	REMOVE_TRAIT(owner, TRAIT_NOSOFTCRIT, DISCIPLINE_TRAIT(type))
 	REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT(type))
 
