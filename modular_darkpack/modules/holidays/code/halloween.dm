@@ -33,8 +33,9 @@
 				spawned_object = new value(get_turf(src))
 				break
 
-	spawned_object.pixel_x = pixel_x
-	spawned_object.pixel_y = pixel_y
+	if(spawned_object)
+		spawned_object.pixel_x = pixel_x
+		spawned_object.pixel_y = pixel_y
 
 /obj/effect/spawner/holiday_spawner/porch
 	spawn_chance = 90
