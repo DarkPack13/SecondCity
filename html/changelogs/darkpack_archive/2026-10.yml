@@ -31,3 +31,7 @@
   - qol: Bloodpacks no longer splash when thrown
   chazzyjazzy:
   - rscadd: makes the 'academics' stat increase language familiarity
+2026-10-04:
+  JohnFulpWillard:
+  - bugfix: Gangrels turning their transformation ability off will now lose their
+      Discipline Active alert.
