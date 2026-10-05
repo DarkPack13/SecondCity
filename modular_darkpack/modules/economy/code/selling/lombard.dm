@@ -8,11 +8,6 @@
 	difficulty = SALE_DIFFICULTY
 	numerical = TRUE
 
-/datum/storyteller_roll/fencing/calculate_used_difficulty(mob/living/roller)
-	. = ..()
-	if(HAS_TRAIT(roller, TRAIT_ENCHANTING_VOICE))
-		. -= 2
-
 /datum/storyteller_roll/selling_masquerade_sensitive
 	bumper_text = "selling supernatural items"
 	applicable_stats = list(STAT_MANIPULATION, STAT_SUBTERFUGE)
