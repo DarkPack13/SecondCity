@@ -239,7 +239,7 @@ Methuselah.”
 	target_type = TARGET_HUMAN | TARGET_SELF
 	range = 7
 	multi_activate = TRUE
-	cooldown_length = 5 TURNS
+	cooldown_length = 1 TURNS
 	duration_length = 1 TURNS
 	activate_sound = null // dont play a sound
 	vitae_cost = 1
@@ -265,16 +265,51 @@ Methuselah.”
 	if(!do_after(owner, 2 TURNS))
 		return FALSE
 
-	var/list/available_options = list("Biological Age")
+#define OPTION_IMMORTAL_AGE "Immortal Age"
+#define OPTION_BIOLOGICAL_AGE "Biological Age"
+#define OPTION_CLAN "Clan"
+#define OPTION_TRIBE "Tribe"
+#define OPTION_DISCIPLINES "Disciplines"
+#define OPTION_BRAIN_TRAUMA "Brain Trauma"
+#define OPTION_MORALITY_PATH "Morality Path"
+#define OPTION_HUMANITY "Humanity"
+#define OPTION_BLOOD_BONDED "Blood Bonded" // Includes Unbondable
+#define OPTION_INFLUENCED "Influenced" // Any power that would control, influence or coerce someone
+#define OPTION_SECOND_PRESENCE "Second Presence" // Split Personality or Imaginary Friend
+#define OPTION_DIABLERIE_STATUS "Diablerie Status" // Includes Diablerie possession
+#define OPTION_NATIONALITY "Nationality"
+#define OPTION_WYRM_TAINTED "Wyrm-Taint" // Includes Vampires, tainted forms and trait
+#define OPTION_WILLPOWER "Permanent Willpower"
+#define OPTION_SPLAT "Splat"
+#define OPTION_BREED "Breed"
+#define OPTION_GENERATION "Vampire Generation"
+#define OPTION_EMOTION "Aura Emotion"
+#define OPTION_CHARACTER_NAME "Character Name"
+#define OPTION_KINDRED_SIRE "Sire" // Only for those who were embraced in a round
+// Perhaps note 5-dotted stats and certain traits, inherent traits like Salubri eyes?
+
+
+	var/list/available_options = list(OPTION_BIOLOGICAL_AGE, OPTION_WILLPOWER, OPTION_SPLAT, OPTION_EMOTION)
 	var/datum/subsplat/vampire_clan/clan = target.get_clan()
 	if(clan)
-		available_options += list("Clan")
+		available_options += list(OPTION_CLAN)
 	var/immortalage = target?.client?.prefs.read_preference(/datum/preference/numeric/immortal_age)
 	if(immortalage > 0)
-		available_options += list("Immortal Age")
+		available_options += list(OPTION_IMMORTAL_AGE)
 	var/datum/subsplat/werewolf/tribe = target.get_our_tribe()
 	if(tribe)
-		available_options += list("Tribe")
+		available_options += list(OPTION_TRIBE)
+	/*var/splat = target?.client?.prefs.read_preference(/datum/preference/choiced/splats)
+	if(splat) = SPLAT_KINDRED
+		available_options += list(OPTION_DISCIPLINES)
+	if(splat) = SPLAT_GHOUL
+		available_options += list(OPTION_DISCIPLINES) */
+	var/mob/living/brain/brain = target.get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/list/current_traumas = brain.get_traumas()
+	var/mildtrauma = BRAIN_TRAUMA_MILD
+	var/severetrauma = BRAIN_TRAUMA_SEVERE
+	if(length(brain.get_traumas()))
+		available_options += list(OPTION_BRAIN_TRAUMA)  //remember to change ability cd back to 5 turns ALSO YOU NEED THE PATHS FOR SHIT
 
 	switch(chosen_option)
 		if("Secrets")
@@ -286,7 +321,7 @@ Methuselah.”
 //figure out timer tmmr melatonin running my game down
 			for(var/option in selected_options)
 				switch(option)
-					if("Immortal Age")
+					if(OPTION_IMMORTAL_AGE)
 						var/determined_age = "[target] is not a year older than their body."
 						if(immortalage < 100)
 							determined_age = "[target] is less than a century old."
@@ -295,20 +330,32 @@ Methuselah.”
 						else
 							determined_age = "[target] bears the crushing burden of time."
 						owner.malkavian_voices("[determined_age]", range=4)
-					if("Biological Age")
+					if(OPTION_BIOLOGICAL_AGE)
 						var/biologicalage = target.age
 						owner.malkavian_voices("The body of [target] looks to have [biologicalage] years to it.", range=4)
-					if("Clan")
+					if(OPTION_CLAN)
 						owner.malkavian_voices("[target]'s bloodline is of [clan.name] descent", range=4)
-					if("Tribe")
+					if(OPTION_TRIBE)
 						owner.malkavian_voices("[target] heart belongs to the [tribe.name]", range=4)
+					//if(OPTION_DISCIPLINES)
+					//	var/ var/discipline
+					//	else if var/has_any_discipline = FALSE
+					//		owner.malkavian_voices("The bounty of [target]'s blood bears no fruit! Devoid of substance!", range=4)
+					if(OPTION_BRAIN_TRAUMA)
+						var/selectedtrauma = pick(selectedtrauma)
+						switch
+							if(mildtrauma)
+								owner.malkavian.voices("[target] has [selectedtrauma]", range=4)
+							if(severetrauma)
+								owner.malkavian_voices("LMAO [target] has [selectedtrauma]", range=4)
+
 				sleep(2 SECONDS)
 
+#undef OPTION_IMMORTAL_AGE
+#undef OPTION_BIOLOGICAL_AGE
+#undef OPTION_CLAN
+#undef OPTION_TRIBE
 
-// Define behaviour for "Information Hallucination Text" - Ensure it spawns in visbility, nearby, understandable, private in text and runechat and what it can spawn as //
-
-// have information text appear in nearby areas rather than in user chat, pick from a hat of X applicable information and space the text out a little so it isn't all at once. //
-// Immortal Age, Clan, Tribe, Exploitative Info, Gifts, Disciplines, Biological Age,
 /datum/discipline_power/dementation/eyes_of_chaos/pre_activation_checks(mob/living/carbon/human/target)
 	var/mypower = SSroll.storyteller_roll_datum(owner, target, difficulty = 7, applic_stats = list(STAT_PERCEPTION, STAT_OCCULT), numerical = FALSE)
 	switch(mypower)
