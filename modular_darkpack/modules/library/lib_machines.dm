@@ -4,4 +4,4 @@
 
 /obj/machinery/computer/libraryconsole/bookmanagement/corax
 	name = "helios book inventory management console"
-	library_type = "corax"
+	library_type = "library_corax"

@@ -197,7 +197,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 		return
 	sending_request = TRUE
 	search_page = clamp(search_page, 0, page_count)
-	// DARKPACK EDIT - Corax Library
+	// DARKPACK EDIT CHANGE START - LIBRARY - (Corax Library)
 	var/datum/db_query/query_library_list_books = SSdbcore.NewQuery({"
 		SELECT author, title, category, id
 		FROM [format_table_name(library_type)]
@@ -227,7 +227,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 
 /obj/machinery/computer/libraryconsole/proc/update_page_count()
 	var/bookcount = 0
-	// DARKPACK EDIT - Corax Library
+	// DARKPACK EDIT CHANGE START - LIBRARY - (Corax Library)
 	var/datum/db_query/query_library_count_books = SSdbcore.NewQuery({"
 		SELECT COUNT(id) FROM [format_table_name(library_type)]
 		WHERE isnull(deleted)
@@ -616,7 +616,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 		say("No content detected. Aborting")
 		return
 	var/msg = "has uploaded the book titled [book.title], [length(book.content)] signs"
-	// DARKPACK EDIT - Corax Library
+	// DARKPACK EDIT CHANGE START - LIBRARY - (Corax Library)
 	var/datum/db_query/query_library_upload = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name(library_type)] (author, title, content, category, ckey, datetime, round_id_created)
 		VALUES (:author, :title, :content, :category, :ckey, Now(), :round_id)
@@ -663,7 +663,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 		can_connect = FALSE
 		return
 
-	// DARKPACK EDIT - Corax Library
+	// DARKPACK EDIT CHANGE START - LIBRARY - (Corax Library)
 	var/datum/db_query/query_library_print = SSdbcore.NewQuery(
 		"SELECT * FROM [format_table_name(library_type)] WHERE id=:id AND isnull(deleted)",
 		list("id" = id)

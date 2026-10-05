@@ -29,10 +29,10 @@ ALTER TABLE `library` MODIFY COLUMN `category` VARCHAR(255);
 Version 5.36, 30 September 2026, by JohnFulpWillard
 
 ```sql
-DROP TABLE IF EXISTS `corax_library`;
+DROP TABLE IF EXISTS `library_corax`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `corax_library` (
+CREATE TABLE `library_corax` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `author` varchar(45) NOT NULL,
   `title` varchar(45) NOT NULL,
