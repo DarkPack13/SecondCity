@@ -16,6 +16,10 @@
 	if(!post_gain_applied)
 		owner.add_quirk(/datum/quirk/darkpack/derangement)
 
+/datum/discipline/dementation/post_loss()
+	owner.remove_quirk(/datum/quirk/darkpack/derangement)
+	return ..()
+
 /datum/discipline_power/dementation
 	name = "Dementation power name"
 	desc = "Dementation power description"
