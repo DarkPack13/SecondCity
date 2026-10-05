@@ -131,7 +131,7 @@ GLOBAL_LIST_INIT(derangement_phrases,list(
 /datum/hallucination/malk/object/start()
 	return hallucinator.malkavian_voices()
 
-/// used by both malkavian derangement and dementation 3 "eyes of chaos"
+/// used by both Malkavian Derangement and Dementation 3 "Eyes of Chaos"
 /mob/living/proc/malkavian_voices(dementationtext, range=7)
 	var/static/list/audible_hallucinations = GLOB.derangement_phrases
 	var/list/objects = list()

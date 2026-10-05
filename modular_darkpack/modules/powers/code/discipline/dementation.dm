@@ -290,6 +290,8 @@ Methuselah.”
 
 
 	var/list/available_options = list(OPTION_BIOLOGICAL_AGE, OPTION_WILLPOWER, OPTION_SPLAT, OPTION_EMOTION)
+	var/datum/splat/target_splat = target.get_splat()
+	var/splatID = target_splat.id
 	var/datum/subsplat/vampire_clan/clan = target.get_clan()
 	if(clan)
 		available_options += list(OPTION_CLAN)
@@ -299,17 +301,20 @@ Methuselah.”
 	var/datum/subsplat/werewolf/tribe = target.get_our_tribe()
 	if(tribe)
 		available_options += list(OPTION_TRIBE)
-	/*var/splat = target?.client?.prefs.read_preference(/datum/preference/choiced/splats)
-	if(splat) = SPLAT_KINDRED
+	if(istype(splatID, SPLAT_KINDRED))
 		available_options += list(OPTION_DISCIPLINES)
-	if(splat) = SPLAT_GHOUL
-		available_options += list(OPTION_DISCIPLINES) */
-	var/mob/living/brain/brain = target.get_organ_slot(ORGAN_SLOT_BRAIN)
-	var/list/current_traumas = brain.get_traumas()
-	var/mildtrauma = BRAIN_TRAUMA_MILD
-	var/severetrauma = BRAIN_TRAUMA_SEVERE
-	if(length(brain.get_traumas()))
-		available_options += list(OPTION_BRAIN_TRAUMA)  //remember to change ability cd back to 5 turns ALSO YOU NEED THE PATHS FOR SHIT
+	if(istype(splatID, SPLAT_GHOUL))
+		available_options += list(OPTION_DISCIPLINES)
+	/*if(SPLAT_KINFOLK)
+		available_options += list
+	if(SPLAT_GAROU)
+		available_options += list
+	if(SPLAT_CORVAX)
+		available_options += list */
+	var/list/traumas = target.get_traumas()
+	if(length(target.get_traumas()))
+		available_options += list(OPTION_BRAIN_TRAUMA)
+	var/list/disciplines = target.get_discipline()
 
 	switch(chosen_option)
 		if("Secrets")
@@ -337,17 +342,22 @@ Methuselah.”
 						owner.malkavian_voices("[target]'s bloodline is of [clan.name] descent", range=4)
 					if(OPTION_TRIBE)
 						owner.malkavian_voices("[target] heart belongs to the [tribe.name]", range=4)
-					//if(OPTION_DISCIPLINES)
-					//	var/ var/discipline
-					//	else if var/has_any_discipline = FALSE
-					//		owner.malkavian_voices("The bounty of [target]'s blood bears no fruit! Devoid of substance!", range=4)
+					if(OPTION_DISCIPLINES)
+						var/datum/discipline/selected_discipline = pick(disciplines)
+						var
+						owner.malkavian_voices("[selected_discipline]", range=4)
+					//	owner.malkavian_voices("The bounty of [target]'s blood bears no fruit! Devoid of substance!", range=4)
 					if(OPTION_BRAIN_TRAUMA)
-						var/selectedtrauma = pick(selectedtrauma)
-						switch
-							if(mildtrauma)
-								owner.malkavian.voices("[target] has [selectedtrauma]", range=4)
-							if(severetrauma)
-								owner.malkavian_voices("LMAO [target] has [selectedtrauma]", range=4)
+						var/datum/brain_trauma/selected_trauma = pick(traumas)
+						var/trauma_name = selected_trauma.scan_desc
+						if(istype(selected_trauma, BRAIN_TRAUMA_MILD))
+							owner.malkavian_voices("The rivers of [target]'s mind has branched off into a [trauma_name].", range=4)
+						else if(istype(selected_trauma, BRAIN_TRAUMA_SEVERE))
+							owner.malkavian_voices("The brain of [target] has [trauma_name] violently weeping from its folds.", range=4)
+						else if(istype(selected_trauma, BRAIN_TRAUMA_MAGIC))
+							owner.malkavian_voices("[target]'s grey matter has [trauma_name] twinkling something most consider abberant.", range=4)
+						else if(istype(selected_trauma, BRAIN_TRAUMA_SPECIAL))
+							owner.malkavian_voices("How did [target]'s brain ever become so riddled with [trauma_name]? This can't be?")
 
 				sleep(2 SECONDS)
 
