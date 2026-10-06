@@ -1,8 +1,6 @@
 /datum/preferences
 	// List of known guestbook names we have saved
 	var/list/guestbook_names = list()
-	///If we've published our phone number, this is what we've published as.
-	var/published_contact
 
 	var/list/preference_storyteller_stats = list()
 	// Associative list of disciplines and their current level. like: list("/datum/discipline/animalism" = 2)
@@ -65,7 +63,6 @@
 	guestbook_names = SANITIZE_LIST(guestbook_names)
 	alt_job_titles = save_data?["alt_job_titles"] // ALTERNATIVE_JOB_TITLES
 	discipline_levels = SANITIZE_LIST(save_data?["discipline_levels"]) || list()
-	published_contact = save_data?["published_contact"] || null
 
 /datum/preferences/save_character()
 	. = ..()
@@ -77,5 +74,4 @@
 	save_data["guestbook_names"] = guestbook_names
 	save_data["alt_job_titles"] = alt_job_titles // ALTERNATIVE_JOB_TITLES
 	save_data["discipline_levels"] = discipline_levels
-	save_data["published_contact"] = published_contact
 	savefile.save()
