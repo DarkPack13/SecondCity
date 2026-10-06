@@ -354,7 +354,7 @@
 		if("publish_number")
 			var/name = tgui_input_text(user, "What name will represent you in the phonebook. Example: Jane Doe | Anarchy Rose Manager", "Publish Number", max_length = MAX_MESSAGE_LEN)
 			if(!name)
-				to_chat(user, span_danger("You must a name to be published under."))
+				to_chat(user, span_danger("You must enter a name to be published under."))
 				return
 			var/make_persistent = tgui_alert(user, "Do you want to make this number persistent between rounds? If one is already persistent for this character, this will override it.", "Number Persistence", list("Yes", "No"))
 			if(!sim_card)
