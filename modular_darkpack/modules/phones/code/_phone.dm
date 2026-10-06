@@ -105,6 +105,9 @@
 	if(important_contact_of && owner && sim_card.phone_number)
 		GLOB.important_contacts[important_contact_of] = new /datum/phonecontact(owner.real_name, sim_card.phone_number)
 
+	if(owner.client?.prefs?.published_contact)
+		publish_number(owner, owner.client.prefs.published_contact, save = FALSE)
+
 /obj/item/smartphone/Destroy(force)
 	SEND_SIGNAL(src, COMSIG_ALL_MASQUERADE_REINFORCE)
 	GLOB.phones_list -= src
@@ -349,11 +352,11 @@
 			return TRUE
 
 		if("publish_number")
-			to_chat(user, span_notice("This text will represent you in the phonebook. example: Jane Doe | Anarchy Rose Manager"))
-			var/name = tgui_input_text(user, "Phonebook Name", "Publish Number", max_length = MAX_MESSAGE_LEN)
+			var/name = tgui_input_text(user, "What name will represent you in the phonebook. Example: Jane Doe | Anarchy Rose Manager", "Publish Number", max_length = MAX_MESSAGE_LEN)
 			if(!name)
-				to_chat(user, span_danger("You must input text to publish your number."))
+				to_chat(user, span_danger("You must a name to be published under."))
 				return
+			var/make_persistent = tgui_alert(user, "Do you want to make this number persistent between rounds?", "Persistent", list("Yes", "No"))
 			if(!sim_card)
 				to_chat(user, span_danger("You must insert a SIM card to publish your number."))
 				return
@@ -361,22 +364,14 @@
 				if(SSphones.published_phone_numbers[contact] == sim_card.phone_number)
 					to_chat(user, span_danger("Error: This number is already published."))
 					return TRUE
-			SSphones.published_phone_numbers[name] = sim_card.phone_number
-			to_chat(user, span_notice("Your number is now published."))
-			sim_card.published = TRUE
-			sim_card.published_name = name
-			log_phone("[key_name(user)] published their number ([name])/[sim_card.phone_number] to the phonebook.")
+			publish_number(user, name, save = (make_persistent == "Yes"))
 			return TRUE
 
 		if("unpublish_number")
 			for(var/contact in SSphones.published_phone_numbers)
 				if(SSphones.published_phone_numbers[contact] != sim_card.phone_number)
 					continue
-				log_phone("[key_name(user)] unpublished their number ([contact])/[sim_card.phone_number] from the phonebook.")
-				SSphones.published_phone_numbers -= contact
-				sim_card.published = FALSE
-				sim_card.published_name = null
-				to_chat(user, span_notice("Your number is now unpublished."))
+				unpublish_number(user, contact, save = TRUE)
 				return TRUE
 
 		if("custom_background")
@@ -573,6 +568,28 @@
 			return TRUE
 
 	return FALSE
+
+/obj/item/smartphone/proc/publish_number(mob/user, sim_name, save = FALSE)
+	SSphones.published_phone_numbers[sim_name] = sim_card.phone_number
+	to_chat(user, span_notice("Your number is now published."))
+	sim_card.published = TRUE
+	sim_card.published_name = sim_name
+	var/mob/living/carbon/owner = owner_weakref?.resolve()
+	if(save && owner && owner.client?.prefs)
+		log_phone("[key_name(user)] published their number ([sim_name])/[sim_card.phone_number] to the persistent phonebook.")
+		owner.client.prefs.published_contact = sim_name
+		owner.client.prefs.save_character()
+
+/obj/item/smartphone/proc/unpublish_number(mob/user, contact, save = FALSE)
+	SSphones.published_phone_numbers -= contact
+	sim_card.published = FALSE
+	sim_card.published_name = null
+	to_chat(user, span_notice("Your number is now unpublished."))
+	var/mob/living/carbon/owner = owner_weakref?.resolve()
+	if(save && owner && owner.client?.prefs?.published_contact)
+		log_phone("[key_name(user)] unpublished their number ([contact])/[sim_card.phone_number] from the persistent phonebook.")
+		owner.client.prefs.published_contact = null
+		owner.client.prefs.save_character()
 
 /obj/item/smartphone/proc/get_conversation(contact_number)
 	for(var/datum/phone_conversation/convo in conversations)
