@@ -94,7 +94,7 @@
 	toggle_masquerade_sensitivity(TRUE)
 	return INITIALIZE_HINT_LATELOAD
 
-/mob/living/carbon/human/npc/LateInitialize(mapload)
+/mob/living/carbon/human/npc/LateInitialize()
 	if (role_weapons_chances.Find(type))
 		for(var/weapon in role_weapons_chances[type])
 			if(prob(role_weapons_chances[type][weapon]))
