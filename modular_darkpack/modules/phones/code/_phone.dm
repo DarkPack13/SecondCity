@@ -356,7 +356,7 @@
 			if(!name)
 				to_chat(user, span_danger("You must a name to be published under."))
 				return
-			var/make_persistent = tgui_alert(user, "Do you want to make this number persistent between rounds?", "Persistent", list("Yes", "No"))
+			var/make_persistent = tgui_alert(user, "Do you want to make this number persistent between rounds? If one is already persistent for this character, this will override it.", "Number Persistence", list("Yes", "No"))
 			if(!sim_card)
 				to_chat(user, span_danger("You must insert a SIM card to publish your number."))
 				return
@@ -371,7 +371,11 @@
 			for(var/contact in SSphones.published_phone_numbers)
 				if(SSphones.published_phone_numbers[contact] != sim_card.phone_number)
 					continue
-				unpublish_number(user, contact, save = TRUE)
+				var/make_persistent = FALSE
+				var/mob/living/carbon/owner = owner_weakref?.resolve()
+				if(owner?.client?.prefs?.published_contact)
+					make_persistent = tgui_alert(user, "Do you want to remove this as a persistent number?", "Number Persistence", list("Remove persistently", "Just for today"))
+				unpublish_number(user, contact, save = (make_persistent == "Remove persistently"))
 				return TRUE
 
 		if("custom_background")
