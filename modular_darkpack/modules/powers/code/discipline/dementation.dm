@@ -277,7 +277,7 @@ Methuselah.”
 #define OPTION_INFLUENCED "Influenced" // Any power that would control, influence or coerce someone
 #define OPTION_SECOND_PRESENCE "Second Presence" // Split Personality or Imaginary Friend
 #define OPTION_DIABLERIE "Diablerie"
-#define OPTION_NATIONALITY "Nationality"
+#define OPTION_COUNTRY_OF_ORIGIN "Country of Origin"
 #define OPTION_WYRM_TAINTED "Wyrm-Taint" // Tainted forms and trait, maybe vampires inherently per lore?
 #define OPTION_WILLPOWER "Permanent Willpower"
 #define OPTION_SPLAT "Splat"
@@ -287,36 +287,39 @@ Methuselah.”
 #define OPTION_CHARACTER_NAME "Character Name"
 #define OPTION_KINDRED_SIRE "Sire" // Only for those who were embraced in a round
 // Perhaps note 5-dotted stats and certain traits, inherent traits like Salubri eyes?
-
+	var/list/datum/splat/target_splat = target.splats[1] // Get Splat
+	var/target_vampire = (istype(target_splat, /datum/splat/vampire/kindred))
 	var/datum/splat/vampire/discipline_splat = get_vampire_splat(target) // Get a vampire's/ghoul's Splat -> Disciplines
 	var/datum/action/discipline/target_disciplines = pick(discipline_splat.powers)
-	var/list/datum/splat/target_splat = target.splats[1] // Get Splat
 	var/target_morality_path = get_morality_path(target) // Get Morality path
-	var/target_humanity = target.st_get_stat(STAT_MORALITY) // Get Humanity
+	var/target_country_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/country_of_origin) // Get Country of Origin
+	var/target_state_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/state_of_origin) // Get State of Origin
+	var/target_true_name = target?.client?.prefs.read_preference(/datum/preference/name/real_name) // Get Character's Set Name
+	var/datum/subsplat/werewolf/target_breed = target.get_our_breed_form() // Get Shifter Breed
+	var/datum/subsplat/werewolf/target_tribe = target.get_our_tribe() // Get Tribe
+	var/datum/subsplat/vampire_clan/target_clan = target.get_clan() // Get Clan
 	//var/datum/splat/vampire/kindred/sire_splat = get_kindred_splat(target) // Get vampire's Sire
 	//var/mob/living/target_sire = target.sire
 
 
 	var/list/available_options = list(OPTION_BIOLOGICAL_AGE, OPTION_WILLPOWER, OPTION_SPLAT, OPTION_EMOTION)
-	var/datum/subsplat/vampire_clan/clan = target.get_clan()
-	if(clan)
-		available_options += list(OPTION_CLAN)
 	var/immortalage = target?.client?.prefs.read_preference(/datum/preference/numeric/immortal_age)
 	if(immortalage > 0)
 		available_options += list(OPTION_IMMORTAL_AGE)
-	var/datum/subsplat/werewolf/tribe = target.get_our_tribe()
-	if(tribe)
-		available_options += list(OPTION_TRIBE)
-	if(istype(target_splat, /datum/splat/vampire/kindred)) // Add available options if target is a vampire.
-		available_options += list(OPTION_DISCIPLINES, OPTION_GENERATION, OPTION_MORALITY_PATH, OPTION_HUMANITY)
-	if(istype(target_splat, /datum/splat/vampire/ghoul)) // Add available options if target is a ghoul.
+	if(target_vampire) // Add available options if target is a vampire
+		available_options += list(OPTION_DISCIPLINES, OPTION_GENERATION, OPTION_MORALITY_PATH, OPTION_HUMANITY, OPTION_CLAN)
+	if(istype(target_splat, /datum/splat/vampire/ghoul)) // Add available options if target is a ghoul
 		available_options += list(OPTION_DISCIPLINES)
+	if(istype(target_splat, /datum/splat/werewolf/shifter/garou)) // Add available options if target is a garou
+		available_options += list(OPTION_TRIBE)
+	if((HAS_TRAIT(target, TRAIT_POSSIBLE_WYRM)) || ((istype(target_splat, /datum/splat/vampire/kindred) && (target.st_get_stat(STAT_MORALITY) <= 7)))) // Add available options if target is Wyrm-Tainted or a vampire at humanity 7 and below
+		available_options += list(OPTION_WYRM_TAINTED)
 	var/list/traumas = target.get_traumas()
 	if(length(target.get_traumas())) // Add available options if target has a brain trauma
 		available_options += list(OPTION_BRAIN_TRAUMA)
-	if(HAS_TRAIT(target, TRAIT_DIABLERIE))
+	if(HAS_TRAIT(target, TRAIT_DIABLERIE)) // Add available options if target has commited Diablerie
 		available_options += list(OPTION_DIABLERIE)
-	if(target.mind.enslaved_to)
+	if(target.mind.enslaved_to) // Add available options in the presence of a blood bond or related trait
 		available_options += list(OPTION_BLOOD_BONDED)
 
 
@@ -344,11 +347,11 @@ Methuselah.”
 						var/biologicalage = target.age
 						owner.malkavian_voices("The body of [target] looks to have [biologicalage] years to it.", range=4)
 					if(OPTION_CLAN)
-						owner.malkavian_voices("[target]'s bloodline is of [clan.name] descent", range=4)
+						owner.malkavian_voices("[target]'s bloodline is of [target_clan.name] descent", range=4)
 					if(OPTION_TRIBE)
-						owner.malkavian_voices("[target] heart belongs to the [tribe.name]", range=4)
+						owner.malkavian_voices("[target] heart belongs to the [target_tribe.name]", range=4)
 					if(OPTION_DISCIPLINES)
-						var/selected_discipline = target_disciplines.discipline // Pick a discipline.
+						var/selected_discipline = target_disciplines.discipline // Pick a discipline.  // ENSURE BLOODHEAL IS NOT AN OPTION
 						//if(selected_discipline = null)
 							//owner.malkavian_voices("The bounty of [target]'s clan bears no fruit! Devoid of substance!", range=4)
 						owner.malkavian_voices("[selected_discipline]", range=4)
@@ -379,16 +382,16 @@ Methuselah.”
 								owner.malkavian_voices("The sheer potency of [target]'s blood is far beyond that seen in the cities of man!", range=4)
 					if(OPTION_MORALITY_PATH)
 						owner.malkavian_voices("Their beast's incessant cravings are tamed by the [target_morality_path]", range=4)
-					if(OPTION_TRAIT_DIABLERIE)
-						owner.malkavian_voices("[target]'s soul is marked with a grave sin. Stolen essence is devoured within with veins of tar supplying the scourge it inhabits.", range=4)
+					if(OPTION_DIABLERIE)
+						owner.malkavian_voices("[target]'s soul is marked with a grave sin. Stolen essence is devoured within — veins of tar supplying the scourge it inhabits.", range=4)
 					if(OPTION_HUMANITY)
 						switch(target.st_get_stat(STAT_MORALITY))
 							if(0)
-								owner.malkavian_voices("Drooling, gnawing, aching. An emaciated body gorged with stolen life breaks its mind in starvation.", range=4)
+								owner.malkavian_voices("Drooling, gnawing, aching. An emaciated body gorged with stolen life breaks its mind in starvation.", range=4) // Wight
 							if(1)
 								owner.malkavian_voices("[target] is savagely hounded by their beast, one moment away from plunging into the brink of madness", range=4)
 							if(2,3)
-								owner.malkavian_voices("The beast pounds the mind of [target] day after day; demands ever-made to this perversion of humanity with no reprive to speak of.", range=4)
+								owner.malkavian_voices("The beast pounds the mind of [target] day after day; demands ever-made to their perversion of humanity with nary a reprive.", range=4)
 							if(4,5)
 								owner.malkavian_voices("The reality of undeath has long since sunken in comfortably for [target]. After all, a predator pays no mind to the thought of its prey.", range=4)
 							if(6)
@@ -402,7 +405,16 @@ Methuselah.”
 							if(10)
 								owner.malkavian_voices("A fragile state of grace held above a pillar to the Heavens; [target] is a saint even amongst the living. Even then, the fragile foundation of principles ever-demand attention", range=4)
 					if(OPTION_BLOOD_BONDED)
-						owner.malkavian_voices("Chain's interlock [target]'s blood — bonding them to another. the call of [target.mind.enslaved_to] beckons them to react", range=4)
+						owner.malkavian_voices("Chains interlock [target]'s blood — binding them to another. the call of [target.mind.enslaved_to] beckons them to react", range=4)
+					if(OPTION_WYRM_TAINTED)
+						if((istype(target_splat, /datum/splat/vampire/kindred)) && (HAS_TRAIT(target, TRAIT_HIDDEN_WYRMTAINT)))
+							owner.malkavian_voices("A faint glimmer of decay is embracing [target]", range=4)
+						else if(istype(target_splat, /datum/splat/vampire/kindred))
+							owner.malkavian_voices("The beast of this vampire still gnaws at some recess of their mind, an entropic taint is noticable.", range=4)
+						else if((HAS_TRAIT(target, TRAIT_WYRMTAINTED_SPRITE)))
+							owner.malkavian_voices("The taint of the Wyrm malforms [target]'s body and mind into a cruel mockery of nature.", range=4)
+						else
+							owner.malkavian_voices("The taint of the Wyrm harshly defiles [target]'s very being.", range=4)
 
 
 				//sleep(2 SECONDS)
@@ -419,7 +431,7 @@ Methuselah.”
 #undef OPTION_INFLUENCED
 #undef OPTION_SECOND_PRESENCE
 #undef OPTION_DIABLERIE
-#undef OPTION_NATIONALITY
+#undef OPTION_COUNTRY_OF_ORIGIN
 #undef OPTION_WYRM_TAINTED
 #undef OPTION_WILLPOWER
 #undef OPTION_SPLAT
