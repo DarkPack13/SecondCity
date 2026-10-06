@@ -239,7 +239,7 @@ Methuselah.”
 	target_type = TARGET_HUMAN | TARGET_SELF
 	range = 7
 	multi_activate = TRUE
-	cooldown_length = 1 TURNS
+	cooldown_length = 2 TURNS
 	duration_length = 1 TURNS
 	activate_sound = null // dont play a sound
 	vitae_cost = 1
@@ -273,12 +273,12 @@ Methuselah.”
 #define OPTION_BRAIN_TRAUMA "Brain Trauma"
 #define OPTION_MORALITY_PATH "Morality Path"
 #define OPTION_HUMANITY "Humanity"
-#define OPTION_BLOOD_BONDED "Blood Bonded" // Includes Unbondable
+#define OPTION_BLOOD_BONDED "Blood Bonded" // Mentions Unbondable too
 #define OPTION_INFLUENCED "Influenced" // Any power that would control, influence or coerce someone
 #define OPTION_SECOND_PRESENCE "Second Presence" // Split Personality or Imaginary Friend
-#define OPTION_DIABLERIE_STATUS "Diablerie Status" // Includes Diablerie possession
+#define OPTION_DIABLERIE "Diablerie"
 #define OPTION_NATIONALITY "Nationality"
-#define OPTION_WYRM_TAINTED "Wyrm-Taint" // Includes Vampires, tainted forms and trait
+#define OPTION_WYRM_TAINTED "Wyrm-Taint" // Tainted forms and trait, maybe vampires inherently per lore?
 #define OPTION_WILLPOWER "Permanent Willpower"
 #define OPTION_SPLAT "Splat"
 #define OPTION_BREED "Breed"
@@ -288,10 +288,16 @@ Methuselah.”
 #define OPTION_KINDRED_SIRE "Sire" // Only for those who were embraced in a round
 // Perhaps note 5-dotted stats and certain traits, inherent traits like Salubri eyes?
 
+	var/datum/splat/vampire/discipline_splat = get_vampire_splat(target) // Get a vampire's/ghoul's Splat -> Disciplines
+	var/datum/action/discipline/target_disciplines = pick(discipline_splat.powers)
+	var/list/datum/splat/target_splat = target.splats[1] // Get Splat
+	var/target_morality_path = get_morality_path(target) // Get Morality path
+	var/target_humanity = target.st_get_stat(STAT_MORALITY) // Get Humanity
+	//var/datum/splat/vampire/kindred/sire_splat = get_kindred_splat(target) // Get vampire's Sire
+	//var/mob/living/target_sire = target.sire
+
 
 	var/list/available_options = list(OPTION_BIOLOGICAL_AGE, OPTION_WILLPOWER, OPTION_SPLAT, OPTION_EMOTION)
-	var/datum/splat/target_splat = target.get_splat()
-	var/splatID = target_splat.id
 	var/datum/subsplat/vampire_clan/clan = target.get_clan()
 	if(clan)
 		available_options += list(OPTION_CLAN)
@@ -301,20 +307,19 @@ Methuselah.”
 	var/datum/subsplat/werewolf/tribe = target.get_our_tribe()
 	if(tribe)
 		available_options += list(OPTION_TRIBE)
-	if(istype(splatID, SPLAT_KINDRED))
+	if(istype(target_splat, /datum/splat/vampire/kindred)) // Add available options if target is a vampire.
+		available_options += list(OPTION_DISCIPLINES, OPTION_GENERATION, OPTION_MORALITY_PATH, OPTION_HUMANITY)
+	if(istype(target_splat, /datum/splat/vampire/ghoul)) // Add available options if target is a ghoul.
 		available_options += list(OPTION_DISCIPLINES)
-	if(istype(splatID, SPLAT_GHOUL))
-		available_options += list(OPTION_DISCIPLINES)
-	/*if(SPLAT_KINFOLK)
-		available_options += list
-	if(SPLAT_GAROU)
-		available_options += list
-	if(SPLAT_CORVAX)
-		available_options += list */
 	var/list/traumas = target.get_traumas()
-	if(length(target.get_traumas()))
+	if(length(target.get_traumas())) // Add available options if target has a brain trauma
 		available_options += list(OPTION_BRAIN_TRAUMA)
-	var/list/disciplines = target.get_discipline()
+	if(HAS_TRAIT(target, TRAIT_DIABLERIE))
+		available_options += list(OPTION_DIABLERIE)
+	if(target.mind.enslaved_to)
+		available_options += list(OPTION_BLOOD_BONDED)
+
+
 
 	switch(chosen_option)
 		if("Secrets")
@@ -343,12 +348,12 @@ Methuselah.”
 					if(OPTION_TRIBE)
 						owner.malkavian_voices("[target] heart belongs to the [tribe.name]", range=4)
 					if(OPTION_DISCIPLINES)
-						var/datum/discipline/selected_discipline = pick(disciplines)
-						var
+						var/selected_discipline = target_disciplines.discipline // Pick a discipline.
+						//if(selected_discipline = null)
+							//owner.malkavian_voices("The bounty of [target]'s clan bears no fruit! Devoid of substance!", range=4)
 						owner.malkavian_voices("[selected_discipline]", range=4)
-					//	owner.malkavian_voices("The bounty of [target]'s blood bears no fruit! Devoid of substance!", range=4)
 					if(OPTION_BRAIN_TRAUMA)
-						var/datum/brain_trauma/selected_trauma = pick(traumas)
+						var/datum/brain_trauma/selected_trauma = pick(traumas) // Pick a trauma from the target.
 						var/trauma_name = selected_trauma.scan_desc
 						if(istype(selected_trauma, BRAIN_TRAUMA_MILD))
 							owner.malkavian_voices("The rivers of [target]'s mind has branched off into a [trauma_name].", range=4)
@@ -357,14 +362,72 @@ Methuselah.”
 						else if(istype(selected_trauma, BRAIN_TRAUMA_MAGIC))
 							owner.malkavian_voices("[target]'s grey matter has [trauma_name] twinkling something most consider abberant.", range=4)
 						else if(istype(selected_trauma, BRAIN_TRAUMA_SPECIAL))
-							owner.malkavian_voices("How did [target]'s brain ever become so riddled with [trauma_name]? This can't be?")
+							owner.malkavian_voices("How did [target]'s brain ever become so riddled with [trauma_name]? This can't be?", range=4)
+					if(OPTION_GENERATION)
+						switch(target.get_generation()) //Figure out how to do 15 and over and 7 and under
+							if(15)
+								owner.malkavian_voices("Removed further than the stars themselves; our lineage thins in this one.", range=4)
+							if(14)
+								owner.malkavian_voices("The drought of potency narrowly avoids [target], or does it?", range=4)
+							if(13,12)
+								owner.malkavian_voices("[target]'s blood hails from ever-distant relatives. A middling generation.", range=4)
+							if(11,10)
+								owner.malkavian_voices("[target] still has the blood of our ancestors pulsing in their veins.", range=4)
+							if(9,8)
+								owner.malkavian_voices("Veins seeping power, the blood of [target] flows strongly with the essence of Caine.", range=4)
+							if(7)
+								owner.malkavian_voices("The sheer potency of [target]'s blood is far beyond that seen in the cities of man!", range=4)
+					if(OPTION_MORALITY_PATH)
+						owner.malkavian_voices("Their beast's incessant cravings are tamed by the [target_morality_path]", range=4)
+					if(OPTION_TRAIT_DIABLERIE)
+						owner.malkavian_voices("[target]'s soul is marked with a grave sin. Stolen essence is devoured within with veins of tar supplying the scourge it inhabits.", range=4)
+					if(OPTION_HUMANITY)
+						switch(target.st_get_stat(STAT_MORALITY))
+							if(0)
+								owner.malkavian_voices("Drooling, gnawing, aching. An emaciated body gorged with stolen life breaks its mind in starvation.", range=4)
+							if(1)
+								owner.malkavian_voices("[target] is savagely hounded by their beast, one moment away from plunging into the brink of madness", range=4)
+							if(2,3)
+								owner.malkavian_voices("The beast pounds the mind of [target] day after day; demands ever-made to this perversion of humanity with no reprive to speak of.", range=4)
+							if(4,5)
+								owner.malkavian_voices("The reality of undeath has long since sunken in comfortably for [target]. After all, a predator pays no mind to the thought of its prey.", range=4)
+							if(6)
+								owner.malkavian_voices("That's that, and this is this. This kindred isn't quite beast, yet not much closer to a human either.", range=4)
+							if(7)
+								owner.malkavian_voices("Stability of the self, [target] manages a connection with their former humanity comparable to the kine they're long since divorced from.", range=4)
+							if(8)
+								owner.malkavian_voices("[target] yearns to stay close to a concept long since divorced; careful practice keeps this one close to humanity.", range=4)
+							if(9)
+								owner.malkavian_voices("The bleeding heart of [target] weeps for the sins their kind inflicts. A moral pariah to most of Kindred society.", range=4)
+							if(10)
+								owner.malkavian_voices("A fragile state of grace held above a pillar to the Heavens; [target] is a saint even amongst the living. Even then, the fragile foundation of principles ever-demand attention", range=4)
+					if(OPTION_BLOOD_BONDED)
+						owner.malkavian_voices("Chain's interlock [target]'s blood — bonding them to another. the call of [target.mind.enslaved_to] beckons them to react", range=4)
 
-				sleep(2 SECONDS)
+
+				//sleep(2 SECONDS)
 
 #undef OPTION_IMMORTAL_AGE
 #undef OPTION_BIOLOGICAL_AGE
 #undef OPTION_CLAN
 #undef OPTION_TRIBE
+#undef OPTION_DISCIPLINES
+#undef OPTION_BRAIN_TRAUMA
+#undef OPTION_MORALITY_PATH
+#undef OPTION_HUMANITY
+#undef OPTION_BLOOD_BONDED
+#undef OPTION_INFLUENCED
+#undef OPTION_SECOND_PRESENCE
+#undef OPTION_DIABLERIE
+#undef OPTION_NATIONALITY
+#undef OPTION_WYRM_TAINTED
+#undef OPTION_WILLPOWER
+#undef OPTION_SPLAT
+#undef OPTION_BREED
+#undef OPTION_GENERATION
+#undef OPTION_EMOTION
+#undef OPTION_CHARACTER_NAME
+#undef OPTION_KINDRED_SIRE
 
 /datum/discipline_power/dementation/eyes_of_chaos/pre_activation_checks(mob/living/carbon/human/target)
 	var/mypower = SSroll.storyteller_roll_datum(owner, target, difficulty = 7, applic_stats = list(STAT_PERCEPTION, STAT_OCCULT), numerical = FALSE)
