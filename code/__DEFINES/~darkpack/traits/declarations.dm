@@ -34,6 +34,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_COFFIN_THERAPY "coffin_therapy"
 // If we use combat_bite instead of vamp_bite
 #define TRAIT_COMBAT_BITE "combat_bite"
+// If for whatever reason we shouldn't be able to jump no matter what
+#define TRAIT_JUMPING_BLOCKED "jumping_blocked"
 #define TRAIT_RUBICON "rubicon"
 #define TRAIT_HUNGRY "hungry"
 #define TRAIT_STAKE_RESISTANT "stake_resistant"
