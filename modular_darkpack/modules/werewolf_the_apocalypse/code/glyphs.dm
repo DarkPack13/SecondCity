@@ -1139,7 +1139,7 @@
 	name = "rushed glyph"
 	garou_name = "quick glyph"
 	garou_desc = "A glyph that represents speed and quickness."
-	icon_state = "speed"
+	icon_state = "quick"
 
 /obj/effect/decal/garou_glyph/resilient
 	name = "enduring glyph"
@@ -1303,8 +1303,8 @@
 	garou_desc = "A glyph that represents an abomination, a Garou tainted by the Eater-Of-Souls to become a leech in spite Luna's power."
 	icon_state = "abomination"
 
-/obj/effect/decal/garou_glyph/utkena
+/obj/effect/decal/garou_glyph/uktena
 	name = "curious glyph"
-	garou_name = "utkena glyph"
-	garou_desc = "A glyph that represents the Utkena, one of the Garou tribes."
-	icon_state = "utkena"
+	garou_name = "uktena glyph"
+	garou_desc = "A glyph that represents the Uktena, one of the Garou tribes."
+	icon_state = "uktena"
