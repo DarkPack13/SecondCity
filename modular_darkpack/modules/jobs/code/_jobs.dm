@@ -112,6 +112,7 @@
 	abstract_type = /datum/job/vampire
 	exp_required_type = EXP_TYPE_PLAYTIME
 	exp_granted_type = EXP_TYPE_PLAYTIME
+	tgui_icon = FA_ICON_QUESTION
 
 /**
  * This type is used to indicate a lack of a job.
