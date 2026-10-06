@@ -3,9 +3,9 @@
 /obj/machinery/computer/security
 	name = "security camera console"
 	desc = "Used to access the various cameras on the station."
-	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/warrant")
-	icon_screen = "cameras"
-	icon_keyboard = "security_key"
+	icon_state = "cameras"
+	icon_screen = null
+	icon_keyboard = null
 	circuit = /obj/item/circuitboard/computer/security
 	light_color = COLOR_SOFT_RED
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON|INTERACT_MACHINE_REQUIRES_SIGHT

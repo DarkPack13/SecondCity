@@ -63,6 +63,8 @@
 	if(!screen_on)
 		cut_overlays()
 		return
+	cut_overlays()
+	//disabling regular computer overlays because they dont fit the laptop sprite
 	return ..()
 
 /obj/item/modular_computer/laptop/attack_self(mob/user)
