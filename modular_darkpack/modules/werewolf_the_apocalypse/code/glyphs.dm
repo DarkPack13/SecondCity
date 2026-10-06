@@ -779,7 +779,7 @@
 	name = "unsavory glyph"
 	garou_name = "crinos glyph"
 	garou_desc = "A glyph that represents the Crinos, warborn children of a forbidden Garou pairing."
-	icon_state = "warborn"
+	icon_state = "crinos"
 
 /obj/effect/decal/garou_glyph/lupus
 	name = "sharp glyph"
@@ -995,25 +995,25 @@
 	name = "notched glyph"
 	garou_name = "north glyph"
 	garou_desc = "A glyph that represents the Brightstar, which leads voyagers northwards."
-	icon_state = "brightstar"
+	icon_state = "north"
 
 /obj/effect/decal/garou_glyph/south
 	name = "notched glyph"
 	garou_name = "south glyph"
 	garou_desc = "A glyph that represents the Awaystar, which leads voyagers southwards."
-	icon_state = "awaystar"
+	icon_state = "south"
 
 /obj/effect/decal/garou_glyph/east
 	name = "notched glyph"
 	garou_name = "east glyph"
 	garou_desc = "A glyph that represents the Sunriseway, the eastward path where the sun rises from."
-	icon_state = "sunriseway"
+	icon_state = "east"
 
 /obj/effect/decal/garou_glyph/west
 	name = "notched glyph"
 	garou_name = "west glyph"
 	garou_desc = "A glyph that represents the Sundownway, the westward path where the sun sets to."
-	icon_state = "sundownway"
+	icon_state = "west"
 
 /obj/effect/decal/garou_glyph/life
 	name = "breathing glyph"
