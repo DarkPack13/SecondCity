@@ -27,6 +27,7 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/numb, /datum/quirk/selfaware),
 	list(/datum/quirk/empath, /datum/quirk/evil),
 	list(/datum/quirk/keen_nose, /datum/quirk/item_quirk/anosmia),
+	list(/datum/quirk/darkpack/vengeful, /datum/quirk/darkpack/coldly_logical), // DARKPACK EDIT ADD - MERITS_FLAWS
 	list(/datum/quirk/darkpack/weak_willed, /datum/quirk/darkpack/untamable), // DARKPACK EDIT ADD - MERITS_FLAWS
 	list(/datum/quirk/darkpack/weak_willed, /datum/quirk/darkpack/iron_will), // DARKPACK EDIT ADD - MERITS_FLAWS
 	list(/datum/quirk/darkpack/permafangs, /datum/quirk/darkpack/dulled_bite), // DARKPACK EDIT ADD - MERITS_FLAWS
