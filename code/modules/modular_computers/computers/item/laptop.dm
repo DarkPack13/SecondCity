@@ -63,8 +63,9 @@
 	if(!screen_on)
 		cut_overlays()
 		return
-	cut_overlays()
-	//disabling regular computer overlays because they dont fit the laptop sprite
+	. = ..()
+	if(screen_on)
+		. += emissive_appearance(icon, "mask", src)
 	return ..()
 
 /obj/item/modular_computer/laptop/attack_self(mob/user)

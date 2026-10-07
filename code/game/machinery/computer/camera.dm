@@ -3,9 +3,10 @@
 /obj/machinery/computer/security
 	name = "security camera console"
 	desc = "Used to access the various cameras on the station."
-	icon_state = "cameras"
-	icon_screen = null
+	icon_state = "cctv"
+	icon_screen = "cctv_screen"
 	icon_keyboard = null
+	pixel_y = 3
 	circuit = /obj/item/circuitboard/computer/security
 	light_color = COLOR_SOFT_RED
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON|INTERACT_MACHINE_REQUIRES_SIGHT
