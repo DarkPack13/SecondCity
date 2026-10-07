@@ -1,0 +1,7 @@
+author: "breadcrombs"
+delete-after: True
+changes:
+  - balance: "Vengeful and Coldly Logical have been made conflicting"
+  - balance: "Iron will can no longer be taken by gargoyles."
+  - bugfix: "Enchanting voice now works for the 2 dementation powers that also checked for iron will"
+  - bugfix: "Bloodheal can no longer remove starting eye quirks"
