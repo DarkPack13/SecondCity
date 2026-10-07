@@ -1,0 +1,4 @@
+author: "JohnFulpWillard"
+delete-after: True
+changes:
+  - rscadd: "You can now make your published phone number persistent for your character."
