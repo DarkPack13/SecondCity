@@ -8587,10 +8587,7 @@
 /area/vtm/interior/giovanni)
 "bYg" = (
 /obj/effect/decal/cleanable/litter,
-/obj/structure/noticeboard{
-	desc = "A board with pamphlets of Saint John's Community Health Clinic.";
-	pixel_y = 32
-	},
+/obj/structure/detectiveboard/directional/north,
 /turf/open/floor/wood/smooth/old,
 /area/vtm/interior/police)
 "bYi" = (
