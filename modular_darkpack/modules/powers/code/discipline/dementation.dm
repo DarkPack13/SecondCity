@@ -286,63 +286,68 @@ Methuselah.”
 #define OPTION_EMOTION "Aura Emotion"
 #define OPTION_CHARACTER_NAME "Character Name"
 #define OPTION_KINDRED_SIRE "Sire" // Only for those who were embraced in a round
+#define OPTION_NULL "Empty"
 // Perhaps note 5-dotted stats and certain traits, inherent traits like Salubri eyes?
 
-	var/list/datum/splat/target_splat = target.splats[1] // Get Splat
+	// Checks the splat of the target
+	var/list/datum/splat/target_splat = target.splats[1]
 	var/target_vampire = (istype(target_splat, /datum/splat/vampire/kindred))
-	if(!target_vampire)
-		return
 	var/target_ghoul = (istype(target_splat, /datum/splat/vampire/ghoul))
-	if(!target_ghoul)
-		return
 	var/target_garou = (istype(target_splat, /datum/splat/werewolf/shifter/garou))
-	if(!target_garou)
-		return
 
-	// Ensure variables that can result null from certain splats not having them have a return function.
-	var/datum/splat/vampire/discipline_splat = get_vampire_splat(target) // Get a vampire's/ghoul's Splat -> Disciplines
-	if(!discipline_splat)
-		return
-	var/datum/action/discipline/target_disciplines = pick(discipline_splat.powers)
-	if(!target_disciplines)
-		return
-	var/target_morality_path = get_morality_path(target) // Get Morality path
-	if(!target_morality_path)
-		return
-	var/datum/subsplat/werewolf/target_breed = target.get_our_breed_form() // Get Shifter Breed
-	if(!target_breed)
-		return
-	var/datum/subsplat/werewolf/target_tribe = target.get_our_tribe() // Get Tribe
-	if(!target_tribe)
-		return
-	var/datum/subsplat/vampire_clan/target_clan = target.get_clan() // Get Clan
-	if(!target_clan)
-		return
-	var/target_country_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/country_of_origin) // Get Country of Origin
-	var/target_state_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/state_of_origin) // Get State of Origin
-	var/target_true_name = target?.client?.prefs.read_preference(/datum/preference/name/real_name) // Get Character's Set Name
+	// Variables that rely on the target being a specific splat should be pre-defined here as OPTION_NULL
+	var/datum/splat/vampire/discipline_splat = OPTION_NULL
+	var/datum/action/discipline/target_disciplines = OPTION_NULL
+	var/datum/subsplat/werewolf/target_breed = OPTION_NULL
+	var/datum/subsplat/vampire_clan/target_clan = OPTION_NULL
+	var/datum/subsplat/werewolf/target_tribe = OPTION_NULL
+	var/target_morality_path = OPTION_NULL
+	// Variables that rely on the target having a client or preferences should also do this
+	var/target_immortal_age = OPTION_NULL
+	var/target_country_of_origin = OPTION_NULL
+	var/target_state_of_origin = OPTION_NULL
+	var/target_true_name = OPTION_NULL
+
+	// Redefine variables from OPTION_NULL only if the target is a splat that would have the listed options to prevent null errors
+	if(target_vampire)
+		discipline_splat = get_vampire_splat(target) // Get a vampire's/ghoul's Splat -> Disciplines
+		target_disciplines = pick(discipline_splat.powers) // Ditto ^
+		target_morality_path = get_morality_path(target) // Get Morality path
+		target_clan = target.get_clan() // Get Clan
+	if(target_ghoul)
+		discipline_splat = get_vampire_splat(target) // Get a vampire's/ghoul's Splat -> Disciplines
+		target_disciplines = pick(discipline_splat.powers) // Ditto ^
+	if(target_garou)
+		target_breed = target.get_our_breed_form() // Get Shifter Breed
+		target_tribe = target.get_our_tribe() // Get Tribe
+	if(target.client?.prefs)
+		target_country_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/country_of_origin) // Get Country of Origin
+		target_state_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/state_of_origin) // Get State of Origin
+		target_true_name = target?.client?.prefs.read_preference(/datum/preference/name/real_name) // Get Character's Set Name
+	if(target.client?.prefs && target_vampire) // (Literally just for Immortal Age)
+		target_immortal_age = target?.client?.prefs.read_preference(/datum/preference/numeric/immortal_age) // Get Immortal Age
 	//var/datum/splat/vampire/kindred/sire_splat = get_kindred_splat(target) // Get vampire's Sire
 	//var/mob/living/target_sire = target.sire
 
-
+	// Add options to the master list if conditions are met. "Information" will draw from "available_options".
 	var/list/available_options = list(OPTION_BIOLOGICAL_AGE, OPTION_WILLPOWER, OPTION_SPLAT, OPTION_EMOTION)
-	var/immortalage = target?.client?.prefs.read_preference(/datum/preference/numeric/immortal_age)
-	if(immortalage > 0)
-		available_options += list(OPTION_IMMORTAL_AGE)
 	if(target_vampire) // Add available options if target is a Vampire
-		available_options += list(OPTION_DISCIPLINES, OPTION_GENERATION, OPTION_MORALITY_PATH, OPTION_HUMANITY, OPTION_CLAN)
+		available_options += list(OPTION_DISCIPLINES, OPTION_GENERATION, OPTION_MORALITY_PATH, OPTION_HUMANITY, OPTION_CLAN, OPTION_IMMORTAL_AGE)
 	if(target_ghoul) // Add available options if target is a Ghoul
 		available_options += list(OPTION_DISCIPLINES)
 	if(target_garou) // Add available options if target is a Garou
 		available_options += list(OPTION_TRIBE)
+	if(target.client?.prefs)
+		available_options += list(OPTION_COUNTRY_OF_ORIGIN, OPTION_CHARACTER_NAME)
+	if(target.client?.prefs && target_vampire) // (Literally just for Immortal Age)
+		available_options += list(OPTION_IMMORTAL_AGE)
 	if(HAS_TRAIT(target, TRAIT_POSSIBLE_WYRM) || (istype(target_splat, /datum/splat/vampire/kindred) && (target.st_get_stat(STAT_MORALITY) <= 7))) // Add available options if target is Wyrm-Tainted or a vampire at humanity 7 and below
 		available_options += list(OPTION_WYRM_TAINTED)
-	var/list/traumas = target.get_traumas() // Add available options if target has brain trauma(s)
 	if(length(target.get_traumas()))
 		available_options += list(OPTION_BRAIN_TRAUMA)
 	if(HAS_TRAIT(target, TRAIT_DIABLERIE)) // Add available options if target has commited Diablerie
 		available_options += list(OPTION_DIABLERIE)
-	if(target.mind.enslaved_to) // Add available options in the presence of a blood bond or related trait
+	if(target.mind.enslaved_to) // Add available options in the presence of a blood bond or related trait if(/datum/status_effect/blood_bond, target)
 		available_options += list(OPTION_BLOOD_BONDED)
 
 	switch(chosen_option)
@@ -355,10 +360,11 @@ Methuselah.”
 			for(var/option in selected_options)
 				switch(option)
 					if(OPTION_IMMORTAL_AGE)
-						var/determined_age = "[target] is not a year older than their body."
-						if(immortalage < 100)
-							determined_age = "[target] is less than a century old."
-						else if(immortalage < 200)
+						var/target_immortal_age = target?.client?.prefs.read_preference(/datum/preference/numeric/immortal_age) // Get Immortal Age
+						var/determined_age = "This fledgling has just been thrust into this new world, the pitiable thing is not even past their first year."
+						if(target_immortal_age < 100)
+							determined_age = "[target] has barely lived their first lifetime."
+						else if(target_immortal_age < 200)
 							determined_age = "[target] is in their second century."
 						else
 							determined_age = "[target] bears the crushing burden of time."
@@ -368,14 +374,15 @@ Methuselah.”
 						owner.malkavian_voices("The body of [target] looks to have [biologicalage] years to it.", range=4)
 					if(OPTION_CLAN)
 						owner.malkavian_voices("[target]'s bloodline is of [target_clan.name] descent", range=4)
-					/*if(OPTION_TRIBE)
-						owner.malkavian_voices("[target] heart belongs to the [target_tribe.name]", range=4)*/
+					if(OPTION_TRIBE)
+						owner.malkavian_voices("[target] heart belongs to the [target_tribe.name]", range=4)
 					if(OPTION_DISCIPLINES)
 						var/selected_discipline = target_disciplines.discipline // Pick a discipline.  // ENSURE BLOODHEAL IS NOT AN OPTION and account for no disciplines somehow
 						//if(selected_discipline = null)
 							//owner.malkavian_voices("The bounty of [target]'s clan bears no fruit! Devoid of substance!", range=4)
 						owner.malkavian_voices("[selected_discipline]", range=4)
 					if(OPTION_BRAIN_TRAUMA)
+						var/list/traumas = target.get_traumas() // Add available options if target has brain trauma(s)
 						var/datum/brain_trauma/selected_trauma = pick(traumas) // Pick a trauma from the target.
 						var/trauma_name = selected_trauma.scan_desc
 						if(istype(selected_trauma, BRAIN_TRAUMA_MILD))
@@ -387,8 +394,8 @@ Methuselah.”
 						else if(istype(selected_trauma, BRAIN_TRAUMA_SPECIAL))
 							owner.malkavian_voices("How did [target]'s brain ever become so riddled with [trauma_name]? This can't be?", range=4)
 					if(OPTION_GENERATION)
-						switch(target.get_generation()) //Figure out how to do 15 and over and 7 and under
-							if(15)
+						switch(target.get_generation())
+							if(-INFINITY to 15)
 								owner.malkavian_voices("Removed further than the stars themselves; our lineage thins in this one.", range=4)
 							if(14)
 								owner.malkavian_voices("The drought of potency narrowly avoids [target], or does it?", range=4)
@@ -398,7 +405,7 @@ Methuselah.”
 								owner.malkavian_voices("[target] still has the blood of our ancestors pulsing in their veins.", range=4)
 							if(9,8)
 								owner.malkavian_voices("Veins seeping power, the blood of [target] flows strongly with the essence of Caine.", range=4)
-							if(7)
+							if(7 to 1)
 								owner.malkavian_voices("The sheer potency of [target]'s blood is far beyond that seen in the cities of man!", range=4)
 					if(OPTION_MORALITY_PATH)
 						owner.malkavian_voices("Their beast's incessant cravings are tamed by the [target_morality_path]", range=4)
@@ -425,20 +432,19 @@ Methuselah.”
 							if(10)
 								owner.malkavian_voices("A fragile state of grace held above a pillar to the Heavens; [target] is a saint even amongst the living. Even then, the fragile foundation of principles ever-demand attention", range=4)
 					if(OPTION_BLOOD_BONDED)
-						owner.malkavian_voices("Chains interlock [target]'s blood — binding them to another. the call of [target.mind.enslaved_to] beckons them to react", range=4)
+						owner.malkavian_voices("Chains interlock [target]'s blood — binding them to another. the call of [target.mind.enslaved_to] beckons them in some way or form.", range=4)
 					if(OPTION_WYRM_TAINTED)
-						if((istype(target_splat, /datum/splat/vampire/kindred)) & (HAS_TRAIT(target, TRAIT_HIDDEN_WYRMTAINT))) // if Vampire with Hidden Wyrmtaint
-							owner.malkavian_voices("A faint glimmer of decay is embracing [target]", range=4)
+						if((istype(target_splat, /datum/splat/vampire/kindred)) & (HAS_TRAIT(target, TRAIT_HIDDEN_WYRMTAINT))) // if Vampire with hidden Wyrmtaint
+							owner.malkavian_voices("A faint glimmer of decay is embracing [target].", range=4)
 						else if(istype(target_splat, /datum/splat/vampire/kindred)) // Vampire with no Hidden Wyrmtaint
 							owner.malkavian_voices("The beast of this vampire still gnaws at some recess of their mind, an entropic taint is noticable.", range=4)
-						else if((HAS_TRAIT(target, TRAIT_WYRMTAINTED_SPRITE))) // Physically appears Wyrmtainted
+						else if((HAS_TRAIT(target, TRAIT_WYRMTAINTED_SPRITE))) // Physically appears Wyrmtainted and not a vampire
 							owner.malkavian_voices("The taint of the Wyrm malforms [target]'s body and mind into a cruel mockery of nature.", range=4)
-						else // Is tainted by the Wyrm
+						else // Is tainted by the Wyrm and not a vampire
 							owner.malkavian_voices("The taint of the Wyrm harshly defiles [target]'s very being.", range=4)
 
 
 				//sleep(2 SECONDS) // make into proper timer function that's not sleep
-				// Figure out how | & vs || && works the documentation reads funky to me
 				// ensure you can't resist your own mind
 
 #undef OPTION_IMMORTAL_AGE
@@ -462,6 +468,7 @@ Methuselah.”
 #undef OPTION_EMOTION
 #undef OPTION_CHARACTER_NAME
 #undef OPTION_KINDRED_SIRE
+#undef OPTION_NULL
 
 /datum/discipline_power/dementation/eyes_of_chaos/pre_activation_checks(mob/living/carbon/human/target)
 	var/mypower = SSroll.storyteller_roll_datum(owner, target, difficulty = 7, applic_stats = list(STAT_PERCEPTION, STAT_OCCULT), numerical = FALSE)
