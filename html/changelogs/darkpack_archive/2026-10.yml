@@ -1,0 +1,37 @@
+2026-10-01:
+  JohnFulpWillard:
+  - refactor: Sprinklers have been messed with a bit, please make a bug report if
+      behavior has changed.
+2026-10-02:
+  SELFHELL:
+  - rscadd: Remington Arms has had a restock in San-Francisco.
+  - rscadd: New SFX for the 11-87 Shotgun
+2026-10-03:
+  Breadcrombs, CCC23:
+  - bugfix: True Faith crosses now affects everyone regardless of wearing flash protection
+      or not as well as not flashing the user, cooldown on this has also been made
+      to be per item/cross.
+  Eagletanker:
+  - sound: 'Friendlyumbra: Added two new music tracks. Lux Umbrae, which plays in
+      the Gaian Caern, and Endron for the Planet, which plays in Pentex facilties.
+      Both are composed and preformed by Friendly Umbra. Go support her! https://youtube.com/@friendlyumbra'
+  FalloutFalcon:
+  - qol: Adds additional clarity if your prefs get adjusted midround
+  - bugfix: Minigame characters are immune to midround pref adjustments
+  - code_imp: Discipline sharing follows the same rules as other midround pref adjustments
+      like diablare
+  JohnFulpWillard:
+  - bugfix: Malkavians are now insane.
+  - bugfix: Dominate Malkavians and Regular Malkavians now share the same web.
+  - image: Changed splat icons, the pref menu should now open a little faster.
+  Stutternov:
+  - rscadd: Adds TG facescarf, TG bandanas, and alternative leather coats to the loadout
+      selection and stores.
+  breadcrombs:
+  - qol: Bloodpacks no longer splash when thrown
+  chazzyjazzy:
+  - rscadd: makes the 'academics' stat increase language familiarity
+2026-10-04:
+  JohnFulpWillard:
+  - bugfix: Gangrels turning their transformation ability off will now lose their
+      Discipline Active alert.
