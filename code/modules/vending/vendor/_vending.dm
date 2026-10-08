@@ -23,6 +23,8 @@
 	var/category
 	///List of items that have been returned to the vending machine.
 	var/list/returned_products
+	///How low the masquerade must have gotten, for this to be available
+	var/masquerade	//DARKPACK EDIT ADD, vending items can have a masquerade requirement.
 
 /datum/data/vending_product/Destroy(force)
 	returned_products = null

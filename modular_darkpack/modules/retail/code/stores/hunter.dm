@@ -1,4 +1,5 @@
 /obj/structure/retail/leopoldite
+	owner_needed = FALSE //Don't want a single obfuscating vampire to cut off all leopoldite weaponry acquisition.
 	//Design philosphophy behind which weaponry to include, is to focus on weapons originating from catholic countries.
 	//For example, the AUG is an Austrian weapon, and therefore may be included, but the AK74 is a Russian weapon, and will not be included on this list.
 	//I'm tolerating some non-catholic weaponry, for example the hunting rifle, because if I didn't include that, the leopoldites would only have crossbows at full masquerade.
@@ -28,7 +29,7 @@
 		new /datum/data/vending_product("shotgun", /obj/item/gun/ballistic/shotgun/vampire, 90),
 		new /datum/data/vending_product("double barrel shotgun", /obj/item/gun/ballistic/shotgun/vampire/doublebarrel, 110),
 		new /datum/data/vending_product("braddock .45 submachine gun", /obj/item/gun/ballistic/automatic/darkpack/mac10, 120),
-		new /datum/data/vending_product("braddock SMG magazine (.45)", /obj/item/ammo_box/magazine/darkpack45smg
+		new /datum/data/vending_product("braddock SMG magazine (.45)", /obj/item/ammo_box/magazine/darkpack45smg, 25),
 		new /datum/data/vending_product("crossbow", /obj/item/gun/ballistic/shotgun/toy/crossbow/vampire, 50),
 
 		new /datum/data/vending_product("battle Rifle", /obj/item/gun/ballistic/automatic/darkpack/fal, 200, -1, 20),
@@ -62,7 +63,6 @@
 
 		//Ammo
 
-		/obj/item/ammo_box/darkpack/c75
 		new	/datum/data/vending_product("5.45 ammo", /obj/item/ammo_box/darkpack/c545, 100),
 		new	/datum/data/vending_product(".45 ammo", /obj/item/ammo_box/darkpack/c45acp, 70),
 		new	/datum/data/vending_product(".45 silver ammo", /obj/item/ammo_box/darkpack/c45acp/silver, 80, -1, 24),
@@ -104,7 +104,7 @@
 		new /datum/data/vending_product("army vest", /obj/item/clothing/suit/vampire/vest/army, 100, -1, 14),
 		new /datum/data/vending_product("army helmet", /obj/item/clothing/head/vampire/army, 100, -1, 14),
 
-		new /datum/data/vending_product("EOD vest", /obj/item/clothing/suit/vampire/vest/eod, 150, -1, 9),
+		new /datum/data/vending_product("EOD suit", /obj/item/clothing/suit/vampire/eod, 150, -1, 9),
 		new /datum/data/vending_product("EOD helmet", /obj/item/clothing/head/vampire/eod, 150, -1, 9),
 	)
 
