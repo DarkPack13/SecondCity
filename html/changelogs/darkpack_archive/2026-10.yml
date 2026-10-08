@@ -72,3 +72,13 @@
   - bugfix: Enchanting voice now works for the 2 dementation powers that also checked
       for iron will
   - bugfix: Bloodheal can no longer remove starting eye quirks
+2026-10-08:
+  JohnFulpWillard:
+  - rscadd: Canadians now come from provinces.
+  - rscadd: You can now make your published phone number persistent for your character.
+  breadcrombs:
+  - qol: Vampire biting now only checks for if the mouth is covered rather than the
+      face hidden
+  chazzyjazzy:
+  - bugfix: fixes is_sabbat helpers not recognizing the ductus or priest as sabbat
+      members

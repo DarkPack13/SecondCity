@@ -1,4 +1,0 @@
-author: "breadcrombs"
-delete-after: True
-changes:
-  - qol: "Vampire biting now only checks for if the mouth is covered rather than the face hidden"
