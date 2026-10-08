@@ -58,7 +58,7 @@
 		new /datum/data/vending_product("silver spear", /obj/item/darkpack/spear/silver, 200, -1, 20),
 		new /datum/data/vending_product("sabre", /obj/item/storage/belt/sheath/vamp/sabre, 100),
 		new /datum/data/vending_product("longsword", /obj/item/storage/belt/sheath/vamp/sword, 100),
-		//Silver swords would be too weak and heavy most likely if you weren't using magic.
+		//Silver swords would be too weak and heavy most likely if you weren't using magic. Maybe a silver dagger if you really want a new weapon for them.
 		//An iron longsword would also fit well, as that would be a good weapon to fight fae with.
 
 		//Ammo
