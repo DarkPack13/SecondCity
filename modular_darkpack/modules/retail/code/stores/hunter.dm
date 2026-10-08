@@ -48,8 +48,8 @@
 		new /datum/data/vending_product("jaegerspas-XV", /obj/item/gun/ballistic/automatic/darkpack/autoshotgun, 250, -1, 9),
 		new /datum/data/vending_product("flamethrower", /obj/item/liquid_flamethrower, 50, -1, 9),
 		new /datum/data/vending_product("rocket launcher", /obj/item/gun/ballistic/rocketlauncher/unrestricted, 300, -1, 9),	//Might need to be at a lower masq level.
-		new /datum/data/vending_product("HE rocket", /obj/item/ammo_casing/rocket, 50, -1, 9),
-		new /datum/data/vending_product("HEAP rocket", /obj/item/ammo_casing/rocket/heap, 50, -1, 9),
+		new /datum/data/vending_product("HE rocket", /obj/item/ammo_casing/rocket, 50, -1, 9),	//Maybe make this low-yield?
+		//new /datum/data/vending_product("HEAP rocket", /obj/item/ammo_casing/rocket/heap, 50, -1, 9),	//This is funny, but it creates holes in the floor to space.
 
 
 		//Blades
