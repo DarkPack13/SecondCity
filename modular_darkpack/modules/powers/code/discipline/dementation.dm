@@ -290,18 +290,37 @@ Methuselah.”
 
 	var/list/datum/splat/target_splat = target.splats[1] // Get Splat
 	var/target_vampire = (istype(target_splat, /datum/splat/vampire/kindred))
+	if(!target_vampire)
+		return
+	var/target_ghoul = (istype(target_splat, /datum/splat/vampire/ghoul))
+	if(!target_ghoul)
+		return
+	var/target_garou = (istype(target_splat, /datum/splat/werewolf/shifter/garou))
+	if(!target_garou)
+		return
 
+	// Ensure variables that can result null from certain splats not having them have a return function.
 	var/datum/splat/vampire/discipline_splat = get_vampire_splat(target) // Get a vampire's/ghoul's Splat -> Disciplines
-	if(![target_vampire])
+	if(!discipline_splat)
 		return
 	var/datum/action/discipline/target_disciplines = pick(discipline_splat.powers)
+	if(!target_disciplines)
+		return
 	var/target_morality_path = get_morality_path(target) // Get Morality path
+	if(!target_morality_path)
+		return
+	var/datum/subsplat/werewolf/target_breed = target.get_our_breed_form() // Get Shifter Breed
+	if(!target_breed)
+		return
+	var/datum/subsplat/werewolf/target_tribe = target.get_our_tribe() // Get Tribe
+	if(!target_tribe)
+		return
+	var/datum/subsplat/vampire_clan/target_clan = target.get_clan() // Get Clan
+	if(!target_clan)
+		return
 	var/target_country_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/country_of_origin) // Get Country of Origin
 	var/target_state_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/state_of_origin) // Get State of Origin
 	var/target_true_name = target?.client?.prefs.read_preference(/datum/preference/name/real_name) // Get Character's Set Name
-	var/datum/subsplat/werewolf/target_breed = target.get_our_breed_form() // Get Shifter Breed
-	var/datum/subsplat/werewolf/target_tribe = target.get_our_tribe() // Get Tribe
-	var/datum/subsplat/vampire_clan/target_clan = target.get_clan() // Get Clan
 	//var/datum/splat/vampire/kindred/sire_splat = get_kindred_splat(target) // Get vampire's Sire
 	//var/mob/living/target_sire = target.sire
 
@@ -312,11 +331,11 @@ Methuselah.”
 		available_options += list(OPTION_IMMORTAL_AGE)
 	if(target_vampire) // Add available options if target is a Vampire
 		available_options += list(OPTION_DISCIPLINES, OPTION_GENERATION, OPTION_MORALITY_PATH, OPTION_HUMANITY, OPTION_CLAN)
-	if(istype(target_splat, /datum/splat/vampire/ghoul)) // Add available options if target is a Ghoul
+	if(target_ghoul) // Add available options if target is a Ghoul
 		available_options += list(OPTION_DISCIPLINES)
-	if(istype(target_splat, /datum/splat/werewolf/shifter/garou)) // Add available options if target is a Garou
+	if(target_garou) // Add available options if target is a Garou
 		available_options += list(OPTION_TRIBE)
-	if(HAS_TRAIT(target, TRAIT_POSSIBLE_WYRM)) | (istype(target_splat, /datum/splat/vampire/kindred) & (target.st_get_stat(STAT_MORALITY) <= 7)) // Add available options if target is Wyrm-Tainted or a vampire at humanity 7 and below
+	if(HAS_TRAIT(target, TRAIT_POSSIBLE_WYRM) || (istype(target_splat, /datum/splat/vampire/kindred) && (target.st_get_stat(STAT_MORALITY) <= 7))) // Add available options if target is Wyrm-Tainted or a vampire at humanity 7 and below
 		available_options += list(OPTION_WYRM_TAINTED)
 	var/list/traumas = target.get_traumas() // Add available options if target has brain trauma(s)
 	if(length(target.get_traumas()))
@@ -349,8 +368,8 @@ Methuselah.”
 						owner.malkavian_voices("The body of [target] looks to have [biologicalage] years to it.", range=4)
 					if(OPTION_CLAN)
 						owner.malkavian_voices("[target]'s bloodline is of [target_clan.name] descent", range=4)
-					if(OPTION_TRIBE)
-						owner.malkavian_voices("[target] heart belongs to the [target_tribe.name]", range=4)
+					/*if(OPTION_TRIBE)
+						owner.malkavian_voices("[target] heart belongs to the [target_tribe.name]", range=4)*/
 					if(OPTION_DISCIPLINES)
 						var/selected_discipline = target_disciplines.discipline // Pick a discipline.  // ENSURE BLOODHEAL IS NOT AN OPTION and account for no disciplines somehow
 						//if(selected_discipline = null)
@@ -420,6 +439,7 @@ Methuselah.”
 
 				//sleep(2 SECONDS) // make into proper timer function that's not sleep
 				// Figure out how | & vs || && works the documentation reads funky to me
+				// ensure you can't resist your own mind
 
 #undef OPTION_IMMORTAL_AGE
 #undef OPTION_BIOLOGICAL_AGE
