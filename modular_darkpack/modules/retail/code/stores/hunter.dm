@@ -1,12 +1,16 @@
 /obj/structure/retail/leopoldite
-	//Design philosphophy behind which weaponry to include, is to include weapons of American or Catholic origin.
+	//Design philosphophy behind which weaponry to include, is to focus on weapons originating from catholic countries.
 	//For example, the AUG is an Austrian weapon, and therefore may be included, but the AK74 is a Russian weapon, and will not be included on this list.
-	//If we ever wanted to make the leopoldites "more catholic", we could remove American weaponry.
+	//I'm tolerating some non-catholic weaponry, for example the hunting rifle, because if I didn't include that, the leopoldites would only have crossbows at full masquerade.
 	products_list = list(
 		new /datum/data/vending_product("binoculars", /obj/item/binoculars, 20),
 		new /datum/data/vending_product("stake", /obj/item/vampire_stake, 10),
 		new /datum/data/vending_product("full gas can", /obj/item/gas_can/full, 50),
 		new /datum/data/vending_product("zippo lighter", /obj/item/lighter, 20),
+		new /datum/data/vending_product("bible", /obj/item/vampirebook/bible, 20),
+		new /datum/data/vending_product("cross (gold)", /obj/item/card/hunter, 20),
+		new /datum/data/vending_product("cross (silver)", /obj/item/card/hunter/silver, 20),
+		new /datum/data/vending_product("cross (gothic)", /obj/item/card/hunter/gothic, 20),
 
 		//Sidearms
 		new /datum/data/vending_product("elite 92G", /obj/item/gun/ballistic/automatic/pistol/darkpack/beretta, 50),
@@ -50,10 +54,11 @@
 		//Blades
 		new /datum/data/vending_product("rapier", /obj/item/storage/belt/sheath/vamp/rapier, 100),
 		new /datum/data/vending_product("spear", /obj/item/darkpack/spear, 100),
+		new /datum/data/vending_product("silver spear", /obj/item/darkpack/spear/silver, 200, -1, 20),
 		new /datum/data/vending_product("sabre", /obj/item/storage/belt/sheath/vamp/sabre, 100),
 		new /datum/data/vending_product("longsword", /obj/item/storage/belt/sheath/vamp/sword, 100),
-		//I would add a silver spear weapon if I had sprites for it...
 		//Silver swords would be too weak and heavy most likely if you weren't using magic.
+		//An iron longsword would also fit well, as that would be a good weapon to fight fae with.
 
 		//Ammo
 
@@ -88,6 +93,10 @@
 		//Armor
 		new /datum/data/vending_product("armored trenchcoat", /obj/item/clothing/suit/armor/hos/trenchcoat, 50),
 		//Would add plate armor but don't know typepath.
+
+		//Spanish inquisition larp
+		new /datum/data/vending_product("cuirass", /obj/item/clothing/suit/vampire/vest/medieval, 50),
+		new /datum/data/vending_product("medieval helmet", /obj/item/clothing/head/vampire/helmet/spain, 50),
 
 		new /datum/data/vending_product("vest", /obj/item/clothing/suit/vampire/vest, 50, -1, 20),
 		new /datum/data/vending_product("helmet", /obj/item/clothing/head/vampire/helmet, 50, -1, 20),
