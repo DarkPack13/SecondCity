@@ -532,7 +532,7 @@
 /obj/effect/decal/garou_glyph/horned_serpent
 	name = "slithery glyph"
 	garou_name = "horned serpent glyph"
-	garou_desc = "A glyph that represents Horned Serpent, the totem spirit of the Galestalkers."
+	garou_desc = "A glyph that represents Horned Serpent, the totem spirit of the Uktena, also known as the Ghost Council."
 	icon_state = "horned_serpent"
 
 /obj/effect/decal/garou_glyph/unicorn
@@ -544,7 +544,7 @@
 /obj/effect/decal/garou_glyph/north_wind
 	name = "simple glyph"
 	garou_name = "north wind glyph"
-	garou_desc = "A glyph that represents North Wind, the totem spirit of the Ghost Council."
+	garou_desc = "A glyph that represents North Wind, the totem spirit of the Galestalkers."
 	icon_state = "north_wind"
 
 /obj/effect/decal/garou_glyph/gun
