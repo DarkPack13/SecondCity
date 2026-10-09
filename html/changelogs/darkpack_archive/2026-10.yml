@@ -65,3 +65,20 @@
   - bugfix: Serpentis 1 no longer implies that it can mind control you.
   breadcrombs:
   - rscadd: Donning the Mask of Shadows makes those under it's effect harder to examine/inspect
+2026-10-07:
+  breadcrombs:
+  - balance: Vengeful and Coldly Logical have been made conflicting
+  - balance: Iron will can no longer be taken by gargoyles.
+  - bugfix: Enchanting voice now works for the 2 dementation powers that also checked
+      for iron will
+  - bugfix: Bloodheal can no longer remove starting eye quirks
+2026-10-08:
+  JohnFulpWillard:
+  - rscadd: Canadians now come from provinces.
+  - rscadd: You can now make your published phone number persistent for your character.
+  breadcrombs:
+  - qol: Vampire biting now only checks for if the mouth is covered rather than the
+      face hidden
+  chazzyjazzy:
+  - bugfix: fixes is_sabbat helpers not recognizing the ductus or priest as sabbat
+      members
