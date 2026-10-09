@@ -346,6 +346,7 @@ Methuselah.”
 							owner.malkavian_voices("[target] has found their pack within the [target.get_our_tribe()].", range=4) // Rewrite text after feedback from Garou players
 					if (OPTION_DISCIPLINES)
 						var/datum/splat/vampire/discipline_splat = get_vampire_splat(target) // Get a vampire's/ghoul's Splat -> Disciplines
+						var/list/all_disciplines = discipline_splat
 						var/datum/action/discipline/target_disciplines = pick(discipline_splat.powers) // Ditto ^
 						//if (!discipline.selectable)
 						/*if (istype(target_disciplines, /datum/discipline/bloodheal))
@@ -515,34 +516,44 @@ Methuselah.”
 							if (AURA_INNOCENT)
 								owner.malkavian_voices("They are innocent to the world surrounding them — or perhaps at ease to it, even.", range=4)
 					if (OPTION_BREED)
-						var/target_breed = target.get_our_breed_form()
-						if (istype(target_breed, /datum/species/human/shifter/feral))
-							if (get_corax_splat(target))
-								owner.malkavian_voices("The heart of this corvid is one born of nature's world — an outsider to the realm of man.", range=4)
-							else if (get_garou_splat(target))
-								owner.malkavian_voices("This true form of this wolf is one of the wild. A beast bestowed the gift of higher thought.", range=4)
-						else if (istype(target_breed, /datum/species/human/shifter/homid))
-							if (get_corax_splat(target))
-								owner.malkavian_voices("An outsider to the skies imbued with a spirit egg; humanity unshackled by the world below", range=4)
-							else if (get_garou_splat(target))
-								owner.malkavian_voices("Closer to man than beast, [target] has more familiarity with forests of concrete than ones of wood", range=4)
-						else if (istype(target_breed, /datum/species/human/shifter/war))
-							owner.malkavian_voices("An abberant beast neither man or wolf, yet not quite not either. A being born of taboo imbued with rage.", range=4)
+						switch (target.get_our_breed_form())
+								if (BREED_CORVID)
+									owner.malkavian_voices("The heart of this corvid is one born of nature's world — an outsider to the realm of man.", range=4)
+								if(BREED_LUPUS)
+									owner.malkavian_voices("This true form of this wolf is one of the wild. A beast bestowed the gift of higher thought.", range=4)
+								if (BREED_CORAX_HOMID)
+									owner.malkavian_voices("An outsider to the skies imbued with a spirit egg; humanity unshackled by the world below", range=4)
+								if (BREED_GAROU_HOMID)
+									owner.malkavian_voices("Closer to man than beast, [target] has more familiarity with forests of concrete than ones of wood", range=4)
+								if (BREED_CRINOS)
+								owner.malkavian_voices("An abberant beast neither man or wolf, yet not quite not either. A being born of taboo imbued with rage.", range=4)
 					if (OPTION_AUSPICE)
 						switch (target.get_our_auspice())
-							if (/datum/subsplat/werewolf/auspice/garou/ahroun)
+							if (AUSPICE_AHROUN)
 								target.malkavian_voices("An embodiment of the Moon's rage; battle is ingrained within their very being! Renown and glory are vital parts of themselves.", range=4)
-							if (/datum/subsplat/werewolf/auspice/garou/philodox)
+							if (AUSPICE_PHILODOX)
 								target.malkavian_voices("A creature of balance and order; a tempered mind able to see both sides — honor and wisdom define them.", range=4)
-							if (/datum/subsplat/werewolf/auspice/garou/galliard)
+							if (AUSPICE_GALLIARD)
 								target.malkavian_voices("A passionate muse, [target] is tasked with the preservation and celebration of the culture they hail from. Glory and renown remedy their soul.", range=4)
-							if (/datum/subsplat/werewolf/auspice/garou/theurge)
+							if (AUSPICE_THEURGE)
 								target.malkavian_voices("Seer, explorer, conduit, [target] is a spiritual guide and healer to their kind. Wisdom and honor guide them true.", range=4)
-							if (/datum/subsplat/werewolf/auspice/garou/ragabash)
+							if (AUSPICE_RAGABASH)
 								target.malkavian_voices("The joker of the deck, this individual is the wild card of their group. The aspects that empower them are entirely their own to decide.", range=4)
-							if (/datum/subsplat/werewolf/auspice/garou/stolen_moon)
+							if (AUSPICE_NONE)
 								target.malkavian_voices("This individual has changed far more than any shifter could ever hope... In the most twisted of ways. A stolen gift repurposed for their own use — though to what end?", range=4)
 
+						var/datum/splat/vampire/discipline_splat = get_vampire_splat(target) // Get a vampire's/ghoul's Splat -> Disciplines
+						var/list/discipline_filter_list = list()
+						for (var/list/all_disciplines in list)
+							if (istype(all_disciplines, /datum/discipline_power/bloodheal)) // If bloodheal continue loop
+								continue
+								discipline_filter_list += list(discipline_splat.powers)
+						var/datum/action/discipline/target_disciplines = pick(discipline_filter_list)
+
+
+
+						//var/datum/action/discipline/target_disciplines = pick(discipline_splat.powers) // Ditto ^
+					//	var/list/all_disciplines = discipline_splat
 
 
 
