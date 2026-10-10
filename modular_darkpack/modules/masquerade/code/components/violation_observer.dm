@@ -23,6 +23,8 @@
 /atom/movable/proc/on_masquerade_violation()
 	if(!COOLDOWN_FINISHED(src, masquerade_violation_cooldown))
 		return
+	if(HAS_TRAIT(src, TRAIT_OBFUSCATED))
+		return
 	var/area/vtm/breacher_area = get_area(src)
 	if(!istype(breacher_area, /area/vtm))
 		return
@@ -42,6 +44,8 @@
 	SIGNAL_HANDLER
 
 	if(!source || !player_breacher || ismundane(player_breacher)) //Humans cant break the masquerade. Because reasons.
+		return
+	if(HAS_TRAIT(player_breacher, TRAIT_OBFUSCATED))
 		return
 
 	if(isliving(source))
