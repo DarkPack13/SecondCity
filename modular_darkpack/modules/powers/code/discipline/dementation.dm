@@ -288,9 +288,9 @@ Methuselah.”
 	// Add options to the master list if conditions are met. "Information" will draw from "available_options".
 	var/list/available_options = list(OPTION_BIOLOGICAL_AGE, OPTION_WILLPOWER, OPTION_SPLAT)
 	if (get_kindred_splat(target)) // Add available options if target is a Vampire
-		available_options += list(OPTION_GENERATION, OPTION_MORALITY_PATH, OPTION_HUMANITY, OPTION_CLAN)
-	//if (get_ghoul_splat(target)) // Add available options if target is a Ghoul
-	//	available_options += list()
+		available_options += list(OPTION_DISCIPLINES, OPTION_GENERATION, OPTION_MORALITY_PATH, OPTION_HUMANITY, OPTION_CLAN)
+	if (get_ghoul_splat(target)) // Add available options if target is a Ghoul
+		available_options += list(OPTION_DISCIPLINES)
 	if (get_garou_splat(target)) // Add available options if target is a Garou
 		available_options += list(OPTION_TRIBE, OPTION_BREED, OPTION_AUSPICE)
 	if (target.client?.prefs) // Add available options if target has preferences (avoids issues with NPCs)
@@ -310,7 +310,8 @@ Methuselah.”
 		available_options += list(OPTION_BLOOD_BONDED)
 	if (target.current_emotion != AURA_INNOCENT) // Add available options if emotion has been changed from its initial setting
 		available_options += list(OPTION_EMOTION)
-	//if (target.possessed == true) || (HAS_TRAIT(target, TRAIT_FORCED_EMOTION) || target.conditioner)
+	if (target.possessed == TRUE || (HAS_TRAIT(target, TRAIT_FORCED_EMOTION) || (target.conditioner)))
+		available_options += list(OPTION_INFLUENCED)
 
 	switch (chosen_option)
 		if ("Secrets")
@@ -341,17 +342,18 @@ Methuselah.”
 						else
 							owner.malkavian_voices("[target] has found their pack within the [target.get_our_tribe()].", range=4) // Rewrite text after feedback from Garou players
 					if (OPTION_DISCIPLINES)
-						/*var/datum/splat/vampire/discipline_splat = get_vampire_splat(target) // Get a Vampire's/Ghoul's Splat -> Disciplines
+						var/datum/splat/vampire/discipline_splat = get_vampire_splat(target) // Get a Vampire's/Ghoul's Splat -> Disciplines
 						var/list/discipline_filtered_list = list()
-						for (var/list/individual_disciplines in discipline_splat.powers) // We don't want Bloodheal, filters it out
-							if (istype(individual_disciplines, /datum/discipline_power/bloodheal))
+						for (var/datum/action/discipline/individual_discipline in discipline_splat.powers) // We don't want Bloodheal, filters it out
+							if (istype(individual_discipline.discipline, /datum/discipline/bloodheal))
 								continue
-							discipline_filtered_list += individual_disciplines // Ensure everything but Bloodheal makes it to the filtered list
+							discipline_filtered_list += individual_discipline // Ensure everything but Bloodheal makes it to the filtered list
 						var/datum/action/discipline/target_disciplines = pick(discipline_filtered_list) // Pick from the filtered list
 						if (target_disciplines == null)
 							owner.malkavian_voices("The bounty of [target]'s clan bears no fruit! Devoid of substance!", range=4)
 						else
-							owner.malkavian_voices("Much knowledge is embedded within this fiend of blood. [target_disciplines.discipline] is but one gift of blood bestowoed upon them.", range=4)*/
+							owner.malkavian_voices("Much knowledge is embedded within this fiend of blood. [target_disciplines.discipline] is but one gift of blood bestowoed upon them.", range=4)
+					if (OPTION_BRAIN_TRAUMA)
 						var/list/traumas = target.get_traumas()
 						var/datum/brain_trauma/selected_trauma = pick(traumas) // Pick a trauma from the target.
 						var/trauma_name = selected_trauma.scan_desc
@@ -405,8 +407,8 @@ Methuselah.”
 						if (HAS_TRAIT(target, TRAIT_UNBONDABLE))
 							owner.malkavian_voices("[target]'s abnormal biology surpasses the bonding nature of vitae; no chains of blood can be placed on them — only the call of addiction.")
 						else
-							var/mob/living/carbon/human/target_master_name = /datum/status_effect/blood_bond
-							owner.malkavian_voices("Chains interlock [target]'s blood — binding them to another. the call of [target_master_name] beckons them in some way or form.", range=4)
+							var/datum/status_effect/blood_bond/target_blood_bond = target.has_status_effect(/datum/status_effect/blood_bond) // Lets us access regnant_name here
+							owner.malkavian_voices("Chains interlock [target]'s blood — binding them to another. the call of [target_blood_bond.regnant_name.real_name] beckons them in some way or form.", range=4)
 					if (OPTION_WYRM_TAINTED)
 						if (get_kindred_splat(target) && (HAS_TRAIT(target, TRAIT_HIDDEN_WYRMTAINT))) // if Vampire with hidden Wyrmtaint
 							owner.malkavian_voices("A faint glimmer of decay is embracing [target].", range=4)
@@ -460,7 +462,7 @@ Methuselah.”
 							owner.malkavian_voices("the faint presence of The Emerald Mother can be seen within [target]'s essence — nature is dear to them.", range=4)
 						else
 							owner.malkavian_voices("A creature untouched by the deviations of normalcy, not a touch of the supernatural in their being.", range=4)
-					if (OPTION_EMOTION) // THIS AND BELOW BROKEN
+					if (OPTION_EMOTION)
 						switch (target.current_emotion)
 							if (AURA_AGGRESSIVE, AURA_BITTER, AURA_ANGRY)
 								owner.malkavian_voices("Our eyes see spite and fury within the heart of our observed.", range=4)
@@ -509,41 +511,38 @@ Methuselah.”
 							if (AURA_INNOCENT)
 								owner.malkavian_voices("They are innocent to the world surrounding them — or perhaps at ease to it, even.", range=4)
 					if (OPTION_BREED)
-						switch (get_fera_breed_form(target))
-							if (/datum/subsplat/werewolf/breed_form/corax/corvid)
+						switch (get_fera_breed_form(target)?.name)
+							if (BREED_CORVID)
 								owner.malkavian_voices("The heart of this corvid is one born of nature's world — an outsider to the realm of man.", range=4)
-							if (/datum/subsplat/werewolf/breed_form/garou/lupus)
+							if (BREED_LUPUS)
 								owner.malkavian_voices("This true form of this wolf is one of the wild. A beast bestowed the gift of higher thought.", range=4)
-							if (/datum/subsplat/werewolf/breed_form/corax/homid)
+							if (BREED_CORAX_HOMID)
 								owner.malkavian_voices("An outsider to the skies imbued with a spirit egg; humanity unshackled by the world below", range=4)
-							if (/datum/subsplat/werewolf/breed_form/garou/homid)
+							if (BREED_GAROU_HOMID)
 								owner.malkavian_voices("Closer to man than beast, [target] has more familiarity with forests of concrete than ones of wood", range=4)
-							if (/datum/subsplat/werewolf/breed_form/garou/crinos)
+							if (BREED_CRINOS)
 								owner.malkavian_voices("An abberant beast neither man or wolf, yet not quite not either. A being born of taboo imbued with rage.", range=4)
 					if (OPTION_AUSPICE)
-						//if (target.is_auspice(/datum/subsplat/werewolf/auspice/garou/ahroun))
 						switch (target.get_our_auspice()?.name)
-							if (/datum/subsplat/werewolf/auspice/garou/ahroun)
-								target.malkavian_voices("An embodiment of the Moon's rage; battle is ingrained within their very being! Renown and glory are vital parts of themselves.", range=4)
+							if (AUSPICE_AHROUN)
+								owner.malkavian_voices("An embodiment of the Moon's rage; battle is ingrained within their very being! Renown and glory are vital parts of themselves.", range=4)
 							if (AUSPICE_PHILODOX)
-								target.malkavian_voices("A creature of balance and order; a tempered mind able to see both sides — honor and wisdom define them.", range=4)
+								owner.malkavian_voices("A creature of balance and order; a tempered mind able to see both sides — honor and wisdom define them.", range=4)
 							if (AUSPICE_GALLIARD)
-								target.malkavian_voices("A passionate muse, [target] is tasked with the preservation and celebration of the culture they hail from. Glory and renown remedy their soul.", range=4)
+								owner.malkavian_voices("A passionate muse, [target] is tasked with the preservation and celebration of the culture they hail from. Glory and renown remedy their soul.", range=4)
 							if (AUSPICE_THEURGE)
-								target.malkavian_voices("Seer, explorer, conduit, [target] is a spiritual guide and healer to their kind. Wisdom and honor guide them true.", range=4)
+								owner.malkavian_voices("Seer, explorer, conduit, [target] is a spiritual guide and healer to their kind. Wisdom and honor guide them true.", range=4)
 							if (AUSPICE_RAGABASH)
-								target.malkavian_voices("The joker of the deck, this individual is the wild card of their group. The aspects that empower them are entirely their own to decide.", range=4)
+								owner.malkavian_voices("The joker of the deck, this individual is the wild card of their group. The aspects that empower them are entirely their own to decide.", range=4)
 							if (AUSPICE_NONE)
-								target.malkavian_voices("This individual has changed far more than any shifter could ever hope... In the most twisted of ways. A stolen gift repurposed for their own use — though to what end?", range=4)
-
-
-
-
-						//var/datum/action/discipline/target_disciplines = pick(discipline_splat.powers) // Ditto ^
-					//	var/list/all_disciplines = discipline_splat
-
-
-
+								owner.malkavian_voices("This individual has changed far more than any shifter could ever hope... In the most twisted of ways. A stolen gift repurposed for their own use — though to what end?", range=4)
+					if (OPTION_INFLUENCED)
+						if (target.possessed == TRUE)
+							owner.malkavian_voices("This individual is merely a puppet of flesh; their self sealed away within by another.", range=4)
+						else if (HAS_TRAIT(target, TRAIT_FORCED_EMOTION))
+							owner.malkavian_voices("The emotions [target]'s heart bleeds is not off their own accord — brought on by another artificially.", range=4)
+						else if (target.conditioner)
+							owner.malkavian_voices("A mind shattered into pieces then re-assembled to suit another; The agency of this poor thing is completely dominated by another.", range=4)
 
 				//sleep(2 SECONDS) // make into proper timer function that's not sleep
 
