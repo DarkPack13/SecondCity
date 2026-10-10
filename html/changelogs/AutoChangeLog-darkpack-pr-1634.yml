@@ -1,0 +1,4 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - bugfix: "potence no longer increases an items force - which increases the amount of dice available for the items damage roll"
