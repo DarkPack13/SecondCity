@@ -54,10 +54,10 @@
 			ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
 		if(EXPLODE_HEAVY)
 			switch(rand(1, 3))
-				if(1 to 2)
+				if(1)	//DARKPACK EDIT - LOWER DESTRUCTION (Was 1 to 2, is now only 1)
 					ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
-				if(3)
-					if(prob(80))
+				if(2 to 3)	//DARKPACK EDIT - LOWER DESTRUCTION (Was only 3, is now 2-3)
+					if(prob(50))	//DARKPACK EDIT - LOWER DESTRUCTION (Was 80, now is 50)
 						ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 					else
 						break_tile()
