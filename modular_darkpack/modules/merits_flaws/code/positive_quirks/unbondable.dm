@@ -14,3 +14,4 @@
 	desc = "You are immune to being blood bound.."
 	value = 6
 	allowed_splats = list(SPLAT_GHOUL)
+	ttrpg_sources = list(/datum/source_book/vtm20/ghouls_and_revenants = 137)
