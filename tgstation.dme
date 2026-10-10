@@ -8074,6 +8074,7 @@
 #include "modular_darkpack\modules\retail\code\stores\gun_store.dm"
 #include "modular_darkpack\modules\retail\code\stores\hardware_store.dm"
 #include "modular_darkpack\modules\retail\code\stores\hot_ishu.dm"
+#include "modular_darkpack\modules\retail\code\stores\hunter.dm"
 #include "modular_darkpack\modules\retail\code\stores\junkfood_menu.dm"
 #include "modular_darkpack\modules\retail\code\stores\library.dm"
 #include "modular_darkpack\modules\retail\code\stores\music_store.dm"

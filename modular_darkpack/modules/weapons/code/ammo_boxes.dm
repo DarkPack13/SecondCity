@@ -168,7 +168,7 @@
 	icon_state = "762box-incendiary"
 	ammo_type = /obj/item/ammo_casing/vampire/c762x51mm/incendiary
 
-/obj/item/ammo_box/darkpack/c762x51mm/incendiary
+/obj/item/ammo_box/darkpack/c762x51mm/silver
 	name = "silver ammo box (7.62x51)"
 	icon_state = "762box-silver"
 	ammo_type = /obj/item/ammo_casing/vampire/c762x51mm/silver

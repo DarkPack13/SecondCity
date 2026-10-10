@@ -87,6 +87,8 @@
 	. = list()
 	.["product_records"] = list()
 	for(var/datum/data/vending_product/product in products_list)
+		if(product.masquerade < SSmasquerade.lowest_masquerade_level)
+			continue
 		var/list/product_data = list(
 			path = SANITIZED_PATH(product.product_path),
 			name = product.name,
@@ -149,6 +151,9 @@
 			if(!product)
 				to_chat(usr, span_alert("Error: Invalid choice!"))
 				return
+
+			if(product.masquerade < SSmasquerade.lowest_masquerade_level)
+				to_chat(usr, span_alert("Error: Masquerade not low enough!"))
 
 			var/obj/item/held_item = locate(params["payment_item"]) in user
 			if(!held_item)

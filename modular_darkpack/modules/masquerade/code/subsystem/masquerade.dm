@@ -3,6 +3,7 @@ SUBSYSTEM_DEF(masquerade)
 	ss_flags = SS_NO_FIRE
 
 	var/masquerade_level = MASQUERADE_MAX_LEVEL
+	var/lowest_masquerade_level = MASQUERADE_MAX_LEVEL	//The lowest the masquerade has ever gotten to in the round.
 	var/list/masquerade_breachers
 	var/static/regex/masquerade_breaching_phrase_regex
 
@@ -100,6 +101,8 @@ SUBSYSTEM_DEF(masquerade)
 	//Only lower the global masq if the player's breach score is actually reduced by 1
 	if(pre_breach_score > player_breacher.masquerade_score)
 		masquerade_level = max(0, masquerade_level - 1)
+		if (lowest_masquerade_level > masquerade_level)
+			lowest_masquerade_level = masquerade_level
 
 	/*
 	var/datum/splat/werewolf/werewolf_splat = get_werewolf_splat(player_breacher)

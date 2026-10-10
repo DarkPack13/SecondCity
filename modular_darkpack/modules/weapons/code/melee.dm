@@ -469,3 +469,16 @@
 /obj/item/darkpack/spear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/selling, 400, "spear", FALSE)
+
+//Non-magical silver spear.
+/obj/item/darkpack/spear/silver
+	name = "silver spear"
+	desc = "A very expensive looking polearm with a silver spearhead. Unless your enemy is allergic to silver this is not a good weapon."
+	force = 2 LETHAL_TTRPG_DAMAGE	//Silver isn't really a good material if you aren't fighting garou. Be glad it doesn't deform after hitting armor.
+	icon_state = "spear_silver"
+	//Maybe reduced armor penetration, if you're a codebase that gives spears armor pen.
+	custom_price = 5000
+
+/obj/item/darkpack/spear/silver/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
+	. = ..()
+	fera_silver_damage(target, 5, 1)
