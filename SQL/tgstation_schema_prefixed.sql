@@ -273,6 +273,27 @@ CREATE TABLE `SS13_library` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+DROP TABLE IF EXISTS `SS13_library_corax`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SS13_library_corax` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `author` varchar(45) NOT NULL,
+  `title` varchar(45) NOT NULL,
+  `content` text NOT NULL,
+  `category` VARCHAR(255) NOT NULL,
+  `ckey` varchar(32) NOT NULL DEFAULT 'LEGACY',
+  `datetime` datetime NOT NULL,
+  `deleted` tinyint(1) unsigned DEFAULT NULL,
+  `round_id_created` int(11) unsigned NULL,
+  PRIMARY KEY (`id`),
+  KEY `deleted_idx` (`deleted`),
+  KEY `idx_lib_id_del` (`id`,`deleted`),
+  KEY `idx_lib_del_title` (`deleted`,`title`),
+  KEY `idx_lib_search` (`deleted`,`author`,`title`,`category`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 --
 -- Table structure for table `SS13_library_action`
 --

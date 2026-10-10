@@ -25,7 +25,7 @@
 	var/books_to_load = 0
 	// DARKPACK EDIT START - bookshelf generation
 	// What books we don't want to generate on not their respective bookshelves
-	var/restricted_categories = list(
+	var/list/restricted_categories = list(
 		BOOK_CATEGORY_ADULT,
 		BOOK_CATEGORY_KINDRED,
 		BOOK_CATEGORY_LUPINE,

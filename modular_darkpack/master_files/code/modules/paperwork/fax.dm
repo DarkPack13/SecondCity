@@ -83,3 +83,8 @@
 	fax_name = "Nightwolf Tech Shop"
 	fax_id = "glasswalkers"
 	special_networks = list(glasswalkeradmin = list(fax_name = "Nightwolf Corporate", fax_id = "glasswalkeradmin", color = "grey", emag_needed = FALSE))
+
+/obj/machinery/fax/corax
+	fax_name = "Helios Overnight Services"
+	fax_id = "corax"
+	special_networks = list(coraxadmin = list(fax_name = "Helios Overnight Services", fax_id = "coraxadmin", color = "blue", emag_needed = FALSE))
