@@ -292,9 +292,9 @@ Methuselah.”
 	// Add options to the master list if conditions are met. "Information" will draw from "available_options".
 	var/list/available_options = list(OPTION_BIOLOGICAL_AGE, OPTION_WILLPOWER, OPTION_SPLAT)
 	if (get_kindred_splat(target)) // Add available options if target is a Vampire
-		available_options += list(OPTION_DISCIPLINES, OPTION_GENERATION, OPTION_MORALITY_PATH, OPTION_HUMANITY, OPTION_CLAN)
-	if (get_ghoul_splat(target)) // Add available options if target is a Ghoul
-		available_options += list(OPTION_DISCIPLINES)
+		available_options += list(OPTION_GENERATION, OPTION_MORALITY_PATH, OPTION_HUMANITY, OPTION_CLAN)
+	//if (get_ghoul_splat(target)) // Add available options if target is a Ghoul
+	//	available_options += list()
 	if (get_garou_splat(target)) // Add available options if target is a Garou
 		available_options += list(OPTION_TRIBE, OPTION_BREED, OPTION_AUSPICE)
 	if (target.client?.prefs) // Add available options if target has preferences (avoids issues with NPCs)
@@ -345,20 +345,17 @@ Methuselah.”
 						else
 							owner.malkavian_voices("[target] has found their pack within the [target.get_our_tribe()].", range=4) // Rewrite text after feedback from Garou players
 					if (OPTION_DISCIPLINES)
-						var/datum/splat/vampire/discipline_splat = get_vampire_splat(target) // Get a vampire's/ghoul's Splat -> Disciplines
-						var/list/all_disciplines = discipline_splat
-						var/datum/action/discipline/target_disciplines = pick(discipline_splat.powers) // Ditto ^
-						//if (!discipline.selectable)
-						/*if (istype(target_disciplines, /datum/discipline/bloodheal))
-							for (var/datum/action/discipline/discipline_action in discipline_splat.powers) // Bloodheal disposal service
-								if (discipline_action.discipline.selectable)
-									target_discipline = discipline_action
-									break*/
+						/*var/datum/splat/vampire/discipline_splat = get_vampire_splat(target) // Get a Vampire's/Ghoul's Splat -> Disciplines
+						var/list/discipline_filtered_list = list()
+						for (var/list/individual_disciplines in discipline_splat.powers) // We don't want Bloodheal, filters it out
+							if (istype(individual_disciplines, /datum/discipline_power/bloodheal))
+								continue
+							discipline_filtered_list += individual_disciplines // Ensure everything but Bloodheal makes it to the filtered list
+						var/datum/action/discipline/target_disciplines = pick(discipline_filtered_list) // Pick from the filtered list
 						if (target_disciplines == null)
 							owner.malkavian_voices("The bounty of [target]'s clan bears no fruit! Devoid of substance!", range=4)
 						else
-							owner.malkavian_voices("Much knowledge is embedded within this fiend of blood. [target_disciplines.discipline] is but one gift of blood bestowoed upon them.", range=4)
-					if (OPTION_BRAIN_TRAUMA)
+							owner.malkavian_voices("Much knowledge is embedded within this fiend of blood. [target_disciplines.discipline] is but one gift of blood bestowoed upon them.", range=4)*/
 						var/list/traumas = target.get_traumas()
 						var/datum/brain_trauma/selected_trauma = pick(traumas) // Pick a trauma from the target.
 						var/trauma_name = selected_trauma.scan_desc
@@ -516,20 +513,21 @@ Methuselah.”
 							if (AURA_INNOCENT)
 								owner.malkavian_voices("They are innocent to the world surrounding them — or perhaps at ease to it, even.", range=4)
 					if (OPTION_BREED)
-						switch (target.get_our_breed_form())
-								if (BREED_CORVID)
-									owner.malkavian_voices("The heart of this corvid is one born of nature's world — an outsider to the realm of man.", range=4)
-								if(BREED_LUPUS)
-									owner.malkavian_voices("This true form of this wolf is one of the wild. A beast bestowed the gift of higher thought.", range=4)
-								if (BREED_CORAX_HOMID)
-									owner.malkavian_voices("An outsider to the skies imbued with a spirit egg; humanity unshackled by the world below", range=4)
-								if (BREED_GAROU_HOMID)
-									owner.malkavian_voices("Closer to man than beast, [target] has more familiarity with forests of concrete than ones of wood", range=4)
-								if (BREED_CRINOS)
+						switch (get_fera_breed_form(target))
+							if (/datum/subsplat/werewolf/breed_form/corax/corvid)
+								owner.malkavian_voices("The heart of this corvid is one born of nature's world — an outsider to the realm of man.", range=4)
+							if (/datum/subsplat/werewolf/breed_form/garou/lupus)
+								owner.malkavian_voices("This true form of this wolf is one of the wild. A beast bestowed the gift of higher thought.", range=4)
+							if (/datum/subsplat/werewolf/breed_form/corax/homid)
+								owner.malkavian_voices("An outsider to the skies imbued with a spirit egg; humanity unshackled by the world below", range=4)
+							if (/datum/subsplat/werewolf/breed_form/garou/homid)
+								owner.malkavian_voices("Closer to man than beast, [target] has more familiarity with forests of concrete than ones of wood", range=4)
+							if (/datum/subsplat/werewolf/breed_form/garou/crinos)
 								owner.malkavian_voices("An abberant beast neither man or wolf, yet not quite not either. A being born of taboo imbued with rage.", range=4)
 					if (OPTION_AUSPICE)
-						switch (target.get_our_auspice())
-							if (AUSPICE_AHROUN)
+						//if (target.is_auspice(/datum/subsplat/werewolf/auspice/garou/ahroun))
+						switch (target.get_our_auspice()?.name)
+							if (/datum/subsplat/werewolf/auspice/garou/ahroun)
 								target.malkavian_voices("An embodiment of the Moon's rage; battle is ingrained within their very being! Renown and glory are vital parts of themselves.", range=4)
 							if (AUSPICE_PHILODOX)
 								target.malkavian_voices("A creature of balance and order; a tempered mind able to see both sides — honor and wisdom define them.", range=4)
@@ -542,13 +540,6 @@ Methuselah.”
 							if (AUSPICE_NONE)
 								target.malkavian_voices("This individual has changed far more than any shifter could ever hope... In the most twisted of ways. A stolen gift repurposed for their own use — though to what end?", range=4)
 
-						var/datum/splat/vampire/discipline_splat = get_vampire_splat(target) // Get a vampire's/ghoul's Splat -> Disciplines
-						var/list/discipline_filter_list = list()
-						for (var/list/all_disciplines in list)
-							if (istype(all_disciplines, /datum/discipline_power/bloodheal)) // If bloodheal continue loop
-								continue
-								discipline_filter_list += list(discipline_splat.powers)
-						var/datum/action/discipline/target_disciplines = pick(discipline_filter_list)
 
 
 
