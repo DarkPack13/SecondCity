@@ -12,6 +12,7 @@
 
 /datum/personality/martyr/remove_from_mob(mob/living/who)
 	. = ..()
+	UnregisterSignal(who, list(COMSIG_CARBON_GAIN_WOUND))
 	// UnregisterSignal(who, list(COMSIG_ATOM_TAKE_DAMAGE))
 
 /datum/personality/martyr/proc/on_wound_gain(mob/living/source, datum/wound/gained_wound, obj/item/bodypart/limb)
