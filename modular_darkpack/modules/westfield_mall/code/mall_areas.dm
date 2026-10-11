@@ -132,6 +132,23 @@
 	name = "The Drawn Line"
 	icon_state = "arcade"
 
+/area/vtm/westfield_mall/interior/bar
+	name = "Bar"
+
+	mood_bonus = 5
+	mood_message = "I love being in the bar!"
+	mood_trait = TRAIT_EXTROVERT
+
+/area/vtm/westfield_mall/interior/chapel
+	name = "Chapel"
+
+	mood_bonus = 4
+	mood_message = "Being in the chapel brings me peace."
+	mood_trait = TRAIT_SPIRITUAL
+
+	ambience_index = AMBIENCE_OFFICE
+	music_index = MUSIC_CHURCH
+
 /area/vtm/westfield_mall/interior/groundskeeper_garage
 	name = "Groundskeeping Garage"
 	icon_state = "janitor"
