@@ -82,3 +82,7 @@
   chazzyjazzy:
   - bugfix: fixes is_sabbat helpers not recognizing the ductus or priest as sabbat
       members
+2026-10-11:
+  chazzyjazzy:
+  - bugfix: potence no longer increases an items force - which increases the amount
+      of dice available for the items damage roll
