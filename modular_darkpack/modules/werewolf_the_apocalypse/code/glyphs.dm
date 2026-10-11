@@ -1308,3 +1308,105 @@
 	garou_name = "uktena glyph"
 	garou_desc = "A glyph that represents the Uktena, one of the Garou tribes."
 	icon_state = "uktena"
+
+/obj/effect/decal/garou_glyph/jump
+	name = "airy glyph"
+	garou_name = "jump glyph"
+	garou_desc = "A glyph that represents jumping, to lift oneself away from Gaia and ride with the wind."
+	icon_state = "jump"
+
+/obj/effect/decal/garou_glyph/sex
+	name = "impassioned glyph"
+	garou_name = "sex glyph"
+	garou_desc = "A glyph that represents sex, the expression of love between mates - generally to bare children."
+	icon_state = "sex"
+
+/obj/effect/decal/garou_glyph/pregnant
+	name = "nurturing glyph"
+	garou_name = "pregnant glyph"
+	garou_desc = "A glyph that represents pregnancy, the sacred and vital growth of new life and progeny."
+	icon_state = "pregnant"
+
+/obj/effect/decal/garou_glyph/sun
+	name = "bright glyph"
+	garou_name = "sun incarna glyph"
+	garou_desc = "A glyph that represents Katanka-Sonnak, the Wind Rider, Incarna of the Sun, and aspect of Helios."
+	icon_state = "sun"
+
+/obj/effect/decal/garou_glyph/mercury
+	name = "hot glyph"
+	garou_name = "mercury incarna glyph"
+	garou_desc = "A glyph that represents Mitanu, Incarna of Mercury. He is a trickster and lover of comedy."
+	icon_state = "mercury"
+
+/obj/effect/decal/garou_glyph/vulcan
+	name = "unremarkable glyph"
+	garou_name = "vulcan incarna glyph"
+	garou_desc = "A glyph that represents Hakahe, Incarna of Vulcan. He respects secrecy, darkness, and silence, and favors the Uktena. Modern humans have lost their belief in him."
+	icon_state = "vulcan"
+
+/obj/effect/decal/garou_glyph/venus
+	name = "shrouded glyph"
+	garou_name = "venus incarna glyph"
+	garou_desc = "A glyph that represents Tambiyah, Veiled Mother and Incarna of Venus. She respects balance, wisdom, and justice, favoring the Black Furies and others who aspire to her aspects."
+	icon_state = "venus"
+
+/obj/effect/decal/garou_glyph/earth
+	name = "homely glyph"
+	garou_name = "earth incarna glyph"
+	garou_desc = "A glyph that represents Eshtarra, Songteller and Incarna of Earth. She is considered an aspect of the Great Mother herself, with an emphasis on music, fertility, and defensive combat."
+	icon_state = "earth"
+
+/obj/effect/decal/garou_glyph/moon
+	name = "dark glyph"
+	garou_name = "moon incarna glyph"
+	garou_desc = "A glyph that represents Sokhta, the Lambent Lady and Incarna of the Moon. She is an aspect of Luna, the Moon of Eshtarra who emphasises tranquility, reflection, and meditation."
+	icon_state = "moon"
+
+/obj/effect/decal/garou_glyph/mars
+	name = "intense glyph"
+	garou_name = "mars incarna glyph"
+	garou_desc = "A glyph that represents Nerigal, the Ice Warrior and Incarna of Mars. Also known as the Bloodied One, he is known to respect assertiveness and strong will."
+	icon_state = "mars"
+
+/obj/effect/decal/garou_glyph/asteroid_belt
+	name = "foreboding glyph"
+	garou_name = "asteroid belt incarna glyph"
+	garou_desc = "A glyph that represents Rorg, the Many Taloned Hunter, Incarna of Turog, the destroyed planet that makes up the asteroid belt. He represents catastrophic change and doom."
+	icon_state = "asteroid_belt"
+
+/obj/effect/decal/garou_glyph/jupiter
+	name = "regal glyph"
+	garou_name = "jupiter incarna glyph"
+	garou_desc = "A glyph that represents Zarok, the Incarna of Jupiter. He represents wisdom and authority, with a particular liking for the Silver Fangs."
+	icon_state = "jupiter"
+
+/obj/effect/decal/garou_glyph/saturn
+	name = "quaint glyph"
+	garou_name = "saturn incarna glyph"
+	garou_desc = "A glyph that represents Lu-Bat, the Peaceful Counselor and Incarna of Saturn. He represents peace, acceptance, and wisdom, favoring the Children of Gaia."
+	icon_state = "saturn"
+
+/obj/effect/decal/garou_glyph/uranus
+	name = "snaking glyph"
+	garou_name = "uranus incarna glyph"
+	garou_desc = "A glyph that represents Ruatma, the Shadowed One and Incarna of Uranus. He represents diplomacy and seeking hidden meaning, with a particular favor for the Shadow Lords."
+	icon_state = "uranus"
+
+/obj/effect/decal/garou_glyph/neptune
+	name = "ravaged glyph"
+	garou_name = "neptune incarna glyph"
+	garou_desc = "A glyph that represents Shantar, the Loom Maker and Incarna of Neptune. She represents invention in particular, but also change, with a particular favor for the Glasswalkers."
+	icon_state = "neptune"
+
+/obj/effect/decal/garou_glyph/pluto
+	name = "waving glyph"
+	garou_name = "pluto incarna glyph"
+	garou_desc = "A glyph that represents Meros, the Incarna of Pluto. His compulsion is to a relentless search of truth leading to inevitable death. As such, he represents death, truth, and questing, favoring the Silent Striders."
+	icon_state = "pluto"
+
+/obj/effect/decal/garou_glyph/red_star
+	name = "perplexing glyph"
+	garou_name = "red star glyph"
+	garou_desc = "A glyph that represents Anthelios, the Red Star. It has only existed for but a decade... what does it mean?"
+	icon_state = "red_star"
