@@ -1,3 +1,7 @@
+#define MASQUERADE_SUSPICIOUS 20
+#define MASQUERADE_VIOLATION 14
+#define MASQUERADE_MASSIVE_BREACH 9
+
 /obj/structure/retail/leopoldite
 	owner_needed = FALSE //Don't want a single obfuscating vampire to cut off all leopoldite weaponry acquisition.
 	//Design philosphophy behind which weaponry to include, is to focus on weapons originating from catholic countries.
@@ -12,14 +16,17 @@
 		new /datum/data/vending_product("cross (gold)", /obj/item/card/hunter, 20),
 		new /datum/data/vending_product("cross (silver)", /obj/item/card/hunter/silver, 20),
 		new /datum/data/vending_product("cross (gothic)", /obj/item/card/hunter/gothic, 20),
+		new /datum/data/vending_product("pliers", /obj/item/wirecutters/pliers, 50),
+		new /datum/data/vending_product("lockpick", /obj/item/vamp/keys/hack, 50),
+		new /datum/data/vending_product("Handcuffs", /obj/item/restraints/handcuffs, 50),
 
 		//Sidearms
 		new /datum/data/vending_product("elite 92G", /obj/item/gun/ballistic/automatic/pistol/darkpack/beretta, 50),
 		new /datum/data/vending_product("pistol magazine (9mm)", /obj/item/ammo_box/magazine/semi9mm, 10),
 		new /datum/data/vending_product("brokk 19", /obj/item/gun/ballistic/automatic/pistol/darkpack/glock19, 50),
 		new /datum/data/vending_product("brokk magazine (9mm)", /obj/item/ammo_box/magazine/glock9mm, 10),
-		new /datum/data/vending_product("brokk 21", /obj/item/gun/ballistic/automatic/pistol/darkpack/glock21, 80, -1, 20),
-		new /datum/data/vending_product("automatic pistol magazine (.45 ACP)", /obj/item/ammo_box/magazine/glock45acp, 20, -1, 20),
+		new /datum/data/vending_product("brokk 21", /obj/item/gun/ballistic/automatic/pistol/darkpack/glock21, 80, -1, MASQUERADE_SUSPICIOUS),
+		new /datum/data/vending_product("automatic pistol magazine (.45 ACP)", /obj/item/ammo_box/magazine/glock45acp, 20, -1, MASQUERADE_SUSPICIOUS),
 
 		//Long guns
 		//Full masq
@@ -32,30 +39,31 @@
 		new /datum/data/vending_product("braddock SMG magazine (.45)", /obj/item/ammo_box/magazine/darkpack45smg, 25),
 		new /datum/data/vending_product("crossbow", /obj/item/gun/ballistic/shotgun/toy/crossbow/vampire, 50),
 
-		new /datum/data/vending_product("battle Rifle", /obj/item/gun/ballistic/automatic/darkpack/fal, 200, -1, 20),
-		new /datum/data/vending_product("military Battle Rifle", /obj/item/gun/ballistic/automatic/darkpack/fal/automatic, 250, -1, 14),
-		new /datum/data/vending_product("battle rifle magazine (7.62x51mm)", /obj/item/ammo_box/magazine/darkpack762x51fal, 50, -1, 20),
-		new /datum/data/vending_product("musket", /obj/item/gun/ballistic/automatic/darkpack/musket, 250, -1, 20),
-		new /datum/data/vending_product("steyr AUG-77", /obj/item/gun/ballistic/automatic/darkpack/aug, 200, -1, 14),
-		new /datum/data/vending_product("AUG magazine (5.56mm)", /obj/item/ammo_box/magazine/darkpackaug, 200, -1, 14),
-		new /datum/data/vending_product("auto Sniper", /obj/item/gun/ballistic/automatic/darkpack/autosniper, 250, -1, 14),
-		new /datum/data/vending_product("auto-sniper magazine (7.62 NATO)", /obj/item/ammo_box/magazine/vamp762x51PSG1, 50, -1, 14),
-		new /datum/data/vending_product("HK MP5", /obj/item/gun/ballistic/automatic/darkpack/mp5, 200, -1, 14),
-		new /datum/data/vending_product("MP5 magazine (9mm)", /obj/item/ammo_box/magazine/darkpack9mp5, 20, -1, 14),
-		new /datum/data/vending_product("HK MP7", /obj/item/gun/ballistic/automatic/darkpack/mp7, 200, -1, 14),
-		new /datum/data/vending_product("sniper", /obj/item/gun/ballistic/automatic/darkpack/sniper, 50, -1, 14),
-		new /datum/data/vending_product("MP7 extended magazine (4.6mm)", /obj/item/ammo_box/magazine/darkpack/c46pdw/ext, 20, -1, 14),
-		new /datum/data/vending_product("jaegerspas-XV", /obj/item/gun/ballistic/automatic/darkpack/autoshotgun, 250, -1, 9),
-		new /datum/data/vending_product("flamethrower", /obj/item/liquid_flamethrower, 50, -1, 9),
-		new /datum/data/vending_product("rocket launcher", /obj/item/gun/ballistic/rocketlauncher/unrestricted, 300, -1, 9),	//Might need to be at a lower masq level.
-		new /datum/data/vending_product("HE rocket", /obj/item/ammo_casing/rocket, 50, -1, 9),	//Maybe make this low-yield?
-		//new /datum/data/vending_product("HEAP rocket", /obj/item/ammo_casing/rocket/heap, 50, -1, 9),	//This is funny, but it creates holes in the floor to space.
+		new /datum/data/vending_product("battle Rifle", /obj/item/gun/ballistic/automatic/darkpack/fal, 200, -1, MASQUERADE_SUSPICIOUS),
+		new /datum/data/vending_product("military Battle Rifle", /obj/item/gun/ballistic/automatic/darkpack/fal/automatic, 250, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product("battle rifle magazine (7.62x51mm)", /obj/item/ammo_box/magazine/darkpack762x51fal, 50, -1, MASQUERADE_SUSPICIOUS),
+		new /datum/data/vending_product("musket", /obj/item/gun/ballistic/automatic/darkpack/musket, 250, -1, MASQUERADE_SUSPICIOUS),
+		new /datum/data/vending_product("steyr AUG-77", /obj/item/gun/ballistic/automatic/darkpack/aug, 200, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product("AUG magazine (5.56mm)", /obj/item/ammo_box/magazine/darkpackaug, 200, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product("auto Sniper", /obj/item/gun/ballistic/automatic/darkpack/autosniper, 250, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product("auto-sniper magazine (7.62 NATO)", /obj/item/ammo_box/magazine/vamp762x51PSG1, 50, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product("HK MP5", /obj/item/gun/ballistic/automatic/darkpack/mp5, 200, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product("MP5 magazine (9mm)", /obj/item/ammo_box/magazine/darkpack9mp5, 20, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product("HK MP7", /obj/item/gun/ballistic/automatic/darkpack/mp7, 200, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product("sniper", /obj/item/gun/ballistic/automatic/darkpack/sniper, 50, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product("MP7 extended magazine (4.6mm)", /obj/item/ammo_box/magazine/darkpack/c46pdw/ext, 20, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product("jaegerspas-XV", /obj/item/gun/ballistic/automatic/darkpack/autoshotgun, 250, -1, MASQUERADE_MASSIVE_BREACH),
+		new /datum/data/vending_product("flamethrower", /obj/item/liquid_flamethrower, 50, -1, MASQUERADE_MASSIVE_BREACH),
+		new /datum/data/vending_product("rocket launcher", /obj/item/gun/ballistic/rocketlauncher/unrestricted, 500, -1, 5),	//Might need to be at a lower masq level.
+		new /datum/data/vending_product("HE rocket", /obj/item/ammo_casing/rocket, 100, -1, 1),	//Round needs to be more or less over for leopoldites to get this.
+		new /datum/data/vending_product("low yield HE rocket", /obj/item/ammo_casing/rocket/weak, 50, -1, 5),
+		//new /datum/data/vending_product("HEAP rocket", /obj/item/ammo_casing/rocket/heap, 50, -1, 1),	//This is funny, but it creates holes in the floor to space.
 
 
 		//Blades
 		new /datum/data/vending_product("rapier", /obj/item/storage/belt/sheath/vamp/rapier, 100),
 		new /datum/data/vending_product("spear", /obj/item/darkpack/spear, 100),
-		new /datum/data/vending_product("silver spear", /obj/item/darkpack/spear/silver, 200, -1, 20),
+		new /datum/data/vending_product("silver spear", /obj/item/darkpack/spear/silver, 200, -1, MASQUERADE_SUSPICIOUS),
 		new /datum/data/vending_product("sabre", /obj/item/storage/belt/sheath/vamp/sabre, 100),
 		new /datum/data/vending_product("longsword", /obj/item/storage/belt/sheath/vamp/sword, 100),
 		//Silver swords would be too weak and heavy most likely if you weren't using magic. Maybe a silver dagger if you really want a new weapon for them.
@@ -66,29 +74,29 @@
 		new	/datum/data/vending_product("5.45 ammo", /obj/item/ammo_box/darkpack/c545, 100),
 		new	/datum/data/vending_product(".45 ammo", /obj/item/ammo_box/darkpack/c45acp, 70),
 		new	/datum/data/vending_product(".45 silver ammo", /obj/item/ammo_box/darkpack/c45acp/silver, 80, -1, 24),
-		new	/datum/data/vending_product(".45 HP ammo", /obj/item/ammo_box/darkpack/c45acp/hp, 80, -1, 14),
+		new	/datum/data/vending_product(".45 HP ammo", /obj/item/ammo_box/darkpack/c45acp/hp, 80, -1, MASQUERADE_VIOLATION),
 		new /datum/data/vending_product("9mm ammo", /obj/item/ammo_box/darkpack/c9mm, 60),
 		new /datum/data/vending_product("9mm silver ammo", /obj/item/ammo_box/darkpack/c9mm/silver, 70, -1, 24),
-		new /datum/data/vending_product("9mm HV ammo", /obj/item/ammo_box/darkpack/c9mm/plus, 100, -1, 9),
+		new /datum/data/vending_product("9mm HV ammo", /obj/item/ammo_box/darkpack/c9mm/plus, 100, -1, MASQUERADE_MASSIVE_BREACH),
 		new /datum/data/vending_product(".44 ammo", /obj/item/ammo_box/darkpack/c44, 80),
 		new /datum/data/vending_product(".44 silver ammo", /obj/item/ammo_box/darkpack/c44/silver, 100, -1, 24),
 
-		new /datum/data/vending_product(".50 AE ammo", /obj/item/ammo_box/darkpack/c50ae, 100, -1, 14),
-		new /datum/data/vending_product(".50 BMG ammo", /obj/item/ammo_box/darkpack/c50, 100, -1, 14),
-		new /datum/data/vending_product("5.56 ammo", /obj/item/ammo_box/darkpack/c556, 60, -1, 14),
-		new /datum/data/vending_product("5.56 incendiary ammo", /obj/item/ammo_box/darkpack/c556/incendiary, 80, -1, 14),
-		new /datum/data/vending_product("5.56 silver ammo", /obj/item/ammo_box/darkpack/c556/silver, 60, -1, 14),
-		new /datum/data/vending_product("4.6mm ammo", /obj/item/ammo_box/darkpack/c46pdw, 80, -1, 14),
+		new /datum/data/vending_product(".50 AE ammo", /obj/item/ammo_box/darkpack/c50ae, 100, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product(".50 BMG ammo", /obj/item/ammo_box/darkpack/c50, 100, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product("5.56 ammo", /obj/item/ammo_box/darkpack/c556, 60, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product("5.56 incendiary ammo", /obj/item/ammo_box/darkpack/c556/incendiary, 80, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product("5.56 silver ammo", /obj/item/ammo_box/darkpack/c556/silver, 60, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product("4.6mm ammo", /obj/item/ammo_box/darkpack/c46pdw, 80, -1, MASQUERADE_VIOLATION),
 		new /datum/data/vending_product("12g ammo", /obj/item/ammo_box/darkpack/c12g, 60),
 		new /datum/data/vending_product("12g buckshot ammo", /obj/item/ammo_box/darkpack/c12g/buck, 60),
 		new /datum/data/vending_product("12g silver ammo", /obj/item/ammo_box/darkpack/c12g/silver, 80, -1, 24),
-		new /datum/data/vending_product("12g dragons breath", /obj/item/ammo_box/darkpack/c12g/buck/incendiary, 100, -1, 14),
+		new /datum/data/vending_product("12g dragons breath", /obj/item/ammo_box/darkpack/c12g/buck/incendiary, 100, -1, MASQUERADE_VIOLATION),
 		new /datum/data/vending_product("crossbow bolts", /obj/item/ammo_box/darkpack/arrows, 10),
-		new /datum/data/vending_product("7.62x51mm ammo", /obj/item/ammo_box/darkpack/c762x51mm, 80, -1, 14),
-		new /datum/data/vending_product("7.62x51mm silver ammo", /obj/item/ammo_box/darkpack/c762x51mm/silver, 100, -1, 14),
-		new /datum/data/vending_product("7.62x51mm incendiary ammo", /obj/item/ammo_box/darkpack/c762x51mm/incendiary, 100, -1, 14),
-		new /datum/data/vending_product("musket cartridges", /obj/item/ammo_box/darkpack/c75, 60, -1, 20),
-		new /datum/data/vending_product("silver musket cartridges", /obj/item/ammo_box/darkpack/c75/silver, 80, -1, 20),
+		new /datum/data/vending_product("7.62x51mm ammo", /obj/item/ammo_box/darkpack/c762x51mm, 80, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product("7.62x51mm silver ammo", /obj/item/ammo_box/darkpack/c762x51mm/silver, 100, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product("7.62x51mm incendiary ammo", /obj/item/ammo_box/darkpack/c762x51mm/incendiary, 100, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product("musket cartridges", /obj/item/ammo_box/darkpack/c75, 60, -1, MASQUERADE_SUSPICIOUS),
+		new /datum/data/vending_product("silver musket cartridges", /obj/item/ammo_box/darkpack/c75/silver, 80, -1, MASQUERADE_SUSPICIOUS),
 
 		//Armor
 		new /datum/data/vending_product("armored trenchcoat", /obj/item/clothing/suit/armor/hos/trenchcoat, 50),
@@ -98,17 +106,21 @@
 		new /datum/data/vending_product("cuirass", /obj/item/clothing/suit/vampire/vest/medieval, 50),
 		new /datum/data/vending_product("medieval helmet", /obj/item/clothing/head/vampire/helmet/spain, 50),
 
-		new /datum/data/vending_product("vest", /obj/item/clothing/suit/vampire/vest, 50, -1, 20),
-		new /datum/data/vending_product("helmet", /obj/item/clothing/head/vampire/helmet, 50, -1, 20),
+		new /datum/data/vending_product("vest", /obj/item/clothing/suit/vampire/vest, 50, -1, MASQUERADE_SUSPICIOUS),
+		new /datum/data/vending_product("helmet", /obj/item/clothing/head/vampire/helmet, 50, -1, MASQUERADE_SUSPICIOUS),
 
-		new /datum/data/vending_product("army vest", /obj/item/clothing/suit/vampire/vest/army, 100, -1, 14),
-		new /datum/data/vending_product("army helmet", /obj/item/clothing/head/vampire/army, 100, -1, 14),
+		new /datum/data/vending_product("army vest", /obj/item/clothing/suit/vampire/vest/army, 100, -1, MASQUERADE_VIOLATION),
+		new /datum/data/vending_product("army helmet", /obj/item/clothing/head/vampire/army, 100, -1, MASQUERADE_VIOLATION),
 
-		new /datum/data/vending_product("EOD suit", /obj/item/clothing/suit/vampire/eod, 150, -1, 9),
-		new /datum/data/vending_product("EOD helmet", /obj/item/clothing/head/vampire/eod, 150, -1, 9),
+		new /datum/data/vending_product("EOD suit", /obj/item/clothing/suit/vampire/eod, 150, -1, MASQUERADE_MASSIVE_BREACH),
+		new /datum/data/vending_product("EOD helmet", /obj/item/clothing/head/vampire/eod, 150, -1, MASQUERADE_MASSIVE_BREACH),
 	)
 
 /obj/structure/retail/leopoldite/can_shop(mob/user)
 	var/datum/job/vampire/assigned_role = user.mind?.assigned_role
 	if(assigned_role && (/datum/job_department/society_of_leopold in assigned_role.departments_list))
 		return TRUE
+
+#undef MASQUERADE_SUSPICIOUS
+#undef MASQUERADE_VIOLATION
+#undef MASQUERADE_MASSIVE_BREACH
