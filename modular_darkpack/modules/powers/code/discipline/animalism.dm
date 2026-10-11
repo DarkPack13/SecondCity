@@ -54,6 +54,8 @@
 	switch(roll)
 		if(ROLL_SUCCESS)
 			LAZYADD(tamed_animals, target.type)
+			target.add_ally(owner)
+			target.ai_controller?.forgive_target(owner)
 			to_chat(owner, span_notice("[target] meets your gaze and understands. It will answer when you call."))
 		if(ROLL_FAILURE)
 			to_chat(owner, span_warning("[target] doesn't heed your whispers."))
