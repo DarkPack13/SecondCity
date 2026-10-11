@@ -21,8 +21,35 @@
 
 	var/chosen_option = show_radial_menu(src, src, choices, radius = 36, tooltips = TRUE)
 	if(chosen_option == "Burn Willpower")
-		st_change_stat(STAT_TEMPORARY_WILLPOWER, -amount)
-		to_chat(src, span_warning("You burn [amount] willpower."))
+		adjust_willpower(-amount)
 		return amount
 
 	return 0
+
+/mob/living/proc/adjust_willpower(amount, sound = TRUE)
+	var/willpower = st_get_stat(STAT_PERMANENT_WILLPOWER, FALSE)
+	var/permanent_willpower = st_get_stat(STAT_TEMPORARY_WILLPOWER)
+
+	if(amount > 0)
+		if(willpower < permanent_willpower)
+			st_set_stat(STAT_TEMPORARY_WILLPOWER, min(permanent_willpower, willpower+amount))
+			/*
+			if(sound)
+				SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/humanity_gain.ogg', volume = 50))
+			*/
+			to_chat(src, span_boldnotice("<b>WILLPOWER INCREASES</b>"))
+		else
+			return FALSE
+	if(amount < 0)
+		if(willpower > 0)
+			st_set_stat(STAT_TEMPORARY_WILLPOWER, min(permanent_willpower, willpower+amount))
+			/*
+			if(sound)
+				SEND_SOUND(owner, sound('modular_darkpack/modules/werewolf_the_apocalypse/sounds/rage_decrease.ogg', volume = 50))
+			*/
+			to_chat(src, span_boldnotice("<b>WILLPOWER DECREASES</b>"))
+		else
+			return FALSE
+
+	update_werewolf_hud()
+	return TRUE

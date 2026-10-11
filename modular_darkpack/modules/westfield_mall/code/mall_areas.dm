@@ -88,6 +88,10 @@
 	name = "Noble's Books"
 	icon_state = "chantry"
 
+	mood_bonus = 5
+	mood_message = "I love being in the bookstore!"
+	mood_trait = TRAIT_INTROVERT
+
 /area/vtm/westfield_mall/interior/vet_clinic
 	name = "Nottingham's Pet Emporium"
 	icon_state = "vet"
