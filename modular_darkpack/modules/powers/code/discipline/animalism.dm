@@ -1,7 +1,7 @@
 /datum/discipline/animalism
 	name = "Animalism"
-	desc = {"Summons spectral animals over your targets. Violates Masquerade.
-● Summon Rat: Passive
+	desc = {"Commune with and command the beasts of the city.
+● Feral Whispers: Tame an animal so it will answer your call. Rolls manipulation + animal ken
 ●● Summon Cat: Passive
 ●●● Summon Wolf: Passive
 ●●●● Summon Bat: Passive
@@ -14,18 +14,59 @@
 	desc = "Animalism power description"
 	effect_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/wolves.ogg'
 
-//SUMMON RAT
-/datum/discipline_power/animalism/summon_rat
-	name = "Summon Rat"
-	desc = "Summon a spectral rat to do your bidding."
+//FERAL WHISPERS vtm 20th edition p 129
+/datum/discipline_power/animalism/feral_whispers
+	name = "Feral Whispers"
+	desc = "Lock eyes with an animal and whisper to it. If it heeds you, it will answer your call later."
 	level = 1
-	violates_masquerade = TRUE
-	cooldown_length = 8 SECONDS
-	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
+	target_type = TARGET_MOB
+	range = 5
+	vitae_cost = 0
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_DIRECT_SEE
+	cooldown_length = 1 SECONDS // 5 minutes change to this after testing
+	//lazylist
+	var/list/tamed_animals
 
-/datum/discipline_power/animalism/summon_rat/activate()
+/datum/storyteller_roll/feral_whispers
+	bumper_text = "feral whispers"
+	applicable_stats = list(STAT_MANIPULATION, STAT_ANIMAL_KEN)
+	roll_output_type = ROLL_FLAG_ROLLER
+
+/datum/discipline_power/animalism/feral_whispers/pre_activation_checks(atom/target)
+	var/mob/living/basic/animal = target
+	if(!istype(animal) || !animal.feral_whispers_difficulty || animal.mind || animal.stat == DEAD)
+		to_chat(owner, span_warning("[target] has no beast's mind for you to whisper to."))
+		return FALSE
+	if(LAZYLEN(tamed_animals) >= owner.st_get_stat(STAT_ANIMAL_KEN))
+		to_chat(owner, span_warning("You cannot keep any more animals at your call."))
+		return FALSE
+	animal.face_atom(owner)
+	owner.face_atom(animal)
+	animal.Stun(1 TURNS)
+	if(!do_after(owner, 1 TURNS, animal))
+		return FALSE
+	return TRUE
+
+/datum/discipline_power/animalism/feral_whispers/activate(mob/living/basic/target)
 	. = ..()
-	owner.add_beastmaster_minion(/mob/living/basic/mouse/vampire/summoned)
+	target.ai_controller?.remove_from_blackboard_lazylist_key(BB_BASIC_MOB_RETALIATE_LIST, owner)
+	var/roll = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/feral_whispers, difficulty = target.feral_whispers_difficulty)
+	switch(roll)
+		if(ROLL_SUCCESS)
+			LAZYADD(tamed_animals, target.type)
+			to_chat(owner, span_notice("[target] meets your gaze and understands. It will answer when you call."))
+		if(ROLL_FAILURE)
+			to_chat(owner, span_warning("[target] doesn't heed your whispers."))
+		if(ROLL_BOTCH)
+			feral_whispers_botch(target)
+
+/datum/discipline_power/animalism/feral_whispers/proc/feral_whispers_botch(mob/living/basic/animal)
+	if(prob(50))
+		to_chat(owner, span_danger("[animal] bristles at your whispers and lunges at you!"))
+		animal.ai_controller?.insert_blackboard_key_lazylist(BB_BASIC_MOB_RETALIATE_LIST, owner)
+		return
+	to_chat(owner, span_danger("[animal] startles at your whispers and flees!"))
+	GLOB.move_manager.move_away(animal, owner, 10, animal.cached_multiplicative_slowdown, 10 SECONDS)
 
 //SUMMON CAT
 /datum/discipline_power/animalism/summon_cat
@@ -117,19 +158,6 @@
 	if(shapeshift_spell && is_type_in_list(owner, shapeshift_spell.possible_shapes))
 		shapeshift_spell.cast(owner)
 		owner.Stun(1.5 SECONDS)
-
-/mob/living/basic/mouse/vampire/summoned
-	name = "rat"
-	desc = "A rat bound to its master's will."
-	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
-	melee_damage_lower = 3
-	melee_damage_upper = 8
-	obj_damage = 10
-	bloodpool = 2
-
-/mob/living/basic/mouse/vampire/summoned/Initialize(mapload)
-	AddElement(/datum/element/ai_retaliate)
-	. = ..()
 
 /mob/living/basic/pet/cat/darkpack/summoned
 	name = "cat"
