@@ -1,4 +1,5 @@
 /mob/living/basic/pet/dog/darkpack
+	feral_whispers_difficulty = 6
 	name = "dog"
 	icon_state = "dog1"
 	desc = "That's an ouppy."

@@ -1,4 +1,5 @@
 /mob/living/basic/corvid
+	feral_whispers_difficulty = 8
 	name = "corvid"
 	desc = "Caw."
 	abstract_type = /mob/living/basic/corvid

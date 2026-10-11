@@ -6,6 +6,7 @@
 #define LOWER_BOUND_VOLUME 10
 
 /mob/living/basic/turtle
+	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 	name = "turtle"
 	desc = "Dog."
 	icon_state = "turtle"

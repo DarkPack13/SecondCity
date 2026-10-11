@@ -1,5 +1,6 @@
 //cow
 /mob/living/basic/cow
+	feral_whispers_difficulty = 7 // DARKPACK EDIT ADD - Animalism Rework
 	name = "cow"
 	desc = "Known for their milk, just don't tip them over."
 	icon = 'icons/mob/simple/cows.dmi'

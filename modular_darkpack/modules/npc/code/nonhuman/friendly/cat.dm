@@ -1,4 +1,5 @@
 /mob/living/basic/pet/cat/darkpack
+	feral_whispers_difficulty = 6
 	icon_state = "cat3"
 	base_icon_state = "cat"
 	icon = 'modular_darkpack/master_files/icons/mobs/simple/pets.dmi'

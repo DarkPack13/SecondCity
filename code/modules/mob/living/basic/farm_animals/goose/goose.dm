@@ -3,6 +3,7 @@
 
 /// A mob that gets mad at people at random and tries to eat nearby objects
 /mob/living/basic/goose
+	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 	name = "goose"
 	desc = "It's loose."
 	icon_state = "goose"

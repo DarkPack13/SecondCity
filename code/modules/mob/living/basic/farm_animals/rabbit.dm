@@ -7,6 +7,7 @@
  *
  */
 /mob/living/basic/rabbit
+	feral_whispers_difficulty = 7 // DARKPACK EDIT ADD - Animalism Rework
 	name = "rabbit"
 	desc = "The hippiest hop around."
 	icon = 'icons/mob/simple/rabbit.dmi'

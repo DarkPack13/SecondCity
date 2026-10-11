@@ -1,4 +1,5 @@
 /mob/living/basic/deer
+	feral_whispers_difficulty = 7
 	name = "deer"
 	desc = "A gentle, peaceful forest animal."
 	icon_state = "deer"

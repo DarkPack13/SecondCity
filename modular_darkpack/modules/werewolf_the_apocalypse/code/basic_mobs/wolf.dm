@@ -35,6 +35,7 @@
 	}
 
 /mob/living/basic/pet/dog/wolf
+	feral_whispers_difficulty = 6
 	name = "wolf"
 	icon_state = "wolf1"
 	desc = "That's a big, scary wolf. Might be best to steer clear."

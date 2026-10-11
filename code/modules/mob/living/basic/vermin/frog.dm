@@ -1,4 +1,5 @@
 /mob/living/basic/frog
+	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 	name = "frog"
 	desc = "They seem a little sad."
 	icon_state = "frog"

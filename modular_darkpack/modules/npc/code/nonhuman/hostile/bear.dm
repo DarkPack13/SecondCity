@@ -1,4 +1,5 @@
 /mob/living/basic/bear/vampire
+	feral_whispers_difficulty = 6
 	name = "bear"
 	desc = "IS THAT A FUCKING BEAR-"
 	icon = 'modular_darkpack/modules/npc/icons/bear.dmi'
