@@ -1,5 +1,6 @@
 //pig
 /mob/living/basic/pig
+	feral_whispers_difficulty = 7 // DARKPACK EDIT ADD - Animalism Rework
 	name = "pig"
 	desc = "A fat pig."
 	icon_state = "pig"

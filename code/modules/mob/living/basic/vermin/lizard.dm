@@ -5,6 +5,7 @@
 */
 
 /mob/living/basic/lizard
+	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 	name = "Lizard"
 	desc = "A cute tiny lizard."
 	icon_state = "lizard"

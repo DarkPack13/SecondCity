@@ -1,4 +1,5 @@
 /mob/living/basic/pony
+	feral_whispers_difficulty = 7 // DARKPACK EDIT ADD - Animalism Rework
 	name = "pony"
 	desc = "Look at my horse, my horse is amazing!"
 	icon_state = "pony"

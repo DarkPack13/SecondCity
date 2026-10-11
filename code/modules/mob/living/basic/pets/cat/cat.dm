@@ -1,4 +1,5 @@
 /mob/living/basic/pet/cat
+	feral_whispers_difficulty = 6 // DARKPACK EDIT ADD - Animalism Rework
 	name = "cat"
 	desc = "Kitty!!"
 	icon = 'icons/mob/simple/pets.dmi'

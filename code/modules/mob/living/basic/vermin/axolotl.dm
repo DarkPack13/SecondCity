@@ -1,4 +1,5 @@
 /mob/living/basic/axolotl
+	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 	name = "axolotl"
 	desc = "Quite the colorful amphibian!"
 	icon_state = "axolotl"

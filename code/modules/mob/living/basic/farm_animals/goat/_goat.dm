@@ -1,5 +1,6 @@
 /// The Greatest (animal) Of All Time. Cud chewing, shin-kicking, kitchen-dwelling nuisance.
 /mob/living/basic/goat
+	feral_whispers_difficulty = 7 // DARKPACK EDIT ADD - Animalism Rework
 	name = "goat"
 	desc = "Not known for their pleasant disposition."
 	icon_state = "goat"

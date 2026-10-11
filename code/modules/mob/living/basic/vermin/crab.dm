@@ -1,5 +1,6 @@
 //Look Sir, free crabs!
 /mob/living/basic/crab
+	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 	name = "crab"
 	desc = "Free crabs!"
 	icon_state = "crab"

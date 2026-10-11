@@ -4,6 +4,7 @@
  * Baby birds that grow into big chickens.
  */
 /mob/living/basic/chick
+	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 	name = "\improper chick"
 	desc = "Adorable! They make such a racket though."
 	icon_state = "chick"

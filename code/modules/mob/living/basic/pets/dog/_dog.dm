@@ -18,6 +18,7 @@
 //Dogs.
 
 /mob/living/basic/pet/dog
+	feral_whispers_difficulty = 6 // DARKPACK EDIT ADD - Animalism Rework
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	response_help_continuous = "pets"
 	response_help_simple = "pet"

@@ -8,6 +8,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 
 /// Parrots! Klepto bastards that imitate your speech and hoard your shit.
 /mob/living/basic/parrot
+	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 	name = "parrot"
 	desc = "The parrot squawks, \"They're a Parrot! BAWWK!\""
 	icon = 'icons/mob/simple/animal.dmi'
