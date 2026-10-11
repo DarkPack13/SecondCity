@@ -1,5 +1,4 @@
 /mob/living/basic/mouse/vampire
-	feral_whispers_difficulty = 7
 	icon = 'modular_darkpack/modules/npc/icons/rat.dmi'
 	body_color = "gray"
 

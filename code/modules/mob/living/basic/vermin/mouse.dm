@@ -1,4 +1,5 @@
 /mob/living/basic/mouse
+	feral_whispers_difficulty = 7 // DARKPACK EDIT ADD - Animalism Rework
 	name = "mouse"
 	desc = "This cute little guy just loves the taste of insulated electrical cables. Isn't he adorable?"
 	icon_state = "mouse_gray"

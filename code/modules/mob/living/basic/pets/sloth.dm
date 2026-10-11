@@ -1,6 +1,7 @@
 GLOBAL_DATUM(cargo_sloth, /mob/living/basic/sloth)
 
 /mob/living/basic/sloth
+	feral_whispers_difficulty = 7 // DARKPACK EDIT ADD - Animalism Rework
 	name = "sloth"
 	desc = "An adorable, sleepy creature."
 	icon = 'icons/mob/simple/pets.dmi'

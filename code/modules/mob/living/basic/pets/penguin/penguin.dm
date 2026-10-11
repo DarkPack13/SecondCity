@@ -1,4 +1,5 @@
 /mob/living/basic/pet/penguin
+	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 	abstract_type = /mob/living/basic/pet/penguin
 
 	icon = 'icons/mob/simple/penguins.dmi'

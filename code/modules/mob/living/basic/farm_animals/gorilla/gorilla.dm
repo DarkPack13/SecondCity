@@ -12,6 +12,7 @@ GLOBAL_LIST_INIT(strippable_gorilla_items, create_strippable_list(list(
  * They make a lot of noise and punch limbs off unconscious folks
  */
 /mob/living/basic/gorilla
+	feral_whispers_difficulty = 7 // DARKPACK EDIT ADD - Animalism Rework
 	name = "Gorilla"
 	desc = "A ground-dwelling, predominantly herbivorous ape which usually inhabits the forests of central Africa but today is quite far away from there."
 	icon = 'icons/mob/simple/gorilla.dmi'

@@ -1,4 +1,5 @@
 /mob/living/basic/stoat
+	feral_whispers_difficulty = 6 // DARKPACK EDIT ADD - Animalism Rework
 	name = "stoat"
 	desc = "A natural born vermin exterminator... a janitor's best friend."
 	icon_state = "stoat"
