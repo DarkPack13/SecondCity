@@ -1410,3 +1410,261 @@
 	garou_name = "red star glyph"
 	garou_desc = "A glyph that represents Anthelios, the Red Star. It has only existed for but a decade... what does it mean?"
 	icon_state = "red_star"
+
+/obj/effect/decal/garou_glyph/storm_eater
+	name = "imposing glyph"
+	garou_name = "storm eater glyph"
+	garou_desc = "A glyph that represents Storm Eater, a dreadful bane that threatened the Pure Lands in the times after the Wyrmcoming."
+	icon_state = "storm_eater"
+
+/obj/effect/decal/garou_glyph/ape_warders
+	name = "archaic glyph"
+	garou_name = "warders of apes glyph"
+	garou_desc = "A glyph that represents the Ape Warders, the first name of the Glasswalkers when humans lived in simple villages."
+	icon_state = "ape_warders"
+
+/obj/effect/decal/garou_glyph/man_warders
+	name = "ancient glyph"
+	garou_name = "warders of man glyph"
+	garou_desc = "A glyph that represents the Man Warders, the second name of the Glasswalkers that came as their villages expanded."
+	icon_state = "man_warders"
+
+/obj/effect/decal/garou_glyph/iron_riders
+	name = "industrial glyph"
+	garou_name = "iron riders glyph"
+	garou_desc = "A glyph that represents the Iron Riders, the third name of the Glasswalkers that came as metallurgy expanded."
+	icon_state = "iron_riders"
+
+/obj/effect/decal/garou_glyph/claws
+	name = "sharp glyph"
+	garou_name = "claws glyph"
+	garou_desc = "A glyph that represents many claws."
+	icon_state = "claws"
+
+/obj/effect/decal/garou_glyph/pelt
+	name = "stolen glyph"
+	garou_name = "pelt glyph"
+	garou_desc = "A glyph that represents a pelt, whether the skin of animals often stolen by humans, or the pelts they wear."
+	icon_state = "pelt"
+
+/obj/effect/decal/garou_glyph/king
+	name = "regal glyph"
+	garou_name = "king glyph"
+	garou_desc = "A glyph that represents a King, the human term for a patriarchal and absolute ruler often used by the Silver Fangs."
+	icon_state = "king"
+
+/obj/effect/decal/garou_glyph/nameless
+	name = "lost glyph"
+	garou_name = "nameless storyteller glyph"
+	garou_desc = "A nameless glyph, often used by storytellers or for other purposes where one is missing a name."
+	icon_state = "nameless"
+
+/obj/effect/decal/garou_glyph/appalachia
+	name = "homey glyph"
+	garou_name = "appalachia glyph"
+	garou_desc = "A glyph that represents Appalachia, the name of a mountain range in the Pure Lands."
+	icon_state = "appalachia"
+
+/obj/effect/decal/garou_glyph/new_york
+	name = "caged glyph"
+	garou_name = "new york glyph"
+	garou_desc = "A glyph that represents New York, a state in America after the Wyrmcoming, and home to dense human populations."
+	icon_state = "new_york"
+
+/obj/effect/decal/garou_glyph/russia
+	name = "violent glyph"
+	garou_name = "russia glyph"
+	garou_desc = "A glyph that represents Russia, the human name for a vast stretch of land important to the Silver Fangs, and once the Red Talons."
+	icon_state = "russia"
+
+/obj/effect/decal/garou_glyph/wyld_ways
+	name = "elaborate glyph"
+	garou_name = "wyld ways glyph"
+	garou_desc = "A glyph that literally means The Wyld Ways of Hope Grief and Anger from Hand to Hand the Ways are Passed. It is often a story told by the Black Furies."
+	icon_state = "wyld_ways"
+
+/obj/effect/decal/garou_glyph/down_in_end_times
+	name = "finite glyph"
+	garou_name = "down in end times glyph"
+	garou_desc = "A glyph that means Down and Out in the Last Times, often used as the name of a story told by Bone Gnawers."
+	icon_state = "down_in_end_times"
+
+/obj/effect/decal/garou_glyph/healing_gaia
+	name = "healing glyph"
+	garou_name = "healing of gaia glyph"
+	garou_desc = "A glyph that exclaims that one is the healing of the world. Often used rhetorically by the Children of Gaia."
+	icon_state = "healing_gaia"
+
+/obj/effect/decal/garou_glyph/fiery_head_and_heart
+	name = "smokey glyph"
+	garou_name = "fire in head and heart glyph"
+	garou_desc = "A glyph that means Fire in the Head and Heart. The name of a story often told by the Fianna."
+	icon_state = "fiery_head_and_heart"
+
+/obj/effect/decal/garou_glyph/axe_and_claw
+	name = "warring glyph"
+	garou_name = "axe and claw glyph"
+	garou_desc = "A glyph that represents the axe, a human tool used also for war, and a claw, one of the weapons of lupus and Garou. Combined, it is oft used as a tale told by the Get of Fenris."
+	icon_state = "axe_and_claw"
+
+/obj/effect/decal/garou_glyph/wolves_at_gate
+	name = "besieged glyph"
+	garou_name = "wolves at the gate glyph"
+	garou_desc = "A glyph that means wolves at the gate, a term used in Glasswalker stories but also in general to remark of the fury of the Wyld tribes against the Weaver."
+	icon_state = "wolves_at_gate"
+
+/obj/effect/decal/garou_glyph/hell_and_high_water
+	name = "challenging glyph"
+	garou_name = "through hell and high water glyph"
+	garou_desc = "A glyph remarking on the human phrase, Through Hell and High Water, remarking about a perilous journey. It is often used as a device in kinfolk legends."
+	icon_state = "hell_and_high_water"
+
+/obj/effect/decal/garou_glyph/croatan_song
+	name = "wistful glyph"
+	garou_name = "croatan song glyph"
+	garou_desc = "A glyph that speaks of the Croatan song, often used by the Pure Tribes in memory of their fallen middle brother."
+	icon_state = "croatan_song"
+
+/obj/effect/decal/garou_glyph/no_compromise
+	name = "dangerous glyph"
+	garou_name = "no compromise glyph"
+	garou_desc = "A glyph that means No Compromise, often used by the Red Talons when affirming their zealotry."
+	icon_state = "no_compromise"
+
+/obj/effect/decal/garou_glyph/retribution_and_ascendance
+	name = "resurgent glyph"
+	garou_name = "retribution and ascendance glyph"
+	garou_desc = "A glyph that means retribution and ascendance, often spoken of as a literary tool amongst the Shadow Lords."
+	icon_state = "retribution_and_ascendance"
+
+/obj/effect/decal/garou_glyph/long_haunted_road
+	name = "perilous glyph"
+	garou_name = "long haunted road glyph"
+	garou_desc = "A glyph combining path and spirit, remarking of the spiritual presence along the path. It is often used by Silent Striders."
+	icon_state = "long_haunted_road"
+
+/obj/effect/decal/garou_glyph/shattered_soul
+	name = "morose glyph"
+	garou_name = "shattered soul glyph"
+	garou_desc = "A glyph that remarks of a shattered soul, a human term for the spirit. It is often used as the name of a Silent Strider story."
+	icon_state = "shattered_soul"
+
+/obj/effect/decal/garou_glyph/once_and_future_kings
+	name = "aspirational glyph"
+	garou_name = "once and future kings glyph"
+	garou_desc = "A glyph that speaks to the heritage of the Silver Fangs, who once ruled as kings over the Garou and seek to return to it."
+	icon_state = "once_and_future_kings"
+
+/obj/effect/decal/garou_glyph/king_of_wolves
+	name = "lording glyph"
+	garou_name = "king of wolves glyph"
+	garou_desc = "A glyph that remarks to the self-perscribed status of the Silver Fangs as Kings of the wolves."
+	icon_state = "king_of_wolves"
+
+/obj/effect/decal/garou_glyph/elemental_mind
+	name = "balanced glyph"
+	garou_name = "elemental mind glyph"
+	garou_desc = "A glyph that speaks to having a mind keen to the elements, often a lesson taught by the Stargazers."
+	icon_state = "elemental_mind"
+
+/obj/effect/decal/garou_glyph/binder_of_secrets
+	name = "shrouded glyph"
+	garou_name = "binder of secrets glyph"
+	garou_desc = "A glyph that represents the Binder of Secrets, a tale often spoken of by the Older Brother."
+	icon_state = "binder_of_secrets"
+
+/obj/effect/decal/garou_glyph/vengeance_of_wind
+	name = "chilling glyph"
+	garou_name = "vengeance of the wind glyph"
+	garou_desc = "A glyph that represents the vengeance of the wind, as told often in legends of the Younger Brother."
+	icon_state = "vengeance_of_wind"
+
+/obj/effect/decal/garou_glyph/vancouver
+	name = "ominous glyph"
+	garou_name = "vancouver glyph"
+	garou_desc = "A glyph that represents Vancouver, a city in British Columbia."
+	icon_state = "vancouver"
+
+/obj/effect/decal/garou_glyph/blood_moon
+	name = "fearsome glyph"
+	garou_name = "blood moon glyph"
+	garou_desc = "A glyph that represents the blood moon, when Luna turns red in her rage."
+	icon_state = "blood_moon"
+
+/obj/effect/decal/garou_glyph/bat
+	name = "flighty glyph"
+	garou_name = "bat glyph"
+	garou_desc = "A glyph that represents a bat, or potentially the extinct Camazotz."
+	icon_state = "bat"
+
+/obj/effect/decal/garou_glyph/boar
+	name = "sniveling glyph"
+	garou_name = "boar glyph"
+	garou_desc = "A glyph that represents the boars, or their extinct Fera bretheren, the Grondr."
+	icon_state = "boar"
+
+/obj/effect/decal/garou_glyph/cow
+	name = "bullish glyph"
+	garou_name = "cow glyph"
+	garou_desc = "A glyph that represents cows, or their extinct Fera bretheren, the Apis."
+	icon_state = "cow"
+
+/obj/effect/decal/garou_glyph/coyote
+	name = "tricky glyph"
+	garou_name = "coyote glyph"
+	garou_desc = "A glyph that represents coyotes, or their wily Fera bretheren, the Nuwisha."
+	icon_state = "coyote"
+
+/obj/effect/decal/garou_glyph/dragon
+	name = "spiny glyph"
+	garou_name = "dragon glyph"
+	garou_desc = "A glyph that represents the dragons, reptiles, and their ancient Fera bretheren, the Mokole."
+	icon_state = "dragon"
+
+/obj/effect/decal/garou_glyph/fox
+	name = "flashy glyph"
+	garou_name = "fox glyph"
+	garou_desc = "A glyph that represents the foxes, and their capricious Fera bretheren, the Kitsune."
+	icon_state = "fox"
+
+/obj/effect/decal/garou_glyph/hyena
+	name = "funny glyph"
+	garou_name = "hyena glyph"
+	garou_desc = "A glyph that represents the hyenas, an African animal with deep importance to the humans who co-exist with them."
+	icon_state = "hyena"
+
+/obj/effect/decal/garou_glyph/phoenix
+	name = "fiery glyph"
+	garou_name = " glyph"
+	garou_desc = "A glyph that represents the phoenix, the primeval firebirds."
+	icon_state = "phoenix"
+
+/obj/effect/decal/garou_glyph/tick
+	name = "itchy glyph"
+	garou_name = "tick glyph"
+	garou_desc = "A glyph that represents Tick, Totem of Cunning, an intelligent parasite and trickster."
+	icon_state = "tick"
+
+/obj/effect/decal/garou_glyph/drone
+	name = "rigid glyph"
+	garou_name = "drone glyph"
+	garou_desc = "A glyph that represents a drone, an animal possessed by weaver-spirits."
+	icon_state = "drone"
+
+/obj/effect/decal/garou_glyph/gorgon
+	name = "energetic glyph"
+	garou_name = "gorgon glyph"
+	garou_desc = "A glyph that represents a gorgon, an animal possessed by wyld-spirits."
+	icon_state = "gorgon"
+
+/obj/effect/decal/garou_glyph/kami
+	name = "impassioned glyph"
+	garou_name = "kami glyph"
+	garou_desc = "A glyph that represents the Kami, half-spirits of Gaia who have possessed an animal. The term is also the Japanese word for a spirit, but the glyph does not represent such."
+	icon_state = "kami"
+
+/obj/effect/decal/garou_glyph/sun_storm_shadow
+	name = "multifaceted glyph"
+	garou_name = "sun, storm, and shadow glyph"
+	garou_desc = "A glyph that represents many states of difficult weather, often used by Corax to show that nothing can stop them on their mission to share and learn."
+	icon_state = "sun_storm_shadow"
