@@ -227,6 +227,10 @@ vanishing up into the night sky.” Avoid stating plainly,
 “You learn that this ghoul is the minion of a powerful
 Methuselah.”
 */
+
+#define CHOICE_SECRETS 1
+#define CHOICE_INFORMATION 2
+
 /datum/discipline_power/dementation/eyes_of_chaos
 	name = "Eyes of Chaos"
 	desc = "See the hidden patterns in the world and uncover people's true selves."
@@ -270,7 +274,8 @@ Methuselah.”
 #define OPTION_MORALITY_PATH "Morality Path"
 #define OPTION_HUMANITY "Humanity"
 #define OPTION_BLOOD_BONDED "Blood Bonded" // Mentions Unbondable too
-#define OPTION_INFLUENCED "Influenced" // Any power that would control, influence or coerce someone
+#define OPTION_IS_INFLUENCED "Influenced" // Any power that would control, influence or coerce someone (excluding dominate)
+#define OPTION_IS_DOMINATED "Dominated" // Dominate 4 or 5
 #define OPTION_SECOND_PRESENCE "Second Presence" // Split Personality or Imaginary Friend
 #define OPTION_DIABLERIE "Diablerie"
 #define OPTION_COUNTRY_OF_ORIGIN "Country of Origin"
@@ -282,6 +287,9 @@ Methuselah.”
 #define OPTION_EMOTION "Aura Emotion"
 #define OPTION_CHARACTER_NAME "Character Name"
 #define OPTION_AUSPICE "Auspice"
+#define OPTION_HAS_SIRE "Sire"
+#define OPTION_HAS_KILLED "Murder Count"
+//#define HAS_SCREEN(mob, type) (locate(type) in assoc_to_values(mob.screens))
 // Perhaps note 5-dotted stats and certain traits, inherent traits like Salubri eyes?
 // Move defines soon
 
@@ -310,8 +318,16 @@ Methuselah.”
 		available_options += list(OPTION_BLOOD_BONDED)
 	if (target.current_emotion != AURA_INNOCENT) // Add available options if emotion has been changed from its initial setting
 		available_options += list(OPTION_EMOTION)
-	if (target.possessed == TRUE || (HAS_TRAIT(target, TRAIT_FORCED_EMOTION) || (target.conditioner)))
-		available_options += list(OPTION_INFLUENCED)
+	if (HAS_TRAIT(target, TRAIT_FORCED_EMOTION) || target.conditioner)
+		available_options += list(OPTION_IS_INFLUENCED)
+	if (target.possessed == TRUE || target.has_status_effect(/datum/status_effect/awe) || target.has_status_effect(/datum/status_effect/dread_gaze)) //DARKPACK TODO Presence 3-5 do not have tied status effects currently, cannot nicely check for them until that
+		available_options += list(OPTION_IS_DOMINATED)
+	if (get_kindred_splat(target))
+		var/datum/splat/vampire/kindred/target_kindred = get_kindred_splat(target) // Add available options if kindred has a defined sire
+		if (target_kindred.sire != null)
+			available_options += list(OPTION_HAS_SIRE)
+	if (target.killed_count > 0)
+		available_options += list(OPTION_HAS_KILLED)
 
 	switch (chosen_option)
 		if ("Secrets")
@@ -536,14 +552,33 @@ Methuselah.”
 								owner.malkavian_voices("The joker of the deck, this individual is the wild card of their group. The aspects that empower them are entirely their own to decide.", range=4)
 							if (AUSPICE_NONE)
 								owner.malkavian_voices("This individual has changed far more than any shifter could ever hope... In the most twisted of ways. A stolen gift repurposed for their own use — though to what end?", range=4)
-					if (OPTION_INFLUENCED)
+					if (OPTION_IS_INFLUENCED)
+						if (HAS_TRAIT(target, TRAIT_FORCED_EMOTION))
+							owner.malkavian_voices("The emotions [target]'s heart bleeds is not off their own accord — brought on by another artificially.", range=4)
+						else if (target.has_status_effect(/datum/status_effect/awe))
+							owner.malkavian_voices("Our target is completely captivated by another!", range=4)
+						else if (target.has_status_effect(/datum/status_effect/dread_gaze))
+							owner.malkavian_voices("[target] has had an unnatural terror instilled deep within them.", range=4)
+					if (OPTION_IS_DOMINATED)
 						if (target.possessed == TRUE)
 							owner.malkavian_voices("This individual is merely a puppet of flesh; their self sealed away within by another.", range=4)
-						else if (HAS_TRAIT(target, TRAIT_FORCED_EMOTION))
-							owner.malkavian_voices("The emotions [target]'s heart bleeds is not off their own accord — brought on by another artificially.", range=4)
 						else if (target.conditioner)
 							owner.malkavian_voices("A mind shattered into pieces then re-assembled to suit another; The agency of this poor thing is completely dominated by another.", range=4)
-
+					if (OPTION_HAS_SIRE)
+						var/datum/splat/vampire/kindred/target_kindred = get_kindred_splat(target) // Access .sire
+						owner.malkavian_voices("The animated corpse of this kindred bears [target_kindred.sire.real_name]'s imprint — engraved into their very essence.", range=4)
+					if (OPTION_HAS_KILLED)
+						switch (target.killed_count)
+							if (1)
+								owner.malkavian_voices("A soul run cold haunts our gazed. Through some tragedy or another their death is linked to [target].", range=4)
+							if (2 to 4)
+								owner.malkavian_voices("The murders enacted by our target have began to be seen as serial by the eyes of the city...", range=4)
+							if (5 to 9)
+								owner.malkavian_voices("The lives lost to [target] could begin to populate a graveyard!", range=4)
+							if (10 to 19)
+								owner.malkavian_voices("The city is quiet, the streets are still, the beast took had them all — scoring kill after kill.")
+							if (20 to INFINITY)
+								owner.malkavian_voices("A mountain of smiling bodies towers ever higher over the cityscape. On top, [target]... closer to the Heavens with each addition.", range=4)
 				//sleep(2 SECONDS) // make into proper timer function that's not sleep
 
 #undef OPTION_IMMORTAL_AGE
@@ -555,7 +590,8 @@ Methuselah.”
 #undef OPTION_MORALITY_PATH
 #undef OPTION_HUMANITY
 #undef OPTION_BLOOD_BONDED
-#undef OPTION_INFLUENCED
+#undef OPTION_IS_INFLUENCED
+#undef OPTION_IS_DOMINATED
 #undef OPTION_SECOND_PRESENCE
 #undef OPTION_DIABLERIE
 #undef OPTION_COUNTRY_OF_ORIGIN
@@ -567,6 +603,7 @@ Methuselah.”
 #undef OPTION_EMOTION
 #undef OPTION_CHARACTER_NAME
 #undef OPTION_AUSPICE
+#undef OPTION_HAS_SIRE
 
 /datum/discipline_power/dementation/eyes_of_chaos/pre_activation_checks(mob/living/carbon/human/target)
 	var/mypower = SSroll.storyteller_roll_datum(owner, target, difficulty = 7, applic_stats = list(STAT_PERCEPTION, STAT_OCCULT), numerical = FALSE)
