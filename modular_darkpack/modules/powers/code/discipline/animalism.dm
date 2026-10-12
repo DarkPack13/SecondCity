@@ -227,7 +227,7 @@
 
 /datum/status_effect/quelled/on_apply()
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/quelled)
-	to_chat(owner, span_warning("A strange listlessness settles over you."))
+	to_chat(owner, span_warning("A strange calm settles over you."))
 	return TRUE
 
 /datum/status_effect/quelled/on_remove()
