@@ -8,6 +8,8 @@
 ●●●●● Skitter: Passive"}
 	icon_state = "animalism"
 	power_type = /datum/discipline_power/animalism
+	//lazylist
+	var/list/tamed_animals
 
 /datum/discipline_power/animalism
 	name = "Animalism power name"
@@ -24,8 +26,6 @@
 	vitae_cost = 0
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_DIRECT_SEE
 	cooldown_length = 1 SECONDS // 5 minutes change to this after testing
-	//lazylist
-	var/list/tamed_animals
 
 /datum/storyteller_roll/feral_whispers
 	bumper_text = "feral whispers"
@@ -37,7 +37,8 @@
 	if(!istype(animal) || !animal.feral_whispers_difficulty || animal.mind || animal.stat == DEAD)
 		to_chat(owner, span_warning("[target] has no beast's mind for you to whisper to."))
 		return FALSE
-	if(LAZYLEN(tamed_animals) >= owner.st_get_stat(STAT_ANIMAL_KEN))
+	var/datum/discipline/animalism/animalism = discipline
+	if(LAZYLEN(animalism.tamed_animals) >= owner.st_get_stat(STAT_ANIMAL_KEN))
 		to_chat(owner, span_warning("You cannot keep any more animals at your call."))
 		return FALSE
 	animal.face_atom(owner)
@@ -49,11 +50,12 @@
 
 /datum/discipline_power/animalism/feral_whispers/activate(mob/living/basic/target)
 	. = ..()
+	var/datum/discipline/animalism/animalism = discipline
 	target.ai_controller?.remove_from_blackboard_lazylist_key(BB_BASIC_MOB_RETALIATE_LIST, owner)
 	var/roll = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/feral_whispers, difficulty = target.feral_whispers_difficulty)
 	switch(roll)
 		if(ROLL_SUCCESS)
-			LAZYADD(tamed_animals, target.type)
+			LAZYADD(animalism.tamed_animals, target.type)
 			target.add_ally(owner)
 			target.ai_controller?.forgive_target(owner)
 			to_chat(owner, span_notice("[target] meets your gaze and understands. It will answer when you call."))
