@@ -2,7 +2,7 @@
 	name = "Animalism"
 	desc = {"Commune with and command the beasts of the city.
 ● Feral Whispers: Tame an animal so it will answer your call. Rolls manipulation + animal ken
-●● Summon Cat: Passive
+●● Beckoning: Call your tamed animals to your side. Rolls charisma + survival
 ●●● Summon Wolf: Passive
 ●●●● Summon Bat: Passive
 ●●●●● Skitter: Passive"}
@@ -37,8 +37,11 @@
 	if(!istype(animal) || !animal.feral_whispers_difficulty || animal.mind || animal.stat == DEAD)
 		to_chat(owner, span_warning("[target] has no beast's mind for you to whisper to."))
 		return FALSE
+	if(animal in owner.beastmaster_minions)
+		to_chat(owner, span_warning("[animal] already answers to you."))
+		return FALSE
 	var/datum/discipline/animalism/animalism = discipline
-	if(LAZYLEN(animalism.tamed_animals) >= owner.st_get_stat(STAT_ANIMAL_KEN))
+	if(!istype(animal.ai_controller, /datum/ai_controller/basic_controller/beastmaster_summon) && LAZYLEN(animalism.tamed_animals) >= owner.st_get_stat(STAT_ANIMAL_KEN))
 		to_chat(owner, span_warning("You cannot keep any more animals at your call."))
 		return FALSE
 	animal.face_atom(owner)
@@ -55,9 +58,13 @@
 	var/roll = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/feral_whispers, difficulty = target.feral_whispers_difficulty)
 	switch(roll)
 		if(ROLL_SUCCESS)
-			LAZYADD(animalism.tamed_animals, target.type)
 			target.add_ally(owner)
 			target.ai_controller?.forgive_target(owner)
+			if(istype(target.ai_controller, /datum/ai_controller/basic_controller/beastmaster_summon))
+				target.ai_controller.remove_thing_from_blackboard_key(BB_BEASTMASTER_ENEMIES_LIST, owner)
+				to_chat(owner, span_notice("[target] calms under your gaze, but it answers to another."))
+				return
+			LAZYADD(animalism.tamed_animals, target.type)
 			to_chat(owner, span_notice("[target] meets your gaze and understands. It will answer when you call."))
 		if(ROLL_FAILURE)
 			to_chat(owner, span_warning("[target] doesn't heed your whispers."))
