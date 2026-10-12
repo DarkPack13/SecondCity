@@ -3,7 +3,6 @@
 
 /// A mob that gets mad at people at random and tries to eat nearby objects
 /mob/living/basic/goose
-	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 	name = "goose"
 	desc = "It's loose."
 	icon_state = "goose"
@@ -31,6 +30,10 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	/// Do we actually destroy food we eat?
 	var/conserve_food = FALSE
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 8
+	beckoning_sound = 'sound/mobs/non-humanoids/goose/goose1.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /mob/living/basic/goose/Initialize(mapload)
 	. = ..()

@@ -6,7 +6,6 @@
 #define LOWER_BOUND_VOLUME 10
 
 /mob/living/basic/turtle
-	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 	name = "turtle"
 	desc = "Dog."
 	icon_state = "turtle"
@@ -61,6 +60,9 @@
 		/obj/machinery/hydroponics,
 		/obj/item/kirbyplants,
 	)
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 8
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 
 /mob/living/basic/turtle/Initialize(mapload)

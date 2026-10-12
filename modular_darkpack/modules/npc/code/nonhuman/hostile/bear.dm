@@ -1,4 +1,5 @@
 /mob/living/basic/bear/vampire
+	beckoning_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/crinos_growl.ogg'
 	feral_whispers_difficulty = 6
 	name = "bear"
 	desc = "IS THAT A FUCKING BEAR-"

@@ -1,6 +1,5 @@
 //Look Sir, free crabs!
 /mob/living/basic/crab
-	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 	name = "crab"
 	desc = "Free crabs!"
 	icon_state = "crab"
@@ -28,6 +27,10 @@
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	ai_controller = /datum/ai_controller/basic_controller/crab
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 8
+	beckoning_sound = 'sound/mobs/non-humanoids/crab/claw_click.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /mob/living/basic/crab/Initialize(mapload)
 	. = ..()

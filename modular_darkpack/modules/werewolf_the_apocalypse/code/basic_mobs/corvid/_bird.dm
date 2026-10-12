@@ -1,4 +1,5 @@
 /mob/living/basic/corvid
+	beckoning_sound = 'modular_darkpack/modules/ambience/sounds/nature/crow_caw_01.ogg'
 	feral_whispers_difficulty = 8
 	name = "corvid"
 	desc = "Caw."

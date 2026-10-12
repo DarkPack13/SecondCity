@@ -7,7 +7,6 @@ GLOBAL_VAR_INIT(chicken_count, 0)
 * Not-entirely-flightless domesticated birds that lay eggs, which are then consumed by humans and other animals.
 */
 /mob/living/basic/chicken
-	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 	name = "\improper chicken"
 	desc = "Hopefully the eggs are good this season."
 	gender = FEMALE
@@ -40,6 +39,10 @@ GLOBAL_VAR_INIT(chicken_count, 0)
 
 	///boolean deciding whether eggs laid by this chicken can hatch into chicks
 	var/fertile = TRUE
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 8
+	beckoning_sound = 'sound/mobs/non-humanoids/chicken/clucks.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /datum/emote/chicken
 	abstract_type = /datum/emote/chicken

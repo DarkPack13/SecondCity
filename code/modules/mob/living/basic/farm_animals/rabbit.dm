@@ -7,7 +7,6 @@
  *
  */
 /mob/living/basic/rabbit
-	feral_whispers_difficulty = 7 // DARKPACK EDIT ADD - Animalism Rework
 	name = "rabbit"
 	desc = "The hippiest hop around."
 	icon = 'icons/mob/simple/rabbit.dmi'
@@ -37,6 +36,9 @@
 	ai_controller = /datum/ai_controller/basic_controller/rabbit
 	/// passed to animal_varity as the prefix icon.
 	var/icon_prefix = "rabbit"
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 7
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /datum/emote/rabbit
 	abstract_type = /datum/emote/rabbit

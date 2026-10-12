@@ -1,5 +1,4 @@
 /mob/living/basic/sheep
-	feral_whispers_difficulty = 7 // DARKPACK EDIT ADD - Animalism Rework
 	name = "sheep"
 	desc = "Known for their soft wool and use in sacrificial rituals. Big fan of grass."
 	icon = 'icons/mob/simple/sheep.dmi'
@@ -29,6 +28,10 @@
 
 	/// Were we sacrificed by cultists?
 	var/cult_converted = FALSE
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 7
+	beckoning_sound = 'sound/mobs/non-humanoids/sheep/sheep1.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /mob/living/basic/sheep/Initialize(mapload)
 	. = ..()

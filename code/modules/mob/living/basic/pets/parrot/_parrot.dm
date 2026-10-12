@@ -8,7 +8,6 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 
 /// Parrots! Klepto bastards that imitate your speech and hoard your shit.
 /mob/living/basic/parrot
-	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 	name = "parrot"
 	desc = "The parrot squawks, \"They're a Parrot! BAWWK!\""
 	icon = 'icons/mob/simple/animal.dmi'
@@ -85,6 +84,9 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 
 	/// Tracks the times when we send a phrase through either being pet or attack to ensure it's not abused to flood
 	COOLDOWN_DECLARE(forced_speech_cooldown)
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 8
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /mob/living/basic/parrot/Initialize(mapload)
 	. = ..()

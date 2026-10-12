@@ -18,7 +18,6 @@
 //Dogs.
 
 /mob/living/basic/pet/dog
-	feral_whispers_difficulty = 6 // DARKPACK EDIT ADD - Animalism Rework
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	response_help_continuous = "pets"
 	response_help_simple = "pet"
@@ -56,6 +55,10 @@
 	var/collar_icon_state
 	///icon state of our cult icon
 	var/cult_icon_state
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 6
+	beckoning_sound = 'modular_darkpack/modules/ambience/sounds/nature/dog_01.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 // DARKPACK EDIT ADD START - NPC
 	maxHealth = 70

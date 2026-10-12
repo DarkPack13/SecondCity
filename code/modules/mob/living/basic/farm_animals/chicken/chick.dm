@@ -4,7 +4,6 @@
  * Baby birds that grow into big chickens.
  */
 /mob/living/basic/chick
-	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 	name = "\improper chick"
 	desc = "Adorable! They make such a racket though."
 	icon_state = "chick"
@@ -35,6 +34,10 @@
 
 	/// What we grow into.
 	var/grow_as = /mob/living/basic/chicken
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 8
+	beckoning_sound = 'sound/mobs/non-humanoids/chicken/chick_peep.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /datum/emote/chick
 	abstract_type = /datum/emote/chick

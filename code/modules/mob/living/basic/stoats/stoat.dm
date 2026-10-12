@@ -1,5 +1,4 @@
 /mob/living/basic/stoat
-	feral_whispers_difficulty = 6 // DARKPACK EDIT ADD - Animalism Rework
 	name = "stoat"
 	desc = "A natural born vermin exterminator... a janitor's best friend."
 	icon_state = "stoat"
@@ -36,6 +35,10 @@
 	)
 	//can this mob breed?
 	var/can_breed = TRUE
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 6
+	beckoning_sound = 'sound/mobs/non-humanoids/stoat/stoat_sounds.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /mob/living/basic/stoat/Initialize(mapload)
 	. = ..()

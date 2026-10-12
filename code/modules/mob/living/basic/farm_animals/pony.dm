@@ -1,5 +1,4 @@
 /mob/living/basic/pony
-	feral_whispers_difficulty = 7 // DARKPACK EDIT ADD - Animalism Rework
 	name = "pony"
 	desc = "Look at my horse, my horse is amazing!"
 	icon_state = "pony"
@@ -33,6 +32,10 @@
 	greyscale_config = /datum/greyscale_config/pony
 	/// Greyscale color config; 1st color is body, 2nd is mane
 	var/list/ponycolors = list("#cc8c5d", "#cc8c5d")
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 7
+	beckoning_sound = 'sound/mobs/non-humanoids/pony/whinny01.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /datum/emote/pony
 	abstract_type = /datum/emote/pony
