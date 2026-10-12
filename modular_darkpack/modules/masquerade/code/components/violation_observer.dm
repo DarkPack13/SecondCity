@@ -44,6 +44,8 @@
 		var/mob/living/mob_parent = source
 		if(mob_parent.stat == DEAD)
 			return
+		if(mob_parent.has_status_effect(/datum/status_effect/quelled))
+			return
 		if(!INCAPACITATED_IGNORING(mob_parent, INCAPABLE_RESTRAINTS))
 			mob_parent.face_atom(player_breacher)
 	source.observe_masquerade_violation(player_breacher)

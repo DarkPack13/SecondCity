@@ -3,7 +3,7 @@
 	desc = {"Commune with and command the beasts of the city.
 ● Feral Whispers: Tame an animal so it will answer your call. Rolls manipulation + animal ken
 ●● Beckoning: Call your tamed animals to your side. Rolls charisma + survival
-●●● Summon Wolf: Passive
+●●● Quell the Beast: Intimidate or soothe a target's inner Beast. Rolls manipulation + intimidation or empathy
 ●●●● Summon Bat: Passive
 ●●●●● Skitter: Passive"}
 	icon_state = "animalism"
@@ -167,18 +167,74 @@
 		candidates += candidate
 	return length(candidates) ? pick(candidates) : get_turf(owner)
 
-//SUMMON WOLF
-/datum/discipline_power/animalism/summon_wolf
-	name = "Summon Wolf"
-	desc = "Summon a spectral wolf to do your bidding."
+//QUELL THE BEAST
+/datum/discipline_power/animalism/quell_the_beast
+	name = "Quell the Beast"
+	desc = "Lock eyes with someone and intimidate or soothe their inner Beast. Mortals grow sluggish, and the frenzied are calmed."
 	level = 3
-	violates_masquerade = TRUE
-	cooldown_length = 8 SECONDS
-	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
+	target_type = TARGET_HUMAN
+	range = 3
+	vitae_cost = 0
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_DIRECT_SEE
+	cooldown_length = 1 SECONDS // 1 scenes
+	var/chosen_ability
 
-/datum/discipline_power/animalism/summon_wolf/activate()
+/datum/storyteller_roll/quell_the_beast
+	bumper_text = "quell the beast"
+	numerical = TRUE
+	roll_output_type = ROLL_FLAG_ROLLER
+
+/datum/discipline_power/animalism/quell_the_beast/pre_activation_checks(atom/target)
+	var/choice = tgui_alert(owner, "Intimidate their Beast, or soothe it?", "Quell the Beast", list("Intimidate", "Soothe"))
+	if(!choice)
+		return FALSE
+	chosen_ability = (choice == "Intimidate") ? STAT_INTIMIDATION : STAT_EMPATHY
+	var/mob/living/living_target = target
+	owner.face_atom(living_target)
+	living_target.face_atom(owner)
+	if(!do_after(owner, 1 TURNS, living_target))
+		return FALSE
+	return TRUE
+
+/datum/discipline_power/animalism/quell_the_beast/activate(mob/living/carbon/human/target)
 	. = ..()
-	owner.add_beastmaster_minion(/mob/living/basic/pet/dog/wolf/summoned)
+	var/successes = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/quell_the_beast, difficulty = 7, applic_stats = list(STAT_MANIPULATION, chosen_ability))
+	if(successes <= 0)
+		to_chat(owner, span_warning("[target]'s Beast does not yield to yours."))
+		return
+	if(HAS_TRAIT(target, TRAIT_IN_FRENZY))
+		target.exit_frenzy_mode()
+		to_chat(owner, span_notice("You stare down [target]'s Beast until it slinks back into the dark."))
+		to_chat(target, span_notice("Your Beast cowers under [owner]'s gaze, and the frenzy drains out of you."))
+		return
+
+	if(!ismundane(target))
+		// dont want this to function as a splat checker
+		to_chat(owner, span_warning("[target]'s Beast is not so easily intimidated."))
+		return
+
+	target.apply_status_effect(/datum/status_effect/quelled, successes TURNS)
+	to_chat(owner, span_notice("[target]'s will drains away under your gaze."))
+
+/datum/status_effect/quelled
+	id = "quelled"
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = null
+
+/datum/status_effect/quelled/on_creation(mob/living/new_owner, set_duration)
+	duration = set_duration
+	return ..()
+
+/datum/status_effect/quelled/on_apply()
+	owner.add_movespeed_modifier(/datum/movespeed_modifier/quelled)
+	to_chat(owner, span_warning("A strange listlessness settles over you."))
+	return TRUE
+
+/datum/status_effect/quelled/on_remove()
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/quelled)
+
+/datum/movespeed_modifier/quelled
+	multiplicative_slowdown = 0.4
 
 //SUMMON BAT
 /datum/discipline_power/animalism/summon_bat
