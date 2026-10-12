@@ -544,7 +544,7 @@
 /obj/effect/decal/garou_glyph/north_wind
 	name = "simple glyph"
 	garou_name = "north wind glyph"
-	garou_desc = "A glyph that represents North Wind, the totem spirit of the Galestalkers."
+	garou_desc = "A glyph that represents North Wind, the totem spirit of the " + TRIBE_GALESTALKERS + "."
 	icon_state = "north_wind"
 
 /obj/effect/decal/garou_glyph/gun
