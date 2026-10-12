@@ -2,6 +2,7 @@
 /mob/living/proc/recalculate_max_health(initial = FALSE)
 	var/old_max_health = maxHealth
 	maxHealth = round(initial(maxHealth) + ((initial(maxHealth)/8) * st_get_stat(STAT_STAMINA)))
+	max_stamina = round(initial(max_stamina) + ((initial(max_stamina)/8) * st_get_stat(STAT_STAMINA)))
 	if(initial)
 		health = maxHealth
 	else if(health > 0)
