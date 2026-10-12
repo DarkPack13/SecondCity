@@ -79,18 +79,93 @@
 	to_chat(owner, span_danger("[animal] startles at your whispers and flees!"))
 	GLOB.move_manager.move_away(animal, owner, 10, animal.cached_multiplicative_slowdown, 10 SECONDS)
 
-//SUMMON CAT
-/datum/discipline_power/animalism/summon_cat
-	name = "Summon Cat"
-	desc = "Summon a spectral cat to do your bidding."
+//BECKONING
+/datum/discipline_power/animalism/beckoning
+	name = "Beckoning"
+	desc = "Call out to the animals you have tamed. Each success lets one of them answer."
 	level = 2
-	violates_masquerade = TRUE
-	cooldown_length = 8 SECONDS
-	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
+	vitae_cost = 0
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE
+	cooldown_length = 1 SECONDS // 1 scenes plz
 
-/datum/discipline_power/animalism/summon_cat/activate()
+/datum/storyteller_roll/beckoning
+	bumper_text = "beckoning"
+	applicable_stats = list(STAT_CHARISMA, STAT_SURVIVAL)
+	numerical = TRUE
+	roll_output_type = ROLL_FLAG_ROLLER
+
+/datum/discipline_power/animalism/beckoning/pre_activation_checks(atom/target)
+	var/datum/discipline/animalism/animalism = discipline
+	if(!LAZYLEN(animalism.tamed_animals))
+		to_chat(owner, span_warning("You have no animals to call."))
+		return FALSE
+	return TRUE
+
+/datum/discipline_power/animalism/beckoning/activate()
 	. = ..()
-	owner.add_beastmaster_minion(/mob/living/basic/pet/cat/darkpack/summoned)
+	var/datum/discipline/animalism/animalism = discipline
+	var/successes = SSroll.storyteller_roll_datum(owner, owner, /datum/storyteller_roll/beckoning, difficulty = 6)
+	if(successes < 0)
+		var/mob/living/basic/lost_animal = pick(animalism.tamed_animals)
+		LAZYREMOVE(animalism.tamed_animals, lost_animal)
+		to_chat(owner, span_danger("Your call goes unheeded. A [initial(lost_animal.name)] will no longer answer to you."))
+		return
+	if(!successes)
+		to_chat(owner, span_warning("No animals answer your call."))
+		return
+	choose_animals(successes)
+
+
+//successes determine how many animals come, 1 success = 1 animal
+/datum/discipline_power/animalism/beckoning/proc/choose_animals(successes)
+	var/datum/discipline/animalism/animalism = discipline
+	for(var/i in 1 to successes)
+		if(!LAZYLEN(animalism.tamed_animals) || !owner.can_tame_beastmaster_minion(null, TRUE))
+			return
+		var/list/choices = list()
+		for(var/mob/living/basic/animal_type as anything in animalism.tamed_animals)
+			var/datum/radial_menu_choice/choice = new
+			choice.name = initial(animal_type.name)
+			choice.image = image(initial(animal_type.icon), initial(animal_type.icon_state))
+			choices[animal_type] = choice
+		var/chosen_type = show_radial_menu(owner, owner, choices, tooltips = TRUE)
+		if(!chosen_type || QDELETED(owner))
+			return
+		call_animal(chosen_type)
+
+/datum/discipline_power/animalism/beckoning/proc/call_animal(animal_type)
+	var/datum/discipline/animalism/animalism = discipline
+
+	if(!(animal_type in animalism.tamed_animals))
+		return
+
+	LAZYREMOVE(animalism.tamed_animals, animal_type)
+
+	var/mob/living/basic/animal = new animal_type(get_turf(owner))
+	animal.alpha = 0
+	var/datum/action/innate/togglecorvidflight/corvid_flight = locate() in animal.actions
+	var/turf/spawn_turf = find_beckoning_turf(corvid_flight || HAS_TRAIT(animal, TRAIT_MOVE_FLYING))
+	animal.forceMove(spawn_turf)
+	if(corvid_flight && !HAS_TRAIT(animal, TRAIT_MOVE_FLYING) && isgroundlessturf(spawn_turf))
+		corvid_flight.Trigger()
+	animate(animal, alpha = 255, time = 1 SECONDS)
+
+	QDEL_NULL(animal.ai_controller)
+	animal.ai_controller = new /datum/ai_controller/basic_controller/beastmaster_summon(animal)
+	owner.add_beastmaster_minion(animal)
+
+	if(animal.beckoning_sound)
+		playsound(animal, animal.beckoning_sound, 50, TRUE)
+
+/datum/discipline_power/animalism/beckoning/proc/find_beckoning_turf(can_fly)
+	var/list/candidates = list()
+	for(var/turf/open/candidate in view(5, owner))
+		if(get_dist(candidate, owner) < 3 || candidate.is_blocked_turf(TRUE))
+			continue
+		if(!can_fly && isgroundlessturf(candidate))
+			continue
+		candidates += candidate
+	return length(candidates) ? pick(candidates) : get_turf(owner)
 
 //SUMMON WOLF
 /datum/discipline_power/animalism/summon_wolf
@@ -169,15 +244,6 @@
 	if(shapeshift_spell && is_type_in_list(owner, shapeshift_spell.possible_shapes))
 		shapeshift_spell.cast(owner)
 		owner.Stun(1.5 SECONDS)
-
-/mob/living/basic/pet/cat/darkpack/summoned
-	name = "cat"
-	desc = "A cat bound to its master's will."
-	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
-	melee_damage_lower = 5
-	melee_damage_upper = 12
-	obj_damage = 15
-	bloodpool = 2
 
 /mob/living/basic/pet/dog/wolf/summoned
 	name = "wolf"
