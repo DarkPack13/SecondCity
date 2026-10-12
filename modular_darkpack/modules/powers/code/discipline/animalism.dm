@@ -192,7 +192,7 @@
 	var/mob/living/living_target = target
 	owner.face_atom(living_target)
 	living_target.face_atom(owner)
-	if(!do_after(owner, 1 TURNS, living_target))
+	if(!do_after(owner, 1 TURNS, living_target, IGNORE_TARGET_LOC_CHANGE, extra_checks = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(can_see), owner, living_target, range)))
 		return FALSE
 	return TRUE
 
@@ -214,6 +214,9 @@
 		return
 
 	target.apply_status_effect(/datum/status_effect/quelled, successes TURNS)
+	if(isnpc(target))
+		var/mob/living/carbon/human/npc/npc = target
+		npc.end_combat()
 	to_chat(owner, span_notice("[target]'s will drains away under your gaze."))
 
 /datum/status_effect/quelled
