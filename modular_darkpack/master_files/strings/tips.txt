@@ -47,6 +47,7 @@ Magical artifacts need to be identified in order to be used. The Tremere, Garou,
 Most things have special interactions with right, alt, shift, and control click. Experiment!
 Pool tables can be interacted with and let you play a mock game of billiards.
 The Animalism power 'Quell the Beast' is commonly called 'Cowing the Beast' to the Clan Tzimisce, since they typically use it to force a mortal a mortal's weaker spirit to submit in the presence of the Kindred's superior Beast. The Nosferatu call it 'Song of Serenity', making use of it's soothing effects to calm a human into complacency so they may feed.
+The Animalism power 'Subsume the Spirit', is seen with disdain by the Tzimisce, who see it as debasing or humiliating to enter into the mind of a lowly creature. When they do rarely use it, they typically only enter the minds of large predators. The Gangrel, however, relish every opportunity to use this power on as many animals as possible - sampling each animal's nature and personality.
 The Malkavian hivemind allows you to send any message, except images.
 The resist button will allow you to resist out of handcuffs, being buckled to a chair or bed, out of locked lockers and more. Whenever you're stuck, try resisting!
 There are 36 turns in a scene.
