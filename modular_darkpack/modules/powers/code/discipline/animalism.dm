@@ -4,7 +4,7 @@
 ● Feral Whispers: Tame an animal so it will answer your call. Rolls manipulation + animal ken
 ●● Beckoning: Call your tamed animals to your side. Rolls charisma + survival
 ●●● Quell the Beast: Intimidate or soothe a target's inner Beast. Rolls manipulation + intimidation or empathy
-●●●● Summon Bat: Passive
+●●●● Subsume the Spirit: Possess an animal, leaving your body behind. Rolls manipulation + animal ken
 ●●●●● Skitter: Passive"}
 	icon_state = "animalism"
 	power_type = /datum/discipline_power/animalism
@@ -239,18 +239,132 @@
 /datum/movespeed_modifier/quelled
 	multiplicative_slowdown = 0.4
 
-//SUMMON BAT
-/datum/discipline_power/animalism/summon_bat
-	name = "Summon Bat"
-	desc = "Summon a spectral bat to do your bidding."
+//SUBSUME THE SPIRIT
+/datum/discipline_power/animalism/subsume_the_spirit
+	name = "Subsume the Spirit"
+	desc = "Lock eyes with an animal and pour your mind into its body, leaving your own behind."
 	level = 4
-	violates_masquerade = TRUE
-	cooldown_length = 8 SECONDS
-	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
+	target_type = TARGET_MOB
+	range = 3
+	vitae_cost = 0
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_DIRECT_SEE
+	cooldown_length = 1 SECONDS // 1 scenes plz!!!!!!
 
-/datum/discipline_power/animalism/summon_bat/activate()
+/datum/storyteller_roll/subsume_the_spirit
+	bumper_text = "subsume the spirit"
+	applicable_stats = list(STAT_MANIPULATION, STAT_ANIMAL_KEN)
+	roll_output_type = ROLL_FLAG_ROLLER
+	difficulty = 8
+
+/datum/discipline_power/animalism/subsume_the_spirit/pre_activation_checks(atom/target)
+	var/mob/living/basic/animal = target
+	if(!istype(animal) || !animal.feral_whispers_difficulty || animal.mind || animal.stat == DEAD)
+		to_chat(owner, span_warning("[target] has no beast's mind for you to enter."))
+		return FALSE
+	if(istype(animal.ai_controller, /datum/ai_controller/basic_controller/beastmaster_summon) && !(animal in owner.beastmaster_minions))
+		to_chat(owner, span_warning("[animal] is already bound to another's will."))
+		return FALSE
+	animal.face_atom(owner)
+	owner.face_atom(animal)
+	animal.Stun(2 TURNS)
+	if(!do_after(owner, 2 TURNS, animal))
+		return FALSE
+	return TRUE
+
+/datum/discipline_power/animalism/subsume_the_spirit/activate(mob/living/basic/target)
 	. = ..()
-	owner.add_beastmaster_minion(/mob/living/basic/bat/summoned)
+	if(SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/subsume_the_spirit, difficulty = 8) != ROLL_SUCCESS)
+		to_chat(owner, span_warning("[target]'s mind slips away from yours."))
+		return
+	target.apply_status_effect(/datum/status_effect/subsumed_spirit, owner)
+
+/datum/status_effect/subsumed_spirit
+	id = "subsumed_spirit"
+	duration = STATUS_EFFECT_PERMANENT
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = null
+	var/mob/living/carbon/human/body
+	var/datum/action/subsume_return/return_action
+	COOLDOWN_DECLARE(body_damage_warning)
+	COOLDOWN_DECLARE(return_attempt)
+
+/datum/storyteller_roll/subsume_return
+	bumper_text = "return to body"
+	roll_output_type = ROLL_FLAG_TARGET
+
+/datum/status_effect/subsumed_spirit/on_creation(mob/living/new_owner, mob/living/carbon/human/caster)
+	body = caster
+	return ..()
+
+/datum/status_effect/subsumed_spirit/on_apply()
+	if(QDELETED(body) || !body.mind)
+		return FALSE
+	body.mind.transfer_to(owner)
+	to_chat(owner, span_notice("You slip into [owner]'s mind, its senses becoming your own."))
+	return_action = new(src)
+	return_action.Grant(owner)
+	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(on_animal_death))
+	RegisterSignal(body, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(on_body_damaged))
+	RegisterSignal(body, COMSIG_LIVING_DEATH, PROC_REF(on_body_death))
+	RegisterSignal(body, COMSIG_QDELETING, PROC_REF(on_body_deleted))
+	return TRUE
+
+/datum/status_effect/subsumed_spirit/on_remove()
+	QDEL_NULL(return_action)
+	if(!QDELETED(body) && owner.mind)
+		owner.mind.transfer_to(body)
+		to_chat(body, span_notice("You return to your own body."))
+	body = null
+
+/datum/status_effect/subsumed_spirit/proc/try_return()
+	if(!COOLDOWN_FINISHED(src, return_attempt))
+		to_chat(owner, span_warning("You need to gather yourself before reaching for your body again."))
+		return
+	COOLDOWN_START(src, return_attempt, 1 TURNS)
+	if(SSroll.storyteller_roll_datum(body, owner, /datum/storyteller_roll/subsume_return, difficulty = 8, applic_stats = list(STAT_WITS, STAT_EMPATHY)) != ROLL_SUCCESS)
+		to_chat(owner, span_warning("You reach for your body, but the animal's mind is too strong."))
+		return
+	qdel(src)
+
+/datum/status_effect/subsumed_spirit/proc/on_animal_death(datum/source, gibbed)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/human/caster = body
+	qdel(src)
+	if(QDELETED(caster))
+		return
+	to_chat(caster, span_userdanger("You are torn back into your body as the animal dies!"))
+	caster.Stun(1 TURNS)
+	caster.apply_damage(1 TTRPG_DAMAGE, BRUTE)
+
+/datum/status_effect/subsumed_spirit/proc/on_body_damaged(datum/source, damage, damagetype)
+	SIGNAL_HANDLER
+	if(!COOLDOWN_FINISHED(src, body_damage_warning))
+		return
+	COOLDOWN_START(src, body_damage_warning, 2 SECONDS)
+	to_chat(owner, span_userdanger("You feel your distant body being harmed!"))
+
+/datum/status_effect/subsumed_spirit/proc/on_body_death(datum/source, gibbed)
+	SIGNAL_HANDLER
+	qdel(src)
+
+/datum/status_effect/subsumed_spirit/proc/on_body_deleted(datum/source)
+	SIGNAL_HANDLER
+	body = null
+	qdel(src)
+
+/datum/action/subsume_return
+	name = "Return to Your Body"
+	desc = "Release the animal and return to your own body."
+	button_icon = 'modular_darkpack/modules/powers/icons/actions.dmi'
+	button_icon_state = "animalism"
+	check_flags = NONE
+
+/datum/action/subsume_return/Trigger(mob/clicker, trigger_flags)
+	. = ..()
+	if(!.)
+		return
+	var/datum/status_effect/subsumed_spirit/subsumed = target
+	subsumed.try_return()
 
 /datum/action/cooldown/spell/shapeshift/animalism
 	name = "Animalism Form"
@@ -322,13 +436,3 @@
 	random_wolf_color = FALSE
 	bloodpool = 2
 
-/mob/living/basic/bat/summoned
-	name = "bat"
-	desc = "A bat bound to its master's will."
-	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
-	melee_damage_lower = 4
-	melee_damage_upper = 10
-	obj_damage = 10
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
-	bloodpool = 2
