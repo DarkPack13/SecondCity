@@ -100,8 +100,11 @@
 
 /mob/living/carbon/human/proc/on_minion_examine(mob/living/minion, mob/user, list/examine_list)
 	SIGNAL_HANDLER
+
+	//if the one examining is not the owner
 	if(user != src)
 		return
+
 	examine_list += span_notice("<a href='byond://?src=[REF(src)];rename_minion=[REF(minion)]'>Rename this [minion.name]</a>")
 
 /mob/living/carbon/human/proc/rename_beastmaster_minion(mob/living/minion)
