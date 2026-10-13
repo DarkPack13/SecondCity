@@ -58,6 +58,7 @@
 	var/had_minions = length(beastmaster_minions)
 	beastmaster_minions += minion
 	RegisterSignals(minion, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING, COMSIG_MOB_WIPE_BEASTMASTER), PROC_REF(on_wipe_beastmaster))
+	RegisterSignal(minion, COMSIG_ATOM_EXAMINE, PROC_REF(on_minion_examine))
 
 	if(!had_minions)
 		register_beastmaster_signals()
@@ -92,10 +93,27 @@
 	//remove them from the owner's minion's list and unregister signals if the list is now empty
 	beastmaster_minions -= minion
 	minion_command_components -= minion
-	UnregisterSignal(minion, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING, COMSIG_MOB_WIPE_BEASTMASTER))
+	UnregisterSignal(minion, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING, COMSIG_MOB_WIPE_BEASTMASTER, COMSIG_ATOM_EXAMINE))
 
 	if(!length(beastmaster_minions))
 		unregister_beastmaster_signals()
+
+/mob/living/carbon/human/proc/on_minion_examine(mob/living/minion, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+	if(user != src)
+		return
+	examine_list += span_notice("<a href='byond://?src=[REF(src)];rename_minion=[REF(minion)]'>Rename this [minion.name]</a>")
+
+/mob/living/carbon/human/proc/rename_beastmaster_minion(mob/living/minion)
+	if(!minion)
+		return
+	var/new_name = tgui_input_text(src, "What will you call [minion]?", "Rename", minion.name, MAX_NAME_LEN)
+	if(!new_name)
+		return
+	new_name = sanitize_name(new_name, allow_numbers = TRUE)
+	if(!new_name || QDELETED(minion) || !(minion in beastmaster_minions))
+		return
+	minion.fully_replace_character_name(minion.real_name, new_name)
 
 /mob/living/carbon/human/proc/can_tame_beastmaster_minion(mob/living/living_minion, feedback)
 	if(istype(living_minion))
