@@ -33,10 +33,6 @@
 	applicable_stats = list(STAT_MANIPULATION, STAT_ANIMAL_KEN)
 	roll_output_type = ROLL_FLAG_ROLLER
 
-/datum/storyteller_roll/feral_whispers/using_difficulty(mob/living/roller, atom/target)
-	var/mob/living/basic/animal = target
-	return animal.feral_whispers_difficulty
-
 /datum/discipline_power/animalism/feral_whispers/pre_activation_checks(atom/target)
 	var/mob/living/basic/animal = target
 	if(!istype(animal) || !animal.feral_whispers_difficulty || animal.mind || animal.stat == DEAD)
@@ -62,6 +58,7 @@
 	target.ai_controller?.remove_from_blackboard_lazylist_key(BB_BASIC_MOB_RETALIATE_LIST, owner)
 	if(!feral_whispers_roll)
 		feral_whispers_roll = new()
+	feral_whispers_roll.difficulty = target.feral_whispers_difficulty
 	var/roll = feral_whispers_roll.st_roll(owner, target)
 	switch(roll)
 		if(ROLL_SUCCESS)
@@ -222,18 +219,17 @@
 		target.exit_frenzy_mode()
 		to_chat(owner, span_notice("You stare down [target]'s Beast until it slinks back into the dark."))
 		to_chat(target, span_notice("Your Beast cowers under [owner]'s gaze, and the frenzy drains out of you."))
-		return
-
-	if(!ismundane(target))
+	else if(ismundane(target))
+		target.apply_status_effect(/datum/status_effect/quelled, successes TURNS)
+		to_chat(owner, span_notice("[target]'s will drains away under your gaze."))
+	else
 		// dont want this to function as a splat checker
 		to_chat(owner, span_warning("[target]'s Beast is not so easily intimidated."))
 		return
 
-	target.apply_status_effect(/datum/status_effect/quelled, successes TURNS)
 	if(isnpc(target))
 		var/mob/living/carbon/human/npc/npc = target
 		npc.end_combat()
-	to_chat(owner, span_notice("[target]'s will drains away under your gaze."))
 
 /datum/status_effect/quelled
 	id = "quelled"
@@ -305,6 +301,7 @@
 	var/mob/living/carbon/human/body
 	var/datum/action/subsume_return/return_action
 	var/datum/storyteller_roll/subsume_return/return_roll
+	var/list/animal_stats
 	COOLDOWN_DECLARE(body_damage_warning)
 	COOLDOWN_DECLARE(return_attempt)
 
@@ -322,18 +319,22 @@
 	if(QDELETED(body) || !body.mind)
 		return FALSE
 	body.mind.transfer_to(owner)
+	animal_stats = owner.storyteller_stats
+	owner.replace_storyteller_stats(body.storyteller_stats.Copy())
 	to_chat(owner, span_notice("You slip into [owner]'s mind, its senses becoming your own."))
 	return_action = new(src)
 	return_action.Grant(owner)
 	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(on_animal_death))
 	RegisterSignal(body, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(on_body_damaged))
-	RegisterSignal(body, COMSIG_LIVING_DEATH, PROC_REF(on_body_death))
+	RegisterSignals(body, list(COMSIG_LIVING_DEATH, SIGNAL_ADDTRAIT(TRAIT_TORPOR)), PROC_REF(on_body_death))
 	RegisterSignal(body, COMSIG_QDELETING, PROC_REF(on_body_deleted))
 	return TRUE
 
 /datum/status_effect/subsumed_spirit/on_remove()
 	QDEL_NULL(return_action)
 	QDEL_NULL(return_roll)
+	owner.replace_storyteller_stats(animal_stats)
+	animal_stats = null
 	if(!QDELETED(body) && owner.mind)
 		owner.mind.transfer_to(body)
 		to_chat(body, span_notice("You return to your own body."))
