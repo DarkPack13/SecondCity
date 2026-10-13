@@ -26,11 +26,16 @@
 	vitae_cost = 0
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_DIRECT_SEE
 	cooldown_length = 1 SECONDS // 5 minutes change to this after testing
+	var/datum/storyteller_roll/feral_whispers/feral_whispers_roll
 
 /datum/storyteller_roll/feral_whispers
 	bumper_text = "feral whispers"
 	applicable_stats = list(STAT_MANIPULATION, STAT_ANIMAL_KEN)
 	roll_output_type = ROLL_FLAG_ROLLER
+
+/datum/storyteller_roll/feral_whispers/using_difficulty(mob/living/roller, atom/target)
+	var/mob/living/basic/animal = target
+	return animal.feral_whispers_difficulty
 
 /datum/discipline_power/animalism/feral_whispers/pre_activation_checks(atom/target)
 	var/mob/living/basic/animal = target
@@ -55,7 +60,9 @@
 	. = ..()
 	var/datum/discipline/animalism/animalism = discipline
 	target.ai_controller?.remove_from_blackboard_lazylist_key(BB_BASIC_MOB_RETALIATE_LIST, owner)
-	var/roll = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/feral_whispers, difficulty = target.feral_whispers_difficulty)
+	if(!feral_whispers_roll)
+		feral_whispers_roll = new()
+	var/roll = feral_whispers_roll.st_roll(owner, target)
 	switch(roll)
 		if(ROLL_SUCCESS)
 			target.add_ally(owner)
@@ -87,10 +94,12 @@
 	vitae_cost = 0
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE
 	cooldown_length = 1 SECONDS // 1 scenes plz
+	var/datum/storyteller_roll/beckoning/beckoning_roll
 
 /datum/storyteller_roll/beckoning
 	bumper_text = "beckoning"
 	applicable_stats = list(STAT_CHARISMA, STAT_SURVIVAL)
+	difficulty = 6
 	numerical = TRUE
 	roll_output_type = ROLL_FLAG_ROLLER
 
@@ -104,7 +113,9 @@
 /datum/discipline_power/animalism/beckoning/activate()
 	. = ..()
 	var/datum/discipline/animalism/animalism = discipline
-	var/successes = SSroll.storyteller_roll_datum(owner, owner, /datum/storyteller_roll/beckoning, difficulty = 6)
+	if(!beckoning_roll)
+		beckoning_roll = new()
+	var/successes = beckoning_roll.st_roll(owner, owner)
 	if(successes < 0)
 		var/mob/living/basic/lost_animal = pick(animalism.tamed_animals)
 		LAZYREMOVE(animalism.tamed_animals, lost_animal)
@@ -178,9 +189,11 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_DIRECT_SEE
 	cooldown_length = 1 SECONDS // 1 scenes
 	var/chosen_ability
+	var/datum/storyteller_roll/quell_the_beast/quell_roll
 
 /datum/storyteller_roll/quell_the_beast
 	bumper_text = "quell the beast"
+	difficulty = 7
 	numerical = TRUE
 	roll_output_type = ROLL_FLAG_ROLLER
 
@@ -198,7 +211,10 @@
 
 /datum/discipline_power/animalism/quell_the_beast/activate(mob/living/carbon/human/target)
 	. = ..()
-	var/successes = SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/quell_the_beast, difficulty = 7, applic_stats = list(STAT_MANIPULATION, chosen_ability))
+	if(!quell_roll)
+		quell_roll = new()
+	quell_roll.applicable_stats = list(STAT_MANIPULATION, chosen_ability)
+	var/successes = quell_roll.st_roll(owner, target)
 	if(successes <= 0)
 		to_chat(owner, span_warning("[target]'s Beast does not yield to yours."))
 		return
@@ -249,6 +265,7 @@
 	vitae_cost = 0
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_DIRECT_SEE
 	cooldown_length = 1 SECONDS // 1 scenes plz!!!!!!
+	var/datum/storyteller_roll/subsume_the_spirit/subsume_roll
 
 /datum/storyteller_roll/subsume_the_spirit
 	bumper_text = "subsume the spirit"
@@ -273,7 +290,9 @@
 
 /datum/discipline_power/animalism/subsume_the_spirit/activate(mob/living/basic/target)
 	. = ..()
-	if(SSroll.storyteller_roll_datum(owner, target, /datum/storyteller_roll/subsume_the_spirit, difficulty = 8) != ROLL_SUCCESS)
+	if(!subsume_roll)
+		subsume_roll = new()
+	if(subsume_roll.st_roll(owner, target) != ROLL_SUCCESS)
 		to_chat(owner, span_warning("[target]'s mind slips away from yours."))
 		return
 	target.apply_status_effect(/datum/status_effect/subsumed_spirit, owner)
@@ -285,11 +304,14 @@
 	alert_type = null
 	var/mob/living/carbon/human/body
 	var/datum/action/subsume_return/return_action
+	var/datum/storyteller_roll/subsume_return/return_roll
 	COOLDOWN_DECLARE(body_damage_warning)
 	COOLDOWN_DECLARE(return_attempt)
 
 /datum/storyteller_roll/subsume_return
 	bumper_text = "return to body"
+	applicable_stats = list(STAT_WITS, STAT_EMPATHY)
+	difficulty = 8
 	roll_output_type = ROLL_FLAG_TARGET
 
 /datum/status_effect/subsumed_spirit/on_creation(mob/living/new_owner, mob/living/carbon/human/caster)
@@ -311,6 +333,7 @@
 
 /datum/status_effect/subsumed_spirit/on_remove()
 	QDEL_NULL(return_action)
+	QDEL_NULL(return_roll)
 	if(!QDELETED(body) && owner.mind)
 		owner.mind.transfer_to(body)
 		to_chat(body, span_notice("You return to your own body."))
@@ -321,7 +344,9 @@
 		to_chat(owner, span_warning("You need to gather yourself before reaching for your body again."))
 		return
 	COOLDOWN_START(src, return_attempt, 1 TURNS)
-	if(SSroll.storyteller_roll_datum(body, owner, /datum/storyteller_roll/subsume_return, difficulty = 8, applic_stats = list(STAT_WITS, STAT_EMPATHY)) != ROLL_SUCCESS)
+	if(!return_roll)
+		return_roll = new()
+	if(return_roll.st_roll(body, owner) != ROLL_SUCCESS)
 		to_chat(owner, span_warning("You reach for your body, but the animal's mind is too strong."))
 		return
 	qdel(src)

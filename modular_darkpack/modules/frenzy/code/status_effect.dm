@@ -20,7 +20,9 @@
 	owner.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	return TRUE
 
-/datum/status_effect/frenzy/on_creation(mob/living/new_owner, atom/frenzy_target)
+/datum/status_effect/frenzy/on_creation(mob/living/new_owner, atom/frenzy_target, set_duration)
+	if(set_duration)
+		duration = set_duration
 	. = ..()
 	if(!.)
 		return
