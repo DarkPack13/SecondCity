@@ -36,9 +36,7 @@
 		/datum/pet_command/attack,
 		/datum/pet_command/perform_trick_sequence,
 	)
-	// DARKPACK EDIT ADD START - Animalism Rework
-	feral_whispers_difficulty = 6
-	// DARKPACK EDIT ADD END - Animalism Rework
+	feral_whispers_difficulty = 6 // DARKPACK EDIT ADD - Animalism Rework
 
 /datum/emote/fox
 	abstract_type = /datum/emote/fox

@@ -18,9 +18,7 @@
 	var/can_lay_eggs = TRUE
 	///the egg it carries
 	var/obj/carried_egg
-	// DARKPACK EDIT ADD START - Animalism Rework
-	feral_whispers_difficulty = 8
-	// DARKPACK EDIT ADD END - Animalism Rework
+	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 
 /datum/emote/penguin
 	abstract_type = /datum/emote/penguin

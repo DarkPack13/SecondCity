@@ -29,9 +29,7 @@
 	head_icon = 'icons/mob/clothing/head/pets_head.dmi'
 
 	ai_controller = /datum/ai_controller/basic_controller/axolotl
-	// DARKPACK EDIT ADD START - Animalism Rework
-	feral_whispers_difficulty = 8
-	// DARKPACK EDIT ADD END - Animalism Rework
+	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 
 /mob/living/basic/axolotl/Initialize(mapload)
 	. = ..()
