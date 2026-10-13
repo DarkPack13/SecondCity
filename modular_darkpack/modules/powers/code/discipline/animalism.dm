@@ -5,7 +5,7 @@
 ●● Beckoning: Call your tamed animals to your side. Rolls charisma + survival
 ●●● Quell the Beast: Intimidate or soothe a target's inner Beast. Rolls manipulation + intimidation or empathy
 ●●●● Subsume the Spirit: Possess an animal, leaving your body behind. Rolls manipulation + animal ken
-●●●●● Skitter: Passive"}
+●●●●● Drawing Out the Beast: Loose your Beast upon another vampire or ghoul. Rolls manipulation + self-control or instinct"}
 	icon_state = "animalism"
 	power_type = /datum/discipline_power/animalism
 	//lazylist
@@ -391,57 +391,63 @@
 	var/datum/status_effect/subsumed_spirit/subsumed = target
 	subsumed.try_return()
 
-/datum/action/cooldown/spell/shapeshift/animalism
-	name = "Animalism Form"
-	desc = "Take on the shape of a rat."
-	button_icon_state = "shapeshift"
-	cooldown_time = 5 SECONDS
-	spell_requirements = NONE
-	revert_on_death = TRUE
-	die_with_shapeshifted_form = FALSE
-	convert_damage = TRUE
-	convert_damage_type = BRUTE
-	shapeshift_type = /mob/living/basic/mouse/rat
-	possible_shapes = list(/mob/living/basic/mouse/rat)
-
-//RAT SHAPESHIFT
-/datum/discipline_power/animalism/rat_shapeshift
-	name = "Skitter"
-	desc = "Become one of the rats that crawl beneath the city."
-	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
+//DRAWING OUT THE BEAST
+/datum/discipline_power/animalism/drawing_out_the_beast
+	name = "Drawing Out the Beast"
+	desc = "Loose your Beast upon another vampire or ghoul. Easier while you are already in its grip, but if it slips its leash, it turns on you instead."
 	level = 5
-	violates_masquerade = TRUE
-	cooldown_length = 8 SECONDS
-	duration_length = 20 SECONDS
-	var/datum/action/cooldown/spell/shapeshift/animalism/shapeshift_spell
-	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
+	target_type = TARGET_HUMAN
+	range = 7
+	vitae_cost = 0
+	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_DIRECT_SEE
+	frenzy_usable = TRUE
+	cooldown_length = 1 SECONDS // 30 minutes
+	var/datum/storyteller_roll/drawing_out_the_beast/drawing_out_roll
 
-/datum/discipline_power/animalism/rat_shapeshift/activate()
+/datum/storyteller_roll/drawing_out_the_beast
+	bumper_text = "drawing out the beast"
+	difficulty = 8
+	roll_output_type = ROLL_FLAG_ROLLER
+
+/datum/storyteller_roll/drawing_out_the_beast/using_stats(mob/living/roller)
+	return list(STAT_MANIPULATION, roller.is_enlightenment() ? STAT_INSTINCT : STAT_SELF_CONTROL)
+
+/datum/storyteller_roll/drawing_out_the_beast/using_difficulty(mob/living/roller, atom/target)
 	. = ..()
-	if(!ishuman(owner))
-		return
+	if(HAS_TRAIT(roller, TRAIT_IN_FRENZY))
+		. -= 2
 
-	if(!shapeshift_spell)
-		shapeshift_spell = new /datum/action/cooldown/spell/shapeshift/animalism()
-		shapeshift_spell.spell_requirements = NONE
-		shapeshift_spell.Grant(owner)
-		RegisterSignal(shapeshift_spell, COMSIG_ACTION_TRIGGER, PROC_REF(on_shapeshift_toggle))
+/datum/discipline_power/animalism/drawing_out_the_beast/pre_activation_checks(atom/target)
+	var/mob/living/carbon/human/human_target = target
+	if(HAS_TRAIT(human_target, TRAIT_IN_FRENZY))
+		to_chat(owner, span_warning("[human_target] is already in the grip of a Beast."))
+		return FALSE
+	return TRUE
 
-	shapeshift_spell.cast(owner)
-
-/datum/discipline_power/animalism/rat_shapeshift/proc/on_shapeshift_toggle(datum/source)
-	SIGNAL_HANDLER
-	if(!is_type_in_list(owner, shapeshift_spell.possible_shapes))
-		addtimer(CALLBACK(src, PROC_REF(deactivate)), 0.1 SECONDS)
-
-/datum/discipline_power/animalism/rat_shapeshift/deactivate()
+/datum/discipline_power/animalism/drawing_out_the_beast/activate(mob/living/carbon/human/target)
 	. = ..()
-	if(!owner || owner.stat == DEAD)
+	var/frenzying = HAS_TRAIT(owner, TRAIT_IN_FRENZY)
+	if(!drawing_out_roll)
+		drawing_out_roll = new()
+	if(drawing_out_roll.st_roll(owner, target) != ROLL_SUCCESS)
+		beast_turns_inward(frenzying)
 		return
+	if(!get_vampire_splat(target))
+		to_chat(owner, span_warning("Your Beast finds nothing in [target] to take hold of, and slinks back to you."))
+		return
+	if(frenzying)
+		owner.exit_frenzy_mode()
+	to_chat(owner, span_notice("You loose your Beast upon [target]."))
+	to_chat(target, span_userdanger("Something feral claws its way into you from [owner]!"))
+	target.enter_frenzy_mode(get_closest_atom(/atom, target.get_frenzy_victims(), target), source = "Drawing Out the Beast")
 
-	if(shapeshift_spell && is_type_in_list(owner, shapeshift_spell.possible_shapes))
-		shapeshift_spell.cast(owner)
-		owner.Stun(1.5 SECONDS)
+/datum/discipline_power/animalism/drawing_out_the_beast/proc/beast_turns_inward(frenzying)
+	to_chat(owner, span_userdanger("Your Beast slips its leash and turns on you!"))
+	if(!frenzying)
+		owner.enter_frenzy_mode(get_closest_atom(/atom, owner.get_frenzy_victims(), owner), source = "Drawing Out the Beast", duration = 2 SCENES)
+		return
+	for(var/datum/status_effect/frenzy/frenzy in owner.status_effects)
+		frenzy.duration = 2 SCENES
 
 /mob/living/basic/pet/dog/wolf/summoned
 	name = "wolf"
