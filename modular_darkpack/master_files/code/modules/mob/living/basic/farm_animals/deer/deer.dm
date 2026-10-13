@@ -1,5 +1,4 @@
 /mob/living/basic/deer
-	feral_whispers_difficulty = 7
 	name = "deer"
 	desc = "A gentle, peaceful forest animal."
 	icon_state = "deer"
@@ -9,6 +8,7 @@
 	gender = PLURAL
 	var/antlers = FALSE
 	var/in_headlights = FALSE
+	feral_whispers_difficulty = 7
 
 /mob/living/basic/deer/Initialize(mapload)
 	. = ..()

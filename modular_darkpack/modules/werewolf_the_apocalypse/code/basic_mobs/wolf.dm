@@ -35,7 +35,6 @@
 	}
 
 /mob/living/basic/pet/dog/wolf
-	beckoning_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/awo1.ogg'
 	name = "wolf"
 	icon_state = "wolf1"
 	desc = "That's a big, scary wolf. Might be best to steer clear."
@@ -47,6 +46,7 @@
 	basic_mob_flags = NONE
 	mobility_flags = MOBILITY_FLAGS_REST_CAPABLE_DEFAULT
 	mob_size = MOB_SIZE_HUMAN // big guy
+	beckoning_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/awo1.ogg'
 
 	butcher_results = list(
 		/obj/item/food/meat/slab = 2,

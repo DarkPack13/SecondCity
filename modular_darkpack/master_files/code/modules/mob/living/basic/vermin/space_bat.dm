@@ -1,7 +1,7 @@
 /mob/living/basic/bat
-	feral_whispers_difficulty = 7
 	name = "bat"
 	desc = "It's a bat."
+	feral_whispers_difficulty = 7
 
 	basic_mob_flags = DEL_ON_DEATH
 
