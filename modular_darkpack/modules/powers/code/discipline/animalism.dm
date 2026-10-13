@@ -60,8 +60,6 @@
 	. = ..()
 	var/datum/discipline/animalism/animalism = discipline
 
-	target.ai_controller?.remove_from_blackboard_lazylist_key(BB_BASIC_MOB_RETALIATE_LIST, owner)
-
 	if(!feral_whispers_roll)
 		feral_whispers_roll = new()
 	feral_whispers_roll.difficulty = target.feral_whispers_difficulty
