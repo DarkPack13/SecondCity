@@ -25,6 +25,7 @@
 	gold_core_spawnable = FRIENDLY_SPAWN
 
 	ai_controller = /datum/ai_controller/basic_controller/butterfly
+	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 
 /mob/living/basic/butterfly/Initialize(mapload)
 	. = ..()
