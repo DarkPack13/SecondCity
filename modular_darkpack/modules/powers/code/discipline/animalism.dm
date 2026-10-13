@@ -35,16 +35,20 @@
 
 /datum/discipline_power/animalism/feral_whispers/pre_activation_checks(atom/target)
 	var/mob/living/basic/animal = target
+
 	if(!istype(animal) || !animal.feral_whispers_difficulty || animal.mind || animal.stat == DEAD)
 		to_chat(owner, span_warning("[target] has no beast's mind for you to whisper to."))
 		return FALSE
+
 	if(animal in owner.beastmaster_minions)
 		to_chat(owner, span_warning("[animal] already answers to you."))
 		return FALSE
+
 	var/datum/discipline/animalism/animalism = discipline
 	if(!istype(animal.ai_controller, /datum/ai_controller/basic_controller/beastmaster_summon) && LAZYLEN(animalism.tamed_animals) >= owner.st_get_stat(STAT_ANIMAL_KEN))
 		to_chat(owner, span_warning("You cannot keep any more animals at your call."))
 		return FALSE
+
 	animal.face_atom(owner)
 	owner.face_atom(animal)
 	animal.Stun(1 TURNS)
@@ -55,11 +59,14 @@
 /datum/discipline_power/animalism/feral_whispers/activate(mob/living/basic/target)
 	. = ..()
 	var/datum/discipline/animalism/animalism = discipline
+
 	target.ai_controller?.remove_from_blackboard_lazylist_key(BB_BASIC_MOB_RETALIATE_LIST, owner)
+
 	if(!feral_whispers_roll)
 		feral_whispers_roll = new()
 	feral_whispers_roll.difficulty = target.feral_whispers_difficulty
 	var/roll = feral_whispers_roll.st_roll(owner, target)
+
 	switch(roll)
 		if(ROLL_SUCCESS)
 			target.add_ally(owner)
@@ -113,6 +120,7 @@
 	if(!beckoning_roll)
 		beckoning_roll = new()
 	var/successes = beckoning_roll.st_roll(owner, owner)
+
 	if(successes < 0)
 		var/mob/living/basic/lost_animal = pick(animalism.tamed_animals)
 		LAZYREMOVE(animalism.tamed_animals, lost_animal)
@@ -121,6 +129,7 @@
 	if(!successes)
 		to_chat(owner, span_warning("No animals answer your call."))
 		return
+
 	choose_animals(successes)
 
 
@@ -130,12 +139,15 @@
 	for(var/i in 1 to successes)
 		if(!LAZYLEN(animalism.tamed_animals) || !owner.can_tame_beastmaster_minion(null, TRUE))
 			return
+
+		//for every tamed animal make their own radial menu choice and add it to choices. this allows each success to pick a different animal in successive stages.
 		var/list/choices = list()
 		for(var/mob/living/basic/animal_type as anything in animalism.tamed_animals)
 			var/datum/radial_menu_choice/choice = new
 			choice.name = initial(animal_type.name)
 			choice.image = image(initial(animal_type.icon), initial(animal_type.icon_state))
 			choices[animal_type] = choice
+
 		var/chosen_type = show_radial_menu(owner, owner, choices, tooltips = TRUE)
 		if(!chosen_type || QDELETED(owner))
 			return
@@ -154,8 +166,10 @@
 	var/datum/action/innate/togglecorvidflight/corvid_flight = locate() in animal.actions
 	var/turf/spawn_turf = find_beckoning_turf(corvid_flight || HAS_TRAIT(animal, TRAIT_MOVE_FLYING))
 	animal.forceMove(spawn_turf)
+
 	if(corvid_flight && !HAS_TRAIT(animal, TRAIT_MOVE_FLYING) && isgroundlessturf(spawn_turf))
 		corvid_flight.Trigger()
+
 	animate(animal, alpha = 255, time = 1 SECONDS)
 
 	QDEL_NULL(animal.ai_controller)
@@ -165,6 +179,7 @@
 	if(animal.beckoning_sound)
 		playsound(animal, animal.beckoning_sound, 50, TRUE)
 
+//spawn them a little far away so they walk up cool-ly.
 /datum/discipline_power/animalism/beckoning/proc/find_beckoning_turf(can_fly)
 	var/list/candidates = list()
 	for(var/turf/open/candidate in view(5, owner))
@@ -198,7 +213,9 @@
 	var/choice = tgui_alert(owner, "Intimidate their Beast, or soothe it?", "Quell the Beast", list("Intimidate", "Soothe"))
 	if(!choice)
 		return FALSE
+
 	chosen_ability = (choice == "Intimidate") ? STAT_INTIMIDATION : STAT_EMPATHY
+
 	var/mob/living/living_target = target
 	owner.face_atom(living_target)
 	living_target.face_atom(owner)
@@ -212,20 +229,24 @@
 		quell_roll = new()
 	quell_roll.applicable_stats = list(STAT_MANIPULATION, chosen_ability)
 	var/successes = quell_roll.st_roll(owner, target)
+
 	if(successes <= 0)
 		to_chat(owner, span_warning("[target]'s Beast does not yield to yours."))
 		return
-	if(HAS_TRAIT(target, TRAIT_IN_FRENZY))
+	var/frenzied = HAS_TRAIT(target, TRAIT_IN_FRENZY)
+
+	// supernaturals who are not frenzying are not affected - mortals get the quelled status effect
+	if(!frenzied && !ismundane(target))
+		to_chat(owner, span_warning("[target]'s Beast is not so easily intimidated."))
+		return
+
+	if(frenzied)
 		target.exit_frenzy_mode()
 		to_chat(owner, span_notice("You stare down [target]'s Beast until it slinks back into the dark."))
 		to_chat(target, span_notice("Your Beast cowers under [owner]'s gaze, and the frenzy drains out of you."))
-	else if(ismundane(target))
+	else
 		target.apply_status_effect(/datum/status_effect/quelled, successes TURNS)
 		to_chat(owner, span_notice("[target]'s will drains away under your gaze."))
-	else
-		// dont want this to function as a splat checker
-		to_chat(owner, span_warning("[target]'s Beast is not so easily intimidated."))
-		return
 
 	if(isnpc(target))
 		var/mob/living/carbon/human/npc/npc = target
@@ -271,12 +292,15 @@
 
 /datum/discipline_power/animalism/subsume_the_spirit/pre_activation_checks(atom/target)
 	var/mob/living/basic/animal = target
+
 	if(!istype(animal) || !animal.feral_whispers_difficulty || animal.mind || animal.stat == DEAD)
 		to_chat(owner, span_warning("[target] has no beast's mind for you to enter."))
 		return FALSE
+
 	if(istype(animal.ai_controller, /datum/ai_controller/basic_controller/beastmaster_summon) && !(animal in owner.beastmaster_minions))
 		to_chat(owner, span_warning("[animal] is already bound to another's will."))
 		return FALSE
+
 	animal.face_atom(owner)
 	owner.face_atom(animal)
 	animal.Stun(2 TURNS)
@@ -318,23 +342,30 @@
 /datum/status_effect/subsumed_spirit/on_apply()
 	if(QDELETED(body) || !body.mind)
 		return FALSE
+
 	body.mind.transfer_to(owner)
+
 	animal_stats = owner.storyteller_stats
 	owner.replace_storyteller_stats(body.storyteller_stats.Copy())
+
 	to_chat(owner, span_notice("You slip into [owner]'s mind, its senses becoming your own."))
 	return_action = new(src)
 	return_action.Grant(owner)
+
 	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(on_animal_death))
 	RegisterSignal(body, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(on_body_damaged))
 	RegisterSignals(body, list(COMSIG_LIVING_DEATH, SIGNAL_ADDTRAIT(TRAIT_TORPOR)), PROC_REF(on_body_death))
+	//harddel
 	RegisterSignal(body, COMSIG_QDELETING, PROC_REF(on_body_deleted))
 	return TRUE
 
 /datum/status_effect/subsumed_spirit/on_remove()
 	QDEL_NULL(return_action)
 	QDEL_NULL(return_roll)
+
 	owner.replace_storyteller_stats(animal_stats)
 	animal_stats = null
+
 	if(!QDELETED(body) && owner.mind)
 		owner.mind.transfer_to(body)
 		to_chat(body, span_notice("You return to your own body."))
@@ -350,6 +381,8 @@
 	if(return_roll.st_roll(body, owner) != ROLL_SUCCESS)
 		to_chat(owner, span_warning("You reach for your body, but the animal's mind is too strong."))
 		return
+
+	//on_remove sends us back
 	qdel(src)
 
 /datum/status_effect/subsumed_spirit/proc/on_animal_death(datum/source, gibbed)
@@ -371,8 +404,11 @@
 
 /datum/status_effect/subsumed_spirit/proc/on_body_death(datum/source, gibbed)
 	SIGNAL_HANDLER
+	if(gibbed)
+		body = null
 	qdel(src)
 
+//guarding against harddel
 /datum/status_effect/subsumed_spirit/proc/on_body_deleted(datum/source)
 	SIGNAL_HANDLER
 	body = null
@@ -433,14 +469,17 @@
 	if(drawing_out_roll.st_roll(owner, target) != ROLL_SUCCESS)
 		beast_turns_inward(frenzying)
 		return
+
 	if(!get_vampire_splat(target))
 		to_chat(owner, span_warning("Your Beast finds nothing in [target] to take hold of, and slinks back to you."))
 		return
 	if(frenzying)
 		owner.exit_frenzy_mode()
+
 	to_chat(owner, span_notice("You loose your Beast upon [target]."))
 	to_chat(target, span_userdanger("Something feral claws its way into you from [owner]!"))
-	target.enter_frenzy_mode(get_closest_atom(/atom, target.get_frenzy_victims(), target), source = "Drawing Out the Beast")
+	var/victim = get_closest_atom(/atom, target.get_frenzy_victims(), target)
+	target.enter_frenzy_mode(victim, source = "Drawing Out the Beast")
 
 /datum/discipline_power/animalism/drawing_out_the_beast/proc/beast_turns_inward(frenzying)
 	to_chat(owner, span_userdanger("Your Beast slips its leash and turns on you!"))
