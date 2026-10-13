@@ -44,6 +44,7 @@ If you're using hotkey mode, you can stop pulling things using H.
 Laying down will help slow down bloodloss. Death will halt it entirely.
 Lower generation vampires have access to stronger abilities, at the cost of requiring more blood to be sated.
 Magical artifacts need to be identified in order to be used. The Tremere, Garou, or those with a tremendously high Occult skill can identify them.
+Many vampires still tend to keep in close touch with the world of humanity during the day - be it through Ghoul servitors, mind-controlled servants through Dominate's Posession, or through the eyes of an animal using the Animalism power Subsume the Spirit.
 Most things have special interactions with right, alt, shift, and control click. Experiment!
 Pool tables can be interacted with and let you play a mock game of billiards.
 The Animalism power 'Quell the Beast' is commonly called 'Cowing the Beast' to the Clan Tzimisce, since they typically use it to force a mortal a mortal's weaker spirit to submit in the presence of the Kindred's superior Beast. The Nosferatu call it 'Song of Serenity', making use of it's soothing effects to calm a human into complacency so they may feed.
