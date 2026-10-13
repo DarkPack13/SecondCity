@@ -6,9 +6,9 @@
 	icon_dead = "deer_dead"
 	icon = 'modular_darkpack/modules/npc/icons/deer.dmi'
 	gender = PLURAL
+	feral_whispers_difficulty = 7
 	var/antlers = FALSE
 	var/in_headlights = FALSE
-	feral_whispers_difficulty = 7
 
 /mob/living/basic/deer/Initialize(mapload)
 	. = ..()
