@@ -25,7 +25,7 @@
 	range = 5
 	vitae_cost = 0
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_DIRECT_SEE
-	cooldown_length = 1 SECONDS // 5 minutes change to this after testing
+	cooldown_length = 10 MINUTES
 	var/datum/storyteller_roll/feral_whispers/feral_whispers_roll
 
 /datum/storyteller_roll/feral_whispers
@@ -93,7 +93,7 @@
 	level = 2
 	vitae_cost = 0
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE
-	cooldown_length = 1 SECONDS // 1 scenes plz
+	cooldown_length = 5 MINUTES
 	var/datum/storyteller_roll/beckoning/beckoning_roll
 
 /datum/storyteller_roll/beckoning
@@ -187,7 +187,7 @@
 	range = 3
 	vitae_cost = 0
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_DIRECT_SEE
-	cooldown_length = 1 SECONDS // 1 scenes
+	cooldown_length = 1 SCENES
 	var/chosen_ability
 	var/datum/storyteller_roll/quell_the_beast/quell_roll
 
@@ -264,7 +264,7 @@
 	range = 3
 	vitae_cost = 0
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_DIRECT_SEE
-	cooldown_length = 1 SECONDS // 1 scenes plz!!!!!!
+	cooldown_length = 1 SCENES
 	var/datum/storyteller_roll/subsume_the_spirit/subsume_roll
 
 /datum/storyteller_roll/subsume_the_spirit
@@ -401,7 +401,7 @@
 	vitae_cost = 0
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_DIRECT_SEE
 	frenzy_usable = TRUE
-	cooldown_length = 1 SECONDS // 30 minutes
+	cooldown_length = 5 SCENES // 15 minutes
 	var/datum/storyteller_roll/drawing_out_the_beast/drawing_out_roll
 
 /datum/storyteller_roll/drawing_out_the_beast
