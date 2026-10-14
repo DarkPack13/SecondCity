@@ -92,6 +92,16 @@
 	RegisterSignal(src, COMSIG_CARBON_HELP_ACT, PROC_REF(handle_helped))
 	// all npcs are masquerade violators by default so flip it to true
 	toggle_masquerade_sensitivity(TRUE)
+
+	var/datum/preference/preference = GLOB.preference_entries[/datum/preference/choiced/country_of_origin]
+	preference.apply_to_human(src, preference.create_informed_default_value())
+	if(country_of_origin == "United States")
+		preference = GLOB.preference_entries[/datum/preference/choiced/state_of_origin]
+		preference.apply_to_human(src, preference.create_informed_default_value())
+	if(country_of_origin == "Canada")
+		preference = GLOB.preference_entries[/datum/preference/choiced/province_of_origin]
+		preference.apply_to_human(src, preference.create_informed_default_value())
+
 	return INITIALIZE_HINT_LATELOAD
 
 /mob/living/carbon/human/npc/LateInitialize()
