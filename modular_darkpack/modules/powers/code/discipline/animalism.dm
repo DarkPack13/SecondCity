@@ -461,6 +461,9 @@
 
 /datum/discipline_power/animalism/drawing_out_the_beast/activate(mob/living/carbon/human/target)
 	. = ..()
+	if(!do_after(owner, 2 TURNS, target, IGNORE_TARGET_LOC_CHANGE, extra_checks = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(can_see), owner, target, range)))
+		return
+
 	var/frenzying = HAS_TRAIT(owner, TRAIT_IN_FRENZY)
 	if(!drawing_out_roll)
 		drawing_out_roll = new()
