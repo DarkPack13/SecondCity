@@ -629,7 +629,7 @@
 
 /obj/item/gun/ballistic/automatic/darkpack/hk51
 	name = "\improper HK51"
-	desc = "A highly compact battle rifle small enough to fit in a bag to avoid drawing the ire of secular authorities while still packing enough punch to put down those who threaten God's kingdom"
+	desc = "A highly compact battle rifle small enough to fit in a bag while still packing a huge punch"
 	icon_state = "hk51"
 	icon = 'modular_darkpack/modules/weapons/icons/weapons48x32.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
@@ -646,7 +646,7 @@
 	rack_sound = 'sound/items/weapons/gun/pistol/slide_lock.ogg'
 	fire_sound = 'modular_darkpack/modules/deprecated/sounds/rifle.ogg'
 	serial_type = "H&K"
-	var/rof = 0.15 SECONDS
+	var/rof = 0.2 SECONDS
 
 /obj/item/gun/ballistic/automatic/darkpack/hk51/Initialize(mapload)
 	. = ..()
