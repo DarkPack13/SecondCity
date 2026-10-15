@@ -1,0 +1,4 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "Adds police tape for marking off crime scenes."

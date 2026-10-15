@@ -1,0 +1,5 @@
+author: "DemoCrack"
+delete-after: True
+changes:
+  - bugfix: "Fixed Valeren 4 not applying damage reduction and halo."
+  - bugfix: "Fixed Valeren 5 permanently applying +5 Dexterity, Melee, and Brawl."

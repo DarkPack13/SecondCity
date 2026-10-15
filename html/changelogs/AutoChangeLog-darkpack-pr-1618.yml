@@ -1,0 +1,5 @@
+author: "FalloutFalcon"
+delete-after: True
+changes:
+  - rscadd: "Adds spooky month, from the start of October to the end of Halloween."
+  - rscadd: "Adds types for spawning jack-o-lanterns when its spooky month."
