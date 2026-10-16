@@ -4,3 +4,4 @@
 #define NETWORK_CAMARILLA "Tower Network"
 #define NETWORK_ANARCH "Bar Network"
 #define NETWORK_ENDRON "Endron Network"
+#define NETWORK_CORAX "Corax Network"

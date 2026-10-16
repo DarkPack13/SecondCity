@@ -72,6 +72,7 @@ GLOBAL_LIST_INIT(spanname_to_formatting, list(
 	"Clown" = "clown",
 	"Colossus" = "colossus",
 	"Command Headset" = "command_headset",
+	"Corax Radio" = "coraxradio", // DARKPACK EDIT ADD
 	"Cult" = "cult",
 	"Cult Bold" = "cult_bold",
 	"Cult Bold Italic" = "cult_bold_italic",

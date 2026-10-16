@@ -197,9 +197,10 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 		return
 	sending_request = TRUE
 	search_page = clamp(search_page, 0, page_count)
+	// DARKPACK EDIT CHANGE START - LIBRARY - (Corax Library)
 	var/datum/db_query/query_library_list_books = SSdbcore.NewQuery({"
 		SELECT author, title, category, id
-		FROM [format_table_name("library")]
+		FROM [format_table_name(library_type)]
 		WHERE isnull(deleted)
 			AND author LIKE CONCAT('%',:author,'%')
 			AND title LIKE CONCAT('%',:title,'%')
@@ -226,8 +227,9 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 
 /obj/machinery/computer/libraryconsole/proc/update_page_count()
 	var/bookcount = 0
+	// DARKPACK EDIT CHANGE START - LIBRARY - (Corax Library)
 	var/datum/db_query/query_library_count_books = SSdbcore.NewQuery({"
-		SELECT COUNT(id) FROM [format_table_name("library")]
+		SELECT COUNT(id) FROM [format_table_name(library_type)]
 		WHERE isnull(deleted)
 			AND author LIKE CONCAT('%',:author,'%')
 			AND title LIKE CONCAT('%',:title,'%')
@@ -614,8 +616,9 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 		say("No content detected. Aborting")
 		return
 	var/msg = "has uploaded the book titled [book.title], [length(book.content)] signs"
+	// DARKPACK EDIT CHANGE START - LIBRARY - (Corax Library)
 	var/datum/db_query/query_library_upload = SSdbcore.NewQuery({"
-		INSERT INTO [format_table_name("library")] (author, title, content, category, ckey, datetime, round_id_created)
+		INSERT INTO [format_table_name(library_type)] (author, title, content, category, ckey, datetime, round_id_created)
 		VALUES (:author, :title, :content, :category, :ckey, Now(), :round_id)
 	"}, list("title" = book.title, "author" = book.author, "content" = book.content, "category" = upload_category, "ckey" = usr.ckey, "round_id" = GLOB.round_id))
 	if(!query_library_upload.Execute())
@@ -660,8 +663,9 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 		can_connect = FALSE
 		return
 
+	// DARKPACK EDIT CHANGE START - LIBRARY - (Corax Library)
 	var/datum/db_query/query_library_print = SSdbcore.NewQuery(
-		"SELECT * FROM [format_table_name("library")] WHERE id=:id AND isnull(deleted)",
+		"SELECT * FROM [format_table_name(library_type)] WHERE id=:id AND isnull(deleted)",
 		list("id" = id)
 	)
 	if(!query_library_print.Execute())

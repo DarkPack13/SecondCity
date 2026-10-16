@@ -55,27 +55,31 @@
 		), // DARKPACK EDIT ADD START
 		"[FREQ_POLICE]" = list(
 			"name" = RADIO_CHANNEL_POLICE,
-			"color" = RADIO_COLOR_POLICE
+			"color" = RADIO_COLOR_POLICE,
 		),
 		"[FREQ_CLINIC]" = list(
 			"name" = RADIO_CHANNEL_CLINIC,
-			"color" = RADIO_COLOR_CLINIC
+			"color" = RADIO_COLOR_CLINIC,
 		),
 		"[FREQ_MILITARY]" = list(
 			"name" = RADIO_CHANNEL_MILITARY,
-			"color" = RADIO_COLOR_MILITARY
+			"color" = RADIO_COLOR_MILITARY,
 		),
 		"[FREQ_CAMARILLA]" = list(
 			"name" = RADIO_CHANNEL_CAMARILLA,
-			"color" = RADIO_COLOR_CAMARILLA
+			"color" = RADIO_COLOR_CAMARILLA,
 		),
 		"[FREQ_ANARCH]" = list(
 			"name" = RADIO_CHANNEL_ANARCH,
-			"color" = RADIO_COLOR_ANARCH
+			"color" = RADIO_COLOR_ANARCH,
 		),
 		"[FREQ_ENDRON]" = list(
 			"name" = RADIO_CHANNEL_ENDRON,
-			"color" = RADIO_COLOR_ENDRON
+			"color" = RADIO_COLOR_ENDRON,
+		),
+		"[FREQ_CORAX]" = list(
+			"name" = RADIO_CHANNEL_CORAX,
+			"color" = RADIO_COLOR_CORAX,
 		) // DARKPACK EDIT ADD END
 	)
 

@@ -160,3 +160,7 @@
 /obj/machinery/radio_tranceiver/endron
 	radio_network = NETWORK_ENDRON
 	radio_frequency = FREQ_ENDRON
+
+/obj/machinery/radio_tranceiver/corax
+	radio_network = NETWORK_CORAX
+	radio_frequency = FREQ_CORAX

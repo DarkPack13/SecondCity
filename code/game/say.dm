@@ -29,6 +29,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	"[FREQ_CAMARILLA]" = "camarillaradio",
 	"[FREQ_ANARCH]" = "anarchradio",
 	"[FREQ_ENDRON]" = "endronradio",
+	"[FREQ_CORAX]" = "coraxradio",
 	// DARKPACK EDIT END
 ))
 
