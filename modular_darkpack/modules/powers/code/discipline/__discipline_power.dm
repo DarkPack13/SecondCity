@@ -738,11 +738,11 @@
 			to_chat(owner, span_warning("[src] consumes your willpower to stay active."))
 		if (!duration_override)
 			do_duration(target)
+		if (violates_masquerade)
+			SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 	else
 		to_chat(owner, span_warning("You don't have enough blood to keep [src] active!"))
 		try_deactivate(target)
-
-	SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 
 /**
  * Overridable proc that allows for extra modular code
