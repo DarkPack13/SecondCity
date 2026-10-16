@@ -115,6 +115,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, 0)
 /obj/machinery/camera/Initialize(mapload)
 	. = ..()
 
+	toggle_masquerade_sensitivity(TRUE)	//DARKPACK EDIT ADD - SECURITY CAMERAS BREACH MASQUERADE
+
 	for(var/network_name in network)
 		network -= network_name
 		network += LOWER_TEXT(network_name)
@@ -387,6 +389,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, 0)
 		playsound(src, 'sound/items/tools/wirecutter.ogg', 100, TRUE)
 	update_appearance() //update Initialize() if you remove this.
 	calculate_active_power()
+	toggle_masquerade_sensitivity()	//DARKPACK EDIT ADD - Security cameras masquerade breach. Toggles when camera is toggled.
 
 	// now disconnect anyone using the camera
 	//Apparently, this will disconnect anyone even if the camera was re-activated.
