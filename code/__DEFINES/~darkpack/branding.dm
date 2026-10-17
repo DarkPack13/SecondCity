@@ -4,6 +4,8 @@
 #define NEWSPAPER_COMPANY "Angel Times"
 #define PRIMARY_NIGHTCLUB_COMPANY "Dora"
 
+#define LIBRARY_NAME "Haight Arts Center" //Someone actually confirmed this with the IRL location.
+
 #define SEPT_NAME "Sept of the Western Eye"
 
 #define EVIL_COMPANY "Pentex Group"

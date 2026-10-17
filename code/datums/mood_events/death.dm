@@ -86,8 +86,15 @@
 /datum/mood_event/conditional/see_death/proc/get_descriptor(mob/dead_mob)
 	if(is_pet(dead_mob))
 		return "[dead_mob]"
+	/* // DARKPACK EDIT REMOVAL - (Death mood dosen't use job names)
 	if(dead_mob.name != "Unknown" && dead_mob.mind?.assigned_role?.job_flags & JOB_CREW_MEMBER)
 		return "the [LOWER_TEXT(dead_mob.mind?.assigned_role.title)]"
+	*/
+	// DARKPACK EDIT ADD START - (Death mood dosen't use job names)
+	if(iscarbon(dead_mob))
+		var/mob/living/deadhuman = dead_mob
+		return "the [deadhuman.get_generic_name(prefixed = TRUE, lowercase = TRUE)]"
+	// DARKPACK EDIT ADD END
 	return "someone"
 
 /// Highest priority: Clown naivety about death
@@ -146,6 +153,12 @@
 		return TRUE
 	if(HAS_PERSONALITY(who, /datum/personality/animal_disliker) && is_pet(dead_mob))
 		return TRUE
+	// DARKPACK EDIT ADD START - MOOD
+	if(who.is_enlightenment())
+		return TRUE
+	if(who.st_get_stat(STAT_MORALITY) <= 3) // Low humanity..
+		return TRUE
+	// DARKPACK EDIT ADD END
 	return FALSE
 
 /datum/mood_event/conditional/see_death/dontcare/update_effect(mob/dead_mob, dusted, gibbed)
