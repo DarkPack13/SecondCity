@@ -5,11 +5,12 @@
 	mob_trait = TRAIT_MONSTROUS
 	gain_text = span_notice("Your physical form is corrupted, taking a horrific appearance...")
 	lose_text = span_notice("Your appearance softens, as though a great weight is lifted - you may bare your face again.")
-	allowed_splats = list(SPLAT_KINDRED, SPLAT_GAROU)
+	allowed_splats = list(SPLAT_KINDRED, SPLAT_GHOUL, SPLAT_GAROU)
 	excluded_clans = list(VAMPIRE_CLAN_KIASYD, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_CAPPADOCIAN, VAMPIRE_CLAN_SAMEDI, VAMPIRE_CLAN_HARBINGER)
 	icon = FA_ICON_FACE_ANGRY
 	failure_message = "Your appearance softens, as though a great weight is lifted - you may bare your face again."
 	quirk_flags = QUIRK_CHANGES_APPEARANCE
+	ttrpg_sources = list(/datum/source_book/vtm20 = 482)
 
 /datum/quirk/darkpack/monstrous/add(client/client_source)
 	var/mob/living/carbon/human/human_holder = astype(quirk_holder)
