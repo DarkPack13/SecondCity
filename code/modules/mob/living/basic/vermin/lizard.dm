@@ -44,6 +44,10 @@
 		/mob/living/basic/butterfly,
 		/mob/living/basic/cockroach,
 	))
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 8
+	beckoning_sound = 'sound/mobs/non-humanoids/hiss/hiss1.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /datum/emote/lizard
 	abstract_type = /datum/emote/lizard

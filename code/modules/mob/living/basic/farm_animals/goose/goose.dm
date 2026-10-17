@@ -30,6 +30,10 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	/// Do we actually destroy food we eat?
 	var/conserve_food = FALSE
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 8
+	beckoning_sound = 'sound/mobs/non-humanoids/goose/goose1.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /mob/living/basic/goose/Initialize(mapload)
 	. = ..()

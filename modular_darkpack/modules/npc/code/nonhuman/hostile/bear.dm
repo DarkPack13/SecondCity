@@ -12,3 +12,5 @@
 	mob_size = MOB_SIZE_LARGE
 	pixel_x = -16
 	base_pixel_x = -16
+	beckoning_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/emotes/crinos_growl.ogg'
+	feral_whispers_difficulty = 6

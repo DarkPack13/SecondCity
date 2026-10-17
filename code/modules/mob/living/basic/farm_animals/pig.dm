@@ -26,6 +26,10 @@
 	gold_core_spawnable = FRIENDLY_SPAWN
 	default_blood_volume = BLOOD_VOLUME_NORMAL
 	ai_controller = /datum/ai_controller/basic_controller/pig
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 7
+	beckoning_sound = 'sound/mobs/non-humanoids/pig/pig1.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /datum/emote/pig
 	abstract_type = /datum/emote/pig

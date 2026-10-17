@@ -60,6 +60,10 @@
 	var/cult_icon_state = "cat_cult"
 	///callback for after a kitten is born
 	var/datum/callback/post_birth_callback
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 6
+	beckoning_sound = 'sound/mobs/non-humanoids/cat/cat_meow1.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /mob/living/basic/pet/cat/Initialize(mapload)
 	. = ..()

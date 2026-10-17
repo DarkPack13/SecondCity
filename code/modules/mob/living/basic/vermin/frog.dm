@@ -46,6 +46,10 @@
 	var/poison_type = /datum/reagent/drug/space_drugs
 	///What type do we become if influenced by a regal rat?
 	var/minion_type = /mob/living/basic/frog/crazy
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 8
+	beckoning_sound = 'sound/mobs/non-humanoids/frog/huuu.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /mob/living/basic/frog/Initialize(mapload)
 	. = ..()

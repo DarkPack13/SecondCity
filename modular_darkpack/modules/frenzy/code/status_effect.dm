@@ -4,7 +4,7 @@
 
 /datum/status_effect/frenzy	//Generic attack frenzy
 	id = "frenzy"
-	duration = STATUS_EFFECT_PERMANENT
+	duration = 1 SCENES
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /atom/movable/screen/alert/status_effect/frenzy
 	var/datum/weakref/frenzy_target_ref
@@ -20,7 +20,9 @@
 	owner.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	return TRUE
 
-/datum/status_effect/frenzy/on_creation(mob/living/new_owner, atom/frenzy_target)
+/datum/status_effect/frenzy/on_creation(mob/living/new_owner, atom/frenzy_target, set_duration)
+	if(set_duration)
+		duration = set_duration
 	. = ..()
 	if(!.)
 		return

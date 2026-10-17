@@ -2,6 +2,7 @@
 A "Scene" in game represents 3 minutes.
 A "Turn" in game represents 5 seconds.
 A thrown glass of water can make a slippery tile, allowing you to slow down your pursuers in a pinch.
+Animalism's Feral Whispers lets you tame an animal by locking eyes and whispering to it. Tamed animals can later be called to your side with Beckoning.
 ATMs can be smashed with a high force weapon for whatever cash is inside of them.
 As a Baron, you lead the individualistic kindred of the city. You are still part of the Camarilla, but you have more sway here. San Francisco is an Anarch domain.
 As a Bruiser, you hang out with the Baron and support him in his rebellious troublemaking.
@@ -43,8 +44,11 @@ If you're using hotkey mode, you can stop pulling things using H.
 Laying down will help slow down bloodloss. Death will halt it entirely.
 Lower generation vampires have access to stronger abilities, at the cost of requiring more blood to be sated.
 Magical artifacts need to be identified in order to be used. The Tremere, Garou, or those with a tremendously high Occult skill can identify them.
+Many vampires still tend to keep in close touch with the world of humanity during the day - be it through Ghoul servitors, mind-controlled servants through Dominate's Posession, or through the eyes of an animal using the Animalism power Subsume the Spirit.
 Most things have special interactions with right, alt, shift, and control click. Experiment!
 Pool tables can be interacted with and let you play a mock game of billiards.
+The Animalism power 'Quell the Beast' is commonly called 'Cowing the Beast' to the Clan Tzimisce, since they typically use it to force a mortal a mortal's weaker spirit to submit in the presence of the Kindred's superior Beast. The Nosferatu call it 'Song of Serenity', making use of it's soothing effects to calm a human into complacency so they may feed.
+The Animalism power 'Subsume the Spirit', is seen with disdain by the Tzimisce, who see it as debasing or humiliating to enter into the mind of a lowly creature. When they do rarely use it, they typically only enter the minds of large predators. The Gangrel, however, relish every opportunity to use this power on as many animals as possible - sampling each animal's nature and personality.
 The Malkavian hivemind allows you to send any message, except images.
 The resist button will allow you to resist out of handcuffs, being buckled to a chair or bed, out of locked lockers and more. Whenever you're stuck, try resisting!
 There are 36 turns in a scene.
@@ -62,6 +66,7 @@ You can find a lockpick on certain NPCs and at the black market or hardware stor
 You can find and publish your phone number on your phone.
 You can jump around by pressing MMB. You can even jump over railings while standing next to them.
 You can make a ghoul by bloodbonding a non-playable character. If there are any ghosts that want to play a ghoul - they will take over the ghouled NPC.
+You can only have as many minions as you have dots specialized into the Leadership stat. This applies to all types of minions - be they Thaumaturgically-summoned 'Blood Imps', or animals persuaded to assist you via the Animalism discipline.
 You can right click someone with wire cutters, jaws of life, and box cutters to instantly snap cablecuffs or zipties. The jaws can even instantly break handcuffs!
 You can send announcements as the Prince by using your computer. Other kindred can see it on other computers too.
 You can set off a sprinkler by attacking it with any item that would light a cigarette.

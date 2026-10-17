@@ -58,6 +58,10 @@ GLOBAL_LIST_INIT(strippable_gorilla_items, create_strippable_list(list(
 		/obj/item/food/salad/jungle,
 		/obj/item/food/sundae,
 	)
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 7
+	beckoning_sound = 'sound/mobs/non-humanoids/gorilla/gorilla.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /mob/living/basic/gorilla/Initialize(mapload)
 	. = ..()

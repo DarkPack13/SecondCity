@@ -1,0 +1,3 @@
+/mob/living/basic/mouse/vampire/summoned : @DELETE
+/mob/living/basic/pet/cat/darkpack/summoned : @DELETE
+/mob/living/basic/bat/summoned : @DELETE

@@ -35,6 +35,7 @@ GLOBAL_DATUM(cargo_sloth, /mob/living/basic/sloth)
 	butcher_results = list(/obj/item/food/meat/slab = 3)
 
 	ai_controller = /datum/ai_controller/basic_controller/sloth
+	feral_whispers_difficulty = 7 // DARKPACK EDIT ADD - Animalism Rework
 
 /datum/emote/sloth
 	abstract_type = /datum/emote/sloth

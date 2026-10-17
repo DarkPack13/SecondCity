@@ -1,7 +1,7 @@
 // V20 p.298 + W20 p.261
 
 // Fleeing is used for either fox frenzies, or rotschreck
-/mob/living/proc/enter_frenzy_mode(atom/target, fleeing = FALSE, source = "Unknown cause")
+/mob/living/proc/enter_frenzy_mode(atom/target, fleeing = FALSE, source = "Unknown cause", duration = 1 SCENES)
 	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		return
 	if(IS_UNCONSCIOUS(src))
@@ -15,19 +15,16 @@
 	if(fleeing)
 		to_chat(src, span_danger("FLEE."))
 		src.balloon_alert(src, "flee!")
-		apply_status_effect(/datum/status_effect/frenzy/flee, target)
+		apply_status_effect(/datum/status_effect/frenzy/flee, target, duration)
 	else
 		to_chat(src, span_bolddanger("FRENZY."))
 		src.balloon_alert(src, "frenzy!")
 		if(get_kindred_splat(src))
-			apply_status_effect(/datum/status_effect/frenzy/vampire_hunger, target)
+			apply_status_effect(/datum/status_effect/frenzy/vampire_hunger, target, duration)
 		else
-			apply_status_effect(/datum/status_effect/frenzy, target)
+			apply_status_effect(/datum/status_effect/frenzy, target, duration)
 
 	SEND_SOUND(src, sound('modular_darkpack/modules/frenzy/sounds/frenzy.ogg', volume = 50))
-
-	// This is assuming no other interaction happens to remove it before this.
-	addtimer(CALLBACK(src, PROC_REF(exit_frenzy_mode)), 1 SCENES)
 
 /mob/living/proc/exit_frenzy_mode()
 	if(!HAS_TRAIT(src, TRAIT_IN_FRENZY))
