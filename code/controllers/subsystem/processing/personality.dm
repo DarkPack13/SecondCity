@@ -31,6 +31,10 @@ PROCESSING_SUBSYSTEM_DEF(personalities)
 		if(isnull(personality_key))
 			// Abstract personality, ignore
 			continue
+		// DARKPACK EDIT ADD START - MOOD
+		if(!personality_type::darkpack_allowed)
+			continue
+		// DARKPACK EDIT ADD END
 		if(personalities_by_key[personality_key])
 			stack_trace("Personality save key collision! \
 				key: [personality_key] - \

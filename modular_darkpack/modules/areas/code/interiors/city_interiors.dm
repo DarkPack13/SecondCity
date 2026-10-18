@@ -161,6 +161,11 @@
 /area/vtm/interior/church
 	name = "Church"
 	icon_state = "church"
+
+	mood_bonus = 4
+	mood_message = "Being in the chapel brings me peace."
+	mood_trait = TRAIT_SPIRITUAL
+
 	ambience_index = AMBIENCE_OFFICE
 	music_index = MUSIC_CHURCH
 	fire_controled = TRUE

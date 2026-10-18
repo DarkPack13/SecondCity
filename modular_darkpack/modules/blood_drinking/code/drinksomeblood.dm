@@ -76,8 +76,8 @@
 
 	if(get_kindred_splat(drunk_from))
 		to_chat(src, span_userdanger("[drunk_from]'s blood tastes HEAVENLY..."))
-		adjust_brute_loss(-25, TRUE)
-		adjust_fire_loss(-25, TRUE)
+		adjust_brute_loss(-25)
+		adjust_fire_loss(-25)
 	else
 		to_chat(src, span_warning("You sip some <b>BLOOD</b> from your victim. It feels good."))
 
@@ -85,10 +85,9 @@
 
 	if(drink_mod)
 		adjust_blood_pool(drink_mod*max(1, drunk_from.bloodquality-1))
-		adjust_brute_loss(-10, TRUE)
-		adjust_fire_loss(-10, TRUE)
-		update_damage_overlays()
-		update_health_hud()
+		adjust_brute_loss(-10)
+		adjust_fire_loss(-10)
+		add_mood_event("did kissing", /datum/mood_event/did_kiss)
 
 	if(drunk_from.bloodpool <= 0)
 		handle_drink_dry(drunk_from)
@@ -98,3 +97,8 @@
 	if(grab_state >= GRAB_PASSIVE)
 		stop_sound_channel(CHANNEL_BLOOD)
 		drinksomeblood(drunk_from)
+
+/datum/mood_event/did_kiss
+	description = "Drinking blood from a body makes me feel euphoric."
+	mood_change = 25
+	timeout = 5 MINUTES

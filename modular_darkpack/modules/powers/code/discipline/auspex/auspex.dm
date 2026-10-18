@@ -308,7 +308,7 @@
 
 			if(successes > 0)
 				if(get_kindred_splat(target) || get_shifter_splat(target))
-					owner.st_set_stat(STAT_TEMPORARY_WILLPOWER, owner.st_get_stat(STAT_TEMPORARY_WILLPOWER) - 1)
+					owner.adjust_willpower(-1)
 			else
 				to_chat(owner, span_warning("You failed to read their mind!"))
 				COOLDOWN_START(src, mind_read_cd, 3 MINUTES)

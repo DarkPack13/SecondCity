@@ -609,9 +609,11 @@
 		if(SANITY_GREAT+1 to INFINITY)
 			sanity_level = SANITY_LEVEL_GREAT
 
+	/* DARKPACK EDIT REMOVAL - MOOD
 	set_crit_threshold()
 	set_movespeed_effect()
 	set_actionspeed_effect()
+	*/
 
 	// Crazy or insane = add some uncommon hallucinations
 	if(sanity_level >= SANITY_LEVEL_CRAZY)

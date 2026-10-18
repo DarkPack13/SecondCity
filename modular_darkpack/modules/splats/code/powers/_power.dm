@@ -62,8 +62,7 @@
 
 	if(willpower_cost && isliving(owner))
 		var/mob/living/living_owner = owner
-		living_owner.st_change_stat(STAT_TEMPORARY_WILLPOWER, -willpower_cost)
-		to_chat(owner, span_warning("You burn [willpower_cost] willpower."))
+		living_owner.adjust_willpower(-willpower_cost)
 
 /**
  * Overridable proc handling the combat log created by using this power.

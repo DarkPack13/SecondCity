@@ -71,7 +71,7 @@
 			owner.ignite_mob()
 		if(3)
 			to_chat(owner, span_userdanger("You feel slightly less competent!"))
-			owner.st_add_stat_mod(STAT_TEMPORARY_WILLPOWER, -1, "thaummaturgy_failure")
+			owner.adjust_willpower(-1)
 
 //------------------------------------------------------------------------------------------------
 

@@ -217,7 +217,8 @@
 
 	if(victim.stat != DEAD)
 		var/continue_call = tgui_alert(owner, "Continue Dagon's Call for 1 additional Willpower?", "Dagon's Call", list("Yes", "No"))
-		if(continue_call == "Yes" && owner.st_add_stat_mod(STAT_TEMPORARY_WILLPOWER, -1, "Dagon's Call")) //requires stat preferences pr
+		if(continue_call == "Yes")
+			owner.adjust_willpower(-1)
 			strike_victim(victim)
 
 //BAAL'S CARESS

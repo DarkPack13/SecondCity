@@ -88,6 +88,10 @@
 	name = "Noble's Books"
 	icon_state = "chantry"
 
+	mood_bonus = 5
+	mood_message = "I love being in the bookstore!"
+	mood_trait = TRAIT_INTROVERT
+
 /area/vtm/westfield_mall/interior/vet_clinic
 	name = "Nottingham's Pet Emporium"
 	icon_state = "vet"
@@ -127,6 +131,23 @@
 /area/vtm/westfield_mall/interior/art_store
 	name = "The Drawn Line"
 	icon_state = "arcade"
+
+/area/vtm/westfield_mall/interior/bar
+	name = "Bar"
+
+	mood_bonus = 5
+	mood_message = "I love being in the bar!"
+	mood_trait = TRAIT_EXTROVERT
+
+/area/vtm/westfield_mall/interior/chapel
+	name = "Chapel"
+
+	mood_bonus = 4
+	mood_message = "Being in the chapel brings me peace."
+	mood_trait = TRAIT_SPIRITUAL
+
+	ambience_index = AMBIENCE_OFFICE
+	music_index = MUSIC_CHURCH
 
 /area/vtm/westfield_mall/interior/groundskeeper_garage
 	name = "Groundskeeping Garage"

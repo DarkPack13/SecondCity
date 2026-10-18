@@ -1,5 +1,10 @@
 /area/vtm/interior/library
-	name = "Haight Arts Center" //Someone actually confirmed this with the IRL location.
+	name = LIBRARY_NAME
+
+	mood_bonus = 5
+	mood_message = "I love being in the library!"
+	mood_trait = TRAIT_INTROVERT
+
 	musictracks = list('modular_darkpack/modules/ambience/sounds/music/elysium.ogg', 'modular_darkpack/modules/ambience/sounds/music/chantry.ogg')
 	domain = TRUE
 

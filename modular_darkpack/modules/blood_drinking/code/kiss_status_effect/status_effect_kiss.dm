@@ -8,6 +8,7 @@
 	. = ..()
 	to_chat(owner, span_userlove("Sharp fangs pierce your skin, but the pain quickly fades as a numbing warmth sets in...")) //feel free to change these
 	owner.add_client_colour(/datum/client_colour/brightened, "kissed")
+	owner.add_mood_event("kissed", /datum/mood_event/kissed)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H.adjust_eye_blur(15)
@@ -22,11 +23,19 @@
 		H.adjust_confusion(10)
 	return ..()
 
+
 /atom/movable/screen/alert/status_effect/kissed
 	name = "Kissed"
 	desc = "Your body is flooded with pleasure!"
 	icon_state = "in_love" //would be good to give this it's own icon eventually
 
+
 /datum/client_colour/brightened
 	priority = CLIENT_COLOR_IMPORTANT_PRIORITY
 	color = list(1.15,0,0,0,1.15,0,0,0,1.15,0,0,0)
+
+
+/datum/mood_event/kissed
+	description = "I can't remember anything but I feel euphoric for some reason."
+	mood_change = 50
+	timeout = 5 MINUTES
