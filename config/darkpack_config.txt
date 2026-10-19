@@ -74,6 +74,9 @@ DISABLE_GHOST_LOOC
 MAX_SAVE_SLOTS 5
 EXTRA_SAVE_SLOTS_BYOND_MEMBER 5
 
+## Uncomment to save masquerade scores to character slots between rounds
+#PERSISTENT_MASQUERADE
+
 ## log stat and pref changes
 LOG_STATS
 
