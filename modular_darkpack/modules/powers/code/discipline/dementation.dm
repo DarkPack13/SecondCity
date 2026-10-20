@@ -347,20 +347,20 @@ Methuselah.”
 		available_options += list(OPTION_COUNTRY_OF_ORIGIN, OPTION_CHARACTER_NAME)
 	if (target.client?.prefs && get_kindred_splat(target)) // (Literally just for Immortal Age)
 		available_options += list(OPTION_IMMORTAL_AGE)
-	if (HAS_TRAIT(target, TRAIT_POSSIBLE_WYRM) || (get_kindred_splat(target) && (target.st_get_stat(STAT_MORALITY) <= 7))) // Wyrm-Tainted or Sub-7 Humanity
+	if (HAS_TRAIT(target, TRAIT_POSSIBLE_WYRM) || get_kindred_splat(target) && target.st_get_stat(STAT_MORALITY) <= 7) // Wyrm-Tainted or Sub-7 Humanity
 		available_options += list(OPTION_WYRM_TAINTED)
 	if (length(target.get_traumas())) // If Brain Trauma(s)
-		if (target.has_trauma_type(/datum/brain_trauma/severe/split_personality) || (target.has_trauma_type(/datum/brain_trauma/special/imaginary_friend)))
+		if (target.has_trauma_type(/datum/brain_trauma/severe/split_personality) || target.has_trauma_type(/datum/brain_trauma/special/imaginary_friend))
 			available_options += list(OPTION_SECOND_PRESENCE) // Split Personality / Imaginary Friend
 		else
 			available_options += list(OPTION_BRAIN_TRAUMA)
 	if (HAS_TRAIT(target, TRAIT_DIABLERIE)) // Diablerist
 		available_options += list(OPTION_DIABLERIE)
-	if (target.has_status_effect(/datum/status_effect/blood_bond) || (HAS_TRAIT(target, TRAIT_UNBONDABLE))) // Blood Bond & Unbondable
+	if (target.has_status_effect(/datum/status_effect/blood_bond) || HAS_TRAIT(target, TRAIT_UNBONDABLE)) // Blood Bond & Unbondable
 		available_options += list(OPTION_BLOOD_BONDED)
 	if (target.current_emotion != "Innocent") // Emotions if not default (innocent)
 		available_options += list(OPTION_EMOTION)
-	if (HAS_TRAIT(target, TRAIT_FORCED_EMOTION) ||  target.has_status_effect(/datum/status_effect/awe) || target.has_status_effect(/datum/status_effect/dread_gaze)) //DARKPACK TODO Presence 3-5 do not have tied status effects currently, cannot nicely check for them until that
+	if (HAS_TRAIT(target, TRAIT_FORCED_EMOTION) || target.has_status_effect(/datum/status_effect/awe) || target.has_status_effect(/datum/status_effect/dread_gaze)) //DARKPACK TODO Presence 3-5 do not have tied status effects currently, cannot nicely check for them until that
 		available_options += list(OPTION_IS_INFLUENCED)
 	if (target.possessed == TRUE || target.conditioner) // Dominate 4 & 5
 		available_options += list(OPTION_IS_DOMINATED)
@@ -370,21 +370,21 @@ Methuselah.”
 			available_options += list(OPTION_HAS_SIRE)
 	if (target.killed_count > 0) // If Killcount above 0 in-round
 		available_options += list(OPTION_HAS_KILLED)
-	if (HAS_TRAIT(target, TRAIT_ORGANOVORE || TRAIT_ANTHROPIC_TASTE || TRAIT_THIRST_OF_AGES || TRAIT_EAT_FOOD))
+	if (HAS_TRAIT(target, TRAIT_ORGANOVORE) || HAS_TRAIT(target, TRAIT_ANTHROPIC_TASTE) || HAS_TRAIT(target, TRAIT_THIRST_OF_AGES) || HAS_TRAIT(target, TRAIT_EAT_FOOD))
 		available_options += list(OPTION_FEEDING_SPECIFICATIONS)
-	if (HAS_TRAIT(target, TRAIT_IRON_WILL || TRAIT_WEAK_WILLED || TRAIT_WEAK_TO_DOMINATE || TRAIT_MERIT_UNTAMABLE))
+	if (HAS_TRAIT(target, TRAIT_IRON_WILL) || HAS_TRAIT(target, TRAIT_WEAK_WILLED) || HAS_TRAIT(target, TRAIT_WEAK_TO_DOMINATE) || HAS_TRAIT(target, TRAIT_MERIT_UNTAMABLE))
 		available_options += list(OPTION_WILL)
-	if (HAS_TRAIT(target, TRAIT_BEACON_OF_THE_UNHOLY || TRAIT_BETRAYERS_MARK || TRAIT_AURA_OF_CONFIDENCE))
+	if (HAS_TRAIT(target, TRAIT_BEACON_OF_THE_UNHOLY) || HAS_TRAIT(target, TRAIT_BETRAYERS_MARK) || HAS_TRAIT(target, TRAIT_AURA_OF_CONFIDENCE))
 		available_options += list(OPTION_SPIRIT_MARKS)
-	if (HAS_TRAIT(target, TRAIT_IRRESISTIBLE_VITAE || TRAIT_DEFICIENT_VITAE) || target.has_quirk(/datum/quirk/darkpack/mage_blood)) // Mage Blood - Tremere Trait
+	if (HAS_TRAIT(target, TRAIT_IRRESISTIBLE_VITAE) || HAS_TRAIT(target, TRAIT_DEFICIENT_VITAE) || target.has_quirk(/datum/quirk/darkpack/mage_blood)) // Mage Blood - Tremere Trait
 		available_options += list(OPTION_VITAE)
-	if (HAS_TRAIT(target, TRAIT_DIFFICULT_RAGE || TRAIT_DIFFICULT_FRENZY || TRAIT_CALM_HEART || TRAIT_UNCONTROLLABLE) || target.has_quirk(/datum/quirk/darkpack/beserker))
+	if (HAS_TRAIT(target, TRAIT_DIFFICULT_RAGE) || HAS_TRAIT(target, TRAIT_DIFFICULT_FRENZY) || HAS_TRAIT(target, TRAIT_CALM_HEART) || HAS_TRAIT(target, TRAIT_UNCONTROLLABLE) || target.has_quirk(/datum/quirk/darkpack/beserker))
 		available_options += list(OPTION_RAGE_FRENZY)
-	if (HAS_TRAIT(target, TRAIT_GHOST_VISION || TRAIT_LOCAL_SIXTHSENSE))
+	if (HAS_TRAIT(target, TRAIT_GHOST_VISION) || HAS_TRAIT(target, TRAIT_LOCAL_SIXTHSENSE))
 		available_options += list(OPTION_SEE_GHOSTS)
 	if (HAS_TRAIT(target, TRAIT_NEEDS_BLOOD))
 		available_options += list(OPTION_BLOOD_HUNGRY)
-	if (HAS_TRAIT(target, TRAIT_BANNED_TRANSFORMATION || TRAIT_METAMORPH))
+	if (HAS_TRAIT(target, TRAIT_BANNED_TRANSFORMATION) || HAS_TRAIT(target, TRAIT_METAMORPH))
 		available_options += list(OPTION_SHAPESHIFTING_MODIFIERS)
 	if (HAS_TRAIT(target, TRAIT_PROMETHEAN_CLAY)) // Tzimisce Trait
 		available_options += list(OPTION_PROMETHEAN_CLAY)
@@ -446,7 +446,7 @@ Methuselah.”
 		available_options += list(OPTION_HOLINESS_REPELLED)
 	if (HAS_TRAIT(target, TRAIT_REJECTED_BY_TECHNOLOGY)) // Lasombra
 		available_options += list(OPTION_TECHNOLOGY_REJECTED)
-	if (HAS_TRAIT(target, TRAIT_SILVER_WEAKNESS || TRAIT_SILVER_WEAKNESS))
+	if (HAS_TRAIT(target, TRAIT_SILVER_WEAKNESS) || HAS_TRAIT(target, TRAIT_SILVER_WEAKNESS))
 		available_options += list(OPTION_METAL_WEAKNESS)
 	if (HAS_TRAIT(target, TRAIT_STILLNESS_OF_DEATH)) // Gargoyle Trait
 		available_options += list(OPTION_DEATH_STILLNESS)
@@ -458,7 +458,7 @@ Methuselah.”
 		available_options += list(OPTION_TIMEWARPER)
 	if (HAS_TRAIT(target, TRAIT_VIRTUOSA)) // Melpominee
 		available_options += list(OPTION_VIRTUOSA)
-	if (HAS_TRAIT(target, TRAIT_STAKE_RESISTANT || TRAIT_STAKE_IMMUNE))
+	if (HAS_TRAIT(target, TRAIT_STAKE_RESISTANT) || HAS_TRAIT(target, TRAIT_STAKE_IMMUNE))
 		available_options += list(OPTION_STAKE_RESISTANCE)
 	if (HAS_TRAIT(target, TRAIT_DULLFANGS || TRAIT_PERMAFANGS))
 		available_options += list(OPTION_FANGS)
@@ -538,7 +538,7 @@ Methuselah.”
 							if (15 to INFINITY)
 								owner.malkavian_voices("Removed further than the stars themselves; our lineage thins in this one.", range=4)
 					if (OPTION_MORALITY_PATH)
-						owner.malkavian_voices("Their Beast's incessant cravings are tamed by the [get_morality_path(target)]", range=4)
+						owner.malkavian_voices("Their Beast's incessant cravings are tamed by the [get_morality_path(target)].", range=4)
 					if (OPTION_DIABLERIE)
 						if (HAS_TRAIT(target, TRAIT_HIDDEN_DIABLERIE))
 							owner.malkavian_voices("Creeping vines of black veins encompass the soul of [target] in an embrace most constricting.", range=4)
@@ -583,7 +583,7 @@ Methuselah.”
 						var/target_country_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/country_of_origin)
 						if (target_country_of_origin == "United States") // List state instead of country
 							var/target_state_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/state_of_origin)
-							owner.malkavian_voices("This individual is quite home here in the States; [target_state_of_origin] is held close to their heart", range=4)
+							owner.malkavian_voices("This individual is quite home here in the States; [target_state_of_origin] is held close to them.", range=4)
 						else
 							owner.malkavian_voices("Our eyes sense this individual to be from [target_country_of_origin] — a distant place now.", range=4)
 					if (OPTION_CHARACTER_NAME)
@@ -634,33 +634,33 @@ Methuselah.”
 							if ("Desirous")
 								owner.malkavian_voices("The heart of [target] intensively yearns for something more.", range=4)
 							if ("Daydreaming")
-								owner.malkavian_voices("Their head is firmly stuck in the clouds", range=4)
+								owner.malkavian_voices("Their head is firmly stuck in the clouds.", range=4)
 							if ("Depressed")
-								owner.malkavian_voices("This sorry soul is falling down a spiral of cruel despair and apathy", range=4)
+								owner.malkavian_voices("This sorry soul is falling down a spiral of cruel despair and apathy...", range=4)
 							if ("Lovestruck")
-								owner.malkavian_voices("[target] has an infatuation with someone or something", range=4)
+								owner.malkavian_voices("[target] has an infatuation with someone or something.", range=4)
 							if ("Conservative")
 								owner.malkavian_voices("This individual has a fairly neutral state; no strong pulls towards any other emotional influence.", range=4)
 							if ("Obsessed")
 								owner.malkavian_voices("Twitching senses have been overtaken by a fixation — but what could inspire such captivation?", range=4)
 							if ("Happy", "Excited")
-								owner.malkavian_voices("Joyous jubilations follow [target] wherever they go. Such a smile borders on contagious", range=4)
+								owner.malkavian_voices("Joyous jubilations follow [target] wherever they go. Such a smile borders on contagious.", range=4)
 							if ("Idealistic")
-								owner.malkavian_voices("An optimistic viewpoint for the future; starry-eyed believfs in better possibilities", range=4)
+								owner.malkavian_voices("An optimistic viewpoint for the future; starry-eyed believfs in better possibilities.", range=4)
 							if ("Anxious")
 								owner.malkavian_voices("Fear and worry plague [target], a worry that cannot simply be willed away.", range=4)
 							if ("Compassionate")
-								owner.malkavian_voices("The thought and care possessed by this one could comfort even the most wounded soul", range=4)
+								owner.malkavian_voices("The thought and care possessed by this one could comfort even the most wounded soul.", range=4)
 							if ("Confused")
 								owner.malkavian_voices("A ditzy mess confounded by the world around them — perhaps on the edge of a muddled stupor.", range=4)
 							if ("Suspicious")
-								owner.malkavian_voices("Narrowed, ever-shifting eyes meet everything around them with suspicion and distrust", range=4)
+								owner.malkavian_voices("Narrowed, ever-shifting eyes meet everything around them with suspicion and distrust.", range=4)
 							if ("Envious")
 								owner.malkavian_voices("A want for what they don't have stains another heart.", range=4)
 							if ("Generous")
 								owner.malkavian_voices("An abundance of selflessness enriches those around them — sharing is caring.", range=4)
 							if ("Spiritual")
-								owner.malkavian_voices("The emotions of [target] feel beyond themselves; a form of peace is found in the spirit of life", range=4)
+								owner.malkavian_voices("The emotions of [target] feel beyond themselves; a form of peace is found in the spirit of life.", range=4)
 							if ("Sad")
 								owner.malkavian_voices("Persisent woe covers our target under a blanket of sadness.", range=4)
 							if ("Calm")
