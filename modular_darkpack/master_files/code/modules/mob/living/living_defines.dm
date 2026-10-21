@@ -20,6 +20,9 @@
 	/// The quality of the mobs blood when drank from. Decides how much BP a vampire will regain.
 	var/bloodquality = BLOOD_QUALITY_LOW
 
+	// "True faith" stuff, only used for the cross rn
+	COOLDOWN_DECLARE(true_faith_cd)
+
 	COOLDOWN_DECLARE(masquerade_timer)
 	var/masquerade_score = 5
 
@@ -54,3 +57,6 @@
 	var/collected_souls = 0
 
 	var/last_shown_area_name // AREAS
+
+	/// Lazy list of weakrefs for mobs the user has tasted the blood of
+	var/list/mobs_tasted_blood_of // WEREWOLF
