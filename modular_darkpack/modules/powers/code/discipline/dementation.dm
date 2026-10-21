@@ -362,7 +362,7 @@ Methuselah.”
 		available_options += list(OPTION_DIABLERIE)
 	if (target.has_status_effect(/datum/status_effect/blood_bond) || HAS_TRAIT(target, TRAIT_UNBONDABLE)) // Blood Bond & Unbondable
 		available_options += list(OPTION_BLOOD_BONDED)
-	if (target.current_emotion != "Innocent") // Emotions if not default (innocent)
+	if (target.current_emotion != initial(target.current_emotion)) // Emotions if they have been changed atleast once
 		available_options += list(OPTION_EMOTION)
 	if (HAS_TRAIT(target, TRAIT_FORCED_EMOTION) || target.has_status_effect(/datum/status_effect/awe) || target.has_status_effect(/datum/status_effect/dread_gaze)) //DARKPACK TODO Presence 3-5 do not have tied status effects currently, cannot nicely check for them until that
 		available_options += list(OPTION_IS_INFLUENCED)
@@ -585,14 +585,17 @@ Methuselah.”
 							owner.malkavian_voices("The taint of the Wyrm harshly defiles [target]'s very being.", range=4)
 					if (OPTION_COUNTRY_OF_ORIGIN)
 						var/target_country_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/country_of_origin)
-						if (target_country_of_origin == "United States") // List state instead of country
+						if (target_country_of_origin == "United States") // List state
 							var/target_state_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/state_of_origin)
 							owner.malkavian_voices("This individual is quite home here in the States; [target_state_of_origin] is held close to them.", range=4)
+						//else if (target_country_of_origin == "Canada") // List province
+							//var/target_province_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/province_of_origin)
+							//owner.malkavian_voices("This individual claimed their origin from Canada; [target_province_of_origin] is held close to them.", range=4)
 						else
-							owner.malkavian_voices("Our eyes sense this individual to be from [target_country_of_origin] — a distant place now.", range=4)
+							owner.malkavian_voices("Our eyes find this individual to be from [target_country_of_origin] — a distant place now.", range=4)
 					if (OPTION_CHARACTER_NAME)
 						var/target_true_name = target?.client?.prefs.read_preference(/datum/preference/name/real_name)
-						owner.malkavian_voices("The one you lay our eyes upon is known to us by [target_true_name].", range=4)
+						owner.malkavian_voices("The one you lay our eyes upon is known to us true by [target_true_name].", range=4)
 					if (OPTION_SECOND_PRESENCE)
 						if (target.has_trauma_type(/datum/brain_trauma/severe/split_personality))
 							owner.malkavian_voices("The ego of [target] has been split asunder; neither able to hold control.", range=4)
