@@ -588,9 +588,9 @@ Methuselah.”
 						if (target_country_of_origin == "United States") // List state
 							var/target_state_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/state_of_origin)
 							owner.malkavian_voices("This individual is quite home here in the States; [target_state_of_origin] is held close to them.", range=4)
-						//else if (target_country_of_origin == "Canada") // List province
-							//var/target_province_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/province_of_origin)
-							//owner.malkavian_voices("This individual claimed their origin from Canada; [target_province_of_origin] is held close to them.", range=4)
+						else if (target_country_of_origin == "Canada") // List province
+							var/target_province_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/province_of_origin)
+							owner.malkavian_voices("This individual claimed their origin from Canada; [target_province_of_origin] is held close to them.", range=4)
 						else
 							owner.malkavian_voices("Our eyes find this individual to be from [target_country_of_origin] — a distant place now.", range=4)
 					if (OPTION_CHARACTER_NAME)
