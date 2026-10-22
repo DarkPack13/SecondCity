@@ -13,10 +13,10 @@
 			COOLDOWN_START(src, passive_bp_drain_cooldown, CONFIG_GET(number/passive_bp_drain_timer))
 
 	if(COOLDOWN_FINISHED(src, check_masq_violating_cooldown))
-		if(HAS_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE) && (iscarbon(owner) ? !(owner.obscured_slots & HIDEFACE) : TRUE))
+		if(HAS_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE) && (!iscarbon(owner) || owner.is_face_obscured()))
 			SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 
-		if(HAS_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES) && (iscarbon(owner) ? !(owner.obscured_slots & HIDEEYES) : TRUE))
+		if(HAS_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES) && (!iscarbon(owner) || owner.is_eyes_covered()))
 			SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 
 		COOLDOWN_START(src, check_masq_violating_cooldown, 1 TURNS)
