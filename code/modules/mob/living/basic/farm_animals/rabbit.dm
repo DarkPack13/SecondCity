@@ -36,6 +36,7 @@
 	ai_controller = /datum/ai_controller/basic_controller/rabbit
 	/// passed to animal_varity as the prefix icon.
 	var/icon_prefix = "rabbit"
+	feral_whispers_difficulty = 7 // DARKPACK EDIT ADD - Animalism Rework
 
 /datum/emote/rabbit
 	abstract_type = /datum/emote/rabbit

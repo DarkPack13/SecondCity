@@ -84,6 +84,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 
 	/// Tracks the times when we send a phrase through either being pet or attack to ensure it's not abused to flood
 	COOLDOWN_DECLARE(forced_speech_cooldown)
+	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 
 /mob/living/basic/parrot/Initialize(mapload)
 	. = ..()

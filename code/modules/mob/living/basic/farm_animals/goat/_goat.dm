@@ -44,6 +44,7 @@
 		/obj/structure/glowshroom,
 		/obj/structure/spacevine,
 	)
+	feral_whispers_difficulty = 7 // DARKPACK EDIT ADD - Animalism Rework
 
 /mob/living/basic/goat/Initialize(mapload)
 	. = ..()

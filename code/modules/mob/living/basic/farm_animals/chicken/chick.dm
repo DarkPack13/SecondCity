@@ -34,6 +34,10 @@
 
 	/// What we grow into.
 	var/grow_as = /mob/living/basic/chicken
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 8
+	beckoning_sound = 'sound/mobs/non-humanoids/chicken/chick_peep.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /datum/emote/chick
 	abstract_type = /datum/emote/chick

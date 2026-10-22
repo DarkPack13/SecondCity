@@ -28,6 +28,10 @@
 
 	/// Were we sacrificed by cultists?
 	var/cult_converted = FALSE
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 7
+	beckoning_sound = 'sound/mobs/non-humanoids/sheep/sheep1.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /mob/living/basic/sheep/Initialize(mapload)
 	. = ..()

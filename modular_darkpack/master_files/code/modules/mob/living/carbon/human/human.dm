@@ -31,6 +31,10 @@
 		message_admins("[ADMIN_LOOKUPFLW(reporter)] repaired [ADMIN_LOOKUPFLW(src)]'s Masquerade violation.")
 		log_game("[ADMIN_LOOKUPFLW(reporter)] repaired [ADMIN_LOOKUPFLW(src)]'s Masquerade violation.")
 
+	if(href_list["rename_minion"])
+		if(usr != src)
+			return
+		rename_beastmaster_minion(locate(href_list["rename_minion"]) in beastmaster_minions)
 
 	. = ..()
 

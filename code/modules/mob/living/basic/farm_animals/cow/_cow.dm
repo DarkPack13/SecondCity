@@ -35,6 +35,10 @@
 	var/self_tame_message = "let out a happy moo"
 	/// What kind of juice do we produce?
 	var/milked_reagent = /datum/reagent/consumable/milk
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 7
+	beckoning_sound = 'sound/mobs/non-humanoids/cow/cow.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /datum/emote/cow
 	abstract_type = /datum/emote/cow

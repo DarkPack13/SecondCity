@@ -40,6 +40,10 @@
 		/datum/pet_command/follow/start_active,
 		/datum/pet_command/perform_trick_sequence,
 	)
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 7
+	beckoning_sound = 'modular_darkpack/modules/ambience/sounds/nature/rat_squeak_01.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /datum/emote/mouse
 	abstract_type = /datum/emote/mouse

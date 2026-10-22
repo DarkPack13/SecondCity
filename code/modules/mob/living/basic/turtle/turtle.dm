@@ -60,6 +60,7 @@
 		/obj/machinery/hydroponics,
 		/obj/item/kirbyplants,
 	)
+	feral_whispers_difficulty = 8 // DARKPACK EDIT ADD - Animalism Rework
 
 
 /mob/living/basic/turtle/Initialize(mapload)

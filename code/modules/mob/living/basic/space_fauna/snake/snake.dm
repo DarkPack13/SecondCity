@@ -43,6 +43,10 @@
 		/mob/living/basic/mouse,
 		/obj/item/food/deadmouse,
 	)
+	// DARKPACK EDIT ADD START - Animalism Rework
+	feral_whispers_difficulty = 8
+	beckoning_sound = 'sound/mobs/non-humanoids/snake/snake_hissing1.ogg'
+	// DARKPACK EDIT ADD END - Animalism Rework
 
 /mob/living/basic/snake/Initialize(mapload, special_reagent)
 	. = ..()
