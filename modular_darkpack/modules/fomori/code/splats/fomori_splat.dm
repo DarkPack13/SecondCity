@@ -13,6 +13,8 @@
 
 	ttrpg_sources = list(/datum/source_book/freak_legion = 1)
 
+	subsplat_traits = list(TRAIT_WYRMTAINTED)
+
 	uses_veil = TRUE
 	COOLDOWN_DECLARE(passive_healing_cd)
 	COOLDOWN_DECLARE(worms_cd)
