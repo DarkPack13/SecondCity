@@ -1,0 +1,17 @@
+/obj/effect/decal/cleanable/crustie
+	name = "dead skin flakes"
+	desc = "Disgusting."
+	beauty = -50
+	icon = 'modular_darkpack/modules/fomori/icons/the_crusties.dmi'
+	icon_state = "crustie1"
+	base_icon_state = "crustie"
+	/// The mob we use for DNA
+	var/mob/living/living_source
+
+/obj/effect/decal/cleanable/crustie/Initialize(mapload)
+	. = ..()
+	if(icon_state == src::icon_state)
+		icon_state = "[base_icon_state][rand(1, 3)]"
+	var/matrix/M = matrix()
+	M.Turn(rand(0, 360))
+	transform = M

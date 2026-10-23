@@ -11,6 +11,7 @@
 	failure_message = span_notice("You don't look too bad.")
 	mob_trait = TRAIT_DISFIGURED_APPEARANCE
 	excluded_clans = list(VAMPIRE_CLAN_KIASYD, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_NOSFERATU, VAMPIRE_CLAN_CAPPADOCIAN, VAMPIRE_CLAN_SAMEDI, VAMPIRE_CLAN_HARBINGER)// Anyone who already gets masq violating faces or other issues like that.
+	forbidden_splats = list(SPLAT_FOMORI) // We have a Taint that handles this
 	var/appearance_to_subtract
 
 /datum/quirk/darkpack/disfigured/add(client/client_source)
