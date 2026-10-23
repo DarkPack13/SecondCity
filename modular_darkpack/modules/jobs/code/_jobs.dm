@@ -82,13 +82,6 @@
 				if(!uniform)
 					uniform = /obj/item/clothing/under/vampire/sport
 
-/datum/outfit/job/vampire/post_equip(mob/living/carbon/human/user, visuals_only = FALSE)
-	. = ..()
-	var/obj/item/smartphone/phone = locate() in user.contents
-	if(phone)
-		phone.owner_weakref = WEAKREF(user)
-		phone.update_initialized_contacts()
-
 /datum/job/after_spawn(mob/living/spawned, client/player_client)
 	. = ..()
 	if(!(guestbook_flags & GUESTBOOK_FORGETMENOT))
@@ -107,6 +100,9 @@
 				((guestbook_flags & GUESTBOOK_JOB) && (src.type == player_mob_job.type)) || \
 				((guestbook_flags & GUESTBOOK_DEPARTMENT) && length(common_departments)))
 				spawned.mind.guestbook.add_guest(spawned, player_mob, player_mob.mind.name, player_mob.mind.name, silent = TRUE)
+	var/obj/item/smartphone/phone = locate() in spawned.contents
+	if(phone)
+		phone.update_initialized_contacts(spawned, player_client)
 
 /datum/job/vampire
 	abstract_type = /datum/job/vampire
