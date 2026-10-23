@@ -218,3 +218,7 @@
   cam_dev:
   - rscadd: food preferences for fera tongue
   - rscadd: chocolate food tag
+2026-09-30:
+  breadcrombs:
+  - rscadd: High strength increases throwing speed
+  - rscadd: Each point of medicine increases surgery speed by 2%
