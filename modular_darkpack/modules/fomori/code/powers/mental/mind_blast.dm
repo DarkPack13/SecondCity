@@ -7,6 +7,7 @@
 	icon_state = "scatterdisabler" // Could prob get a better icon for this
 	damage = 0
 	alpha = 128
+	range = 7
 
 /datum/storyteller_roll/mind_blast
 	bumper_text = "mind blast"

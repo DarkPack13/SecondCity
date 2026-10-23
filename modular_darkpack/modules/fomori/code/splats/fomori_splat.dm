@@ -76,6 +76,7 @@
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/hide_of_the_wyrm, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/infectious_touch, 1)
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/ectoplasmic_extrusion, 1)
+//	owner.give_st_power(/datum/action/cooldown/power/fomori_power/lashing_tail, 1)
 
 	// MENTAL POWERS
 //	owner.give_st_power(/datum/action/cooldown/power/fomori_power/berserker, 1) // need pointbuy

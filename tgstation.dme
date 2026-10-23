@@ -7613,6 +7613,8 @@
 #include "modular_darkpack\modules\fomori\code\powers\physical\horns.dm"
 #include "modular_darkpack\modules\fomori\code\powers\physical\infectious_touch.dm"
 #include "modular_darkpack\modules\fomori\code\powers\physical\regeneration.dm"
+#include "modular_darkpack\modules\fomori\code\powers\physical\lashing_tail\lashing_tail.dm"
+#include "modular_darkpack\modules\fomori\code\powers\physical\lashing_tail\lashing_tail_component.dm"
 #include "modular_darkpack\modules\fomori\code\splats\fomori_splat.dm"
 #include "modular_darkpack\modules\fomori\code\splats\is_fomori_helpers.dm"
 #include "modular_darkpack\modules\fomori\code\splats\pref_lore.dm"
