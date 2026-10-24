@@ -34,7 +34,9 @@
 		return
 	log_message("exited frenzy.", LOG_ATTACK, color="red")
 
-	remove_status_effect(/datum/status_effect/frenzy)
+	//each kind of frenzy has its own id so frenzy triggered by hunger wont be removed this should fix
+	for(var/datum/status_effect/frenzy/frenzy_effect in LAZYCOPY(status_effects))
+		qdel(frenzy_effect)
 
 /datum/storyteller_roll/frenzy
 	abstract_type = /datum/storyteller_roll/frenzy

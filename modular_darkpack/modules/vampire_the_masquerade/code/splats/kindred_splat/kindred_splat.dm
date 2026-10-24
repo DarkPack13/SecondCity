@@ -156,6 +156,12 @@
 
 		COOLDOWN_START(src, frenzy_target_check_cooldown, 1 TURNS)
 
+	//Kindred can only take in blood(and food, with Eat Food), anything else gets thrown back up
+	owner.kindred_digest(seconds_per_tick)
+	if(owner.stat < HARD_CRIT && !HAS_TRAIT(owner, TRAIT_KNOCKEDOUT))
+		if(SPT_PROB(5, seconds_per_tick) && owner.kindred_has_rejected_reagents())
+			owner.kindred_purge_food()
+
 
 /datum/splat/vampire/kindred/proc/damage_resistance(datum/source, list/damage_mods, damage_amount, damagetype, def_zone, sharpness, attack_direction, obj/item/attacking_item)
 	SIGNAL_HANDLER
