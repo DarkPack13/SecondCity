@@ -26,6 +26,10 @@
 
 	adjust_blood_pool(amount, updating_health, on_spawn)
 
+/// Whether feeding on blood can give this mob blood points right now, flaws like Conspicuous Consumption can stop it
+/mob/living/proc/can_feed_on_blood()
+	return !(SEND_SIGNAL(src, COMSIG_LIVING_FEEDING_ON_BLOOD) & BLOCK_BLOOD_FEEDING)
+
 /// Runs a bite animation for biting people and biting people and biting p
 /mob/living/carbon/human/proc/add_bite_animation()
 	var/mutable_appearance/bite_overlay = mutable_appearance('modular_darkpack/modules/blood_drinking/icons/bite_overlay.dmi', "bite", -HALO_LAYER)
