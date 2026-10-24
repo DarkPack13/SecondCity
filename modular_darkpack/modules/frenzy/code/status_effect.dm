@@ -37,7 +37,7 @@
 		frenzy_target_ref = WEAKREF(frenzy_target)
 
 /datum/status_effect/frenzy/on_remove()
-	var/datum/atom_hud/hud = frenzy_overlay_ref?.resolve() // No overlay is made when there was nothing to frenzy at
+	var/datum/atom_hud/hud = frenzy_overlay_ref.resolve()
 	if(hud)
 		qdel(hud)
 	QDEL_NULL(frenzy_overlay_ref)
