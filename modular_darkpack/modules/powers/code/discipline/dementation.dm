@@ -246,6 +246,8 @@ Methuselah.”
 	vitae_cost = 1
 	var/list/choice_options = list("Secrets", "Information",)
 	var/datum/tgui_window/eyes_of_chaos_window
+	var/list/available_options = list()
+	var/list/selected_options = list()
 
 /datum/discipline_power/dementation/eyes_of_chaos/proc/update_choices()
 	choice_options["Secrets"] = icon('modular_darkpack/modules/powers/icons/dementation.dmi', "scroll_icon")
@@ -253,13 +255,26 @@ Methuselah.”
 
 /datum/discipline_power/dementation/eyes_of_chaos/proc/open_chaos_eyes_window(mob/living/carbon/human/target)
 	var/exploitable_information = sanitize_text(target.client?.prefs.read_preference(/datum/preference/text/exploitable))
-	if(exploitable_information == EXPLOITABLE_DEFAULT_TEXT) //they havent set exploitable text
-		exploitable_information = "You do not manage to uncover any secrets."
 	to_chat(owner, span_notice("You search [target]'s mind... [exploitable_information]"))
+	playsound(owner, 'sound/items/haunted/ghostitemattack.ogg', 30, vary = TRUE)
+
+/*/datum/discipline_power/dementation/eyes_of_chaos/proc/information_picking(mob/living/carbon/human/target)
+	selected_options = list()
+	for (var/i in 1 to 3)
+		selected_options += pick_n_take(available_options)
+		playsound(owner, 'sound/items/haunted/ghostitemattack.ogg', 30, vary = TRUE)*/
+
+/datum/discipline_power/dementation/eyes_of_chaos/proc/information_picking(mob/living/carbon/human/target)
+	selected_options = list()
+	for (var/i in 1 to 3)
+		selected_options += pick_n_take(available_options)
+		playsound(owner, 'sound/items/haunted/ghostitemattack.ogg', 30, vary = TRUE)
 
 
 /datum/discipline_power/dementation/eyes_of_chaos/proc/display_select_menu(mob/living/carbon/human/target)
 	update_choices()
+	if (sanitize_text(target.client?.prefs.read_preference(/datum/preference/text/exploitable)) == EXPLOITABLE_DEFAULT_TEXT)
+		choice_options = list("Information",)
 	var/chosen_option = show_radial_menu(owner, target, choice_options, target, radius = 36, tooltips = TRUE)
 	if(!chosen_option)
 		return FALSE
@@ -274,13 +289,13 @@ Methuselah.”
 #define OPTION_BRAIN_TRAUMA "Brain Trauma"
 #define OPTION_MORALITY_PATH "Morality Path"
 #define OPTION_HUMANITY "Humanity"
-#define OPTION_BLOOD_BONDED "Blood Bonded" // + Unbondable
+#define OPTION_BLOOD_BONDED "Blood Bonded" // Blood Bond or Unbondable
 #define OPTION_IS_INFLUENCED "Influenced" // Any power that would control, influence or coerce someone (excluding dominate)
 #define OPTION_IS_DOMINATED "Dominated" // Dominate 4 or 5
 #define OPTION_SECOND_PRESENCE "Second Presence" // Split Personality or Imaginary Friend
 #define OPTION_DIABLERIE "Diablerie"
 #define OPTION_COUNTRY_OF_ORIGIN "Country of Origin"
-#define OPTION_WYRM_TAINTED "Wyrm-Taint" // Tainted forms and trait, maybe vampires inherently per lore?
+#define OPTION_WYRM_TAINTED "Wyrm-Taint" // Tainted forms and trait, sub-7 humanity vampires
 #define OPTION_WILLPOWER "Permanent Willpower"
 #define OPTION_SPLAT "Splat"
 #define OPTION_BREED "Breed"
@@ -290,17 +305,17 @@ Methuselah.”
 #define OPTION_AUSPICE "Auspice"
 #define OPTION_HAS_SIRE "Sire"
 #define OPTION_HAS_KILLED "Murder Count"
-#define OPTION_FEEDING_SPECIFICATIONS "Feeding Specifications"
-#define OPTION_WILL "Will"
-#define OPTION_SPIRIT_MARKS "Marks"
-#define OPTION_VITAE "Vitae"
+#define OPTION_FEEDING_SPECIFICATIONS "Feeding Specifications" // Organovore, Eat Food, Anthropic Taste, Thirst of the Ages
+#define OPTION_WILL "Will" // Untamable, Iron Will, Weak Willed, Weak to Dominate
+#define OPTION_SPIRIT_MARKS "Marks" // Betrayer's Mark, Aura of Confidence, Beacon of the Unholy
+#define OPTION_VITAE "Vitae" // Mage Blood, Irresistable Vitae, Vitae Deficient
 #define OPTION_RAGE_FRENZY "Rage and Frenzy"
-#define OPTION_SEE_GHOSTS "See Ghosts"
-#define OPTION_BLOOD_HUNGRY "Hungry for Blood"
-#define OPTION_SHAPESHIFTING_MODIFIERS "Shapeshifting"
-#define OPTION_PROMETHEAN_CLAY "Promethean Clay"
-#define OPTION_SANGUINE_INCONGRUITY "Sanguine Incongruity"
-#define OPTION_THE_LARGEST_MAW "The Largest Maw"
+#define OPTION_SEE_GHOSTS "See Ghosts" // Ghost vision or Sixth Sense
+#define OPTION_BLOOD_HUNGRY "Hungry for Blood" // If past thirst breakpoint
+#define OPTION_SHAPESHIFTING_MODIFIERS "Shapeshifting" // Metamorph or Banned Transformation
+#define OPTION_PROMETHEAN_CLAY "Promethean Clay" // Tzimisce Trait
+#define OPTION_SANGUINE_INCONGRUITY "Sanguine Incongruity" // Giovanni Trait
+#define OPTION_THE_LARGEST_MAW "The Largest Maw" // Nagaraja Trait
 #define OPTION_PIERCED_VEIL "Pierced Veil"
 #define OPTION_STOMACH "Strong Stomach"
 #define OPTION_ENCHANTING_VOICE "Enchanting Voice"
@@ -309,7 +324,7 @@ Methuselah.”
 #define OPTION_LOGICAL "Coldly Logical"
 #define OPTION_ACUTE_SENSES "Acute Senses"
 #define OPTION_SEIZURES "Seizures"
-#define OPTION_APPEARANCE "Appearances"
+#define OPTION_APPEARANCE "Appearances" // Horrific Appearance, Monstrous, Disfigured, Masquerade-Violating Face
 #define OPTION_ILLITERATE "Illiterate"
 #define OPTION_HEMOPHILIAC "Hemophiliac"
 #define OPTION_AMNESIA "Amnesia"
@@ -317,8 +332,7 @@ Methuselah.”
 #define OPTION_NO_REFLECTION "No Reflection"
 #define OPTION_MASQUERADE_VICTIM "Victim of the Masquerade"
 #define OPTION_DAMNED_GRIP "Grip of the Damned"
-#define OPTION_THAUMATURGICALLY_INEPT "Thaumaturgically Inept"
-#define OPTION_THIRD_EYE "Third Eye"
+#define OPTION_THAUMATURGICALLY_INEPT "Thaumaturgically Inept" // Tremere Trait
 #define OPTION_TERRITORIAL "Territorial"
 #define OPTION_LIGHT_SENSITIVE "Light Sensitive"
 #define OPTION_MUTE "Mute"
@@ -326,19 +340,16 @@ Methuselah.”
 #define OPTION_DEAF "Deaf"
 #define OPTION_DECEPTIVE_AURA "Deceptive Aura"
 #define OPTION_PALE_AURA "Pale Aura"
-#define OPTION_HOLINESS_REPELLED "Repelled by Holiness"
-#define OPTION_TECHNOLOGY_REJECTED "Rejected by Technology"
-#define OPTION_METAL_WEAKNESS "Metal Weakness"
-#define OPTION_DEATH_STILLNESS "Stillness of Death"
+#define OPTION_METAL_WEAKNESS "Metal Weakness" // Gold or Silver
+#define OPTION_DEATH_STILLNESS "Stillness of Death" // Gargoyle Trait
 #define OPTION_SENSITIVE_HUMANITY "Sensitive Humanity"
 #define OPTION_TIME_SENSE "Time Sense"
-#define OPTION_TIMEWARPER "Timewarper"
-#define OPTION_VIRTUOSA "Virtuosa"
-#define OPTION_STAKE_RESISTANCE "Stake Resistance"
-#define OPTION_FANGS "Fangs"
+#define OPTION_VIRTUOSA "Virtuosa" // Melpominee 5
+#define OPTION_STAKE_RESISTANCE "Stake Resistance" // Stake Resistance or Stake Immunity
+#define OPTION_FANGS "Fangs" // Dulled or Prominent Fangs
 
 	// Add options to the master list if conditions are met. "Information" will draw from "available_options".
-	var/list/available_options = list(OPTION_BIOLOGICAL_AGE, OPTION_WILLPOWER, OPTION_SPLAT)
+	available_options = list(OPTION_BIOLOGICAL_AGE, OPTION_WILLPOWER, OPTION_SPLAT)
 	if (get_kindred_splat(target)) // Vampire
 		available_options += list(OPTION_DISCIPLINES, OPTION_GENERATION, OPTION_MORALITY_PATH, OPTION_HUMANITY, OPTION_CLAN)
 	if (get_ghoul_splat(target)) // Ghoul
@@ -412,7 +423,7 @@ Methuselah.”
 		available_options += list(OPTION_ACUTE_SENSES)
 	if (target.has_quirk(/datum/quirk/darkpack/seizures))
 		available_options += list(OPTION_SEIZURES)
-	if (target.has_quirk(/datum/quirk/darkpack/horrific_appearance) || target.has_quirk(/datum/quirk/darkpack/disfigured) || target.has_quirk(/datum/quirk/darkpack/monstrous) || HAS_TRAIT(target, TRAIT_MASQUERADE_VIOLATING_FACE)) // Horrific Appearance - Cappadocian Trait
+	if (target.has_quirk(/datum/quirk/darkpack/horrific_appearance) || target.has_quirk(/datum/quirk/darkpack/disfigured) || target.has_quirk(/datum/quirk/darkpack/monstrous) || HAS_TRAIT(target, TRAIT_MASQUERADE_VIOLATING_FACE))
 		available_options += list(OPTION_APPEARANCE)
 	if (HAS_TRAIT(target, TRAIT_EASYBLEED))
 		available_options += list(OPTION_HEMOPHILIAC)
@@ -428,10 +439,8 @@ Methuselah.”
 		available_options += list(OPTION_MASQUERADE_VICTIM)
 	if (HAS_TRAIT(target, TRAIT_PAINFUL_VAMPIRE_KISS))
 		available_options += list(OPTION_DAMNED_GRIP)
-	if (target.has_quirk(/datum/quirk/darkpack/thaumaturgically_inept)) // Tremere Trait
+	if (target.has_quirk(/datum/quirk/darkpack/thaumaturgically_inept))
 		available_options += list(OPTION_THAUMATURGICALLY_INEPT)
-	if (HAS_TRAIT(target, TRAIT_THIRD_EYE) || (get_kindred_splat(target) && target.is_clan(/datum/subsplat/vampire_clan/salubri/warrior) || target.is_clan(/datum/subsplat/vampire_clan/salubri))) // Salubri / Tremere
-		available_options += list(OPTION_THIRD_EYE)
 	if (HAS_TRAIT(target, TRAIT_VAMPIRE_TERRITORIAL))
 		available_options += list(OPTION_TERRITORIAL)
 	if (HAS_TRAIT(target, TRAIT_LIGHT_WEAKNESS))
@@ -446,21 +455,15 @@ Methuselah.”
 		available_options += list(OPTION_DECEPTIVE_AURA)
 	if (target.has_quirk(/datum/quirk/darkpack/pale_aura)) // Needs quirk not trait specifically
 		available_options += list(OPTION_PALE_AURA)
-	if (HAS_TRAIT(target, TRAIT_REPELLED_BY_HOLINESS)) // Baali
-		available_options += list(OPTION_HOLINESS_REPELLED)
-	if (HAS_TRAIT(target, TRAIT_REJECTED_BY_TECHNOLOGY)) // Lasombra
-		available_options += list(OPTION_TECHNOLOGY_REJECTED)
-	if (HAS_TRAIT(target, TRAIT_SILVER_WEAKNESS) || HAS_TRAIT(target, TRAIT_SILVER_WEAKNESS))
+	if (HAS_TRAIT(target, TRAIT_SILVER_WEAKNESS) || HAS_TRAIT(target, TRAIT_GOLD_WEAKNESS))
 		available_options += list(OPTION_METAL_WEAKNESS)
-	if (HAS_TRAIT(target, TRAIT_STILLNESS_OF_DEATH)) // Gargoyle Trait
+	if (HAS_TRAIT(target, TRAIT_STILLNESS_OF_DEATH))
 		available_options += list(OPTION_DEATH_STILLNESS)
 	if (HAS_TRAIT(target, TRAIT_SENSITIVE_HUMANITY))
 		available_options += list(OPTION_SENSITIVE_HUMANITY)
 	if (HAS_TRAIT(target, TRAIT_TIME_SENSE))
 		available_options += list(OPTION_TIME_SENSE)
-	if (HAS_TRAIT(target, TRAIT_TIMEWARPER)) // Temporis
-		available_options += list(OPTION_TIMEWARPER)
-	if (HAS_TRAIT(target, TRAIT_VIRTUOSA)) // Melpominee
+	if (HAS_TRAIT(target, TRAIT_VIRTUOSA))
 		available_options += list(OPTION_VIRTUOSA)
 	if (HAS_TRAIT(target, TRAIT_STAKE_RESISTANT) || HAS_TRAIT(target, TRAIT_STAKE_IMMUNE))
 		available_options += list(OPTION_STAKE_RESISTANCE)
@@ -470,13 +473,8 @@ Methuselah.”
 	switch (chosen_option)
 		if ("Secrets")
 			open_chaos_eyes_window(target)
-			playsound(target, 'sound/items/haunted/ghostitemattack.ogg', 30, vary = TRUE)
 		if ("Information")
-			var/list/selected_options = list()
-			for (var/i in 1 to 15) // Revert to 3 on full PR NEED TIMER!!!!
-				selected_options += pick_n_take(available_options)
-				playsound(target, 'sound/items/haunted/ghostitemattack.ogg', 30, vary = TRUE)
-				//COOLDOWN_START(src, pick_cooldown, 2 SECONDS) i have no idea what to put here to make it work yet
+			information_picking(target)
 			for (var/option in selected_options)
 				switch (option)
 					if (OPTION_IMMORTAL_AGE)
@@ -498,11 +496,11 @@ Methuselah.”
 							owner.malkavian_voices("Blood is thicker than water in this world; the [target.get_clan()] lineage seems to have made [target] their own.", range=4)
 					if (OPTION_TRIBE) // NOTE - Potentially expand to a unique message for all tribes
 						if (target.get_our_tribe(/datum/subsplat/werewolf/tribe/garou/blackspiraldancers))
-							owner.malkavian_voices("[target] has peered into the spiraling abyss; coming back changed, twisted... Yet craving more. The madness they've lost themselves to may even outshine ours", range=4)
+							owner.malkavian_voices("[target] has peered into the spiraling abyss; coming back changed, twisted... Yet craving more. The madness they've lostthemselves 	to may even outshine ours", range=4)
 						else if (target.get_our_tribe(/datum/subsplat/werewolf/tribe/garou/ronin))
-							owner.malkavian_voices("An outcast amongst their kind, [target] finds little solace found in the kin around them — a dire predicament for such a being.", range=4)
+							owner.malkavian_voices("An outcast amongst their kind, [target] finds little solace found in the kin around them — a dire predicament for such a being", 	range=4)
 						else
-							owner.malkavian_voices("[target] is amongst the [target.get_our_tribe()] through one way or another — faithful to the principles of such a family.", range=4)
+							owner.malkavian_voices("[target] is amongst the [target.get_our_tribe()] through one way or another — faithful to the principles of such a family.",range=4)
 					if (OPTION_DISCIPLINES)
 						var/datum/splat/vampire/discipline_splat = get_vampire_splat(target) // Get a Vampire's/Ghoul's power details and see what disciplines those powers are under
 						var/list/discipline_filtered_list = list()
@@ -514,7 +512,7 @@ Methuselah.”
 							owner.malkavian_voices("The bounty of [target]'s clan bears no fruit! Devoid of substance!", range=4)
 						else
 							var/datum/action/discipline/target_disciplines = pick(discipline_filtered_list) // Pick from the filtered list
-							owner.malkavian_voices("Much knowledge is embedded within this fiend of vitae. [target_disciplines.discipline] is but one gift of blood bestowed upon them.", range=4)
+							owner.malkavian_voices("Much knowledge is embedded within this fiend of vitae. [target_disciplines.discipline] is but one gift of blood bestowed uponthem.	", range=4)
 					if (OPTION_BRAIN_TRAUMA)
 						var/list/traumas = target.get_traumas()
 						var/datum/brain_trauma/selected_trauma = pick(traumas) // Pick a trauma from the target.
@@ -547,7 +545,7 @@ Methuselah.”
 						if (HAS_TRAIT(target, TRAIT_HIDDEN_DIABLERIE))
 							owner.malkavian_voices("Creeping vines of black veins encompass the soul of [target] in an embrace most constricting.", range=4)
 						else
-							owner.malkavian_voices("[target]'s soul is marked with a grave sin. Stolen essence is devoured within — veins of tar supplying the scourge it inhabits.", range=4)
+							owner.malkavian_voices("[target]'s soul is marked with a grave sin. Stolen essence is devoured within — veins of tar supplying the scourge it inhabits", 	range=4)
 					if (OPTION_HUMANITY)
 						switch (target.st_get_stat(STAT_MORALITY)) // STAT_MORALITY = Humanity
 							if (0)
@@ -555,9 +553,9 @@ Methuselah.”
 							if (1)
 								owner.malkavian_voices("[target] is savagely hounded by their Beast, one moment away from plunging into the brink of madness", range=4)
 							if (2,3)
-								owner.malkavian_voices("The Beast pounds the mind of [target] day after day; demands ever-made to pervert such fragile humanity with nary a reprive.", range=4)
+								owner.malkavian_voices("The Beast pounds the mind of [target] day after day; demands ever-made to pervert such fragile humanity with nary a reprive", 	range=4)
 							if (4,5)
-								owner.malkavian_voices("The reality of undeath has long since sunken in comfortably for [target]. After all, a predator pays no mind to the thought of its prey.", range=4)
+								owner.malkavian_voices("The reality of undeath has long since sunken in comfortably for [target]. After all, a predator pays no mind to the thoughtof 	its prey.", range=4)
 							if (6)
 								owner.malkavian_voices("That's that, and this is this. This kindred isn't quite Beast, yet not much closer to a human either.", range=4)
 							if (7)
@@ -567,13 +565,13 @@ Methuselah.”
 							if (9)
 								owner.malkavian_voices("The bleeding heart of [target] weeps for the sins their kind inflicts. A moral pariah to most of Kindred society.", range=4)
 							if (10)
-								owner.malkavian_voices("A fragile state of grace held above a pillar to the Heavens; [target] is a saint even amongst the living. Even then, the fragile foundation of principles ever-demand attention", range=4)
+								owner.malkavian_voices("A fragile state of grace held above a pillar to the Heavens; [target] is a saint even amongst the living. Even then, thefragile 	foundation of principles ever-demand attention", range=4)
 					if (OPTION_BLOOD_BONDED)
 						if (HAS_TRAIT(target, TRAIT_UNBONDABLE))
 							owner.malkavian_voices("[target]'s abnormal biology surpasses the bonding nature of vitae; no chains of blood can be placed on them — only the call of addiction.")
 						else
 							var/datum/status_effect/blood_bond/target_blood_bond = target.has_status_effect(/datum/status_effect/blood_bond) // Lets us access regnant_name here
-							owner.malkavian_voices("Chains interlock [target]'s blood — binding them to another. the call of [target_blood_bond.regnant_name.real_name] beckons them in some way or form.", range=4)
+							owner.malkavian_voices("Chains interlock [target]'s blood — binding them to another. the call of [target_blood_bond.regnant_name.real_name] beckons themin 	some way or form.", range=4)
 					if (OPTION_WYRM_TAINTED)
 						if (get_kindred_splat(target) && (HAS_TRAIT(target, TRAIT_HIDDEN_WYRMTAINT))) // if Vampire with hidden Wyrmtaint
 							owner.malkavian_voices("A faint glimmer of decay is embracing [target].", range=4)
@@ -604,19 +602,19 @@ Methuselah.”
 					if (OPTION_WILLPOWER)
 						switch (target.st_get_stat(STAT_PERMANENT_WILLPOWER))
 							if (0)
-								owner.malkavian_voices("Your target has had all the desires of life crushed under the heel of oblivion; naught even the will to pursue the embrace of death.", range=4)
+								owner.malkavian_voices("Your target has had all the desires of life crushed under the heel of oblivion; naught even the will to pursue the embraceof 	death.", range=4)
 							if (1,2)
 								owner.malkavian_voices("[target] has sparse determination. To navigate the challenges of life drains the little will still had.", range=4)
 							if (3,4)
 								owner.malkavian_voices("The average will of the world; the character of [target] is nothing too special — a personality firm yet moldable.", range=4)
 							if (5,6)
-								owner.malkavian_voices("Strength of character is a trait seen prominently in this one; an above respectable personhood and the will to ward it faltering.", range=4)
+								owner.malkavian_voices("Strength of character is a trait seen prominently in this one; an above respectable personhood and the will to ward itfaltering.	", range=4)
 							if (7)
-								owner.malkavian_voices("Such fortitude of the mind is rarely seen indeed... Beginning to bridge the gap between the impressive and extraordinary!", range=4)
+								owner.malkavian_voices("Such fortitude of the mind is rarely seen indeed... Beginning to bridge the gap between the impressive andextraordinary!", 	range=4)
 							if (8,9)
-								owner.malkavian_voices("The nature of [target]'s ego is within the realm of fanatical. A near unbreakable resolve to face the woes of this dark world.", range=4)
+								owner.malkavian_voices("The nature of [target]'s ego is within the realm of fanatical. A near unbreakable resolve to face the woes of this darkworld.", 	range=4)
 							if (10 to INFINITY)
-								owner.malkavian_voices("The temple of [target]'s mind is a sacred place unsullied by the horrors of the world; their unfaltering will has no equal.", range=4)
+								owner.malkavian_voices("The temple of [target]'s mind is a sacred place unsullied by the horrors of the world; their unfaltering will has no equal", 	range=4)
 					if (OPTION_SPLAT)
 						if (get_kindred_splat(target))
 							owner.malkavian_voices("A being of stasis maintained by a hunger for life; fundementally stagnant yet still grasping an ever-changing world.")
@@ -693,17 +691,17 @@ Methuselah.”
 					if (OPTION_AUSPICE)
 						switch (target.get_our_auspice().name)
 							if (AUSPICE_AHROUN)
-								owner.malkavian_voices("An embodiment of the Moon's rage; battle is ingrained within their very being! Renown and glory are vital parts of themselves.", range=4)
+								owner.malkavian_voices("An embodiment of the Moon's rage; battle is ingrained within their very being! Renown and glory are vital parts ofthemselves.", 	range=4)
 							if (AUSPICE_PHILODOX)
 								owner.malkavian_voices("A creature of balance and order; a tempered mind able to see both sides — honor and wisdom define them.", range=4)
 							if (AUSPICE_GALLIARD)
-								owner.malkavian_voices("A passionate muse, [target] is tasked with the preservation and celebration of the culture they hail from. Glory and renown remedy their soul.", range=4)
+								owner.malkavian_voices("A passionate muse, [target] is tasked with the preservation and celebration of the culture they hail from. Glory andrenown 	remedy their soul.", range=4)
 							if (AUSPICE_THEURGE)
 								owner.malkavian_voices("Seer, explorer, conduit, [target] is a spiritual guide and healer to their kind. Wisdom and honor guide them true.", range=4)
 							if (AUSPICE_RAGABASH)
-								owner.malkavian_voices("The joker of the deck, this individual is the wild card of their group. The aspects that empower them are entirely their own to decide.", range=4)
+								owner.malkavian_voices("The joker of the deck, this individual is the wild card of their group. The aspects that empower them are entirely their ownto 	decide.", range=4)
 							if (AUSPICE_NONE)
-								owner.malkavian_voices("This individual has changed far more than any shifter could ever hope... In the most twisted of ways. A stolen gift repurposed for their own use — though to what end?", range=4)
+								owner.malkavian_voices("This individual has changed far more than any shifter could ever hope... In the most twisted of ways. A stolen giftrepurposed 	for their own use — though to what end?", range=4)
 					if (OPTION_IS_INFLUENCED)
 						if (HAS_TRAIT(target, TRAIT_FORCED_EMOTION))
 							owner.malkavian_voices("The emotions [target]'s heart bleeds is not off their own accord — brought on by another artificially.", range=4)
@@ -715,7 +713,7 @@ Methuselah.”
 						if (target.possessed == TRUE)
 							owner.malkavian_voices("This individual is merely a puppet of flesh; their ego sealed away within by another.", range=4)
 						else if (target.conditioner)
-							owner.malkavian_voices("A mind shattered into pieces then re-assembled to suit another; The agency of this poor thing is completely dominated by another.", range=4)
+							owner.malkavian_voices("A mind shattered into pieces then re-assembled to suit another; The agency of this poor thing is completely dominated by another", 	range=4)
 					if (OPTION_HAS_SIRE)
 						var/datum/splat/vampire/kindred/target_kindred = get_kindred_splat(target) // Access .sire
 						owner.malkavian_voices("The animated corpse of this kindred bears [target_kindred.sire.real_name]'s imprint — engraved into their very essence.", range=4)
@@ -730,14 +728,14 @@ Methuselah.”
 							if (10 to 19)
 								owner.malkavian_voices("The city is quiet, the streets are still, the beast had took them all — claiming kill after kill.")
 							if (20 to INFINITY)
-								owner.malkavian_voices("A mountain of smiling bodies towers ever higher over the cityscape. On top, [target]... closer to the heavens with each addition.", range=4)
+								owner.malkavian_voices("A mountain of smiling bodies towers ever higher over the cityscape. On top, [target]... closer to the heavens with eachaddition.	", range=4)
 					if (OPTION_FEEDING_SPECIFICATIONS)
 						if (HAS_TRAIT(target, TRAIT_ORGANOVORE))
 							owner.malkavian_voices("The hunger of this Kindred is not one so easily sated by traditional means; the gutteral screech of hunger craves the flesh of others!", range=4)
 						else if (HAS_TRAIT(target, TRAIT_THIRST_OF_AGES))
 							owner.malkavian_voices("The void of this Kindred's hunger can only be sated by the most potent of blood.", range=4)
 						else if (HAS_TRAIT(target, TRAIT_ANTHROPIC_TASTE))
-							owner.malkavian_voices("Both body and mind are key to truly deriving nutrition for our target, nary a beast or creature could temper their thirst.", range=4)
+							owner.malkavian_voices("Both body and mind are key to truly deriving nutrition for our target, nary a beast or creature could temper their thirst.",range=4)
 						else if (HAS_TRAIT(target, TRAIT_EAT_FOOD))
 							owner.malkavian_voices("Unlike most of our ilk - [target] is still able to derive the pleasures of life from cuisine.", range=4)
 					if (OPTION_WILL)
@@ -791,7 +789,7 @@ Methuselah.”
 					if (OPTION_SANGUINE_INCONGRUITY) // Giovanni Trait
 						owner.malkavian_voices("The mark of a betrayed heritage finds its way into [target]; much renown follows such an exchange of curses.", range=4)
 					if (OPTION_THE_LARGEST_MAW) // Nagaraja Trait
-						owner.malkavian_voices("Squelching, gnawing, chewing - utterances made trapped within a cavern of teeth, bone weaving in and out of their own flesh.", range=4)
+						owner.malkavian_voices("Squelching, gnawing, chewing - utterances made trapped within a cavern of teeth, bone weaving in and out of their own flesh.",range=4)
 					if (OPTION_PIERCED_VEIL)
 						owner.malkavian_voices("What should sing a chorus of pandemonium instead bears their full monstrosity to the perception of others.", range=4)
 					if (OPTION_STOMACH)
@@ -822,13 +820,13 @@ Methuselah.”
 						owner.malkavian_voices("The paths of [target]'s neurons are prone to disruption leading to volatile results.", range=4)
 					if (OPTION_APPEARANCE)
 						if (target.has_quirk(/datum/quirk/darkpack/horrific_appearance))
-							owner.malkavian_voices("Our target endures more punishment from their bloodline than most of their ilk — a rot-claimed zombie.", range=4) // Cappadocian Trait
+							owner.malkavian_voices("Our target endures more punishment from their bloodline than most of their ilk — a rot-claimed zombie.", range=4) //Cappadocian 	Trait
 						else if (target.has_quirk(/datum/quirk/darkpack/monstrous))
 							owner.malkavian_voices("An inhumanely twisted form is bestowed upon [target]; more abberant than any mortal affliction could do.", range=4)
 						else if (target.has_quirk(/datum/quirk/darkpack/disfigured))
 							owner.malkavian_voices("The visage before us bares a hideous, yet reasonable, disfigurement.", range=4)
 						else if (HAS_TRAIT(target, TRAIT_MASQUERADE_VIOLATING_FACE))
-							owner.malkavian_voices("The utter outlandish appeareance we see here could never pass for anything less than the eldritch before the eyes of man.", range=4)
+							owner.malkavian_voices("The utter outlandish appeareance we see here could never pass for anything less than the eldritch before the eyes of man.",range=4)
 					if (OPTION_HEMOPHILIAC)
 						owner.malkavian_voices("The veins and arteries of [target] are a fountain of nourishment.", range=4)
 					if (OPTION_ILLITERATE)
@@ -845,8 +843,6 @@ Methuselah.”
 						owner.malkavian_voices("The sweet kiss of our fangs is instead sullied by a cruel agony within [target].", range=4)
 					if (OPTION_THAUMATURGICALLY_INEPT)
 						owner.malkavian_voices("Knowledge embedded in all of their clan is mysteriously absent from the blood of this individual.", range=4)
-					if (OPTION_THIRD_EYE)
-						owner.malkavian_voices("Ancient aspects of this one's bloodline bestows upon them a glaringly conspicuous eye embedded within their forehead.", range=4)
 					if (OPTION_TERRITORIAL)
 						owner.malkavian_voices("A marked territory is prowled by this predator of the night, a closely guarded feeding ground.", range=4)
 					if (OPTION_LIGHT_SENSITIVE)
@@ -861,24 +857,18 @@ Methuselah.”
 						owner.malkavian_voices("The true face of [target] is masked by an aura of lies — pretending to have some semblance of fictitious life.", range=4)
 					if (OPTION_PALE_AURA)
 						owner.malkavian_voices("The mortal before us has a facade most convincing, the essence of the damned in all but body.", range=4)
-					if (OPTION_HOLINESS_REPELLED) // Baali
-						owner.malkavian_voices("The sanctified spirit repels the profaned devilry within [target]!", range=4)
-					if (OPTION_TECHNOLOGY_REJECTED) // Lasombra
-						owner.malkavian_voices("Garbage noise and the hums of static is all the growing technology of the world is willing to impart onto [target].", range=4)
 					if (OPTION_METAL_WEAKNESS)
 						if (HAS_TRAIT(target, TRAIT_GOLD_WEAKNESS))
 							owner.malkavian_voices("Glistening gold bejewels this individual in agonizing pain.", range=4)
 						else if (HAS_TRAIT(target, TRAIT_SILVER_WEAKNESS))
 							owner.malkavian_voices("Shimmering silver adorns this individual with seering scorches.", range=4)
-					if (OPTION_DEATH_STILLNESS) // Gargoyle Trait
+					if (OPTION_DEATH_STILLNESS)
 						owner.malkavian_voices("Deep-rooted stillness is a comfortable part of the eternal life of this one.", range=4)
 					if (OPTION_SENSITIVE_HUMANITY)
 						owner.malkavian_voices("Ever-passing days have not crushed this vampire's delicate sense of humanity.", range=4)
 					if (OPTION_TIME_SENSE)
 						owner.malkavian_voices("An internal clock always seems to point true within [target]", range=4)
-					if (OPTION_TIMEWARPER) // Temporis
-						owner.malkavian_voices("[target] is within a fractured point of time; we cannot determine from whence they hail.", range=4)
-					if (OPTION_VIRTUOSA) // Melpominee
+					if (OPTION_VIRTUOSA)
 						owner.malkavian_voices("Blood-fueled performance entrances all to this virtuoso before you!", range=4)
 					if (OPTION_STAKE_RESISTANCE)
 						if (HAS_TRAIT(target, TRAIT_STAKE_RESISTANT))
@@ -890,6 +880,8 @@ Methuselah.”
 							owner.malkavian_voices("A defanged predator with the bite of a puppy, pitiful.", range=4)
 						else if (HAS_TRAIT(target, TRAIT_PERMAFANGS))
 							owner.malkavian_voices("Vicious fangs pierce through the gums of [target] with sanguineous pride!", range=4)
+				//sleep (2 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(information_picking)), 2 SECONDS)
 
 #undef OPTION_IMMORTAL_AGE
 #undef OPTION_BIOLOGICAL_AGE
@@ -943,7 +935,6 @@ Methuselah.”
 #undef OPTION_MASQUERADE_VICTIM
 #undef OPTION_DAMNED_GRIP
 #undef OPTION_THAUMATURGICALLY_INEPT
-#undef OPTION_THIRD_EYE
 #undef OPTION_TERRITORIAL
 #undef OPTION_LIGHT_SENSITIVE
 #undef OPTION_MUTE
@@ -951,13 +942,10 @@ Methuselah.”
 #undef OPTION_DEAF
 #undef OPTION_DECEPTIVE_AURA
 #undef OPTION_PALE_AURA
-#undef OPTION_HOLINESS_REPELLED
-#undef OPTION_TECHNOLOGY_REJECTED
 #undef OPTION_METAL_WEAKNESS
 #undef OPTION_DEATH_STILLNESS
 #undef OPTION_SENSITIVE_HUMANITY
 #undef OPTION_TIME_SENSE
-#undef OPTION_TIMEWARPER
 #undef OPTION_VIRTUOSA
 #undef OPTION_STAKE_RESISTANCE
 #undef OPTION_FANGS
