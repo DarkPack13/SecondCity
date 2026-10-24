@@ -1,6 +1,6 @@
 /datum/quirk/darkpack/conspicuous_consumption
 	name = "Conspicuous Consumption"
-	desc = "Drinking your victims' blood is not enough. You must also devour their hearts, livers and other blood-rich organs."
+	desc = "Drinking your victims' blood is not enough. You must also devour their organs."
 	value = -4
 	mob_trait = TRAIT_CONSPICUOUS_CONSUMPTION
 	icon = FA_ICON_HEART_CRACK
@@ -28,9 +28,9 @@
 	alert_type = null
 
 /datum/status_effect/ate_organ/on_apply()
-	to_chat(owner, span_warning("The rich, bloody flesh sates your craving, for now."))
+	to_chat(owner, span_warning("The bloody flesh sates your craving, for now..."))
 	return TRUE
 
 /datum/status_effect/ate_organ/on_remove()
 	if(duration <= 0)
-		to_chat(owner, span_warning("Your craving for warm, blood-rich flesh returns."))
+		to_chat(owner, span_warning("Your craving for flesh returns."))

@@ -37,27 +37,27 @@
 	//If vamp does not have eatfood trait they will randomly throw up rejected chemicals. Otherwise they can decide when to do it
 	if(!HAS_TRAIT(owner, TRAIT_EAT_FOOD))
 		if(SPT_PROB(5, seconds_per_tick) && owner.kindred_rejected_volume() > 0)
-			owner.kindred_purge_food(span_warning("Your dead flesh rejects it. It comes back up as cold, spoiled vitae."))
+			owner.kindred_purge_food(span_warning("Your body rejects it. It comes back up as spoiled vitae."))
 		return
 
 	//Vamps with eatfood trait gets a warning when theres enough rejected chemicals in bloodstream.
 	var/rejected_volume = owner.kindred_rejected_volume()
 	if(rejected_volume >= EAT_FOOD_REJECTION_LIMIT)
-		owner.kindred_purge_food(span_warning("Your stomach can't hold any more of it. It all comes heaving back up in a rush of spoiled vitae."))
+		owner.kindred_purge_food(span_warning("Your body can't hold any more of it. It comes back up as spoiled vitae."))
 		warned_food_rejection = FALSE
 	else if(rejected_volume > EAT_FOOD_REJECTION_WARNING)
 		if(!warned_food_rejection)
-			to_chat(owner, span_warning("Something you've taken in sits heavy and wrong in your dead gut. It won't stay down much longer. (You may use IC > Purge to throw it up.)"))
+			to_chat(owner, span_warning("Something you've taken in sits heavy and wrong in your gut. It won't stay down much longer. (You may use IC > Purge to throw it up.)"))
 			warned_food_rejection = TRUE
 	else
 		warned_food_rejection = FALSE
 
 //Verb for players with eatfood
-GAME_VERB_PROC_DESC(/mob/living/carbon/human, kindred_purge, "Purge", "Throw up everything your dead body can't take in.", "IC")
+GAME_VERB_PROC_DESC(/mob/living/carbon/human, kindred_purge, "Purge", "Throw up everything your body can't take in.", "IC")
 	if(!get_kindred_splat(src) || IS_UNCONSCIOUS_OR_CRIT(src))
 		return
 	if(kindred_rejected_volume() <= 0)
-		to_chat(src, span_warning("There's nothing in you that your body needs to reject."))
+		to_chat(src, span_warning("There's nothing in your body that needs to reject."))
 		return
 	kindred_purge_food(span_warning("You force yourself to bring up what your dead body can't use, along with a mouthful of spoiled vitae."))
 
