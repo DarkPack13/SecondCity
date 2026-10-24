@@ -105,6 +105,12 @@
 	var/metabolized_volume = reagent.compute_metabolization(owner, seconds_per_tick)
 	var/metabolization_ratio = REM * metabolized_volume
 
+	// DARKPACK EDIT ADD START - Liverless mobs don't start metabolizing what they can't metabolize (#1372)
+	if(!reagent.metabolizing && (!liverless || reagent.self_consuming))
+		reagent.metabolizing = TRUE
+		reagent.on_mob_metabolize(owner)
+	// DARKPACK EDIT ADD END
+
 	var/tick_return = owner.reagent_tick(reagent, seconds_per_tick, metabolization_ratio)
 	if(tick_return & COMSIG_MOB_STOP_REAGENT_TICK)
 		return FALSE

@@ -21,6 +21,7 @@
 	to_chat(src, message)
 	var/turf/location = get_turf(src)
 	location?.add_vomit_floor(src, /obj/effect/decal/cleanable/vomit/spoiled_vitae, purge_ratio = 0)
+	playsound(src, 'sound/effects/splat.ogg', 50, TRUE)
 
 	for(var/datum/reagent/reagent as anything in reagents.reagent_list.Copy())
 		if(kindred_rejects(reagent))
