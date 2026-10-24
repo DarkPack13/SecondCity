@@ -1,14 +1,18 @@
 #define KINDRED_REJECTION_PROB 5
 #define EAT_FOOD_REJECTION_WARNING 20
 #define EAT_FOOD_REJECTION_LIMIT 30
-///Fullness at which eating is refused (see TryToEat in edible.dm), minus the 10 it adds for the bite being eaten
-#define EAT_FOOD_FULLNESS_LIMIT 590
 
 ///Currently as nothing in blood metabolizes, blood will stuck in bloodstream and this fixes it
 /mob/living/carbon/proc/kindred_digest(seconds_per_tick)
 	for(var/datum/reagent/blood/blood in reagents.reagent_list.Copy())
 		if(!blood.self_consuming)
 			reagents.remove_reagent(blood.type, blood.metabolization_rate * metabolism_efficiency * seconds_per_tick)
+
+///kindred never get full they reject food instead
+/mob/living/carbon/human/get_fullness(only_consumable)
+	if(get_kindred_splat(src))
+		return nutrition //this does not cound nutrition in blood and stomach
+	return ..()
 
 /mob/living/carbon/proc/kindred_rejects(datum/reagent/reagent)
 	return !(reagent.self_consuming || istype(reagent, /datum/reagent/blood))
@@ -49,7 +53,7 @@
 	if(rejected_volume >= EAT_FOOD_REJECTION_LIMIT)
 		owner.kindred_purge_food(span_warning("Your body can't hold any more of it. It comes back up as spoiled vitae."))
 		warned_food_rejection = FALSE
-	else if(rejected_volume > EAT_FOOD_REJECTION_WARNING || owner.get_fullness() > EAT_FOOD_FULLNESS_LIMIT)
+	else if(rejected_volume > EAT_FOOD_REJECTION_WARNING)
 		if(!warned_food_rejection)
 			to_chat(owner, span_warning("Something you've taken in sits heavy and wrong in your gut. It won't stay down much longer. (You may use IC > Purge to throw it up.)"))
 			warned_food_rejection = TRUE
@@ -77,4 +81,3 @@ GAME_VERB_PROC_DESC(/mob/living/carbon/human, kindred_purge, "Purge", "Throw up 
 #undef KINDRED_REJECTION_PROB
 #undef EAT_FOOD_REJECTION_WARNING
 #undef EAT_FOOD_REJECTION_LIMIT
-#undef EAT_FOOD_FULLNESS_LIMIT
