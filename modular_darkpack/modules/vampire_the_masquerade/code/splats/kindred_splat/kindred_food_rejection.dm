@@ -1,5 +1,8 @@
+#define KINDRED_REJECTION_PROB 5
 #define EAT_FOOD_REJECTION_WARNING 20
 #define EAT_FOOD_REJECTION_LIMIT 30
+///Fullness at which eating is refused (see TryToEat in edible.dm), minus the 10 it adds for the bite being eaten
+#define EAT_FOOD_FULLNESS_LIMIT 590
 
 ///Currently as nothing in blood metabolizes, blood will stuck in bloodstream and this fixes it
 /mob/living/carbon/proc/kindred_digest(seconds_per_tick)
@@ -37,7 +40,7 @@
 
 	//If vamp does not have eatfood trait they will randomly throw up rejected chemicals. Otherwise they can decide when to do it
 	if(!HAS_TRAIT(owner, TRAIT_EAT_FOOD))
-		if(SPT_PROB(5, seconds_per_tick) && owner.kindred_rejected_volume() > 0)
+		if(SPT_PROB(KINDRED_REJECTION_PROB, seconds_per_tick) && owner.kindred_rejected_volume() > 0)
 			owner.kindred_purge_food(span_warning("Your body rejects it. It comes back up as spoiled vitae."))
 		return
 
@@ -46,7 +49,7 @@
 	if(rejected_volume >= EAT_FOOD_REJECTION_LIMIT)
 		owner.kindred_purge_food(span_warning("Your body can't hold any more of it. It comes back up as spoiled vitae."))
 		warned_food_rejection = FALSE
-	else if(rejected_volume > EAT_FOOD_REJECTION_WARNING)
+	else if(rejected_volume > EAT_FOOD_REJECTION_WARNING || owner.get_fullness() > EAT_FOOD_FULLNESS_LIMIT)
 		if(!warned_food_rejection)
 			to_chat(owner, span_warning("Something you've taken in sits heavy and wrong in your gut. It won't stay down much longer. (You may use IC > Purge to throw it up.)"))
 			warned_food_rejection = TRUE
@@ -58,7 +61,7 @@ GAME_VERB_PROC_DESC(/mob/living/carbon/human, kindred_purge, "Purge", "Throw up 
 	if(!get_kindred_splat(src) || IS_UNCONSCIOUS_OR_CRIT(src))
 		return
 	if(kindred_rejected_volume() <= 0)
-		to_chat(src, span_warning("There's nothing in your body that needs to reject."))
+		to_chat(src, span_warning("There's nothing in your body that needs to be rejected."))
 		return
 	kindred_purge_food(span_warning("You force yourself to bring up what your dead body can't use, along with a mouthful of spoiled vitae."))
 
@@ -71,5 +74,7 @@ GAME_VERB_PROC_DESC(/mob/living/carbon/human, kindred_purge, "Purge", "Throw up 
 	color = BLOOD_COLOR_RED
 	beauty = -100
 
+#undef KINDRED_REJECTION_PROB
 #undef EAT_FOOD_REJECTION_WARNING
 #undef EAT_FOOD_REJECTION_LIMIT
+#undef EAT_FOOD_FULLNESS_LIMIT
