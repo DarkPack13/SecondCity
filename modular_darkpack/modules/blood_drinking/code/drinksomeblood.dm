@@ -1,4 +1,10 @@
 /mob/living/carbon/human/proc/drinksomeblood(mob/living/drunk_from, first_drink = FALSE)
+	// Conspicuous Consumption stops drinking once their craving for flesh returns
+	if(HAS_TRAIT(src, TRAIT_CONSPICUOUS_CONSUMPTION) && !has_status_effect(/datum/status_effect/ate_organ))
+		to_chat(src, span_warning("Blood alone won't satisfy you. You need to devour flesh first."))
+		remove_drinking_overlay(drunk_from)
+		return
+
 	COOLDOWN_START(src, drinkblood_use_cd, 3 SECONDS)
 	update_drinking_overlay(drunk_from)
 

@@ -76,6 +76,12 @@
 					SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 					return
 
+			// Conspicuous Consumption flaw, needs to have devoured flesh recently. The ate_organ status lasts 90 seconds after biting an organ
+			if(HAS_TRAIT(src, TRAIT_CONSPICUOUS_CONSUMPTION) && !has_status_effect(/datum/status_effect/ate_organ))
+				to_chat(src, span_warning("Blood alone won't satisfy you. You need to devour flesh first."))
+				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
+				return
+
 			if(get_kindred_splat(src))
 				bit_living.emote("groan")
 			else if(get_ghoul_splat(src))
