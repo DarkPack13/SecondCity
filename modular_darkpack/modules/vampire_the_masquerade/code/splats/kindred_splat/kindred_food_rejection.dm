@@ -67,7 +67,7 @@ GAME_VERB_PROC_DESC(/mob/living/carbon/human, kindred_purge, "Purge", "Throw up 
 
 ///Fake blood which does not trigger frenzy
 /obj/effect/decal/cleanable/vomit/spoiled_vitae
-	name = "spoiled vitae"
+	name = "sticky blood"
 	desc = "A small pool of dark blood, it smells of rot."
 	icon_state = "gibbl1"
 	random_icon_states = list("gibbl1", "gibbl2", "gibbl3", "gibbl4", "gibbl5")
