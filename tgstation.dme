@@ -7463,6 +7463,7 @@
 #include "modular_darkpack\modules\cargo\code\supply_packs\weapons.dm"
 #include "modular_darkpack\modules\cars\code\car.dm"
 #include "modular_darkpack\modules\cars\code\car_actions.dm"
+#include "modular_darkpack\modules\cars\code\car_preferences.dm"
 #include "modular_darkpack\modules\cars\code\car_subsystem.dm"
 #include "modular_darkpack\modules\cars\code\gas.dm"
 #include "modular_darkpack\modules\cars\code\subtypes.dm"

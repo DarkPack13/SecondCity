@@ -642,6 +642,8 @@
 
 	if(!steering || !speed)
 		return
+	if(speed < 0 && !driver.client?.prefs?.read_preference(/datum/preference/toggle/enable_legacy_driving_controls))
+		steering = -steering
 	var/turn_rate = min(abs(speed), 60) * seconds
 	if(braking)
 		turn_rate *= 1 + clamp(driver.st_get_stat(STAT_DRIVE)/4, 0.25, 4)
