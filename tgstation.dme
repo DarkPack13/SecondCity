@@ -7786,7 +7786,6 @@
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\betrayers_mark.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\blind.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\cast_no_reflection.dm"
-#include "modular_darkpack\modules\merits_flaws\code\negative_quirks\conspicuous_consumption.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\deaf.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\derangement.dm"
 #include "modular_darkpack\modules\merits_flaws\code\negative_quirks\disfigured.dm"
