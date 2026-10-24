@@ -55,7 +55,7 @@
 		if(data?["donor"])
 			LAZYOR(exposed_mob.mobs_tasted_blood_of, data["donor"])
 		if((!istype(src, /datum/reagent/blood/vitae)) && get_kindred_splat(exposed_mob) && !HAS_TRAIT(exposed_mob, TRAIT_THIRST_OF_AGES))
-			if(get_splat_with_vitae(exposed_mob))
+			if(get_splat_with_vitae(exposed_mob) && exposed_mob.can_feed_on_blood())
 				//100u of vitae = 1bp, keeping consistent w/ give vitae action. 200u of normal blood = 1 bp
 				exposed_mob.adjust_blood_pool(reac_volume * 0.005)
 // DARKPACK EDIT ADD END

@@ -1,4 +1,9 @@
 /mob/living/carbon/human/proc/drinksomeblood(mob/living/drunk_from, first_drink = FALSE)
+	// Feeding can stop partway through, like when Conspicuous Consumption's craving for flesh returns
+	if(!can_feed_on_blood())
+		remove_drinking_overlay(drunk_from)
+		return
+
 	COOLDOWN_START(src, drinkblood_use_cd, 3 SECONDS)
 	update_drinking_overlay(drunk_from)
 

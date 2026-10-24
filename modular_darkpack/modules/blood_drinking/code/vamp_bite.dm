@@ -76,6 +76,11 @@
 					SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 					return
 
+			// Flaws like Conspicuous Consumption can stop feeding, they give their own message
+			if(!can_feed_on_blood())
+				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
+				return
+
 			if(get_kindred_splat(src))
 				bit_living.emote("groan")
 			else if(get_ghoul_splat(src))

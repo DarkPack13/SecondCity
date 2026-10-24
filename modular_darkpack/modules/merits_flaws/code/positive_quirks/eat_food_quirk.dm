@@ -17,3 +17,7 @@
 	tongue?.liked_foodtypes = initial(tongue.liked_foodtypes)
 	tongue?.disliked_foodtypes = initial(tongue.disliked_foodtypes)
 	tongue?.toxic_foodtypes = initial(tongue.toxic_foodtypes)
+	add_verb(human_holder, /mob/living/carbon/human/proc/kindred_purge)
+
+/datum/quirk/darkpack/eat_food/remove()
+	remove_verb(quirk_holder, /mob/living/carbon/human/proc/kindred_purge)
