@@ -1,17 +1,13 @@
 #define EAT_FOOD_REJECTION_WARNING 20
 #define EAT_FOOD_REJECTION_LIMIT 30
 
+///currently as nothing in blood metabolizes, blood will stuck in bloodstream and this fixes it
 /mob/living/carbon/proc/kindred_digest(seconds_per_tick)
-	var/list/to_digest = list()
-	for(var/datum/reagent/reagent as anything in reagents.reagent_list)
-		if(reagent.self_consuming)
-			continue
-		if(istype(reagent, /datum/reagent/blood))
-			to_digest[reagent.type] = reagent.metabolization_rate * metabolism_efficiency * seconds_per_tick
-	for(var/reagent_type in to_digest)
-		reagents.remove_reagent(reagent_type, to_digest[reagent_type])
+	for(var/datum/reagent/blood/blood in reagents.reagent_list.Copy())
+		if(!blood.self_consuming)
+			reagents.remove_reagent(blood.type, blood.metabolization_rate * metabolism_efficiency * seconds_per_tick)
 
-///if theres anything that is not blood/self_consuming, kindred will vomit
+///anything that is not blood/self_consuming
 /mob/living/carbon/proc/kindred_rejects(datum/reagent/reagent)
 	if(reagent.self_consuming || istype(reagent, /datum/reagent/blood))
 		return FALSE
@@ -50,7 +46,7 @@
 	var/warned_food_rejection = FALSE
 
 /datum/splat/vampire/kindred/proc/handle_food_rejection(seconds_per_tick)
-	if(owner.stat >= HARD_CRIT || HAS_TRAIT(owner, TRAIT_KNOCKEDOUT))
+	if(IS_UNCONSCIOUS_OR_CRIT(owner))
 		return
 
 	if(!HAS_TRAIT(owner, TRAIT_EAT_FOOD))
@@ -70,7 +66,7 @@
 		warned_food_rejection = FALSE
 
 GAME_VERB_PROC_DESC(/mob/living/carbon/human, kindred_purge, "Purge", "Throw up everything your dead body can't take in.", "IC")
-	if(!get_kindred_splat(src) || stat >= HARD_CRIT || HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+	if(!get_kindred_splat(src) || IS_UNCONSCIOUS_OR_CRIT(src))
 		return
 	if(kindred_rejected_volume() <= 0)
 		to_chat(src, span_warning("There's nothing in you that your body needs to reject."))

@@ -156,7 +156,6 @@
 
 		COOLDOWN_START(src, frenzy_target_check_cooldown, 1 TURNS)
 
-	//Kindred can only take in blood(and food, with Eat Food), anything else gets thrown back up
 	owner.kindred_digest(seconds_per_tick)
 	handle_food_rejection(seconds_per_tick)
 
