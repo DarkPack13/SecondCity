@@ -165,11 +165,9 @@
 		else
 			metabolizing_out *= affected_mob.metabolism_efficiency
 
-	/* DARKPACK EDIT REMOVAL START - Moved to metabolize_reagent(), so liverless mobs don't start metabolizing what they can't metabolize (#1372)
 	if(!metabolizing)
 		metabolizing = TRUE
 		on_mob_metabolize(affected_mob)
-	*/ // DARKPACK EDIT REMOVAL END
 
 	return min(metabolizing_out, volume)
 
