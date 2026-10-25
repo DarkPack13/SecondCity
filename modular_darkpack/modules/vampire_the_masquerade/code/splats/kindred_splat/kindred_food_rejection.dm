@@ -28,6 +28,7 @@
 	to_chat(src, message)
 	var/turf/location = get_turf(src)
 	location?.add_vomit_floor(src, /obj/effect/decal/cleanable/vomit/spoiled_vitae, purge_ratio = 0)
+	reagents.del_reagent(/datum/reagent/blood/vitae)// without eat food, kindred may get less vitae when eating organs
 
 	for(var/datum/reagent/reagent as anything in reagents.reagent_list.Copy())
 		if(kindred_rejects(reagent))

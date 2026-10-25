@@ -41,5 +41,5 @@
 
 /datum/reagent/blood/vitae/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
-	if((get_ghoul_splat(affected_mob) || get_kindred_splat(affected_mob)) && affected_mob.can_feed_on_blood())
+	if(get_ghoul_splat(affected_mob) || get_kindred_splat(affected_mob))
 		affected_mob.adjust_blood_pool(metabolization_rate * 0.005 * seconds_per_tick)
