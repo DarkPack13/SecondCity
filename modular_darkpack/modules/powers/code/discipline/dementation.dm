@@ -231,6 +231,7 @@ vanishing up into the night sky.” Avoid stating plainly,
 “You learn that this ghoul is the minion of a powerful
 Methuselah.”
 */
+#define TRAIT_CHAOS_EYE_COOLDOWN "Eyes of Chaos Cooldown"
 
 /datum/discipline_power/dementation/eyes_of_chaos
 	name = "Eyes of Chaos"
@@ -246,26 +247,42 @@ Methuselah.”
 	vitae_cost = 1
 	var/list/choice_options = list("Secrets", "Information",)
 	var/datum/tgui_window/eyes_of_chaos_window
-	var/list/available_options = list()
-	var/list/selected_options = list()
+	var/list/cooldowned_targets
 
 /datum/discipline_power/dementation/eyes_of_chaos/proc/update_choices()
 	choice_options["Secrets"] = icon('modular_darkpack/modules/powers/icons/dementation.dmi', "scroll_icon")
 	choice_options["Information"] = icon('modular_darkpack/modules/powers/icons/dementation.dmi', "eye_brain_icon")
 
-/datum/discipline_power/dementation/eyes_of_chaos/proc/open_chaos_eyes_window(mob/living/carbon/human/target)
+/*/datum/discipline_power/dementation/eyes_of_chaos/proc/target_cooldown_check(mob/living/carbon/human/target)
+	var/datum/discipline/dementation/owner_discipline = discipline
+	if(LAZYLEN(owner_discipline.cooldowned_targets))
+		for(var/datum/weakref/ref in owner_discipline.cooldowned_targets)
+			var/mob/living/carbon/human/cooldowned = ref.resolve()
+			if(!cooldowned)
+				LAZYREMOVE(owner_discipline.botched_targets, ref)
+				continue
+			if(cooldowned == target)
+				to_chat(owner, span_warning("Your previous botched attempt has made [target] resistant to your Dominate for the rest of the night."))
+				return FALSE*/
+
+/datum/discipline_power/dementation/eyes_of_chaos/proc/secrets_picking(mob/living/carbon/human/target)
 	var/exploitable_information = sanitize_text(target.client?.prefs.read_preference(/datum/preference/text/exploitable))
 	to_chat(owner, span_notice("You search [target]'s mind... [exploitable_information]"))
 	playsound(owner, 'sound/items/haunted/ghostitemattack.ogg', 30, vary = TRUE)
 
 /datum/discipline_power/dementation/eyes_of_chaos/proc/information_picking(message)
-      playsound(owner, 'sound/items/haunted/ghostitemattack.ogg', 30, vary = TRUE)
-      owner.malkavian_voices("[message]", range=4)
+    playsound(owner, 'sound/items/haunted/ghostitemattack.ogg', 30, vary = TRUE)
+    owner.malkavian_voices("[message]", range=4)
+
+/datum/discipline_power/dementation/eyes_of_chaos/proc/target_cooldown_ended(mob/living/carbon/human/target)
+	if(!target || QDELETED(target))
+		return
+	REMOVE_TRAIT(target, TRAIT_CHAOS_EYE_COOLDOWN, TRAIT_GENERIC)
 
 /datum/discipline_power/dementation/eyes_of_chaos/proc/display_select_menu(mob/living/carbon/human/target)
-	if (sanitize_text(target.client?.prefs.read_preference(/datum/preference/text/exploitable)) == EXPLOITABLE_DEFAULT_TEXT)
-		choice_options = list("Information",)
 	update_choices()
+	if (sanitize_text(target.client?.prefs.read_preference(/datum/preference/text/exploitable)) == EXPLOITABLE_DEFAULT_TEXT)
+		choice_options = list("Information")
 	var/chosen_option = show_radial_menu(owner, target, choice_options, target, radius = 36, tooltips = TRUE)
 	if(!chosen_option)
 		return FALSE
@@ -286,7 +303,7 @@ Methuselah.”
 #define OPTION_SECOND_PRESENCE "Second Presence" // Split Personality or Imaginary Friend
 #define OPTION_DIABLERIE "Diablerie"
 #define OPTION_COUNTRY_OF_ORIGIN "Country of Origin"
-#define OPTION_WYRM_TAINTED "Wyrm-Taint" // Tainted forms and trait, sub-7 humanity vampires
+#define OPTION_WYRM_TAINTED "Wyrm-Taint" // Wyrm-Tainted or Sub-7 Humanity
 #define OPTION_WILLPOWER "Permanent Willpower"
 #define OPTION_SPLAT "Splat"
 #define OPTION_BREED "Breed"
@@ -331,7 +348,6 @@ Methuselah.”
 #define OPTION_DEAF "Deaf"
 #define OPTION_DECEPTIVE_AURA "Deceptive Aura"
 #define OPTION_PALE_AURA "Pale Aura"
-#define OPTION_METAL_WEAKNESS "Metal Weakness" // Gold or Silver
 #define OPTION_DEATH_STILLNESS "Stillness of Death" // Gargoyle Trait
 #define OPTION_SENSITIVE_HUMANITY "Sensitive Humanity"
 #define OPTION_TIME_SENSE "Time Sense"
@@ -340,7 +356,7 @@ Methuselah.”
 #define OPTION_FANGS "Fangs" // Dulled or Prominent Fangs
 
 	// Add options to the master list if conditions are met. "Information" will draw from "available_options".
-	available_options = list(OPTION_BIOLOGICAL_AGE, OPTION_WILLPOWER, OPTION_SPLAT)
+	var/list/available_options = list(OPTION_BIOLOGICAL_AGE, OPTION_WILLPOWER, OPTION_SPLAT)
 	if (get_kindred_splat(target)) // Vampire
 		available_options += list(OPTION_DISCIPLINES, OPTION_GENERATION, OPTION_MORALITY_PATH, OPTION_HUMANITY, OPTION_CLAN)
 	if (get_ghoul_splat(target)) // Ghoul
@@ -353,28 +369,28 @@ Methuselah.”
 		available_options += list(OPTION_COUNTRY_OF_ORIGIN, OPTION_CHARACTER_NAME)
 	if (target.client?.prefs && get_kindred_splat(target)) // (Literally just for Immortal Age)
 		available_options += list(OPTION_IMMORTAL_AGE)
-	if (HAS_TRAIT(target, TRAIT_POSSIBLE_WYRM) || get_kindred_splat(target) && target.st_get_stat(STAT_MORALITY) <= 7) // Wyrm-Tainted or Sub-7 Humanity
+	if (HAS_TRAIT(target, TRAIT_POSSIBLE_WYRM) || get_kindred_splat(target) && target.st_get_stat(STAT_MORALITY) <= 7)
 		available_options += list(OPTION_WYRM_TAINTED)
 	if (length(target.get_traumas())) // If Brain Trauma(s)
 		if (target.has_trauma_type(/datum/brain_trauma/severe/split_personality) || target.has_trauma_type(/datum/brain_trauma/special/imaginary_friend))
-			available_options += list(OPTION_SECOND_PRESENCE) // Split Personality / Imaginary Friend
+			available_options += list(OPTION_SECOND_PRESENCE)
 		else
 			available_options += list(OPTION_BRAIN_TRAUMA)
-	if (HAS_TRAIT(target, TRAIT_DIABLERIE)) // Diablerist
+	if (HAS_TRAIT(target, TRAIT_DIABLERIE))
 		available_options += list(OPTION_DIABLERIE)
-	if (target.has_status_effect(/datum/status_effect/blood_bond) || HAS_TRAIT(target, TRAIT_UNBONDABLE)) // Blood Bond & Unbondable
+	if (target.has_status_effect(/datum/status_effect/blood_bond) || HAS_TRAIT(target, TRAIT_UNBONDABLE))
 		available_options += list(OPTION_BLOOD_BONDED)
-	if (target.current_emotion != initial(target.current_emotion)) // Emotions if they have been changed atleast once
+	if (target.current_emotion != initial(target.current_emotion))
 		available_options += list(OPTION_EMOTION)
 	if (HAS_TRAIT(target, TRAIT_FORCED_EMOTION) || target.has_status_effect(/datum/status_effect/awe) || target.has_status_effect(/datum/status_effect/dread_gaze)) //DARKPACK TODO Presence 3-5 do not have tied status effects currently, cannot nicely check for them until that
 		available_options += list(OPTION_IS_INFLUENCED)
-	if (target.possessed == TRUE || target.conditioner) // Dominate 4 & 5
+	if (target.possessed == TRUE || target.conditioner)
 		available_options += list(OPTION_IS_DOMINATED)
 	if (get_kindred_splat(target))
-		var/datum/splat/vampire/kindred/target_kindred = get_kindred_splat(target) // If defined Sire
+		var/datum/splat/vampire/kindred/target_kindred = get_kindred_splat(target)
 		if (target_kindred.sire != null)
 			available_options += list(OPTION_HAS_SIRE)
-	if (target.killed_count > 0) // If Killcount above 0 in-round
+	if (target.killed_count > 0)
 		available_options += list(OPTION_HAS_KILLED)
 	if (HAS_TRAIT(target, TRAIT_ORGANOVORE) || HAS_TRAIT(target, TRAIT_ANTHROPIC_TASTE) || HAS_TRAIT(target, TRAIT_THIRST_OF_AGES) || HAS_TRAIT(target, TRAIT_EAT_FOOD))
 		available_options += list(OPTION_FEEDING_SPECIFICATIONS)
@@ -446,8 +462,6 @@ Methuselah.”
 		available_options += list(OPTION_DECEPTIVE_AURA)
 	if (target.has_quirk(/datum/quirk/darkpack/pale_aura)) // Needs quirk not trait specifically
 		available_options += list(OPTION_PALE_AURA)
-	if (HAS_TRAIT(target, TRAIT_SILVER_WEAKNESS) || HAS_TRAIT(target, TRAIT_GOLD_WEAKNESS))
-		available_options += list(OPTION_METAL_WEAKNESS)
 	if (HAS_TRAIT(target, TRAIT_STILLNESS_OF_DEATH))
 		available_options += list(OPTION_DEATH_STILLNESS)
 	if (HAS_TRAIT(target, TRAIT_SENSITIVE_HUMANITY))
@@ -463,11 +477,14 @@ Methuselah.”
 
 	switch (chosen_option)
 		if ("Secrets")
-			open_chaos_eyes_window(target)
+			secrets_picking(target)
+			ADD_TRAIT(target, TRAIT_CHAOS_EYE_COOLDOWN, TRAIT_GENERIC)
+			addtimer(CALLBACK(src, PROC_REF(target_cooldown_ended), target), 5 MINUTES)
 		if ("Information")
 			var/nMessage = 0
 			var/message
-			for (var/i in 1 to 3)
+			var/list/selected_options = list()
+			for (var/list_draw in 1 to 3)
 				selected_options += pick_n_take(available_options)
 			for (var/option in selected_options)
 				switch (option)
@@ -485,14 +502,14 @@ Methuselah.”
 						message = ("We count [target.age] rings within their shell. Each embedded with many stories to tell.")
 					if (OPTION_CLAN) // NOTE - Potentially expand to a unique message for all clans (that might take a while)
 						if (target.is_clan(/datum/subsplat/vampire_clan/caitiff))
-							message = ("No bloodline can be distilled out of [target]... An absence of clan in a world where such is ever-important.")
+							message = ("No bloodline can be distilled out of [target]... An absence of clan in a place where such is ever-important.")
 						else if (get_kindred_splat(target))
 							message = ("Blood is thicker than water in this world; the [target.get_clan()] lineage seems to have made [target] their own.")
 					if (OPTION_TRIBE) // NOTE - Potentially expand to a unique message for all tribes
 						if (target.get_our_tribe(/datum/subsplat/werewolf/tribe/garou/blackspiraldancers))
-							message = ("[target] has peered into the spiraling abyss; coming back changed, twisted... Yet craving more. The madness they've lostthemselves 	to may ev			outshine ours")
+							message = ("[target] has peered into the spiraling abyss; coming back changed, twisted... Yet craving more. The madness they've lost themselves to may even outshine ours!")
 						else if (target.get_our_tribe(/datum/subsplat/werewolf/tribe/garou/ronin))
-							message = ("An outcast amongst their kind, [target] finds little solace found in the kin around them — a dire predicament for such a being")
+							message = ("An outcast amongst their kind, [target] finds little solace found in the kin around them — a dire predicament for such a being.")
 						else
 							message = ("[target] is amongst the [target.get_our_tribe()] through one way or another — faithful to the principles of such a family.")
 					if (OPTION_DISCIPLINES)
@@ -565,7 +582,7 @@ Methuselah.”
 							message = ("[target]'s abnormal biology surpasses the bonding nature of vitae; no chains of blood can be placed on them — only the call of addiction.")
 						else
 							var/datum/status_effect/blood_bond/target_blood_bond = target.has_status_effect(/datum/status_effect/blood_bond) // Lets us access regnant_name here
-							message = ("Chains interlock [target]'s blood — binding them to another. the call of [target_blood_bond.regnant_name.real_name] beckons themin 	some way 			form.")
+							message = ("Chains interlock [target]'s blood — binding them to another. the call of [target_blood_bond.regnant_name.real_name] beckons them in some way or form.")
 					if (OPTION_WYRM_TAINTED)
 						if (get_kindred_splat(target) && (HAS_TRAIT(target, TRAIT_HIDDEN_WYRMTAINT))) // if Vampire with hidden Wyrmtaint
 							message = ("A faint glimmer of decay is embracing [target].")
@@ -596,17 +613,17 @@ Methuselah.”
 					if (OPTION_WILLPOWER)
 						switch (target.st_get_stat(STAT_PERMANENT_WILLPOWER))
 							if (0)
-								message = ("Your target has had all the desires of life crushed under the heel of oblivion; naught even the will to pursue the embraceof death.")
+								message = ("Your target has had all the desires of life crushed under the heel of oblivion; naught even the will to pursue the embrace of death.")
 							if (1,2)
 								message = ("[target] has sparse determination. To navigate the challenges of life drains the little will still had.")
 							if (3,4)
-								message = ("The average will of the world; the character of [target] is nothing too special — a personality firm yet moldable.")
+								message = ("The average will of the world; the character of [target] is nothing remarkable — a personality firm yet moldable.")
 							if (5,6)
-								message = ("Strength of character is a trait seen prominently in this one; an above respectable personhood and the will to ward itfaltering.")
+								message = ("Strength of character is a trait seen prominently in this one; a respectable personhood and the will to ward it from faltering.")
 							if (7)
-								message = ("Such fortitude of the mind is rarely seen indeed... Beginning to bridge the gap between the impressive andextraordinary!")
+								message = ("Such fortitude of the mind is rarely seen indeed... Beginning to bridge the gap between the impressive and extraordinary!")
 							if (8,9)
-								message = ("The nature of [target]'s ego is within the realm of fanatical. A near unbreakable resolve to face the woes of this darkworld.")
+								message = ("The nature of [target]'s ego is within the realm of fanatical. A near unbreakable resolve to face the woes of this dark world.")
 							if (10 to INFINITY)
 								message = ("The temple of [target]'s mind is a sacred place unsullied by the horrors of the world; their unfaltering will has no equal")
 					if (OPTION_SPLAT)
@@ -685,7 +702,7 @@ Methuselah.”
 					if (OPTION_AUSPICE)
 						switch (target.get_our_auspice().name)
 							if (AUSPICE_AHROUN)
-								message = ("An embodiment of the Moon's rage; battle is ingrained within their very being! Renown and glory are vital parts ofthemselves.")
+								message = ("An embodiment of the Moon's rage; battle is ingrained within their very being! Renown and glory are vital parts of themselves.")
 							if (AUSPICE_PHILODOX)
 								message = ("A creature of balance and order; a tempered mind able to see both sides — honor and wisdom define them.")
 							if (AUSPICE_GALLIARD)
@@ -851,11 +868,6 @@ Methuselah.”
 						message = ("The true face of [target] is masked by an aura of lies — pretending to have some semblance of fictitious life.")
 					if (OPTION_PALE_AURA)
 						message = ("The mortal before us has a facade most convincing, the essence of the damned in all but body.")
-					if (OPTION_METAL_WEAKNESS)
-						if (HAS_TRAIT(target, TRAIT_GOLD_WEAKNESS))
-							message = ("Glistening gold bejewels this individual in agonizing pain.")
-						else if (HAS_TRAIT(target, TRAIT_SILVER_WEAKNESS))
-							message = ("Shimmering silver adorns this individual with seering scorches.")
 					if (OPTION_DEATH_STILLNESS)
 						message = ("Deep-rooted stillness is a comfortable part of the eternal life of this one.")
 					if (OPTION_SENSITIVE_HUMANITY)
@@ -876,6 +888,8 @@ Methuselah.”
 							message = ("Vicious fangs pierce through the gums of [target] with sanguineous pride!")
 				addtimer(CALLBACK(src, PROC_REF(information_picking), message), nMessage*2 SECONDS)
 				nMessage+=1
+			ADD_TRAIT(target, TRAIT_CHAOS_EYE_COOLDOWN, TRAIT_GENERIC)
+			addtimer(CALLBACK(src, PROC_REF(target_cooldown_ended), target), 5 MINUTES)
 
 #undef OPTION_IMMORTAL_AGE
 #undef OPTION_BIOLOGICAL_AGE
@@ -936,7 +950,6 @@ Methuselah.”
 #undef OPTION_DEAF
 #undef OPTION_DECEPTIVE_AURA
 #undef OPTION_PALE_AURA
-#undef OPTION_METAL_WEAKNESS
 #undef OPTION_DEATH_STILLNESS
 #undef OPTION_SENSITIVE_HUMANITY
 #undef OPTION_TIME_SENSE
@@ -946,18 +959,23 @@ Methuselah.”
 
 /datum/discipline_power/dementation/eyes_of_chaos/pre_activation_checks(mob/living/carbon/human/target)
 	var/mypower = SSroll.storyteller_roll_datum(owner, target, difficulty = 7, applic_stats = list(STAT_PERCEPTION, STAT_OCCULT), numerical = FALSE)
-	if(target == owner)
+	if (target == owner)
 		return TRUE
-	switch(mypower)
-		if(ROLL_SUCCESS)
+	if (HAS_TRAIT(target, TRAIT_CHAOS_EYE_COOLDOWN))
+		to_chat(owner, span_warning("[target]'s mind is still sealed off from you for the next few minutes!"))
+		return FALSE
+	switch (mypower)
+		if (ROLL_SUCCESS)
 			return TRUE
-		if(ROLL_FAILURE, ROLL_BOTCH)
+		if (ROLL_FAILURE, ROLL_BOTCH)
 			to_chat(owner, span_warning("[target]'s mind resists you!"))
 			return FALSE
 
 /datum/discipline_power/dementation/eyes_of_chaos/activate(mob/living/carbon/human/target)
 	. = ..()
 	display_select_menu(target)
+
+#undef TRAIT_CHAOS_EYE_COOLDOWN
 
 /*
 From V20:
