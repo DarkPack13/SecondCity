@@ -8,12 +8,6 @@
 		if(!blood.self_consuming)
 			reagents.remove_reagent(blood.type, blood.metabolization_rate * metabolism_efficiency * seconds_per_tick)
 
-///kindred never get full they reject food instead
-/mob/living/carbon/human/get_fullness(only_consumable)
-	if(get_kindred_splat(src))
-		return nutrition //this does not cound nutrition in blood and stomach
-	return ..()
-
 /mob/living/carbon/proc/kindred_rejects(datum/reagent/reagent)
 	return !(reagent.self_consuming || istype(reagent, /datum/reagent/blood))
 
