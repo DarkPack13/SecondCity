@@ -26,13 +26,6 @@
 
 	adjust_blood_pool(amount, updating_health, on_spawn)
 
-/// Whether feeding on blood can give this mob blood points, Conspicuous Consumption stops it
-/mob/living/proc/can_feed_on_blood()
-	if(!has_quirk(/datum/quirk/darkpack/organovore))
-		return TRUE
-	to_chat(src, span_warning("Blood can not sustain you. You need to devour flesh or organs."))
-	return FALSE
-
 /// Runs a bite animation for biting people and biting people and biting p
 /mob/living/carbon/human/proc/add_bite_animation()
 	var/mutable_appearance/bite_overlay = mutable_appearance('modular_darkpack/modules/blood_drinking/icons/bite_overlay.dmi', "bite", -HALO_LAYER)

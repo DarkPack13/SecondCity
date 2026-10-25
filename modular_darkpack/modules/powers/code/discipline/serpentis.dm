@@ -122,7 +122,7 @@
 	. = ..()
 	target.adjust_blood_pool(-2)
 	target.apply_damage(12 * successes, AGGRAVATED)
-	if(owner.can_feed_on_blood())
+	if(!HAS_TRAIT(owner, TRAIT_CONSPICUOUS_CONSUMPTION))
 		owner.adjust_blood_pool(2)
 	var/obj/item/ammo_casing/magic/tentacle/casing = new (get_turf(owner))
 	casing.fire_casing(target, owner, null, null, null, ran_zone(), 0,  owner)
