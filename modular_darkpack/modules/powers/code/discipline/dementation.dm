@@ -244,44 +244,43 @@ Methuselah.”
 	cooldown_length = 2 TURNS // Return to 5
 	duration_length = 1 TURNS
 	activate_sound = null // dont play a sound
-	vitae_cost = 1
-	var/list/choice_options = list("Secrets", "Information",)
+	vitae_cost = 2
+	var/list/choice_options = list("Information", "Secrets")
 	var/datum/tgui_window/eyes_of_chaos_window
-	var/list/cooldowned_targets
+	var/datum/weakref/owner_weakref
 
-/datum/discipline_power/dementation/eyes_of_chaos/proc/update_choices()
+/datum/discipline_power/dementation/eyes_of_chaos/proc/update_choices(mob/living/carbon/human/target)
 	choice_options["Secrets"] = icon('modular_darkpack/modules/powers/icons/dementation.dmi', "scroll_icon")
 	choice_options["Information"] = icon('modular_darkpack/modules/powers/icons/dementation.dmi', "eye_brain_icon")
 
-/*/datum/discipline_power/dementation/eyes_of_chaos/proc/target_cooldown_check(mob/living/carbon/human/target)
-	var/datum/discipline/dementation/owner_discipline = discipline
-	if(LAZYLEN(owner_discipline.cooldowned_targets))
-		for(var/datum/weakref/ref in owner_discipline.cooldowned_targets)
-			var/mob/living/carbon/human/cooldowned = ref.resolve()
-			if(!cooldowned)
-				LAZYREMOVE(owner_discipline.botched_targets, ref)
-				continue
-			if(cooldowned == target)
-				to_chat(owner, span_warning("Your previous botched attempt has made [target] resistant to your Dominate for the rest of the night."))
-				return FALSE*/
-
+// Exploitable Text retrieval
 /datum/discipline_power/dementation/eyes_of_chaos/proc/secrets_picking(mob/living/carbon/human/target)
+	if (owner.client == null)
+		return
 	var/exploitable_information = sanitize_text(target.client?.prefs.read_preference(/datum/preference/text/exploitable))
 	to_chat(owner, span_notice("You search [target]'s mind... [exploitable_information]"))
 	playsound(owner, 'sound/items/haunted/ghostitemattack.ogg', 30, vary = TRUE)
 
+// Information option message function
 /datum/discipline_power/dementation/eyes_of_chaos/proc/information_picking(message)
-    playsound(owner, 'sound/items/haunted/ghostitemattack.ogg', 30, vary = TRUE)
-    owner.malkavian_voices("[message]", range=4)
-
-/datum/discipline_power/dementation/eyes_of_chaos/proc/target_cooldown_ended(mob/living/carbon/human/target)
-	if(!target || QDELETED(target))
+	if (owner.client == null)
 		return
-	REMOVE_TRAIT(target, TRAIT_CHAOS_EYE_COOLDOWN, TRAIT_GENERIC)
+	playsound(owner, 'sound/items/haunted/ghostitemattack.ogg', 30, vary = TRUE)
+	owner.malkavian_voices("[message]", range=4)
 
+// Cooldown between ability usage, individual cooldown per caster
+/datum/discipline_power/dementation/eyes_of_chaos/proc/target_cooldown(mob/living/carbon/human/target)
+	owner_weakref = WEAKREF(owner)
+	ADD_TRAIT(target, TRAIT_CHAOS_EYE_COOLDOWN, owner_weakref)
+	addtimer(TRAIT_CALLBACK_REMOVE(target, TRAIT_CHAOS_EYE_COOLDOWN, owner_weakref), 5 MINUTES)
+	if (target != owner)
+		to_chat(owner, span_notice("[target]'s mind begins to restructure itself; it shall open to us one more within 5 minutes."))
+
+// Radial Menu
 /datum/discipline_power/dementation/eyes_of_chaos/proc/display_select_menu(mob/living/carbon/human/target)
+	var/exploitable_information = sanitize_text(target.client?.prefs.read_preference(/datum/preference/text/exploitable))
 	update_choices()
-	if (sanitize_text(target.client?.prefs.read_preference(/datum/preference/text/exploitable)) == EXPLOITABLE_DEFAULT_TEXT)
+	if (exploitable_information == EXPLOITABLE_DEFAULT_TEXT)
 		choice_options = list("Information")
 	var/chosen_option = show_radial_menu(owner, target, choice_options, target, radius = 36, tooltips = TRUE)
 	if(!chosen_option)
@@ -298,7 +297,7 @@ Methuselah.”
 #define OPTION_MORALITY_PATH "Morality Path"
 #define OPTION_HUMANITY "Humanity"
 #define OPTION_BLOOD_BONDED "Blood Bonded" // Blood Bond or Unbondable
-#define OPTION_IS_INFLUENCED "Influenced" // Any power that would control, influence or coerce someone (excluding dominate)
+#define OPTION_IS_INFLUENCED "Influenced" // Any power that would control, influence or coerce someone (excluding Dominate)
 #define OPTION_IS_DOMINATED "Dominated" // Dominate 4 or 5
 #define OPTION_SECOND_PRESENCE "Second Presence" // Split Personality or Imaginary Friend
 #define OPTION_DIABLERIE "Diablerie"
@@ -308,11 +307,11 @@ Methuselah.”
 #define OPTION_SPLAT "Splat"
 #define OPTION_BREED "Breed"
 #define OPTION_GENERATION "Vampire Generation"
-#define OPTION_EMOTION "Aura Emotion"
+#define OPTION_EMOTION "Aura Emotion" // Current Emotion
 #define OPTION_CHARACTER_NAME "Character Name"
 #define OPTION_AUSPICE "Auspice"
 #define OPTION_HAS_SIRE "Sire"
-#define OPTION_HAS_KILLED "Murder Count"
+#define OPTION_HAS_KILLED "Kill Count"
 #define OPTION_FEEDING_SPECIFICATIONS "Feeding Specifications" // Organovore, Eat Food, Anthropic Taste, Thirst of the Ages
 #define OPTION_WILL "Will" // Untamable, Iron Will, Weak Willed, Weak to Dominate
 #define OPTION_SPIRIT_MARKS "Marks" // Betrayer's Mark, Aura of Confidence, Beacon of the Unholy
@@ -371,7 +370,7 @@ Methuselah.”
 		available_options += list(OPTION_IMMORTAL_AGE)
 	if (HAS_TRAIT(target, TRAIT_POSSIBLE_WYRM) || get_kindred_splat(target) && target.st_get_stat(STAT_MORALITY) <= 7)
 		available_options += list(OPTION_WYRM_TAINTED)
-	if (length(target.get_traumas())) // If Brain Trauma(s)
+	if (length(target.get_traumas()))
 		if (target.has_trauma_type(/datum/brain_trauma/severe/split_personality) || target.has_trauma_type(/datum/brain_trauma/special/imaginary_friend))
 			available_options += list(OPTION_SECOND_PRESENCE)
 		else
@@ -478,8 +477,7 @@ Methuselah.”
 	switch (chosen_option)
 		if ("Secrets")
 			secrets_picking(target)
-			ADD_TRAIT(target, TRAIT_CHAOS_EYE_COOLDOWN, TRAIT_GENERIC)
-			addtimer(CALLBACK(src, PROC_REF(target_cooldown_ended), target), 5 MINUTES)
+			target_cooldown(target)
 		if ("Information")
 			var/nMessage = 0
 			var/message
@@ -777,7 +775,7 @@ Methuselah.”
 							message = ("The boiling blood of this fiend fully defines their character with a dire volatility!")
 						else if (HAS_TRAIT(target, TRAIT_CALM_HEART))
 							message = ("We feel an unusual ease from their Beast within; trained, somehow, but a beast will always be a beast.")
-						else if  (target.has_quirk(/datum/quirk/darkpack/beserker))
+						else if (target.has_quirk(/datum/quirk/darkpack/beserker))
 							message = ("Behind bloodshot eyes lays some semblance of control, a method to the madness of rage.")
 						else if (HAS_TRAIT(target, TRAIT_DIFFICULT_FRENZY))
 							message = ("The psyche of [target] is eternally enduring the call of the Beast — ravenous frenzies forcing submissal.")
@@ -888,8 +886,7 @@ Methuselah.”
 							message = ("Vicious fangs pierce through the gums of [target] with sanguineous pride!")
 				addtimer(CALLBACK(src, PROC_REF(information_picking), message), nMessage*2 SECONDS)
 				nMessage+=1
-			ADD_TRAIT(target, TRAIT_CHAOS_EYE_COOLDOWN, TRAIT_GENERIC)
-			addtimer(CALLBACK(src, PROC_REF(target_cooldown_ended), target), 5 MINUTES)
+			target_cooldown(target)
 
 #undef OPTION_IMMORTAL_AGE
 #undef OPTION_BIOLOGICAL_AGE
@@ -961,8 +958,8 @@ Methuselah.”
 	var/mypower = SSroll.storyteller_roll_datum(owner, target, difficulty = 7, applic_stats = list(STAT_PERCEPTION, STAT_OCCULT), numerical = FALSE)
 	if (target == owner)
 		return TRUE
-	if (HAS_TRAIT(target, TRAIT_CHAOS_EYE_COOLDOWN))
-		to_chat(owner, span_warning("[target]'s mind is still sealed off from you for the next few minutes!"))
+	if (HAS_TRAIT_FROM(target, TRAIT_CHAOS_EYE_COOLDOWN, owner_weakref))
+		to_chat(owner, span_warning("[target]'s mind is still sealed off from you!"))
 		return FALSE
 	switch (mypower)
 		if (ROLL_SUCCESS)
