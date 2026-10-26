@@ -156,7 +156,7 @@
 
 		COOLDOWN_START(src, frenzy_target_check_cooldown, 1 TURNS)
 
-	owner.kindred_digest(seconds_per_tick)
+	owner.kindred_metabolize(seconds_per_tick)
 	handle_food_rejection(seconds_per_tick)
 
 
