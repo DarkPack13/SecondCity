@@ -13,7 +13,7 @@
 
 /mob/living/carbon/proc/kindred_rejected_volume()
 	var/rejected_volume = 0
-	for(var/datum/reagent/reagent as anything in reagents.reagent_list)
+	for(var/datum/reagent/reagent in reagents.reagent_list)
 		if(kindred_rejects(reagent))
 			rejected_volume += reagent.volume
 	return rejected_volume
@@ -24,7 +24,7 @@
 	location?.add_vomit_floor(src, /obj/effect/decal/cleanable/vomit/spoiled_vitae, purge_ratio = 0)
 	reagents.del_reagent(/datum/reagent/blood/vitae)// without eat food, kindred may get less vitae when eating organs
 
-	for(var/datum/reagent/reagent as anything in reagents.reagent_list.Copy())
+	for(var/datum/reagent/reagent in reagents.reagent_list.Copy())
 		if(kindred_rejects(reagent))
 			reagents.del_reagent(reagent.type)
 
