@@ -49,7 +49,7 @@
 		warned_food_rejection = FALSE
 	else if(rejected_volume > EAT_FOOD_REJECTION_WARNING)
 		if(!warned_food_rejection)
-			to_chat(owner, span_warning("Waste in body is building up in your gut. It won't stay down much longer. (You may use IC > Purge to throw it up.)"))
+			to_chat(owner, span_warning("Waste in body is building up in your gut. It won't stay down much longer."))
 			warned_food_rejection = TRUE
 	else
 		warned_food_rejection = FALSE
