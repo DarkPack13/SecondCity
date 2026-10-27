@@ -241,13 +241,14 @@ Methuselah.”
 	target_type = TARGET_HUMAN | TARGET_SELF
 	range = 7
 	multi_activate = TRUE
-	cooldown_length = 2 TURNS // Return to 5
+	cooldown_length = 5 TURNS
 	duration_length = 1 TURNS
 	activate_sound = null // dont play a sound
 	vitae_cost = 1
 	var/datum/tgui_window/eyes_of_chaos_window
 	var/datum/weakref/owner_weakref
 
+// Filter out Exploitable Text if absent
 /datum/discipline_power/dementation/eyes_of_chaos/proc/update_choices(mob/living/carbon/human/target) as /list
 	RETURN_TYPE(/list)
 	var/datum/record/crew/target_manifest = find_record(target.real_name)
