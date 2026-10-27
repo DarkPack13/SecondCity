@@ -254,7 +254,7 @@ Methuselah.”
 	var/datum/record/crew/target_manifest = find_record(target.real_name)
 	var/list/choice_options = list("Information")
 	choice_options["Information"] = icon('modular_darkpack/modules/powers/icons/dementation.dmi', "eye_brain_icon")
-	if (target_manifest.exploitable_information != EXPLOITABLE_DEFAULT_TEXT && target_manifest.exploitable_information != "")
+	if (!isnull(target_manifest) && (target_manifest.exploitable_information != EXPLOITABLE_DEFAULT_TEXT) && (target_manifest.exploitable_information != ""))
 		choice_options |= list("Secrets")
 		choice_options["Secrets"] = icon('modular_darkpack/modules/powers/icons/dementation.dmi', "scroll_icon")
 	return choice_options
@@ -432,7 +432,7 @@ Methuselah.”
 		available_options += list(OPTION_ACUTE_SENSES)
 	if (target.has_quirk(/datum/quirk/darkpack/seizures))
 		available_options += list(OPTION_SEIZURES)
-	if (target.has_quirk(/datum/quirk/darkpack/horrific_appearance) || target.has_quirk(/datum/quirk/darkpack/disfigured) || target.has_quirk(/datum/quirk/darkpack/monstrous) || HAS_TRAIT(target, TRAIT_MASQUERADE_VIOLATING_FACE))
+	if (HAS_TRAIT(target, TRAIT_HORRIFIC_APPEARANCE) || HAS_TRAIT(target, TRAIT_DISFIGURED_APPEARANCE) || HAS_TRAIT(target, TRAIT_MONSTROUS) || HAS_TRAIT(target, TRAIT_MASQUERADE_VIOLATING_FACE))
 		available_options += list(OPTION_APPEARANCE)
 	if (HAS_TRAIT(target, TRAIT_EASYBLEED))
 		available_options += list(OPTION_HEMOPHILIAC)
@@ -460,7 +460,7 @@ Methuselah.”
 		available_options += list(OPTION_BLIND)
 	if (HAS_TRAIT(target, TRAIT_DEAF))
 		available_options += list(OPTION_DEAF)
-	if (target.has_quirk(/datum/quirk/darkpack/deceptive_aura)) // Needs quirk not trait specifically
+	if (HAS_TRAIT(target, TRAIT_DECEPTIVE_AURA))
 		available_options += list(OPTION_DECEPTIVE_AURA)
 	if (target.has_quirk(/datum/quirk/darkpack/pale_aura)) // Needs quirk not trait specifically
 		available_options += list(OPTION_PALE_AURA)
@@ -482,12 +482,11 @@ Methuselah.”
 			secrets_picking(target)
 			target_cooldown(target)
 		if ("Information")
-			var/nMessage = 0
-			var/message
 			var/list/selected_options = list()
 			for (var/list_draw in 1 to 3)
 				selected_options += pick_n_take(available_options)
 			for (var/option in selected_options)
+				var/message
 				switch (option)
 					if (OPTION_IMMORTAL_AGE)
 						var/target_immortal_age = target?.client?.prefs.read_preference(/datum/preference/numeric/immortal_age) // Get Immortal Age
@@ -834,11 +833,11 @@ Methuselah.”
 					if (OPTION_SEIZURES)
 						message = "The paths of [target]'s neurons are prone to disruption leading to volatile results."
 					if (OPTION_APPEARANCE)
-						if (target.has_quirk(/datum/quirk/darkpack/horrific_appearance))
+						if (HAS_TRAIT(target, TRAIT_HORRIFIC_APPEARANCE))
 							message = "Our target endures more punishment from their bloodline than most of their ilk — a rot-claimed zombie." //Cappadocian Trait
-						else if (target.has_quirk(/datum/quirk/darkpack/monstrous))
+						else if (HAS_TRAIT(target, TRAIT_MONSTROUS))
 							message = "An inhumanely twisted form is bestowed upon [target]; more abberant than any mortal affliction could do."
-						else if (target.has_quirk(/datum/quirk/darkpack/disfigured))
+						else if (HAS_TRAIT(target, TRAIT_DISFIGURED_APPEARANCE))
 							message = "The visage before us bares a hideous, yet reasonable, disfigurement."
 						else if (HAS_TRAIT(target, TRAIT_MASQUERADE_VIOLATING_FACE))
 							message = "The utter outlandish appeareance we see here could never pass for anything less than the eldritch before the eyes of man."
@@ -890,8 +889,8 @@ Methuselah.”
 							message = "A defanged predator with the bite of a puppy, pitiful."
 						else if (HAS_TRAIT(target, TRAIT_PERMAFANGS))
 							message = "Vicious fangs pierce through the gums of [target] with sanguineous pride!"
-				addtimer(CALLBACK(src, PROC_REF(information_picking), message), nMessage*2 SECONDS)
-				nMessage+=1
+				addtimer(CALLBACK(src, PROC_REF(information_picking), message), length(selected_options) * 2 SECONDS)
+				selected_options -= option
 			target_cooldown(target)
 
 #undef OPTION_IMMORTAL_AGE
