@@ -18,7 +18,8 @@
 /mob/living/carbon/proc/kindred_purge_food(message)
 	to_chat(src, message)
 	var/turf/location = get_turf(src)
-	location?.add_vomit_floor(src, /obj/effect/decal/cleanable/vomit/spoiled_vitae, purge_ratio = 0)
+	if(location)
+		new /obj/effect/decal/cleanable/blood/spoiled_vitae(location, null, get_blood_dna_list())
 	reagents.del_reagent(/datum/reagent/blood/vitae)// without eat food, kindred may get less vitae when eating organs
 
 	for(var/datum/reagent/reagent in reagents.reagent_list.Copy())
@@ -62,14 +63,12 @@ GAME_VERB_PROC_DESC(/mob/living/carbon/human, kindred_purge, "Purge", "Throw up 
 		return
 	kindred_purge_food(span_warning("You force up the waste your body can't use."))
 
-//Fake blood which does not trigger frenzy
-/obj/effect/decal/cleanable/vomit/spoiled_vitae
-	name = "sticky blood"
+/obj/effect/decal/cleanable/blood/spoiled_vitae
 	desc = "A small pool of dark blood, it smells of rot."
 	icon_state = "gibbear1"
 	random_icon_states = list("gibbear1", "gibbear2", "gibbear3", "gibbear4", "gibbear5")
-	color = BLOOD_COLOR_DRIED
-	beauty = -100
+	bloodiness = 0
+	dry_desc = "A small pool of dark blood, it smells of rot."
 
 #undef KINDRED_REJECTION_PROB
 #undef EAT_FOOD_REJECTION_WARNING
