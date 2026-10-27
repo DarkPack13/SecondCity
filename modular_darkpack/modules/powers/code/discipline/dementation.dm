@@ -244,26 +244,31 @@ Methuselah.”
 	cooldown_length = 2 TURNS // Return to 5
 	duration_length = 1 TURNS
 	activate_sound = null // dont play a sound
-	vitae_cost = 2
-	var/list/choice_options = list("Information", "Secrets")
+	vitae_cost = 1
 	var/datum/tgui_window/eyes_of_chaos_window
 	var/datum/weakref/owner_weakref
 
-/datum/discipline_power/dementation/eyes_of_chaos/proc/update_choices(mob/living/carbon/human/target)
-	choice_options["Secrets"] = icon('modular_darkpack/modules/powers/icons/dementation.dmi', "scroll_icon")
+/datum/discipline_power/dementation/eyes_of_chaos/proc/update_choices(mob/living/carbon/human/target) as /list
+	RETURN_TYPE(/list)
+	var/datum/record/crew/target_manifest = find_record(target.real_name)
+	var/list/choice_options = list("Information")
 	choice_options["Information"] = icon('modular_darkpack/modules/powers/icons/dementation.dmi', "eye_brain_icon")
+	if (target_manifest.exploitable_information != EXPLOITABLE_DEFAULT_TEXT && target_manifest.exploitable_information != "")
+		choice_options |= list("Secrets")
+		choice_options["Secrets"] = icon('modular_darkpack/modules/powers/icons/dementation.dmi', "scroll_icon")
+	return choice_options
 
 // Exploitable Text retrieval
 /datum/discipline_power/dementation/eyes_of_chaos/proc/secrets_picking(mob/living/carbon/human/target)
-	if (owner.client == null)
+	if (owner.client == null) // Stops null errors from firing if client leaves
 		return
-	var/exploitable_information = sanitize_text(target.client?.prefs.read_preference(/datum/preference/text/exploitable))
-	to_chat(owner, span_notice("You search [target]'s mind... [exploitable_information]"))
+	var/datum/record/crew/target_manifest = find_record(target.real_name)
+	to_chat(owner, span_notice("You search [target]'s mind... [target_manifest.exploitable_information]"))
 	playsound(owner, 'sound/items/haunted/ghostitemattack.ogg', 30, vary = TRUE)
 
 // Information option message function
 /datum/discipline_power/dementation/eyes_of_chaos/proc/information_picking(message)
-	if (owner.client == null)
+	if (owner.client == null) // Stops null errors from firing if client leaves
 		return
 	playsound(owner, 'sound/items/haunted/ghostitemattack.ogg', 30, vary = TRUE)
 	owner.malkavian_voices("[message]", range=4)
@@ -278,11 +283,8 @@ Methuselah.”
 
 // Radial Menu
 /datum/discipline_power/dementation/eyes_of_chaos/proc/display_select_menu(mob/living/carbon/human/target)
-	var/exploitable_information = sanitize_text(target.client?.prefs.read_preference(/datum/preference/text/exploitable))
-	update_choices()
-	if (exploitable_information == EXPLOITABLE_DEFAULT_TEXT)
-		choice_options = list("Information")
-	var/chosen_option = show_radial_menu(owner, target, choice_options, target, radius = 36, tooltips = TRUE)
+	var/list/choices = update_choices(target)
+	var/chosen_option = show_radial_menu(owner, target, choices, target, radius = 36, tooltips = TRUE)
 	if(!chosen_option)
 		return FALSE
 	if(!do_after(owner, 2 TURNS))
