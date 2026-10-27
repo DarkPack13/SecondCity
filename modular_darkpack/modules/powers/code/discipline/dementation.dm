@@ -358,7 +358,11 @@ Methuselah.”
 
 	// Add options to the master list if conditions are met. "Information" will draw from "available_options".
 	var/list/available_options = list(OPTION_BIOLOGICAL_AGE, OPTION_WILLPOWER, OPTION_SPLAT, OPTION_CHARACTER_NAME)
-	if (get_kindred_splat(target)) // Vampire
+	var/datum/splat/vampire/kindred/target_kindred = get_kindred_splat(target)
+
+	if (target_kindred) // Vampire
+		if (!isnull(target_kindred.sire))
+			available_options += list(OPTION_HAS_SIRE)
 		available_options += list(OPTION_DISCIPLINES, OPTION_GENERATION, OPTION_MORALITY_PATH, OPTION_HUMANITY, OPTION_CLAN)
 	if (get_ghoul_splat(target)) // Ghoul
 		available_options += list(OPTION_DISCIPLINES)
@@ -368,9 +372,9 @@ Methuselah.”
 		available_options += list(OPTION_BREED)
 	if (target.client?.prefs) // If preferences (avoid issues with NPCs)
 		available_options += list(OPTION_COUNTRY_OF_ORIGIN)
-	if (target.client?.prefs && get_kindred_splat(target)) // (Literally just for Immortal Age)
+	if (target.client?.prefs && target_kindred) // (Literally just for Immortal Age)
 		available_options += list(OPTION_IMMORTAL_AGE)
-	if (HAS_TRAIT(target, TRAIT_POSSIBLE_WYRM) || get_kindred_splat(target) && target.st_get_stat(STAT_MORALITY) <= 7)
+	if (HAS_TRAIT(target, TRAIT_POSSIBLE_WYRM) || (target_kindred && target.st_get_stat(STAT_MORALITY) <= 7))
 		available_options += list(OPTION_WYRM_TAINTED)
 	if (length(target.get_traumas()))
 		if (target.has_trauma_type(/datum/brain_trauma/severe/split_personality) || target.has_trauma_type(/datum/brain_trauma/special/imaginary_friend))
@@ -387,10 +391,6 @@ Methuselah.”
 		available_options += list(OPTION_IS_INFLUENCED)
 	if (target.possessed == TRUE || target.conditioner)
 		available_options += list(OPTION_IS_DOMINATED)
-	if (get_kindred_splat(target))
-		var/datum/splat/vampire/kindred/target_kindred = get_kindred_splat(target)
-		if (target_kindred.sire != null)
-			available_options += list(OPTION_HAS_SIRE)
 	if (target.killed_count > 0)
 		available_options += list(OPTION_HAS_KILLED)
 	if (HAS_TRAIT(target, TRAIT_ORGANOVORE) || HAS_TRAIT(target, TRAIT_ANTHROPIC_TASTE) || HAS_TRAIT(target, TRAIT_THIRST_OF_AGES) || HAS_TRAIT(target, TRAIT_EAT_FOOD))
@@ -503,7 +503,7 @@ Methuselah.”
 					if (OPTION_CLAN) // NOTE - Potentially expand to a unique message for all clans (that might take a while)
 						if (target.is_clan(/datum/subsplat/vampire_clan/caitiff))
 							message = "No bloodline can be distilled out of [target]... An absence of clan in a place where such is ever-important."
-						else if (get_kindred_splat(target))
+						else if (target_kindred)
 							message = "Blood is thicker than water in this world; the [target.get_clan()] lineage seems to have made [target] their own."
 					if (OPTION_TRIBE) // NOTE - Potentially expand to a unique message for all tribes
 						if (target.get_our_tribe(/datum/subsplat/werewolf/tribe/garou/blackspiraldancers))
@@ -556,7 +556,7 @@ Methuselah.”
 						if (HAS_TRAIT(target, TRAIT_HIDDEN_DIABLERIE))
 							message = "Creeping vines of black veins encompass the soul of [target] in an embrace most constricting."
 						else
-							message = "[target]'s soul is marked with a grave sin. Stolen essence is devoured within — veins of tar supplying the scourge it inhabits")
+							message = "[target]'s soul is marked with a grave sin. Stolen essence is devoured within — veins of tar supplying the scourge it inhabits"
 					if (OPTION_HUMANITY)
 						switch (target.st_get_stat(STAT_MORALITY)) // STAT_MORALITY = Humanity
 							if (0)
@@ -584,9 +584,9 @@ Methuselah.”
 							var/datum/status_effect/blood_bond/target_blood_bond = target.has_status_effect(/datum/status_effect/blood_bond) // Lets us access regnant_name here
 							message = "Chains interlock [target]'s blood — binding them to another. the call of [target_blood_bond.regnant_name.real_name] beckons them in some way or form."
 					if (OPTION_WYRM_TAINTED)
-						if (get_kindred_splat(target) && (HAS_TRAIT(target, TRAIT_HIDDEN_WYRMTAINT))) // if Vampire with hidden Wyrmtaint
+						if (target_kindred && (HAS_TRAIT(target, TRAIT_HIDDEN_WYRMTAINT))) // if Vampire with hidden Wyrmtaint
 							message = "A faint glimmer of decay is embracing [target]."
-						else if (get_kindred_splat(target)) // Vampire with no Hidden Wyrmtaint
+						else if (target_kindred) // Vampire with no Hidden Wyrmtaint
 							message = "The Beast of this vampire still gnaws at some recess of their mind, an entropic taint is noticable."
 						else if (HAS_TRAIT(target, TRAIT_WYRMTAINTED_SPRITE)) // Physically appears Wyrmtainted and not a vampire
 							message = "The taint of the Wyrm malforms [target]'s body and mind into a cruel mockery of nature."
@@ -626,7 +626,7 @@ Methuselah.”
 							if (10 to INFINITY)
 								message = "The temple of [target]'s mind is a sacred place unsullied by the horrors of the world; their unfaltering will has no equal"
 					if (OPTION_SPLAT)
-						if (get_kindred_splat(target))
+						if (target_kindred)
 							message = "A being of stasis maintained by a hunger for life; fundementally stagnant yet still grasping an ever-changing world."
 						else if (get_ghoul_splat(target))
 							message = "Addiction defines this mortal's extended existence. The vices that urge them bring both great boons and banes"
@@ -640,52 +640,57 @@ Methuselah.”
 							message = "A creature untouched by the deviations of normalcy, not a touch of the supernatural in their being."
 					if (OPTION_EMOTION)
 						switch (target.current_emotion)
-							if ("Aggressive", "Angry")
+							if (AURA_AGGRESSIVE, AURA_ANGRY)
 								message = "Our eyes see spite and fury within the heart of our observed."
-							if ("Bitter")
+							if (AURA_BITTER)
 								message = "[target]'s emotions are effected by a percieved past unfairness, misfortune or similar ilk."
-							if ("Hateful")
+							if (AURA_HATEFUL)
 								message = "The seething rage within them is comparable to the most baleful of demons!"
-							if ("Desirous")
+							if (AURA_DESIROUS)
 								message = "The heart of [target] intensively yearns for something more."
-							if ("Daydreaming")
+							if (AURA_DAYDREAMING)
 								message = "Their head is firmly stuck in the clouds."
-							if ("Depressed")
+							if (AURA_DEPRESSED)
 								message = "This sorry soul is falling down a spiral of cruel despair and apathy..."
-							if ("Lovestruck")
+							if (AURA_LOVESTRUCK)
 								message = "[target] has an infatuation with someone or something."
-							if ("Conservative")
+							if (AURA_CONSERVATIVE)
 								message = "This individual has a fairly neutral state; no strong pulls towards any other emotional influence."
-							if ("Obsessed")
+							if (AURA_OBSESSED)
 								message = "Twitching senses have been overtaken by a fixation — but what could inspire such captivation?"
-							if ("Happy", "Excited")
+							if (AURA_HAPPY, AURA_EXCITED)
 								message = "Joyous jubilations follow [target] wherever they go. Such a smile borders on contagious."
-							if ("Idealistic")
+							if (AURA_IDEALISTIC)
 								message = "An optimistic viewpoint for the future; starry-eyed believfs in better possibilities."
-							if ("Anxious")
+							if (AURA_ANXIOUS)
 								message = "Fear and worry plague [target], a worry that cannot simply be willed away."
-							if ("Compassionate")
+							if (AURA_COMPASSIONATE)
 								message = "The thought and care possessed by this one could comfort even the most wounded soul."
-							if ("Confused")
+							if (AURA_CONFUSED)
 								message = "A ditzy mess confounded by the world around them — perhaps on the edge of a muddled stupor."
-							if ("Suspicious")
+							if (AURA_SUSPICIOUS)
 								message = "Narrowed, ever-shifting eyes meet everything around them with suspicion and distrust."
-							if ("Envious")
+							if (AURA_ENVIOUS)
 								message = "A want for what they don't have stains another heart."
-							if ("Generous")
+							if (AURA_GENEROUS)
 								message = "An abundance of selflessness enriches those around them — sharing is caring."
-							if ("Spiritual")
+							if (AURA_SPIRITUAL)
 								message = "The emotions of [target] feel beyond themselves; a form of peace is found in the spirit of life."
-							if ("Sad")
+							if (AURA_SAD)
 								message = "Persisent woe covers our target under a blanket of sadness."
-							if ("Calm")
+							if (AURA_CALM)
 								message = "Even your fractured psyche is eased by the serenity of this calm mind."
-							if ("Disrustful")
+							if (AURA_DISTRUSTFUL)
 								message = "This heart is kept under lock and key — hurt far too much as of late to express what is inside."
-							if ("Psychotic")
+							if (AURA_PSYCHOTIC)
 								message = "A kindred spirit of your affliction. Perhaps another prophet of delirium? Perhaps just another madman..."
-							if ("Innocent")
+							if (AURA_INNOCENT)
 								message = "They are innocent to the world surrounding them — or perhaps at ease to it, even."
+
+AURA_AFRAID
+AURA_CONFIDENCE
+
+
 					if (OPTION_BREED)
 						switch (get_fera_breed_form(target).name)
 							if (BREED_CORVID)
@@ -725,7 +730,6 @@ Methuselah.”
 						else if (target.conditioner)
 							message = "A mind shattered into pieces then re-assembled to suit another; The agency of this poor thing is completely dominated by another"
 					if (OPTION_HAS_SIRE)
-						var/datum/splat/vampire/kindred/target_kindred = get_kindred_splat(target) // Access .sire
 						message = "The animated corpse of this kindred bears [target_kindred.sire.real_name]'s imprint — engraved into their very essence."
 					if (OPTION_HAS_KILLED)
 						switch (target.killed_count)
