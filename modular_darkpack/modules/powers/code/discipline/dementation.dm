@@ -687,10 +687,10 @@ Methuselah.”
 								message = "A kindred spirit of your affliction. Perhaps another prophet of delirium? Perhaps just another madman..."
 							if (AURA_INNOCENT)
 								message = "They are innocent to the world surrounding them — or perhaps at ease to it, even."
-
-AURA_AFRAID
-AURA_CONFIDENCE
-
+							if (AURA_AFRAID)
+								message = "A shivering, tense body meets your gaze with shaking eyes looking past your own."
+							if (AURA_CONFIDENCE)
+								message = "[target]'s sole is ignited with the flames of ambition!"
 
 					if (OPTION_BREED)
 						switch (get_fera_breed_form(target).name)
