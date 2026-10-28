@@ -192,8 +192,9 @@
 	health = 600
 	//harm_intent_damage = 8
 	melee_damage_lower = 2 * LETHAL_TTRPG_DAMAGE
-	melee_damage_upper = 3 * LETHAL_TTRPG_DAMAGE
+	melee_damage_upper = 4 * LETHAL_TTRPG_DAMAGE
 	armour_penetration = 75
+	wound_bonus = 15
 	attack_verb_continuous = "brutally crushes"
 	attack_verb_simple = "brutally crush"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
