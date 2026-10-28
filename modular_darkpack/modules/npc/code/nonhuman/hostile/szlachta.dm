@@ -26,9 +26,29 @@
 	bloodquality = BLOOD_QUALITY_LOW
 	bloodpool = 2
 	maxbloodpool = 2
-	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
+	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
 	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 2)
 	default_blood_volume = BLOOD_VOLUME_NORMAL
+
+var/mob/living/carbon/human/szlachta_owner
+var/crafted_szlachta
+
+/mob/living/basic/szlachta/proc/befriend_szlachta()
+	szlachta_owner.add_beastmaster_minion(crafted_szlachta)
+
+// Add the crafted Szlachta to Crafter's Beastmaster List
+/mob/living/basic/szlachta/on_craft_completion(list/components, datum/crafting_recipe/current_recipe, atom/crafter)
+	. = ..()
+	if(!isliving(crafter))
+		return
+	szlachta_owner = crafter
+	crafted_szlachta = current_recipe.result
+	addtimer(CALLBACK(src, PROC_REF(befriend_szlachta)), 1 SECONDS)
+
+/mob/living/basic/szlachta/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/ai_retaliate)
+	/datum/element/ai_retaliate
 
 /mob/living/basic/szlachta/fister
 	name = "szlachta"
