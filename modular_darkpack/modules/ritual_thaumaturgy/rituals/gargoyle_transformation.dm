@@ -207,3 +207,9 @@
 	. = ..()
 	// Make the perfect gargoyle slightly larger
 	transform = transform.Scale(1.10, 1.10)
+	AddComponent(/datum/component/seethrough_mob)
+	AddComponent(
+		/datum/component/amputating_limbs, \
+		surgery_time = 0 SECONDS, \
+		surgery_verb = "rips apart",\
+	)
