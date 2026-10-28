@@ -12,6 +12,7 @@
 	min_ambience_cooldown = 30 SECONDS
 	max_ambience_cooldown = 2 MINUTES
 
+	triatic_influence_mod = 1
 	var/zone_type = ZONE_MASQUERADE
 
 	// 7 is an average city street.
