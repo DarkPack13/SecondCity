@@ -191,8 +191,8 @@
 	maxHealth = 600
 	health = 600
 	//harm_intent_damage = 8
-	melee_damage_lower = 2 * LETHAL_TTRPG_DAMAGE
-	melee_damage_upper = 4 * LETHAL_TTRPG_DAMAGE
+	melee_damage_lower = 40
+	melee_damage_upper = 60
 	armour_penetration = 75
 	wound_bonus = 15
 	attack_verb_continuous = "brutally crushes"
