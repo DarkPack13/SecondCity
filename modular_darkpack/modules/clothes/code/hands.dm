@@ -36,6 +36,7 @@
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
 	armor_type = /datum/armor/work_gloves
+	taint_weaver = 1
 
 /datum/armor/work_gloves
 	fire = 70

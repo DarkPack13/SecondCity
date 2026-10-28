@@ -56,11 +56,13 @@
 	name = "black fur boots"
 	desc = "A furry pair of black and white boots"
 	icon_state = "furboots_black"
+	taint_wyld = 1
 
 /obj/item/clothing/shoes/vampire/brownfur
 	name = "brown fur boots"
 	desc = "A furry pair of brown boots"
 	icon_state = "furboots_brown"
+	taint_wyld = 1
 
 /obj/item/clothing/shoes/vampire/pumped
 	name = "knee-high sneakers"

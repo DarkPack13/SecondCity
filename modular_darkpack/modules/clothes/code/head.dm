@@ -27,6 +27,7 @@
 	desc = "Can look dangerous or sexy despite the circumstances. Provides some kind of protection."
 	icon_state = "malkav_hat"
 	armor_type = /datum/armor/malkavian_hat
+	taint_wyrm = 1
 
 /datum/armor/malkavian_hat
 	melee = 25
@@ -139,6 +140,7 @@
 	desc = "Looks cool anyway. Provides some kind of protection."
 	icon_state = "cowboy"
 	armor_type = /datum/armor/armored_hat
+	taint_wyld = 1
 
 /obj/item/clothing/head/vampire/cowboy/armorless
 	name = "cowboy hat"
@@ -168,6 +170,7 @@
 	desc = "Damn... Provides some kind of protection."
 	icon_state = "skull"
 	armor_type = /datum/armor/armored_hat
+	taint_wyrm = 4
 
 /obj/item/clothing/head/vampire/helmet
 	name = "police helmet"
@@ -251,6 +254,7 @@
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	w_class = WEIGHT_CLASS_BULKY
 	masquerade_violating = TRUE
+	taint_weaver = 3
 
 /datum/armor/eod_helmet
 	melee = 70
@@ -272,6 +276,7 @@
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	w_class = WEIGHT_CLASS_NORMAL
+	taint_wyrm = 8
 
 /obj/item/clothing/head/vampire/bogatyr/captain
 	name = "golden bone helmet"
@@ -306,6 +311,7 @@
 			I swore that day I would not turn back..."
 	icon_state = "bahari_mask"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
+	taint_wyrm = 4
 
 /obj/item/clothing/head/vampire/straw_hat
 	name = "straw hat"
@@ -327,6 +333,7 @@
 	name = "Noddist mask"
 	desc = "Shine black the sun! Shine blood the moon! Gehenna is coming soon."
 	icon_state = "noddist_mask"
+	taint_wyrm = 8
 
 /obj/item/clothing/head/vampire/kalimavkion
 	name = "Kalimavkion"
@@ -343,11 +350,13 @@
 	name = "\improper " + MAIN_EVIL_COMPANY + " hardhat"
 	desc = "A yellow hardhat. This one has an " + MAIN_EVIL_COMPANY + "  logo on it!"
 	icon_state = "pentex_hardhat_yellow"
+	taint_wyrm = 1
 
 /obj/item/clothing/head/vampire/hardhat/pentex_white
 	name = "\improper " + MAIN_EVIL_COMPANY + " hardhat"
 	desc = "A white hardhat. This one has an " + MAIN_EVIL_COMPANY + " logo on it!"
 	icon_state = "pentex_hardhat_white"
+	taint_wyrm = 2
 
 /obj/item/clothing/head/vampire/pentex_beret
 	name = "First Team beret"
@@ -355,6 +364,7 @@
 	icon_state = "pentex_beret"
 	armor_type = /datum/armor/armored_hat
 	hair_mask = /datum/hair_mask/standard_hat_middle
+	taint_wyrm = 8
 
 /obj/item/clothing/head/vampire/blackbag
 	name = "black bag"

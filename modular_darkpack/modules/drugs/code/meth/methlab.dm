@@ -5,6 +5,8 @@
 	icon = 'modular_darkpack/modules/deprecated/icons/32x48.dmi'
 	icon_state = "methlab"
 	anchored = TRUE
+	taint_wyrm = 2
+	taint_weaver = 1
 
 /obj/structure/methlab/movable
 	name = "movable chemical lab"

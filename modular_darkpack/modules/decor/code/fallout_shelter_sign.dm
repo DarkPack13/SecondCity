@@ -2,6 +2,7 @@
 	name = "fallout shelter sign"
 	desc = "Good thing the Cold War is over. Right?"
 	icon = 'modular_darkpack/modules/decor/icons/fallout_shelter_sign.dmi'
+	taint_wyrm = 1
 
 /obj/structure/sign/fallout_shelter/round
 	name = "fallout shelter sign"

@@ -58,6 +58,8 @@
 	resistance_flags = UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	throwforce = 150
 
+	taint_weaver = 3
+	taint_wyrm = 1
 
 	MAP_SWITCH(pixel_x = 0, pixel_x = -32)
 	MAP_SWITCH(pixel_y = 0, pixel_y = -32)
