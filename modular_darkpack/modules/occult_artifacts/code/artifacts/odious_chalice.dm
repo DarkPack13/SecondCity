@@ -77,6 +77,8 @@
 	. = ..()
 	if(!get_splat_with_vitae(target_mob))
 		return
+	if(HAS_TRAIT(target_mob, TRAIT_ORGANOVORE) && !target_mob.is_clan(/datum/subsplat/vampire_clan/nagaraja))
+		return
 	if(stored_blood <= 0)
 		return
 	if(!identified)
