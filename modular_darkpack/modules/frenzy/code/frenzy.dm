@@ -84,8 +84,6 @@
 	frenzy_roll.difficulty = difficulty
 	var/frenzy_result = frenzy_roll.st_roll(src, fire)
 	if(frenzy_result <= 0)
-		if(!fire)
-			fire = src
 		enter_frenzy_mode(fire, TRUE, "Rotshreck")
 		return
 	successes += frenzy_result
@@ -109,8 +107,6 @@
 	if(frenzy_result <= 0)
 		to_chat(src, span_userdanger("[flavor_text] sends you into a frenzy!"))
 		var/victim = get_closest_atom(/atom, get_frenzy_victims(), src)
-		if(!victim)
-			victim = src
 		enter_frenzy_mode(victim, source = "Kindred")
 		return
 
