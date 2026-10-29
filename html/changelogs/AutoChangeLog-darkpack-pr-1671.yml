@@ -1,4 +1,0 @@
-author: "breadcrombs"
-delete-after: True
-changes:
-  - rscadd: "Grave smell or animal smell now checks on range with acute sense smell and auspex smell increasing the range"

@@ -1,5 +1,0 @@
-author: "FalloutFalcon"
-delete-after: True
-changes:
-  - bugfix: "Fixes rolls all reading as \"public\""
-  - bugfix: "Fixes custom rolls not correctly assigning the output type you selected"
