@@ -3,6 +3,7 @@
 	true_desc = "Decreases incoming damage."
 	icon_state = "k_alamut"
 	research_value = 30
+	taint_wyld = 1
 
 /obj/item/occult_artifact/vampire/key_of_alamut/grant_powers()
 	. = ..()

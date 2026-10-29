@@ -3,6 +3,7 @@
 	true_desc = "Dexterity boost."
 	icon_state = "fae_charm"
 	research_value = 35
+	taint_wyld = 6
 
 /obj/item/occult_artifact/vampire/fae_charm/grant_powers()
 	. = ..()

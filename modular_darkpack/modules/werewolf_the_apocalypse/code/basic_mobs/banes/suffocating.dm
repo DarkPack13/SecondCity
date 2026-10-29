@@ -5,6 +5,7 @@
 	health = 50
 
 	mob_size = MOB_SIZE_SMALL
+	taint_wyrm = 10
 
 /* Cant be asked to setup a ai controller for 1 random speech.
 /datum/bt_node/ai_behavior/random_speech/suffocating_bane

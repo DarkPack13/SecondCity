@@ -6,6 +6,7 @@
 	icon_state = "p25"
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/radios/icons/onfloor.dmi')
 	freqlock = RADIO_FREQENCY_LOCKED
+	taint_weaver = 2
 
 // Military Radio
 /obj/item/radio/headset/darkpack/military

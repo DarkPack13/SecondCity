@@ -10,6 +10,7 @@
 	spirit_type = SPIRIT_ANIMAL
 	var/list/heard_messages
 	COOLDOWN_DECLARE(yap_cooldown)
+	taint_weaver = 4
 
 /obj/item/occult_artifact/werewolf/magpies_ears/Initialize(mapload)
 	. = ..()

@@ -8,6 +8,7 @@
 	var/datum/weakref/bound_identifier // Who identified it first
 	var/datum/action/bloodstone_track/tracking_action
 	research_value = 15
+	taint_wyrm = 6
 
 /obj/item/occult_artifact/vampire/bloodstone/identify()
 	. = ..()
