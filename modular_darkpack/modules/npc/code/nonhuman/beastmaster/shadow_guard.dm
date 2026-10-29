@@ -23,6 +23,8 @@
 	maxbloodpool = 1
 
 	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
+	taint_wyld = 3
+	taint_wyrm = 4
 
 /mob/living/basic/shadow_guard/Initialize(mapload)
 	. = ..()

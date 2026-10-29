@@ -8,3 +8,5 @@
 		/obj/item/reagent_containers/cup/soda_cans/summer_thaw,
 		/obj/item/reagent_containers/cup/soda_cans/thaw_club,
 	)
+	brand = "otolleys"
+	taint_wyrm = 2

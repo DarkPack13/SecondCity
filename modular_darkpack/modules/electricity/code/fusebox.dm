@@ -25,6 +25,7 @@ GLOBAL_LIST_EMPTY(fuseboxes)
 	var/repairing = FALSE
 	//Soundloop for Transformers
 	var/datum/looping_sound/generator/fusebox/soundloop
+	taint_weaver = 2
 
 /obj/fusebox/Initialize(mapload)
 	. = ..()

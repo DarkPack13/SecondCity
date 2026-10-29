@@ -25,6 +25,7 @@
 	maxbloodpool = 10
 
 	faction = list(VAMPIRE_CLAN_BAALI)
+	taint_wyrm = 8
 
 /mob/living/basic/baali_guard/Initialize(mapload)
 	. = ..()
