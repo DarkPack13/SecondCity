@@ -30,13 +30,6 @@
 	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 2)
 	default_blood_volume = BLOOD_VOLUME_NORMAL
 
-	//szlachta_owner.add_beastmaster_minion(crafted_szlachta)
-
-/*/mob/living/basic/szlachta/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/ai_retaliate)
-	/datum/element/ai_retaliate*/
-
 /mob/living/basic/szlachta/fister
 	name = "szlachta"
 	desc = "A true abomination walking on both hands with bright white, hollow, sad eyes."

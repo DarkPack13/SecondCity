@@ -1,16 +1,19 @@
+//var/mob/living/basic/szlachta/crafted_szlachta
+/// The owner of a created szlachta
+var/mob/living/carbon/human/szlachta_owner
+
 // Add the crafted Szlachta to Crafter's Beastmaster List
 /mob/living/basic/szlachta/on_craft_completion(list/components, datum/crafting_recipe/current_recipe, atom/crafter)
 	. = ..()
-	if(!isliving(crafter))
-		return
-	var/mob/living/carbon/human/szlachta_owner = crafter
-	var/crafted_szlachta = current_recipe.result //&& new (get_turf(src))
-	QDEL_NULL(ai_controller)
-	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
-	szlachta_owner.add_beastmaster_minion(crafted_szlachta)
-	//qdel(src)
-
-
-///mob/living/basic/szlachta/crafted_szlachta/Initialize(mapload)
-//	AddElement(/datum/element/ai_retaliate)
-//	. = ..()
+	szlachta_owner = crafter
+	if (length(szlachta_owner.beastmaster_minions) >= szlachta_owner.st_get_stat(STAT_LEADERSHIP) + 1) // If max minions, delete and refund
+		components
+		QDEL_NULL(src) // or qdel
+		playsound(loc, 'sound/mobs/non-humanoids/venus_trap/venus_trap_hit.ogg', 15, vary = TRUE)
+		to_chat(szlachta_owner, span_warning("The creature collapses into itself infront of you! You cannot manage to maintain any more of them."))
+	else // Get squelchy with it
+		QDEL_NULL(ai_controller)
+		ai_controller = new /datum/ai_controller/basic_controller/beastmaster_summon(src)
+		szlachta_owner.add_beastmaster_minion(src)
+		src.AddElement(/datum/element/ai_retaliate)
+		playsound(loc, 'sound/mobs/non-humanoids/venus_trap/venus_trap_death.ogg', 15, vary = TRUE)
