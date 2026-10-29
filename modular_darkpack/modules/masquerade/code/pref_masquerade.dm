@@ -15,3 +15,5 @@
 	if(!CONFIG_GET(flag/persistent_masquerade))
 		return
 	target.masquerade_score = value
+	if(!isdummy(target))
+		SSmasquerade.masquerade_breacher_check(target)
