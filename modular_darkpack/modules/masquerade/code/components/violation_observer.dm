@@ -47,6 +47,8 @@
 		return
 	if(HAS_TRAIT(player_breacher, TRAIT_OBFUSCATED))
 		return
+	if(SSmasquerade.has_open_breach(player_breacher, source))
+		return
 
 	if(isliving(source))
 		var/mob/living/mob_parent = source
@@ -97,11 +99,14 @@
 		observe_masquerade_reinforce(player_breacher)
 		UnregisterSignal(player_breacher, COMSIG_LIVING_DEATH)
 
+// er... yuck. remind me to rewrite this.
 /atom/movable/proc/on_breacher_death(mob/living/dead_breacher, gibbed)
 	SIGNAL_HANDLER
 
 	for(var/breach in SSmasquerade.masquerade_breachers)
 		if(breach[1] != dead_breacher)
+			continue
+		if(breach[2] != src)
 			continue
 		SEND_SIGNAL(src, COMSIG_MASQUERADE_HUD_DELETE, dead_breacher)
 		SSmasquerade.masquerade_reinforce(src, dead_breacher)
