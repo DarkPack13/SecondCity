@@ -1,4 +1,5 @@
 #define KINDRED_REJECTION_PROB 10
+#define KINDRED_REJECTION_LIMIT 5
 #define EAT_FOOD_REJECTION_WARNING 85
 #define EAT_FOOD_REJECTION_LIMIT 100
 
@@ -38,7 +39,7 @@
 
 	//If vamp does not have eatfood trait they will randomly throw up rejected chemicals. Otherwise they can decide when to do it
 	if(!HAS_TRAIT(owner, TRAIT_EAT_FOOD))
-		if(SPT_PROB(KINDRED_REJECTION_PROB, seconds_per_tick) && owner.kindred_rejected_volume() > 0)
+		if(SPT_PROB(KINDRED_REJECTION_PROB, seconds_per_tick) && owner.kindred_rejected_volume() >= KINDRED_REJECTION_LIMIT)
 			owner.kindred_purge_food(span_warning("Your body rejects the waste it can't use. Thick, dark blood drips from your mouth."))
 		return
 
@@ -71,5 +72,6 @@ GAME_VERB_PROC_DESC(/mob/living/carbon/human, kindred_purge, "Purge", "Throw up 
 	dry_desc = "A small pool of dark blood, it smells of rot."
 
 #undef KINDRED_REJECTION_PROB
+#undef KINDRED_REJECTION_LIMIT
 #undef EAT_FOOD_REJECTION_WARNING
 #undef EAT_FOOD_REJECTION_LIMIT
