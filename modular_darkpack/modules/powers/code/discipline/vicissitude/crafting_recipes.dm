@@ -107,7 +107,7 @@
 	name = "Biting Abomination"
 	time = 100
 	//reqs = list(/obj/item/stack/sheet/meat = 2, /obj/item/bodypart/arm/right = 2, /obj/item/bodypart/arm/left = 2, /obj/item/spine = 1)
-	reqs = list()
+	reqs = list(/obj/item/spine = 1)
 	result = /mob/living/basic/szlachta
 	category = CAT_TZIMISCE
 
