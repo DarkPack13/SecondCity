@@ -36,7 +36,9 @@
 			if(!discipline)
 				continue
 			owner.give_st_power(discipline, 1)
+	owner.adjust_taint(wyrm = 2)
 
 /datum/splat/vampire/ghoul/on_lose_or_destroy()
 	owner.remove_st_power(/datum/discipline/bloodheal)
 	owner.remove_st_power(/datum/discipline/potence)
+	owner.adjust_taint(wyrm = -2)
