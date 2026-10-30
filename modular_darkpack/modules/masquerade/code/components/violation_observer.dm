@@ -2,6 +2,10 @@
 	var/violation_observer = FALSE
 	COOLDOWN_DECLARE(masquerade_violation_cooldown)
 
+///mob/living/Destroy(force)
+//	SEND_SIGNAL(src, COMSIG_LIVING_DEATH)
+//	return ..()
+
 /atom/movable/proc/toggle_masquerade_sensitivity(new_listening_state)
 	// don't proceed if we're toggling to TRUE on something already listening
 	if(!isnull(new_listening_state) && new_listening_state == violation_observer)
@@ -16,7 +20,8 @@
 	if(violation_observer)
 		RegisterSignal(src, COMSIG_SEEN_MASQUERADE_VIOLATION, PROC_REF(on_observed_violation))
 		RegisterSignal(src, COMSIG_MASQUERADE_REINFORCE, PROC_REF(on_masquerade_violation_reinforced))
-		RegisterSignals(src, list(COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE), PROC_REF(on_masquerade_witness_death))
+		RegisterSignals(src, list(COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE, COMSIG_QDELETING), PROC_REF(on_masquerade_witness_death))
+
 	else
 		UnregisterSignal(src, list(COMSIG_SEEN_MASQUERADE_VIOLATION, COMSIG_MASQUERADE_REINFORCE, COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE))
 
@@ -42,7 +47,15 @@
 
 	if(isnpc(source))
 		var/mob/living/carbon/human/npc/npc_source = source
-		if(npc_source.client)
+		if(!ismundane(npc_source)) // Is the NPC non-human?
+			return
+		if(npc_source.client) // Does the NPC have a client?
+			return
+		if(npc_source.in_contents_of(/obj/structure/closet) || player_breacher.in_contents_of(/obj/structure/closet)) // Is the NPC or Breacher in a container?
+			return
+		if(npc_source.stat == HARD_CRIT || IS_UNCONSCIOUS_AND_ALIVE(npc_source)) // Is the NPC in hardcrit or otherwise unconscious?
+			return
+		if(npc_source.is_blind_from(EYES_COVERED) || npc_source.is_blind()) // Is the NPC unable to see?
 			return
 
 	if(isliving(source))
@@ -62,7 +75,7 @@
 
 	source.AddComponent(/datum/component/masquerade_hud, player_breacher)
 	SSmasquerade.masquerade_breach(source, player_breacher, (isliving(source) ? MASQUERADE_REASON_NPC : MASQUERADE_REASON_OBJECT))
-	RegisterSignal(player_breacher, COMSIG_LIVING_DEATH, PROC_REF(on_breacher_death), override = TRUE) // override is for breaching multiple times on the same violation observer - on_breacher_death handles all violations, not just the breach created here, so we only need one register
+	RegisterSignals(player_breacher, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING), PROC_REF(on_breacher_death), override = TRUE) // override is for breaching multiple times on the same violation observer - on_breacher_death handles all violations, not just the breach created here, so we only need one register
 
 	return TRUE
 
