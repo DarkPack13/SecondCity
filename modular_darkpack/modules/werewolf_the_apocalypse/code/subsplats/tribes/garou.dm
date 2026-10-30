@@ -38,13 +38,6 @@
 	)
 	subsplat_keys = /obj/item/vamp/keys/techstore
 
-
-/datum/subsplat/werewolf/tribe/garou/glasswalkers/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
-	gaining_mob.adjust_taint(weaver = 2)
-
-/datum/subsplat/werewolf/tribe/garou/glasswalkers/on_lose(mob/living/carbon/human/losing_mob)
-	losing_mob.adjust_taint(weaver = -2)
-
 /datum/subsplat/werewolf/tribe/garou/bonegnawers
 	name = TRIBE_BONE_GNAWERS
 	desc = "Survivors and scavengers, often destitute and homeless. The Gnawers are seen as mongrels who live off scraps, but they know better. They're the true survivors, patiently waiting for their moment to strike against overconfident foes."
@@ -140,14 +133,6 @@
 	target.playsound_local(target, "modular_darkpack/modules/powers/sounds/daimonion_laughs/demonlaugh3.ogg", 50, FALSE)
 	target.visible_message(span_warning("[target] whines in animalistic fear"), span_cult("VISIONS OF BRIMSTONE AND FLAME FLASH BEFORE MY EYES"))
 	target.Paralyze(5 SECONDS)
-
-
-/datum/subsplat/werewolf/tribe/garou/blackspiraldancers/on_gain(mob/living/carbon/human/gaining_mob, datum/splat/gaining_splat, joining_round)
-	gaining_mob.adjust_taint(wyrm = 6)
-
-/datum/subsplat/werewolf/tribe/garou/blackspiraldancers/on_lose(mob/living/carbon/human/losing_mob)
-	. = ..()
-	losing_mob.adjust_taint(wyrm = -6)
 
 /datum/subsplat/werewolf/tribe/garou/ronin
 	name = TRIBE_RONIN
