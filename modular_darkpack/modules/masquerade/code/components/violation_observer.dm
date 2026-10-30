@@ -2,10 +2,6 @@
 	var/violation_observer = FALSE
 	COOLDOWN_DECLARE(masquerade_violation_cooldown)
 
-///mob/living/Destroy(force)
-//	SEND_SIGNAL(src, COMSIG_LIVING_DEATH)
-//	return ..()
-
 /atom/movable/proc/toggle_masquerade_sensitivity(new_listening_state)
 	// don't proceed if we're toggling to TRUE on something already listening
 	if(!isnull(new_listening_state) && new_listening_state == violation_observer)
@@ -47,15 +43,15 @@
 
 	if(isnpc(source))
 		var/mob/living/carbon/human/npc/npc_source = source
-		if(!ismundane(npc_source)) // Is the NPC non-human?
+		if(npc_source.client)
 			return
-		if(npc_source.client) // Does the NPC have a client?
+		if(!ismundane(npc_source))
 			return
-		if(npc_source.in_contents_of(/obj/structure/closet) || player_breacher.in_contents_of(/obj/structure/closet)) // Is the NPC or Breacher in a container?
+		if(player_breacher.in_contents_of(/obj/structure/closet))
 			return
-		if(npc_source.stat == HARD_CRIT || IS_UNCONSCIOUS_AND_ALIVE(npc_source)) // Is the NPC in hardcrit or otherwise unconscious?
+		if(npc_source.stat == HARD_CRIT || IS_UNCONSCIOUS_AND_ALIVE(npc_source))
 			return
-		if(npc_source.is_blind()) // Is the NPC unable to see?
+		if(npc_source.is_blind())
 			return
 
 	if(isliving(source))
