@@ -5,7 +5,6 @@
 	health = 50
 	pass_flags = PASSMOB
 	mob_size = MOB_SIZE_SMALL
-	taint_wyrm = 10
 
 /mob/living/basic/bane/religion/Initialize(mapload)
 	. = ..()

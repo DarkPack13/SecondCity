@@ -3,7 +3,7 @@
 		if(!(src in SStaint.tainted_atoms))
 			SStaint.tainted_atoms += src
 			if(taint_wyrm > 10 || taint_weaver > 10 || taint_wyld > 10)
-				WARNING("One or more taint values on is above 10")
+				WARNING("One or more taint values on [src] is above 10")
 		if(return_list)
 			return list(TRIAT_WYRM = taint_wyrm, TRIAT_WEAVER = taint_weaver, TRIAT_WYLD = taint_wyld)
 		else
@@ -58,3 +58,12 @@
 		SStaint.tainted_atoms -= src
 
 	return FALSE
+
+/atom/proc/adjust_specific_taint(taint, amount = 0, set_to = FALSE)
+	switch(taint)
+		if(TRIAT_WYRM)
+			adjust_taint(wyrm = amount, set_to = set_to)
+		if(TRIAT_WEAVER)
+			adjust_taint(weaver = amount, set_to = set_to)
+		if(TRIAT_WYLD)
+			adjust_taint(wyld = amount, set_to = set_to)
