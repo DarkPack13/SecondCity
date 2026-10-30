@@ -55,7 +55,7 @@
 			return
 		if(npc_source.stat == HARD_CRIT || IS_UNCONSCIOUS_AND_ALIVE(npc_source)) // Is the NPC in hardcrit or otherwise unconscious?
 			return
-		if(npc_source.is_blind_from(EYES_COVERED) || npc_source.is_blind()) // Is the NPC unable to see?
+		if(npc_source.is_blind()) // Is the NPC unable to see?
 			return
 
 	if(isliving(source))
