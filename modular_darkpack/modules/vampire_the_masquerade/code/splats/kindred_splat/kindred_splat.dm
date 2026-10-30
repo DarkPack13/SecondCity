@@ -103,6 +103,13 @@
 	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_HEAT, 2)
 	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_COLD, 0.25)
 
+	var/wyrm_taint = 2
+	if(owner.is_enlightenment())
+		wyrm_taint += 6
+	else if(owner.st_get_stat(STAT_MORALITY) <= 7)
+		wyrm_taint += 4
+
+	owner.adjust_taint(wyrm = wyrm_taint)
 
 /datum/splat/vampire/kindred/on_lose()
 	owner.set_clan(null)
@@ -156,6 +163,13 @@
 
 		COOLDOWN_START(src, frenzy_target_check_cooldown, 1 TURNS)
 
+	var/wyrm_taint = 2
+	if(owner.is_enlightenment())
+		wyrm_taint += 6
+	else if(owner.st_get_stat(STAT_MORALITY) <= 7)
+		wyrm_taint += 4
+
+	owner.adjust_taint(wyrm = -wyrm_taint)
 
 /datum/splat/vampire/kindred/proc/damage_resistance(datum/source, list/damage_mods, damage_amount, damagetype, def_zone, sharpness, attack_direction, obj/item/attacking_item)
 	SIGNAL_HANDLER
