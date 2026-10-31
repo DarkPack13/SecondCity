@@ -156,6 +156,9 @@
 
 		COOLDOWN_START(src, frenzy_target_check_cooldown, 1 TURNS)
 
+	owner.kindred_metabolize(seconds_per_tick)
+	handle_food_rejection(seconds_per_tick)
+
 
 /datum/splat/vampire/kindred/proc/damage_resistance(datum/source, list/damage_mods, damage_amount, damagetype, def_zone, sharpness, attack_direction, obj/item/attacking_item)
 	SIGNAL_HANDLER

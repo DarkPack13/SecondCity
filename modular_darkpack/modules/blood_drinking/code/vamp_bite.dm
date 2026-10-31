@@ -76,6 +76,12 @@
 					SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 					return
 
+			// Conspicuous Consumption flaw.
+			if(HAS_TRAIT(src, TRAIT_ORGANOVORE))
+				to_chat(src, span_warning("Blood can not sustain you. You need to devour flesh or organs."))
+				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
+				return
+
 			if(get_kindred_splat(src))
 				bit_living.emote("groan")
 			else if(get_ghoul_splat(src))

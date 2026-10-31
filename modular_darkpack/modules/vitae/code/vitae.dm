@@ -18,7 +18,7 @@
 	//	return
 
 	if(methods & INGEST)
-		if(get_splat_with_vitae(victim))
+		if(get_splat_with_vitae(victim) && !HAS_TRAIT(victim, TRAIT_ORGANOVORE))
 			//100u of vitae = 1bp, keeping consistent w/ give vitae action. 200u of normal blood = 1 bp
 			victim.adjust_blood_pool(reac_volume * 0.01)
 
@@ -42,4 +42,4 @@
 /datum/reagent/blood/vitae/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
 	if(get_ghoul_splat(affected_mob) || get_kindred_splat(affected_mob))
-		affected_mob.adjust_blood_pool(metabolization_rate * 0.005 * seconds_per_tick)
+		affected_mob.adjust_blood_pool(metabolization_rate / VITAE_METABOLIZED_PER_BLOOD_POINT * seconds_per_tick)//20/200*2=0.2,metabolization_rate is from default_rate*100 from the definition of vitae.

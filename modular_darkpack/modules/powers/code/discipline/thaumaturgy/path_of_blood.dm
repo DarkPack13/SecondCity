@@ -280,7 +280,8 @@
 		target.adjust_blood_pool(-blood_taken)
 
 		var/blood_gained = blood_taken * max(1, target.bloodquality-1)
-		owner.adjust_blood_pool(blood_gained)
+		if(!HAS_TRAIT(owner, TRAIT_ORGANOVORE))
+			owner.adjust_blood_pool(blood_gained)
 	else
 		if(!target.bloodpool || !target.blood_volume)
 			return
@@ -295,7 +296,8 @@
 
 		var/blood_gained = blood_taken * max(1, target.bloodquality - 1)
 		target.adjust_blood_pool(-blood_gained)
-		owner.adjust_blood_pool(blood_gained)
+		if(!HAS_TRAIT(owner, TRAIT_ORGANOVORE))
+			owner.adjust_blood_pool(blood_gained)
 
 //------------------------------------------------------------------------------------------------
 
