@@ -1,0 +1,4 @@
+author: "breadcrombs"
+delete-after: True
+changes:
+  - bugfix: "Fixed high stam stat preventing people from being stam critted."
