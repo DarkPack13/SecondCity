@@ -4,6 +4,7 @@
 	icon = 'modular_darkpack/modules/decor/icons/trees.dmi'
 	icon_state = "tree1"
 	SET_BASE_PIXEL(-32,0)
+	taint_wyld = 1
 	var/burned = FALSE
 
 /obj/structure/flora/tree/vamp/Initialize(mapload)
@@ -25,6 +26,8 @@
 		burned = TRUE
 		icon_state = "dead[rand(1, 3)]"
 		animate(src, transform = null, time = 1 SECONDS, loop = 1)
+		taint_wyrm = 1
+		taint_wyld = 0
 
 /obj/structure/flora/tree/vamp/pine
 	name = "pine"
@@ -161,6 +164,7 @@
 	icon_state = "stalagmite1"
 	icon = 'modular_darkpack/modules/decor/icons/flora64x64.dmi'
 	pixel_w = -16
+	taint_weaver = 1
 	var/datum/looping_sound/slow_drip/looping_drips
 	var/drip_chance = 50
 
@@ -230,6 +234,7 @@
 	desc = "A common wildflower."
 	abstract_type = /obj/structure/flora/darkpack_flower
 	flora_flags = FLORA_HERBAL
+	taint_wyld = 1
 
 /obj/structure/flora/darkpack_flower/Initialize(mapload)
 	. = ..()

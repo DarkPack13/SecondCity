@@ -29,6 +29,7 @@
 	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
 	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 2)
 	default_blood_volume = BLOOD_VOLUME_NORMAL
+	taint_wyrm = 8
 
 /mob/living/basic/szlachta/fister
 	name = "szlachta"

@@ -11,6 +11,7 @@
 	icon = 'modular_darkpack/modules/decor/icons/stick.dmi'
 	icon_state = "stick1"
 	base_icon_state = "stick"
+	taint_wyld = 1
 	var/stick_type = 0
 	var/variants = 7 // Change this if you add new stick variants (lol)
 	var/static/list/soundlist = list(

@@ -44,6 +44,7 @@
 	pixel_w = -8
 	custom_price = 1300
 	slot_flags = ITEM_SLOT_BELT
+	taint_weaver = 1
 
 /obj/item/katana/vamp/Initialize(mapload)
 	. = ..()
@@ -55,7 +56,7 @@
 	item_flags = DROPDEL
 	obj_flags = NONE
 	masquerade_violating = TRUE
-
+	taint_wyrm = 3
 
 //Do not sell the magically summoned katanas for infinite cash
 /obj/item/katana/vamp/fire/Initialize(mapload)
@@ -77,6 +78,7 @@
 	item_flags = DROPDEL
 	obj_flags = NONE
 	masquerade_violating = TRUE
+	taint_wyrm = 8
 
 /obj/item/katana/vamp/blood/Initialize(mapload)
 	. = ..()
@@ -185,7 +187,7 @@
 	attack_verb_simple = list("slash", "cut")
 	hitsound = 'sound/items/weapons/rapierhit.ogg'
 	wound_bonus = 5
-
+	taint_wyrm = 6
 
 /obj/item/claymore/longsword/keeper/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
@@ -261,6 +263,7 @@
 	item_flags = DROPDEL
 	masquerade_violating = TRUE
 	obj_flags = NONE
+	taint_wyrm = 5
 
 /obj/item/knife/vamp/lasombra_tentacle/Initialize(mapload)
 	. = ..()

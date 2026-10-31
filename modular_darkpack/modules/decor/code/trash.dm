@@ -5,6 +5,7 @@
 	icon_state = "trash1"
 	base_icon_state = "trash"
 	clean_type = CLEAN_TYPE_HARD_DECAL
+	taint_wyrm = 1
 	var/variants = 30
 
 /obj/effect/decal/cleanable/trash/Initialize(mapload)
@@ -20,6 +21,7 @@
 	icon = 'modular_darkpack/modules/decor/icons/trash.dmi'
 	icon_state = "paper1"
 	clean_type = CLEAN_TYPE_HARD_DECAL
+	taint_wyrm = 1
 
 /obj/effect/decal/cleanable/litter/Initialize(mapload)
 	. = ..()

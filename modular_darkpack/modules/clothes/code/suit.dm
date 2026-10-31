@@ -47,6 +47,7 @@
 	resistance_flags = ACID_PROOF
 	armor_type = /datum/armor/chemical_costume
 	hoodtype = /obj/item/clothing/head/hooded/heisenberg_hood
+	taint_weaver = 2
 
 /datum/armor/chemical_costume
 	laser = 10
@@ -144,6 +145,7 @@
 	desc = "Some earthy-looking robes."
 	icon_state = "robes_green"
 	hoodtype = /obj/item/clothing/head/hooded/robes_hood/green
+	taint_wyld = 1 // forest is green...
 
 /obj/item/clothing/head/hooded/robes_hood/green
 	name = "green hood"
@@ -155,6 +157,7 @@
 	desc = "Some furious-looking robes."
 	icon_state = "robes_red"
 	hoodtype = /obj/item/clothing/head/hooded/robes_hood/red
+	taint_wyrm = 1 // red is fricking evil..
 
 /obj/item/clothing/head/hooded/robes_hood/red
 	name = "red hood"
@@ -188,6 +191,7 @@
 	desc = "Black robes with red highlights, marked with the emblem of House Tremere."
 	icon_state = "tremere_robes"
 	hoodtype = /obj/item/clothing/head/hooded/robes_hood/tremere
+	taint_wyrm = 3
 
 /obj/item/clothing/head/hooded/robes_hood/tremere
 	name = "tremere hood"
@@ -199,6 +203,7 @@
 	desc = "A red robe with an ornate golden trim, marked with the emblem of House Tremere."
 	icon_state = "magister_robes"
 	hoodtype = /obj/item/clothing/head/hooded/robes_hood/magister
+	taint_wyrm = 5
 
 /obj/item/clothing/head/hooded/robes_hood/magister
 	name = "magister hood"
@@ -210,6 +215,7 @@
 	desc = "A purple robe with an ornate trim, marked with the emblem of House Tremere."
 	icon_state = "apprentice_robes"
 	hoodtype = /obj/item/clothing/head/hooded/robes_hood/apprentice
+	taint_wyrm = 4
 
 /obj/item/clothing/head/hooded/robes_hood/apprentice
 	name = "apprentice hood"
@@ -221,6 +227,7 @@
 	desc = "Black robes with red highlights, marked with the emblem of House Tremere."
 	icon_state = "tremere_robes_capeless"
 	hoodtype = /obj/item/clothing/head/hooded/robes_hood/tremere_capeless
+	taint_wyrm = 3
 
 /obj/item/clothing/head/hooded/robes_hood/tremere_capeless
 	name = "tremere hood"
@@ -232,6 +239,7 @@
 	desc = "A red robe with an ornate golden trim, marked with the emblem of House Tremere."
 	icon_state = "magister_robes_capeless"
 	hoodtype = /obj/item/clothing/head/hooded/robes_hood/magister_capeless
+	taint_wyrm = 6
 
 /obj/item/clothing/head/hooded/robes_hood/magister_capeless
 	name = "magister hood"
@@ -298,6 +306,7 @@
 	desc = "A hoodie of a favorite Intruder Zim character, Ger."
 	icon_state = "hoodie_zim"
 	hoodtype = /obj/item/clothing/head/hooded/hood_hood/hood_pim
+	taint_weaver = 3 // minted in the television
 
 /obj/item/clothing/head/hooded/hood_hood/hood_pim
 	name = "intruder zim hoodie hood"
@@ -310,6 +319,7 @@
 	desc = "Lavish, luxurious, and deeply purple. Slickback Clothing Co. It exudes immense energy."
 	icon_state = "slickbackcoat"
 	armor_type = /datum/armor/opulent_coat
+	taint_wyrm = 1 // sin and vice
 
 /datum/armor/opulent_coat
 	melee = 5
@@ -536,6 +546,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	armor_type = /datum/armor/eod_suit
 	masquerade_violating = TRUE
+	taint_weaver = 3
 
 /datum/armor/eod_suit
 	melee = 90
@@ -559,6 +570,7 @@
 	slowdown = 0.5
 	w_class = WEIGHT_CLASS_NORMAL
 	armor_type = /datum/armor/bulletproof_vest
+	taint_wyrm = 8 // concentrated evil made manifest. it reeks.
 
 /obj/item/clothing/suit/vampire/bogatyr/captain
 	name = "golden bone armor"
@@ -583,6 +595,7 @@
 	desc = "For medicine and research purposes."
 	icon_state = "labcoat"
 	armor_type = /datum/armor/labcoat
+	taint_weaver = 2
 
 /datum/armor/labcoat
 	acid = 90
@@ -613,6 +626,7 @@
 	desc = "When I first tasted the fruit of the Trees,\
 			felt the seeds of Life and Knowledge, burn within me, I swore that day I would not turn back..."
 	icon_state = "bahari"
+	taint_wyrm = 4
 
 /obj/item/clothing/suit/vampire/kasaya
 	name = "kasaya"
@@ -645,12 +659,14 @@
 	desc = "A crisp white labcoat. This one has the " + MAIN_EVIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_closedlabcoat"
 	armor_type = /datum/armor/labcoat
+	taint_wyrm = 5
 
 /obj/item/clothing/suit/vampire/pentex_labcoat_alt
 	name = "\improper " + MAIN_EVIL_COMPANY + " labcoat"
 	desc = "A crisp white labcoat. This one has a green trim and the " + MAIN_EVIL_COMPANY + " International logo stiched onto the breast!"
 	icon_state = "pentex_labcoat_alt"
 	armor_type = /datum/armor/labcoat
+	taint_wyrm = 5
 
 /obj/item/clothing/suit/vampire/bomber_jacket_classic
 	name = "classic bomber jacket"

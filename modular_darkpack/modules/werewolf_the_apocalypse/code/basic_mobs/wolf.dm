@@ -94,7 +94,7 @@
 	if(istype(wolp_splat?.auspice, /datum/subsplat/werewolf/auspice/garou/philodox))
 		if(wolf_type == TYPE_KINFOLK)
 			. += span_purple("On closer inspection, they appear to be kin.")
-		if(HAS_TRAIT(src, TRAIT_WYRMTAINTED))
+		if(taint_wyrm >= 6)
 			. += span_warning("They are strongly wyrm-tainted.")
 
 
@@ -155,10 +155,7 @@
 	// real_name = "tainted kinfolk"
 	icon_state = "wolfspiral1"
 	base_icon_state = "wolfspiral"
-
-/mob/living/basic/pet/dog/wolf/kinfolk/spiral/Initialize(mapload)
-	. = ..()
-	ADD_TRAIT(src, TRAIT_WYRMTAINTED, INNATE_TRAIT)
+	taint_wyrm = 6
 
 // STATIC COLORS
 WOLF_COAT_HELPER(/mob/living/basic/pet/dog/wolf)

@@ -30,6 +30,7 @@
 	var/clothing_type = 0 // Set to -1 for random clothing
 
 	faction = list(FACTION_HOSTILE)
+	taint_wyrm = 10
 
 /mob/living/basic/crinos_beast/Initialize(mapload)
 	if(clothing_type == -1)

@@ -2,6 +2,7 @@
 	name = "movie"
 	icon = 'modular_darkpack/modules/decor/icons/poster_large.dmi'
 	desc = "An interesting movie poster."
+	taint_weaver = 1
 
 /obj/structure/sign/poster/city_large/wotw
 	icon_state = "war_of_the_worlds"

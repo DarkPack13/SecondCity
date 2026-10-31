@@ -32,6 +32,7 @@
 	pixel_z = 8
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
+	taint_weaver = 1
 
 /obj/machinery/light/floor/lamppost
 	name = "lamppost"

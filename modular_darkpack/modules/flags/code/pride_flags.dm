@@ -160,6 +160,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/pride/inter, 32)
 	desc = "The folded flag of rabies pride."
 	icon_state = "folded_pride_rabies"
 	sign_path = /obj/structure/sign/flag/pride/rabies
+	taint_wyld = 4
 
 /obj/item/sign/flag/pride/enby
 	name = "folded non-binary pride flag"

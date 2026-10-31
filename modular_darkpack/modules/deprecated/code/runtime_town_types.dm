@@ -11,6 +11,7 @@
 	desc = "For some reason its just stuck on the lock screen and all the buttons dont seem to do anything... (We have yet to reimplement vampire computers! Sorry!)"
 	icon = 'modular_darkpack/modules/deprecated/icons/props.dmi'
 	icon_state = "computer"
+	taint_weaver = 4
 
 /obj/vampire_computer/prince
 	icon_state = "computerprince"
