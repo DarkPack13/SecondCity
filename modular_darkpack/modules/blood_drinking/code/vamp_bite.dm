@@ -77,7 +77,7 @@
 					return
 
 			// Conspicuous Consumption flaw.
-			if(HAS_TRAIT(src, TRAIT_ORGANOVORE) && !is_clan(/datum/subsplat/vampire_clan/nagaraja))
+			if(HAS_TRAIT(src, TRAIT_ORGANOVORE))
 				to_chat(src, span_warning("Blood can not sustain you. You need to devour flesh or organs."))
 				SEND_SOUND(src, sound('modular_darkpack/modules/blood_drinking/sounds/need_blood.ogg', volume = 75))
 				return

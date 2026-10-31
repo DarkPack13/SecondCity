@@ -262,7 +262,7 @@
 	taste_description = "copper"
 
 /datum/reagent/consumable/nutriment/leech/expose_mob(mob/living/exposed_mob, methods=INGEST, reac_volume, show_message, touch_protection)
-	if(get_kindred_splat(exposed_mob) && (!HAS_TRAIT(exposed_mob, TRAIT_ORGANOVORE) || exposed_mob.is_clan(/datum/subsplat/vampire_clan/nagaraja)))
+	if(get_kindred_splat(exposed_mob) && !HAS_TRAIT(exposed_mob, TRAIT_ORGANOVORE))
 		var/survival_skill = exposed_mob.st_get_stat(STAT_SURVIVAL)
 		var/animal_skill = exposed_mob.st_get_stat(STAT_ANIMAL_KEN)
 		if(prob(max(25,((survival_skill+animal_skill)*10))))
@@ -270,7 +270,7 @@
 	return ..()
 
 /datum/reagent/consumable/nutriment/leech/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
-	if(get_splat_with_vitae(affected_mob) && (!HAS_TRAIT(affected_mob, TRAIT_ORGANOVORE) || affected_mob.is_clan(/datum/subsplat/vampire_clan/nagaraja)))
+	if(get_splat_with_vitae(affected_mob) && !HAS_TRAIT(affected_mob, TRAIT_ORGANOVORE))
 		var/survival_skill = affected_mob.st_get_stat(STAT_SURVIVAL)
 		var/animal_skill = affected_mob.st_get_stat(STAT_ANIMAL_KEN)
 		if(SPT_PROB(max(25,((survival_skill+animal_skill)*10)), seconds_per_tick))

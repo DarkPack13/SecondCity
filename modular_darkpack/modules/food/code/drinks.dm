@@ -53,7 +53,7 @@
 	//glass_desc = "A freezing pint of vitae."
 
 /datum/reagent/consumable/ethanol/beer/typhon/on_mob_life(mob/living/carbon/M)
-	if(HAS_TRAIT(M, TRAIT_ORGANOVORE) && !M.is_clan(/datum/subsplat/vampire_clan/nagaraja))
+	if(HAS_TRAIT(M, TRAIT_ORGANOVORE))
 		return ..()
 	if(get_kindred_splat(M))
 		M.adjust_blood_pool(0.25)

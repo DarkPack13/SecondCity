@@ -122,7 +122,7 @@
 	. = ..()
 	target.adjust_blood_pool(-2)
 	target.apply_damage(12 * successes, AGGRAVATED)
-	if(!HAS_TRAIT(owner, TRAIT_ORGANOVORE) || owner.is_clan(/datum/subsplat/vampire_clan/nagaraja))
+	if(!HAS_TRAIT(owner, TRAIT_ORGANOVORE))
 		owner.adjust_blood_pool(2)
 	var/obj/item/ammo_casing/magic/tentacle/casing = new (get_turf(owner))
 	casing.fire_casing(target, owner, null, null, null, ran_zone(), 0,  owner)
