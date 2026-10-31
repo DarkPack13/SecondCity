@@ -5,7 +5,7 @@ GAME_VERB_DESC(/mob, emotion_panel, "Emotion Panel", "Change your character's em
 		return FALSE
 
 	// This really shouldnt be using aura here. it needs to be detached and made unrelenient on aura/auspex. - Fallcon
-	var/new_emotion = tgui_input_list(src, "What are you feeling?", "Feelings", GLOB.aura_list)
+	var/new_emotion = tgui_input_list(src, "What are you feeling?", "Feelings", GLOB.aura_list_to_color)
 	if(isnull(new_emotion))
 		return FALSE
 	set_emotion(new_emotion)
