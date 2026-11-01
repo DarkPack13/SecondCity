@@ -72,3 +72,35 @@
 #define DISCIPLINE_BUDGET_NEONATE 10
 #define DISCIPLINE_BUDGET_ANCILLAE 15
 #define DISCIPLINE_BUDGET_ELDER 18
+
+// VtM Discipline IDs for use with sprites and whatnot
+#define DISCIPLINE_ANIMALISM "Animalism"
+#define DISCIPLINE_AUSPEX "Auspex"
+#define DISCIPLINE_CELERITY "Celerity"
+#define DISCIPLINE_DAIMONION "Daimonion"
+#define DISCIPLINE_DEMENTATION "Dementation"
+#define DISCIPLINE_DOMINATE "Dominate"
+#define DISCIPLINE_FORTITUDE "Fortitude"
+#define DISCIPLINE_MELPOMINEE "Melpominee"
+#define DISCIPLINE_MYTHERCERIA "Mytherceria"
+#define DISCIPLINE_NECROMANCY "Necromancy"
+#define DISCIPLINE_OBEAH "Obeah"
+#define DISCIPLINE_OBFUSCATE "Obfuscate"
+#define DISCIPLINE_OBTENEBRATION "Obtenebration"
+#define DISCIPLINE_POTENCE "Potence"
+#define DISCIPLINE_PRESENCE "Presence"
+#define DISCIPLINE_PROTEAN "Protean"
+#define DISCIPLINE_QUIETUS "Quietus"
+#define DISCIPLINE_SERPENTIS "Serpentis"
+#define DISCIPLINE_TEMPORIS "Temporis"
+#define DISCIPLINE_THANATOSIS "Thanatosis"
+#define DISCIPLINE_THAUMATURGY "Thaumaturgy"
+#define DISCIPLINE_VALEREN "Valeren"
+#define DISCIPLINE_VICISSITUDE "Vicissitude"
+#define DISCIPLINE_VISCERATIKA "Visceratika"
+// Technicality
+#define DISCIPLINE_BLOODHEAL "Bloodheal"
+#define DISCIPLINE_TORPOR "Torpor"
+
+
+

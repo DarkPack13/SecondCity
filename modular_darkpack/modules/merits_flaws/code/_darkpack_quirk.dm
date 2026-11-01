@@ -9,8 +9,14 @@
 	var/list/excluded_clans
 	/// Included clans for this quirk (exclusive to vampire). E.g "Only Cappadocians can take this flaw"
 	var/list/included_clans
+	/// Included disciplines for this quirk (exclusive to vampire). E.g "Only those with Vicissitude can take this flaw"
+	var/list/included_disciplines
+	/// Included disciplines for this quirk (exclusive to vampire). E.g "Only those without Vicissitude can take this flaw"
+	var/list/excluded_disciplines
 	/// Minimum Generation
 	var/minimum_generation
+	/// Minimum Discipline Points in a Discipline
+	var/list/discipline_point_threshold
 	/// Unique failure message on joining the round (in case someone joins with an incompatible quirk on their savefile for some reason)
 	var/failure_message = "One of the quirks you've selected hasn't applied - your character is ineligible to use it!"
 
@@ -35,6 +41,19 @@
 		var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(new_holder)
 		if(kindred_splat.generation < minimum_generation)
 			to_chat(new_holder, span_warning("[failure_message]"))
+			return FALSE
+
+	if (discipline_point_threshold)
+		var/meets_discipline_point_threshhold  = FALSE
+		var/datum/splat/vampire/kindred/kindred_holder = get_kindred_splat(new_holder)
+		var/list/tracked_discipline_points
+		var/list/holder_disciplines = kindred_holder.get_active_disciplines()
+		for (var/datum/discipline/picked_discipline as anything in holder_disciplines)
+			tracked_discipline_points[picked_discipline.id] = kindred_holder.get_discipline_dots(holder_disciplines)
+			//minimum_discipline_points += tracked_discipline_points[picked_discipline.id] //<- how would this be written so I can reference it
+			if(tracked_discipline_points[picked_discipline.id] in discipline_point_threshold)
+				meets_discipline_point_threshhold = TRUE
+		if(!meets_discipline_point_threshhold)
 			return FALSE
 	return ..()
 
@@ -72,6 +91,20 @@
 
 	return TRUE
 
+/datum/quirk/darkpack/proc/is_discipline_appropriate(datum/discipline/discipline)
+	if(!excluded_disciplines && !included_disciplines)
+		return TRUE
+
+	if(!discipline)
+		return TRUE
+
+	if(excluded_disciplines && (discipline.id in excluded_disciplines))
+		return FALSE
+
+	if(included_disciplines && !(discipline.id in included_disciplines))
+		return FALSE
+
+	return TRUE
 
 
 /// Subtype quirk that has some bonus logic to spawn items for the player.

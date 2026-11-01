@@ -9,6 +9,7 @@
 ●●● Bonecrafting: Strength + Medicine (difficulty 7)
 ●●●● Horrid Form: Passive
 ●●●●● Bloodform: Passive"}
+	id = DISCIPLINE_VICISSITUDE
 	icon_state = "vicissitude"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/vicissitude
@@ -43,7 +44,7 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND
 	target_type = NONE
 	cooldown_length = 1 TURNS
-	vitae_cost = 0 // Attach vitae cost to any cost-worthy radial options to prevent jank.
+	vitae_cost = 0 // Cost handled in Bodycrafting
 	toggled = FALSE
 	frenzy_usable = FALSE
 
@@ -61,7 +62,7 @@
 	level = 2
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
 	target_type = TARGET_SELF | TARGET_HUMAN
-	vitae_cost = 1
+	vitae_cost = 0 // Cost handled in Bodycrafting
 	range = 1
 	toggled = FALSE
 	cooldown_length = 1 TURNS

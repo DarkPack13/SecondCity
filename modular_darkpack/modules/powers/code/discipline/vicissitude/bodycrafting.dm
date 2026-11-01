@@ -12,7 +12,6 @@
 	if(vitae_cost)
 		if(!(owner.bloodpool >= /*(HAS_TRAIT(owner, TRAIT_DOUBLE_VITAE_COST) ? vitae_cost*2 :*/ vitae_cost))
 			return FALSE*/
-var/vitae_cost = 1
 
 //spend_resources()
 //pre_activation_checks
@@ -27,20 +26,17 @@ var/vitae_cost = 1
 	/// The range of this action.
 	var/range = 1
 
-//datum/discipline_power/bodycraft/pre_activation_checks()
-	//owner.adjust_blood_pool(-vitae_cost)
-//datum/action/cooldown/power/bodycraft/spend_resources(mob/living/owner)
+/datum/action/cooldown/mob_cooldown/bodycraft/proc/spend_resources(mob/living/owner)
+	owner.adjust_blood_pool(-get_bodycraft_cost())
 
-/datum/action/cooldown/power/bodycraft/Activate()
-	spend_resources(-vitae_cost)
-	//return ..()
-
-/datum/action/cooldown/mob_cooldown/bodycraft/bodycrafting_cost/proc()
+/// How much does this bodycraft option cost?
+/datum/action/cooldown/mob_cooldown/bodycraft/proc/get_bodycraft_cost()
+	var/vitae_cost = 5
 	var/list/choices = CHOICE_OPTIONS
-	//var/cost_one = VITAE_COST_ONE
-	if(is_type_in_list(VITAE_COST_ONE, choices))
+	var/datum/vitae_one = VITAE_COST_ONE
+	if(is_type_in_list(vitae_one, choices))
 		vitae_cost = 1
-	return
+	return vitae_cost
 
 /datum/action/cooldown/mob_cooldown/bodycraft/New(Target, original)
 	. = ..()
@@ -57,10 +53,12 @@ var/vitae_cost = 1
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/display_radial_menu(mob/target)
 	var/chosen_option = show_radial_menu(owner, target, choices, target, radius = 36, tooltips = TRUE)
+	//var/hair_option = show_radial_menu(owner, target, hair_choices, target, radius = 36, tooltips = TRUE)
 	if(!chosen_option)
 		return TRUE
 
 	if(((target.pulledby == owner) && (owner.grab_state >= GRAB_AGGRESSIVE)) || (target == owner))
+		spend_resources(owner)
 		switch(chosen_option)
 			if(CHANGE_HAIR)
 				change_hair(target)
@@ -296,3 +294,4 @@ var/vitae_cost = 1
 #undef CHANGE_RACE
 #undef CHANGE_HEIGHT
 #undef CHOICE_OPTIONS
+#undef VITAE_COST_ONE
