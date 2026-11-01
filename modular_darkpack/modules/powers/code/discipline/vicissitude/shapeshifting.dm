@@ -62,7 +62,10 @@
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))
 		return FALSE
-	if(!do_after(owner, delay = 1 TURNS, target = target))
+	if(!HAS_TRAIT(owner, TRAIT_PROMETHEAN_CLAY))
+		if(!do_after(owner, delay = 1 TURNS, target = target))
+			return FALSE
+	if(target != owner && !do_after(owner, delay = 1 TURNS, target = target))
 		return FALSE
 	switch(chosen_sex)
 		if("Male")
@@ -82,7 +85,10 @@
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))
 		return FALSE
-	if(!do_after(owner, delay = 1 TURNS, target = target))
+	if(!HAS_TRAIT(owner, TRAIT_PROMETHEAN_CLAY))
+		if(!do_after(owner, delay = 1 TURNS, target = target))
+			return FALSE
+	if(target != owner && !do_after(owner, delay = 1 TURNS, target = target))
 		return FALSE
 	target.physique = (chosen_physique == "Masculine") ? MALE : FEMALE
 	target.dna.update_ui_block(/datum/dna_block/identity/gender)
@@ -100,7 +106,10 @@
 		return TRUE
 	if(!IN_GIVEN_RANGE(owner, target, range))
 		return FALSE
-	if(!do_after(owner, delay = 1 TURNS, target = target))
+	if(!HAS_TRAIT(owner, TRAIT_PROMETHEAN_CLAY))
+		if(!do_after(owner, delay = 1 TURNS, target = target))
+			return FALSE
+	if(target != owner && !do_after(owner, delay = 1 TURNS, target = target))
 		return FALSE
 	target.set_eye_color(sanitize_hexcolor(new_eye_color))
 	target.dna.update_ui_block(/datum/dna_block/identity/eye_colors)
@@ -116,7 +125,10 @@
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))
 		return FALSE
-	if(!do_after(owner, delay = 1 TURNS, target = target))
+	if(!HAS_TRAIT(owner, TRAIT_PROMETHEAN_CLAY))
+		if(!do_after(owner, delay = 1 TURNS, target = target))
+			return FALSE
+	if(target != owner && !do_after(owner, delay = 1 TURNS, target = target))
 		return FALSE
 	target.set_facial_hairstyle(new_style, update = TRUE)
 	SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
@@ -128,7 +140,10 @@
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))
 		return FALSE
-	if(!do_after(owner, delay = 1 TURNS, target = target))
+	if(!HAS_TRAIT(owner, TRAIT_PROMETHEAN_CLAY))
+		if(!do_after(owner, delay = 1 TURNS, target = target))
+			return FALSE
+	if(target != owner && !do_after(owner, delay = 1 TURNS, target = target))
 		return FALSE
 	target.set_facial_haircolor(sanitize_hexcolor(new_face_color))
 	target.dna.update_ui_block(/datum/dna_block/identity/facial_color)
@@ -143,7 +158,10 @@
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))
 		return FALSE
-	if(!do_after(owner, delay = 1 TURNS, target = target))
+	if(!HAS_TRAIT(owner, TRAIT_PROMETHEAN_CLAY))
+		if(!do_after(owner, delay = 1 TURNS, target = target))
+			return FALSE
+	if(target != owner && !do_after(owner, delay = 1 TURNS, target = target))
 		return FALSE
 	target.set_hairstyle(new_style, update = TRUE)
 	SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
@@ -155,7 +173,10 @@
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))
 		return FALSE
-	if(!do_after(owner, delay = 1 TURNS, target = target))
+	if(!HAS_TRAIT(owner, TRAIT_PROMETHEAN_CLAY))
+		if(!do_after(owner, delay = 1 TURNS, target = target))
+			return FALSE
+	if(target != owner && !do_after(owner, delay = 1 TURNS, target = target))
 		return FALSE
 	target.set_haircolor(sanitize_hexcolor(new_hair_color))
 	target.dna.update_ui_block(/datum/dna_block/identity/hair_color)
@@ -170,7 +191,10 @@
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))
 		return FALSE
-	if(!do_after(owner, delay = 1 TURNS, target = target))
+	if(!HAS_TRAIT(owner, TRAIT_PROMETHEAN_CLAY))
+		if(!do_after(owner, delay = 1 TURNS, target = target))
+			return FALSE
+	if(target != owner && !do_after(owner, delay = 1 TURNS, target = target))
 		return FALSE
 	target.real_name = newname
 	if(target.dna)
@@ -194,7 +218,10 @@
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))
 		return FALSE
-	if(!do_after(owner, delay = 1 TURNS, target = target))
+	if(!HAS_TRAIT(owner, TRAIT_PROMETHEAN_CLAY))
+		if(!do_after(owner, delay = 1 TURNS, target = target))
+			return FALSE
+	if(target != owner && !do_after(owner, delay = 1 TURNS, target = target))
 		return FALSE
 	target.skin_tone = new_s_tone
 	target.dna.update_ui_block(/datum/dna_block/identity/skin_tone)
@@ -220,7 +247,10 @@
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))
 		return FALSE
-	if(!do_after(owner, delay = 1 TURNS, target = target))
+	if(!HAS_TRAIT(owner, TRAIT_PROMETHEAN_CLAY))
+		if(!do_after(owner, delay = 1 TURNS, target = target))
+			return FALSE
+	if(target != owner && !do_after(owner, delay = 1 TURNS, target = target))
 		return FALSE
 	target.set_mob_height(new_height)
 	SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)

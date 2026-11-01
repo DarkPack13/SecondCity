@@ -43,7 +43,7 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND
 	target_type = NONE
 	cooldown_length = 1 TURNS
-	vitae_cost = 1
+	vitae_cost = 0 // Attach vitae cost to any cost-worthy radial options to prevent jank.
 	toggled = FALSE
 	frenzy_usable = FALSE
 
@@ -254,6 +254,8 @@
 /datum/discipline_power/vicissitude/bloodform/pre_activation_checks()
 	. = ..()
 	owner.do_jitter_animation(1 TURNS)
+	if(HAS_TRAIT(owner, TRAIT_PROMETHEAN_CLAY))
+		return TRUE
 	if(!do_after(owner, 1 TURNS, owner))
 		return FALSE
 	return TRUE
@@ -261,11 +263,14 @@
 /datum/discipline_power/vicissitude/bloodform/activate()
 	. = ..()
 	owner.set_species(mrace = /datum/species/tzimisce_blood_form, icon_update = TRUE, pref_load = TRUE, replace_missing = FALSE)
-	owner.uncuff() //Avoids any issues with existing cuffs, and you can't handcuff a selectively solid pool of blood.
+	owner.uncuff() // Avoids any issues with existing cuffs, and you can't handcuff a selectively solid pool of blood.
 
 /datum/discipline_power/vicissitude/bloodform/deactivate()
 	. = ..()
 	owner.do_jitter_animation(1 TURNS)
+	if(HAS_TRAIT(owner, TRAIT_PROMETHEAN_CLAY))
+		owner.set_species(mrace = /datum/species/human, icon_update = TRUE, pref_load = TRUE, replace_missing = FALSE)
+		return TRUE
 	if(!do_after(owner, 1 TURNS, owner))
 		return FALSE
 	owner.set_species(mrace = /datum/species/human, icon_update = TRUE, pref_load = TRUE, replace_missing = FALSE)
