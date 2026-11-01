@@ -6,28 +6,56 @@
 #define CHANGE_RACE "Change Race"
 #define CHANGE_HEIGHT "Change Height"
 #define CHOICE_OPTIONS list(CHANGE_HAIR, CHANGE_BEARD, CHANGE_SEX, CHANGE_EYES, CHANGE_NAME, CHANGE_RACE, CHANGE_HEIGHT)
+#define VITAE_COST_ONE list(CHANGE_HAIR, CHANGE_BEARD, CHANGE_SEX, CHANGE_EYES, CHANGE_NAME, CHANGE_RACE, CHANGE_HEIGHT)
 
-/datum/action/cooldown/mob_cooldown/shapeshift
+/*/datum/action/cooldown/mob_cooldown/bodycraft/vicissitude_bodycrafting/can_afford()
+	if(vitae_cost)
+		if(!(owner.bloodpool >= /*(HAS_TRAIT(owner, TRAIT_DOUBLE_VITAE_COST) ? vitae_cost*2 :*/ vitae_cost))
+			return FALSE*/
+var/vitae_cost = 1
+
+//spend_resources()
+//pre_activation_checks
+//datum/action/cooldown/proc/PreActivate(atom/target)
+//spend_resources
+//adjust_blood_pool
+
+/datum/action/cooldown/mob_cooldown/bodycraft
 	owner_has_control = FALSE
 	/// What choices we get to pick.
 	var/list/choices = CHOICE_OPTIONS
 	/// The range of this action.
 	var/range = 1
 
-/datum/action/cooldown/mob_cooldown/shapeshift/New(Target, original)
+//datum/discipline_power/bodycraft/pre_activation_checks()
+	//owner.adjust_blood_pool(-vitae_cost)
+//datum/action/cooldown/power/bodycraft/spend_resources(mob/living/owner)
+
+/datum/action/cooldown/power/bodycraft/Activate()
+	spend_resources(-vitae_cost)
+	//return ..()
+
+/datum/action/cooldown/mob_cooldown/bodycraft/bodycrafting_cost/proc()
+	var/list/choices = CHOICE_OPTIONS
+	//var/cost_one = VITAE_COST_ONE
+	if(is_type_in_list(VITAE_COST_ONE, choices))
+		vitae_cost = 1
+	return
+
+/datum/action/cooldown/mob_cooldown/bodycraft/New(Target, original)
 	. = ..()
 	update_choices()
 
-/datum/action/cooldown/mob_cooldown/shapeshift/proc/update_choices()
+/datum/action/cooldown/mob_cooldown/bodycraft/proc/update_choices()
 	for(var/i in choices)
-		choices[i] = icon('modular_darkpack/modules/powers/icons/shapeshifting_radial.dmi', i)
+		choices[i] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', i)
 
-/datum/action/cooldown/mob_cooldown/shapeshift/Activate(atom/target)
+/datum/action/cooldown/mob_cooldown/bodycraft/Activate(atom/target)
 	. = ..()
 	display_radial_menu(target)
 	return TRUE
 
-/datum/action/cooldown/mob_cooldown/shapeshift/proc/display_radial_menu(mob/target)
+/datum/action/cooldown/mob_cooldown/bodycraft/proc/display_radial_menu(mob/target)
 	var/chosen_option = show_radial_menu(owner, target, choices, target, radius = 36, tooltips = TRUE)
 	if(!chosen_option)
 		return TRUE
@@ -48,6 +76,8 @@
 				change_race(target)
 			if(CHANGE_HEIGHT)
 				change_height(target)
+
+
 	else
 		to_chat(owner, span_danger("You need to have a firm grip on [target]!"))
 		return TRUE
@@ -56,7 +86,7 @@
 		return FALSE
 	return display_radial_menu(target)
 
-/datum/action/cooldown/mob_cooldown/shapeshift/proc/change_sex(mob/living/carbon/human/target)
+/datum/action/cooldown/mob_cooldown/bodycraft/proc/change_sex(mob/living/carbon/human/target)
 	var/chosen_sex = tgui_input_list(owner, "Choose a gender.", "Confirmation", list("Male", "Female", "Plural", "Neuter"))
 	if(!chosen_sex)
 		return FALSE
@@ -100,7 +130,7 @@
 	to_chat(owner, span_notice("You finish altering the physique of [target]."))
 	return TRUE
 
-/datum/action/cooldown/mob_cooldown/shapeshift/proc/change_eyes(mob/living/carbon/human/target)
+/datum/action/cooldown/mob_cooldown/bodycraft/proc/change_eyes(mob/living/carbon/human/target)
 	var/new_eye_color = input(owner, "Choose a eye color", "Eye Color", target.eye_color_left) as color|null
 	if(!new_eye_color)
 		return TRUE
@@ -119,7 +149,7 @@
 	to_chat(owner, span_notice("You finish altering the eye color of [target]."))
 	return TRUE
 
-/datum/action/cooldown/mob_cooldown/shapeshift/proc/change_beard(mob/living/carbon/human/target)
+/datum/action/cooldown/mob_cooldown/bodycraft/proc/change_beard(mob/living/carbon/human/target)
 	var/new_style = tgui_input_list(owner, "Select a facial hairstyle", "Grooming", SSaccessories.facial_hairstyles_list)
 	if(!new_style)
 		return FALSE
@@ -152,7 +182,7 @@
 	to_chat(owner, span_notice("You finish altering the facial hair color of [target]."))
 	return TRUE
 
-/datum/action/cooldown/mob_cooldown/shapeshift/proc/change_hair(mob/living/carbon/human/target)
+/datum/action/cooldown/mob_cooldown/bodycraft/proc/change_hair(mob/living/carbon/human/target)
 	var/new_style = tgui_input_list(owner, "Select a hairstyle", "Grooming", SSaccessories.hairstyles_list)
 	if(!new_style)
 		return FALSE
@@ -185,7 +215,7 @@
 	to_chat(owner, span_notice("You finish altering the hair color of [target]."))
 	return TRUE
 
-/datum/action/cooldown/mob_cooldown/shapeshift/proc/change_name(mob/living/carbon/human/target)
+/datum/action/cooldown/mob_cooldown/bodycraft/proc/change_name(mob/living/carbon/human/target)
 	var/newname = sanitize_name(tgui_input_text(owner, "Who are we again?", "Name change", target.real_name, MAX_NAME_LEN))
 	if(!newname || newname == target.real_name)
 		return FALSE
@@ -206,7 +236,7 @@
 	to_chat(owner, span_notice("You finish altering the name of [target]."))
 	return TRUE
 
-/datum/action/cooldown/mob_cooldown/shapeshift/proc/change_race(mob/living/carbon/human/target)
+/datum/action/cooldown/mob_cooldown/bodycraft/proc/change_race(mob/living/carbon/human/target)
 	var/list/skin_tones = list()
 	for(var/skin_tone in GLOB.skin_tone_names)
 		var/skin_tone_name = GLOB.skin_tone_names[skin_tone]
@@ -232,7 +262,7 @@
 	to_chat(owner, span_notice("You finish altering the race of [target]."))
 	return TRUE
 
-/datum/action/cooldown/mob_cooldown/shapeshift/proc/change_height(mob/living/carbon/human/target)
+/datum/action/cooldown/mob_cooldown/bodycraft/proc/change_height(mob/living/carbon/human/target)
 	var/list/heights = list(
 		"Taller" = HUMAN_HEIGHT_TALLER,
 		"Tall" = HUMAN_HEIGHT_TALL,

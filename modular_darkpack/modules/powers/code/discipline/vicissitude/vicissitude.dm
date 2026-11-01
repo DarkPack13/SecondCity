@@ -25,12 +25,12 @@
 	name = "Vicissitude power name"
 	desc = "Vicissitude power description"
 
-	var/datum/action/cooldown/mob_cooldown/shapeshift/shapeshift_ability
+	var/datum/action/cooldown/mob_cooldown/bodycraft/bodycraft_ability
 
 /datum/discipline_power/vicissitude/post_gain()
-	if(!shapeshift_ability)
-		shapeshift_ability = new(owner)
-	shapeshift_ability.Grant(owner)
+	if(!bodycraft_ability)
+		bodycraft_ability = new(owner)
+	bodycraft_ability.Grant(owner)
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,7 +49,7 @@
 
 /datum/discipline_power/vicissitude/malleable_visage/activate(atom/target)
 	. = ..()
-	shapeshift_ability.Activate(owner)
+	bodycraft_ability.Activate(owner)
 	return TRUE
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,7 +69,7 @@
 
 /datum/discipline_power/vicissitude/fleshcrafting/activate(atom/movable/target)
 	. = ..()
-	shapeshift_ability.Activate(target)
+	bodycraft_ability.Activate(target)
 	return TRUE
 
 /datum/discipline_power/vicissitude/fleshcrafting/post_gain()
