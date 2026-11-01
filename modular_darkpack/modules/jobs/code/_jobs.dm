@@ -207,7 +207,7 @@
 	var/country_of_origin = user.dna.country_of_origin
 	if(country_of_origin && wallet)
 		var/driving_skill = user.st_get_stat(STAT_DRIVE)
-		if(country_of_origin == DEFAULT_COUNTRY_NAME)
+		if(country_of_origin == "United States")
 			if(!driving_skill)
 				new /obj/item/identification/drivers_license/state_issued_id(wallet)
 			else

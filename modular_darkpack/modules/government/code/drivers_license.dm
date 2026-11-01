@@ -3,7 +3,7 @@
 	desc = "An identification card allowing its holder to own and operate motor vehicles. Doubles as a valid form of identification."
 	icon_state = "drivers"
 
-	var/issuing_state = "California"
+	var/issuing_state = DEFAULT_STATE_NAME
 	var/organ_donor
 
 	var/additional_text = ""
@@ -16,7 +16,7 @@
 	else
 		organ_donor = user.dna.organ_donor
 
-	if(user.dna.country_of_origin == DEFAULT_COUNTRY_NAME)
+	if(user.dna.country_of_origin == "United States")
 		issuing_state = user.dna.state_of_origin
 
 /obj/item/identification/drivers_license/examine(mob/user)

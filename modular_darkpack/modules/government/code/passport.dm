@@ -4,14 +4,14 @@
 	icon_state = "passport1"
 
 	/// Country of origin for the passport holder
-	var/country_of_origin = DEFAULT_COUNTRY_NAME
+	var/country_of_origin = "United States"
 
 /obj/item/identification/passport/link_human(mob/living/carbon/human/user)
 	. = ..()
 
 	country_of_origin = user.dna.country_of_origin
-	if(country_of_origin == DEFAULT_COUNTRY_NAME)
-		country_of_origin = "[user.dna.state_of_origin], [DEFAULT_COUNTRY_NAME]"
+	if(country_of_origin == "United States")
+		country_of_origin = "[user.dna.state_of_origin], [country_of_origin]"
 	icon_state = pick("passport1", "passport")
 
 /obj/item/identification/passport/examine(mob/user)
