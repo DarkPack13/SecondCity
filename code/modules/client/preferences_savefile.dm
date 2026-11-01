@@ -189,6 +189,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if (current_version < 2)
 		if(read_preference(/datum/preference/choiced/subsplat/fera_breed/garou) == "Metis")
 			write_preference(GLOB.preference_entries[/datum/preference/choiced/subsplat/fera_breed/garou], BREED_CRINOS)
+	if (current_version < 3)
+		var/organovore_index = all_quirks?.Find("Organovore")
+		if(organovore_index)
+			all_quirks[organovore_index] = "Conspicuous Consumption"
 // DARKPACK EDIT ADD END
 
 /// checks through keybindings for outdated unbound keys and updates them
