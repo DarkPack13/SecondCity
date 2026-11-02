@@ -1,4 +1,0 @@
-author: "JohnFulpWillard"
-delete-after: True
-changes:
-  - bugfix: "Admins that aren't also Mentors can now use the Mentor submenu"

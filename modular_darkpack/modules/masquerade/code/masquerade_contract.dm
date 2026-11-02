@@ -18,7 +18,7 @@
 	if(!get_vampire_splat(user))
 		return
 	var/turf/current_location = get_turf(user)
-	to_chat(user, "[span_bold("YOU")], [get_area_name(user)] X:[current_location.x] Y:[current_location.y] Z:[current_location.z]")
+	to_chat(user, span_info("[span_bold("YOU")], [get_area_name(user)] X:[current_location.x] Y:[current_location.y] Z:[current_location.z]"))
 	for(var/mob/living/carbon/breacher in GLOB.masquerade_breakers_list)
 		var/location_info
 		var/turf/turf = get_turf(breacher)
@@ -42,12 +42,17 @@
 	armor_type = /datum/armor/masquerade_contract
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
+/obj/item/veil_contract/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/readable_time)
+
 /obj/item/veil_contract/attack_self(mob/user, modifiers)
 	. = ..()
 	if(!get_werewolf_splat(user))
+		user.examinate(src)
 		return
 	var/turf/current_location = get_turf(user)
-	to_chat(user, "[span_bold("YOU")], [get_area_name(user)] X:[current_location.x] Y:[current_location.y] Z:[current_location.z]")
+	to_chat(user, span_info("[span_bold("YOU")], [get_area_name(user)] X:[current_location.x] Y:[current_location.y] Z:[current_location.z]"))
 	for(var/mob/living/breacher in GLOB.veil_breakers_list)
 		var/location_info
 		var/turf/turf = get_turf(breacher)
