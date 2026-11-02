@@ -225,18 +225,18 @@
 
 	return clan_blacklist
 
-/datum/preference_middleware/quirks/proc/get_disciplines_compatibility()
+/*/datum/preference_middleware/quirks/proc/get_disciplines_compatibility()
 	var/list/discipline_blacklist = list()
 	var/list/discipline_list = list()
 	for(var/datum/discipline/discipline in preferences.discipline_levels)
 		var/discipline_level = preferences.discipline_levels[discipline]
-		discipline_list += "[discipline]" = discipline_level
-		//discipline_list["[discipline]"] = discipline_level
+		//discipline_list += ["[discipline]"] = discipline_level
+		discipline_list["[discipline]"] = discipline_level
 
 	if(!discipline_list)
 		return discipline_blacklist
 
-	var/datum/discipline/discipline = GLOB.disciplines[GLOB.discipline_list[discipline_list]]
+	var/datum/discipline/disc = GLOB.disciplines[GLOB.discipline_list[discipline_list]]
 	for(var/quirk_path in SSquirks.quirk_prototypes)
 		var/datum/quirk/quirk_prototype = SSquirks.quirk_prototypes[quirk_path]
 
@@ -244,7 +244,29 @@
 			continue
 
 		var/datum/quirk/darkpack/darkpack_quirk = quirk_prototype
-		if(!darkpack_quirk.is_discipline_appropriate(discipline))
+		if(!darkpack_quirk.is_discipline_appropriate(disc))
+			discipline_blacklist += quirk_prototype.name
+
+	return discipline_blacklist*/
+
+/datum/preference_middleware/quirks/proc/get_disciplines_compatibility()
+	var/list/discipline_blacklist = list()
+	var/list/player_disciplines = list()
+	for(var/datum/discipline/discipline in preferences.discipline_levels)
+		player_disciplines += preferences.discipline_levels[discipline]
+
+	if(!player_disciplines)
+		return discipline_blacklist
+
+	var/datum/discipline/disc = GLOB.disciplines[GLOB.discipline_list[player_disciplines]]
+	for(var/quirk_path in SSquirks.quirk_prototypes)
+		var/datum/quirk/quirk_prototype = SSquirks.quirk_prototypes[quirk_path]
+
+		if(!istype(quirk_prototype, /datum/quirk/darkpack))
+			continue
+
+		var/datum/quirk/darkpack/darkpack_quirk = quirk_prototype
+		if(!darkpack_quirk.is_discipline_appropriate(disc))
 			discipline_blacklist += quirk_prototype.name
 
 	return discipline_blacklist

@@ -10,10 +10,10 @@
 #define CHANGE_HEIGHT "Height"
 // CATEGORIES
 #define BACK "Back"
-#define HAIR_OPTIONS "Hair"
+#define HAIR_OPTIONS "Hair Options"
 // OPTION LISTS
 #define CHOICE_OPTIONS list(HAIR_OPTIONS, CHANGE_SEX, CHANGE_EYES, CHANGE_NAME, CHANGE_RACE, CHANGE_HEIGHT)
-#define CHOICE_OPTIONS_HAIR list(CHANGE_BEARD, CHANGE_HAIR, CHANGE_BEARD_COLOR, CHANGE_HAIR_COLOR)
+#define CHOICE_OPTIONS_HAIR list(CHANGE_BEARD, CHANGE_HAIR, CHANGE_BEARD_COLOR, CHANGE_HAIR_COLOR, BACK)
 // VITAE COST
 #define VITAE_COST_ONE list(CHANGE_SEX, CHANGE_EYES, CHANGE_NAME, CHANGE_RACE, CHANGE_HEIGHT, CHANGE_BEARD, CHANGE_HAIR, CHANGE_BEARD_COLOR, CHANGE_HAIR_COLOR)
 
@@ -36,7 +36,7 @@
 	var/vitae_cost = 4
 	var/list/all_choices = CHOICE_OPTIONS & CHOICE_OPTIONS_HAIR
 	for(var/choice_cost in all_choices)
-		if(choice_cost[all_choices] == VITAE_COST_ONE)
+		if(choice_cost in VITAE_COST_ONE)
 			return vitae_cost = 1
 
 
@@ -45,16 +45,16 @@
 	update_choices()
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/update_choices()
-
+//alist????
 	for(var/i in initial_choices)
 		initial_choices["Hair Options"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "hair")
-		initial_choices["Back"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "back")
 		initial_choices["Sex"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "sex")
 		initial_choices["Eyes"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "eyes")
 		initial_choices["Name"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "name")
 		initial_choices["Race"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "race")
 		initial_choices["Height"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "height")
 	for(var/i in hair_choices)
+		initial_choices["Back"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "back")
 		hair_choices["Hair"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "hair")
 		hair_choices["Beard"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "beard")
 		hair_choices["Hair Color"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "hair_color")
@@ -67,8 +67,11 @@
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/display_radial_menu(mob/target)
 	var/bodycraft_menu = show_radial_menu(owner, target, initial_choices, target, radius = 36)
-	if(bodycraft_menu == HAIR_OPTIONS)
-		bodycraft_menu = show_radial_menu(owner, target, hair_choices, target, radius = 36)
+	switch(bodycraft_menu)
+		if(HAIR_OPTIONS)
+			bodycraft_menu = show_radial_menu(owner, target, hair_choices, target, radius = 36)
+		else
+			bodycraft_menu = show_radial_menu(owner, target, initial_choices, target, radius = 36)
 	if(!bodycraft_menu)
 		return TRUE
 
