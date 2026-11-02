@@ -43,7 +43,7 @@
 	level = 1
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND
 	target_type = NONE
-	cooldown_length = 1 TURNS
+	cooldown_length = 0 TURNS
 	vitae_cost = 0 // Cost handled in Bodycrafting
 	toggled = FALSE
 	frenzy_usable = FALSE
@@ -65,7 +65,7 @@
 	vitae_cost = 0 // Cost handled in Bodycrafting
 	range = 1
 	toggled = FALSE
-	cooldown_length = 1 TURNS
+	cooldown_length = 0 TURNS
 	frenzy_usable = FALSE
 
 /datum/discipline_power/vicissitude/fleshcrafting/activate(atom/movable/target)

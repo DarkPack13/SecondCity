@@ -8,11 +8,8 @@
 	gain_text = span_notice("You feel a profound oneness with your undead flesh. You are writhing under your own skin, and it shimmers in response, eager to answer your will and mold like clay to your designs.")
 	lose_text = span_notice("Something feels... off. You are disconnected from your flesh. The indelible unity of your will and your undead form feels strained, and the preternatural responsiveness of your flesh fades.")
 	allowed_splats = list(SPLAT_KINDRED)
-	//included_disciplines = list(DISCIPLINE_VICISSITUDE)
+	included_disciplines = list(DISCIPLINE_VICISSITUDE)
 	//included_clans = list(VAMPIRE_CLAN_TZIMISCE)
-	discipline_point_threshold = list(1, DISCIPLINE_VICISSITUDE)
+	//discipline_point_threshold = list(DISCIPLINE_VICISSITUDE && 1)
 	icon = FA_ICON_PERSON_BURST
 	failure_message = "Something is wrong. The preternatural responsiveness of your flesh fades."
-	roleplay_only = TRUE // REMOVE THIS WHEN PROMETHEAN CLAY MERIT IS IMPLEMENTED IN FULL
-
-// hey, have you removed roleplay only after fully developing this merit? remove this too. did you remove it yet?

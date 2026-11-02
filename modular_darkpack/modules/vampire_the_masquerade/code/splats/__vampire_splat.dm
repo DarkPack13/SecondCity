@@ -37,7 +37,7 @@
 		if (istype(individual_discipline.discipline, /datum/discipline/bloodheal))
 			continue
 		current_disciplines += individual_discipline
-		return current_disciplines
+	return current_disciplines
 
 /datum/splat/vampire/proc/get_active_disciplines()
 	RETURN_TYPE(/datum/discipline)
@@ -47,7 +47,7 @@
 		if (istype(individual_discipline.discipline, /datum/discipline/bloodheal))
 			continue
 		current_disciplines += individual_discipline
-		return current_disciplines
+	return current_disciplines
 
 /datum/splat/vampire/proc/get_discipline(discipline_type)
 	RETURN_TYPE(/datum/discipline)

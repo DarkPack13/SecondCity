@@ -80,11 +80,13 @@
 		cached_species_compatibility = get_species_compatibility()
 		cached_splats_compatibility = get_splat_compatibility() // DARKPACK EDIT ADD - SPLATS
 		cached_clans_compatibility = get_clan_compatibility() // DARKPACK EDIT ADD - MERITS_FLAWS
+		cached_disciplines_compatibility = get_disciplines_compatibility() // DARKPACK EDIT ADD - MERITS_FLAWS
 
 	data["selected_quirks"] = cached_selected_quirks
 	data["species_disallowed_quirks"] = cached_species_compatibility
 	data["splat_disallowed_quirks"] = cached_splats_compatibility // DARKPACK EDIT ADD - SPLATS
 	data["clan_disallowed_quirks"] = cached_clans_compatibility // DARKPACK EDIT ADD - MERITS_FLAWS
+	data["discipline_disallowed_quirks"] = cached_disciplines_compatibility // DARKPACK EDIT ADD - MERITS_FLAWS
 	data["quirk_balance"] = get_quirk_balance() // DARKPACK EDIT ADD - MERITS_FLAWS
 	data["freebie_points"] = get_freebie_points() // DARKPACK EDIT ADD - MERITS_FLAWS
 
@@ -222,5 +224,29 @@
 			clan_blacklist += quirk_prototype.name
 
 	return clan_blacklist
+
+/datum/preference_middleware/quirks/proc/get_disciplines_compatibility()
+	var/list/discipline_blacklist = list()
+	var/list/discipline_list = list()
+	for(var/datum/discipline/discipline in preferences.discipline_levels)
+		var/discipline_level = preferences.discipline_levels[discipline]
+		discipline_list += "[discipline]" = discipline_level
+		//discipline_list["[discipline]"] = discipline_level
+
+	if(!discipline_list)
+		return discipline_blacklist
+
+	var/datum/discipline/discipline = GLOB.disciplines[GLOB.discipline_list[discipline_list]]
+	for(var/quirk_path in SSquirks.quirk_prototypes)
+		var/datum/quirk/quirk_prototype = SSquirks.quirk_prototypes[quirk_path]
+
+		if(!istype(quirk_prototype, /datum/quirk/darkpack))
+			continue
+
+		var/datum/quirk/darkpack/darkpack_quirk = quirk_prototype
+		if(!darkpack_quirk.is_discipline_appropriate(discipline))
+			discipline_blacklist += quirk_prototype.name
+
+	return discipline_blacklist
 
 // DARKPACK EDIT END - MERITS_FLAWS

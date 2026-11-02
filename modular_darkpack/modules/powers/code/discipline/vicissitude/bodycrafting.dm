@@ -1,50 +1,64 @@
-#define CHANGE_HAIR "Change Hair"
-#define CHANGE_BEARD "Change Beard"
-#define CHANGE_SEX  "Change Sex"
-#define CHANGE_NAME "Change Name"
-#define CHANGE_EYES "Change Eyes"
-#define CHANGE_RACE "Change Race"
-#define CHANGE_HEIGHT "Change Height"
-#define CHOICE_OPTIONS list(CHANGE_HAIR, CHANGE_BEARD, CHANGE_SEX, CHANGE_EYES, CHANGE_NAME, CHANGE_RACE, CHANGE_HEIGHT)
-#define VITAE_COST_ONE list(CHANGE_HAIR, CHANGE_BEARD, CHANGE_SEX, CHANGE_EYES, CHANGE_NAME, CHANGE_RACE, CHANGE_HEIGHT)
-
-/*/datum/action/cooldown/mob_cooldown/bodycraft/vicissitude_bodycrafting/can_afford()
-	if(vitae_cost)
-		if(!(owner.bloodpool >= /*(HAS_TRAIT(owner, TRAIT_DOUBLE_VITAE_COST) ? vitae_cost*2 :*/ vitae_cost))
-			return FALSE*/
-
-//spend_resources()
-//pre_activation_checks
-//datum/action/cooldown/proc/PreActivate(atom/target)
-//spend_resources
-//adjust_blood_pool
+// OPTIONS
+#define CHANGE_HAIR "Hair"
+#define CHANGE_BEARD "Beard"
+#define CHANGE_HAIR_COLOR "Hair Color"
+#define CHANGE_BEARD_COLOR "Beard Color"
+#define CHANGE_SEX  "Sex"
+#define CHANGE_NAME "Name"
+#define CHANGE_EYES "Eyes"
+#define CHANGE_RACE "Race"
+#define CHANGE_HEIGHT "Height"
+// CATEGORIES
+#define BACK "Back"
+#define HAIR_OPTIONS "Hair"
+// OPTION LISTS
+#define CHOICE_OPTIONS list(HAIR_OPTIONS, CHANGE_SEX, CHANGE_EYES, CHANGE_NAME, CHANGE_RACE, CHANGE_HEIGHT)
+#define CHOICE_OPTIONS_HAIR list(CHANGE_BEARD, CHANGE_HAIR, CHANGE_BEARD_COLOR, CHANGE_HAIR_COLOR)
+// VITAE COST
+#define VITAE_COST_ONE list(CHANGE_SEX, CHANGE_EYES, CHANGE_NAME, CHANGE_RACE, CHANGE_HEIGHT, CHANGE_BEARD, CHANGE_HAIR, CHANGE_BEARD_COLOR, CHANGE_HAIR_COLOR)
 
 /datum/action/cooldown/mob_cooldown/bodycraft
 	owner_has_control = FALSE
 	/// What choices we get to pick.
-	var/list/choices = CHOICE_OPTIONS
+	var/list/initial_choices = CHOICE_OPTIONS
+	var/list/hair_choices = CHOICE_OPTIONS_HAIR
 	/// The range of this action.
 	var/range = 1
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/spend_resources(mob/living/owner)
+	if(owner.bloodpool <= get_bodycraft_cost())
+		to_chat(owner, span_warning("You do not have enough blood to alter the body in such a way!"))
+		return
 	owner.adjust_blood_pool(-get_bodycraft_cost())
 
 /// How much does this bodycraft option cost?
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/get_bodycraft_cost()
-	var/vitae_cost = 5
-	var/list/choices = CHOICE_OPTIONS
-	var/datum/vitae_one = VITAE_COST_ONE
-	if(is_type_in_list(vitae_one, choices))
-		vitae_cost = 1
-	return vitae_cost
+	var/vitae_cost = 4
+	var/list/all_choices = CHOICE_OPTIONS & CHOICE_OPTIONS_HAIR
+	for(var/choice_cost in all_choices)
+		if(choice_cost[all_choices] == VITAE_COST_ONE)
+			return vitae_cost = 1
+
 
 /datum/action/cooldown/mob_cooldown/bodycraft/New(Target, original)
 	. = ..()
 	update_choices()
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/update_choices()
-	for(var/i in choices)
-		choices[i] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', i)
+
+	for(var/i in initial_choices)
+		initial_choices["Hair Options"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "hair")
+		initial_choices["Back"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "back")
+		initial_choices["Sex"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "sex")
+		initial_choices["Eyes"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "eyes")
+		initial_choices["Name"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "name")
+		initial_choices["Race"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "race")
+		initial_choices["Height"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "height")
+	for(var/i in hair_choices)
+		hair_choices["Hair"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "hair")
+		hair_choices["Beard"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "beard")
+		hair_choices["Hair Color"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "hair_color")
+		hair_choices["Beard Color"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "beard_color")
 
 /datum/action/cooldown/mob_cooldown/bodycraft/Activate(atom/target)
 	. = ..()
@@ -52,18 +66,27 @@
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/display_radial_menu(mob/target)
-	var/chosen_option = show_radial_menu(owner, target, choices, target, radius = 36, tooltips = TRUE)
-	//var/hair_option = show_radial_menu(owner, target, hair_choices, target, radius = 36, tooltips = TRUE)
-	if(!chosen_option)
+	var/bodycraft_menu = show_radial_menu(owner, target, initial_choices, target, radius = 36)
+	if(bodycraft_menu == HAIR_OPTIONS)
+		bodycraft_menu = show_radial_menu(owner, target, hair_choices, target, radius = 36)
+	if(!bodycraft_menu)
 		return TRUE
 
 	if(((target.pulledby == owner) && (owner.grab_state >= GRAB_AGGRESSIVE)) || (target == owner))
 		spend_resources(owner)
-		switch(chosen_option)
-			if(CHANGE_HAIR)
-				change_hair(target)
+		switch(bodycraft_menu)
+			if(HAIR_OPTIONS)
+				return bodycraft_menu
+			if(BACK)
+				return bodycraft_menu
 			if(CHANGE_BEARD)
 				change_beard(target)
+			if(CHANGE_HAIR)
+				change_hair(target)
+			if(CHANGE_BEARD_COLOR)
+				change_beard_color(target)
+			if(CHANGE_HAIR_COLOR)
+				change_hair_color(target)
 			if(CHANGE_SEX)
 				change_sex(target)
 			if(CHANGE_NAME)
@@ -163,6 +186,7 @@
 	playsound(target, 'modular_darkpack/modules/powers/sounds/vicissitude.ogg', 50, TRUE)
 	to_chat(owner, span_notice("You finish altering the facial style of [target]."))
 
+/datum/action/cooldown/mob_cooldown/bodycraft/proc/change_beard_color(mob/living/carbon/human/target)
 	var/new_face_color = input(owner, "Choose a facial hair color", "Hair Color", target.facial_hair_color) as color|null
 	if(!new_face_color)
 		return FALSE
@@ -196,6 +220,7 @@
 	playsound(target, 'modular_darkpack/modules/powers/sounds/vicissitude.ogg', 50, TRUE)
 	to_chat(owner, span_notice("You finish altering the hair style of [target]."))
 
+/datum/action/cooldown/mob_cooldown/bodycraft/proc/change_hair_color(mob/living/carbon/human/target)
 	var/new_hair_color = input(owner, "Choose a hair color", "Hair Color", target.hair_color) as color|null
 	if(!new_hair_color)
 		return FALSE
@@ -286,12 +311,21 @@
 	to_chat(owner, span_notice("You finish altering the height of [target]."))
 	return TRUE
 
+// OPTIONS
 #undef CHANGE_HAIR
 #undef CHANGE_BEARD
+#undef CHANGE_HAIR_COLOR
+#undef CHANGE_BEARD_COLOR
 #undef CHANGE_SEX
 #undef CHANGE_EYES
 #undef CHANGE_NAME
 #undef CHANGE_RACE
 #undef CHANGE_HEIGHT
+// CATEGORIES
+#undef BACK
+#undef HAIR_OPTIONS
+// OPTION LISTS
 #undef CHOICE_OPTIONS
+#undef CHOICE_OPTIONS_HAIR
+// VITAE COST
 #undef VITAE_COST_ONE
