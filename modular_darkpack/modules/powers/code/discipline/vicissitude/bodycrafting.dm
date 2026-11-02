@@ -24,20 +24,21 @@
 	var/list/hair_choices = CHOICE_OPTIONS_HAIR
 	/// The range of this action.
 	var/range = 1
+	var/vitae_cost = 4
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/spend_resources(mob/living/owner)
-	if(owner.bloodpool <= get_bodycraft_cost())
+	get_bodycraft_cost()
+	if(owner.bloodpool <= vitae_cost)
 		to_chat(owner, span_warning("You do not have enough blood to alter the body in such a way!"))
 		return
-	owner.adjust_blood_pool(-get_bodycraft_cost())
+	owner.adjust_blood_pool(-vitae_cost)
 
 /// How much does this bodycraft option cost?
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/get_bodycraft_cost()
-	var/vitae_cost = 4
 	var/list/all_choices = CHOICE_OPTIONS & CHOICE_OPTIONS_HAIR
 	for(var/choice_cost in all_choices)
-		if(choice_cost in VITAE_COST_ONE)
-			return vitae_cost = 1
+		if(choice_cost in all_choices & VITAE_COST_ONE)
+			vitae_cost = 1
 
 
 /datum/action/cooldown/mob_cooldown/bodycraft/New(Target, original)

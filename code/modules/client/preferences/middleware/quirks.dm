@@ -253,7 +253,7 @@
 	var/list/discipline_blacklist = list()
 	var/list/player_disciplines = list()
 	for(var/datum/discipline/discipline in preferences.discipline_levels)
-		player_disciplines += preferences.discipline_levels[discipline]
+		player_disciplines += discipline
 
 	if(!player_disciplines)
 		return discipline_blacklist
