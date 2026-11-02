@@ -8344,6 +8344,8 @@
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\auspice.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\breed.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\renown.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\taint_middleware.dm"
+#include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\triatic_taint.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\tribe.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\customization\_customization.dm"
 #include "modular_darkpack\modules\werewolf_the_apocalypse\code\preferences\customization\fera_body.dm"
