@@ -36,7 +36,7 @@
 /obj/machinery/logging_machine/examine(mob/user)
 	. = ..()
 	. += span_info(span_bold("Click")) + span_info(" on [src] to print all obtained logs.")
-	. += span_info(span_bold("Right Click")) + span_info(" on [src] to clear all obtained logs and clear all phone call breaches.")
+	. += span_info(span_bold("Right Click")) + span_info(" on [src] to clear all obtained logs and clear all phone call and camera breaches.")
 
 /obj/machinery/logging_machine/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
@@ -86,14 +86,14 @@
 		addtimer(CALLBACK(src, PROC_REF(stop_sound)), 7 SECONDS)
 		return
 	var/clearing_stats = user.st_get_stat(STAT_TECHNOLOGY) + user.st_get_stat(STAT_INTELLIGENCE)
-	var/clearing_time = max((1.5 - (clearing_stats / 10)) SECONDS, 0.1 SECONDS)
+	var/clearing_time = max((1.5 - (clearing_stat / 5)) SECONDS, 0.1 SECONDS)
 	for(var/paper in 1 to length(saved_logs))
 		if(!do_after(user, clearing_time, src))
 			stop_sound()
 			break
-		var/obj/phone = saved_logs[1][2]
-		if(phone)
-			SEND_SIGNAL(phone, COMSIG_ALL_MASQUERADE_REINFORCE)
+		var/obj/log_source = saved_logs[1][2]
+		if(log_source)
+			SEND_SIGNAL(log_source, COMSIG_ALL_MASQUERADE_REINFORCE)
 		saved_logs -= list(saved_logs[1]) //Clear the oldest logs first.
 	stop_sound()
 
