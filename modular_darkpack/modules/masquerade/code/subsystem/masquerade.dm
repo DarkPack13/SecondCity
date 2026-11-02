@@ -113,7 +113,7 @@ SUBSYSTEM_DEF(masquerade)
 // Used for adding logging messages to every logging_machine in GLOB.loggin_machines
 /datum/controller/subsystem/masquerade/proc/log_phone_message(message, obj/phone_source)
 	for(var/obj/machinery/logging_machine/logging_machine as anything in GLOB.logging_machines)
-		logging_machine.saved_logs += list(list(message, phone_source))
+		logging_machine.saved_logs += list(list(message, WEAKREF(phone_source)))
 
 // Save the player's masquerade level to their character sheet.
 /datum/controller/subsystem/masquerade/proc/save_persistent_masquerade(mob/living/player_breacher)

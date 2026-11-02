@@ -91,7 +91,8 @@
 		if(!do_after(user, clearing_time, src))
 			stop_sound()
 			break
-		var/obj/log_source = saved_logs[1][2]
+		var/datum/weakref/log_source_ref = saved_logs[1][2]
+		var/obj/log_source = log_source_ref?.resolve()
 		if(log_source)
 			SEND_SIGNAL(log_source, COMSIG_ALL_MASQUERADE_REINFORCE)
 		saved_logs -= list(saved_logs[1]) //Clear the oldest logs first.
