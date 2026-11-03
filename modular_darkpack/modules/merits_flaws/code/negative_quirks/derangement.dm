@@ -211,10 +211,10 @@ GLOBAL_LIST_INIT(derangement_phrases,list(
 // the random hallucination type will store overrides and extensions of basegame hallucinations, as well as untouched basegame hallucinations like eyes_in_the_dark
 /datum/hallucination/malk/random
 	var/list/hallucinations = list(
-		/datum/hallucination/eyes_in_dark = 5,
+		/datum/hallucination/eyes_in_dark = 4,
 		/datum/hallucination/blood_flow/malk = 3,
+		/datum/hallucination/your_mother/malk = 2,
 		/datum/hallucination/delusion/preset/zombie = 1,
-		/datum/hallucination/your_mother/malk = 1,
 	)
 
 /datum/hallucination/malk/random/start()
