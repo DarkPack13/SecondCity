@@ -1,21 +1,23 @@
 // OPTIONS
-#define CHANGE_HAIR "Hair"
-#define CHANGE_BEARD "Beard"
-#define CHANGE_HAIR_COLOR "Hair Color"
-#define CHANGE_BEARD_COLOR "Beard Color"
-#define CHANGE_SEX  "Sex"
-#define CHANGE_NAME "Name"
-#define CHANGE_EYES "Eyes"
-#define CHANGE_RACE "Race"
-#define CHANGE_HEIGHT "Height"
+#define HAIR "Hair"
+#define BEARD "Beard"
+#define HAIR_COLOR "Hair Color"
+#define BEARD_COLOR "Beard Color"
+#define SEX  "Sex"
+#define NAME "Name"
+#define EYES "Eyes"
+#define RACE "Race"
+#define HEIGHT "Height"
 // CATEGORIES
 #define BACK "Back"
 #define HAIR_OPTIONS "Hair Options"
 // OPTION LISTS
-#define CHOICE_OPTIONS list(HAIR_OPTIONS, CHANGE_SEX, CHANGE_EYES, CHANGE_NAME, CHANGE_RACE, CHANGE_HEIGHT)
-#define CHOICE_OPTIONS_HAIR list(CHANGE_BEARD, CHANGE_HAIR, CHANGE_BEARD_COLOR, CHANGE_HAIR_COLOR, BACK)
+#define CHOICE_OPTIONS list(HAIR_OPTIONS, SEX, EYES, NAME, RACE, HEIGHT)
+#define CHOICE_OPTIONS_HAIR list(BEARD, HAIR, BEARD_COLOR, HAIR_COLOR, BACK)
 // VITAE COST
-#define VITAE_COST_ONE list(CHANGE_SEX, CHANGE_EYES, CHANGE_NAME, CHANGE_RACE, CHANGE_HEIGHT, CHANGE_BEARD, CHANGE_HAIR, CHANGE_BEARD_COLOR, CHANGE_HAIR_COLOR)
+#define VITAE_COST_ONE list(SEX, EYES, NAME, RACE, HEIGHT, BEARD, HAIR, BEARD_COLOR, HAIR_COLOR)
+
+var/static/list/bodycrafting_choice_cost = list((SEX) = 1, (HEIGHT) = 1, (EYES), (NAME), (RACE), (BEARD), (HAIR), (BEARD_COLOR), (HAIR_COLOR))
 
 /datum/action/cooldown/mob_cooldown/bodycraft
 	owner_has_control = FALSE
@@ -24,22 +26,21 @@
 	var/list/hair_choices = CHOICE_OPTIONS_HAIR
 	/// The range of this action.
 	var/range = 1
-	var/vitae_cost = 4
+	var/vitae_cost = 0
+	var/bloodpool
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/spend_resources(mob/living/owner)
-	get_bodycraft_cost()
-	if(owner.bloodpool <= vitae_cost)
-		to_chat(owner, span_warning("You do not have enough blood to alter the body in such a way!"))
+	if(bloodpool <= vitae_cost)
 		return
+	get_bodycraft_cost()
 	owner.adjust_blood_pool(-vitae_cost)
 
 /// How much does this bodycraft option cost?
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/get_bodycraft_cost()
-	var/list/all_choices = CHOICE_OPTIONS & CHOICE_OPTIONS_HAIR
-	for(var/choice_cost in all_choices)
-		if(choice_cost in all_choices & VITAE_COST_ONE)
-			vitae_cost = 1
+	vitae_cost = bodycrafting_choice_options[initial_choices]
 
+/datum/action/cooldown/mob_cooldown/bodycraft/proc/get_caster_bloodpool(mob/living/owner)
+	bloodpool = owner.bloodpool
 
 /datum/action/cooldown/mob_cooldown/bodycraft/New(Target, original)
 	. = ..()
@@ -55,7 +56,7 @@
 		initial_choices["Race"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "race")
 		initial_choices["Height"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "height")
 	for(var/i in hair_choices)
-		initial_choices["Back"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "back")
+		hair_choices["Back"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "back")
 		hair_choices["Hair"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "hair")
 		hair_choices["Beard"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "beard")
 		hair_choices["Hair Color"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "hair_color")
@@ -71,35 +72,41 @@
 	switch(bodycraft_menu)
 		if(HAIR_OPTIONS)
 			bodycraft_menu = show_radial_menu(owner, target, hair_choices, target, radius = 36)
-		else
+		if(BACK)
+			bodycraft_menu = show_radial_menu(owner, target, initial_choices, target, radius = 36)
+		if(CHOICE_OPTIONS)
 			bodycraft_menu = show_radial_menu(owner, target, initial_choices, target, radius = 36)
 	if(!bodycraft_menu)
 		return TRUE
 
 	if(((target.pulledby == owner) && (owner.grab_state >= GRAB_AGGRESSIVE)) || (target == owner))
+		get_caster_bloodpool(owner)
+		if(bloodpool <= vitae_cost)
+			to_chat(owner, span_warning("You do not have enough blood to alter the body in such a way!"))
+			return FALSE
 		spend_resources(owner)
 		switch(bodycraft_menu)
 			if(HAIR_OPTIONS)
 				return bodycraft_menu
 			if(BACK)
 				return bodycraft_menu
-			if(CHANGE_BEARD)
+			if(BEARD)
 				change_beard(target)
-			if(CHANGE_HAIR)
+			if(HAIR)
 				change_hair(target)
-			if(CHANGE_BEARD_COLOR)
+			if(BEARD_COLOR)
 				change_beard_color(target)
-			if(CHANGE_HAIR_COLOR)
+			if(HAIR_COLOR)
 				change_hair_color(target)
-			if(CHANGE_SEX)
+			if(SEX)
 				change_sex(target)
-			if(CHANGE_NAME)
+			if(NAME)
 				change_name(target)
-			if(CHANGE_EYES)
+			if(EYES)
 				change_eyes(target)
-			if(CHANGE_RACE)
+			if(RACE)
 				change_race(target)
-			if(CHANGE_HEIGHT)
+			if(HEIGHT)
 				change_height(target)
 
 
@@ -316,15 +323,15 @@
 	return TRUE
 
 // OPTIONS
-#undef CHANGE_HAIR
-#undef CHANGE_BEARD
-#undef CHANGE_HAIR_COLOR
-#undef CHANGE_BEARD_COLOR
-#undef CHANGE_SEX
-#undef CHANGE_EYES
-#undef CHANGE_NAME
-#undef CHANGE_RACE
-#undef CHANGE_HEIGHT
+#undef HAIR
+#undef BEARD
+#undef HAIR_COLOR
+#undef BEARD_COLOR
+#undef SEX
+#undef EYES
+#undef NAME
+#undef RACE
+#undef HEIGHT
 // CATEGORIES
 #undef BACK
 #undef HAIR_OPTIONS

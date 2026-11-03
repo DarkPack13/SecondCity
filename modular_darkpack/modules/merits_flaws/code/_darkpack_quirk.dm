@@ -81,7 +81,7 @@
 	return TRUE
 
 /datum/quirk/darkpack/proc/is_discipline_appropriate(datum/discipline/discipline)
-	if(!included_disciplines)
+	if(!excluded_disciplines && !included_disciplines)
 		return TRUE
 
 	if(!discipline)

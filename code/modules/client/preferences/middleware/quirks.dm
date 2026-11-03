@@ -252,23 +252,35 @@
 /datum/preference_middleware/quirks/proc/get_disciplines_compatibility()
 	var/list/discipline_blacklist = list()
 	var/list/player_disciplines = list()
-	for(var/datum/discipline/discipline in preferences.discipline_levels)
-		player_disciplines += discipline
+	var/list/processed_disciplines = list()
+	var/is_this_correct_discipline
+
+	for(var/discipline_name as anything in preferences.discipline_levels)
+		player_disciplines += discipline_name
 
 	if(!player_disciplines)
 		return discipline_blacklist
 
 	var/datum/discipline/disc = GLOB.disciplines[GLOB.discipline_list[player_disciplines]]
-	for(var/quirk_path in SSquirks.quirk_prototypes)
-		var/datum/quirk/quirk_prototype = SSquirks.quirk_prototypes[quirk_path]
+	for(var/disc as anything in player_disciplines)
+		processed_disciplines += processed_disc
 
-		if(!istype(quirk_prototype, /datum/quirk/darkpack))
-			continue
+		for(var/quirk_path in SSquirks.quirk_prototypes && is_this_correct_discipline)
+			var/datum/quirk/quirk_prototype = SSquirks.quirk_prototypes[quirk_path]
 
-		var/datum/quirk/darkpack/darkpack_quirk = quirk_prototype
-		if(!darkpack_quirk.is_discipline_appropriate(disc))
-			discipline_blacklist += quirk_prototype.name
+			if(!istype(quirk_prototype, /datum/quirk/darkpack))
+				continue
+
+			is_this_correct_discipline = processed_disciplines
+			var/datum/quirk/darkpack/darkpack_quirk = quirk_prototype
+			if(!darkpack_quirk.is_discipline_appropriate(is_this_correct_discipline))
+				discipline_blacklist += quirk_prototype.name
 
 	return discipline_blacklist
 
 // DARKPACK EDIT END - MERITS_FLAWS
+
+//var/datum/subsplat/vampire_clan/clan = GLOB.vampire_clans[GLOB.vampire_clan_list[clan_name]]
+//	for(var/quirk_path in SSquirks.quirk_prototypes)
+//		var/datum/quirk/quirk_prototype = SSquirks.quirk_prototypes[quirk_path]
+//
