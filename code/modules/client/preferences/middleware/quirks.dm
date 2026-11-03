@@ -130,8 +130,14 @@
 /datum/preference_middleware/quirks/proc/give_quirk(list/params, mob/user)
 	var/quirk_name = params["quirk"]
 	// DARKPACK EDIT ADD - MERITS_FLAWS
-	var/datum/st_stat/freebie/freebie_points = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]
 	var/datum/quirk/quirk_type = SSquirks.quirks[quirk_name]
+	if(!quirk_type)
+		return TRUE
+	if(!SSquirks.quirk_prototypes[quirk_type].is_prefs_appropriate(preferences))
+		tainted = TRUE
+		preferences.update_static_data(user, always_instant = TRUE)
+		return TRUE
+	var/datum/st_stat/freebie/freebie_points = preferences.preference_storyteller_stats[STAT_FREEBIE_POINTS]
 	freebie_points.decrease_points(quirk_type.value)
 	// DARKPACK EDIT END - MERITS_FLAWS
 	preferences.validate_quirks()
@@ -227,22 +233,14 @@
 
 /*/datum/preference_middleware/quirks/proc/get_disciplines_compatibility()
 	var/list/discipline_blacklist = list()
+	var/list/discipline_ids = preferences.get_discipline_ids()
 
-	for(var/discipline_name as anything in preferences.discipline_levels)
-	var/datum/discipline/player_discipline = text2path(discipline_name)
-
-		//if(!player_discipline)
-		//	return discipline_blacklist
-
-		for(var/quirk_path in SSquirks.quirk_prototypes)
-			var/datum/quirk/quirk_prototype = SSquirks.quirk_prototypes[quirk_path]
-
-			if(!istype(quirk_prototype, /datum/quirk/darkpack))
-				continue
-
-			var/datum/quirk/darkpack/darkpack_quirk = quirk_prototype
-			if(!darkpack_quirk.is_discipline_appropriate(player_discipline))
-				discipline_blacklist |= quirk_prototype.name
+	for(var/quirk_path in SSquirks.quirk_prototypes)
+		var/datum/quirk/darkpack/darkpack_quirk = SSquirks.quirk_prototypes[quirk_path]
+		if(!istype(darkpack_quirk))
+			continue
+		if(!darkpack_quirk.is_discipline_appropriate(discipline_ids))
+			discipline_blacklist += darkpack_quirk.name
 
 	return discipline_blacklist*/
 

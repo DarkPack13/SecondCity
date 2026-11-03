@@ -43,6 +43,9 @@
 			to_chat(new_holder, span_warning("[failure_message]"))
 			return FALSE
 
+	if(client_source?.prefs && !is_discipline_appropriate(client_source.prefs.get_discipline_ids()))
+		to_chat(new_holder, span_warning("[failure_message]"))
+		return FALSE
 
 	return ..()
 
@@ -80,7 +83,17 @@
 
 	return TRUE
 
-/datum/quirk/darkpack/proc/is_discipline_appropriate(datum/discipline/discipline_ids)
+/datum/quirk/darkpack/is_prefs_appropriate(datum/preferences/prefs)
+	. = ..()
+	if(!.)
+		return
+	if(!is_clan_appropriate(get_vampire_clan(prefs.read_preference(/datum/preference/choiced/subsplat/vampire_clan))))
+		return FALSE
+	if(!is_discipline_appropriate(prefs.get_discipline_ids()))
+		return FALSE
+
+/// Takes a list of discipline ids, see /datum/preferences/proc/get_discipline_ids()
+/datum/quirk/darkpack/proc/is_discipline_appropriate(list/discipline_ids)
 	if(length(excluded_disciplines) && length(excluded_disciplines & discipline_ids))
 		return FALSE
 
