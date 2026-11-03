@@ -10,12 +10,13 @@
 #define BODYCRAFT_HEIGHT "Height"
 // CATEGORIES
 #define BODYCRAFT_BACK "Back"
+#define BODYCRAFT_HAIR_LIST "Hair Options"
 // OPTION LISTS
-#define BODYCRAFT_OPTIONS list(BODYCRAFT_OPTIONS_HAIR, BODYCRAFT_SEX, BODYCRAFT_EYES, BODYCRAFT_NAME, BODYCRAFT_RACE, BODYCRAFT_HEIGHT)
+#define BODYCRAFT_OPTIONS list(BODYCRAFT_HAIR_LIST, BODYCRAFT_SEX, BODYCRAFT_EYES, BODYCRAFT_NAME, BODYCRAFT_RACE, BODYCRAFT_HEIGHT)
 #define BODYCRAFT_OPTIONS_HAIR list(BODYCRAFT_BEARD, BODYCRAFT_HAIR, BODYCRAFT_BEARD_COLOR, BODYCRAFT_HAIR_COLOR, BODYCRAFT_BACK)
 // VITAE COSTS
 var/static/list/bodycrafting_costs = list((BODYCRAFT_SEX) = 1, (BODYCRAFT_HEIGHT) = 1, (BODYCRAFT_EYES), (BODYCRAFT_NAME), (BODYCRAFT_RACE), (BODYCRAFT_BEARD), (BODYCRAFT_HAIR), (BODYCRAFT_BEARD_COLOR), (BODYCRAFT_HAIR_COLOR))
-var/static/list/bodycrafting_options_master = list((BODYCRAFT_SEX), (BODYCRAFT_HEIGHT), (BODYCRAFT_EYES), (BODYCRAFT_NAME), (BODYCRAFT_RACE), (BODYCRAFT_OPTIONS_HAIR), (BODYCRAFT_BEARD), (BODYCRAFT_HAIR), (BODYCRAFT_BEARD_COLOR), (BODYCRAFT_HAIR_COLOR), (BODYCRAFT_BACK))
+var/static/list/bodycrafting_options_master = list((BODYCRAFT_SEX), (BODYCRAFT_HEIGHT), (BODYCRAFT_EYES), (BODYCRAFT_NAME), (BODYCRAFT_RACE), (BODYCRAFT_HAIR_LIST), (BODYCRAFT_BEARD), (BODYCRAFT_HAIR), (BODYCRAFT_BEARD_COLOR), (BODYCRAFT_HAIR_COLOR), (BODYCRAFT_BACK))
 //var/list/bodycrafting_options_initial = list((BODYCRAFT_SEX), (BODYCRAFT_HEIGHT), (BODYCRAFT_EYES), (BODYCRAFT_NAME), (BODYCRAFT_RACE), (BODYCRAFT_OPTIONS_HAIR), (BODYCRAFT_BACK))
 //var/list/bodycrafting_options_hair = list((BODYCRAFT_BEARD), (BODYCRAFT_HAIR), (BODYCRAFT_BEARD_COLOR), (BODYCRAFT_HAIR_COLOR), (BODYCRAFT_BACK))
 
@@ -31,7 +32,6 @@ var/static/list/bodycrafting_options_master = list((BODYCRAFT_SEX), (BODYCRAFT_H
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/spend_resources(mob/living/owner)
 	bloodpool = owner.bloodpool
-	vitae_cost = bodycrafting_options_master[bodycrafting_costs]
 	if(bloodpool <= vitae_cost)
 		return
 	owner.adjust_blood_pool(-vitae_cost)
@@ -71,21 +71,22 @@ var/static/list/bodycrafting_options_master = list((BODYCRAFT_SEX), (BODYCRAFT_H
 			bodycraft_menu = show_radial_menu(owner, target, choices_initial, target, radius = 36)
 		if(BODYCRAFT_OPTIONS)
 			bodycraft_menu = show_radial_menu(owner, target, choices_initial, target, radius = 36)
-		if(BODYCRAFT_OPTIONS_HAIR)
+		if(BODYCRAFT_HAIR_LIST)
 			bodycraft_menu = show_radial_menu(owner, target, choices_hair, target, radius = 36)
 	if(!bodycraft_menu)
 		return TRUE
 
 	if(((target.pulledby == owner) && (owner.grab_state >= GRAB_AGGRESSIVE)) || (target == owner))
+		vitae_cost = bodycrafting_costs[bodycraft_menu]
 		spend_resources(owner)
 		if(bloodpool <= vitae_cost)
 			to_chat(owner, span_warning("You do not have enough blood to alter the body in such a way!"))
 			return FALSE
 		switch(bodycraft_menu)
-			if(BODYCRAFT_OPTIONS_HAIR)
+			if(BODYCRAFT_HAIR_LIST)
 				return bodycraft_menu
 			if(BODYCRAFT_BACK)
-				return bodycraft_menu
+				return TRUE
 			if(BODYCRAFT_BEARD)
 				change_beard(target)
 			if(BODYCRAFT_HAIR)
@@ -192,6 +193,7 @@ var/static/list/bodycrafting_options_master = list((BODYCRAFT_SEX), (BODYCRAFT_H
 	SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 	playsound(target, 'modular_darkpack/modules/powers/sounds/vicissitude.ogg', 50, TRUE)
 	to_chat(owner, span_notice("You finish altering the facial style of [target]."))
+	return TRUE
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/change_beard_color(mob/living/carbon/human/target)
 	var/new_face_color = input(owner, "Choose a facial hair color", "Hair Color", target.facial_hair_color) as color|null
@@ -226,6 +228,7 @@ var/static/list/bodycrafting_options_master = list((BODYCRAFT_SEX), (BODYCRAFT_H
 	SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 	playsound(target, 'modular_darkpack/modules/powers/sounds/vicissitude.ogg', 50, TRUE)
 	to_chat(owner, span_notice("You finish altering the hair style of [target]."))
+	return TRUE
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/change_hair_color(mob/living/carbon/human/target)
 	var/new_hair_color = input(owner, "Choose a hair color", "Hair Color", target.hair_color) as color|null
@@ -330,6 +333,7 @@ var/static/list/bodycrafting_options_master = list((BODYCRAFT_SEX), (BODYCRAFT_H
 #undef BODYCRAFT_HEIGHT
 // CATEGORIES
 #undef BODYCRAFT_BACK
-#undef BODYCRAFT_OPTIONS_HAIR
+#undef BODYCRAFT_HAIR_LIST
 // OPTION LISTS
+#undef BODYCRAFT_OPTIONS_HAIR
 #undef BODYCRAFT_OPTIONS

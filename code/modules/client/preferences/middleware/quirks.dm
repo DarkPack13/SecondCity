@@ -254,34 +254,37 @@
 	var/alist/player_disciplines = list()
 	var/alist/processed_disciplines = list()
 
+	var/player_discipline
+	var/is_this_correct_discipline
+
 	for(var/discipline_name as anything in preferences.discipline_levels)
 		player_disciplines += discipline_name
 
 	for(var/pd_d as anything in player_disciplines)
-		var/player_discipline = player_disciplines[pd_d]
+		player_discipline = player_disciplines[pd_d]
 
-		for(var/datum/discipline/processed_discipline as anything in player_disciplines)
-			processed_discipline = GLOB.disciplines[GLOB.discipline_list[player_discipline]]
-			processed_disciplines += processed_discipline
+	for(var/datum/discipline/processed_discipline as anything in player_disciplines)
+		processed_discipline = GLOB.disciplines[GLOB.discipline_list[player_discipline]]
+		processed_disciplines += processed_discipline
 
-			for(var/quirk_path in SSquirks.quirk_prototypes)
-				var/datum/quirk/quirk_prototype = SSquirks.quirk_prototypes[quirk_path]
+		for(var/pl_d as anything in processed_disciplines)
+			is_this_correct_discipline = processed_disciplines[pl_d]
 
-				if(!istype(quirk_prototype, /datum/quirk/darkpack))
-					continue
+		for(var/quirk_path in SSquirks.quirk_prototypes)
+			var/datum/quirk/quirk_prototype = SSquirks.quirk_prototypes[quirk_path]
 
-				for(var/pl_d as anything in processed_disciplines)
-					var/is_this_correct_discipline = processed_disciplines[pl_d]
+			if(!istype(quirk_prototype, /datum/quirk/darkpack))
+				continue
 
-					var/datum/quirk/darkpack/darkpack_quirk = quirk_prototype
-					if(!darkpack_quirk.is_discipline_appropriate(is_this_correct_discipline))
-						discipline_blacklist += quirk_prototype.name
+			var/datum/quirk/darkpack/darkpack_quirk = quirk_prototype
+			if(!darkpack_quirk.is_discipline_appropriate(is_this_correct_discipline))
+				discipline_blacklist += quirk_prototype.name
 
 	return discipline_blacklist
 
-	//for(var/pd_d as anything in player_disciplines)
-	//	var/player_discipline = player_disciplines[pd_d]
+	for(var/pd_d as anything in player_disciplines)
+		var/player_discipline = player_disciplines[pd_d]
 
-	//for(var/pl_d as anything in processed_disciplines)
-	//	var/is_this_correct_discipline = processed_disciplines[pl_d]
+	for(var/pl_d as anything in processed_disciplines)
+		var/is_this_correct_discipline = processed_disciplines[pl_d]
 // DARKPACK EDIT END - MERITS_FLAWS
