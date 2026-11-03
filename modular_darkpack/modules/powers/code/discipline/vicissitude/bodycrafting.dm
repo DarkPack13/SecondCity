@@ -19,18 +19,21 @@ var/static/list/bodycrafting_costs = list((BODYCRAFT_SEX) = 1, (BODYCRAFT_HEIGHT
 
 /datum/action/cooldown/mob_cooldown/bodycraft
 	owner_has_control = FALSE
-	/// What choices we get to pick.
+	// What choices we get to pick.
 	var/list/choices_initial = BODYCRAFT_OPTIONS
 	var/list/choices_hair = BODYCRAFT_OPTIONS_HAIR
 	/// The range of this action.
 	var/range = 1
 	var/vitae_cost = 0
 	var/bloodpool
+	var/rollstate
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/spend_resources(mob/living/owner)
 	bloodpool = owner.bloodpool
 	if(bloodpool <= vitae_cost)
-		return
+		rollstate = "fail"
+		to_chat(owner, span_warning("You do not have enough blood to alter the body in such a way!"))
+	else(rollstate = "success")
 	owner.adjust_blood_pool(-vitae_cost)
 
 /datum/action/cooldown/mob_cooldown/bodycraft/New(Target, original)
@@ -74,12 +77,9 @@ var/static/list/bodycrafting_costs = list((BODYCRAFT_SEX) = 1, (BODYCRAFT_HEIGHT
 		if(!(bodycraft_menu in bodycrafting_costs))
 			vitae_cost = 0
 		spend_resources(owner)
-		if(bloodpool <= vitae_cost)
-			to_chat(owner, span_warning("You do not have enough blood to alter the body in such a way!"))
+		if (rollstate == "fail")
 			return FALSE
 		switch(bodycraft_menu)
-			//if(BODYCRAFT_HAIR_LIST)
-			//	return display_radial_menu()
 			if(BODYCRAFT_BACK)
 				back(target)
 			if(BODYCRAFT_BEARD)
@@ -100,7 +100,6 @@ var/static/list/bodycrafting_costs = list((BODYCRAFT_SEX) = 1, (BODYCRAFT_HEIGHT
 				change_race(target)
 			if(BODYCRAFT_HEIGHT)
 				change_height(target)
-
 
 	else
 		to_chat(owner, span_danger("You need to have a firm grip on [target]!"))

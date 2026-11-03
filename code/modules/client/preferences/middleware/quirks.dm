@@ -231,19 +231,6 @@
 
 	return clan_blacklist
 
-/*/datum/preference_middleware/quirks/proc/get_disciplines_compatibility()
-	var/list/discipline_blacklist = list()
-	var/list/discipline_ids = preferences.get_discipline_ids()
-
-	for(var/quirk_path in SSquirks.quirk_prototypes)
-		var/datum/quirk/darkpack/darkpack_quirk = SSquirks.quirk_prototypes[quirk_path]
-		if(!istype(darkpack_quirk))
-			continue
-		if(!darkpack_quirk.is_discipline_appropriate(discipline_ids))
-			discipline_blacklist += darkpack_quirk.name
-
-	return discipline_blacklist*/
-
 /datum/preference_middleware/quirks/proc/get_disciplines_compatibility()
 	var/list/discipline_blacklist = list()
 	var/list/discipline_ids = list()
