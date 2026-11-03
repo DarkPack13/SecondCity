@@ -225,44 +225,14 @@
 
 	return clan_blacklist
 
-/*/datum/preference_middleware/quirks/proc/get_disciplines_compatibility()
-	var/list/discipline_blacklist = list()
-	var/list/discipline_list = list()
-	for(var/datum/discipline/discipline in preferences.discipline_levels)
-		var/discipline_level = preferences.discipline_levels[discipline]
-		//discipline_list += ["[discipline]"] = discipline_level
-		discipline_list["[discipline]"] = discipline_level
-
-	if(!discipline_list)
-		return discipline_blacklist
-
-	var/datum/discipline/disc = GLOB.disciplines[GLOB.discipline_list[discipline_list]]
-	for(var/quirk_path in SSquirks.quirk_prototypes)
-		var/datum/quirk/quirk_prototype = SSquirks.quirk_prototypes[quirk_path]
-
-		if(!istype(quirk_prototype, /datum/quirk/darkpack))
-			continue
-
-		var/datum/quirk/darkpack/darkpack_quirk = quirk_prototype
-		if(!darkpack_quirk.is_discipline_appropriate(disc))
-			discipline_blacklist += quirk_prototype.name
-
-	return discipline_blacklist*/
-
 /datum/preference_middleware/quirks/proc/get_disciplines_compatibility()
 	var/list/discipline_blacklist = list()
-	var/alist/player_disciplines = list()
-	var/alist/processed_disciplines = list()
 
 	for(var/discipline_name as anything in preferences.discipline_levels)
-		player_disciplines += discipline_name
+		var/datum/discipline/player_discipline = text2path(discipline_name)
 
-	for(var/pd_d as anything in player_disciplines)
-		var/datum/discipline/player_discipline = text2path(pd_d)
-
-	for(var/datum/discipline/processed_discipline as anything in player_disciplines)
-		processed_discipline = GLOB.disciplines[GLOB.discipline_list[player_discipline]] // Needs first
-		processed_disciplines += processed_discipline
+		if(!player_discipline)
+			return discipline_blacklist
 
 		for(var/quirk_path in SSquirks.quirk_prototypes)
 			var/datum/quirk/quirk_prototype = SSquirks.quirk_prototypes[quirk_path]
@@ -270,19 +240,10 @@
 			if(!istype(quirk_prototype, /datum/quirk/darkpack))
 				continue
 
-			for(var/pl_d as anything in processed_disciplines)
-				var/is_this_correct_discipline = processed_disciplines[pl_d]
-
 			var/datum/quirk/darkpack/darkpack_quirk = quirk_prototype
-			if(!darkpack_quirk.is_discipline_appropriate(is_this_correct_discipline)) // Needs second
-				discipline_blacklist += quirk_prototype.name
+			if(!darkpack_quirk.is_discipline_appropriate(player_discipline))
+				discipline_blacklist |= quirk_prototype.name
 
 	return discipline_blacklist
 
-/// ????????????
-	//for(var/pd_d as anything in player_disciplines)
-	//	var/player_discipline = player_disciplines[pd_d]
-
-//	for(var/pl_d as anything in processed_disciplines)
-	//	var/is_this_correct_discipline = processed_disciplines[pl_d]
 // DARKPACK EDIT END - MERITS_FLAWS

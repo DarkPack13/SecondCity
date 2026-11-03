@@ -84,39 +84,16 @@
 	if(!excluded_disciplines && !included_disciplines)
 		return TRUE
 
-	if(!discipline)
+	if(isnull(discipline))
 		return TRUE
 
 	if(excluded_disciplines && (discipline.id in excluded_disciplines))
 		return FALSE
 
-	if(included_disciplines && !(discipline.id in included_disciplines))
+	if(length(included_disciplines) && !(discipline.id in included_disciplines))
 		return FALSE
 
 	return TRUE
-
-/*/datum/quirk/darkpack/proc/is_discipline_level_met(datum/discipline/discipline, mob/living/new_holder)
-	var/datum/splat/vampire/kindred/kindred_holder = get_kindred_splat(new_holder)
-	var/list/tracked_discipline_points
-	var/list/points_in_discipline
-	var/list/holder_disciplines = kindred_holder.get_active_disciplines()
-	for (var/datum/discipline/picked_discipline as anything in holder_disciplines)
-		points_in_discipline[picked_discipline.id] = kindred_holder.get_discipline_dots(holder_disciplines)
-		tracked_discipline_points += points_in_discipline[picked_discipline.id]
-		//tracked_discipline_points += points_in_discipline[picked_discipline.id]
-	if	(1[DISCIPLINE_VICISSITUDE])
-
-	if(!discipline_point_threshold)
-		return TRUE
-
-	if(!discipline)
-		return TRUE
-
-	if(discipline_point_threshold && !(tracked_discipline_points in discipline_point_threshold))
-		return FALSE
-
-	return TRUE*/
-
 
 /// Subtype quirk that has some bonus logic to spawn items for the player.
 /datum/quirk/darkpack/item_quirk

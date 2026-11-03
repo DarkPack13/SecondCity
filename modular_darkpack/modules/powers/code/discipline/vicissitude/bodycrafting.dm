@@ -13,12 +13,9 @@
 #define BODYCRAFT_HAIR_LIST "Hair Options"
 // OPTION LISTS
 #define BODYCRAFT_OPTIONS list(BODYCRAFT_HAIR_LIST, BODYCRAFT_SEX, BODYCRAFT_EYES, BODYCRAFT_NAME, BODYCRAFT_RACE, BODYCRAFT_HEIGHT)
-#define BODYCRAFT_OPTIONS_HAIR list(BODYCRAFT_BEARD, BODYCRAFT_HAIR, BODYCRAFT_BEARD_COLOR, BODYCRAFT_HAIR_COLOR, BODYCRAFT_BACK)
-// VITAE COSTS
-var/static/list/bodycrafting_costs = list((BODYCRAFT_SEX) = 1, (BODYCRAFT_HEIGHT) = 1, (BODYCRAFT_EYES), (BODYCRAFT_NAME), (BODYCRAFT_RACE), (BODYCRAFT_BEARD), (BODYCRAFT_HAIR), (BODYCRAFT_BEARD_COLOR), (BODYCRAFT_HAIR_COLOR))
-//var/static/list/bodycrafting_options_master = list((BODYCRAFT_SEX), (BODYCRAFT_HEIGHT), (BODYCRAFT_EYES), (BODYCRAFT_NAME), (BODYCRAFT_RACE), (BODYCRAFT_HAIR_LIST), (BODYCRAFT_BEARD), (BODYCRAFT_HAIR), (BODYCRAFT_BEARD_COLOR), (BODYCRAFT_HAIR_COLOR), (BODYCRAFT_BACK))
-//var/list/bodycrafting_options_initial = list((BODYCRAFT_SEX), (BODYCRAFT_HEIGHT), (BODYCRAFT_EYES), (BODYCRAFT_NAME), (BODYCRAFT_RACE), (BODYCRAFT_OPTIONS_HAIR), (BODYCRAFT_BACK))
-//var/list/bodycrafting_options_hair = list((BODYCRAFT_BEARD), (BODYCRAFT_HAIR), (BODYCRAFT_BEARD_COLOR), (BODYCRAFT_HAIR_COLOR), (BODYCRAFT_BACK))
+#define BODYCRAFT_OPTIONS_HAIR list(BODYCRAFT_BACK, BODYCRAFT_BEARD, BODYCRAFT_HAIR, BODYCRAFT_BEARD_COLOR, BODYCRAFT_HAIR_COLOR)
+// SET VITAE COSTS HERE
+var/static/list/bodycrafting_costs = list((BODYCRAFT_SEX) = 1, (BODYCRAFT_HEIGHT) = 1)
 
 /datum/action/cooldown/mob_cooldown/bodycraft
 	owner_has_control = FALSE
@@ -36,15 +33,11 @@ var/static/list/bodycrafting_costs = list((BODYCRAFT_SEX) = 1, (BODYCRAFT_HEIGHT
 		return
 	owner.adjust_blood_pool(-vitae_cost)
 
-/// How much does this bodycraft option cost?
-//datum/action/cooldown/mob_cooldown/bodycraft/proc/get_bodycraft_cost()
-
 /datum/action/cooldown/mob_cooldown/bodycraft/New(Target, original)
 	. = ..()
 	update_choices()
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/update_choices()
-//alist????
 	for(var/i in choices_initial)
 		choices_initial["Hair Options"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "hair")
 		choices_initial["Sex"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "sex")
@@ -78,15 +71,17 @@ var/static/list/bodycrafting_costs = list((BODYCRAFT_SEX) = 1, (BODYCRAFT_HEIGHT
 
 	if(((target.pulledby == owner) && (owner.grab_state >= GRAB_AGGRESSIVE)) || (target == owner))
 		vitae_cost = bodycrafting_costs[bodycraft_menu]
+		if(!(bodycraft_menu in bodycrafting_costs))
+			vitae_cost = 0
 		spend_resources(owner)
 		if(bloodpool <= vitae_cost)
 			to_chat(owner, span_warning("You do not have enough blood to alter the body in such a way!"))
 			return FALSE
 		switch(bodycraft_menu)
-			if(BODYCRAFT_HAIR_LIST)
-				return bodycraft_menu
+			//if(BODYCRAFT_HAIR_LIST)
+			//	return display_radial_menu()
 			if(BODYCRAFT_BACK)
-				return TRUE
+				back(target)
 			if(BODYCRAFT_BEARD)
 				change_beard(target)
 			if(BODYCRAFT_HAIR)
@@ -114,6 +109,9 @@ var/static/list/bodycrafting_costs = list((BODYCRAFT_SEX) = 1, (BODYCRAFT_HEIGHT
 	if(!IN_GIVEN_RANGE(owner, target, range))
 		return FALSE
 	return display_radial_menu(target)
+
+/datum/action/cooldown/mob_cooldown/bodycraft/proc/back(mob/living/carbon/human/target)
+	return TRUE
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/change_sex(mob/living/carbon/human/target)
 	var/chosen_sex = tgui_input_list(owner, "Choose a gender.", "Confirmation", list("Male", "Female", "Plural", "Neuter"))
