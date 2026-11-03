@@ -122,7 +122,7 @@ GLOBAL_LIST_INIT(derangement_phrases,list(
 		'modular_darkpack/modules/powers/sounds/dementation/child_cry.ogg',
 		'modular_darkpack/modules/powers/sounds/dementation/man_moan.ogg', // zombie like moaning sounds
 		'modular_darkpack/modules/powers/sounds/dementation/woman_moan.ogg',
-		'modular_darkpack/modules/powers/sounds/dementation/evillaugh.ogg'
+		'modular_darkpack/modules/powers/sounds/dementation/evillaugh.ogg',
 	)
 	hallucinator.playsound_local(hallucinator, pick(ambient_sounds), vol = 20, vary = FALSE)
 
@@ -193,11 +193,11 @@ GLOBAL_LIST_INIT(derangement_phrases,list(
 			pick_list_replacements(malk_file, "be_upset"),
 			pick_list_replacements(malk_file, "get_reprimanded_old"),
 		)
-	var/delay = 4 SECONDS
+	var/delay = 2 SECONDS
 	for(var/line in scold_lines)
 		addtimer(CALLBACK(src, PROC_REF(talk), line), delay)
-		delay += 5 SECONDS
-	addtimer(CALLBACK(src, PROC_REF(exit)), delay + 10 SECONDS)
+		delay += 2 SECONDS
+	addtimer(CALLBACK(src, PROC_REF(exit)), delay + 4 SECONDS)
 	return TRUE
 
 
