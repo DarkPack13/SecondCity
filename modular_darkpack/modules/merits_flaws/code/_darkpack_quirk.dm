@@ -80,17 +80,11 @@
 
 	return TRUE
 
-/datum/quirk/darkpack/proc/is_discipline_appropriate(datum/discipline/discipline)
-	if(!excluded_disciplines && !included_disciplines)
-		return TRUE
-
-	if(isnull(discipline))
-		return TRUE
-
-	if(excluded_disciplines && (discipline.id in excluded_disciplines))
+/datum/quirk/darkpack/proc/is_discipline_appropriate(datum/discipline/discipline_ids)
+	if(length(excluded_disciplines) && length(excluded_disciplines & discipline_ids))
 		return FALSE
 
-	if(length(included_disciplines) && !(discipline.id in included_disciplines))
+	if(length(included_disciplines) && !length(included_disciplines & discipline_ids))
 		return FALSE
 
 	return TRUE

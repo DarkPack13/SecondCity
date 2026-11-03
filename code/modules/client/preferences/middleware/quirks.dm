@@ -225,14 +225,14 @@
 
 	return clan_blacklist
 
-/datum/preference_middleware/quirks/proc/get_disciplines_compatibility()
+/*/datum/preference_middleware/quirks/proc/get_disciplines_compatibility()
 	var/list/discipline_blacklist = list()
 
 	for(var/discipline_name as anything in preferences.discipline_levels)
-		var/datum/discipline/player_discipline = text2path(discipline_name)
+	var/datum/discipline/player_discipline = text2path(discipline_name)
 
-		if(!player_discipline)
-			return discipline_blacklist
+		//if(!player_discipline)
+		//	return discipline_blacklist
 
 		for(var/quirk_path in SSquirks.quirk_prototypes)
 			var/datum/quirk/quirk_prototype = SSquirks.quirk_prototypes[quirk_path]
@@ -244,6 +244,24 @@
 			if(!darkpack_quirk.is_discipline_appropriate(player_discipline))
 				discipline_blacklist |= quirk_prototype.name
 
-	return discipline_blacklist
+	return discipline_blacklist*/
+
+/datum/preference_middleware/quirks/proc/get_disciplines_compatibility()
+	var/list/discipline_blacklist = list()
+	var/list/discipline_ids = list()
+	for(var/discipline_key in preferences.discipline_levels)
+		if(!preferences.discipline_levels[discipline_key])
+			continue
+		var/datum/discipline/discipline_path = ispath(discipline_key) ? discipline_key : text2path(discipline_key)
+		if(discipline_path)
+			discipline_ids += initial(discipline_path.id)
+
+	for(var/quirk_path in SSquirks.quirk_prototypes)
+		var/datum/quirk/darkpack/darkpack_quirk = SSquirks.quirk_prototypes[quirk_path]
+		if(!istype(darkpack_quirk))
+			continue
+		if(!darkpack_quirk.is_discipline_appropriate(discipline_ids))
+			discipline_blacklist += darkpack_quirk.name
+		return discipline_blacklist
 
 // DARKPACK EDIT END - MERITS_FLAWS
