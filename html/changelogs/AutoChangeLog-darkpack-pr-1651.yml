@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "discipline power refreshes no longer always violate the masquerade if the power isn't supposed to violate the masquerade anyways."
