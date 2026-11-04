@@ -32,7 +32,7 @@
 	if(target_door.door_broken)
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	var/dice_result = SSroll.storyteller_roll_datum(user, applic_stats = list(STAT_STRENGTH, STAT_MELEE), numerical = TRUE)
-	if(!do_after(user, ((1 TURNS) / max(1, dice_result)), target, interaction_key = BATTERING_INTERACTION_KEY))
+	if(!do_after(user, ((1 TURNS) / max(1, dice_result)), target_door, interaction_key = BATTERING_INTERACTION_KEY))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	if(prob(80 / max(1, dice_result)) || !dice_result)
 		target_door.pixel_z = target_door.pixel_z+rand(-1, 1)
