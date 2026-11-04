@@ -15,7 +15,7 @@
 #define BODYCRAFT_OPTIONS list(BODYCRAFT_HAIR_LIST, BODYCRAFT_SEX, BODYCRAFT_EYES, BODYCRAFT_NAME, BODYCRAFT_RACE, BODYCRAFT_HEIGHT)
 #define BODYCRAFT_OPTIONS_HAIR list(BODYCRAFT_BACK, BODYCRAFT_BEARD, BODYCRAFT_BEARD_COLOR, BODYCRAFT_HAIR_COLOR, BODYCRAFT_HAIR, )
 // SET VITAE COSTS HERE
-var/static/list/bodycrafting_costs = list((BODYCRAFT_SEX) = 1, (BODYCRAFT_HEIGHT) = 1)
+var/static/list/bodycrafting_costs = list()
 
 /datum/action/cooldown/mob_cooldown/bodycraft
 	owner_has_control = FALSE
@@ -61,21 +61,22 @@ var/static/list/bodycrafting_costs = list((BODYCRAFT_SEX) = 1, (BODYCRAFT_HEIGHT
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/display_radial_menu(mob/target)
-	var/bodycraft_menu = show_radial_menu(owner, target, choices_initial, target, radius = 36)
+	var/bodycraft_menu = show_radial_menu(owner, target, choices_initial, target, radius = 36, require_near = TRUE)
 	switch(bodycraft_menu)
-		//if(BODYCRAFT_BACK)
-		//	bodycraft_menu = show_radial_menu(owner, target, choices_initial, target, radius = 36)
 		if(BODYCRAFT_OPTIONS)
-			bodycraft_menu = show_radial_menu(owner, target, choices_initial, target, radius = 36)
+			bodycraft_menu = show_radial_menu(owner, target, choices_initial, target, radius = 36, require_near = TRUE)
 		if(BODYCRAFT_HAIR_LIST)
-			bodycraft_menu = show_radial_menu(owner, target, choices_hair, target, radius = 36)
+			bodycraft_menu = show_radial_menu(owner, target, choices_hair, target, radius = 36, require_near = TRUE)
 	if(!bodycraft_menu)
 		return TRUE
 
 	if(((target.pulledby == owner) && (owner.grab_state >= GRAB_AGGRESSIVE)) || (target == owner))
+		vitae_cost = 0
 		vitae_cost = bodycrafting_costs[bodycraft_menu]
 		if(!(bodycraft_menu in bodycrafting_costs))
 			vitae_cost = 0
+		if(target != owner)
+			vitae_cost += 1
 		spend_resources(owner)
 		if (rollstate == "fail")
 			return FALSE
