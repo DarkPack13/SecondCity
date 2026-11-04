@@ -36,7 +36,7 @@
 	for (var/datum/action/discipline/individual_discipline in vampire.powers) // Remove Bloodheal
 		if (istype(individual_discipline.discipline, /datum/discipline/bloodheal))
 			continue
-		current_disciplines += individual_discipline
+		current_disciplines += individual_discipline.discipline
 	return current_disciplines
 
 /datum/splat/vampire/proc/get_active_disciplines()
@@ -46,7 +46,7 @@
 	for (var/datum/action/discipline/individual_discipline in src.powers) // Remove Bloodheal
 		if (istype(individual_discipline.discipline, /datum/discipline/bloodheal))
 			continue
-		current_disciplines += individual_discipline
+		current_disciplines += individual_discipline.discipline
 	return current_disciplines
 
 /datum/splat/vampire/proc/get_discipline(discipline_type)

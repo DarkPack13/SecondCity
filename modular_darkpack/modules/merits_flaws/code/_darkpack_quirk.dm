@@ -9,14 +9,12 @@
 	var/list/excluded_clans
 	/// Included clans for this quirk (exclusive to vampire). E.g "Only Cappadocians can take this flaw"
 	var/list/included_clans
-	/// Included disciplines for this quirk (exclusive to vampire). E.g "Only those with Vicissitude can take this flaw"
+	/// Included disciplines for this quirk (exclusive to vampire). E.g "Only those with atleast 1 point of Vicissitude can take this flaw"
 	var/list/included_disciplines
-	/// Included disciplines for this quirk (exclusive to vampire). E.g "Only those without Vicissitude can take this flaw"
+	/// Included disciplines for this quirk (exclusive to vampire). E.g "Only those without atleast 1 point of Vicissitude can take this flaw"
 	var/list/excluded_disciplines
 	/// Minimum Generation
 	var/minimum_generation
-	/// Minimum Discipline Points in a Discipline
-	var/list/discipline_point_threshold
 	/// Unique failure message on joining the round (in case someone joins with an incompatible quirk on their savefile for some reason)
 	var/failure_message = "One of the quirks you've selected hasn't applied - your character is ineligible to use it!"
 

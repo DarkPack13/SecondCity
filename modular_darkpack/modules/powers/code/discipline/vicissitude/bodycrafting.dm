@@ -11,9 +11,9 @@
 // CATEGORIES
 #define BODYCRAFT_BACK "Back"
 #define BODYCRAFT_HAIR_LIST "Hair Options"
-// OPTION LISTS
+// LISTS
 #define BODYCRAFT_OPTIONS list(BODYCRAFT_HAIR_LIST, BODYCRAFT_SEX, BODYCRAFT_EYES, BODYCRAFT_NAME, BODYCRAFT_RACE, BODYCRAFT_HEIGHT)
-#define BODYCRAFT_OPTIONS_HAIR list(BODYCRAFT_BACK, BODYCRAFT_BEARD, BODYCRAFT_HAIR, BODYCRAFT_BEARD_COLOR, BODYCRAFT_HAIR_COLOR)
+#define BODYCRAFT_OPTIONS_HAIR list(BODYCRAFT_BACK, BODYCRAFT_BEARD, BODYCRAFT_BEARD_COLOR, BODYCRAFT_HAIR_COLOR, BODYCRAFT_HAIR, )
 // SET VITAE COSTS HERE
 var/static/list/bodycrafting_costs = list((BODYCRAFT_SEX) = 1, (BODYCRAFT_HEIGHT) = 1)
 
@@ -30,7 +30,7 @@ var/static/list/bodycrafting_costs = list((BODYCRAFT_SEX) = 1, (BODYCRAFT_HEIGHT
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/spend_resources(mob/living/owner)
 	bloodpool = owner.bloodpool
-	if(bloodpool <= vitae_cost)
+	if(bloodpool < vitae_cost || bloodpool == 0)
 		rollstate = "fail"
 		to_chat(owner, span_warning("You do not have enough blood to alter the body in such a way!"))
 	else(rollstate = "success")
@@ -328,7 +328,7 @@ var/static/list/bodycrafting_costs = list((BODYCRAFT_SEX) = 1, (BODYCRAFT_HEIGHT
 #undef BODYCRAFT_NAME
 #undef BODYCRAFT_RACE
 #undef BODYCRAFT_HEIGHT
-// CATEGORIES
+// LISTS
 #undef BODYCRAFT_BACK
 #undef BODYCRAFT_HAIR_LIST
 // OPTION LISTS

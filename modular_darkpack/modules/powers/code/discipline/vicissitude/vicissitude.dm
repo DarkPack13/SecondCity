@@ -53,6 +53,10 @@
 	bodycraft_ability.Activate(owner)
 	return TRUE
 
+// Suppress cast notification since it's a menu
+/datum/discipline_power/vicissitude/malleable_visage/do_caster_notification(target)
+	return
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/discipline_power/vicissitude/fleshcrafting
@@ -67,6 +71,10 @@
 	toggled = FALSE
 	cooldown_length = 0 TURNS
 	frenzy_usable = FALSE
+
+// Suppress cast notification since it's a menu
+/datum/discipline_power/vicissitude/fleshcrafting/do_caster_notification(target)
+	return
 
 /datum/discipline_power/vicissitude/fleshcrafting/activate(atom/movable/target)
 	. = ..()

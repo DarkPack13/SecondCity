@@ -102,6 +102,7 @@
 #define PATH_LEVINBOLT "levinbolt"
 #define PATH_LURE_OF_FLAMES "lure_of_flames"
 // Technicality
+#define DISCIPLINE_BLANK "blank_discipline"
 #define DISCIPLINE_BLOODHEAL "bloodheal"
 #define DISCIPLINE_TORPOR "torpor"
 
