@@ -7478,6 +7478,7 @@
 #include "modular_darkpack\modules\city_time\code\time_configs.dm"
 #include "modular_darkpack\modules\city_time\code\vote.dm"
 #include "modular_darkpack\modules\city_time\code\wrist_watch.dm"
+#include "modular_darkpack\modules\descriptions\code\soap.dm"
 #include "modular_darkpack\modules\city_traits\code\negative_traits.dm"
 #include "modular_darkpack\modules\city_traits\code\netural_traits.dm"
 #include "modular_darkpack\modules\city_traits\code\positive_traits.dm"
