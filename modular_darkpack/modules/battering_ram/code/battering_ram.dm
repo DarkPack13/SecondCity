@@ -28,7 +28,7 @@
 /obj/item/battering_ram/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!istype(interacting_with, /obj/structure/vampdoor))
 		return NONE
-	var/obj/structure/vampdoor/target_door = target
+	var/obj/structure/vampdoor/target_door = interacting_with
 	if(target_door.door_broken)
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	var/dice_result = SSroll.storyteller_roll_datum(user, applic_stats = list(STAT_STRENGTH, STAT_MELEE), numerical = TRUE)
