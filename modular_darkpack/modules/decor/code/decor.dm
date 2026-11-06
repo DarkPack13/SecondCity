@@ -44,7 +44,7 @@
 	pixel_w = -32
 	layer = SPACEVINE_LAYER
 	anchored = TRUE
-	density = FALSE
+	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	flourescent = FALSE // I dont think they are.
 
