@@ -2,7 +2,7 @@
 /datum/quirk/darkpack/blood_sorcery_prodigy
 	name = "Blood Sorcery Prodigy"
 	desc = {"You are especially skilled in the use of blood sorcery,
-	the difficulty of all paths and discipline level related to blood sorcery is reduce by one,
+	the difficulty of all paths and discipline level related to blood sorcery is reduced by one,
 	although this can not go below 4"}
 	value = 5
 	mob_trait = TRAIT_BLOOD_SORCERY_PRODIGY
