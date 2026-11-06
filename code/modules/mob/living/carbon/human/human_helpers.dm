@@ -87,7 +87,7 @@
 	return // DARKPACK EDIT CHANGE - ORIGINAL: return real_name
 
 /mob/living/carbon/human/get_face_name(if_no_face = "Unknown")
-	if(!real_name || is_face_obscured())
+	if(!real_name || is_face_obscured() && !client?.prefs.read_preference(/datum/preference/toggle/show_identity_when_masked))// DARKPACK EDIT ADD - Added !masked identity toggle into equasion
 		return if_no_face
 	return // DARKPACK EDIT CHANGE - ORIGINAL: return real_name
 
