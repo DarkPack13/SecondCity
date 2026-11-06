@@ -7,3 +7,9 @@
 	// SPLATS
 	for(var/datum/splat/splat in splats)
 		splat.splat_life(seconds_per_tick)
+
+///kindred never get full they reject food instead
+/mob/living/carbon/human/get_fullness(only_consumable)
+	if(get_kindred_splat(src))
+		return nutrition //this does not count nutrition in blood and stomach
+	return ..()
