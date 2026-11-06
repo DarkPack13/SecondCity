@@ -8,6 +8,7 @@
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	var/cooldown = 0
+	taint_wyrm = 6
 
 /obj/item/toy/rubberpig/Initialize(mapload)
 	. = ..()

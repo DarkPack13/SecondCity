@@ -1,6 +1,7 @@
 /mob/living/carbon/human/npc/hobo
 	bloodquality = BLOOD_QUALITY_LOW
 	old_movement = TRUE
+	taint_weaver = 1
 
 /mob/living/carbon/human/npc/hobo/Initialize(mapload)
 	. = ..()

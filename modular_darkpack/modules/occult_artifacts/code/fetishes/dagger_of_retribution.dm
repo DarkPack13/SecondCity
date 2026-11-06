@@ -29,6 +29,8 @@
 
 	spirit_type = SPIRIT_VENGEANCE
 
+	taint_wyld = 1
+
 	var/obj/bound_item
 	var/spinning = FALSE
 

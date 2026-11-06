@@ -3,6 +3,7 @@
 	true_desc = "Increases Bloodpower efficiency."
 	icon_state = "bloodstar"
 	research_value = 10
+	taint_wyrm = 5
 
 /obj/item/occult_artifact/vampire/bloodstar/grant_powers()
 	. = ..()

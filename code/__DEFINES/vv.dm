@@ -103,6 +103,7 @@
 #define VV_HK_TEST_MATRIXES "test_matrixes"
 #define VV_HK_ADD_AI "add_ai"
 #define VV_HK_ARMOR_MOD "mod_obj_armor"
+#define VV_HK_ADJUST_TAINT "adjust_taint" // DARKPACK EDIT ADD - TAINTS
 
 // /atom/movable
 #define VV_HK_OBSERVE_FOLLOW "observe_follow"

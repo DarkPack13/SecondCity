@@ -138,7 +138,7 @@
 
 	human.remove_overlay(BODYPARTS_LAYER)
 	var/main_icon_state = ""
-	if(HAS_TRAIT(human, TRAIT_WYRMTAINTED_SPRITE))
+	if(taint_wyrm >= 6)
 		main_icon_state += "spiral"
 	main_icon_state += fur_color
 	if(should_append_flying_to_icon(human))

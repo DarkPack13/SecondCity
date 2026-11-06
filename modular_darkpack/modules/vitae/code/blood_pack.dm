@@ -68,7 +68,7 @@ GLOBAL_LIST_INIT(human_blood_types, list(
 /obj/item/reagent_containers/blood/vitae
 	name = "\improper vampire vitae pack (full)"
 	blood_type = /datum/blood_type/kindred
-
+	taint_wyrm = 7
 
 /////////////////////////////////////////////////////////////////
 

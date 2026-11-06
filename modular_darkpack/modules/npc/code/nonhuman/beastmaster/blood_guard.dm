@@ -20,6 +20,7 @@
 
 	faction = list(VAMPIRE_CLAN_TREMERE)
 	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
+	taint_wyrm = 6
 
 /mob/living/basic/blood_guard/Initialize(mapload)
 	. = ..()

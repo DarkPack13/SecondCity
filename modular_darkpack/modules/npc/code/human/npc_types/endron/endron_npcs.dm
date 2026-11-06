@@ -2,6 +2,7 @@
 	staying = TRUE
 	my_weapon_type = /obj/item/gun/ballistic/automatic/darkpack/mp5
 	my_backup_weapon_type = /obj/item/melee/baton/vamp
+	taint_wyrm = 2
 
 /mob/living/carbon/human/npc/endronsecurity/Initialize(mapload)
 	. = ..()
@@ -12,6 +13,7 @@
 
 	my_weapon_type = /obj/item/gun/ballistic/automatic/darkpack/mp5
 	my_backup_weapon_type = /obj/item/melee/baton/vamp
+	taint_wyrm = 4
 
 /mob/living/carbon/human/npc/endronlabsecurity/Initialize(mapload)
 	. = ..()
@@ -22,6 +24,7 @@
 
 	my_weapon_type = /obj/item/gun/ballistic/automatic/pistol/darkpack/deagle
 	my_backup_weapon_type = /obj/item/melee/baton/vamp
+	taint_wyrm = 5
 
 /mob/living/carbon/human/npc/endronexecsecurity/Initialize(mapload)
 	. = ..()

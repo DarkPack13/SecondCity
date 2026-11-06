@@ -30,6 +30,7 @@
 	fishing_datum = /datum/fish_source/acid
 	baseturfs = /turf/open/water/acid
 	reagent_to_extract = /datum/reagent/toxin/acid
+	taint_wyrm = 4
 	var/damage_modifer = 1
 
 /turf/open/water/acid/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
@@ -58,7 +59,7 @@
 	name = "weak goop"
 	desc = "heavily diluted acidic goop."
 	damage_modifer = 0.25
-
+	taint_wyrm = 2
 
 //Code mostly taken from /obj/crystal_mass
 /turf/open/water/bloodwave
@@ -79,6 +80,7 @@
 	var/list/available_dirs = list(NORTH,SOUTH,EAST,WEST,DOWN)
 	///Cooldown on the expansion process
 	COOLDOWN_DECLARE(wave_cooldown)
+	taint_wyrm = 9
 
 /turf/open/water/bloodwave/Initialize(mapload, dir_to_remove)
 	. = ..()

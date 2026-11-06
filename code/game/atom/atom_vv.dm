@@ -26,6 +26,7 @@
 	VV_DROPDOWN_OPTION(VV_HK_ARMOR_MOD, "Modify Armor")
 	if(greyscale_colors)
 		VV_DROPDOWN_OPTION(VV_HK_MODIFY_GREYSCALE, "Modify greyscale colors")
+	VV_DROPDOWN_OPTION(VV_HK_ADJUST_TAINT, "Adjust Taint") // DARKPACK EDIT ADD - TAINT
 
 /atom/vv_do_topic(list/href_list)
 	. = ..()
@@ -193,6 +194,18 @@
 	if(href_list[VV_HK_DOWNLOAD_SPRITE])
 		var/icon/target_icon = getFlatIcon(src)
 		usr << ftp(target_icon, "[name].png")
+
+	// DARKPACK EDIT ADD START - TAINTS
+	if(href_list[VV_HK_ADJUST_TAINT])
+		if(!check_rights(R_SPAWN))
+			return
+		var/result_wyrm = tgui_input_number(usr, "Enter a new Wyrm Taint value", title = "Adjust Triatic Influence - Wyrm", default = 0, max_value = 10)
+		var/result_weaver = tgui_input_number(usr, "Enter a new Weaver Taint value", title = "Adjust Triatic Influence - Weaver", default = 0, max_value = 10)
+		var/result_wyld = tgui_input_number(usr, "Enter a new Wyld Taint value", title = "Adjust Triatic Influence - Wyld", default = 0, max_value = 10)
+
+		adjust_taint(result_wyrm, result_weaver, result_wyld, set_to = TRUE)
+		message_admins("[key_name_admin(usr)] has changed [ismob(src) ? "[ADMIN_FLW(src)]" : "[ADMIN_JMP(src)]"]'s Triatic Taints to Wyrm = [taint_wyrm], Weaver = [taint_weaver], Wyld = [taint_wyld]")
+	// DARKPACK EDIT ADD END - TAINTS
 
 /atom/vv_get_header()
 	. = ..()

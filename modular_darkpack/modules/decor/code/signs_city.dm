@@ -1,6 +1,7 @@
 //Considering having a subtype of this for "hanging" signs
 /obj/structure/sign/city
 	icon = 'modular_darkpack/modules/decor/icons/city_sign.dmi'
+	taint_weaver = 1
 
 /obj/structure/sign/city/get_turfs_to_mount_on()
 	return list(get_step(src, dir))
@@ -45,6 +46,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/hotel, 0)
 	anchored = TRUE
 	dir = NORTH
 	pixel_y = 32
+	taint_wyrm = 1
 
 /obj/structure/sign/city/millenium/Initialize(mapload)
 	. = ..()
@@ -113,6 +115,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/chinese/alt5, 0)
 	anchored = TRUE
 	pixel_w = -8
 	//pixel_z = 32
+	taint_wyrm = 1
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/strip_club, 32)
 
@@ -127,6 +130,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/strip_club, 32)
 	icon_state = "cabar"
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
+	taint_wyrm = 1
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/cabaret_sign, 32)
 
@@ -149,6 +153,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/cabaret_sign/two, 32)
 	name = "Baco Tell"
 	desc = "Eat some precious tacos and pizza!"
 	icon_state = "bacotell"
+	taint_wyrm = 1
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/bacotell, 32)
 
@@ -156,6 +161,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/bacotell, 32)
 	name = "BubWay"
 	desc = "Eat some precious burgers and pizza!"
 	icon_state = "bubway"
+	taint_weaver = 2
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/bubway, 32)
 
@@ -163,6 +169,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/bubway, 32)
 	name = "Gumma Guts"
 	desc = "Eat some precious chicken nuggets and donuts!"
 	icon_state = "gummaguts"
+	taint_wyrm = 1
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/gummaguts, 32)
 
@@ -195,6 +202,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/reddragon, 32)
 	name = "O\'Tolleys"
 	desc = "O-o-o Oh Toll-ees, Families Welcome!"
 	icon_state = "otolleys"
+	taint_wyrm = 3
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/otolleys, 32)
 
@@ -202,5 +210,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/otolleys, 32)
 	name = "Magadon, Incorporated"
 	desc = "Magadon: Building a better you."
 	icon_state = "magadon"
+	taint_wyrm = 3
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/city/store/magadon, 32)

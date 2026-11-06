@@ -3,12 +3,13 @@
 	icon_state = "package_empty"
 	icon = 'modular_darkpack/modules/drugs/icons/items.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/drugs/icons/onfloor.dmi')
+	taint_weaver = 1
 
 /obj/item/reagent_containers/cup/glass/baggie/meth
 	name = "blue package"
 	icon_state = "package_meth"
 	list_reagents = list(/datum/reagent/drug/methamphetamine = 30)
-
+	taint_wyrm = 1
 
 /obj/item/reagent_containers/cup/glass/baggie/meth/Initialize(mapload)
 	. = ..()
@@ -19,7 +20,7 @@
 	name = "white package"
 	icon_state = "package_cocaine"
 	list_reagents = list(/datum/reagent/drug/methamphetamine/cocaine = 30)
-
+	taint_wyrm = 1
 
 /obj/item/reagent_containers/cup/glass/baggie/meth/cocaine/Initialize(mapload)
 	. = ..()

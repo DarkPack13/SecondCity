@@ -11,3 +11,4 @@
 		/obj/item/reagent_containers/cup/soda_cans/summer_thaw,
 		/obj/item/reagent_containers/cup/soda_cans/thaw_club
 	)
+	taint_wyrm = 4

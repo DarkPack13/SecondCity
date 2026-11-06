@@ -19,6 +19,7 @@
 	combat_mode = TRUE
 	faction = list(VAMPIRE_CLAN_GIOVANNI)
 	ai_controller = /datum/ai_controller/basic_controller/beastmaster_summon
+	taint_wyrm = 7
 
 /mob/living/basic/beastmaster/giovanni_zombie/Initialize(mapload)
 	. = ..()

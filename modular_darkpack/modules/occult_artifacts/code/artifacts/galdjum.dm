@@ -3,6 +3,7 @@
 	true_desc = "Increases disciplines duration."
 	icon_state = "galdjum"
 	research_value = 10
+	taint_wyrm = 2
 
 /obj/item/occult_artifact/vampire/galdjum/grant_powers()
 	. = ..()

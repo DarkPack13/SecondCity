@@ -1,3 +1,8 @@
+// The Triat, the biggest and baddest spirits out there. Everyone else in this joint works for these folks.
+#define TRIAT_WYRM "Wyrm"
+#define TRIAT_WEAVER "Weaver"
+#define TRIAT_WYLD "Wyld"
+
 #define SPIRIT_ATHERIAL "aetherial"
 #define SPIRIT_ANAMAE "anamae"
 #define SPIRIT_ANCESTOR "ancestor spirit"
