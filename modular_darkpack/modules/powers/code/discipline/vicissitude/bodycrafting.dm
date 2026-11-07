@@ -6,16 +6,14 @@
 #define BODYCRAFT_SEX  "Sex"
 #define BODYCRAFT_NAME "Name"
 #define BODYCRAFT_EYES "Eyes"
-#define BODYCRAFT_RACE "Race"
+#define BODYCRAFT_SKIN "Skin"
 #define BODYCRAFT_HEIGHT "Height"
 // CATEGORIES
 #define BODYCRAFT_BACK "Back"
 #define BODYCRAFT_HAIR_LIST "Hair Options"
 // LISTS
-#define BODYCRAFT_OPTIONS list(BODYCRAFT_HAIR_LIST, BODYCRAFT_SEX, BODYCRAFT_EYES, BODYCRAFT_NAME, BODYCRAFT_RACE, BODYCRAFT_HEIGHT)
+#define BODYCRAFT_OPTIONS list(BODYCRAFT_HAIR_LIST, BODYCRAFT_SEX, BODYCRAFT_EYES, BODYCRAFT_NAME, BODYCRAFT_SKIN, BODYCRAFT_HEIGHT)
 #define BODYCRAFT_OPTIONS_HAIR list(BODYCRAFT_BACK, BODYCRAFT_BEARD, BODYCRAFT_BEARD_COLOR, BODYCRAFT_HAIR_COLOR, BODYCRAFT_HAIR, )
-// SET VITAE COSTS HERE
-var/list/bodycrafting_costs = list()
 
 /datum/action/cooldown/mob_cooldown/bodycraft
 	owner_has_control = FALSE
@@ -24,9 +22,14 @@ var/list/bodycrafting_costs = list()
 	var/list/choices_hair = BODYCRAFT_OPTIONS_HAIR
 	/// The range of this action.
 	var/range = 1
-	var/vitae_cost = 0
+	// User's bloodpool
 	var/bloodpool
+	// Fail/Succeed
 	var/rollstate
+	// Vitae Cost
+	var/vitae_cost = 0
+	// SET VITAE COSTS HERE
+	var/static/list/bodycrafting_costs = list()
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/spend_resources(mob/living/owner)
 	bloodpool = owner.bloodpool
@@ -43,10 +46,10 @@ var/list/bodycrafting_costs = list()
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/update_choices()
 	for(var/i in choices_initial)
 		choices_initial["Hair Options"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "hair")
-		choices_initial["Sex"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "sex")
+		choices_initial["Sex"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "sex",)
 		choices_initial["Eyes"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "eyes")
 		choices_initial["Name"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "name")
-		choices_initial["Race"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "race")
+		choices_initial["Skin"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "skin")
 		choices_initial["Height"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "height")
 	for(var/i in choices_hair)
 		choices_hair["Back"] = icon('modular_darkpack/modules/powers/icons/bodycrafting_radial.dmi', "back")
@@ -62,16 +65,12 @@ var/list/bodycrafting_costs = list()
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/display_radial_menu(mob/target)
 	var/bodycraft_menu = show_radial_menu(owner, target, choices_initial, target, radius = 36, require_near = TRUE)
-	switch(bodycraft_menu)
-		if(BODYCRAFT_OPTIONS)
-			bodycraft_menu = show_radial_menu(owner, target, choices_initial, target, radius = 36, require_near = TRUE)
-		if(BODYCRAFT_HAIR_LIST)
-			bodycraft_menu = show_radial_menu(owner, target, choices_hair, target, radius = 36, require_near = TRUE)
+	if(bodycraft_menu == BODYCRAFT_HAIR_LIST)
+		bodycraft_menu = show_radial_menu(owner, target, choices_hair, target, radius = 36, require_near = TRUE)
 	if(!bodycraft_menu)
 		return TRUE
 
 	if(((target.pulledby == owner) && (owner.grab_state >= GRAB_AGGRESSIVE)) || (target == owner))
-		vitae_cost = 0
 		vitae_cost = bodycrafting_costs[bodycraft_menu]
 		if(!(bodycraft_menu in bodycrafting_costs))
 			vitae_cost = 0
@@ -97,8 +96,8 @@ var/list/bodycrafting_costs = list()
 				change_name(target)
 			if(BODYCRAFT_EYES)
 				change_eyes(target)
-			if(BODYCRAFT_RACE)
-				change_race(target)
+			if(BODYCRAFT_SKIN)
+				change_skin(target)
 			if(BODYCRAFT_HEIGHT)
 				change_height(target)
 
@@ -267,13 +266,13 @@ var/list/bodycrafting_costs = list()
 	to_chat(owner, span_notice("You finish altering the name of [target]."))
 	return TRUE
 
-/datum/action/cooldown/mob_cooldown/bodycraft/proc/change_race(mob/living/carbon/human/target)
+/datum/action/cooldown/mob_cooldown/bodycraft/proc/change_skin(mob/living/carbon/human/target)
 	var/list/skin_tones = list()
 	for(var/skin_tone in GLOB.skin_tone_names)
 		var/skin_tone_name = GLOB.skin_tone_names[skin_tone]
 		skin_tones[skin_tone_name] = skin_tone
 
-	var/new_s_tone = tgui_input_list(owner, "Choose a skin tone", "Race change", skin_tones, autofocus = FALSE)
+	var/new_s_tone = tgui_input_list(owner, "Choose a skin tone", "Skin change", skin_tones, autofocus = FALSE)
 	new_s_tone = skin_tones[new_s_tone]
 	if(!new_s_tone)
 		return FALSE
@@ -290,7 +289,7 @@ var/list/bodycrafting_costs = list()
 	target.update_appearance(UPDATE_OVERLAYS)
 	SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 	playsound(target, 'modular_darkpack/modules/powers/sounds/vicissitude.ogg', 50, TRUE)
-	to_chat(owner, span_notice("You finish altering the race of [target]."))
+	to_chat(owner, span_notice("You finish altering the skin of [target]."))
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/change_height(mob/living/carbon/human/target)
@@ -327,7 +326,7 @@ var/list/bodycrafting_costs = list()
 #undef BODYCRAFT_SEX
 #undef BODYCRAFT_EYES
 #undef BODYCRAFT_NAME
-#undef BODYCRAFT_RACE
+#undef BODYCRAFT_SKIN
 #undef BODYCRAFT_HEIGHT
 // LISTS
 #undef BODYCRAFT_BACK
