@@ -1,4 +1,3 @@
-/// The owner of a created szlachta
 var/mob/living/carbon/human/szlachta_owner
 
 // Alter the properties of the crafted Szlachta and add to Crafter's Beastmaster List
