@@ -416,6 +416,9 @@ function QuirkPage() {
     if (data.splat_disallowed_quirks.includes(quirk.name)) {
       return false
     }
+    if (data.discipline_disallowed_quirks.includes(quirk.name)) {
+      return false
+    }
     return;
   }
   // DARKPACK EDIT ADD END

@@ -233,13 +233,7 @@
 
 /datum/preference_middleware/quirks/proc/get_disciplines_compatibility()
 	var/list/discipline_blacklist = list()
-	var/list/discipline_ids = list()
-	for(var/discipline_key in preferences.discipline_levels)
-		if(!preferences.discipline_levels[discipline_key])
-			continue
-		var/datum/discipline/discipline_path = ispath(discipline_key) ? discipline_key : text2path(discipline_key)
-		if(discipline_path)
-			discipline_ids += initial(discipline_path.id)
+	var/list/discipline_ids = preferences.get_discipline_ids()
 
 	for(var/quirk_path in SSquirks.quirk_prototypes)
 		var/datum/quirk/darkpack/darkpack_quirk = SSquirks.quirk_prototypes[quirk_path]
@@ -247,6 +241,6 @@
 			continue
 		if(!darkpack_quirk.is_discipline_appropriate(discipline_ids))
 			discipline_blacklist += darkpack_quirk.name
-		return discipline_blacklist
+	return discipline_blacklist
 
 // DARKPACK EDIT END - MERITS_FLAWS

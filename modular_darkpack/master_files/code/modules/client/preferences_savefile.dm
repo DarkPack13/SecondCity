@@ -62,9 +62,7 @@
 	guestbook_names = save_data?["guestbook_names"]
 	guestbook_names = SANITIZE_LIST(guestbook_names)
 	alt_job_titles = save_data?["alt_job_titles"] // ALTERNATIVE_JOB_TITLES
-	discipline_levels = SANITIZE_LIST(save_data?["discipline_levels"]) || list()
-	// Parent validated quirks before disciplines were loaded, so do it again.
-	validate_quirks()
+	// discipline_levels is loaded in the parent proc, since validate_quirks() there depends on it.
 
 /// Returns the ids of every discipline this character will spawn with.
 /datum/preferences/proc/get_discipline_ids()
