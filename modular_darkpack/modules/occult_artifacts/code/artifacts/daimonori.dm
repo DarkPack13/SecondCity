@@ -3,6 +3,7 @@
 	true_desc = "Increases thaumaturgy damage."
 	icon_state = "daimonori"
 	research_value = 20
+	rank = 2
 
 /obj/item/occult_artifact/vampire/daimonori/grant_powers()
 	. = ..()

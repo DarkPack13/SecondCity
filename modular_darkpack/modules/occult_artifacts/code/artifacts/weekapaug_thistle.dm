@@ -7,6 +7,7 @@
 	true_desc = "Increases combat defense."
 	icon_state = "w_thistle"
 	research_value = 10
+	rank = 1
 
 /obj/item/occult_artifact/vampire/weekapaug_thistle/grant_powers()
 	. = ..()

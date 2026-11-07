@@ -27,6 +27,7 @@
 	drop_sound = SFX_KNIFE_DROP
 	subsystem_type = /datum/controller/subsystem/processing/fastprocess
 
+	rank = 1 // rank 2 in the book but our version is a bit weaker due to not coding it fully.
 	spirit_type = SPIRIT_VENGEANCE
 
 	var/obj/bound_item
