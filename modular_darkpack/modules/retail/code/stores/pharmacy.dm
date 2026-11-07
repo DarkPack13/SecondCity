@@ -23,6 +23,6 @@
 		new /datum/data/vending_product("stethoscope", /obj/item/clothing/neck/stethoscope, 50),
 		new /datum/data/vending_product("head mirror", /obj/item/clothing/head/utility/head_mirror, 50),
 		new /datum/data/vending_product("medical belt", /obj/item/storage/belt/medical, 100),
-		new /datum/data/vending_product("paramedic belt", /obj/item/storage/belt/medical/paramedic, 100)
+		new /datum/data/vending_product("paramedic belt", /obj/item/storage/belt/medical/paramedic, 100),
 		new /datum/data/vending_product("reflex hammer", /obj/item/reflexhammer, 30),
 	)
