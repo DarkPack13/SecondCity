@@ -114,7 +114,7 @@ var/static/list/bodycrafting_costs = list()
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/change_sex(mob/living/carbon/human/target)
-	var/chosen_sex = tgui_input_list(owner, "Choose a gender.", "Confirmation", list("Male", "Female", "Plural", "Neuter"))
+	var/chosen_sex = tgui_input_list(owner, "Choose a gender.", "Confirmation", list("Male", "Female", "Plural", "Neuter"), autofocus = FALSE)
 	if(!chosen_sex)
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))
@@ -137,7 +137,7 @@ var/static/list/bodycrafting_costs = list()
 	playsound(target, 'modular_darkpack/modules/powers/sounds/vicissitude.ogg', 50, TRUE)
 	to_chat(owner, span_notice("You finish altering the gender of [target]."))
 
-	var/chosen_physique = tgui_input_list(owner, "Alter physique as well?", "Confirmation", list("Masculine", "Feminine"))
+	var/chosen_physique = tgui_input_list(owner, "Alter physique as well?", "Confirmation", list("Masculine", "Feminine"), autofocus = FALSE)
 	if(!chosen_physique)
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))
@@ -158,7 +158,7 @@ var/static/list/bodycrafting_costs = list()
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/change_eyes(mob/living/carbon/human/target)
-	var/new_eye_color = input(owner, "Choose a eye color", "Eye Color", target.eye_color_left) as color|null
+	var/new_eye_color = tgui_color_picker(owner, "Choose a eye color", "Eye Color", target.eye_color_left, default = null, autofocus = FALSE)
 	if(!new_eye_color)
 		return TRUE
 	if(!IN_GIVEN_RANGE(owner, target, range))
@@ -177,7 +177,7 @@ var/static/list/bodycrafting_costs = list()
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/change_beard(mob/living/carbon/human/target)
-	var/new_style = tgui_input_list(owner, "Select a facial hairstyle", "Grooming", SSaccessories.facial_hairstyles_list)
+	var/new_style = tgui_input_list(owner, "Select a facial hairstyle", "Grooming", SSaccessories.facial_hairstyles_list, autofocus = FALSE)
 	if(!new_style)
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))
@@ -194,7 +194,7 @@ var/static/list/bodycrafting_costs = list()
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/change_beard_color(mob/living/carbon/human/target)
-	var/new_face_color = input(owner, "Choose a facial hair color", "Hair Color", target.facial_hair_color) as color|null
+	var/new_face_color = tgui_color_picker(owner, "Choose a facial hair color", "Hair Color", target.facial_hair_color, default = null, autofocus = FALSE)
 	if(!new_face_color)
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))
@@ -212,7 +212,7 @@ var/static/list/bodycrafting_costs = list()
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/change_hair(mob/living/carbon/human/target)
-	var/new_style = tgui_input_list(owner, "Select a hairstyle", "Grooming", SSaccessories.hairstyles_list)
+	var/new_style = tgui_input_list(owner, "Select a hairstyle", "Grooming", SSaccessories.hairstyles_list, autofocus = FALSE)
 	if(!new_style)
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))
@@ -229,7 +229,7 @@ var/static/list/bodycrafting_costs = list()
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/change_hair_color(mob/living/carbon/human/target)
-	var/new_hair_color = input(owner, "Choose a hair color", "Hair Color", target.hair_color) as color|null
+	var/new_hair_color = tgui_color_picker(owner, "Choose a hair color", "Hair Color", target.hair_color, default = null, autofocus = FALSE)
 	if(!new_hair_color)
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))
@@ -247,7 +247,7 @@ var/static/list/bodycrafting_costs = list()
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/bodycraft/proc/change_name(mob/living/carbon/human/target)
-	var/newname = sanitize_name(tgui_input_text(owner, "Who are we again?", "Name change", target.real_name, MAX_NAME_LEN))
+	var/newname = sanitize_name(tgui_input_text(owner, "Who are we again?", "Name change", target.real_name, MAX_NAME_LEN, autofocus = FALSE))
 	if(!newname || newname == target.real_name)
 		return FALSE
 	if(!IN_GIVEN_RANGE(owner, target, range))
@@ -273,7 +273,7 @@ var/static/list/bodycrafting_costs = list()
 		var/skin_tone_name = GLOB.skin_tone_names[skin_tone]
 		skin_tones[skin_tone_name] = skin_tone
 
-	var/new_s_tone = tgui_input_list(owner, "Choose a skin tone", "Race change", skin_tones)
+	var/new_s_tone = tgui_input_list(owner, "Choose a skin tone", "Race change", skin_tones, autofocus = FALSE)
 	new_s_tone = skin_tones[new_s_tone]
 	if(!new_s_tone)
 		return FALSE
@@ -302,7 +302,7 @@ var/static/list/bodycrafting_costs = list()
 		"Shorter" = HUMAN_HEIGHT_SHORTEST,
 		)
 
-	var/new_height = tgui_input_list(owner, "Choose a height", "Height change", heights)
+	var/new_height = tgui_input_list(owner, "Choose a height", "Height change", heights, autofocus = FALSE)
 	new_height = heights[new_height]
 	if(!new_height)
 		return FALSE
