@@ -16,7 +16,7 @@
 	var/datum/subsplat/vampire_clan/clan = get_vampire_clan(clan_type)
 	if(!clan)
 		return FALSE
-	for(var/discipline as anything in preferences.discipline_levels)
+	for(var/discipline in preferences.discipline_levels)
 		var/datum/discipline/player_discipline = text2path(discipline)
 		if(ispath(player_discipline, /datum/discipline/vicissitude))
 			return TRUE

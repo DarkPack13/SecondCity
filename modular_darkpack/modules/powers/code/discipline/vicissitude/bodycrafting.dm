@@ -15,7 +15,7 @@
 #define BODYCRAFT_OPTIONS list(BODYCRAFT_HAIR_LIST, BODYCRAFT_SEX, BODYCRAFT_EYES, BODYCRAFT_NAME, BODYCRAFT_RACE, BODYCRAFT_HEIGHT)
 #define BODYCRAFT_OPTIONS_HAIR list(BODYCRAFT_BACK, BODYCRAFT_BEARD, BODYCRAFT_BEARD_COLOR, BODYCRAFT_HAIR_COLOR, BODYCRAFT_HAIR, )
 // SET VITAE COSTS HERE
-var/static/list/bodycrafting_costs = list()
+var/list/bodycrafting_costs = list()
 
 /datum/action/cooldown/mob_cooldown/bodycraft
 	owner_has_control = FALSE
