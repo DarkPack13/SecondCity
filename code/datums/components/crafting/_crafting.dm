@@ -388,7 +388,7 @@
 	if(considered_flags & CRAFT_CHECK_MINION)
 		var/mob/living/carbon/human/minion_crafter
 		minion_crafter = crafter
-		else if (length(minion_crafter?.beastmaster_minions) >= minion_crafter?.st_get_stat(STAT_LEADERSHIP) + 1)
+		if (length(minion_crafter?.beastmaster_minions) >= minion_crafter.st_get_stat(STAT_LEADERSHIP) + 1)
 			return ", too many minions are enlisted under you!"
 	// DARKPACK EDIT ADD END
 
