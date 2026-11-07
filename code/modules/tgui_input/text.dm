@@ -38,9 +38,9 @@
 				return stripped_input(user, message, title, default, PREVENT_CHARACTER_TRIM_LOSS(max_length), autofocus) // DARKPACK EDIT ADD - autofocus
 		else
 			if(multiline)
-				return trim(input(user, message, title, default, autofocus) as message|null, max_length) // DARKPACK EDIT ADD - autofocus
+				return trim(input(user, message, title, default) as message|null, max_length, autofocus) // DARKPACK EDIT ADD - autofocus
 			else
-				return trim(input(user, message, title, default, autofocus) as text|null, max_length) // DARKPACK EDIT ADD - autofocus
+				return trim(input(user, message, title, default) as text|null, max_length, autofocus) // DARKPACK EDIT ADD - autofocus
 	var/datum/tgui_input_text/text_input = new(user, message, title, default, max_length, multiline, encode, timeout, ui_state)
 	text_input.ui_interact(user)
 	text_input.wait()
