@@ -7,4 +7,4 @@
 	ai_controller = new /datum/ai_controller/basic_controller/beastmaster_summon(src)
 	AddElement(/datum/element/ai_retaliate)
 	playsound(loc, 'sound/effects/changeling_absorb/changeling_absorb5.ogg', 15, vary = TRUE)
-	szlachta_owner?.add_beastmaster_minion(src)
+	szlachta_owner.add_beastmaster_minion(src)
