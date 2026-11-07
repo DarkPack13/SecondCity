@@ -3,6 +3,8 @@
 	. = ..()
 	var/mob/living/carbon/human/szlachta_owner
 	szlachta_owner = crafter
+	if (!szlachta_owner)
+		return
 	QDEL_NULL(ai_controller)
 	ai_controller = new /datum/ai_controller/basic_controller/beastmaster_summon(src)
 	AddElement(/datum/element/ai_retaliate)
