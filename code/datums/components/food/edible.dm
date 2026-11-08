@@ -711,8 +711,20 @@ Behavior that's still missing from this component that original food items had t
 	// DARKPACK EDIT ADD START - MERITS_FLAWS - (Organovore)
 	if(HAS_TRAIT(eater, TRAIT_ORGANOVORE) && (foodtypes & GORE))
 		if(get_kindred_splat(eater))
-			eater.adjust_blood_pool(1, FALSE)
+			if(HAS_TRAIT(eater, TRAIT_EFFICIENT_DIGESTION))
+				eater.adjust_blood_pool(1.5, FALSE)
+			else if(HAS_TRAIT(eater, TRAIT_HUNGRY))
+				eater.adjust_blood_pool(0.5, FALSE)
+			else
+				eater.adjust_blood_pool(1, FALSE)
 			to_chat(eater, span_notice("You feel vitae flowing through the fresh meat."))
+		if(iscarbon(eater))
+			var/mob/living/carbon/cannibal = eater
+			var/obj/item/organ/stomach/tummy = cannibal.get_organ_slot(ORGAN_SLOT_STOMACH)
+			if(tummy?.reagents.total_volume) //Very band-aid fix for now, but it works. I can't think of a better way of doing this.
+				for(var/sludge in tummy.reagents.reagent_list)
+					var/datum/reagent/reagent = sludge
+					tummy.reagents.remove_reagent(reagent.type, reagent.volume)
 	// DARKPACK EDIT ADD END
 
 	on_consume?.Invoke(eater, feeder)
