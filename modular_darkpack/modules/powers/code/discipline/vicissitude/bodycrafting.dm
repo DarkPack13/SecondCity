@@ -36,8 +36,9 @@
 	if(bloodpool < vitae_cost || bloodpool == 0)
 		rollstate = "fail"
 		to_chat(owner, span_warning("You do not have enough blood to alter the body in such a way!"))
-	else(rollstate = "success")
-	owner.adjust_blood_pool(-vitae_cost)
+	else
+		(rollstate = "success")
+		owner.adjust_blood_pool(-vitae_cost)
 
 /datum/action/cooldown/mob_cooldown/bodycraft/New(Target, original)
 	. = ..()
