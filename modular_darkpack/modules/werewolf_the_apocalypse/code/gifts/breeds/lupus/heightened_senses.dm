@@ -48,6 +48,8 @@
 			// In theory:
 			// "this is not cumulative with the ordinary Lupus-form Perception bonuses"
 			// But IDK what those are.
+		if(HAS_TRAIT(target, TRAIT_UNSCENTED))
+			difficulty += 1
 		else
 			*difficulty -= 2
 

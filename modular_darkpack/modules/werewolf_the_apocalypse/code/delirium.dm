@@ -39,6 +39,8 @@
 	var/effective_dots = human_owner.st_get_stat(STAT_PERMANENT_WILLPOWER)
 	if(HAS_TRAIT(wolf, TRAIT_WEAK_DELIRIUM))
 		effective_dots += 2
+	if(HAS_TRAIT(human_owner, TRAIT_VEILED))
+		effective_dots += 1
 	willpower_dots = clamp(effective_dots, 1, 10)
 
 	to_chat(owner, span_cult_large("Something DEEP inside you fill you with <b>[willpower_levels[willpower_dots]]</b> at the sight of [wolf]"))
@@ -68,7 +70,10 @@
 
 /datum/status_effect/delirium/on_remove()
 	. = ..()
-	to_chat(owner, span_notice("Your heightened emotions subside and you begin to calm."))
+	if(HAS_TRAIT(human_owner, TRAIT_VEILED))
+		to_chat(owner, span_notice("Your heightened emotions subside and you begin to calm."))
+	else
+		to_chat(owner, span_notice("Your heightened emotions subside and you begin to calm; your recollection of events is unchanged."))
 	owner.client?.images -= scary_static
 	QDEL_NULL(scary_static)
 
@@ -128,7 +133,7 @@
 
 
 /mob/living/carbon/human/proc/affected_by_delirium()
-	if(issupernatural(src))
+	if(issupernatural(src) && !HAS_TRAIT(src, TRAIT_VEILED))
 		return FALSE
 
 	if(st_get_stat(STAT_PERMANENT_WILLPOWER) >= 10)

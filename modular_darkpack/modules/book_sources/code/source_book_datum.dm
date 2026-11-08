@@ -63,6 +63,10 @@ GLOBAL_LIST_INIT(source_book_priority, list(
 	name = "Vampire The Wild West"
 	offical_status = SOURCE_STORYTELLER_VAULT
 
+/datum/source_book/wta20/kinfolk_unsung_heroes
+	name = "Kinfolk: Unsung Heroes"
+	offical_status = SOURCE_OFFICAL
+
 /datum/source_book/homebrew
 	name = "Homebrew"
 	offical_status = SOURCE_HOMEBREW

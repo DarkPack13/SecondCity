@@ -46,7 +46,7 @@
 
 /datum/action/cooldown/power/gift/scent_of_the_true_form
 	name = "Scent Of The True Form"
-	desc = "This Gift allows the Garou to determine the true nature of a person."
+	desc = "This Gift allows the Fera to determine the true nature of a person."
 	button_icon_state = "scent_of_the_true_form"
 	click_to_activate = TRUE
 	rank = 1
@@ -97,7 +97,7 @@
 
 	var/mob/living/victim = target
 	var/mob/living/caster = owner
-	var/datum/splat/werewolf/target_splat = get_werewolf_splat(victim)
+	var/datum/splat/werewolf/target_splat = get_werewolf_splat(victim) && !HAS_TRAIT(victim, TRAIT_UNSCENTED)
 
 	if(istype(target_splat))
 		var/secondary_descriptor = "[pick(wyld_descriptors)]"
@@ -159,7 +159,7 @@
 
 /datum/action/cooldown/power/gift/truth_of_gaia
 	name = "Truth Of Gaia"
-	desc = "As judges of the Litany, Philodox have the ability to sense whether others have spoken truth or falsehood."
+	desc = "As judges of the Litany, Philodox, and those of similar nature, have the ability to sense whether others have spoken truth or falsehood."
 	button_icon_state = "truth_of_gaia"
 	click_to_activate = TRUE
 	rank = 1
