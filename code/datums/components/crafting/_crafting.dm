@@ -386,9 +386,10 @@
 
 	// DARKPACK EDIT ADD START - Prevent crafting of minions under the Beastmaster System if it would exceed the Crafter's cap
 	if(considered_flags & CRAFT_CHECK_MINION)
-		var/mob/living/carbon/human/minion_crafter
-		minion_crafter = crafter
-		if (length(minion_crafter.beastmaster_minions) >= minion_crafter.st_get_stat(STAT_LEADERSHIP) + 1)
+		var/mob/living/carbon/human/minion_crafter = astype(crafter)
+		if (!minion_crafter)
+			return
+		if (length(minion_crafter?.beastmaster_minions) >= minion_crafter.st_get_stat(STAT_LEADERSHIP) + 1)
 			return ", too many minions are enlisted under you!"
 	// DARKPACK EDIT ADD END
 
