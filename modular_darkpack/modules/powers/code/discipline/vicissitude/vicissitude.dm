@@ -28,7 +28,7 @@
 
 	var/datum/action/cooldown/mob_cooldown/bodycraft/bodycraft_ability
 
-/datum/discipline_power/vicissitude/post_gain(post_gain_applied)
+/datum/discipline_power/vicissitude/post_gain()
 	if(!bodycraft_ability)
 		bodycraft_ability = new(owner)
 	bodycraft_ability.Grant(owner)
