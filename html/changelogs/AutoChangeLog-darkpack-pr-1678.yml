@@ -1,4 +1,4 @@
 author: "JohnFulpWillard"
 delete-after: True
 changes:
-  - qol: "Cars have had their sound lowered by 40%"
+  - rscadd: "You can now take a -4 pacifism quirk."

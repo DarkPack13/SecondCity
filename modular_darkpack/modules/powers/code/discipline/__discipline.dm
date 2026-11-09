@@ -106,8 +106,7 @@
 	for (var/datum/discipline_power/power in known_powers)
 		power.owner = owner
 
-	if (!post_gain_applied)
-		post_gain()
+	post_gain(post_gain_applied)
 	post_gain_applied = TRUE
 
 /**
@@ -130,11 +129,11 @@
  * known (possessed) powers. Meant to be overridden
  * for modular code.
  */
-/datum/discipline/proc/post_gain()
+/datum/discipline/proc/post_gain(post_gain_applied)
 	SHOULD_CALL_PARENT(TRUE)
 
 	for (var/datum/discipline_power/power in known_powers)
-		power.post_gain()
+		power.post_gain(post_gain_applied)
 
 
 /**
