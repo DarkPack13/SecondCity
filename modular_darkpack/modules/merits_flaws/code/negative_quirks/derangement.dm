@@ -122,7 +122,7 @@ GLOBAL_LIST_INIT(derangement_phrases,list(
 		'modular_darkpack/modules/powers/sounds/dementation/child_cry.ogg',
 		'modular_darkpack/modules/powers/sounds/dementation/man_moan.ogg', // zombie like moaning sounds
 		'modular_darkpack/modules/powers/sounds/dementation/woman_moan.ogg',
-		'modular_darkpack/modules/powers/sounds/dementation/evillaugh.ogg'
+		'modular_darkpack/modules/powers/sounds/dementation/evillaugh.ogg',
 	)
 	hallucinator.playsound_local(hallucinator, pick(ambient_sounds), vol = 20, vary = FALSE)
 
@@ -163,10 +163,10 @@ GLOBAL_LIST_INIT(derangement_phrases,list(
 	mother = /obj/effect/client_image_holder/hallucination/your_mother/malk
 
 /datum/hallucination/your_mother/malk/start()
-	var/mob/living/carbon/human/malk = hallucinator
-	var/age = malk.chronological_age
-	if(!malk.client || IS_UNCONSCIOUS(malk))
+	var/mob/living/carbon/human/malk = astype(hallucinator)
+	if(!malk?.client || IS_UNCONSCIOUS(malk))
 		return FALSE
+	var/age = malk.chronological_age
 
 	var/list/spawn_locs = list()
 	for(var/turf/open/floor in view(malk, 4))
@@ -193,11 +193,11 @@ GLOBAL_LIST_INIT(derangement_phrases,list(
 			pick_list_replacements(malk_file, "be_upset"),
 			pick_list_replacements(malk_file, "get_reprimanded_old"),
 		)
-	var/delay = 4 SECONDS
+	var/delay = 2 SECONDS
 	for(var/line in scold_lines)
 		addtimer(CALLBACK(src, PROC_REF(talk), line), delay)
-		delay += 5 SECONDS
-	addtimer(CALLBACK(src, PROC_REF(exit)), delay + 10 SECONDS)
+		delay += 2 SECONDS
+	addtimer(CALLBACK(src, PROC_REF(exit)), delay + 4 SECONDS)
 	return TRUE
 
 
@@ -208,26 +208,17 @@ GLOBAL_LIST_INIT(derangement_phrases,list(
 	desc = "... but, that can't be her, can it?"
 	image_state = ""
 
-/obj/effect/client_image_holder/hallucination/your_mother/malk/Initialize(mapload, list/mobs_which_see_us, datum/hallucination/parent)
-	var/mob/living/carbon/human/hallucinator = parent.hallucinator
-	var/outfits = subtypesof(/datum/outfit/mafia)
-	if (ishuman(hallucinator))
-		var/mob/living/carbon/dna_haver = hallucinator
-		image_icon = image(get_dynamic_human_appearance(pick(outfits), dna_haver.dna.species.type))
-		return ..()
-
-	image_icon = hallucinator.icon
-	image_state = hallucinator.icon_state
-	image_pixel_x = hallucinator.pixel_x
-	image_pixel_y = hallucinator.pixel_y
-	return ..()
-
 // the random hallucination type will store overrides and extensions of basegame hallucinations, as well as untouched basegame hallucinations like eyes_in_the_dark
 /datum/hallucination/malk/random
-	var/list/hallucinations = list(/datum/hallucination/eyes_in_dark, /datum/hallucination/your_mother/malk, /datum/hallucination/blood_flow/malk)
+	var/list/hallucinations = list(
+		/datum/hallucination/eyes_in_dark = 4,
+		/datum/hallucination/blood_flow/malk = 3,
+		/datum/hallucination/your_mother/malk = 2,
+		/datum/hallucination/delusion/preset/zombie = 1,
+	)
 
 /datum/hallucination/malk/random/start()
-	hallucinator.cause_hallucination(pick(hallucinations), "malkavian derangement")
+	hallucinator.cause_hallucination(pick_weight(hallucinations), "malkavian derangement")
 	return TRUE
 
 // 'Blood Flow'

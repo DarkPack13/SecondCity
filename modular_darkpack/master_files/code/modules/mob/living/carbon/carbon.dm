@@ -9,7 +9,6 @@
 	QDEL_NULL(examine_panel_tgui)
 	client?.images -= suckbar
 	QDEL_NULL(suckbar)
-	suckbar_loc = null
 	GLOB.masquerade_breakers_list -= src
 	return ..()
 
