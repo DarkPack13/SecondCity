@@ -11,6 +11,6 @@
 	mob_trait = TRAIT_VEILED
 	gain_text = span_notice("You lose your resistance to the Delirium.")
 	lose_text = span_notice("You regain your ability to resist the Delirium.")
-	icon = FA_ICON_USER_SHIELD
+	icon = FA_ICON_EYE_LOW_VISION
 	failure_message = "You regain your ability to resist the Delirium."
 	allowed_splats = list(SPLAT_KINFOLK)

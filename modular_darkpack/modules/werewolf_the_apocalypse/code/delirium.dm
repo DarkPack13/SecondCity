@@ -70,7 +70,7 @@
 
 /datum/status_effect/delirium/on_remove()
 	. = ..()
-	if(HAS_TRAIT(human_owner, TRAIT_VEILED))
+	if(HAS_TRAIT(owner, TRAIT_VEILED))
 		to_chat(owner, span_notice("Your heightened emotions subside and you begin to calm."))
 	else
 		to_chat(owner, span_notice("Your heightened emotions subside and you begin to calm; your recollection of events is unchanged."))

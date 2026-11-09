@@ -8,7 +8,7 @@
 	mob_trait = TRAIT_PRIMAL_PERCEPTION
 	gain_text = span_notice("The language of beasts is clearer than day to your ears.")
 	lose_text = span_notice("The sounds of beasts are no longer discernable to you.")
-	icon = FA_ICON_USER_SHIELD
+	icon = FA_ICON_EAR_LISTEN
 	failure_message = "The sounds of beasts are no longer discernable to you."
 	allowed_splats = list(SPLAT_KINFOLK)
 

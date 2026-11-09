@@ -11,7 +11,7 @@
 	mob_trait = TRAIT_UNSCENTED
 	gain_text = span_notice("You notice that your body has no discernable odor.")
 	lose_text = span_notice("Scent returns to your body.")
-	icon = FA_ICON_USER_SHIELD
+	icon = FA_ICON_WIND
 	failure_message = "Scent returns to your body."
 	allowed_splats = list(SPLAT_KINFOLK)
 
