@@ -28,19 +28,19 @@
 
 	var/datum/action/cooldown/mob_cooldown/bodycraft/bodycraft_ability
 
-/datum/discipline_power/vicissitude/post_gain()
+/datum/discipline_power/vicissitude/post_gain(post_gain_applied)
 	if(!bodycraft_ability)
 		bodycraft_ability = new(owner)
 	bodycraft_ability.Grant(owner)
 
 /datum/discipline_power/vicissitude/post_loss()
-	shapeshift_ability.Remove(owner)
+	bodycraft_ability.Remove(owner)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/discipline_power/vicissitude/malleable_visage
 	name = "Malleable Visage"
-	desc = "Shapeshift yourself."
+	desc = "Alter yourself."
 
 	level = 1
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND
@@ -63,7 +63,7 @@
 
 /datum/discipline_power/vicissitude/fleshcrafting
 	name = "Fleshcrafting"
-	desc = "Shapeshift yourself or others."
+	desc = "Alter yourself or others."
 
 	level = 2
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
