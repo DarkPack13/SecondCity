@@ -6,8 +6,7 @@
 	default_value = FALSE
 
 /datum/preference/toggle/masquerade_knower/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	. = ..()
-	GLOB.human_knowers |= target
+	return
 
 /datum/preference/toggle/masquerade_knower/is_accessible(datum/preferences/preferences)
 	. = ..()

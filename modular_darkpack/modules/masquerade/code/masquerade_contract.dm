@@ -30,6 +30,7 @@
 
 	if(!length(GLOB.masquerade_breakers_list))
 		to_chat(user, span_info("No available Masquerade breakers in city..."))
+	return TRUE
 
 /obj/item/masquerade_contract/prince/attack_self(mob/user, modifiers)
 	. = ..()
