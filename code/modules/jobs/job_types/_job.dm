@@ -674,6 +674,7 @@
 /datum/job/proc/after_roundstart_spawn(mob/living/spawning, client/player_client)
 	SHOULD_CALL_PARENT(TRUE)
 
+
 /**
  * Called after a successful latejoin spawn.
  * Client is in the mob.
