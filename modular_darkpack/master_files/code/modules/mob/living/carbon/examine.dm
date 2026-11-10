@@ -73,6 +73,12 @@
 			if(living_user.mind.holy_role)
 				. += span_cult("[p_They()] radiate[p_s()] palpable evil! Something is terribly wrong with [p_them()]!")
 
+	if(HAS_TRAIT(src, TRAIT_OUTSIDER))
+		if(isliving(user))
+			var/mob/living/living_user = user
+			if(get_werewolf_splat(living_user))
+				. += span_warning("We've heard rumors of [p_them()], an outsider to our ways!")
+
 	if((!is_eyes_covered()) && HAS_TRAIT(src, TRAIT_GLOWING_EYES))
 		. += span_warning("[p_Their()] eyes glow unnaturally!<br>")
 

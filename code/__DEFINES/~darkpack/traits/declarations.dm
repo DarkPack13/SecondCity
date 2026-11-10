@@ -226,6 +226,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_OUTSIDER "outsider"
 #define TRAIT_VEILED "veiled"
 #define TRAIT_GOOD_OLD_BOY_OR_GIRL "good_old_boy_or_girl"
+#define TRAIT_GALL "gall"
+#define TRAIT_WOLF_SENSE "wolf_sense"
 
 // Below are traits given by items/clothing being equiped or worn
 #define TRAIT_BRASSKNUCKLES "brassknuckles"

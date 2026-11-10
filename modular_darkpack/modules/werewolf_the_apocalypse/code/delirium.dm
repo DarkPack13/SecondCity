@@ -43,7 +43,10 @@
 		effective_dots += 1
 	willpower_dots = clamp(effective_dots, 1, 10)
 
-	to_chat(owner, span_cult_large("Something DEEP inside you fill you with <b>[willpower_levels[willpower_dots]]</b> at the sight of [wolf]"))
+	if(HAS_TRAIT(human_owner, TRAIT_VEILED))
+		to_chat(owner, span_cult_large("Something DEEP inside you fill you with <b>[willpower_levels[willpower_dots]]</b> at the sight of [wolf], yet you are managing to remember everything."))
+	else
+		to_chat(owner, span_cult_large("Something DEEP inside you fill you with <b>[willpower_levels[willpower_dots]]</b> at the sight of [wolf]"))
 
 	if(owner.client)
 		// dir SOUTH is admitting i compeletly lost the fight against this stupid bullshit and cant get the image to properly mimmic the direction of the mob.
@@ -71,9 +74,9 @@
 /datum/status_effect/delirium/on_remove()
 	. = ..()
 	if(HAS_TRAIT(owner, TRAIT_VEILED))
-		to_chat(owner, span_notice("Your heightened emotions subside and you begin to calm."))
+		to_chat(owner, span_notice("Your heightened emotions subside and you begin to calm. — your recollection of events is unchanged"))
 	else
-		to_chat(owner, span_notice("Your heightened emotions subside and you begin to calm — your recollection of events is unchanged."))
+		to_chat(owner, span_notice("Your heightened emotions subside and you begin to calm."))
 	owner.client?.images -= scary_static
 	QDEL_NULL(scary_static)
 

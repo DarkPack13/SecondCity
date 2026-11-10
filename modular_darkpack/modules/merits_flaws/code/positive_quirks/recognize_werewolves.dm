@@ -9,7 +9,7 @@
 			attempts of perception to notice which people in the room seem to have that
 			special touch of Rage or wildness that could indicate they are of your
 			Changing Breed."}
-	ttrpg_sources = list(/datum/source_book/wta20/kinfolk_unsung_heroes = 53)
+	ttrpg_sources = list(/datum/source_book/wta20/kinfolk_unsung_heroes = 52)
 	value = 3
 	mob_trait = TRAIT_RECOGNIZE_WEREWOLVES
 	gain_text = span_notice("You percieve intricacies about your kin not many would notice.")
@@ -17,6 +17,7 @@
 	icon = FA_ICON_PAW
 	failure_message = "Your perception dulls, the intuition guiding it is no more."
 	allowed_splats = list(SPLAT_KINFOLK)
+	// Gives an ability to identify Shifters with a perception check — 5m per-target cooldown.
 
 // DARKPACK TODO - Lock to kin type when more than Garou exist.
 
@@ -31,7 +32,7 @@
 // Ability & Resources
 /datum/storyteller_roll/recognize_werewolves
 	applicable_stats = list(STAT_PERCEPTION)
-	difficulty = 5
+	difficulty = 4
 	roll_output_type = ROLL_FLAG_ROLLER
 
 /datum/action/cooldown/recognize_werewolves
@@ -71,7 +72,7 @@
 	"is concentrating on you",
 	"keeps shifting their eyes away when you look",
 	"has been paying too much attention to you",
-	"keeps passing glances your way"
+	"keeps passing glances your way",
 	)
 
 /datum/action/cooldown/recognize_werewolves/proc/obvious_tells(mob/living/carbon/human/target)
@@ -109,10 +110,10 @@
 	// Roll bypass
 	if (iscrinos(human_target) || ishispo(human_target))
 		on_recognize_use(owner)
-		return
+		return TRUE
 	if (human_target == owner)
 		to_chat(owner, span_warning("You can't analyze yourself!"))
-		return
+		return TRUE
 
 	var/datum/storyteller_roll/recognize_werewolves/recognize_roll = new()
 	if (HAS_TRAIT_FROM(human_target, RECOGNIZE_WEREWOLVES_COOLDOWN, caster_ref))
@@ -132,8 +133,6 @@
 	var/mob/living/carbon/human/human_target = astype(target)
 	if (!human_target)
 		return
-	if (roller.is_blind())
-		. += 5
 	if (human_target.is_face_obscured())
 		. += 2
 	if (HAS_TRAIT(roller, TRAIT_NO_EYE_CONTACT))
@@ -148,8 +147,10 @@
 		. -= 5
 	if (isglabro(human_target) && HAS_TRAIT(human_target, TRAIT_FAIR_GLABRO))
 		. -= 2
-	if (HAS_TRAIT(roller, TRAIT_CANNOT_FOCUS))
+	if (roller.is_blind())
 		. = 10
+	if (HAS_TRAIT(roller, TRAIT_CANNOT_FOCUS))
+		. = 20
 	return
 
 /datum/storyteller_roll/recognize_werewolves/using_bonus(mob/living/roller, atom/target, bonus_added)
@@ -183,7 +184,7 @@
 	if (human_target != owner)
 		caster_ref = WEAKREF(owner)
 		ADD_TRAIT(human_target, RECOGNIZE_WEREWOLVES_COOLDOWN, caster_ref)
-		addtimer(TRAIT_CALLBACK_REMOVE(human_target, RECOGNIZE_WEREWOLVES_COOLDOWN, caster_ref), 2 MINUTES)
+		addtimer(TRAIT_CALLBACK_REMOVE(human_target, RECOGNIZE_WEREWOLVES_COOLDOWN, caster_ref), 5 MINUTES)
 
 
 // Does the target notice?
@@ -199,9 +200,9 @@
 	if (HAS_TRAIT(target, TRAIT_SHIFTY_EYES))
 		. -= 1
 	if (HAS_TRAIT(roller, TRAIT_CANNOT_FOCUS))
-		. = 10
+		. = 20
 	if (roller.is_blind())
-		. = 10
+		. = 20
 	return
 
 /datum/storyteller_roll/recognize_werewolves/using_bonus(mob/living/roller, atom/target, bonus_added)

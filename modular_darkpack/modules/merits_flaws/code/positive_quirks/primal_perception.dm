@@ -11,6 +11,7 @@
 	icon = FA_ICON_EAR_LISTEN
 	failure_message = "The sounds of beasts are no longer discernable to you."
 	allowed_splats = list(SPLAT_KINFOLK)
+	// Gain the ability to understand Primal Tongue.
 
 
 /datum/quirk/darkpack/primal_perception/add(client/client_source)
