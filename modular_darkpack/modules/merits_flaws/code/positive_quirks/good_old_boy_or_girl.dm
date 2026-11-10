@@ -13,36 +13,47 @@
 	icon = FA_ICON_HAND_HOLDING_HEART
 	failure_message = "Your feelings towards your kin mellow out."
 	allowed_splats = list(SPLAT_KINFOLK)
+	var/datum/proximity_monitor/advanced/demoraliser/gob_og_holder_prox
 
 // NOTE - Re-add "Take an extra die on all Social rolls involving interaction with Garou or Kinfolk." to the end if the rolls end up ingame.
 
-/datum/quirk/darkpack/good_old_boy_or_girl/proc/is_valid_kin(mob/living/subject, mob/living/carbon/human/target)
-	if(IS_UNCONSCIOUS(target))
-		return FALSE
-	if(target.invisibility > subject.see_invisible || target.alpha < 20)
-		return FALSE
-	if(!get_werewolf_splat(target))
-		return FALSE
-	return TRUE
+/datum/quirk/darkpack/good_old_boy_or_girl/add(client/client_source)
+	var/datum/demoralise_moods/good_kinfolk_application/mood_category = new()
+	gob_og_holder_prox = new(quirk_holder, 3, TRUE, mood_category)
+
+
+/datum/quirk/darkpack/good_old_boy_or_girl/remove(datum/quirk/darkpack/good_old_boy_or_girl/gob_og_holder_prox)
+	QDEL_NULL(gob_og_holder_prox)
+	return ..()
+
+
+// Moodlet stuff
+/datum/proximity_monitor/advanced/demoraliser
+	var/mob/living/carbon/human/human_quirk_holder
+
+/datum/proximity_monitor/advanced/demoraliser/proc/get_holder_name(datum/quirk/darkpack/quirk_holder)
+	human_quirk_holder = quirk_holder
+
+/datum/demoralise_moods/good_kinfolk_application
+	mood_category = "good_kinfolk_application"
+	crew_mood = /datum/mood_event/good_kinfolk
 
 /datum/mood_event/good_kinfolk
 	description = "A kinfolk I've met as of late has brought me some comfort."
 	mood_change = 4
 	timeout = 2 MINUTES
 
-/datum/quirk/darkpack/good_old_boy_or_girl/proc/on_tick(mob/living/good_kinfolk_holder, seconds_per_tick)
-	var/list/nearby_kin = list()
-	for(var/mob/living/carbon/human/nearby in view(good_kinfolk_holder, 5))
-		if(nearby == good_kinfolk_holder || !is_valid_kin(good_kinfolk_holder, nearby))
-			continue
-		nearby_kin += nearby
+/datum/proximity_monitor/advanced/demoraliser/good_kinfolk/on_seen(mob/living/viewer)
+	. = ..()
+	if (viewer.invisibility > human_quirk_holder.see_invisible || viewer.alpha < 20)
+		return FALSE
+	if (!get_werewolf_splat(viewer))
+		return FALSE
+	if (host == human_quirk_holder)
+		return FALSE
+	get_holder_name()
+	to_chat(viewer, span_notice("Wow! [human_quirk_holder] is pleasant to be around!"))
+	viewer.add_mood_event(moods.mood_category, moods.crew_mood)
+	return
 
-	for(var/mob/living/carbon/human/kin_target as anything in nearby_kin)
-		to_chat(kin_target, span_notice("Wow! [good_kinfolk_holder.name] is really pleasant to be around!"))
-		kin_target.add_mood_event("friendly_kinfolk", /datum/mood_event/good_kinfolk)
-
-
-	//for(var/mob/living/nearby_k as anything in nearby_kin)
-	//	to_chat(nearby_k, span_notice("Wow! [good_kinfolk_holder.name] is really pleasant to be around!"))
-	//	nearby_k.add_mood_event("Friendly Kinfolk", /datum/mood_event/good_kinfolk)
 

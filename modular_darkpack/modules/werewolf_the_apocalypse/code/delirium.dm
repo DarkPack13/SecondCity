@@ -73,7 +73,7 @@
 	if(HAS_TRAIT(owner, TRAIT_VEILED))
 		to_chat(owner, span_notice("Your heightened emotions subside and you begin to calm."))
 	else
-		to_chat(owner, span_notice("Your heightened emotions subside and you begin to calm; your recollection of events is unchanged."))
+		to_chat(owner, span_notice("Your heightened emotions subside and you begin to calm — your recollection of events is unchanged."))
 	owner.client?.images -= scary_static
 	QDEL_NULL(scary_static)
 
