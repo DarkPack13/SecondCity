@@ -239,6 +239,7 @@
 	obj_flags = CONDUCTS_ELECTRICITY
 
 /obj/item/melee/vamp/tire/Initialize(mapload)
+	. = ..()
 	AddElement(/datum/element/kneecapping)
 
 /obj/item/knife/vamp
@@ -393,6 +394,7 @@
 	custom_price = 20
 
 /obj/item/melee/baton/vamp/Initialize(mapload)
+	. = ..()
 	AddElement(/datum/element/kneecapping)
 
 /obj/item/switchblade/vamp
