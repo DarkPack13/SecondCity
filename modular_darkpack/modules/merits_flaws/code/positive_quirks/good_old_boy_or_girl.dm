@@ -1,12 +1,12 @@
 #define GOOD_KINFOLK_MOOD "good_kinfolk_mood"
 
 /datum/quirk/darkpack/good_old_boy_or_girl
-	name = "Good Old Boy (or Girl)"
-	desc = {"For either gender, this merit means the same thing: You're an intrinsically
-			nice person, and you genuinely care about your fellows. Depending upon the
-			setting, Fera and other Kin (both human and beast) tend to like you
-			and confide in you. Even lupus Garou may approach you in a friendly manner;
-			something about you just seems trustworthy and inviting."}
+	name = "Good Old Kin"
+	desc = {"You're an intrinsically nice person, and you genuinely care about
+			your fellows. Depending upon the setting, Fera and other Kin
+			(both human and beast) tend to like you	and confide in you.
+			Even lupus Garou may approach you in a friendly manner; something
+			about you just seems trustworthy and inviting."}
 	ttrpg_sources = list(/datum/source_book/wta20/kinfolk_unsung_heroes = 53)
 	value = 2
 	mob_trait = TRAIT_GOOD_OLD_BOY_OR_GIRL
@@ -28,12 +28,11 @@
 
 /datum/quirk/darkpack/good_old_boy_or_girl/remove(datum/quirk/darkpack/good_old_boy_or_girl/gob_og_holder_prox)
 	QDEL_NULL(gob_og_holder_prox)
-	return ..()
 
 
 // Moodlet stuff
 /datum/demoralise_moods/good_kinfolk_application
-	mood_category = GOOD_KINFOLK_MOOD
+	mood_category = "kin"
 	crew_mood = /datum/mood_event/good_kinfolk
 
 /datum/mood_event/good_kinfolk
@@ -62,15 +61,15 @@
 
 /datum/proximity_monitor/advanced/demoraliser/good_kinfolk/on_seen(mob/living/viewer, datum/quirk/darkpack/quirk_holder)
 	. = ..()
-	var/mob/living/carbon/human/human_quirk_holder = quirk_holder
+	var/mob/living/carbon/human/human_quirk_holder = astype(quirk_holder)
 	//if (viewer == human_quirk_holder)
 	//	return
 	if (viewer.invisibility > human_quirk_holder.see_invisible || viewer.alpha < 20)
 		return
 	if (!get_werewolf_splat(viewer))
 		return
-	to_chat(viewer, span_notice("Wow! [quirk_holder] really is a friend to our Kin!"))
-	viewer.add_mood_event(GOOD_KINFOLK_MOOD, /datum/demoralise_moods/good_kinfolk_application)
+	to_chat(viewer, span_notice("Wow! [human_quirk_holder] really is a friend to our Kin!"))
+	viewer.add_mood_event("kin", /datum/mood_event/good_kinfolk)
 	return
 
 #undef GOOD_KINFOLK_MOOD

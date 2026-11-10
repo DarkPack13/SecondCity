@@ -3,7 +3,7 @@
 /datum/quirk/darkpack/outsider
 	name = "Outsider"
 	desc = {"Because of false rumors, an ill-done deed or some other reason, you have a poor
-			reputation among the Kinfolk and Garou. They don't necessarily hurt you, but they
+			reputation among the Kinfolk and Fera. They don't necessarily hurt you, but they
 			let you know you aren't welcome in their camps or homes."}
 	ttrpg_sources = list(/datum/source_book/wta20/kinfolk_unsung_heroes = 52)
 	value = -2
@@ -14,9 +14,9 @@
 	icon = FA_ICON_SQUARE_PERSON_CONFINED
 	failure_message = "You have been welcomed back by your Kin."
 	var/datum/proximity_monitor/advanced/demoraliser/outsider_prox
-	// Negative moodlet to other Kinfolk and Garou.
+	// Negative moodlet to other Kinfolk and Fera.
 	// Removes Gaia Caern Friend
-	// Outsider inspect text seen by Kinfolk & Garou
+	// Outsider inspect text seen by Kinfolk & Fera
 
 // NOTE - Add "Make all Social rolls involving interaction with werewolves and Kin at +2 difficulty." if ever relevant.
 

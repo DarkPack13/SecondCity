@@ -14,7 +14,7 @@
 	icon = FA_ICON_PAW
 	failure_message = "Your burning will has been smothered."
 	allowed_splats = list(SPLAT_KINFOLK)
-	// +1 modifier to all rolls in the social category
+	// +1 modifier to your social stats.
 
 /datum/quirk/darkpack/gall/add(client/client_source)
 	quirk_holder.st_add_stat_mod(STAT_CHARISMA, 1, TRAIT_GALL)
