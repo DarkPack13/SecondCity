@@ -94,13 +94,13 @@
 	human_target = target
 	caster = owner
 	if (!ishuman(human_target))
-		return FALSE
+		return TRUE
 	if (!(target in range(3, caster)))
 		to_chat(owner, span_warning("You are too far from [target] to catch the details!"))
 		return FALSE
 	if (human_target == owner)
 		to_chat(owner, span_warning("You can't analyze yourself!"))
-		return FALSE
+		return TRUE
 
 	. = ..()
 
