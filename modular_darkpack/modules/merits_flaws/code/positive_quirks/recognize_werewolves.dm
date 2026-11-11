@@ -18,8 +18,7 @@
 	failure_message = "Your perception dulls, the intuition guiding it is no more."
 	allowed_splats = list(SPLAT_KINFOLK)
 	// Gives an ability to identify Shifters with a perception check — 5m per-target cooldown.
-
-// DARKPACK TODO - Lock to kin type when more than Garou exist.
+	// NOTE - Lock to kin type when more than Garou exist.
 
 /datum/quirk/darkpack/recognize_werewolves/add(client/client_source)
 	var/datum/action/cooldown/recognize_werewolves/recognize_those_wolves = new()
@@ -99,15 +98,15 @@
 	if (!(target in range(3, caster)))
 		to_chat(owner, span_warning("You are too far from [target] to catch the details!"))
 		return FALSE
+	if (human_target == owner)
+		to_chat(owner, span_warning("You can't analyze yourself!"))
+		return FALSE
 
 	. = ..()
 
 	// Roll bypass
 	if (iscrinos(human_target) || ishispo(human_target))
 		on_recognize_use(owner)
-		return TRUE
-	if (human_target == owner)
-		to_chat(owner, span_warning("You can't analyze yourself!"))
 		return TRUE
 
 	var/datum/storyteller_roll/recognize_werewolves/recognize_roll = new()

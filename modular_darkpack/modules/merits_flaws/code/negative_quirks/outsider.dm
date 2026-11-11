@@ -1,5 +1,3 @@
-#define OUTSIDER_MOOD "outsider_mood"
-
 /datum/quirk/darkpack/outsider
 	name = "Outsider"
 	desc = {"Because of false rumors, an ill-done deed or some other reason, you have a poor
@@ -13,12 +11,11 @@
 	allowed_splats = list(SPLAT_KINFOLK)
 	icon = FA_ICON_SQUARE_PERSON_CONFINED
 	failure_message = "You have been welcomed back by your Kin."
-	var/datum/proximity_monitor/advanced/mood_aura/werewolf_splats/outsider_holder_aura
+	var/datum/proximity_monitor/advanced/mood_aura/werewolf_splats/outsider/outsider_holder_aura
 	// Negative moodlet to other Kinfolk and Fera.
 	// Removes Gaia Caern Friend
 	// Outsider inspect text seen by Kinfolk & Fera
-
-// NOTE - Add "Make all Social rolls involving interaction with werewolves and Kin at +2 difficulty." if ever relevant.
+	// NOTE - Add "Make all Social rolls involving interaction with werewolves and Kin at +2 difficulty." if ever relevant.
 
 /datum/quirk/darkpack/outsider/add(client/client_source)
 	var/datum/proximity_moods/outsider_application/mood_category = new()
@@ -27,7 +24,7 @@
 
 
 /datum/quirk/darkpack/outsider/remove(datum/quirk/darkpack/outsider/outsider_holder_aura)
-	qdel(outsider_holder_aura)
+	QDEL_NULL(outsider_holder_aura)
 	ADD_TRAIT(quirk_holder, TRAIT_GAIA_CAERN_FRIEND, TRAIT_GENERIC)
 
 
@@ -38,5 +35,4 @@
 	if (viewer.is_tribe(TRIBE_BLACK_SPIRAL_DANCERS) || viewer.is_tribe(TRIBE_RONIN) || viewer.is_auspice(AUSPICE_NONE)) // Y'know I'm a bit of an outsider myself.
 		return
 	. = ..()
-	return
 

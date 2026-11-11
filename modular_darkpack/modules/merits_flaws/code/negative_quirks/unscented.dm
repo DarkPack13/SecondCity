@@ -14,5 +14,3 @@
 	allowed_splats = list(SPLAT_KINFOLK)
 	// You may not be detected by anything regarding smell.
 	// Your smell is mundane.
-
-	// DARKPACK TODO - If Auspex Smell is ever decoupled from Olfaction check for this.
