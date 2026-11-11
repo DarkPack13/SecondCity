@@ -10,6 +10,8 @@
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE
 	mail_goodies = list(/obj/item/reagent_containers/cup/glass/bottle/rum, /obj/item/clothing/mask/bandana/red)
 	darkpack_allowed = TRUE // DARKPACK EDIT ADD - MERITS_FLAWS
+	/// What type of scar do we have
+	var/scarring_type
 
 /datum/quirk_constant_data/eye_scarring
 	associated_typepath = /datum/quirk/item_quirk/scarred_eye
@@ -54,6 +56,7 @@
 			eye_side = RIGHT_EYE_SCAR
 		if ("Left Eye")
 			eye_side = LEFT_EYE_SCAR
+	scarring_type = eye_side
 	eyes.apply_scar(eye_side)
 
 /datum/quirk/item_quirk/scarred_eye/remove()
