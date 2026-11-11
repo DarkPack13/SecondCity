@@ -22,6 +22,12 @@
 /mob/living/carbon/human/display_darkpack_examine_text(mob/user)
 	. = ..()
 
+	var/smell_range = 1 // range to smell someone in examine
+	if(HAS_TRAIT(user, TRAIT_KEEN_NOSE)) // if they have acute sense smell
+		smell_range += 2
+	if (astype(user, /mob/living/carbon)?.dna.get_mutation(/datum/mutation/olfaction)) // auspex smell
+		smell_range += 2
+
 	var/list/zero = list("Startlingly ugly. [p_are()] [p_they()] doing some awful cosplay...?", "JESUS, [p_they()] look[p_s()] like [p_they()] [p_are()] straight out of a horror movie!", "GOODNESS [p_they()] [p_are()] ugly.", "So ugly you could almost cry.")
 	var/list/one = list("Yikes. [p_They()] [p_are()] not easy on the eyes.", "You wince slightly just looking at [p_them()].", "Someone clearly didn't win the genetic lottery.", "Definitely not winning any beauty contests.")
 	var/list/two = list("Pretty average looking. Nothing to write home about.", "Neither here nor there in the looks department.", "Completely ordinary in appearance.", "The very definition of 'plain'.", "Not attractive, but not unattractive, either.")
@@ -54,10 +60,7 @@
 
 	if(HAS_TRAIT(src, TRAIT_SERPENTIS_SKIN) && !(HIDEJUMPSUIT)) // 'hidden by modest clothing'
 		. += span_danger("[p_They()] [p_are()] covered in... scales!?<br>")
-
-	if(HAS_TRAIT(src, TRAIT_ANIMAL_MUSK))
-		. += span_warning("[p_They()] smell[p_s()] weirdly animal like...<br>")
-
+    
 	if(HAS_TRAIT(src, TRAIT_FOMORI_STIGMATA))
 		var/datum/splat/werewolf/dog = get_werewolf_splat(user)
 		var/datum/quirk/darkpack/stigmata_of_the_wyrm/stigmata = get_quirk(/datum/quirk/darkpack/stigmata_of_the_wyrm)
@@ -67,9 +70,12 @@
 			. += span_warning("[p_They()] bear[p_s()] the Stigmata of the Wyrm, manifesting as [stigmata_descriptor].<br>")
 		else
 			. += span_warning("[p_They()] [p_have()] [stigmata_descriptor].<br>")
-      
-	if(HAS_TRAIT(src, TRAIT_GRAVE_SMELL))
-		. += span_warning("[p_They()] smell[p_s()] like petrichor and freshly turned soil.<br>")
+
+	if(get_dist(user, src) <= smell_range)
+		if(HAS_TRAIT(src, TRAIT_ANIMAL_MUSK))
+			. += span_warning("[p_They()] smell[p_s()] weirdly animal like...<br>")
+		if(HAS_TRAIT(src, TRAIT_GRAVE_SMELL))
+			. += span_warning("[p_They()] smell[p_s()] like petrichor and freshly turned soil.<br>")
 
 	if(HAS_TRAIT(src, TRAIT_BEACON_OF_THE_UNHOLY))
 		if(isliving(user))
