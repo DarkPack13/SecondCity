@@ -29,7 +29,7 @@
 	return ..()
 
 
-// Ability & Resources
+// Ability & Resources //
 /datum/storyteller_roll/recognize_werewolves
 	applicable_stats = list(STAT_PERCEPTION)
 	difficulty = 4
@@ -87,14 +87,9 @@
 	return
 
 
-// Actual ability stuff
+// Actual ability stuff //
 /datum/action/cooldown/recognize_werewolves/set_click_ability(mob/on_who)
 	. = ..()
-
-//datum/action/cooldown/recognize_werewolves/unset_click_ability(mob/on_who, refund_cooldown = TRUE)
-//	. = ..()
-//	if(!.)
-//		return
 
 /datum/action/cooldown/recognize_werewolves/Activate(atom/target)
 	human_target = target
@@ -187,7 +182,7 @@
 		addtimer(TRAIT_CALLBACK_REMOVE(human_target, RECOGNIZE_WEREWOLVES_COOLDOWN, caster_ref), 5 MINUTES)
 
 
-// Does the target notice?
+// Does the target notice? //
 /datum/storyteller_roll/notice_recognize_werewolves
 	applicable_stats = list(STAT_PERCEPTION)
 	difficulty = 6

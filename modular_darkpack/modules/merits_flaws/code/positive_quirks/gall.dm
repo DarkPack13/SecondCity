@@ -11,7 +11,7 @@
 	mob_trait = TRAIT_GALL
 	gain_text = span_notice("You've got guts kid.")
 	lose_text = span_notice("Your burning will has been smothered.")
-	icon = FA_ICON_PAW
+	icon = FA_ICON_COMMENTS
 	failure_message = "Your burning will has been smothered."
 	allowed_splats = list(SPLAT_KINFOLK)
 	// +1 modifier to your social stats.

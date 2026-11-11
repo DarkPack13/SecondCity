@@ -13,7 +13,7 @@
 	allowed_splats = list(SPLAT_KINFOLK)
 	icon = FA_ICON_SQUARE_PERSON_CONFINED
 	failure_message = "You have been welcomed back by your Kin."
-	var/datum/proximity_monitor/advanced/demoraliser/outsider_prox
+	var/datum/proximity_monitor/advanced/mood_aura/werewolf_splats/outsider_holder_aura
 	// Negative moodlet to other Kinfolk and Fera.
 	// Removes Gaia Caern Friend
 	// Outsider inspect text seen by Kinfolk & Fera
@@ -21,43 +21,22 @@
 // NOTE - Add "Make all Social rolls involving interaction with werewolves and Kin at +2 difficulty." if ever relevant.
 
 /datum/quirk/darkpack/outsider/add(client/client_source)
-	var/datum/demoralise_moods/outsider_application/mood_category = new()
-	outsider_prox = new(quirk_holder, 3, TRUE, mood_category)
+	var/datum/proximity_moods/outsider_application/mood_category = new()
+	outsider_holder_aura = new(quirk_holder, 3, TRUE, mood_category)
 	REMOVE_TRAIT(quirk_holder, TRAIT_GAIA_CAERN_FRIEND, TRAIT_GENERIC)
 
 
-/datum/quirk/darkpack/outsider/remove(datum/quirk/darkpack/outsider/outsider_prox)
-	QDEL_NULL(outsider_prox)
+/datum/quirk/darkpack/outsider/remove(datum/quirk/darkpack/outsider/outsider_holder_aura)
+	qdel(outsider_holder_aura)
 	ADD_TRAIT(quirk_holder, TRAIT_GAIA_CAERN_FRIEND, TRAIT_GENERIC)
-	return ..()
 
 
-// Moodlet stuff
-/datum/demoralise_moods/outsider_application
-	mood_category = OUTSIDER_MOOD
-	crew_mood = /datum/mood_event/outsider
-
-/datum/mood_event/outsider
-	description = "The nerve for that kinfolk to show their face here!"
-	mood_change = -2
-	timeout = 2 MINUTES
-
-/datum/proximity_monitor/advanced/demoraliser/outsider/on_seen(mob/living/viewer, datum/quirk/darkpack/quirk_holder)
+// Moodlet stuff //
+/datum/proximity_monitor/advanced/mood_aura/werewolf_splats/outsider/on_seen(mob/living/carbon/human/viewer)
+	if (HAS_TRAIT(viewer, TRAIT_OUTSIDER))
+		return
+	if (viewer.is_tribe(TRIBE_BLACK_SPIRAL_DANCERS) || viewer.is_tribe(TRIBE_RONIN) || viewer.is_auspice(AUSPICE_NONE)) // Y'know I'm a bit of an outsider myself.
+		return
 	. = ..()
-	var/mob/living/carbon/human/human_quirk_holder = quirk_holder
-	var/mob/living/carbon/human/human_viewer = viewer
-	if (viewer == quirk_holder)
-		return
-	if (viewer.invisibility > human_quirk_holder.see_invisible || viewer.alpha < 20)
-		return
-	if (!get_werewolf_splat(human_viewer))
-		return
-	if (HAS_TRAIT(human_viewer, TRAIT_OUTSIDER))
-		return
-	if (human_viewer.is_tribe(TRIBE_BLACK_SPIRAL_DANCERS) || human_viewer.is_tribe(TRIBE_RONIN) || human_viewer.is_auspice(AUSPICE_NONE)) // Y'know I'm a bit of an outsider myself.
-		return
-	to_chat(viewer, span_notice("I've heard about the things [quirk_holder] has done... [p_they()]] should know they aren't welcome here."))
-	viewer.add_mood_event(OUTSIDER_MOOD, /datum/mood_event/outsider)
 	return
 
-#undef OUTSIDER_MOOD
