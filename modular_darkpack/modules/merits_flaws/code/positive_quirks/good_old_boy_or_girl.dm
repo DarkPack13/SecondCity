@@ -22,7 +22,7 @@
 	var/datum/proximity_moods/good_kinfolk_application/mood_category = new()
 	gob_og_holder_aura = new(quirk_holder, 3, TRUE, mood_category)
 
-/datum/quirk/darkpack/good_old_boy_or_girl/remove(datum/quirk/darkpack/good_old_boy_or_girl/gob_og_holder_aura)
+/datum/quirk/darkpack/good_old_boy_or_girl/remove()
 	QDEL_NULL(gob_og_holder_aura)
 
 

@@ -22,8 +22,7 @@
 	outsider_holder_aura = new(quirk_holder, 3, TRUE, mood_category)
 	REMOVE_TRAIT(quirk_holder, TRAIT_GAIA_CAERN_FRIEND, SPLAT_KINFOLK)
 
-
-/datum/quirk/darkpack/outsider/remove(datum/quirk/darkpack/outsider/outsider_holder_aura)
+/datum/quirk/darkpack/outsider/remove()
 	QDEL_NULL(outsider_holder_aura)
 	ADD_TRAIT(quirk_holder, TRAIT_GAIA_CAERN_FRIEND, SPLAT_KINFOLK)
 
