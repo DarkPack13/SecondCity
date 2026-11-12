@@ -4,7 +4,7 @@
 			Though impossible to properly speak, you can fluently discern their
 			Primal Tongue."}
 	ttrpg_sources = list(/datum/source_book/homebrew = WE_MADE_IT_UP)
-	value = 1
+	value = 2
 	mob_trait = TRAIT_PRIMAL_PERCEPTION
 	gain_text = span_notice("The language of beasts is clearer than day to your ears.")
 	lose_text = span_notice("The sounds of beasts are no longer discernable to you.")
