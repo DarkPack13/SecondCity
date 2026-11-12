@@ -141,6 +141,8 @@
 
 	/// Emote uses for activations of gifts and other things
 	var/warcry_emote = "howl"
+	/// Items stashed by Rite of Talisman Dedication while in a form that cannot equip items, as item = slot
+	var/list/dedicated_items
 
 /datum/splat/werewolf/shifter/on_gain()
 	. = ..()
