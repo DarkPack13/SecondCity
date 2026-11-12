@@ -29,4 +29,6 @@
 /datum/proximity_monitor/advanced/mood_aura/werewolf_splats/good_old_boy_or_girl/on_seen(mob/living/carbon/human/viewer)
 	if (HAS_TRAIT(viewer, TRAIT_GOOD_OLD_BOY_OR_GIRL))
 		return
+	if (viewer.is_tribe(TRIBE_RED_TALONS)) // If Lupus Kinfolk ever exist IG they can make Talons happy... Grinches of the Garou I tell you.
+		return
 	. = ..()
