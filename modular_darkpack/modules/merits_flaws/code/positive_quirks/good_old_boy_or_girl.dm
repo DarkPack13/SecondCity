@@ -33,7 +33,7 @@
 /datum/mood_event/warmhug/kinfolk_warmhug
 	mood_change = 2
 
-/mob/living/carbon/good_kinfolk/help_shake_act(mob/living/carbon/helper, force_friendly, datum/quirk/darkpack/good_old_boy_or_girl)
+/*mob/living/carbon/good_kinfolk/help_shake_act(mob/living/carbon/helper, force_friendly, datum/quirk/darkpack/good_old_boy_or_girl)
 	if (HAS_TRAIT(helper, TRAIT_BADTOUCH))
 		return
 	if (!get_werewolf_splat(src))
@@ -43,7 +43,7 @@
 			helper.add_mood_event("hug", /datum/mood_event/warmhug/kinfolk_warmhug, src)
 		add_mood_event("hug", /datum/mood_event/hug/kinfolk_hug)
 	else
-		add_mood_event("hug", /datum/mood_event/warmhug/kinfolk_warmhug, helper)
+		add_mood_event("hug", /datum/mood_event/warmhug/kinfolk_warmhug, helper)*/
 
 /datum/proximity_monitor/advanced/mood_aura/werewolf_splats/good_old_boy_or_girl/on_seen(mob/living/carbon/human/viewer)
 	if (HAS_TRAIT(viewer, TRAIT_GOOD_OLD_BOY_OR_GIRL))
