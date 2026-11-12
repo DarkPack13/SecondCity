@@ -55,6 +55,8 @@ galliard
 philodox
 ahroun
 ragabash
+homid
+homids
 crinos
 wyrmspawn
 moon bridge
