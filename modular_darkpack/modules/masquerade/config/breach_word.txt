@@ -34,7 +34,6 @@ bloodbond
 bloodhunt
 blood hunt
 auspex
-celerity
 obtenebration
 quietus
 serpentis
