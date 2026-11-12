@@ -67,7 +67,7 @@ img {
 
 .lobby__el--collapse-up {
   transition: transform $move-dur $ease-in;
-  transform: translateY(s(-146px));
+  transform: translateY(s(-246px)); /* DARKPACK EDIT CHANGE */
 }
 
 .lobby__el:not(.lobby__el--collapse-up):not(.lobby__el--collapse-slide) {
@@ -76,7 +76,7 @@ img {
 
 .lobby__el--collapse-slide {
   transition: transform $move-dur $ease-in;
-  transform: translateY(s(-134px));
+  transform: translateY(s(-33px)); /* DARKPACK EDIT CHANGE */
 }
 
 .sprite-btn {

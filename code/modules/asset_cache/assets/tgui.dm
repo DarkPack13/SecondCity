@@ -75,7 +75,7 @@
 /datum/asset/simple/namespaced/lobby_menu_icons
 
 /datum/asset/simple/namespaced/lobby_menu_icons/register()
-	var/dir_path = "icons/hud/lobby/png/"
+	var/dir_path = "modular_darkpack/master_files/icons/hud/lobby/png/" // DARKPACK EDIT CHANGE
 	for(var/filename in flist(dir_path))
 		if(!findtext(filename, ".png"))
 			continue

@@ -323,6 +323,11 @@ ADMIN_VERB(toggle_lobby_transparency, R_ADMIN, "Toggle Lobby Transparency", "Tog
 	switch(action)
 		if("ready_toggle")
 			if(player.ready == PLAYER_NOT_READY)
+				// DARKPACK EDIT ADD START
+				// ugh. this is shit and doesnt acctually stop players from just swaping characters once they hit these buttons. FIX plz
+				if(!player.check_discipline_warning())
+					return
+				// DARKPACK EDIT ADD END
 				player.auto_deadmin_on_ready_or_latejoin()
 				player.ready = PLAYER_READY_TO_PLAY
 			else
@@ -332,7 +337,11 @@ ADMIN_VERB(toggle_lobby_transparency, R_ADMIN, "Toggle Lobby Transparency", "Tog
 			if(!SSticker?.IsRoundInProgress())
 				to_chat(player, span_boldwarning("The round is either not ready, or has already finished..."))
 				return TRUE
-
+			// DARKPACK EDIT ADD START
+			// ugh. this is shit and doesnt acctually stop players from just swaping characters once they hit these buttons. FIX plz
+			if(!player.check_discipline_warning())
+				return
+			// DARKPACK EDIT ADD END
 			var/relevant_cap
 			var/hard_popcap = CONFIG_GET(number/hard_popcap)
 			var/extreme_popcap = CONFIG_GET(number/extreme_popcap)

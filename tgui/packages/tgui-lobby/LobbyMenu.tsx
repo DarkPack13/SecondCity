@@ -269,9 +269,11 @@ function TraitFeedback({ text }: { text: string }) {
 const SHUTTER_TRAVEL_PX = 143;
 const SHUTTER_MOVE_MS = 400;
 const SHUTTER_WAIT_MS = 200;
+/* // DARKPACK EDIT REMOVAL
 const COLLAPSE_SLIDE_PX = 134;
 const LOCALHOST_HANDLE_SHIFT_PX = 50;
 const LOCALHOST_HANDLE_SHIFT_MS = 200;
+*/
 const TRAIT_FEEDBACK_MS = 1500;
 const MAX_TRAITS_PER_COLUMN = 3;
 const FALLBACK_APNG_DURATION_MS = 300;
@@ -373,6 +375,7 @@ export function LobbyMenu() {
         for (const a of shutter.getAnimations()) a.cancel();
       }
 
+      /* // DARKPACK EDIT REMOVAL
       if (ss?.isLocalhost && collapseRef.current) {
         const shift = LOCALHOST_HANDLE_SHIFT_PX * getLobbyScale();
         collapseRef.current.animate(
@@ -391,9 +394,11 @@ export function LobbyMenu() {
           },
         );
       }
+      */
     } else {
       playExpandSound();
 
+      /* // DARKPACK EDIT REMOVAL
       if (ss?.isLocalhost && collapseRef.current) {
         const scale = getLobbyScale();
         const shift = 50 * scale;
@@ -412,6 +417,7 @@ export function LobbyMenu() {
         ).finished;
         for (const a of collapseRef.current.getAnimations()) a.cancel();
       }
+      */
 
       if (shutter) {
         const dist = SHUTTER_TRAVEL_PX * getLobbyScale();
@@ -477,35 +483,18 @@ export function LobbyMenu() {
     ];
   }
 
+  // DARKPACK EDIT CHANGE START
   return (
     <div
       className={`lobby ${ss.transparent ? 'lobby--transparent' : ''}`}
       style={backgroundStyle}
     >
       <div className="lobby__anchor">
-        <LobbyElement top={0} left={-61} zIndex={1} collapsed={collapsed}>
+        <LobbyElement top={0} left={-105} zIndex={1} collapsed={collapsed}>
           <img className="lobby__sprite" src={icon('background')} alt="" />
         </LobbyElement>
 
-        {!!ss.canReady && (
-          <LobbyElement top={8} left={-65} zIndex={3} collapsed={collapsed}>
-            <SpriteButton
-              iconState={ss.isReady ? 'ready' : 'not_ready'}
-              onClick={() => sendAction('ready_toggle')}
-            />
-          </LobbyElement>
-        )}
-
-        {!!ss.canJoin && (
-          <LobbyElement top={13} left={-58} zIndex={3} collapsed={collapsed}>
-            <SpriteButton
-              iconState="join_game"
-              onClick={(e) => sendAction('join', { ctrlClick: e.ctrlKey })}
-            />
-          </LobbyElement>
-        )}
-
-        <LobbyElement top={40} left={-54} zIndex={3} collapsed={collapsed}>
+        <LobbyElement top={71} left={-52} zIndex={3} collapsed={collapsed}>
           <SpriteButton
             iconState="observe"
             enabled={!!ss.canObserve}
@@ -513,7 +502,7 @@ export function LobbyMenu() {
           />
         </LobbyElement>
 
-        <LobbyElement top={70} left={-54} zIndex={3} collapsed={collapsed}>
+        <LobbyElement top={101} left={-52} zIndex={3} collapsed={collapsed}>
           <SpriteButton
             iconState="character_setup"
             enabled={!!ss.assetsReady}
@@ -533,11 +522,12 @@ export function LobbyMenu() {
         </LobbyElement>
 
         <LobbyElement
-          top={82}
-          left={-54}
+          top={0}
+          left={-95}
           collapsed={collapsed}
           slide
           elRef={collapseRef}
+          zIndex={3}
         >
           <button
             className="sprite-btn sprite-btn--no-press"
@@ -561,17 +551,18 @@ export function LobbyMenu() {
         {[
           {
             id: 'poll',
-            left: -26,
+            left: -54,
+            top: 189,
             enabled: !!ss.canPoll,
             badge: ss.hasNewPoll,
           },
-          { id: 'crew_manifest', left: 2 },
-          { id: 'settings', left: 29, enabled: !!ss.assetsReady },
-          { id: 'changelog', left: 57 },
-        ].map(({ id, left, enabled, badge }) => (
+          { id: 'crew_manifest', left: -27, top: 189 },
+          { id: 'settings', left: -54, top: 215, enabled: !!ss.assetsReady },
+          { id: 'changelog', left: -27, top: 215 },
+        ].map(({ id, left, top, enabled, badge }) => (
           <LobbyElement
             key={id}
-            top={122}
+            top={top}
             left={left}
             zIndex={6}
             collapsed={collapsed}
@@ -588,8 +579,26 @@ export function LobbyMenu() {
           </LobbyElement>
         ))}
 
+        {!!ss.canReady && (
+          <LobbyElement top={175} left={6} zIndex={3} collapsed={collapsed}>
+            <SpriteButton
+              iconState={ss.isReady ? 'ready' : 'not_ready'}
+              onClick={() => sendAction('ready_toggle')}
+            />
+          </LobbyElement>
+        )}
+
+        {!!ss.canJoin && (
+          <LobbyElement top={175} left={6} zIndex={3} collapsed={collapsed}>
+            <SpriteButton
+              iconState="join_game"
+              onClick={(e) => sendAction('join', { ctrlClick: e.ctrlKey })}
+            />
+          </LobbyElement>
+        )}
+
         {!!ss.isLocalhost && (
-          <LobbyElement top={146} left={-54} zIndex={3} collapsed={collapsed}>
+          <LobbyElement top={243} left={-54} zIndex={3} collapsed={collapsed}>
             <SpriteButton
               iconState="start_now"
               onClick={() => sendAction('start_now')}
@@ -665,4 +674,5 @@ export function LobbyMenu() {
       </div>
     </div>
   );
+  // DARKPACK EDIT CHANGE END
 }
