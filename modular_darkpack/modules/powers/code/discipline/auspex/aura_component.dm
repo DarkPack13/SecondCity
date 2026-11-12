@@ -72,7 +72,7 @@
 		return
 
 	current_emotion_name = new_emotion
-	current_aura = GLOB.aura_list[new_emotion]
+	current_aura = GLOB.aura_list_to_color[new_emotion]
 	update_aura()
 
 /datum/component/aura/proc/on_combat_mode_toggled(datum/source)
