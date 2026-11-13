@@ -112,7 +112,7 @@
 	var/datum/storyteller_roll/recognize_werewolves/recognize_roll = new()
 	if (HAS_TRAIT_FROM(human_target, RECOGNIZE_WEREWOLVES_COOLDOWN, caster_ref))
 		to_chat(owner, span_warning("You can't ascertain anything else from [human_target]; you may re-investigate in a few minutes."))
-		return FALSE
+		return TRUE
 	switch (recognize_roll.st_roll(caster, human_target))
 		if (ROLL_BOTCH, ROLL_FAILURE)
 			to_chat(owner, span_warning("You fail to glean enough information to make a conclusion."))
@@ -120,6 +120,7 @@
 			target_notice_recognize()
 		if (ROLL_SUCCESS)
 			on_recognize_use()
+	target_cooldown(human_target)
 	return TRUE
 
 /datum/storyteller_roll/recognize_werewolves/using_difficulty(mob/living/roller, atom/target)
