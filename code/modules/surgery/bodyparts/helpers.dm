@@ -94,7 +94,7 @@
 	regenerate_icons()
 
 /mob/living/carbon/has_hand_for_held_index(i)
-	if(!i)
+	if(!i || i > length(hand_bodyparts))
 		return FALSE
 	var/obj/item/bodypart/hand_instance = hand_bodyparts[i]
 	if(hand_instance && !hand_instance.bodypart_disabled)
@@ -168,7 +168,8 @@
 	. = dna?.species?.bodypart_overrides.Copy() || ..()
 	// includes any additional adminbussed hands
 	for(var/obj/item/bodypart/hand in hand_bodyparts)
-		. |= hand.body_zone
+		if(!isnull(hand.body_zone))
+			. |= hand.body_zone
 
 // DARKPACK EDIT ADD START
 /mob/proc/get_attacking_limb(atom/target, datum/martial_art/attacker_style)

@@ -33,10 +33,6 @@
 	)
 	AddComponent(/datum/component/walking_aid)
 
-/obj/item/pushbroom/update_icon_state()
-	icon_state = "[base_icon_state]0"
-	return ..()
-
 /**
  * Handles registering the sweep proc when the broom is wielded
  *
