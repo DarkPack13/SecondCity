@@ -29,6 +29,8 @@
 	desc = "Blue stripe beer, brought to you by King Breweries and Distilleries!"
 	icon_state = "beer_blue"
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/light = 25, /datum/reagent/toxin/amatoxin = 5)
+	brand = "king"
+	taint_wyrm = 4
 
 // DARKPACK TODO - (Typhon's Beer needs an audit of its handling. This looks ass.)
 /obj/item/reagent_containers/cup/glass/bottle/beer/vampire/typhon
@@ -37,6 +39,7 @@
 	icon_state = "typhon"
 	//foodtype = SANGUINE
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/typhon = 30)
+	taint_wyrm = 3
 
 /obj/item/reagent_containers/cup/glass/bottle/beer/vampire/typhon/attack(mob/living/M, mob/user, def_zone)
 	. = ..()
@@ -115,6 +118,8 @@
 	icon = 'modular_darkpack/modules/food/icons/items.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/food/icons/food_onfloor.dmi')
 	list_reagents = list(/datum/reagent/consumable/space_cola = 20, /datum/reagent/medicine/muscle_stimulant = 5, /datum/reagent/toxin/amatoxin = 5)
+	brand = "king"
+	taint_wyrm = 2
 
 /obj/item/reagent_containers/cup/soda_cans/thaw_club
 	name = "thaw club soda"
@@ -123,6 +128,8 @@
 	icon = 'modular_darkpack/modules/food/icons/items.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/food/icons/food_onfloor.dmi')
 	list_reagents = list(/datum/reagent/consumable/monkey_energy = 30)
+	brand = "king"
+	taint_wyrm = 2
 
 /obj/item/reagent_containers/condiment/milk
 	name = "milk"
@@ -132,7 +139,7 @@
 	custom_price = 4 // ECONOMY
 
 /obj/item/reagent_containers/condiment/milk/malk
-	desc = "a carton of fish-brand milk, a subsidary of malk incorporated."
+	desc = "A carton of fish-brand milk, a subsidary of Malk Incorporated."
 
 /obj/item/reagent_containers/cup/mixing_bowl
 	name = "mixing bowl"

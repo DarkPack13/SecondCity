@@ -81,6 +81,7 @@
 	name = "edgy outfit"
 	desc = "A red pentagram on a black t-shirt. If this doesn't protect your virginity, nothing will."
 	icon_state = "baali_m"
+	taint_wyrm = 1
 
 /obj/item/clothing/under/vampire/baali/female
 	icon_state = "baali_f"
@@ -112,6 +113,7 @@
 	name = "intruder zim attire"
 	desc = "A top from your favorite show, Intruder Zim"
 	icon_state = "scenetop_zim"
+	taint_weaver = 3 // minted in the television
 
 /obj/item/clothing/under/vampire/scenepink
 	name = "popular Outfit"
@@ -166,6 +168,7 @@
 	name = "biker attire"
 	desc = "Some dirty clothes."
 	icon_state = "biker"
+	taint_wyld = 1 // BORN TO BE WYLD!
 
 //USUAL
 
@@ -232,11 +235,13 @@
 	desc = "Some rich clothes."
 	name = "rich suit"
 	icon_state = "rich"
+	taint_wyrm = 2
 
 /obj/item/clothing/under/vampire/business
 	name = "black dress"
 	desc = "Lesson number one, spelling the word business."
 	icon_state = "business"
+	taint_wyrm = 2
 
 //Homeless
 
@@ -244,6 +249,8 @@
 	name = "dirty attire"
 	desc = "Some hobo clothes."
 	icon_state = "homeless_m"
+	taint_weaver = 2
+	taint_wyrm = 1
 
 /obj/item/clothing/under/vampire/homeless/female
 	icon_state = "homeless_f"
@@ -304,11 +311,13 @@
 	name = "janitorial uniform"
 	desc = "Your job? Toilets 'n boilers, boilers 'n toilets, plus that one boilin' toilet."
 	icon_state = "janitor"
+	taint_weaver = 1
 
 /obj/item/clothing/under/vampire/nurse
 	name = "nurse scrubs"
 	desc = "Some sterile clothes."
 	icon_state = "nurse"
+	taint_weaver = 1
 
 /obj/item/clothing/under/vampire/nurse/nurseb
 	name = "black nurse scrubs"
@@ -333,6 +342,7 @@
 /obj/item/clothing/under/vampire/graveyard
 	desc = "There'll be some GRAVE consequences for taking this off!"
 	icon_state = "graveyard"
+	taint_wyrm = 1
 
 /obj/item/clothing/under/vampire/suit
 	name = "suit"
@@ -460,17 +470,19 @@
 	name = "bacotell uniform"
 	desc = "Some BacoTell clothes."
 	icon_state = "bacotell"
+	taint_wyrm = 1
 
 /obj/item/clothing/under/vampire/bubway
 	name = "bubway uniform"
 	desc = "Some Bubway clothes."
 	icon_state = "bubway"
+	taint_weaver = 3
 
 /obj/item/clothing/under/vampire/gummaguts
 	name = "gummaguts uniform"
 	desc = "Some Gumma Guts clothes."
 	icon_state = "gummaguts"
-
+	taint_wyrm = 1
 
 //PENTEX
 /obj/item/clothing/under/vampire/pentex_janitor
@@ -478,60 +490,70 @@
 	desc = "An Ardus Enterprises custodian's uniform."
 	icon_state = "pentex_janitor"
 	brand = "ardus"
+	taint_wyrm = 2
 
 /obj/item/clothing/under/vampire/pentex_shortsleeve
 	name = "\improper " + MAIN_EVIL_COMPANY + " polo-shirt"
 	desc = "An " + MAIN_EVIL_COMPANY + " International employee uniform. This one is a nice polo!"
 	icon_state = "pentex_shortsleeve"
 	brand = "endron"
+	taint_wyrm = 4
 
 /obj/item/clothing/under/vampire/pentex_longleeve
 	name = "\improper " + MAIN_EVIL_COMPANY + " shirt"
 	desc = "An " + MAIN_EVIL_COMPANY + " International employee uniform. This one has sleeves!"
 	icon_state = "pentex_longsleeve"
 	brand = "endron"
+	taint_wyrm = 4
 
 /obj/item/clothing/under/vampire/pentex_turtleneck
 	name = "\improper " + MAIN_EVIL_COMPANY + " turtleneck"
 	desc = "An " + MAIN_EVIL_COMPANY + " International employee uniform. This one is a nice turtleneck!"
 	icon_state = "pentex_turtleneck"
 	brand = "endron"
+	taint_wyrm = 4
 
 /obj/item/clothing/under/vampire/pentex_suit
 	name = "\improper " + MAIN_EVIL_COMPANY + " suit"
 	desc = "A nice suit with a green dress-shirt. This one has an " + MAIN_EVIL_COMPANY + " International tag on it!"
 	icon_state = "pentex_suit"
 	brand = "endron"
+	taint_wyrm = 5
 
 /obj/item/clothing/under/vampire/pentex_suitskirt
 	name = "\improper " + MAIN_EVIL_COMPANY + " suitskirt"
 	desc = "A nice suitskirt with a green dress-shirt. This one has an " + MAIN_EVIL_COMPANY + " International tag on it!"
 	icon_state = "pentex_suitskirt"
 	brand = "endron"
+	taint_wyrm = 5
 
 /obj/item/clothing/under/vampire/pentex_executive_suit
 	name = "\improper " + MAIN_EVIL_COMPANY + " executive suit"
 	desc = "A  white designer suit with a green dress shirt. This one has an " + MAIN_EVIL_COMPANY + " International tag on it!"
 	icon_state = "pentex_executivesuit"
 	brand = "endron"
+	taint_wyrm = 6
 
 /obj/item/clothing/under/vampire/pentex_executiveskirt
 	name = "\improper " + MAIN_EVIL_COMPANY + " executive suitskirt"
 	desc = "A white designer suitskirt with a green dress shirt. This one has an " + MAIN_EVIL_COMPANY + " International tag on it!"
 	icon_state = "pentex_executiveskirt"
 	brand = "endron"
+	taint_wyrm = 6
 
 /obj/item/clothing/under/vampire/pentex_executive_suit
 	name = "Endron executive suit"
 	desc = "A  white designer suit with a green dress shirt. This one has an Endron International tag on it!"
 	icon_state = "pentex_executivesuit"
 	brand = "endron"
+	taint_wyrm = 6
 
 /obj/item/clothing/under/vampire/pentex_executiveskirt
 	name = "Endron executive suitskirt"
 	desc = "A white designer suitskirt with a green dress shirt. This one has an Endron International tag on it!"
 	icon_state = "pentex_executiveskirt"
 	brand = "endron"
+	taint_wyrm = 6
 
 /obj/item/clothing/under/vampire/gown_black
 	name = "black gown"

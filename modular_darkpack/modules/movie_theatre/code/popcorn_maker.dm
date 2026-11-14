@@ -1,7 +1,7 @@
 // This only appears in an adminbus area and thus is infinite with a light cooldown.
 /obj/structure/popcorn_maker
 	name = "popcorn maker"
-	desc = "Old fansioned, you think it might even be older then you."
+	desc = "Old fashioned, you think it might even be older then you."
 	icon = 'modular_darkpack/modules/movie_theatre/icons/popcorn_maker.dmi'
 	icon_state = "popcorn_machine"
 	density = TRUE

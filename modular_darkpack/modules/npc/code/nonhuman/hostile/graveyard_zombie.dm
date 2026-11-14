@@ -28,6 +28,7 @@
 	death_message = null
 
 	var/obj/vampgrave/source_grave
+	taint_wyrm = 5
 
 /mob/living/basic/zombie/darkpack/Initialize(mapload)
 	. = ..()

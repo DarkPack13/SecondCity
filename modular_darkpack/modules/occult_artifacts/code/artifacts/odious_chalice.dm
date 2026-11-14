@@ -7,6 +7,7 @@
 	research_value = 30
 	COOLDOWN_DECLARE(chalice_alert_cooldown)
 	COOLDOWN_DECLARE(feed_cooldown)
+	taint_wyrm = 10
 
 /obj/item/occult_artifact/vampire/odious_chalice/examine(mob/user)
 	. = ..()

@@ -56,15 +56,14 @@
 	if(HAS_TRAIT(target, TRAIT_HIDDEN_WYRMTAINT))
 		return
 
-	// To be used for stuff like banes.
-	if(HAS_TRAIT(target, TRAIT_WYRMTAINTED))
-		. = 6
-
-	if(HAS_TRAIT(target, TRAIT_WYRMTAINTED_SPRITE))
-		. = 5
-
-	var/datum/splat/vampire/kindred/kindred_splat = get_kindred_splat(target)
-	if(kindred_splat)
-		if(!target.is_enlightenment() && target.st_get_stat(STAT_MORALITY) >= 7)
-			return
-		. = 6
+	switch(target.taint_wyrm)
+		if(1 to 2)
+			. = 8
+		if(4 to 5)
+			. = 7
+		if(6 to 7)
+			. = 6
+		if(8 to 9)
+			. = 5
+		if(10)
+			. = 4

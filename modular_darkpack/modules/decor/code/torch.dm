@@ -7,6 +7,7 @@
 	density = TRUE
 	pass_flags_self = LETPASSTHROW
 	burn_icon = "_lit"
+	taint_wyld = 1
 
 /obj/structure/bonfire/torch/unlit
 	burning = FALSE

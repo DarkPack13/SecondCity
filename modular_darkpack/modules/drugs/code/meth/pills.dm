@@ -33,6 +33,7 @@
 	desc = "There are boobs on the top."
 	spawn_count = 5
 	spawn_type = /obj/item/reagent_containers/applicator/pill/placebatol
+	taint_wyld = 1 // you know who you are
 
 /obj/item/storage/pill_bottle/unknown
 	name = "unknown pill bottle"

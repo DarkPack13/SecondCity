@@ -12,6 +12,7 @@
 	flags_cover = MASKCOVERSMOUTH | PEPPERPROOF
 	resistance_flags = NONE
 	custom_price = 30
+	taint_weaver = 3
 
 /obj/item/clothing/mask/vampire
 	// This USED to be the default resperatior for wod13 moved that to /obj/item/clothing/mask/gas/vampire
@@ -43,6 +44,7 @@
 	icon_state = "pentex_balaclava"
 	flags_inv = HIDEFACE | HIDEHAIR | HIDEFACIALHAIR | HIDESNOUT
 	w_class = WEIGHT_CLASS_SMALL
+	taint_wyrm = 1
 
 /obj/item/clothing/mask/vampire/tragedy
 	name = "tragedy"
@@ -88,11 +90,13 @@
 	icon_state = "venetian_mask_scary"
 	flags_inv = HIDEFACE
 	flags_cover = NONE
+	taint_wyrm = 2
 
 /obj/item/clothing/mask/vampire/fomori_chaser
 	name = "scary mask"
 	desc = "Do you like scary movies?"
 	icon_state = "chaser"
+	taint_wyrm = 6
 
 //Bandanas use TG sprites except the inventory icon sprite, we use Flav's for that.
 /obj/item/clothing/mask/bandana/vampire

@@ -5,6 +5,7 @@
 	icon = 'modular_darkpack/modules/toys/icons/toys.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/toys/icons/toys_onfloor.dmi')
 	w_class = WEIGHT_CLASS_SMALL
+	taint_wyld = 2
 
 /obj/item/toy/plush/argemia/microwave_act(obj/machinery/microwave/microwave_source, mob/microwaver, randomize_pixel_offset)
 	. = ..()
@@ -25,6 +26,7 @@
 	var/going_hard = FALSE
 	/// Whether or not this goat has been flattened like a funny pancake
 	var/splat = FALSE
+	taint_wyld = 4
 
 /obj/item/toy/plush/goatplushie/Initialize(mapload)
 	. = ..()
@@ -87,3 +89,4 @@
 	attack_verb_simple = list("torture", "scourge")
 	squeak_override = list('modular_darkpack/modules/toys/sounds/femurbreaker.ogg'=1)
 	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 10)
+	taint_wyrm = 7

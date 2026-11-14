@@ -32,6 +32,7 @@
 	basic_mob_flags = FLIP_ON_DEATH
 
 	ai_controller = /datum/ai_controller/basic_controller/corvid
+	taint_weaver = 1
 
 	var/sprite_color = "black"
 	var/sprite_eye_color = "#FFFFFF"

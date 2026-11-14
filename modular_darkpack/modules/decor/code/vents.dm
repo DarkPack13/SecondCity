@@ -6,6 +6,7 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
+	taint_weaver = 1
 	var/can_be_snowy = TRUE
 
 /obj/structure/roofstuff/Initialize(mapload)

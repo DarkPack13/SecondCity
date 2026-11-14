@@ -18,6 +18,7 @@
 	var/inserted_cash = 0
 	// Just because there is account selected does not nesicarrly indicate logged_in is true. (you still have to enter your pin)
 	var/datum/bank_account/logged_account
+	taint_weaver = 2
 
 /obj/machinery/atm/Initialize(mapload)
 	. = ..()
