@@ -136,11 +136,6 @@
 
 	var/list/all_items = user.gather_belongings()
 
-	var/obj/item/smartphone/phone = locate() in all_items
-	if(phone)
-		phone.owner_weakref = WEAKREF(user)
-		phone.update_initialized_contacts()
-
 	// DARKPACK EDIT START - Wallets and money splits, and identification.
 	var/obj/item/storage/wallet/wallet = locate() in all_items
 	if(wallet)
