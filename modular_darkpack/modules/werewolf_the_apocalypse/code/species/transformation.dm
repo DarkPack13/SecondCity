@@ -107,7 +107,7 @@
 	ntransform.Scale(1 / 1.1, 1 / 1.1) // only undo the 1.1x size scaling from transform_fera, leaves Glabro/Huge Size scaling alone
 	animate(owner, transform = ntransform, color = "#FFFFFF", time = time_taken * 0.1)
 
-	// edited hacky fix to unrotate the old form and then re-rotate the new one, TRAIT_NO_LYING_ANGLE forms never rotate and we need to cover more than homid
+	// Hacky fix to unrotate the old form and then re-rotate the new one
 	if(GET_LYING_ANGLE(owner))
 		var/previous_angle = owner.set_lying_angle(0)
 		owner.set_species(form_to_transform)
