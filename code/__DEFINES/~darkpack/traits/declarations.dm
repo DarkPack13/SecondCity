@@ -220,6 +220,13 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_VAMPIRE_TERRITORIAL "territorial"
 #define TRAIT_VICTIM_OF_THE_MASQUERADE "victim_of_the_masquerade"
 #define TRAIT_WEAK_WILLED "weak_willed"
+#define TRAIT_PRIMAL_PERCEPTION "primal_perception"
+#define TRAIT_UNSCENTED "unscented"
+#define TRAIT_RECOGNIZE_WEREWOLVES "recognize_werewolves"
+#define TRAIT_OUTSIDER "outsider"
+#define TRAIT_VEILED "veiled"
+#define TRAIT_GOOD_OLD_BOY_OR_GIRL "good_old_boy_or_girl"
+#define TRAIT_GALL "gall"
 
 // Below are traits given by items/clothing being equiped or worn
 #define TRAIT_BRASSKNUCKLES "brassknuckles"
