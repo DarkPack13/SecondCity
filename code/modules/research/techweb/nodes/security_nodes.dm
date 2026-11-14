@@ -98,9 +98,9 @@
 	description = "Energy-based weaponry designed for both lethal and non-lethal applications."
 	prerequisite_nodes = list(/datum/techweb_node/riot_supression)
 	unlocked_designs = list(
-		/datum/design/cargo_weapon/ion_carbine,
-		/datum/design/cargo_weapon/temp_gun,
-		/datum/design/cargo_weapon/tesla_cannon,
+		// /datum/design/cargo_weapon/ion_carbine. // DARKPACK EDIT REMOVAL
+		// /datum/design/cargo_weapon/temp_gun, // DARKPACK EDIT REMOVAL
+		// /datum/design/cargo_weapon/tesla_cannon, // DARKPACK EDIT REMOVAL
 		/datum/design/lasershell,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
@@ -113,8 +113,8 @@
 	unlocked_designs = list(
 		/datum/design/c38_flare,
 		/datum/design/c38_flare_mag,
-		/datum/design/cargo_weapon/advanced_egun,
-		/datum/design/cargo_weapon/xray_laser,
+		// /datum/design/cargo_weapon/advanced_egun, // DARKPACK EDIT REMOVAL
+		// /datum/design/cargo_weapon/xray_laser, // DARKPACK EDIT REMOVAL
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SECURITY)

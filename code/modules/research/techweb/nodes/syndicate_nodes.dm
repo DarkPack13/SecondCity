@@ -7,7 +7,7 @@
 		/datum/design/ai_cam_upgrade,
 		/datum/design/board/advanced_camera,
 		/datum/design/borg_syndicate_module,
-		/datum/design/cargo_weapon/ebow,
+		// /datum/design/cargo_weapon/ebow, // DARKPACK EDIT REMOVAL
 		/datum/design/donksoft_refill,
 		/datum/design/mag_autorifle,
 		/datum/design/mag_autorifle/ap_mag,

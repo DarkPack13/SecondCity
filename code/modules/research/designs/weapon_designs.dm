@@ -554,6 +554,7 @@
 		var/datum/supply_pack/pack_real = SSshuttle.supply_packs[pack_type::id]
 		pack_real?.order_flags &= ~ORDER_SPECIAL_ENABLED
 
+/* // DARKPACK EDIT REMOVAL
 /datum/design/cargo_weapon/tesla_cannon
 	name = "Tesla Cannon Schematics"
 	pack_types = list(/datum/supply_pack/security/armory/rnd_locked/tesla)
@@ -610,3 +611,4 @@
 	)
 	research_icon = /obj/item/gun/energy/temperature::icon
 	research_icon_state = /obj/item/gun/energy/temperature::icon_state
+*/
