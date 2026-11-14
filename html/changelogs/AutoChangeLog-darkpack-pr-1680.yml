@@ -1,0 +1,8 @@
+author: "Rhys Mori / Twox"
+delete-after: True
+changes:
+  - bugfix: "Qdeleted masquerade Breachers/Reporters will properly be reinforced."
+  - bugfix: "Ghoulification reinforces masquerade breaches reported by new ghoul."
+  - bugfix: "NPCs will no longer autobreach some cases where they really shouldn't"
+  - spellcheck: "Minor spelling fix in phone.dm"
+  - spellcheck: "Minor text formatting fix in npc.dm (ghoulification message improperly spaced)"
