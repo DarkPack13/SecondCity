@@ -60,6 +60,16 @@
 
 	if(HAS_TRAIT(src, TRAIT_SERPENTIS_SKIN) && !(HIDEJUMPSUIT)) // 'hidden by modest clothing'
 		. += span_danger("[p_They()] [p_are()] covered in... scales!?<br>")
+    
+	if(HAS_TRAIT(src, TRAIT_FOMORI_STIGMATA))
+		var/datum/splat/werewolf/dog = get_werewolf_splat(user)
+		var/datum/quirk/darkpack/stigmata_of_the_wyrm/stigmata = get_quirk(/datum/quirk/darkpack/stigmata_of_the_wyrm)
+		var/stigmata_descriptor = stigmata.examine_print
+
+		if(dog.tribe?.name == TRIBE_BLACK_SPIRAL_DANCERS || get_fomori_splat(user))
+			. += span_warning("[p_They()] bear[p_s()] the Stigmata of the Wyrm, manifesting as [stigmata_descriptor].<br>")
+		else
+			. += span_warning("[p_They()] [p_have()] [stigmata_descriptor].<br>")
 
 	if(get_dist(user, src) <= smell_range)
 		if(HAS_TRAIT(src, TRAIT_ANIMAL_MUSK))
