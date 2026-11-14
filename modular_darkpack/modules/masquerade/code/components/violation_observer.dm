@@ -16,7 +16,8 @@
 	if(violation_observer)
 		RegisterSignal(src, COMSIG_SEEN_MASQUERADE_VIOLATION, PROC_REF(on_observed_violation))
 		RegisterSignal(src, COMSIG_MASQUERADE_REINFORCE, PROC_REF(on_masquerade_violation_reinforced))
-		RegisterSignals(src, list(COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE), PROC_REF(on_masquerade_witness_death))
+		RegisterSignals(src, list(COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE, COMSIG_QDELETING), PROC_REF(on_masquerade_witness_death))
+
 	else
 		UnregisterSignal(src, list(COMSIG_SEEN_MASQUERADE_VIOLATION, COMSIG_MASQUERADE_REINFORCE, COMSIG_LIVING_DEATH, COMSIG_ALL_MASQUERADE_REINFORCE))
 
@@ -44,6 +45,14 @@
 		var/mob/living/carbon/human/npc/npc_source = source
 		if(npc_source.client)
 			return
+		if(!ismundane(npc_source))
+			return
+		if(player_breacher.in_contents_of(/obj/structure/closet))
+			return
+		if(npc_source.stat == HARD_CRIT || IS_UNCONSCIOUS_AND_ALIVE(npc_source))
+			return
+		if(npc_source.is_blind())
+			return
 
 	if(isliving(source))
 		var/mob/living/mob_parent = source
@@ -62,7 +71,7 @@
 
 	source.AddComponent(/datum/component/masquerade_hud, player_breacher)
 	SSmasquerade.masquerade_breach(source, player_breacher, (isliving(source) ? MASQUERADE_REASON_NPC : MASQUERADE_REASON_OBJECT))
-	RegisterSignal(player_breacher, COMSIG_LIVING_DEATH, PROC_REF(on_breacher_death), override = TRUE) // override is for breaching multiple times on the same violation observer - on_breacher_death handles all violations, not just the breach created here, so we only need one register
+	RegisterSignals(player_breacher, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING), PROC_REF(on_breacher_death), override = TRUE) // override is for breaching multiple times on the same violation observer - on_breacher_death handles all violations, not just the breach created here, so we only need one register
 
 	return TRUE
 
