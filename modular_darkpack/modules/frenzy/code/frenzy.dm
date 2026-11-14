@@ -42,6 +42,11 @@
 	roll_output_type = ROLL_FLAG_ROLLER|ROLL_FLAG_TARGET
 	numerical = TRUE
 
+/datum/storyteller_roll/frenzy/using_difficulty(mob/living/roller, atom/target)
+	. = ..()
+	if(HAS_TRAIT(roller, TRAIT_FRENZY_RESISTANT))
+		. -= 1
+
 /datum/storyteller_roll/frenzy/rotschreck
 	bumper_text = "rotschrek"
 	applicable_stats = list(STAT_COURAGE)

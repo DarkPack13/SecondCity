@@ -9,16 +9,18 @@
 	var/datum/action/bloodstone_track/tracking_action
 	research_value = 15
 
-/obj/item/occult_artifact/vampire/bloodstone/identify()
+/obj/item/occult_artifact/vampire/bloodstone/identify(mob/living/artifact_identifier)
 	. = ..()
 	if(identified && !bound_identifier)
-		var/mob/living/carbon/human/user = usr
-		if(ishuman(user))
-			bound_identifier = WEAKREF(user)
-			to_chat(user, span_warning("The bloodstone pulses with dark energy as it bonds to your essence. You will always know its location."))
+		var/mob/living/carbon/human/user = astype(artifact_identifier)
+		if(!user)
+			return
 
-			tracking_action = new /datum/action/bloodstone_track(user, src)
-			tracking_action.Grant(user)
+		bound_identifier = WEAKREF(user)
+		to_chat(user, span_warning("The bloodstone pulses with dark energy as it bonds to your essence. You will always know its location."))
+
+		tracking_action = new /datum/action/bloodstone_track(user, src)
+		tracking_action.Grant(user)
 
 /obj/item/occult_artifact/vampire/bloodstone/Destroy()
 	if(tracking_action)
