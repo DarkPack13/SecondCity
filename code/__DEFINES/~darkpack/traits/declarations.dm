@@ -210,6 +210,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_PIERCED_VEIL "pierced_veil"
 #define TRAIT_PREY_EXCLUSION "prey_exclusion"
 #define TRAIT_PROMETHEAN_CLAY "promethean_clay"
+#define TRAIT_RITE_OF_TALISMAN_DEDICATION "rite_of_talisman_dedication"
 #define TRAIT_SANGUINE_INCONGRUITY "sanguine_incongruity"
 #define TRAIT_STILLNESS_OF_DEATH "stillness_of_death"
 #define TRAIT_THE_LARGEST_MAW "the_largest_maw"
