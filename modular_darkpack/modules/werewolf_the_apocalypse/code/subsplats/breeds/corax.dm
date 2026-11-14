@@ -10,7 +10,7 @@
 		/datum/action/cooldown/power/gift/enemy_ways,
 		/datum/action/cooldown/power/gift/open_seal,
 		/datum/action/cooldown/power/gift/spirit_speech,
-		/datum/action/cooldown/power/gift/truth_of_gaia,
+		/datum/action/cooldown/power/gift/truth_of_gaia, // ACTUALLY A CORVID starting gift so this is inaccurate. Remove if you fix/add gifts.
 	)
 
 /datum/subsplat/werewolf/breed_form/corax/corvid
