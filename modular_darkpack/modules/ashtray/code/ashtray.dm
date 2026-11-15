@@ -14,7 +14,7 @@
 
 /obj/item/storage/ashtray/update_overlays()
 	. = ..()
-	if(!length(contents))
+	if(!length(contents) || isnull(atom_storage))
 		return .
 	if((atom_storage.max_slots / 2) >= length(contents))
 		. += mutable_appearance(icon, "[base_icon_state]_overlay-half", appearance_flags = RESET_COLOR|KEEP_APART)
