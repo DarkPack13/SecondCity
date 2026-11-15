@@ -22,33 +22,34 @@
 
 /atom/movable/proc/on_masquerade_violation()
 	if(!COOLDOWN_FINISHED(src, masquerade_violation_cooldown))
-		return
+		return FALSE
 	var/area/vtm/breacher_area = get_area(src)
 	if(!istype(breacher_area, /area/vtm))
-		return
+		return FALSE
 	if(breacher_area.zone_type != ZONE_MASQUERADE)
-		return
+		return FALSE
 	for(var/atom/movable/moving_atom in view(7, loc))
 		if(!moving_atom.violation_observer)
 			continue
 		SEND_SIGNAL(moving_atom, COMSIG_SEEN_MASQUERADE_VIOLATION, src)
 	COOLDOWN_START(src, masquerade_violation_cooldown, 1 TURNS)
+	return TRUE
 
 /atom/movable/proc/on_observed_violation(atom/source, atom/movable/player_breacher)
 	SIGNAL_HANDLER
 
 	if(!source || !player_breacher || ismundane(player_breacher)) //Humans cant break the masquerade. Because reasons.
-		return
+		return FALSE
 
 	if(isnpc(source))
 		var/mob/living/carbon/human/npc/npc_source = source
 		if(npc_source.client)
-			return
+			return FALSE
 
 	if(isliving(source))
 		var/mob/living/mob_parent = source
 		if(mob_parent.stat == DEAD)
-			return
+			return FALSE
 		if(!INCAPACITATED_IGNORING(mob_parent, INCAPABLE_RESTRAINTS))
 			mob_parent.face_atom(player_breacher)
 	source.observe_masquerade_violation(player_breacher)
