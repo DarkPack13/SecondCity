@@ -173,7 +173,7 @@
 
 /datum/discipline_power/protean/shape_of_the_beast/pre_activation_checks(atom/target)
 	. = ..()
-	if(do_after(owner, 3 TURNS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
+	if(do_after(owner, 1 TURNS, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_HELD_ITEM))
 		return TRUE
 	else
 		to_chat(owner, span_warning("You are rendered unable to transform!"))
@@ -187,7 +187,9 @@
 	gangy_form = new(owner.mind)
 	gangy_form.Grant(owner)
 	gangy_form.Activate(owner)
+	vitae_cost = 0
 	RegisterSignal(owner, COMSIG_LIVING_RETURNED_FROM_SHAPESHIFT, PROC_REF(deactivate))
+	addtimer(VARSET_CALLBACK(src, vitae_cost, 1), 5 TURNS, TIMER_OVERRIDE|TIMER_STOPPABLE)
 
 /datum/discipline_power/protean/shape_of_the_beast/deactivate()
 	UnregisterSignal(owner, COMSIG_LIVING_RETURNED_FROM_SHAPESHIFT)
