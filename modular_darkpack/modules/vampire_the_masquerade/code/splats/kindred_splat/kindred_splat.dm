@@ -243,7 +243,7 @@
 	var/mob/dead/observer/erebus_resident = kindred.mind.get_ghost()
 	erebus_resident.mind = null
 
-	ADD_TRAIT(kindred, TRAIT_DECOMPOSED, id) //The body is far too decomposed to be revived as well..
+	ADD_TRAIT(kindred, TRAIT_DECOMPOSED, id)
 
 	for(var/obj/item/organ/raisin as anything in kindred.organs)
 		if(!raisin.decay_factor)
