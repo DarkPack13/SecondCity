@@ -189,7 +189,7 @@
 	gangy_form.Activate(owner)
 	vitae_cost = 0
 	RegisterSignal(owner, COMSIG_LIVING_RETURNED_FROM_SHAPESHIFT, PROC_REF(deactivate))
-	addtimer(VARSET_CALLBACK(src, vitae_cost, 1), 5 TURNS, TIMER_OVERRIDE|TIMER_STOPPABLE)
+	addtimer(VARSET_CALLBACK(src, vitae_cost, 1), 1 SCENES, TIMER_UNIQUE)
 
 /datum/discipline_power/protean/shape_of_the_beast/deactivate()
 	UnregisterSignal(owner, COMSIG_LIVING_RETURNED_FROM_SHAPESHIFT)
