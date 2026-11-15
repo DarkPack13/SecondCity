@@ -636,6 +636,8 @@
 					// DARKPACK EDIT START
 					if (DEFIB_FAIL_STAKED)
 						fail_reason = "Patient's heart has external embedded items, repair and try again."
+					if (DEFIB_FAIL_DECOMPOSED)
+						fail_reason = "Patient's body is decomposed. Further attempts futile."
 					// DARKPACK EDIT END
 					if (DEFIB_FAIL_GOLEM)
 						fail_reason = "Patient is constructed from inorganic materials. Further attempts futile, though manual reconstruction is possible."

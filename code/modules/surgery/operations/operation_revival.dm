@@ -30,6 +30,10 @@
 		return FALSE
 	if(HAS_TRAIT(patient, TRAIT_SUICIDED) || HAS_TRAIT(patient, TRAIT_HUSK) || HAS_TRAIT(patient, TRAIT_DEFIB_BLACKLISTED))
 		return FALSE
+	// DARKPACK EDIT START
+	if (HAS_TRAIT(patient, TRAIT_DECOMPOSED))
+		return FALSE
+	// DARKPACK EDIT END
 	if(patient.has_limbs)
 		var/obj/item/organ/brain/brain = patient.get_organ_slot(ORGAN_SLOT_BRAIN)
 		return !isnull(brain) && brain_check(brain)
