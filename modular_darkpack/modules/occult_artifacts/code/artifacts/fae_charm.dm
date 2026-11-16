@@ -3,7 +3,8 @@
 	true_desc = "Dexterity boost."
 	icon_state = "fae_charm"
 	research_value = 35
-
+	rank = 2
+	
 /obj/item/occult_artifact/vampire/fae_charm/grant_powers()
 	. = ..()
 	owner.st_add_stat_mod(STAT_DEXTERITY, 1, type)

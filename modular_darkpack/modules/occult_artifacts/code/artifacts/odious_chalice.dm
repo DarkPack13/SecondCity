@@ -2,9 +2,10 @@
 	true_name = "Odious Chalice"
 	true_desc = "Stores blood from every attack."
 	icon_state = "o_chalice"
+	research_value = 30
+	rank = 2
 	var/stored_blood = 0
 	var/blood_cap = 10
-	research_value = 30
 	COOLDOWN_DECLARE(chalice_alert_cooldown)
 	COOLDOWN_DECLARE(feed_cooldown)
 
