@@ -325,7 +325,7 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 			var/discipline = text2path(disc_path)
 			if(!discipline)
 				continue
-			var/level = discipline_levels[disc_path] //Apocrypha Change Removal, allows Ghouls to have no dots in clan disciplines, or over one if set by Admins.
+			var/level = discipline_levels[disc_path] //Darkpack Change Removal: allows Ghouls to have no dots in clan disciplines, or over one if set by Admins.
 			if(!level)
 				continue // prevent removing the disc by stopping here if they put 0 in it
 			var/result = character.change_st_power_level(discipline, level)
