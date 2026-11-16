@@ -1,3 +1,4 @@
+// THIS IS A DARKPACK FILE
 import { CheckboxInput, type FeatureToggle } from '../base';
 
 export const spawn_wallet: FeatureToggle = {
