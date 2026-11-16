@@ -9,6 +9,12 @@
 
 	set_jitter_if_lower(1 SCENES)
 
+	notify_ghosts(
+		"[src.real_name] is entering a frenzy!",
+		source = src,
+		header = "Frenzy!",
+		notify_flags = NOTIFY_CATEGORY_NOFLASH,
+	)
 	message_admins("[ADMIN_LOOKUPFLW(src)] has entered frenzy[target ? " targeting [ADMIN_LOOKUPFLW(target)]": ""]. ([source])")
 	log_combat(src, (src || target), "has frenzied on because of \"[source]\" on")
 

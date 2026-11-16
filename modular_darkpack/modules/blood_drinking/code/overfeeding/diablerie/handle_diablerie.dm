@@ -1,6 +1,11 @@
 /mob/living/carbon/human/proc/handle_diablerie(mob/living/victim)
 
-	var/diablerie_prompt = tgui_alert(src, "Attempt to diablerize [victim]?", "Diablerize", list("Yes", "No"), "No")
+	var/diablerie_prompt
+	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))	//You automatically attempt to diablerize while in frenzy.
+		diablerie_prompt = "Yes"
+	else
+		diablerie_prompt = tgui_alert(src, "Attempt to diablerize [victim]?", "Diablerize", list("Yes", "No"), "No")
+
 	switch(diablerie_prompt)
 		if("Yes")
 			var/datum/splat/vampire/kindred/kindred = get_kindred_splat(src)
