@@ -206,7 +206,7 @@
 		switch(extended_action_prompt)
 			if("Yes")
 				ADD_TRAIT(owner, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT(type))
-				if(do_after(owner, 3 SECONDS))
+				if(do_after(owner, 3 SECONDS, interaction_key = disc_interaction_key))
 					to_chat(owner, span_warning("You force [target] to cower to your mere presence!"))
 					to_chat(target, span_userdanger("You are consumed with an overhwelming sense of dread, forced to cower before [owner] as even your legs betray you and your very being is rocked to its core!"))
 					target.Stun(1 TURNS)	//~5 seconds

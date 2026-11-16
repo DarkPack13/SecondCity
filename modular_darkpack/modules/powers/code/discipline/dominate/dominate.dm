@@ -187,7 +187,7 @@
 /datum/discipline_power/dominate/proc/immobilize_target(mob/living/carbon/human/target, duration = 5 SECONDS)
 	ADD_TRAIT(target, TRAIT_IMMOBILIZED, TRAIT_GENERIC)
 	RegisterSignals(target, list(COMSIG_ATOM_ATTACKBY, COMSIG_MOB_ITEM_ATTACK, COMSIG_PROJECTILE_PREHIT), PROC_REF(on_target_attacked))
-	if(do_after(owner, duration, target))
+	if(do_after(owner, duration, target, interaction_key = disc_interaction_key))
 		release_target(target)
 		return TRUE
 	else

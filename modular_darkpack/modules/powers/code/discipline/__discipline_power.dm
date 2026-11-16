@@ -31,6 +31,8 @@
 	var/hostile = FALSE
 	/// If use of this power creates a visible Masquerade breach.
 	var/violates_masquerade = FALSE
+	/// If use of this power creates a visible Masquerade breach but only on deactivation.
+	var/deactivcation_violates_masquerade = FALSE
 	/// Can this be used while in frenzy
 	var/frenzy_usable = TRUE
 
@@ -51,6 +53,8 @@
 	var/cooldown_override = FALSE
 	/// List of Discipline power types that cannot be activated alongside this power and share a cooldown with it.
 	var/list/grouped_powers
+	/// Key for its main do_after (if it has one) and prevents duplicates of that key from being started.
+	var/disc_interaction_key = DOAFTER_SOURCE_GENERIC_ACTION
 
 	var/magic_type = MAGIC_TYPE_BLOOD
 	var/magic_subtype
@@ -195,6 +199,16 @@
 			to_chat(owner, span_warning("[src] is still on cooldown for [DisplayTimeText(get_cooldown())]!"))
 		return FALSE
 
+	if(!frenzy_usable && HAS_TRAIT(owner, TRAIT_IN_FRENZY))
+		if(alert)
+			to_chat(owner, span_warning("You cannot do this while in frenzy!"))
+		return FALSE
+
+	if(DOING_INTERACTION(owner, disc_interaction_key))
+		if(alert)
+			to_chat(owner, span_warning("Your busy!"))
+		return FALSE
+
 	if(!check_discipline_flags(alert))
 		return FALSE
 	return TRUE
@@ -273,11 +287,6 @@
 		signal_return |= SEND_SIGNAL(target, COMSIG_POWER_TRY_ACTIVATE_ON, src)
 	if (signal_return & POWER_PREVENT_ACTIVATE)
 		//feedback is sent by the proc preventing activation
-		return FALSE
-
-	if(!frenzy_usable && HAS_TRAIT(owner, TRAIT_IN_FRENZY))
-		if(alert)
-			to_chat(owner, span_warning("You cannot do this while in frenzy!"))
 		return FALSE
 
 	//can't activate if the owner isn't capable of it
@@ -674,6 +683,9 @@
 
 	if (!cooldown_override)
 		do_cooldown()
+
+	if (deactivcation_violates_masquerade)
+		SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
 
 	if (deactivate_sound)
 		owner.playsound_local(owner, deactivate_sound, 50, FALSE)

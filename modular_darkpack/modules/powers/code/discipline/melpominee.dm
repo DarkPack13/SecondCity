@@ -297,13 +297,15 @@
 	var/list/cumulative_our_power = list()
 	var/turns_left = 4
 
-/datum/discipline_power/melpominee/sirens_beckoning/can_activate(atom/target)
+/datum/discipline_power/melpominee/sirens_beckoning/can_activate_untargeted(alert)
+	. = ..()
+	if (!.)
+		return .
+
 	if(HAS_TRAIT(owner, TRAIT_VIRTUOSA))
 		target_type = NONE
 	else
 		target_type = TARGET_LIVING
-
-	. = ..()
 
 /datum/discipline_power/melpominee/sirens_beckoning/activate(mob/living/target) // TODO: sliding difficulty for willpower
 	. = ..()
@@ -355,7 +357,10 @@
 			cumulative_our_power[listener] = null
 			cumulative_list[listener] = null
 
-	if(do_after(owner, 1 TURNS, timed_action_flags = IGNORE_HELD_ITEM | IGNORE_INCAPACITATED | IGNORE_SLOWDOWNS) && channeling && length(listener_list))
+	if(do_after(owner, 1 TURNS, timed_action_flags = IGNORE_HELD_ITEM | IGNORE_INCAPACITATED | IGNORE_SLOWDOWNS, interaction_key = disc_interaction_key) \
+		&& channeling \
+		&& length(listener_list) \
+	)
 		run_effect(target)
 	else
 		deactivate(target, TRUE)

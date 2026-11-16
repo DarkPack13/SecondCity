@@ -138,7 +138,8 @@
 			owner,
 			3 SECONDS,
 			target = target,
-			timed_action_flags = DO_AFTER_CHECK_NEXT_MOVE | IGNORE_INCAPACITATED
+			timed_action_flags = DO_AFTER_CHECK_NEXT_MOVE | IGNORE_INCAPACITATED,
+			interaction_key = disc_interaction_key
 		))
 			to_chat(owner, span_warning("You stopped before vivasecting the [target]'s corpse."))
 			return FALSE
@@ -208,7 +209,7 @@
 		var/zulo_interrupt_flags = IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM
 		if(HAS_TRAIT(owner, TRAIT_PROMETHEAN_CLAY)) // Promethean Clay makes self-vicissitude changes into reflexive actions (like free actions in other TTRPGs). Implemented here by making the 2-turn transformation for Gen 10+ vamps impossible to interrupt.
 			zulo_interrupt_flags |= IGNORE_INCAPACITATED
-		if(do_after(owner, 2 TURNS, timed_action_flags = zulo_interrupt_flags))
+		if(do_after(owner, 2 FAST_TURNS, timed_action_flags = zulo_interrupt_flags, interaction_key = disc_interaction_key))
 			return TRUE
 		activating = FALSE
 		return FALSE
@@ -217,9 +218,9 @@
 			owner.do_jitter_animation(2 SECONDS)
 			return TRUE
 		activating = TRUE
-		owner.do_jitter_animation(1 TURNS)
+		owner.do_jitter_animation(1 FAST_TURNS)
 		to_chat(owner, span_warning("Your body quickly starts to warp and twist into a horrifying war form..."))
-		if(do_after(owner, 1 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM)))
+		if(do_after(owner, 1 FAST_TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM), interaction_key = disc_interaction_key))
 			return TRUE
 		activating = FALSE
 		return FALSE
@@ -233,12 +234,15 @@
 
 /datum/discipline_power/vicissitude/horrid_form/deactivate()
 	. = ..()
-	owner.do_jitter_animation(2 SECONDS)
-	if(!do_after(owner, 2 SECONDS, owner, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM)))
+	owner.Immobilize(1 FAST_TURNS)
+	owner.do_jitter_animation(1 FAST_TURNS)
+	/*
+	if(!do_after(owner, 2 SECONDS, owner, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM), interaction_key = disc_interaction_key))
+		#warn i dont belive this works.
 		return FALSE
+	*/
 	owner.set_species(mrace = /datum/species/human, icon_update = TRUE, pref_load = TRUE, replace_missing = FALSE)
 	playsound(get_turf(owner), 'modular_darkpack/modules/powers/sounds/vicissitude.ogg', 100, TRUE, -6)
-	return TRUE
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -256,8 +260,8 @@
 
 /datum/discipline_power/vicissitude/bloodform/pre_activation_checks()
 	. = ..()
-	owner.do_jitter_animation(1 TURNS)
-	if(!do_after(owner, 1 TURNS, owner))
+	owner.do_jitter_animation(1 FAST_TURNS)
+	if(!do_after(owner, 1 FAST_TURNS, owner, interaction_key = disc_interaction_key))
 		return FALSE
 	return TRUE
 
@@ -268,8 +272,11 @@
 
 /datum/discipline_power/vicissitude/bloodform/deactivate()
 	. = ..()
-	owner.do_jitter_animation(1 TURNS)
-	if(!do_after(owner, 1 TURNS, owner))
+	owner.Immobilize(1 FAST_TURNS)
+	owner.do_jitter_animation(1 FAST_TURNS)
+	/*
+	if(!do_after(owner, 1 FAST_TURNS, owner, interaction_key = disc_interaction_key))
+		#warn i dont think this works.
 		return FALSE
+	*/
 	owner.set_species(mrace = /datum/species/human, icon_update = TRUE, pref_load = TRUE, replace_missing = FALSE)
-	return TRUE

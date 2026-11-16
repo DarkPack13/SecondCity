@@ -78,10 +78,10 @@
 
 /datum/discipline_power/protean/feral_claws/pre_activation_checks(atom/target)
 	. = ..()
-	if(do_after(owner, 1 TURNS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
+	if(do_after(owner, 1 FAST_TURNS, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_HELD_ITEM, interaction_key = disc_interaction_key))
 		return TRUE
 	else
-		to_chat(owner, span_warning("You are rendered unable to transform!"))
+		to_chat(owner, span_warning("You are unable to transform!"))
 		return FALSE
 
 /datum/discipline_power/protean/feral_claws/activate()
@@ -105,6 +105,7 @@
 	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE
 
 	violates_masquerade = TRUE
+	deactivcation_violates_masquerade = TRUE
 
 	cancelable = TRUE
 	duration_length = 1 SCENES
@@ -159,6 +160,7 @@
 	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE
 
 	violates_masquerade = TRUE
+	deactivcation_violates_masquerade = TRUE
 	toggled = TRUE
 	cancelable = TRUE
 	duration_length = 0
@@ -173,16 +175,17 @@
 
 /datum/discipline_power/protean/shape_of_the_beast/pre_activation_checks(atom/target)
 	. = ..()
-	if(do_after(owner, 3 TURNS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
+	if(do_after(owner, 3 FAST_TURNS, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_HELD_ITEM, interaction_key = disc_interaction_key))
 		return TRUE
 	else
-		to_chat(owner, span_warning("You are rendered unable to transform!"))
+		to_chat(owner, span_warning("You are unable to transform!"))
 		return FALSE
 
 /datum/discipline_power/protean/shape_of_the_beast/activate()
 	. = ..()
 	if(gangy_form)
 		CRASH("[src] somehow already has a spell?")
+
 	owner.drop_all_held_items()
 	gangy_form = new(owner.mind)
 	gangy_form.Grant(owner)
@@ -192,8 +195,8 @@
 /datum/discipline_power/protean/shape_of_the_beast/deactivate()
 	UnregisterSignal(owner, COMSIG_LIVING_RETURNED_FROM_SHAPESHIFT)
 	gangy_form.Remove(owner)
-	. = ..()
 	QDEL_NULL(gangy_form)
+	. = ..()
 	owner.Stun(1 TURNS)
 	owner.do_jitter_animation(15)
 
@@ -207,6 +210,7 @@
 	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE
 
 	violates_masquerade = TRUE
+	deactivcation_violates_masquerade = TRUE
 
 	cancelable = TRUE
 	duration_length = 1 SCENES
@@ -221,10 +225,10 @@
 
 /datum/discipline_power/protean/mist_form/pre_activation_checks(atom/target)
 	. = ..()
-	if(do_after(owner, 3 TURNS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
+	if(do_after(owner, 3 FAST_TURNS, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_HELD_ITEM, interaction_key = disc_interaction_key))
 		return TRUE
 	else
-		to_chat(owner, span_warning("You are rendered unable to transform!"))
+		to_chat(owner, span_warning("You are unable to transform!"))
 		return FALSE
 
 /datum/discipline_power/protean/mist_form/activate()

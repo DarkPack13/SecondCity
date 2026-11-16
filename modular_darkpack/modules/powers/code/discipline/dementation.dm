@@ -263,7 +263,7 @@ Methuselah.”
 	var/chosen_option = show_radial_menu(owner, target, choice_options, target, radius = 36, tooltips = TRUE)
 	if(!chosen_option)
 		return FALSE
-	if(!do_after(owner, 2 TURNS))
+	if(!do_after(owner, 2 TURNS, interaction_key = disc_interaction_key))
 		return FALSE
 
 	switch(chosen_option)

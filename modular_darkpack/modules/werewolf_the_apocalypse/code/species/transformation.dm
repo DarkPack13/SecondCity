@@ -1,4 +1,4 @@
-#define DOGGY_ANIMATION_TIME 1 TURNS
+#define DOGGY_ANIMATION_TIME 1 FAST_TURNS
 
 /datum/storyteller_roll/fera_trans
 	bumper_text = "transformation"

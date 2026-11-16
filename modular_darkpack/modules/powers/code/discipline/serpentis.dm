@@ -40,7 +40,7 @@
 /datum/discipline_power/serpentis/the_eyes_of_the_serpent/proc/immobilize_target(mob/living/target, duration = 5 SECONDS)
 	ADD_TRAIT(target, TRAIT_IMMOBILIZED, DISCIPLINE_TRAIT(type))
 	RegisterSignals(target, list(COMSIG_ATOM_ATTACKBY, COMSIG_MOB_ITEM_ATTACK, COMSIG_PROJECTILE_PREHIT), PROC_REF(on_target_attacked))
-	if(do_after(owner, duration, target))
+	if(do_after(owner, duration, target, interaction_key = disc_interaction_key))
 		release_target(target)
 		return TRUE
 	else
@@ -61,11 +61,12 @@
 
 /datum/discipline_power/serpentis/the_eyes_of_the_serpent/can_activate_untargeted(alert)
 	. = ..()
+	if (!.)
+		return .
 	if (owner?.is_eyes_covered())
 		if (alert)
 			to_chat(owner, span_warning("You cannot use [name] with your eyes covered!"))
-		. = FALSE
-	return .
+		return FALSE
 
 /datum/discipline_power/serpentis/the_eyes_of_the_serpent/activate(mob/living/target)
 	. = ..()
@@ -104,11 +105,12 @@
 
 /datum/discipline_power/serpentis/the_tongue_of_the_asp/can_activate_untargeted(alert)
 	. = ..()
+	if (!.)
+		return .
 	if (owner?.is_mouth_covered())
 		if (alert)
 			to_chat(owner, span_warning("You cannot use [name] with your mouth covered!"))
-		. = FALSE
-	return .
+		return FALSE
 
 /datum/discipline_power/serpentis/the_tongue_of_the_asp/pre_activation_checks(mob/living/target)
 	. = ..()
@@ -179,6 +181,7 @@
 	check_flags = DISC_CHECK_IMMOBILE | DISC_CHECK_CAPABLE | DISC_CHECK_LYING
 	vitae_cost = 1
 	violates_masquerade = TRUE
+	deactivcation_violates_masquerade = TRUE
 	cancelable = TRUE
 	toggled = TRUE
 	duration_length = 0
@@ -187,9 +190,11 @@
 
 /datum/discipline_power/serpentis/the_form_of_the_cobra/pre_activation_checks()
 	. = ..()
-	if(do_after(owner, 4 SECONDS))
+	#warn "the change is automatic, but takes three turns" hrm...
+	if(do_after(owner, 3 FAST_TURNS, timed_action_flags = IGNORE_USER_LOC_CHANGE, interaction_key = disc_interaction_key))
 		return TRUE
 	else
+		to_chat(owner, span_warning("You are unable to transform!"))
 		return FALSE
 
 /datum/discipline_power/serpentis/the_form_of_the_cobra/activate()
@@ -205,11 +210,11 @@
 
 /datum/discipline_power/serpentis/the_form_of_the_cobra/deactivate()
 	UnregisterSignal(owner, COMSIG_LIVING_RETURNED_FROM_SHAPESHIFT)
-	. = ..()
 	cobra_form.Remove(owner)
 	QDEL_NULL(cobra_form)
-	owner.Stun(1.5 SECONDS)
-	owner.do_jitter_animation(3 SECONDS)
+	. = ..()
+	owner.Immobilize(1 FAST_TURNS)
+	owner.do_jitter_animation(1 FAST_TURNS)
 
 /datum/action/cooldown/spell/shapeshift/cobra
 	name = "Cobra"
@@ -223,8 +228,11 @@
 	cooldown_time = 5 SECONDS
 	revert_on_death = TRUE
 	die_with_shapeshifted_form = FALSE
-	possible_shapes = list(/mob/living/basic/cobra,
-	/mob/living/basic/cobra/typhon)
+	owner_has_control = TRUE
+	possible_shapes = list(
+		/mob/living/basic/cobra,
+		/mob/living/basic/cobra/typhon
+	)
 
 /mob/living/basic/cobra
 	name = "cobra form"
