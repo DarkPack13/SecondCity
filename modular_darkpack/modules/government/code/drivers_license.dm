@@ -24,7 +24,7 @@
 	if(!owner)
 		return
 
-	var/id_examine = span_slightly_larger(separator_hr("You examine [src]...</em>"))
+	var/id_examine = span_slightly_larger(separator_hr("You examine [src]..."))
 	id_examine += "<div class='img_by_text_container'>"
 	id_examine += "[icon2html(get_owner_id_photo(), user, extra_classes = "hugeicon")]"
 	id_examine += "<div class='img_text'>"
