@@ -22,11 +22,15 @@
 	icon = 'modular_darkpack/modules/decor/icons/smallcontainers.dmi'
 	icon_state = "random_container"
 	abstract_type = /obj/structure/shipping_container/darkpack
+	taint_wyrm = 1
+	taint_weaver = 1
 
 /obj/structure/shipping_container/darkpack/endron
 	name = "\improper Endron shipping container"
 	desc = "A standard-measure shipping container for bulk transport of goods. This one is marked with Endron branding."
 	icon_state = "endron1"
+	brand = "endron"
+	taint_wyrm = 2
 
 /obj/structure/shipping_container/darkpack/endron/alt
 	icon_state = "endron2"
@@ -40,11 +44,15 @@
 	name = "\improper Magadon shipping container"
 	desc = "A standard-measure shipping container for bulk transport of goods. This one is marked with Magadon Pharmaceuticals branding."
 	icon_state = "magadon"
+	taint_wyrm = 2
+	brand = "magadon"
 
 /obj/structure/shipping_container/darkpack/kings
 	name = "\improper Kings Breweries shipping container"
 	desc = "A standard-measure shipping container for bulk transport of goods. This one is marked with Kings Breweries branding."
 	icon_state = "kings1"
+	taint_wyrm = 2
+	brand = "king"
 
 /obj/structure/shipping_container/darkpack/kings/alt
 	icon_state = "kings2"
@@ -53,16 +61,22 @@
 	name = "\improper Avalon Incorporated shipping container"
 	desc = "A standard-measure shipping container for bulk transport of goods. This one is marked with Avalon Incorporated branding."
 	icon_state = "avalon"
+	taint_wyrm = 2
+	brand = "avalon"
 
 /obj/structure/shipping_container/darkpack/tellus
 	name = "\improper Tellus Enterprises shipping container"
 	desc = "A standard-measure shipping container for bulk transport of goods. This one is marked with Tellus Enterprises branding."
 	icon_state = "tellus"
+	taint_wyrm = 2
+	brand = "tellus"
 
 /obj/structure/shipping_container/darkpack/otolleys
 	name = "\improper O'Tolley's shipping container"
 	desc = "A standard-measure shipping container for bulk transport of goods. This one is marked with O'Tolley's branding."
 	icon_state = "otolleys"
+	taint_wyrm = 2
+	brand = "otolleys"
 
 // I just made these up because I needed some filler containers.
 /obj/structure/shipping_container/darkpack/gateway

@@ -25,6 +25,7 @@
 	name = "\improper First team boots"
 	desc = "Pitch-black boots with hard, industrial laces."
 	armor_type = /datum/armor/shoes_jackboots
+	taint_wyrm = 10 // REEKS of the wyrm
 
 //------------GLOVES------------
 
@@ -41,6 +42,7 @@
 	desc = "Provides protection from the good, the bad and the ugly."
 	body_parts_covered = HANDS
 	armor_type = /datum/armor/gloves_combat
+	taint_wyrm = 10 // REEKS of the wyrm
 
 //------------HELMET------------
 
@@ -60,6 +62,8 @@
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	brand = "pentex"
+	taint_wyrm = 10 // REEKS of the wyrm
+
 //------------ARMOR------------
 
 /obj/item/clothing/suit/vampire/darkpack_ert
@@ -92,6 +96,7 @@
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	clothing_traits = list(TRAIT_BRAWLING_KNOCKDOWN_BLOCKED)
 	brand = "pentex"
+	taint_wyrm = 10 // REEKS of the wyrm
 
 //------------SUIT------------
 
@@ -115,6 +120,7 @@
 	desc = "A completely blacked out uniform with a large '1' symbol sewn onto the shoulder-pad."
 	armor_type = /datum/armor/clothing_under/security_head_of_security
 	brand = "pentex"
+	taint_wyrm = 10 // REEKS of the wyrm
 
 //------------Glasses------------
 
@@ -129,7 +135,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/ert/icons/onfloor.dmi')
 	icon_state = "556box-bale"
 	ammo_type = /obj/item/ammo_casing/vampire/c556mm/bale
-
+	taint_wyrm = 4
 /obj/item/ammo_casing/vampire/c556mm/bale
 	name = "green 5.56mm bullet casing"
 	desc = "A modified 5.56mm bullet casing."
@@ -139,6 +145,7 @@
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/ert/icons/onfloor.dmi')
 	icon_state = "b556"
 	base_icon_state = "b556"
+	taint_wyrm = 1
 
 /obj/projectile/bullet/darkpack/vamp556mm/bale
 	armour_penetration = 50
@@ -217,6 +224,7 @@
 	max_ammo = 30
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 //	brand = "fullforce" // TODO: implement the rest of the non-top 21 pentex subsids
+	taint_wyrm = 7
 
 /obj/item/ammo_box/magazine/darkpack/px249f
 	name = "\improper PX249F box magazine (5.56mm)"
@@ -231,6 +239,7 @@
 	max_ammo = 200
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 //	brand = "fullforce" // TODO: implement the rest of the non-top 21 pentex subsids
+	taint_wyrm = 4
 
 /obj/item/ammo_box/magazine/internal/px12r
 	name = "shotgun internal magazine"
@@ -308,6 +317,7 @@
 	fire_sound = 'modular_darkpack/modules/ert/sounds/silenced_rifle.ogg'
 	masquerade_violating = TRUE
 //	brand = "fullforce" // TODO: implement the rest of the non-top 21 pentex subsids
+	taint_wyrm = 7
 
 /obj/item/gun/ballistic/automatic/darkpack/px66f/Initialize(mapload)
 	. = ..()
@@ -337,6 +347,7 @@
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
 //	brand = "fullforce" // TODO: implement the rest of the non-top 21 pentex subsids
+	taint_wyrm = 7
 
 /obj/item/gun/ballistic/automatic/l6_saw/darkpack
 	name = "\improper PX249F Light Machine Gun"
@@ -361,6 +372,7 @@
 	fire_sound = 'modular_darkpack/modules/ert/sounds/m249fire.ogg'
 	rack_sound = 'modular_darkpack/modules/ert/sounds/m249rack.ogg'
 //	brand = "fullforce" // TODO: implement the rest of the non-top 21 pentex subsids
+	taint_wyrm = 9
 
 /obj/item/gun/ballistic/automatic/l6_saw/darkpack/update_icon_state()
 	. = ..()

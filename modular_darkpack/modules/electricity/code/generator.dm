@@ -13,6 +13,7 @@
 	var/last_sound_played = 0
 //	var/fuel_remain = 1000
 	COOLDOWN_DECLARE(generator_cooldown)
+	taint_weaver = 3
 
 /obj/warehouse_generator/proc/start_on(mob/user)
 	switching_on = TRUE

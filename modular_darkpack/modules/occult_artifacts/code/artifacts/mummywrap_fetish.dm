@@ -4,6 +4,7 @@
 	icon_state = "m_fetish"
 	var/last_regen = 0
 	research_value = 10
+	taint_wyld = 5
 
 /obj/item/occult_artifact/vampire/mummywrap_fetish/process(seconds_per_tick)
 	. = ..()

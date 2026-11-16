@@ -20,6 +20,7 @@
 	custom_materials = list(/datum/material/silver = (2 * SHEET_MATERIAL_AMOUNT))
 	rank = 4
 	spirit_type = SPIRIT_VENGEANCE
+	taint_wyld = 3
 	var/stirred_spirit = FALSE
 	var/silver_damage = 2
 	var/awakened_force = 3 LETHAL_TTRPG_DAMAGE

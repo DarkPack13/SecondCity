@@ -3,6 +3,8 @@
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "canal1"
 	footstep = FOOTSTEP_FLOOR
+	taint_wyrm = 1
+	taint_weaver = 2
 
 /turf/open/floor/plating/canal/Enter(atom/movable/mover, atom/oldloc)
 	. = ..()
@@ -44,6 +46,8 @@
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
 	icon_state = "shit"
 	fishing_datum = /datum/fish_source/sewer
+	taint_wyrm = 2
+	taint_weaver = 3
 
 /turf/open/water/vamp_sewer/Initialize(mapload)
 	. = ..()

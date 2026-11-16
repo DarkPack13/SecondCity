@@ -28,12 +28,15 @@
 
 /obj/darkpack_car/rand/camarilla
 	access = LOCKACCESS_CAMARILLA
+	taint_wyrm = 2
 
 /obj/darkpack_car/retro/rand/camarilla
 	access = LOCKACCESS_CAMARILLA
+	taint_wyrm = 2
 
 /obj/darkpack_car/retro/rand/voivodate
 	access = "voivodate_citizen"
+	taint_wyrm = 3
 
 /obj/darkpack_car/rand/anarch
 	access = LOCKACCESS_ANARCH
@@ -56,12 +59,15 @@
 /obj/darkpack_car/limousine/giovanni
 	icon_state = "giolimo"
 	access = LOCKACCESS_GIOVANNI
+	taint_wyrm = 2
 
 /obj/darkpack_car/limousine/camarilla
 	access = LOCKACCESS_CAMARILLA
+	taint_wyrm = 2
 
 /obj/darkpack_car/limousine/voivodate
 	access = "seer_voivodate"
+	taint_wyrm = 2
 
 /obj/darkpack_car/police
 	icon_state = "police"
@@ -88,6 +94,7 @@
 	access = LOCKACCESS_PARK_RANGER
 	primary_light_color = "#ffa500"
 	secondary_light_color = "#ff8c00"
+	taint_wyld = 1
 
 /obj/darkpack_car/police/unmarked
 	icon_state = "unmarked"
@@ -135,9 +142,11 @@
 	icon_state = "endron"
 	max_passengers = 4
 	access = LOCKACCESS_PENTEX
+	taint_wyrm = 3
 
 /obj/darkpack_car/endrontruck
 	icon_state = "endrontruck"
 	max_passengers = 6
 	access = LOCKACCESS_PENTEX
 	car_storage_type = /datum/storage/car/truck
+	taint_wyrm = 3

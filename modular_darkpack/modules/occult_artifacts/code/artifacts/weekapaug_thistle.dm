@@ -7,6 +7,7 @@
 	true_desc = "Increases combat defense."
 	icon_state = "w_thistle"
 	research_value = 10
+	taint_wyrm = 2
 
 /obj/item/occult_artifact/vampire/weekapaug_thistle/grant_powers()
 	. = ..()

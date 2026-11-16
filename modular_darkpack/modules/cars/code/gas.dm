@@ -25,6 +25,7 @@
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/lefthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	var/stored_gasoline = 0
+	taint_wyrm = 1
 
 /obj/item/gas_can/examine(mob/user)
 	. = ..()

@@ -11,6 +11,7 @@
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+	taint_weaver = 4
 	// Who owns this phone on initialization?
 	var/datum/weakref/owner_weakref
 	// There's a radio in my phone that calls me stud muffin.
