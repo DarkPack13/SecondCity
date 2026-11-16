@@ -25,7 +25,7 @@
 	else
 		to_chat(src, span_bolddanger("FRENZY."))
 		src.balloon_alert(src, "frenzy!")
-		if(get_kindred_splat(src) && (source != "Manual Frenzy"))	//Technically someone naming themself "Manual Frenzy" would protect them from aggro grabs, but oh well.
+		if(get_kindred_splat(src) && (source != "Manual"))	//Would someone naming themself "Manual" would protect them from aggro grabs if they're the source?
 			apply_status_effect(/datum/status_effect/frenzy/vampire_hunger, target)
 		else
 			apply_status_effect(/datum/status_effect/frenzy, target)
