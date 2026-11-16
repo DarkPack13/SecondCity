@@ -599,7 +599,7 @@
 	else
 		try_deactivate(target)
 
-	owner.update_action_buttons()
+	owner.update_mob_action_buttons()
 
 /**
  * Overridable proc called by the cooldown timer to handle
@@ -607,7 +607,7 @@
  * visibly available again.
  */
 /datum/discipline_power/proc/cooldown_expire()
-	owner.update_action_buttons()
+	owner.update_mob_action_buttons()
 
 /**
  * Overridable proc called by try_deactivate() to make sure that
@@ -759,6 +759,8 @@
 
 	if(active)
 		do_masquerade_violation(target)
+
+	owner.update_mob_action_buttons()
 
 /**
  * Overridable proc that allows for extra modular code
