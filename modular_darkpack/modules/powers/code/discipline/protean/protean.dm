@@ -152,7 +152,7 @@
 //SHAPE OF THE BEAST
 /datum/discipline_power/protean/shape_of_the_beast
 	name = "Shape of the Beast"
-	desc = "Assume the form of an animal and retain your power."
+	desc = "Assume the form of an animal and retain your power. You can activate twice to skip the timer at the cost of an extra blood point."
 
 	level = 4
 
