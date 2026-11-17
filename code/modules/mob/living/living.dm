@@ -471,6 +471,18 @@
 				var/mob/living/carbon/C = L
 				if(HAS_TRAIT(src, TRAIT_STRONG_GRABBER))
 					C.grabbedby(src)
+					if(has_status_effect(/datum/status_effect/frenzy/vampire_hunger))	//DARKPACK EDIT ADD: hunger frenzy vampires automatically bite someone upon grabbing.
+						if(wear_mask)
+							var/obj/item/worn_mask = target.wear_mask
+							dropItemToGround(worn_mask)
+						vamp_bite()
+
+
+	if(target.wear_mask)
+		var/obj/item/worn_mask = target.wear_mask
+		if(target.dropItemToGround(worn_mask))
+			target.visible_message(span_danger("[src] tears [worn_mask] off of [target]'s face!"), \
+								span_userdanger("[src] tears [worn_mask] off of your face!"))
 
 			update_pull_movespeed()
 
