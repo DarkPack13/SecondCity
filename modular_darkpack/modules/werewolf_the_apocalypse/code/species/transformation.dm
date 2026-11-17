@@ -71,8 +71,9 @@
 
 	// owner.Stun(time_to_transform, ignore_canstun = TRUE)
 
-	for(var/obj/item/clothing/equipped in owner.get_equipped_items(INCLUDE_ABSTRACT))
-		equipped.take_damage(rand(25, 50), sound_effect = FALSE)
+	if(!HAS_TRAIT(owner, TRAIT_RITE_OF_TALISMAN_DEDICATION)) // Melds dedicated equipment into form, clothing is not damaged.
+		for(var/obj/item/clothing/equipped in owner.get_equipped_items(INCLUDE_ABSTRACT))
+			equipped.take_damage(rand(25, 50), sound_effect = FALSE)
 
 	var/matrix/ntransform = matrix(owner.transform)
 	ntransform.Scale(1.1, 1.1)
@@ -105,14 +106,19 @@
 /datum/splat/werewolf/shifter/proc/transform_finish(form_to_transform, time_taken = DOGGY_ANIMATION_TIME)
 	animate(owner, transform = null, color = "#FFFFFF", time = time_taken * 0.1)
 
+	var/datum/species/new_form = form_to_transform
+	if(HAS_TRAIT(owner, TRAIT_RITE_OF_TALISMAN_DEDICATION) && initial(new_form.no_equip_flags))
+		stash_dedicated_items()
+
 	// Hacky fix for angle getting messed up when transforming into a human while resting
 	if (owner.body_position == LYING_DOWN && ispath(form_to_transform, /datum/species/human/shifter/homid))
 		var/previous_angle = owner.set_lying_angle(0)
 		owner.set_species(form_to_transform)
 		owner.set_lying_angle(previous_angle)
-		return
+	else
+		owner.set_species(form_to_transform)
 
-	owner.set_species(form_to_transform)
+	restore_dedicated_items() // no effect if stash is empty
 
 /datum/splat/werewolf/shifter/proc/is_breed_form()
 	if(!owner?.dna)
