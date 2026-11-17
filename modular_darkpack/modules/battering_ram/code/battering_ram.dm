@@ -20,7 +20,7 @@
 		force_unwielded = 5,
 		force_wielded = 20,
 		require_twohands = TRUE,
-		icon_wielded = base_icon_state,
+		update_icon_state = FALSE
 	)
 
 #define BATTERING_INTERACTION_KEY "battering_key"
