@@ -13,7 +13,6 @@ GLOBAL_LIST_INIT(rare_discipline_types, list(
 	/datum/discipline/melpominee,
 	/datum/discipline/mytherceria,
 	/datum/discipline/visceratika,
-	/datum/discipline/protean,
 	/datum/discipline/thanatosis,
 	/datum/discipline/vicissitude,
 ))
