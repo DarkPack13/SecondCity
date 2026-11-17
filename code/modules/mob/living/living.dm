@@ -477,15 +477,6 @@
 							dropItemToGround(worn_mask)
 						vamp_bite()
 
-
-	if(target.wear_mask)
-		var/obj/item/worn_mask = target.wear_mask
-		if(target.dropItemToGround(worn_mask))
-			target.visible_message(span_danger("[src] tears [worn_mask] off of [target]'s face!"), \
-								span_userdanger("[src] tears [worn_mask] off of your face!"))
-
-			update_pull_movespeed()
-
 		set_pull_offsets(M, state)
 		return TRUE
 
