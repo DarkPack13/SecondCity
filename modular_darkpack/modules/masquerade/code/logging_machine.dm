@@ -60,7 +60,7 @@
 	log_save_cache += saved_logs
 	var/pages_to_print = length(log_save_cache) / MAX_PAGE_LINES
 	var/clearing_stats = user.st_get_stat(STAT_TECHNOLOGY) + user.st_get_stat(STAT_INTELLIGENCE)
-	var/clearing_time = (1.5 - (clearing_stats / 5)) SECONDS
+	var/clearing_time = max((1.5 - (clearing_stats / 5)) SECONDS, 0.1 SECONDS)
 	for(var/page in 1 to ceil(pages_to_print))
 		if(!do_after(user, clearing_time, src))
 			break

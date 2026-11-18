@@ -1,7 +1,3 @@
-/obj/machinery/camera/Destroy(force)
-	SEND_SIGNAL(src, COMSIG_ALL_MASQUERADE_REINFORCE)
-	return ..()
-
 /obj/machinery/camera/on_observed_violation(atom/source, atom/movable/player_breacher)
 	if(!can_use())
 		return

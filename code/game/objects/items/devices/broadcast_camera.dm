@@ -86,11 +86,9 @@
 	active = TRUE
 	update_icon_state()
 
-	//DARKPACK EDIT START
 	/// The carbon who wielded the camera, allegedly
-	wielding_carbon = loc
-	wielding_carbon.toggle_masquerade_sensitivity(TRUE)	//Broadcast cameras masquerade breach.
-	//DARKPACK EDIT END
+	wielding_carbon = loc // DARKPACK EDIT CHANGE - Broadcast cameras masquerade breach - ORIGINAL: var/mob/living/carbon/wielding_carbon = loc
+	wielding_carbon.toggle_masquerade_sensitivity(TRUE) // DARKPACK EDIT ADD - Broadcast cameras masquerade breach
 
 	// INTERNAL CAMERA
 	internal_camera = new(wielding_carbon) // Cameras for some reason do not work inside of obj's
@@ -118,8 +116,10 @@
 
 	stop_broadcasting_network(camera_networks)
 
-
-	wielding_carbon.toggle_masquerade_sensitivity(FALSE)	//DARKPACK EDIT ADD - Broadcast cameras masquerade breach.
+	// DARKPACK EDIT ADD START - Broadcast cameras masquerade breach
+	wielding_carbon?.toggle_masquerade_sensitivity(FALSE)
+	wielding_carbon = null
+	// DARKPACK EDIT ADD END - Broadcast cameras masquerade breach
 
 	set_light_on(FALSE)
 	playsound(source = src, soundin = 'sound/machines/terminal/terminal_prompt_deny.ogg', vol = 20, vary = FALSE, ignore_walls = FALSE)
