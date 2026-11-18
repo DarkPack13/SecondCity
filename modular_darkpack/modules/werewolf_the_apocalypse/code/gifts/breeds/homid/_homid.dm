@@ -91,7 +91,7 @@
 		return FALSE
 
 	. = ..()
-	if(!do_after(owner, 1 TURNS))
+	if(!do_after(owner, 1 FAST_TURNS, interaction_key = DOAFTER_SOURCE_GENERIC_ACTION))
 		return
 
 	var/datum/storyteller_roll/gift/apecrafts_blessings/roll_datum = new()

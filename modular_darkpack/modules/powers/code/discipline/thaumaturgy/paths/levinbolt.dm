@@ -295,7 +295,7 @@
 	electric_halo = electric_halo || mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
 	owner.add_overlay(electric_halo)
 
-	if(do_after(owner, 3 SECONDS, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_HELD_ITEM)))
+	if(do_after(owner, 1 FAST_TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_HELD_ITEM), interaction_key = disc_interaction_key))
 		if(get_dist(owner, target) <= range)
 			execute_zeus_fury(target)
 		else

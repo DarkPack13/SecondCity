@@ -44,11 +44,9 @@
 
 	var/datum/storyteller_roll/bloodheal/bloodheal_roll
 
-#define BLOODHEAL_INTERACTION_KEY "bloodheal_key"
-
 /datum/discipline_power/bloodheal/pre_activation_checks(atom/target)
 	. = ..()
-	if(do_after(owner, 1 TURNS, timed_action_flags = DO_AFTER_CHECK_NEXT_MOVE | IGNORE_INCAPACITATED, interaction_key = BLOODHEAL_INTERACTION_KEY))
+	if(do_after(owner, 1 TURNS, timed_action_flags = DO_AFTER_CHECK_NEXT_MOVE | IGNORE_INCAPACITATED, interaction_key = disc_interaction_key))
 		return TRUE
 	if(!bloodheal_roll)
 		bloodheal_roll = new()
@@ -66,8 +64,6 @@
 			owner.adjust_blood_pool(-1)
 			owner.apply_damage(1 TTRPG_DAMAGE, BRUTE)
 			return FALSE
-
-#undef BLOODHEAL_INTERACTION_KEY
 
 /datum/discipline_power/bloodheal/activate()
 	. = ..()
