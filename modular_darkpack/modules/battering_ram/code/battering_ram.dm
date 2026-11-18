@@ -15,12 +15,11 @@
 
 /obj/item/battering_ram/Initialize(mapload)
 	. = ..()
-	AddComponent(
-		/datum/component/two_handed,
-		force_unwielded = 5,
-		force_wielded = 20,
-		require_twohands = TRUE,
-		update_icon_state = FALSE
+	AddComponent(/datum/component/two_handed, \
+		force_unwielded = 5, \
+		force_wielded = 20, \
+		require_twohands = TRUE, \
+		update_icon_state = FALSE, \
 	)
 
 #define BATTERING_INTERACTION_KEY "battering_key"
