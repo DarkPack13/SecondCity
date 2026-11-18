@@ -12,11 +12,17 @@
 	clothing_traits = list(TRAIT_TIME_SENSE)
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	custom_price = 20 // ECONOMY
+	maptext_width = 48
+	maptext_x = -6
 
 /obj/item/clothing/watch/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/readable_time)
 
-/obj/item/clothing/watch/attack_hand(mob/user, list/modifiers)
+/obj/item/clothing/watch/MouseEntered(location, control, params)
 	. = ..()
-	user.examinate(src)
+	maptext = MAPTEXT("<div align='center' valign='bottom'>[server_timestamp("hh:mm", ic_time = TRUE, twelve_hour_clock = TRUE)]</div>")
+
+/obj/item/clothing/watch/MouseExited()
+	. = ..()
+	maptext = null
