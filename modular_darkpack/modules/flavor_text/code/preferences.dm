@@ -1,23 +1,9 @@
 ///////////////////////////////////////////////////////////////////////////
 
-/datum/preference/text/headshot
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
-	savefile_identifier = PREFERENCE_CHARACTER
-	savefile_key = "headshot"
-	maximum_value_length = MAX_MESSAGE_LEN
-	///How much time between the informational chat messages?
-	var/cooldown_duration = 1 MINUTES
-	///Handles the informational chat message timer.
-	COOLDOWN_DECLARE(headshot_cooldown)
-	///Assoc list of ckeys and their links, used to cut down on chat spam
-	var/static/list/stored_links = list()
-	var/static/link_regex = regex("files.catbox.moe|images2.imgbox.com|i.gyazo.com")
+/proc/validate_allowed_image_url(user, value, feedback = TRUE)
+	var/static/link_regex = regex("^https://(files\\.catbox\\.moe|images2\\.imgbox\\.com|i\\.gyazo\\.com)/")
 	var/static/list/valid_extensions = list("jpg", "png", "jpeg") // Regex works fine, if you know how it works
 
-/datum/preference/text/headshot/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	target?.dna.features[EXAMINE_DNA_HEADSHOT] = value
-
-/datum/preference/text/headshot/is_valid(value)
 	if(!length(value))
 		return TRUE
 
@@ -37,10 +23,28 @@
 		to_chat(usr, span_warning("The image must be one of the following extensions: '[english_list(valid_extensions)]'"))
 		return
 
-	find_index = findtext(value, link_regex)
-	if(find_index != 9)
+	if(findtext(value, link_regex) != 1)
 		to_chat(usr, span_warning("The image must be hosted on one of the following sites: 'Gyazo (i.gyazo.com), Catbox (catbox.moe), Imgbox (images2.imgbox.com)'"))
-		return
+		return FALSE
+
+/datum/preference/text/headshot
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "headshot"
+	maximum_value_length = MAX_MESSAGE_LEN
+	///How much time between the informational chat messages?
+	var/cooldown_duration = 1 MINUTES
+	///Handles the informational chat message timer.
+	COOLDOWN_DECLARE(headshot_cooldown)
+	///Assoc list of ckeys and their links, used to cut down on chat spam
+	var/static/list/stored_links = list()
+
+/datum/preference/text/headshot/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	target?.dna.features[EXAMINE_DNA_HEADSHOT] = value
+
+/datum/preference/text/headshot/is_valid(value)
+	if(!validate_allowed_image_url(usr, value))
+		return FALSE
 
 	if(stored_links[usr.ckey] && stored_links[usr.ckey][type] != value && COOLDOWN_FINISHED(src, headshot_cooldown))
 		COOLDOWN_START(src, headshot_cooldown, cooldown_duration)
