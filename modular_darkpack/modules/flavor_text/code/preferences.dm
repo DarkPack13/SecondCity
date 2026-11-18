@@ -5,27 +5,29 @@
 	var/static/list/valid_extensions = list("jpg", "png", "jpeg") // Regex works fine, if you know how it works
 
 	if(!length(value))
-		return TRUE
+		return FALSE
 
 	var/find_index = findtext(value, "https://")
 	if(find_index != 1)
 		to_chat(usr, span_warning("Your link must be https!"))
-		return
+		return FALSE
 
 	if(!findtext(value, "."))
 		to_chat(usr, span_warning("Invalid link!"))
-		return
+		return FALSE
 	var/list/value_split = splittext(value, ".")
 
 	// extension will always be the last entry
 	var/extension = value_split[length(value_split)]
 	if(!(LOWER_TEXT(extension) in valid_extensions))
 		to_chat(usr, span_warning("The image must be one of the following extensions: '[english_list(valid_extensions)]'"))
-		return
+		return FALSE
 
 	if(findtext(value, link_regex) != 1)
 		to_chat(usr, span_warning("The image must be hosted on one of the following sites: 'Gyazo (i.gyazo.com), Catbox (catbox.moe), Imgbox (images2.imgbox.com)'"))
 		return FALSE
+
+	return TRUE
 
 /datum/preference/text/headshot
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
@@ -43,6 +45,9 @@
 	target?.dna.features[EXAMINE_DNA_HEADSHOT] = value
 
 /datum/preference/text/headshot/is_valid(value)
+	if(!length(value))
+		return TRUE // We do the opposite in validate_allowed_image_url but a user should be able to clear there headshot if they so please.
+
 	if(!validate_allowed_image_url(usr, value))
 		return FALSE
 
