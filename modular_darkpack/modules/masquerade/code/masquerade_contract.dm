@@ -52,6 +52,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 	armor_type = /datum/armor/masquerade_contract
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+	maptext_width = 48
+	maptext_x = -6
 
 /obj/item/veil_contract/Initialize(mapload)
 	. = ..()
@@ -59,6 +61,8 @@
 
 /obj/item/veil_contract/MouseEntered(location, control, params)
 	. = ..()
+	if(!(item_flags & IN_INVENTORY))
+		return
 	maptext = MAPTEXT("<div align='center' valign='bottom'>[server_timestamp("hh:mm", ic_time = TRUE, twelve_hour_clock = TRUE)]</div>")
 
 /obj/item/veil_contract/MouseExited()

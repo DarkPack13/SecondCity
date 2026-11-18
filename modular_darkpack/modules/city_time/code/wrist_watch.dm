@@ -25,6 +25,8 @@
 
 /obj/item/clothing/watch/MouseEntered(location, control, params)
 	. = ..()
+	if(!(item_flags & IN_INVENTORY))
+		return
 	maptext = MAPTEXT("<div align='center' valign='bottom'>[server_timestamp("hh:mm", ic_time = TRUE, twelve_hour_clock = TRUE)]</div>")
 
 /obj/item/clothing/watch/MouseExited()
