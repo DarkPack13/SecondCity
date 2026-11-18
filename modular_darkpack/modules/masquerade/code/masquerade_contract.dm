@@ -57,6 +57,14 @@
 	. = ..()
 	AddElement(/datum/element/readable_time)
 
+/obj/item/veil_contract/MouseEntered(location, control, params)
+	. = ..()
+	maptext = MAPTEXT("<div align='center' valign='bottom'>[server_timestamp("hh:mm", ic_time = TRUE, twelve_hour_clock = TRUE)]</div>")
+
+/obj/item/veil_contract/MouseExited()
+	. = ..()
+	maptext = null
+
 /obj/item/veil_contract/attack_self(mob/user, modifiers)
 	. = ..()
 	if(!get_werewolf_splat(user))

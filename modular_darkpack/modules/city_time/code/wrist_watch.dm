@@ -19,6 +19,10 @@
 	. = ..()
 	AddElement(/datum/element/readable_time)
 
+/obj/item/clothing/watch/attack_self(mob/user, list/modifiers)
+	. = ..()
+	user.examinate(src)
+
 /obj/item/clothing/watch/MouseEntered(location, control, params)
 	. = ..()
 	maptext = MAPTEXT("<div align='center' valign='bottom'>[server_timestamp("hh:mm", ic_time = TRUE, twelve_hour_clock = TRUE)]</div>")
