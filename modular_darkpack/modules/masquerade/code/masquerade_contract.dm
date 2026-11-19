@@ -52,8 +52,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 	armor_type = /datum/armor/masquerade_contract
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	maptext_width = 48
-	maptext_x = -6
+	maptext_width = 40
+	maptext_x = -4
 
 /obj/item/veil_contract/Initialize(mapload)
 	. = ..()
@@ -61,9 +61,9 @@
 
 /obj/item/veil_contract/MouseEntered(location, control, params)
 	. = ..()
-	if(!(item_flags & IN_INVENTORY))
-		return
-	maptext = MAPTEXT("<div align='center' valign='bottom'>[server_timestamp("hh:mm", ic_time = TRUE, twelve_hour_clock = TRUE)]</div>")
+	if(((get(src, /mob) == usr) || loc?.atom_storage || (item_flags & IN_STORAGE)) && !QDELETED(src)) //nullspace exists.
+		var/mob/L = usr
+		maptext = MAPTEXT("<div align='center' valign='bottom'>[server_timestamp("hh:mm", ic_time = TRUE, twelve_hour_clock = L.client?.prefs.read_preference(/datum/preference/toggle/twelve_hour))]</div>")
 
 /obj/item/veil_contract/MouseExited()
 	. = ..()

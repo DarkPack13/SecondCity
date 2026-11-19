@@ -12,8 +12,8 @@
 	clothing_traits = list(TRAIT_TIME_SENSE)
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/deprecated/icons/onfloor.dmi')
 	custom_price = 20 // ECONOMY
-	maptext_width = 48
-	maptext_x = -6
+	maptext_width = 40
+	maptext_x = -4
 
 /obj/item/clothing/watch/Initialize(mapload)
 	. = ..()
@@ -25,9 +25,9 @@
 
 /obj/item/clothing/watch/MouseEntered(location, control, params)
 	. = ..()
-	if(!(item_flags & IN_INVENTORY))
-		return
-	maptext = MAPTEXT("<div align='center' valign='bottom'>[server_timestamp("hh:mm", ic_time = TRUE, twelve_hour_clock = TRUE)]</div>")
+	if(((get(src, /mob) == usr) || loc?.atom_storage || (item_flags & IN_STORAGE)) && !QDELETED(src)) //nullspace exists.
+		var/mob/L = usr
+		maptext = MAPTEXT("<div align='center' valign='bottom'>[server_timestamp("hh:mm", ic_time = TRUE, twelve_hour_clock = L.client?.prefs.read_preference(/datum/preference/toggle/twelve_hour))]</div>")
 
 /obj/item/clothing/watch/MouseExited()
 	. = ..()
