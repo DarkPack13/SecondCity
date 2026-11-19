@@ -240,13 +240,13 @@
 		return
 	if(!character_appearance)
 		return new /icon()
-	//var/obj/item/photo/existing_photo = LAZYACCESS(record_photos, field_name) // CRIMSON EDIT REMOVAL - CLETS
-	// CRIMSON EDIT ADD START - CLETS
+	//var/obj/item/photo/existing_photo = LAZYACCESS(record_photos, field_name) // DARKPACK EDIT REMOVAL - CLETS
+	// DARKPACK EDIT ADD START - CLETS
 	var/photo_name = "[field_name][with_height_chart ? "_height_chart" : ""]"
 	var/obj/item/photo/existing_photo = LAZYACCESS(record_photos, photo_name)
-	// CRIMSON EDIT ADD END - CLETS
+	// DARKPACK EDIT ADD END - CLETS
 	if(!existing_photo)
-		existing_photo = make_photo(field_name, orientation, with_height_chart) // CRIMSON EDIT - ORIGINAL:		existing_photo = make_photo(field_name, orientation)
+		existing_photo = make_photo(field_name, orientation, with_height_chart) // DARKPACK EDIT - ORIGINAL:		existing_photo = make_photo(field_name, orientation)
 	return existing_photo
 
 /**
@@ -258,7 +258,7 @@
 /datum/record/crew/proc/make_photo(field_name, orientation, add_height_chart)
 	var/icon/picture_image
 	if(!isicon(character_appearance))
-		var/mutable_appearance/appearance = new(character_appearance) // CRIMSON EDIT - ORIGINAL: var/mutable_appearance/appearance = character_appearance
+		var/mutable_appearance/appearance = new(character_appearance) // DARKPACK EDIT - ORIGINAL: var/mutable_appearance/appearance = character_appearance
 		appearance.setDir(orientation)
 		if(add_height_chart)
 			appearance.underlays += mutable_appearance('icons/obj/machines/photobooth.dmi', "height_chart", alpha = 125, appearance_flags = RESET_ALPHA|RESET_COLOR|RESET_TRANSFORM|KEEP_APART)

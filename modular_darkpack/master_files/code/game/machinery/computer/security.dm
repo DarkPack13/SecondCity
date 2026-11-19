@@ -9,7 +9,6 @@
 /datum/memory/key/police_login/get_names()
 	return list("My login information for the CLETS computer network.")
 
-/// Secure login
 /obj/machinery/computer/records/security/allowed(mob/accessor)
 	var/list/user_memories = accessor.mind?.memories
 	if(user_memories && user_memories[/datum/memory/key/police_login])

@@ -32,11 +32,9 @@
 		JOB_EMERGENCY_DISPATCHER
 	)
 
-// DARKPACK EDIT START - Security console and records
 /datum/job/vampire/police_sergeant/after_spawn(mob/living/spawned, client/player_client)
 	. = ..()
 	spawned.add_mob_memory(/datum/memory/key/police_login)
-// DARKPACK END
 
 /datum/outfit/job/vampire/police_sergeant
 	name = JOB_POLICE_SERGEANT

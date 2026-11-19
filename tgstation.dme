@@ -7332,6 +7332,7 @@
 #include "modular_darkpack\master_files\code\game\atoms_movable.dm"
 #include "modular_darkpack\master_files\code\game\area\areas.dm"
 #include "modular_darkpack\master_files\code\game\atom\atom_examine.dm"
+#include "modular_darkpack\master_files\code\game\machinery\computer\security.dm"
 #include "modular_darkpack\master_files\code\game\objects\items.dm"
 #include "modular_darkpack\master_files\code\game\objects\objs.dm"
 #include "modular_darkpack\master_files\code\game\objects\structures.dm"
@@ -8407,5 +8408,4 @@
 #include "modular_darkpack\modules\z_travel\code\helpers.dm"
 #include "modular_darkpack\modules\z_travel\code\manhole.dm"
 #include "modular_darkpack\modules\z_travel\code\transfer_point.dm"
-#include "modular_vcg\master_files\code\game\machinery\computer\records\security.dm"
 // END_INCLUDE

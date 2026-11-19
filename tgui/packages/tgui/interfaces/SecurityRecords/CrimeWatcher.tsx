@@ -217,7 +217,7 @@ const CrimeAuthor = (props) => {
   if (!foundRecord) return;
 
   const { crew_ref } = foundRecord;
-  const { act, data } = useBackend<SecurityRecordsData>(); // CRIMSON EDIT - Original: const { act } = useBackend<SecurityRecordsData>();
+  const { act, data } = useBackend<SecurityRecordsData>(); // DARKPACK EDIT - Original: const { act } = useBackend<SecurityRecordsData>();
 
   const { max_fine } = data; // DARKPACK EDIT - Security console and records
   const [crimeName, setCrimeName] = useState('');
@@ -273,13 +273,13 @@ const CrimeAuthor = (props) => {
         />
       </Stack.Item>
       <Stack.Item color="label">
-        {/* CRIMSON EDIT START - CLETS - Original: Fine (leave blank to arrest) */}
+        {/* DARKPACK EDIT START - CLETS - Original: Fine (leave blank to arrest) */}
         Fine [Max: {max_fine}] (leave blank to arrest)
-        {/* CRIMSON EDIT END - CLETS */}
+        {/* DARKPACK EDIT END - CLETS */}
         <RestrictedInput
           fluid
           value={crimeFine}
-          maxValue={max_fine} // CRIMSON EDIT - Original: maxValue={1000}
+          maxValue={max_fine} // DARKPACK EDIT - Original: maxValue={1000}
           onChange={setCrimeFine}
           onValidationChange={setCrimeFineIsValid}
         />
