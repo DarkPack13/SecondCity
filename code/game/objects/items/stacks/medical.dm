@@ -140,6 +140,9 @@
 	if(heal_begin_sound && !continuous)
 		playsound(patient, heal_begin_sound, 75, TRUE, MEDIUM_RANGE_SOUND_EXTRARANGE)
 	if(patient == user)
+		// DARKPACK EDIT ADD START - Survival based self heal speed
+		var/survival_stat = user.st_get_stat(STAT_SURVIVAL)
+		// DARKPACK EDIT ADD END
 		if(!silent)
 			user.visible_message(
 				span_notice("[user] starts to apply [src] on [user.p_them()]self..."),
@@ -148,7 +151,7 @@
 			)
 		if(!do_after(
 			user,
-			self_delay * (auto_change_zone ? 1 : 0.9),
+			self_delay * (auto_change_zone ? 1 : 0.9) * (1 - (0.15 * survival_stat)), // DARKPACK EDIT CHANGE - ORIGINAL: self_delay * (auto_change_zone ? 1 : 0.9),
 			patient,
 			extra_checks = CALLBACK(src, PROC_REF(can_heal), patient, user, healed_zone),
 		))
