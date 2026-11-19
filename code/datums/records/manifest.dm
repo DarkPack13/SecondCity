@@ -46,7 +46,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 			misc_list[++misc_list.len] = list(
 				"name" = name,
 				"rank" = rank,
-				"trim" = job?.tgui_icon,
+				"trim" = trim,
 				)
 			continue
 		for(var/department_type in job.departments_list)
@@ -60,7 +60,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 			var/list/entry = list(
 				"name" = name,
 				"rank" = rank,
-				"trim" = job.tgui_icon,
+				"trim" = trim,
 				)
 			var/list/department_list = manifest_out[department.department_name]
 			if(istype(job, department.department_head))
@@ -147,8 +147,10 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		mind_ref = person.mind,
 	)
 
+	// DARKPACK EDIT ADD START
 	if(isnull(person_client))
 		person_client = person.client || person.canon_client
+	// DARKPACK EDIT ADD END
 
 	new /datum/record/crew(
 		age = person.age,
