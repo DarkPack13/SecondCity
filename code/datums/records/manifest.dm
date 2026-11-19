@@ -147,8 +147,10 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		mind_ref = person.mind,
 	)
 
+	// DARKPACK EDIT ADD START
 	if(isnull(person_client))
 		person_client = person.client || person.canon_client
+	// DARKPACK EDIT ADD END
 
 	new /datum/record/crew(
 		age = person.age,
