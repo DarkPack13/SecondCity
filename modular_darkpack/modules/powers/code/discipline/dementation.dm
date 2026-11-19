@@ -247,7 +247,6 @@ Methuselah.”
 	activate_sound = null // dont play a sound
 	vitae_cost = 1
 	var/datum/tgui_window/eyes_of_chaos_window
-	var/datum/weakref/owner_weakref
 
 // Filter out Exploitable Text if absent
 /datum/discipline_power/dementation/eyes_of_chaos/proc/update_choices(mob/living/carbon/human/target) as /list
@@ -277,9 +276,8 @@ Methuselah.”
 
 // Cooldown between ability usage, individual cooldown per caster
 /datum/discipline_power/dementation/eyes_of_chaos/proc/target_cooldown(mob/living/carbon/human/target)
-	owner_weakref = WEAKREF(owner)
-	ADD_TRAIT(target, TRAIT_CHAOS_EYE_COOLDOWN, owner_weakref)
-	addtimer(TRAIT_CALLBACK_REMOVE(target, TRAIT_CHAOS_EYE_COOLDOWN, owner_weakref), 5 MINUTES)
+	ADD_TRAIT(target, TRAIT_CHAOS_EYE_COOLDOWN, WEAKREF(owner))
+	addtimer(TRAIT_CALLBACK_REMOVE(target, TRAIT_CHAOS_EYE_COOLDOWN, WEAKREF(owner)), 5 MINUTES)
 	if (target != owner)
 		to_chat(owner, span_notice("[target]'s mind begins to restructure itself; it shall open to you once more within 5 minutes."))
 
@@ -964,7 +962,7 @@ Methuselah.”
 	var/mypower = SSroll.storyteller_roll_datum(owner, target, difficulty = 7, applic_stats = list(STAT_PERCEPTION, STAT_OCCULT), numerical = FALSE)
 	if (target == owner)
 		return TRUE
-	if (HAS_TRAIT_FROM(target, TRAIT_CHAOS_EYE_COOLDOWN, owner_weakref))
+	if (HAS_TRAIT_FROM(target, TRAIT_CHAOS_EYE_COOLDOWN, WEAKREF(owner)))
 		to_chat(owner, span_warning("[target]'s mind is still sealed off from you!"))
 		return FALSE
 	switch (mypower)
