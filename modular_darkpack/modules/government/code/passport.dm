@@ -2,6 +2,7 @@
 	name = "passport"
 	desc = "A book with someone's license, photo, and identifying information. Don't lose it!"
 	icon_state = "passport1"
+	base_icon_state = "passport"
 
 	/// Country of origin for the passport holder
 	var/country_of_origin = "United States"
@@ -10,16 +11,14 @@
 	. = ..()
 
 	country_of_origin = user.dna.country_of_origin
-	if(country_of_origin == "United States")
-		country_of_origin = "[user.dna.state_of_origin], [country_of_origin]"
-	icon_state = pick("passport1", "passport")
+	icon_state = pick(base_icon_state, "[base_icon_state]1")
 
 /obj/item/identification/passport/examine(mob/user)
 	. = ..()
 	if(!owner)
 		return
 
-	flick("passport0", src)
+	flick("[base_icon_state]0", src)
 	var/id_examine = span_slightly_larger(separator_hr("You examine [src]...</em>"))
 	id_examine += "<div class='img_by_text_container'>"
 	id_examine += "[icon2html(get_owner_id_photo(), user, extra_classes = "hugeicon")]"

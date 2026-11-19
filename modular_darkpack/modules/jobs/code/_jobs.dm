@@ -156,8 +156,9 @@
 	var/total_money = credit_card ? rand(credit_card.min_starting_wealth, credit_card.max_starting_wealth) : 0
 	switch(user.st_get_stat(STAT_FINANCE))
 		if(0)
-			total_money += CONFIG_GET(flag/punishing_zero_dots) ? 50 : rand(50, 100)
-			account?.paycheck_amount = 15
+			if(!CONFIG_GET(flag/punishing_zero_dots))
+				total_money += rand(50, 100)
+				account?.paycheck_amount = 15
 		if(1)
 			total_money += rand(100, 200)
 			account?.paycheck_amount = 40
@@ -212,7 +213,7 @@
 				new /obj/item/identification/drivers_license/international(wallet)
 			new /obj/item/identification/passport(wallet)
 
-	if(wallet && HAS_TRAIT(user, TRAIT_WALLET_HATER)) // Applied from "spawn_wallet" preferences
+	if(wallet && user.client?.prefs.read_preference(/datum/preference/toggle/spawn_without_wallet))
 		var/list/wallet_contents = list()
 		for(var/item in wallet.contents)
 			wallet_contents += item
