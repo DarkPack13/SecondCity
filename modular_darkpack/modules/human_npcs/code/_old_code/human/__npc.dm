@@ -100,6 +100,9 @@
 	if(country_of_origin == "Canada")
 		preference = GLOB.preference_entries[/datum/preference/choiced/province_of_origin]
 		preference.apply_to_human(src, preference.create_informed_default_value())
+	if(country_of_origin == "United Kingdom")
+		preference = GLOB.preference_entries[/datum/preference/choiced/nation_of_origin]
+		preference.apply_to_human(src, preference.create_informed_default_value())
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -235,7 +238,7 @@
 	last_grab = world.time
 
 /mob/living/carbon/human/npc/ghoulificate(mob/owner)
-	deadchat_broadcast(span_ghostalert("[owner] is ghoulificating [src]."), owner, src)
+	deadchat_broadcast(" is ghoulificating [src].", owner, src)
 
 	AddComponent(\
 		/datum/component/ghost_direct_control,\
