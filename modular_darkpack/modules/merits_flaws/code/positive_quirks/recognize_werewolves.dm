@@ -42,7 +42,6 @@
 	click_to_activate = TRUE
 	cooldown_time = 5 SECONDS
 
-	var/datum/weakref/caster_ref
 	var/mob/living/caster
 	var/mob/living/carbon/human/human_target
 
@@ -110,7 +109,7 @@
 		return TRUE
 
 	var/datum/storyteller_roll/recognize_werewolves/recognize_roll = new()
-	if (HAS_TRAIT_FROM(human_target, RECOGNIZE_WEREWOLVES_COOLDOWN, caster_ref))
+	if (HAS_TRAIT_FROM(human_target, RECOGNIZE_WEREWOLVES_COOLDOWN, WEAKREF(owner)))
 		to_chat(owner, span_warning("You can't ascertain anything else from [human_target]; you may re-investigate in a few minutes."))
 		return TRUE
 	switch (recognize_roll.st_roll(caster, human_target))
@@ -177,9 +176,8 @@
 
 /datum/action/cooldown/recognize_werewolves/proc/target_cooldown(mob/living/carbon/human/target)
 	if (human_target != owner)
-		caster_ref = WEAKREF(owner)
-		ADD_TRAIT(human_target, RECOGNIZE_WEREWOLVES_COOLDOWN, caster_ref)
-		addtimer(TRAIT_CALLBACK_REMOVE(human_target, RECOGNIZE_WEREWOLVES_COOLDOWN, caster_ref), 5 MINUTES)
+		ADD_TRAIT(human_target, RECOGNIZE_WEREWOLVES_COOLDOWN, WEAKREF(owner))
+		addtimer(TRAIT_CALLBACK_REMOVE(human_target, RECOGNIZE_WEREWOLVES_COOLDOWN, WEAKREF(owner)), 5 MINUTES)
 
 
 // Does the target notice? //
