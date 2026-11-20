@@ -56,6 +56,9 @@
 	if(HAS_TRAIT(jumper, TRAIT_FLOORED))
 		return
 
+	if(HAS_TRAIT(jumper, TRAIT_JUMPING_BLOCKED))
+		return
+
 	if(jumper.body_position == LYING_DOWN)
 		return
 
