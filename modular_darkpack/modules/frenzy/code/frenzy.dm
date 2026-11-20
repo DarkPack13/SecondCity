@@ -9,6 +9,12 @@
 
 	set_jitter_if_lower(1 SCENES)
 
+	notify_ghosts(
+		"[src.real_name] is entering a frenzy!",
+		source = src,
+		header = "Frenzy!",
+		notify_flags = NOTIFY_CATEGORY_NOFLASH,
+	)
 	message_admins("[ADMIN_LOOKUPFLW(src)] has entered frenzy[target ? " targeting [ADMIN_LOOKUPFLW(target)]": ""]. ([source])")
 	log_combat(src, (src || target), "has frenzied on because of \"[source]\" on")
 
@@ -19,7 +25,7 @@
 	else
 		to_chat(src, span_bolddanger("FRENZY."))
 		src.balloon_alert(src, "frenzy!")
-		if(get_kindred_splat(src))
+		if(get_kindred_splat(src) && (source != "Manual"))	//Would someone naming themself "Manual" would protect them from aggro grabs if they're the source?
 			apply_status_effect(/datum/status_effect/frenzy/vampire_hunger, target)
 		else
 			apply_status_effect(/datum/status_effect/frenzy, target)
