@@ -77,6 +77,8 @@
 	. = ..()
 	if(!get_splat_with_vitae(target_mob))
 		return
+	if(HAS_TRAIT(target_mob, TRAIT_ORGANOVORE))
+		return
 	if(stored_blood <= 0)
 		return
 	if(!identified)
