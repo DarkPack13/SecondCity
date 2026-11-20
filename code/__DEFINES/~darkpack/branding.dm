@@ -1,6 +1,8 @@
 #define CITY_NAME "San Francisco"
 #define CITY_POLICE_DEPARTMENT CITY_NAME + " Police Department"
 
+#define DEFAULT_STATE_NAME	"California"
+
 #define NEWSPAPER_COMPANY "Angel Times"
 #define PRIMARY_NIGHTCLUB_COMPANY "Dora"
 

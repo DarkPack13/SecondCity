@@ -95,15 +95,16 @@
 
 	var/datum/preference/preference = GLOB.preference_entries[/datum/preference/choiced/country_of_origin]
 	preference.apply_to_human(src, preference.create_informed_default_value())
-	if(country_of_origin == "United States")
-		preference = GLOB.preference_entries[/datum/preference/choiced/state_of_origin]
-		preference.apply_to_human(src, preference.create_informed_default_value())
-	if(country_of_origin == "Canada")
-		preference = GLOB.preference_entries[/datum/preference/choiced/province_of_origin]
-		preference.apply_to_human(src, preference.create_informed_default_value())
-	if(country_of_origin == "United Kingdom")
-		preference = GLOB.preference_entries[/datum/preference/choiced/nation_of_origin]
-		preference.apply_to_human(src, preference.create_informed_default_value())
+	switch(dna.country_of_origin)
+		if("United States")
+			preference = GLOB.preference_entries[/datum/preference/choiced/state_of_origin]
+			preference.apply_to_human(src, preference.create_informed_default_value())
+		if("Canada")
+			preference = GLOB.preference_entries[/datum/preference/choiced/province_of_origin]
+			preference.apply_to_human(src, preference.create_informed_default_value())
+		if("United Kingdom")
+			preference = GLOB.preference_entries[/datum/preference/choiced/nation_of_origin]
+			preference.apply_to_human(src, preference.create_informed_default_value())
 
 	return INITIALIZE_HINT_LATELOAD
 
