@@ -140,9 +140,7 @@
 	if(heal_begin_sound && !continuous)
 		playsound(patient, heal_begin_sound, 75, TRUE, MEDIUM_RANGE_SOUND_EXTRARANGE)
 	if(patient == user)
-		// DARKPACK EDIT ADD START - Survival based self heal speed
-		var/survival_stat = user.st_get_stat(STAT_SURVIVAL)
-		// DARKPACK EDIT ADD END
+		var/survival_stat = user.st_get_stat(STAT_SURVIVAL) // DARKPACK EDIT ADD - STORYTELLR_STATS - (Survival based self heal speed)
 		if(!silent)
 			user.visible_message(
 				span_notice("[user] starts to apply [src] on [user.p_them()]self..."),
