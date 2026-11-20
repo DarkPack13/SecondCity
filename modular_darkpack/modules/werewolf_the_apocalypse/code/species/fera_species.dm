@@ -392,6 +392,7 @@
 		var/datum/action/innate/toggle_fera_flight/ability = new(human_who_gained_species)
 		ability.Grant(human_who_gained_species)
 		human_who_gained_species.AddElementTrait(TRAIT_WADDLING, INNATE_TRAIT, /datum/element/waddling)
+		human_who_gained_species.get_language_holder().selected_language = /datum/language/primal_tongue // Corvid can speak human but defaults to Primal to avoid opsec/Veil disaster
 
 /datum/species/human/shifter/feral/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
 	. = ..()

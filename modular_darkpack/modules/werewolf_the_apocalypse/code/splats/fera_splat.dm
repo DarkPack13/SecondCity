@@ -267,6 +267,7 @@
 		TRAIT_FERA_RENOWN,
 		TRAIT_FERA_FLIGHT,
 		TRAIT_FRENETIC_AURA,
+		TRAIT_GAIA_CAERN_FRIEND, // Garou and Corax are allies, so they can pass the Bawn. Other fera shouldn't be able to by default.
 		TRAIT_GOLD_WEAKNESS,
 	)
 	transformation_list = list(
@@ -307,10 +308,13 @@
 /datum/splat/werewolf/shifter/corax/on_gain()
 	. = ..()
 	add_power(/datum/action/cooldown/power/gift/eye_drink)
+	owner.grant_language(/datum/language/common, SPOKEN_LANGUAGE, LANGUAGE_SPLAT) // Corax are able to mimic human speech in corvid form
 
 /datum/splat/werewolf/shifter/corax/on_lose_or_destroy()
 	. = ..()
 	remove_power(/datum/action/cooldown/power/gift/eye_drink)
+	if(!QDELING(owner)) // don't bother removing languages if character is being deleted anyway
+		owner.remove_language(/datum/language/common, SPOKEN_LANGUAGE, LANGUAGE_SPLAT)
 
 
 /mob/living/carbon/human/splat/kinfolk
