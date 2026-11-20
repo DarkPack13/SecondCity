@@ -8,6 +8,7 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_guns.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	recoil = 5
+	can_suppress = FALSE //This was inherited from /obj/item/gun/ballistic/automatic so you were able to suppress literally any darkpack gun which is bad
 
 	//Leave serial_type blank for no serial number/obliterated serial number.
 	serial_type = "SF"
@@ -35,7 +36,6 @@
 	righthand_file = 'modular_darkpack/modules/deprecated/icons/righthand.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/rev44
-	initial_caliber = CALIBER_44MAG
 	fire_sound = 'modular_darkpack/modules/weapons/sounds/revolver.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 85
@@ -52,7 +52,6 @@
 	inhand_icon_state = "revolver_snub"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/rev9mm
 	w_class = WEIGHT_CLASS_SMALL
-	initial_caliber = CALIBER_9MM
 	fire_sound_volume = 65
 	projectile_damage_multiplier = 1.2 //21.6 damage, slightly higher than the m1911, just so it is possible to kill NPCs within 6 bullets
 	recoil = 2
@@ -617,6 +616,38 @@
 	var/rof = 0.2 SECONDS //300 RPM
 
 /obj/item/gun/ballistic/automatic/darkpack/fal/automatic/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/automatic_fire, rof)
+
+/obj/item/ammo_box/magazine/darkpack762x51fal/hk51
+	name = "hk51 magazine (7.62x51mm)"
+	icon = 'modular_darkpack/modules/weapons/icons/ammo.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/ammo_onfloor.dmi')
+	icon_state = "hk51mag"
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
+
+/obj/item/gun/ballistic/automatic/darkpack/hk51
+	name = "\improper HK51"
+	desc = "A highly compact battle rifle small enough to fit in a bag while still packing a huge punch"
+	icon_state = "hk51"
+	icon = 'modular_darkpack/modules/weapons/icons/weapons48x32.dmi'
+	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
+	inhand_icon_state = "hk51"
+	accepted_magazine_type = /obj/item/ammo_box/magazine/darkpack762x51fal
+	spawn_magazine_type = /obj/item/ammo_box/magazine/darkpack762x51fal/hk51
+	burst_size = 1
+	spread = 3
+	recoil = 3
+	weapon_weight = WEAPON_MEDIUM
+	bolt_type = BOLT_TYPE_LOCKING
+	show_bolt_icon = FALSE
+	mag_display = TRUE
+	rack_sound = 'sound/items/weapons/gun/pistol/slide_lock.ogg'
+	fire_sound = 'modular_darkpack/modules/deprecated/sounds/rifle.ogg'
+	serial_type = "H&K"
+	var/rof = 0.2 SECONDS
+
+/obj/item/gun/ballistic/automatic/darkpack/hk51/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, rof)
 
