@@ -39,14 +39,15 @@
 
 /datum/action/cooldown/spell/shapeshift/gangrel/beast_form/Grant(mob/grant_to)
 	. = ..()
-	if(ishuman(grant_to))
-		var/mob/living/carbon/human/grant_to_human = grant_to
-		if(grant_to_human.is_clan(/datum/subsplat/vampire_clan/gangrel))
-			possible_shapes += list(
-				/mob/living/basic/bear/vampire/protean,
-				/mob/living/basic/pet/dog/darkpack/protean,
-				/mob/living/basic/corvid/protean,
-			)
+	if(!ishuman(grant_to))
+		return
+	var/mob/living/carbon/human/grant_to_human = grant_to
+	if(grant_to_human.is_clan(/datum/subsplat/vampire_clan/gangrel))
+		possible_shapes += list(
+			/mob/living/basic/bear/vampire/protean,
+			/mob/living/basic/pet/dog/darkpack/protean,
+			/mob/living/basic/corvid/protean,
+		)
 
 /mob/living/basic/gangrel
 	name = "horrid form"
