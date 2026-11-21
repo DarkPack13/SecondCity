@@ -814,7 +814,7 @@
 		return
 
 	set_seed(null)
-	var/newWeed = pick(/obj/item/seeds/liberty, /obj/item/seeds/angel, /obj/item/seeds/nettle/death, /obj/item/seeds/kudzu)
+	var/newWeed = pick(/obj/item/seeds/liberty, /obj/item/seeds/angel, /obj/item/seeds/nettle/death) // DARKPACK EDIT CHANGE - Kudzu - ORIGINAL: var/newWeed = pick(/obj/item/seeds/liberty, /obj/item/seeds/angel, /obj/item/seeds/nettle/death, /obj/item/seeds/kudzu)
 	set_seed(new newWeed(src))
 	hardmutate()
 	set_plant_health(myseed.endurance, update_icon = FALSE)
