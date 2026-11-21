@@ -111,7 +111,7 @@
 
 /datum/action/cooldown/power/gift/open_seal
 	name = "Open Seal"
-	desc = "With this Gift, the Garou can open nearly any sort of closed or locked physical device."
+	desc = "With this Gift, Fera can open nearly any sort of closed or locked physical device."
 	button_icon_state = "open_seal"
 	click_to_activate = TRUE
 	rank = 1

@@ -45,7 +45,7 @@ the scar is received and an extra Gnosis point is spent.
 
 /datum/action/cooldown/power/gift/spirit_speech
 	name = "Spirit Speech"
-	desc = "This Gift allows the Garou to communicate with encountered spirits."
+	desc = "This Gift allows Fera to communicate with encountered spirits."
 	button_icon_state = "spirit_speech"
 	rank = 1
 

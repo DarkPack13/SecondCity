@@ -41,6 +41,9 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/item_quirk/blindness, /datum/quirk/darkpack/wolf_sight), // DARKPACK EDIT ADD - MERITS_FLAWS - MERITS_FLAWS
 	list(/datum/quirk/darkpack/banned_transformation, /datum/quirk/darkpack/metamorph), // DARKPACK EDIT ADD - MERITS_FLAWS - MERITS_FLAWS
 	list(/datum/quirk/darkpack/thirst_of_ages, /datum/quirk/darkpack/organovore), // DARKPACK EDIT ADD - MERITS_FLAWS - MERITS_FLAWS
+	list(/datum/quirk/darkpack/good_old_boy_or_girl, /datum/quirk/darkpack/outsider), // DARKPACK EDIT ADD - MERITS_FLAWS - MERITS_FLAWS
+	list(/datum/quirk/darkpack/gall, /datum/quirk/darkpack/weak_willed), // DARKPACK EDIT ADD - MERITS_FLAWS - MERITS_FLAWS
+	list(/datum/quirk/darkpack/good_old_boy_or_girl, /datum/quirk/darkpack/wyrmtainted_trait), // DARKPACK EDIT ADD - MERITS_FLAWS - MERITS_FLAWS
 ))
 
 GLOBAL_LIST_INIT(quirk_string_blacklist, generate_quirk_string_blacklist())
