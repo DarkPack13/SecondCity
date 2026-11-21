@@ -265,8 +265,6 @@
 	if(!masquerade_roll)
 		masquerade_roll = new()
 
-	#warn fix
-	/*
 	var/roll_output = masquerade_roll.st_roll(user, src)
 	var/datum/socialrole/shop/shop_role = owner?.socialrole
 
@@ -281,7 +279,6 @@
 		if(shop_role && length(shop_role.masquerade_item_phrases))
 			owner.realistic_say(pick(shop_role.masquerade_item_phrases))
 		return TRUE
-	*/
 
 /obj/lombard/blackmarket
 	name = "black market"

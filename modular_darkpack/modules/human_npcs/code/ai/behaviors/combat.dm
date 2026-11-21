@@ -1,87 +1,91 @@
+/// Attacks the target mob; SUCCEEDED when target is gone, FAILED when target goes down (Which lets us flush the fucker instead)
+/datum/bt_node/ai_behavior/human_attack_mob
+	var/target_key
+	/// seconds_per_tick from the perform() that kicked off the current async attack.
+	VAR_PRIVATE/attack_seconds_per_tick = 0
+	/// Weapon snapshot from the perform() that kicked off the current async attack.
+	VAR_PRIVATE/obj/item/attack_holding_weapon
 
-/*
-/datum/ai_planning_subtree/choose_attack_subtree
+/datum/bt_node/ai_behavior/human_attack_mob/perform(seconds_per_tick, datum/ai_controller/controller)
+	var/async_flags = handle_async()
+	if(async_flags)
+		return async_flags
 
-/datum/ai_planning_subtree/choose_attack_subtree/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
-	var/mob/living/carbon/human/human_pawn = controller.pawn
+	var/mob/living/target = controller.blackboard[target_key]
+	var/mob/living/living_pawn = controller.pawn
+	var/datum/targeting_strategy/strategy = GET_TARGETING_STRATEGY(controller.blackboard[BB_TARGETING_STRATEGY])
 
-	if(human_pawn.is_holding_item_of_type(/obj/item/gun))
-		if(controller.blackboard[BB_GUNMIMIC_GUN_EMPTY])
-			controller.queue_behavior(/datum/bt_node/ai_behavior/find_weapon)
-			return
-		var/datum/ai_planning_subtree/basic_ranged_attack_subtree/npc/ranged_attack_subtree = GLOB.ai_subtrees[/datum/ai_planning_subtree/basic_ranged_attack_subtree]
-		ranged_attack_subtree.SelectBehaviors(controller, seconds_per_tick)
+	if(QDELETED(target) || !strategy.is_valid_target(living_pawn, target))
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
-	var/datum/ai_planning_subtree/basic_melee_attack_subtree/npc/melee_attack_subtree = GLOB.ai_subtrees[/datum/ai_planning_subtree/basic_melee_attack_subtree]
-	melee_attack_subtree.SelectBehaviors(controller, seconds_per_tick)
+	var/obj/item/holding_weapon
+	for(var/obj/item/potential_weapon as anything in target.get_held_items())
+		if(!(potential_weapon.item_flags & ABSTRACT))
+			holding_weapon = potential_weapon
+			break
 
-/datum/ai_planning_subtree/basic_ranged_attack_subtree/npc
-	ranged_attack_behavior = /datum/bt_node/ai_behavior/basic_ranged_attack/npc
+	attack_seconds_per_tick = seconds_per_tick
+	attack_holding_weapon = holding_weapon
+	return start_async()
 
-/datum/bt_node/ai_behavior/basic_ranged_attack/npc
-	action_cooldown = 3 SECONDS
-	avoid_friendly_fire = TRUE
-
-/datum/ai_planning_subtree/basic_melee_attack_subtree/npc
-	melee_attack_behavior = /datum/bt_node/ai_behavior/basic_melee_attack/npc
-	end_planning = FALSE
-
-/datum/bt_node/ai_behavior/basic_melee_attack/npc
-	action_cooldown = 0.2 SECONDS // We gotta check unfortunately often because we're in a race condition with nextmove
-	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_MOVE_AND_PERFORM | AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION | AI_BEHAVIOR_REQUIRE_REACH
-*/
-
-
-/*
-/datum/ai_planning_subtree/search_for_weapon
-
-/datum/ai_planning_subtree/search_for_weapon/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
-	if(controller.blackboard_key_exists(BB_MONKEY_BEST_FORCE_FOUND))
+/datum/bt_node/ai_behavior/human_attack_mob/perform_async(datum/ai_controller/controller)
+	var/mob/living/target = controller.blackboard[target_key]
+	var/seconds_per_tick = attack_seconds_per_tick
+	var/obj/item/holding_weapon = attack_holding_weapon
+	var/attack_results = human_attack(controller, target, seconds_per_tick, holding_weapon && SPT_PROB(MONKEY_ATTACK_DISARM_PROB, seconds_per_tick), holding_weapon)
+	if(!async_still_valid())
 		return
-	controller.queue_behavior(/datum/bt_node/ai_behavior/find_weapon)
+	finish_async(attack_results ? AI_BEHAVIOR_SUCCEEDED : AI_BEHAVIOR_FAILED)
 
-///re-used behavior pattern by monkeys for finding a weapon
-/datum/bt_node/ai_behavior/find_weapon
+/datum/bt_node/ai_behavior/human_attack_mob/finish_action(datum/ai_controller/controller, succeeded)
+	. = ..()
+	attack_seconds_per_tick = 0
+	attack_holding_weapon = null
 
-/datum/bt_node/ai_behavior/find_weapon/perform(seconds_per_tick, datum/ai_controller/controller, ...)
+/// Attack with held weapon or bite; try to disarm if target is holding something
+/datum/bt_node/ai_behavior/human_attack_mob/proc/human_attack(datum/ai_controller/controller, mob/living/target, seconds_per_tick, disarm, holding_weapon)
 	var/mob/living/living_pawn = controller.pawn
 
-	if(!(locate(/obj/item) in living_pawn.held_items))
-		controller.set_blackboard_key(BB_MONKEY_BEST_FORCE_FOUND, 0)
+	if(living_pawn.next_move > world.time)
+		return FALSE
 
-	if(controller.blackboard[BB_MONKEY_GUN_NEURONS_ACTIVATED] && (locate(/obj/item/gun) in living_pawn.held_items) && !controller.blackboard_key_exists(BB_GUNMIMIC_GUN_EMPTY))
-		// We have a loaded gun, what could we possibly want?
-		return AI_BEHAVIOR_FAILED
+	living_pawn.face_atom(target)
 
-	var/obj/item/weapon
-	var/list/nearby_items = list()
-	for(var/obj/item/item in oview(2, living_pawn))
-		nearby_items += item
+	var/obj/item/potential_weapon = living_pawn.is_holding_item_of_type(/obj/item)
 
-	for(var/obj/item/item in living_pawn.held_items) // If we've got some garbage in out hands that's going to stop us from effectively attacking, we should get rid of it.
-		if(item.force < 2)
-			living_pawn.dropItemToGround(item)
+	if(potential_weapon)
+		var/datum/component/two_handed/twohanded = potential_weapon.GetComponent(/datum/component/two_handed)
+		if(twohanded)
+			twohanded.wield(living_pawn)
+		var/datum/component/transforming/transforming = potential_weapon.GetComponent(/datum/component/transforming)
+		if(transforming)
+			transforming.set_active(potential_weapon)
 
-	weapon = GetBestWeapon(controller, nearby_items, living_pawn.held_items)
+	if(target.IsReachableBy(living_pawn, potential_weapon?.reach))
+		if(isnull(potential_weapon))
+			controller.ai_interact(target = target, modifiers = disarm ? list(RIGHT_CLICK = TRUE) : null, combat_mode = TRUE)
+			if(disarm && !isnull(holding_weapon) && controller.blackboard[BB_MONKEY_BLACKLISTITEMS][holding_weapon])
+				controller.remove_thing_from_blackboard_key(BB_MONKEY_BLACKLISTITEMS, holding_weapon)
+		else
+			if(potential_weapon != living_pawn.get_active_held_item())
+				living_pawn.swap_hand(living_pawn.get_inactive_hand_index())
+			controller.ai_interact(target = target, combat_mode = TRUE)
+		return TRUE
 
-	var/pickpocket = FALSE
-	for(var/mob/living/carbon/human/human in oview(5, living_pawn))
-		var/obj/item/held_weapon = GetBestWeapon(controller, human.held_items + weapon, living_pawn.held_items)
-		if(held_weapon == weapon) // It's just the same one, not a held one
-			continue
-		pickpocket = TRUE
-		weapon = held_weapon
+	if(!potential_weapon)
+		return FALSE
 
-	if(!weapon || (weapon in living_pawn.held_items))
-		return AI_BEHAVIOR_FAILED
+	// target out of melee reach — try ranged or throw
+	var/atom/real_target = target
+	if(prob(10)) // artificial miss
+		real_target = pick(oview(2, target))
 
-	if(weapon.force < 2) // our bite does 2 damage on average, no point in settling for anything less
-		return AI_BEHAVIOR_FAILED
-
-	controller.set_blackboard_key(BB_MONKEY_PICKUPTARGET, weapon)
-	if(pickpocket)
-		controller.queue_behavior(/datum/bt_node/ai_behavior/monkey_equip/pickpocket, BB_MONKEY_PICKUPTARGET)
+	var/obj/item/gun/gun = living_pawn.is_holding_item_of_type(/obj/item/gun)
+	var/can_shoot = gun?.can_shoot() || FALSE
+	if(gun || (!can_shoot && prob(95)))
+		if(gun != living_pawn.get_active_held_item())
+			living_pawn.swap_hand(living_pawn.get_inactive_hand_index())
+		controller.ai_interact(target = real_target, combat_mode = TRUE)
 	else
-		controller.queue_behavior(/datum/bt_node/ai_behavior/monkey_equip/ground, BB_MONKEY_PICKUPTARGET)
-	return AI_BEHAVIOR_SUCCEEDED | AI_BEHAVIOR_DELAY
-*/
+		living_pawn.throw_item(real_target)
+	return TRUE

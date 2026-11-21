@@ -1,20 +1,5 @@
 
 /datum/socialrole/bandit
-	s_tones = list(
-		"albino",
-		"caucasian1",
-		"caucasian2",
-		"caucasian3",
-		"latino",
-		"mediterranean",
-		"asian1",
-		"asian2",
-		"arab",
-		"indian",
-		"african1",
-		"african2"
-	)
-
 	min_age = 18
 	max_age = 45
 	preferred_gender = MALE
@@ -86,6 +71,12 @@
 	pockets = list(
 		// /obj/item/stack/dollar/rand,
 		/obj/item/vamp/keys/hack
+	)
+
+	primary_weapons = list(
+		/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle = 33,
+		/obj/item/gun/ballistic/revolver/darkpack/snub = 33,
+		/obj/item/melee/baseball_bat/vamp = 100,
 	)
 
 	//[Lucia] - this has been edited to have better English because it included slurs, but none of the others have yet

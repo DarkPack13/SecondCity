@@ -1,19 +1,4 @@
 /datum/socialrole/usualfemale
-	s_tones = list(
-		"albino",
-		"caucasian1",
-		"caucasian2",
-		"caucasian3",
-		"latino",
-		"mediterranean",
-		"asian1",
-		"asian2",
-		"arab",
-		"indian",
-		"african1",
-		"african2"
-	)
-
 	min_age = 18
 	max_age = 85
 	preferred_gender = FEMALE

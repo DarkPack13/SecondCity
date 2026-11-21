@@ -15,8 +15,7 @@
 /mob/living/carbon/human/npc/average/club/proc/dance_at_jukebox()
 	var/hasjukebox = FALSE
 	for(var/obj/machinery/jukebox/jukebox in range(7, src))
-		// Hacky check for if it's currently playing
-		if(jukebox.static_power_usage != ACTIVE_POWER_USE)
+		if(!jukebox.music_player?.active_song_sound)
 			continue
 		hasjukebox = TRUE
 		break

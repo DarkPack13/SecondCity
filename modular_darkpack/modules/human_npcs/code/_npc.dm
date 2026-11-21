@@ -8,9 +8,6 @@
 
 	COOLDOWN_DECLARE(car_dodge)
 
-	/// NPC is in the process of "typing" a message
-	var/is_talking = FALSE
-
 	/// Used to hold a bunch of global lists for stuff like speech
 	var/datum/socialrole/socialrole
 
@@ -20,7 +17,6 @@
 	GLOB.alive_human_npc_list += src
 
 	AddElement(/datum/element/ai_retaliate)
-	equipOutfit(outfit_type)
 
 /mob/living/carbon/human/npc/Destroy()
 	. = ..()
@@ -30,39 +26,36 @@
 	. = ..()
 	GLOB.alive_human_npc_list -= src
 
+/*
 /mob/living/carbon/human/npc/RangedAttack(atom/atom_target, modifiers)
 	. = ..()
 	INVOKE_ASYNC(src, PROC_REF(fire_gun), atom_target, modifiers)
 
 /mob/living/carbon/human/npc/proc/fire_gun(atom/target, modifiers)
 	var/obj/item/gun/gun = locate() in contents
-	/*
-	if(!gun.can_shoot())
-		if(istype(gun, /obj/item/gun/ballistic))
-			var/obj/item/gun/ballistic/ballistic = gun
-			if(!ballistic.chambered || ballistic.bolt_locked)
-				ballistic.rack() //we racked so both checked variables should be something else now
-			// do we have nothing chambered/chambered is spent AND we have no mag or our mag is empty
-			if(!ballistic.chambered?.loaded_projectile && magazine_useless(gun)) // ran out of ammo
-				ai_controller?.set_blackboard_key(BB_GUNMIMIC_GUN_EMPTY, TRUE) //BANZAIIIIIIII
-				ai_controller?.cancel_current_plan()
-		else //if we cant fire we probably like ran out of energy or magic charges or whatever the hell idk
-			ai_controller?.set_blackboard_key(BB_GUNMIMIC_GUN_EMPTY, TRUE)
-			ai_controller?.cancel_current_plan() // Stop our firing behavior so we can plan melee
-	else
-		ai_controller?.set_blackboard_key(BB_GUNMIMIC_GUN_EMPTY, FALSE)
-	*/
 	gun.fire_gun(target, user = src, flag = FALSE, params = modifiers) //still make like a cool click click sound if trying to fire empty
-
-/*
-/mob/living/carbon/human/npc/proc/magazine_useless(obj/item/gun/ballistic/ballistic)
-	if(isnull(ballistic.magazine) || !length(ballistic.magazine.stored_ammo))
-		return TRUE
-	// is there ATLEAST one unspent round (for the sake of revolvers or a magazine somehow having spent rounds in it)
-	for(var/obj/item/ammo_casing/thing as anything in ballistic.magazine.stored_ammo)
-		if(ispath(thing))
-			return FALSE // unspent
-		if(!isnull(thing.loaded_projectile))
-			return FALSE //unspent
-	return TRUE
 */
+
+/mob/living/carbon/human/npc/ghoulificate(mob/owner)
+	deadchat_broadcast(" is ghoulificating [src].", owner, src)
+
+	AddComponent(\
+		/datum/component/ghost_direct_control,\
+		ban_type = ROLE_GHOUL,\
+		poll_candidates = TRUE,\
+		role_name = "[owner]'s ghoul",\
+		poll_length = 30 SECONDS,\
+		poll_question = "Do you want to play as [owner]'s ghoul?",\
+
+		assumed_control_message = "You are now [owner]'s ghoul!",\
+		after_assumed_control = CALLBACK(src, PROC_REF(ghoul_player_controlled), owner)\
+	)
+
+	//poll_ignore_key = POLL_IGNORE_GHOUL,
+
+	. = ..()
+	return TRUE
+
+/mob/living/carbon/human/npc/proc/ghoul_player_controlled(mob/owner)
+	message_admins("[key_name_admin(src)] has became a ghoul by [key_name_admin(owner)].")
+	QDEL_NULL(ai_controller)

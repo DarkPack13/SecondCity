@@ -17,6 +17,7 @@
 		RegisterSignal(target, COMSIG_ATOM_HULK_ATTACK, PROC_REF(on_attack_hulk))
 		RegisterSignal(target, COMSIG_ATOM_ATTACK_MECH, PROC_REF(on_attack_mech))
 		RegisterSignal(target, COMSIG_POWER_ACTIVATE_ON, PROC_REF(on_power_use)) // DARKPACK EDIT ADD
+		RegisterSignal(target, COMSIG_CAR_IMPACT, PROC_REF(on_car_impact)) // DARKPACK EDIT ADD
 	ADD_TRAIT(target, TRAIT_RELAYING_ATTACKER, REF(src))
 
 /datum/element/relay_attackers/Detach(datum/source, ...)
@@ -33,6 +34,7 @@
 		COMSIG_ATOM_HULK_ATTACK,
 		COMSIG_ATOM_ATTACK_MECH,
 		COMSIG_POWER_ACTIVATE_ON, // DARKPACK EDIT ADD
+		COMSIG_CAR_IMPACT, // DARKPACK EDIT ADD
 	))
 	REMOVE_TRAIT(source, TRAIT_RELAYING_ATTACKER, REF(src))
 
@@ -95,6 +97,12 @@
 
 	if(hostile_usage)
 		relay_attacker(target, used_power.discipline.owner, ATTACKER_DAMAGING_ATTACK)
+
+/datum/element/relay_attackers/proc/on_car_impact(atom/target, atom/car, atom/driver)
+	SIGNAL_HANDLER
+
+	if(driver)
+		relay_attacker(target, driver, ATTACKER_DAMAGING_ATTACK)
 // DARKPACK EDIT ADD END
 
 /// Send out a signal identifying whoever just attacked us (usually a mob but sometimes a mech or turret)

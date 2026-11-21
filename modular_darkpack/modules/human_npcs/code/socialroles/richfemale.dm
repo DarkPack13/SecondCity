@@ -1,10 +1,4 @@
 /datum/socialrole/richfemale
-	s_tones = list(
-		"albino",
-		"caucasian1",
-		"caucasian2"
-	)
-
 	min_age = 18
 	max_age = 85
 	preferred_gender = FEMALE

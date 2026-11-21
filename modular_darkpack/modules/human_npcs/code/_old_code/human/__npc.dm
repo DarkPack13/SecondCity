@@ -1,6 +1,3 @@
-#define BANDIT_TYPE_NPC /mob/living/carbon/human/npc/bandit
-#define POLICE_TYPE_NPC /mob/living/carbon/human/npc/police
-
 /mob/living/carbon/human/npc
 	name = "NPC"
 
@@ -237,25 +234,4 @@
 
 	last_grab = world.time
 
-/mob/living/carbon/human/npc/ghoulificate(mob/owner)
-	deadchat_broadcast(" is ghoulificating [src].", owner, src)
 
-	AddComponent(\
-		/datum/component/ghost_direct_control,\
-		ban_type = ROLE_GHOUL,\
-		poll_candidates = TRUE,\
-		role_name = "[owner]'s ghoul",\
-		poll_length = 30 SECONDS,\
-		poll_question = "Do you want to play as [owner]'s ghoul?",\
-
-		assumed_control_message = "You are now [owner]'s ghoul!",\
-		after_assumed_control = CALLBACK(src, PROC_REF(ghoul_player_controlled), owner)\
-	)
-
-	//poll_ignore_key = POLL_IGNORE_GHOUL,
-
-	. = ..()
-	return TRUE
-
-/mob/living/carbon/human/npc/proc/ghoul_player_controlled(mob/owner)
-	message_admins("[key_name_admin(src)] has became a ghoul by [key_name_admin(owner)].")

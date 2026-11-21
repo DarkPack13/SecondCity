@@ -15,6 +15,5 @@
 		BB_TARGET_MINIMUM_STAT = SOFT_CRIT,
 		BB_FLEE_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_REINFORCEMENTS_EMOTE = "presses their radio's emergency button.",
-		BB_GUNMIMIC_GUN_EMPTY = FALSE,
 		BB_MONKEY_BLACKLISTITEMS = list(),
 	)

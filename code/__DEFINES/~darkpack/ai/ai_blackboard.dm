@@ -8,3 +8,5 @@
 #define BB_NPC_ATTRIBUTE_CONFIDENCE "BB_npc_attribute_confidence"
 #define BB_NPC_ATTRIBUTE_ENERGY "BB_npc_attribute_energy"
 #define BB_NPC_ATTRIBUTE_RESPONSIBILITY "BB_npc_attribute_responsibility"
+
+#define BB_NPC_OWNED_ITEMS "BB_npc_owned_items"

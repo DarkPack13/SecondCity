@@ -3,7 +3,7 @@
 	movement_delay = 0.8 SECONDS
 
 	ai_traits = parent_type::ai_traits | RUN_WHILE_UNWATCHED
-	
+
 	behavior_tree_json = "modular_darkpack/modules/human_npcs/code/ai/npc.bt.json"
 	/*
 	planning_subtrees = list(
@@ -19,10 +19,8 @@
 		BB_TARGET_MINIMUM_STAT = SOFT_CRIT,
 		BB_FLEE_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_REINFORCEMENTS_SAY = "HELP!!!",
-		BB_GUNMIMIC_GUN_EMPTY = FALSE,
+		BB_MONKEY_BLACKLISTITEMS = list(),
 	)
-	#warn check
-	// can_idle = FALSE
 
 /datum/ai_controller/npc/PossessPawn(atom/new_pawn)
 	if(!isliving(new_pawn))

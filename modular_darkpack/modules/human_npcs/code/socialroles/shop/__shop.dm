@@ -1,19 +1,4 @@
 /datum/socialrole/shop
-	s_tones = list(
-		"albino",
-		"caucasian1",
-		"caucasian2",
-		"caucasian3",
-		"latino",
-		"mediterranean",
-		"asian1",
-		"asian2",
-		"arab",
-		"indian",
-		"african1",
-		"african2"
-	)
-
 	min_age = 18
 	max_age = 45
 	preferred_gender = MALE

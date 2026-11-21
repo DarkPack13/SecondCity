@@ -1,11 +1,4 @@
 /datum/socialrole/police
-	s_tones = list(
-		"albino",
-		"caucasian1",
-		"caucasian2",
-		"caucasian3"
-	)
-
 	min_age = 18
 	max_age = 45
 	male_names = null
@@ -94,6 +87,11 @@
 	hats = list(/obj/item/clothing/head/vampire/police)
 	suits = list(/obj/item/clothing/suit/vampire/vest/police)
 	// pockets = list(/obj/item/stack/dollar/rand)
+
+	primary_weapons = list(
+		/obj/item/gun/ballistic/revolver/darkpack/magnum = 90,
+		/obj/item/gun/ballistic/automatic/darkpack/ar15 = 10,
+	)
 
 	male_phrases = list(
 		"I see you.",

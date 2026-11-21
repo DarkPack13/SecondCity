@@ -1,11 +1,4 @@
 /datum/socialrole/endronlabsecurity
-	s_tones = list(
-		"albino",
-		"caucasian1",
-		"caucasian2",
-		"caucasian3"
-	)
-
 	min_age = 18
 	max_age = 55
 	male_names = null
@@ -94,13 +87,6 @@
 	)
 
 /datum/socialrole/endronexecsecurity
-	s_tones = list(
-		"albino",
-		"caucasian1",
-		"caucasian2",
-		"caucasian3"
-	)
-
 	min_age = 18
 	max_age = 45
 	male_names = null
@@ -189,13 +175,6 @@
 	)
 
 /datum/socialrole/endronsecurity
-	s_tones = list(
-		"albino",
-		"caucasian1",
-		"caucasian2",
-		"caucasian3"
-	)
-
 	min_age = 18
 	max_age = 55
 	male_names = null

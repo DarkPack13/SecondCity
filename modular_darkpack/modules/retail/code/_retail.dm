@@ -50,11 +50,8 @@
 		if(owner_needed == TRUE && (!my_owner || (get_dist(src, my_owner) > 4) || (my_owner.stat >= HARD_CRIT)))
 			to_chat(user, span_alert("There's no teller here to sell you things..."))
 			return
-		#warn speech
-		/*
 		else if(owner_needed == TRUE && my_owner && get_dist(src, my_owner) <= 4)
 			my_owner.say(pick(my_owner.socialrole.random_phrases))
-		*/
 		ui_interact(user)
 
 /obj/structure/retail/proc/build_inventory()
@@ -82,10 +79,7 @@
 	if(!ui)
 		if(owner_needed && my_owner)
 			my_owner.face_atom(user)
-			#warn speech
-			/*
 			my_owner.realistic_say(pick(my_owner.socialrole.random_phrases))
-			*/
 		ui = new(user, src, "RetailVendor", name)
 		ui.open()
 

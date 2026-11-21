@@ -1,19 +1,6 @@
 /datum/socialrole
 	//For randomizing
-	var/list/s_tones = list(
-		"albino",
-		"caucasian1",
-		"caucasian2",
-		"caucasian3",
-		"latino",
-		"mediterranean",
-		"asian1",
-		"asian2",
-		"arab",
-		"indian",
-		"african1",
-		"african2",
-	)
+	var/list/s_tones
 	var/min_age = 18
 	var/max_age = 85
 	var/preferred_gender
@@ -179,8 +166,8 @@
 	var/obj/item/card/id/id_type
 
 	//What will npc use in fight, if so
-	var/obj/item/melee/melee_weapon
-	var/obj/item/gun/range_weapon
+	var/list/primary_weapons
+	var/list/secondary_weapons
 
 	//For reaction
 	var/list/male_phrases = list(
@@ -197,7 +184,7 @@
 		"Fuck off.",
 		"Go on your way.",
 		"Not the best time to talk right now, pal.",
-		"Мgmmph...",
+		"Mgmmph...",
 		"Do I know you?",
 		"I don't have much time.",
 	)
@@ -269,7 +256,8 @@
 		else
 			s_names = GLOB.last_names
 		age = rand(socialrole.min_age, socialrole.max_age)
-		skin_tone = pick(socialrole.s_tones)
+		if(length(socialrole.s_tones))
+			skin_tone = pick(socialrole.s_tones)
 
 		if (age >= 55)
 			set_haircolor("#a2a2a2")
@@ -356,4 +344,15 @@
 	equipOutfit(O)
 	qdel(O)
 
+	bind_weapon(pick_weight(primary_weapons))
+	bind_weapon(pick_weight(secondary_weapons))
+
 	dna.update_dna_identity()
+
+
+/mob/living/carbon/human/npc/proc/bind_weapon(obj/item/weapon_type)
+	if(!ispath(weapon_type))
+		return
+	var/obj/item/my_weapon = new(weapon_type)
+	equip_to_appropriate_slot(my_weapon)
+	ai_controller.add_blackboard_key_lazylist(BB_NPC_OWNED_ITEMS, my_weapon)
