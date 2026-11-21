@@ -239,6 +239,18 @@
 	*/
 	SEND_SOUND(kindred, sound('modular_darkpack/modules/vampire_the_masquerade/sounds/final_death.ogg', volume = 50))
 
+	kindred.ghost()
+	var/mob/dead/observer/erebus_resident = kindred.mind.get_ghost()
+	erebus_resident.mind = null
+
+	ADD_TRAIT(kindred, TRAIT_DECOMPOSED, id)
+
+	for(var/obj/item/organ/raisin as anything in kindred.organs)
+		if(!raisin.decay_factor)
+			continue
+		raisin.damage = raisin.maxHealth
+		raisin.organ_flags |= ORGAN_FAILING
+
 	switch(kindred.chronological_age)
 		if(-INFINITY to 10) //normal corpse
 			return
