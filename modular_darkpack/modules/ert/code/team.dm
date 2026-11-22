@@ -44,10 +44,12 @@
 	mission = "Assess the situation and assist the deployed FBI Special Agents."
 	polldesc = "the FBI's Special Weapons and Tactics Unit"
 
-/mob/living/carbon/human/proc/apply_ert_splat(splat_id)
-	ADD_TRAIT(src, TRAIT_NO_CANON, INNATE_TRAIT)
-	if(splat_id != SPLAT_NONE && get_splat(GLOB.splat_list[splat_id]))
+/datum/ert/proc/apply_forced_splat(mob/living/carbon/human/operative)
+	if(!forced_splat)
 		return
-	QDEL_LAZYLIST(splats)
-	if(splat_id != SPLAT_NONE)
-		add_splat(GLOB.splat_list[splat_id])
+	ADD_TRAIT(operative, TRAIT_NO_CANON, INNATE_TRAIT)
+	if(forced_splat != SPLAT_NONE && operative.get_splat(GLOB.splat_list[forced_splat]))
+		return
+	QDEL_LAZYLIST(operative.splats)
+	if(forced_splat != SPLAT_NONE)
+		operative.add_splat(GLOB.splat_list[forced_splat])

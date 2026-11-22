@@ -89,7 +89,7 @@
 		"polldesc" = list("desc" = "Ghost poll description", "type" = "string", "value" = ertemplate.polldesc),
 		//"enforce_human" = list("desc" = "Enforce human authority", "type" = "boolean", "value" = "[(human_authority_setting == HUMAN_AUTHORITY_ENFORCED ? "Yes" : "No")]"), // DARKPACK EDIT REMOVAL - Forces ERT Splats
 		//"open_armory" = list("desc" = "Open armory doors", "type" = "boolean", "value" = "[(ertemplate.opendoors ? "Yes" : "No")]"), // DARKPACK EDIT REMOVAL - Forces ERT Splats
-		"forced_splat" = list("desc" = "Forced splat", "type" = "choice", "choices" = list(ERT_TEAM_SPLAT, SPLAT_NONE, ERT_KEEP_CHARACTERS_SPLATS) + get_selectable_splats(), "value" = ERT_TEAM_SPLAT), // DARKPACK EDIT ADD - Forces ERT Splats
+		"forced_splat" = list("desc" = "Forced splat", "type" = "choice", "choices" = list(ERT_TEAM_SPLAT, SPLAT_NONE, ERT_KEEP_CHARACTERS_SPLATS) + assoc_to_keys(GLOB.splat_list), "value" = ERT_TEAM_SPLAT), // DARKPACK EDIT ADD - Forces ERT Splats
 		"supernatural_aware" = list("desc" = "Aware of the supernatural", "type" = "boolean", "value" = "[(ertemplate.supernatural_aware ? "Yes" : "No")]"), // DARKPACK EDIT ADD - Forces ERT Splats
 		"leader_experience" = list("desc" = "Pick an experienced leader", "type" = "boolean", "value" = "[(ertemplate.leader_experience ? "Yes" : "No")]"),
 		"random_names" = list("desc" = "Randomize names", "type" = "boolean", "value" = "[(ertemplate.random_names ? "Yes" : "No")]"),
@@ -241,8 +241,7 @@
 			ert_operative = new /mob/living/carbon/human(spawnloc)
 			chosen_candidate.client.prefs.safe_transfer_prefs_to(ert_operative, is_antag = TRUE)
 		// DARKPACK EDIT ADD START - Forces ERT Splats
-		if(ertemplate.forced_splat)
-			ert_operative.apply_ert_splat(ertemplate.forced_splat)
+		ertemplate.apply_forced_splat(ert_operative)
 		// DARKPACK EDIT ADD END - Forces ERT Splats
 		ert_operative.PossessByPlayer(chosen_candidate.key)
 
