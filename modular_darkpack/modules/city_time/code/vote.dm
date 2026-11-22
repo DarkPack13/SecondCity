@@ -17,7 +17,7 @@
 	CONFIG_SET(number/night_extension_voting, !CONFIG_GET(number/night_extension_voting))
 
 /datum/vote/extend_night/is_config_enabled()
-	if(CONFIG_GET(number/night_extension_voting) == EXTEND_NIGHT_PLAYER)
+	if(CONFIG_GET(number/night_extension_voting) == EXTEND_NIGHT_PLAYER || EXTEND_NIGHT_PLAYER_TIMELOCKED)
 		return TRUE
 	return FALSE
 
@@ -35,7 +35,7 @@
 	if(SScity_time.roundend_started)
 		return "The round has ended!"
 
-	if(!SScity_time.first_warning)
+	if(!SScity_time.first_warning && CONFIG_GET(number/night_extension_voting) == EXTEND_NIGHT_PLAYER_TIMELOCKED)
 		return "Please wait until day is nearer to make this vote."
 
 	return VOTE_AVAILABLE

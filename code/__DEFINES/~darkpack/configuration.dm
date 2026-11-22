@@ -12,8 +12,10 @@
 // Flags for extend night voting darkpack_config.txt
 /// Extend Night votes are called by players
 #define EXTEND_NIGHT_PLAYER 0
+/// Extend Night votes are called by players and may NOT be called before the first sunrise warning
+#define EXTEND_NIGHT_PLAYER_TIMELOCKED 1
 /// Extend Night votes are called based on City Time
-#define EXTEND_NIGHT_TIME 1
+#define EXTEND_NIGHT_TIME 2
 /// Extend Night votes are not called
-#define EXTEND_NIGHT_DISABLED 2
+#define EXTEND_NIGHT_DISABLED 3
 
