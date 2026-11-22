@@ -40,7 +40,7 @@
 
 	. = ..()
 
-	if(!do_after(owner, 1 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_HELD_ITEM)))
+	if(!do_after(owner, 1 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_HELD_ITEM), interaction_key = DOAFTER_SOURCE_GENERIC_ACTION))
 		return TRUE
 
 	var/datum/storyteller_roll/gift/fatal_flaw/roll_datum = new()

@@ -120,10 +120,12 @@
 
 /// We wait until after we actually deduct chemical cost (or don't deduct
 /// if it's the 0 cost we get for revival) before we reset the chemical cost
-/datum/discipline_power/torpor/can_activate(mob/living/user)
+/datum/discipline_power/torpor/can_activate_untargeted(alert)
 	. = ..()
-	if (!. || !revive_ready)
-		return
+	if (!.)
+		return .
+	if (!revive_ready)
+		return FALSE
 
 /datum/discipline_power/torpor/proc/can_enter_torpor(mob/living/user)
 	if(HAS_TRAIT_FROM(user, TRAIT_DEATHCOMA, CHANGELING_TRAIT))

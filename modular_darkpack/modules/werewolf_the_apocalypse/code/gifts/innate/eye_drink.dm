@@ -27,7 +27,7 @@
 
 	. = ..()
 
-	if(!do_after(owner, 1 TURNS))
+	if(!do_after(owner, 1 TURNS, interaction_key = DOAFTER_SOURCE_GENERIC_ACTION))
 		return TRUE
 
 	var/datum/storyteller_roll/eye_drink/roll_datum = new()

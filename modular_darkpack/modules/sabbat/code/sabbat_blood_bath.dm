@@ -63,7 +63,7 @@
 		return ITEM_INTERACT_SUCCESS
 	if(istype(tool, /obj/item/knife/vamp))
 		playsound(loc,'sound/items/weapons/bladeslice.ogg', 50, FALSE)
-		if(do_after(user, 100))
+		if(do_after(user, 10 SECONDS))
 			if(user.bloodpool <= 0)
 				to_chat(user, span_warning("You have no blood to donate!"))
 				return ITEM_INTERACT_BLOCKING
@@ -116,7 +116,7 @@
 	. = ..()
 	if(. && blood_level > 0)
 		playsound(loc, 'modular_darkpack/modules/deprecated/sounds/catched.ogg', 50, FALSE)
-		if(do_after(user, 100))
+		if(do_after(user, 10 SECONDS))
 			if(M == user)
 				M.visible_message(span_notice("[user] climbs into the blood-filled bath."), span_notice("You climb into the blood-filled bath."))
 			else

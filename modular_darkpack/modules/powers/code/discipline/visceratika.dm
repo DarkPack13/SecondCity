@@ -80,7 +80,7 @@
 
 	scry_roll = new()
 
-/datum/discipline_power/visceratika/scry_the_hearthstone/can_activate(atom/target, alert)
+/datum/discipline_power/visceratika/scry_the_hearthstone/can_activate_untargeted(alert)
 	. = ..()
 	if (!.)
 		return .
@@ -207,7 +207,7 @@
 	exit_turf = WEAKREF(get_turf(owner))
 	to_chat(owner, span_notice("You begin to sink into the stone..."))
 
-	if(!do_after(owner, 2 TURNS))
+	if(!do_after(owner, 2 TURNS, interaction_key = disc_interaction_key))
 		to_chat(owner, span_warning("Your bond with the nearby stone is interrupted!"))
 		exit_turf = null
 		return FALSE
@@ -279,7 +279,7 @@
 	duration_length = 1 SCENES // might be too long...
 	cooldown_length = 10 SECONDS
 
-/datum/discipline_power/visceratika/flow_within_the_mountain/can_activate(atom/target, alert)
+/datum/discipline_power/visceratika/flow_within_the_mountain/can_activate_untargeted(alert)
 	. = ..()
 	if (!.)
 		return .

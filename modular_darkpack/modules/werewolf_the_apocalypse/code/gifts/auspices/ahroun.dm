@@ -94,7 +94,7 @@
 /datum/action/cooldown/power/gift/razor_claws/Activate(atom/target)
 	to_chat(owner, span_notice("You feel your claws sharpening..."))
 	playsound(owner, 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/gifts/razor_claws.ogg', 75, FALSE)
-	if(!do_after(owner, 1 TURNS))
+	if(!do_after(owner, 1 FAST_TURNS, interaction_key = DOAFTER_SOURCE_GENERIC_ACTION))
 		return
 	. = ..()
 	var/mob/living/living_owner = astype(owner)

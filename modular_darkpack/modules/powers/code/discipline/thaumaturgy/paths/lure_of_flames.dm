@@ -225,7 +225,7 @@
 		new /obj/effect/temp_visual/inferno_warning(T)
 	owner.visible_message(span_warning("Sparks begin to fly and the temperature begins to climb... what could be happening?!"))
 
-	if(!do_after(owner, 4 SECONDS))
+	if(!do_after(owner, 4 SECONDS, interaction_key = disc_interaction_key))
 		to_chat(owner, span_warning("Your firestorm casting was interrupted!"))
 		for(var/turf/T in affected_turfs) // delete all inferno warnings if casting was interrupted
 			for(var/obj/effect/temp_visual/inferno_warning/W in T)

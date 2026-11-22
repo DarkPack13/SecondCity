@@ -237,6 +237,9 @@
 
 /datum/discipline_power/quietus/baals_caress/can_activate(atom/target)
 	. = ..()
+	if (!.)
+		return .
+
 	if(!isitem(target))
 		to_chat(owner, span_warning("[src] can only be used on weapons!"))
 		return FALSE

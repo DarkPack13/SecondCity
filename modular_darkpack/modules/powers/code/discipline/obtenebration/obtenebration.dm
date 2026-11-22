@@ -195,12 +195,12 @@
 	if(owner.get_generation() >= 10)
 		activating = TRUE
 		to_chat(owner, span_warning("Your body starts to meld with the shadows..."))
-		if(do_after(owner, 2 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM)))
+		if(do_after(owner, 2 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM), interaction_key = disc_interaction_key))
 			return TRUE
 	else if(owner.get_generation() <= 9)
 		activating = TRUE
 		to_chat(owner, span_warning("Your body starts to rapidly meld with the shadows..."))
-		if(do_after(owner, 1 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM)))
+		if(do_after(owner, 1 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM), interaction_key = disc_interaction_key))
 			return TRUE
 
 /datum/discipline_power/obtenebration/black_metamorphosis/activate()
@@ -256,17 +256,17 @@
 	if(owner.get_generation() >= 10)
 		activating = TRUE
 		to_chat(owner, span_warning("Your body slowly starts to turn into an inky blot of shadow..."))
-		if(do_after(owner, 3 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM)))
+		if(do_after(owner, 3 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM), interaction_key = disc_interaction_key))
 			return TRUE
 	else if(owner.get_generation() == 9)
 		activating = TRUE
 		to_chat(owner, span_warning("Your body starts to turn into an inky blot of shadow..."))
-		if(do_after(owner, 2 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM)))
+		if(do_after(owner, 2 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM), interaction_key = disc_interaction_key))
 			return TRUE
 	else if(owner.get_generation() <= 8)
 		activating = TRUE
 		to_chat(owner, span_warning("Your body rapidly starts to turn into an inky blot of shadow..."))
-		if(do_after(owner, 1 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM)))
+		if(do_after(owner, 1 TURNS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM), interaction_key = disc_interaction_key))
 			return TRUE
 
 /datum/discipline_power/obtenebration/tenebrous_form/activate()

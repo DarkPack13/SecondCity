@@ -69,10 +69,12 @@
 	channeler = user
 	channeling = TRUE
 
-	// Begin the curse ritual
 	to_chat(user, span_warning("You begin channeling dark energy through [hearts.len] heart[hearts.len > 1 ? "s" : ""]..."))
+	if(!do_after(user, hearts.len * 5))
+		return
+
+	// Begin the curse ritual
 	channel_curse(hearts)
-	do_after(hearts.len * 5)
 
 /obj/ritual_rune/thaumaturgy/curse/proc/channel_curse(list/hearts)
 	if(!channeling || !channeler || !curse_target)

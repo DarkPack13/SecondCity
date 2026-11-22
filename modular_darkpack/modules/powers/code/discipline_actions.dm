@@ -1,3 +1,5 @@
+#define COOLDOWN_NO_DISPLAY_TIME (180 SECONDS)
+
 /datum/action/discipline
 	check_flags = NONE
 	background_icon_state = "bg_discipline"
@@ -19,6 +21,44 @@
 
 	button_icon_state = discipline.icon_state
 	overlay_icon_state = "1"
+
+/datum/action/discipline/create_button(mob/viewer)
+	var/atom/movable/screen/movable/action_button/button = ..()
+	button.maptext = ""
+	button.maptext_x = 4
+	button.maptext_y = 4
+	button.maptext_width = 32
+	button.maptext_height = 16
+	return button
+
+/datum/action/discipline/update_button_status(atom/movable/screen/movable/action_button/button, force = FALSE)
+	. = ..()
+	var/datum/discipline_power/current_disc = discipline?.current_power
+	if(!current_disc)
+		return
+
+	var/dur_time = current_disc.get_duration()
+	var/cd_time = current_disc.get_cooldown()
+
+	var/time_left = 0
+	var/using_color
+	if(dur_time)
+		time_left = dur_time
+		using_color = COLOR_GREEN
+	else if(cd_time && currnet_disc.active)
+		time_left = cd_time
+		using_color = COLOR_RED
+
+	if(!owner || time_left == 0)
+		button.maptext = ""
+		STOP_PROCESSING(SSfastprocess, src)
+	else
+		var/using_time = round(time_left/10, 0.1)
+		button.maptext = MAPTEXT_TINY_UNICODE("<span style='color: [using_color]'>[using_time]</span>")
+		START_PROCESSING(SSfastprocess, src)
+
+/datum/action/discipline/process(seconds_per_tick)
+	build_all_button_icons(UPDATE_BUTTON_STATUS)
 
 /datum/action/discipline/Grant(mob/M)
 	. = ..()
@@ -89,7 +129,7 @@
 	RegisterSignals(owner, relevant_signals, PROC_REF(update_owner_action_buttons))
 
 /datum/action/discipline/proc/update_owner_action_buttons()
-	owner.update_action_buttons()
+	owner.update_mob_action_buttons()
 
 /datum/action/discipline/IsAvailable(feedback)
 	return discipline.current_power?.can_activate_untargeted(feedback)
@@ -223,6 +263,7 @@
 	if (!swapping)
 		SEND_SOUND(owner, sound('modular_darkpack/modules/deprecated/sounds/highlight.ogg', volume = 50))
 
+// YO this sucks.
 /atom/movable/screen/movable/action_button/Click(location, control, params)
 	if(istype(linked_action, /datum/action/discipline))
 		var/list/modifiers = params2list(params)
@@ -237,3 +278,5 @@
 			return
 		//TODO: middle click to swap loadout
 	. = ..()
+
+#undef COOLDOWN_NO_DISPLAY_TIME
