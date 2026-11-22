@@ -32,6 +32,12 @@
 	if(SScity_time.daytime_started)
 		return "The night has already ended."
 
+	if(SScity_time.roundend_started)
+		return "The round has ended!"
+
+	if(!SScity_time.first_warning)
+		return "Please wait until day is nearer to make this vote."
+
 	return VOTE_AVAILABLE
 
 /datum/vote/extend_night/finalize_vote(winning_option)
