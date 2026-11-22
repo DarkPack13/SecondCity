@@ -7,3 +7,13 @@
 #define DISCIPLINE_TEACHING_IN_CLANS_ONLY 2
 // Discipline teaching completely disabled
 #define DISCIPLINE_TEACHING_DISABLED 3
+
+
+// Flags for extend night voting darkpack_config.txt
+/// Extend Night votes are called by players
+#define EXTEND_NIGHT_PLAYER 0
+/// Extend Night votes are called based on City Time
+#define EXTEND_NIGHT_TIME 1
+/// Extend Night votes are not called
+#define EXTEND_NIGHT_DISABLED 2
+

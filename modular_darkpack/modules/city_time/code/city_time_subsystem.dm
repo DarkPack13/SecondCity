@@ -32,6 +32,8 @@ SUBSYSTEM_DEF(city_time)
 		shifting_colors = TRUE
 		transition_light("#584d88")
 		to_chat(world, span_ghostalert("The night is ending..."))
+		if(CONFIG_GET(number/night_extension_voting) == EXTEND_NIGHT_TIME)
+			INVOKE_ASYNC(SSvote, TYPE_PROC_REF(/datum/controller/subsystem/vote, initiate_vote), /datum/vote/extend_night, vote_initiator_name = "Extend Night", forced = TRUE)
 
 	if(time_passed > time_till_daytime - 15 MINUTES && !second_warning && !shifting_colors)
 		second_warning = TRUE
