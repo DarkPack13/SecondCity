@@ -108,7 +108,7 @@
 	var/mob/living/carbon/human/new_zombie = owner
 
 	add_zombie_biotypes()
-	new_zombie.rot_body(3)
+	new_zombie.rot_body(2)
 
 	RegisterSignal(new_zombie, COMSIG_SPECIES_GAIN, PROC_REF(zombie_species_changed))
 
