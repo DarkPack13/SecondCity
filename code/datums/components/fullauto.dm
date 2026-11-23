@@ -287,6 +287,8 @@
 /obj/item/gun/proc/on_autofire_start(mob/living/shooter)
 	if(fire_cd || shooter.incapacitated || !can_trigger_gun(shooter))
 		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_GUN_TRY_AUTO_FIRE, shooter) & COMPONENT_CANCEL_GUN_FIRE)
+		return NONE
 	if(!can_shoot())
 		shoot_with_empty_chamber(shooter)
 		return FALSE
@@ -322,7 +324,8 @@
 			if(!akimbo_gun.can_shoot())
 				addtimer(CALLBACK(akimbo_gun, TYPE_PROC_REF(/obj/item/gun, shoot_with_empty_chamber), shooter), 0.1 SECONDS)
 			else
-				bonus_spread = dual_wield_spread
+				if(!HAS_TRAIT(shooter, TRAIT_AMBIDEXTROUS)) // DARKPACK EDIT ADD - MERITS_FLAWS
+					bonus_spread = dual_wield_spread
 				addtimer(CALLBACK(akimbo_gun, TYPE_PROC_REF(/obj/item/gun, process_fire), target, shooter, TRUE, params, null, bonus_spread), 0.1 SECONDS)
 	process_fire(target, shooter, TRUE, params, null, bonus_spread)
 

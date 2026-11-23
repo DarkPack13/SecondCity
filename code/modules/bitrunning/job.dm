@@ -20,12 +20,12 @@
 	family_heirlooms = list(/obj/item/reagent_containers/cup/soda_cans/space_mountain_wind)
 
 	mail_goodies = list(
-		/obj/item/food/cornchips = 1,
+		/obj/item/food/chips/corn = 1,
 		/obj/item/reagent_containers/cup/soda_cans/space_mountain_wind = 1,
-		/obj/item/food/cornchips/green = 1,
-		/obj/item/food/cornchips/red = 1,
-		/obj/item/food/cornchips/purple = 1,
-		/obj/item/food/cornchips/blue = 1,
+		/obj/item/food/chips/corn/green = 1,
+		/obj/item/food/chips/corn/red = 1,
+		/obj/item/food/chips/corn/purple = 1,
+		/obj/item/food/chips/corn/blue = 1,
 	)
 	rpg_title = "Recluse"
 	job_flags = STATION_JOB_FLAGS
@@ -37,7 +37,7 @@
 
 	id_trim = /datum/id_trim/job/bitrunner
 	uniform = /obj/item/clothing/under/rank/cargo/bitrunner
-	belt = /obj/item/modular_computer/pda/bitrunner
+	belt = /obj/item/modular_computer/pda/crew/bitrunner
 	ears = /obj/item/radio/headset/headset_cargo
 
 /datum/job/bit_avatar

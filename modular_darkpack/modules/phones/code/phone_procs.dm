@@ -171,7 +171,8 @@
 		animate(pixel_w = -1, time = 0.1 SECONDS, flags = ANIMATION_RELATIVE)
 	if(ringer)
 		playsound(src, 'modular_darkpack/modules/phones/sounds/text_receive.ogg', 50, TRUE, 0, 2) // This could prob use a better notification
-	balloon_alert_to_viewers("[app]:[title]", vision_distance = SAMETILE_MESSAGE_RANGE)
+	if(vibration || ringer)
+		balloon_alert_to_viewers("[app]:[title]", vision_distance = SAMETILE_MESSAGE_RANGE)
 
 #undef VIBRATION_LOOP_DURATION
 
@@ -196,6 +197,10 @@
 	// Set proper phone state.
 	set_phone_state(PHONE_IN_CALL)
 	calling_smartphone.set_phone_state(PHONE_IN_CALL)
+
+	// turn masq stuff on
+	toggle_masquerade_sensitivity(TRUE)
+	calling_smartphone.toggle_masquerade_sensitivity(TRUE)
 
 	phone_radio.canhear_range = 1
 	calling_smartphone.phone_radio.canhear_range = 1
@@ -222,6 +227,10 @@
 	// Set proper phone state.
 	set_phone_state(PHONE_AVAILABLE)
 	calling_smartphone.set_phone_state(PHONE_AVAILABLE)
+
+	// turn masq stuff off
+	toggle_masquerade_sensitivity(FALSE)
+	calling_smartphone.toggle_masquerade_sensitivity(FALSE)
 
 // Internal only proc, used for setting a phone's internal radio when accepting and terminating calls.
 /obj/item/smartphone/proc/set_phone_radio(enabled)

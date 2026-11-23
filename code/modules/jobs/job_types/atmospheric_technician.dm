@@ -47,7 +47,7 @@
 	suit = /obj/item/clothing/suit/atmos_overalls
 	belt = /obj/item/storage/belt/utility/atmostech
 	ears = /obj/item/radio/headset/headset_eng
-	l_pocket = /obj/item/modular_computer/pda/atmos
+	l_pocket = /obj/item/modular_computer/pda/crew/atmos
 	r_pocket = /obj/item/analyzer
 
 	backpack = /obj/item/storage/backpack/industrial
@@ -57,6 +57,7 @@
 
 	box = /obj/item/storage/box/survival/engineer
 	pda_slot = ITEM_SLOT_LPOCKET
+	skillchips = list(/obj/item/skillchip/job/engineer/atmos)
 
 	wintercoat = /obj/item/clothing/suit/hooded/wintercoat/engineering/atmos
 

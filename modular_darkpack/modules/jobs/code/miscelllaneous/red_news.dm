@@ -10,6 +10,9 @@
 	departments_list = list(
 		/datum/job_department/citizen
 	)
+
+	tgui_icon = FA_ICON_CAMERA
+
 	job_flags = CITY_JOB_FLAGS
 	minimum_masquerade = 0
 	alt_titles = list(
@@ -29,6 +32,7 @@
 	name = JOB_RED_NEWS_REPORTER
 	jobtype = /datum/job/vampire/red_news_reporter
 	l_pocket = /obj/item/smartphone/red_news
+	r_pocket = /obj/item/vamp/keys/red_news
 	backpack_contents = list(/obj/item/card/credit)
 	uniform = /obj/item/clothing/under/vampire/suit
 	l_hand = /obj/item/broadcast_camera/darkpack

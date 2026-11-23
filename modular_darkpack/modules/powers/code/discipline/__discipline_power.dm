@@ -31,6 +31,8 @@
 	var/hostile = FALSE
 	/// If use of this power creates a visible Masquerade breach.
 	var/violates_masquerade = FALSE
+	/// Can this be used while in frenzy
+	var/frenzy_usable = TRUE
 
 	/* HOW AND WHEN IT'S ACTIVATED AND DEACTIVATED */
 	/// If this Discipline doesn't automatically expire, but rather periodically drains blood.
@@ -50,6 +52,10 @@
 	/// List of Discipline power types that cannot be activated alongside this power and share a cooldown with it.
 	var/list/grouped_powers
 
+	var/magic_type = MAGIC_TYPE_BLOOD
+	var/magic_subtype
+	var/spawns_magic_effect = TRUE
+
 	/* NOT MEANT TO BE OVERRIDDEN */
 	/// Timer(s) tracking the duration of the power. Can have multiple if multi_activate is true.
 	var/list/duration_timers = list()
@@ -57,6 +63,7 @@
 	var/cooldown_timer
 	/// If this Discipline is currently in use.
 	var/active = FALSE
+	var/mid_activate = FALSE
 	/// The Discipline that this power is part of.
 	var/datum/discipline/discipline
 	/// The player using this Discipline power.
@@ -269,6 +276,11 @@
 		//feedback is sent by the proc preventing activation
 		return FALSE
 
+	if(!frenzy_usable && HAS_TRAIT(owner, TRAIT_IN_FRENZY))
+		if(alert)
+			to_chat(owner, span_warning("You cannot do this while in frenzy!"))
+		return FALSE
+
 	//can't activate if the owner isn't capable of it
 	if (!can_activate_untargeted(alert))
 		return FALSE
@@ -450,6 +462,11 @@
 	do_caster_notification(target)
 	do_logging(target)
 
+	if(spawns_magic_effect && magic_type)
+		var/turf/used_turf = get_turf(discipline.owner)
+		if(used_turf)
+			spawn_magic_after_effect(used_turf, discipline.owner, level, magic_type, magic_subtype)
+
 	owner.update_action_buttons()
 
 	return TRUE
@@ -553,10 +570,16 @@
  * * target - what the targeted Discipline (null otherwise) is being used on.
  */
 /datum/discipline_power/proc/try_activate(atom/target)
+	if(mid_activate)
+		return FALSE
+
+	mid_activate = TRUE
 	if (can_activate(target, TRUE))
 		pre_activation(target)
+		mid_activate = FALSE
 		return TRUE
 
+	mid_activate = FALSE
 	return FALSE
 
 /**
@@ -686,8 +709,11 @@
 /**
  * Overridable proc that allows for code to affect the power's owner
  * when it is gained. Triggered by parent /datum/discipline/post_gain().
+ * post_gain_applied - Whether this ability was already once given to the mob.
+ * For cases like Signal registration and such, it's important to work regardless of being the first time,
+ * while one-time use stuff like stat buffs should respect this arg.
  */
-/datum/discipline_power/proc/post_gain()
+/datum/discipline_power/proc/post_gain(post_gain_applied)
 	return
 
 /**
@@ -725,6 +751,9 @@
 	else
 		to_chat(owner, span_warning("You don't have enough blood to keep [src] active!"))
 		try_deactivate(target)
+
+	if(active)
+		do_masquerade_violation(target)
 
 /**
  * Overridable proc that allows for extra modular code

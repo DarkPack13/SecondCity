@@ -66,12 +66,6 @@
 	var/obj/effect/wall_frill/wall_frill
 	var/frill_icon = /obj/effect/wall_frill::icon
 
-/turf/closed/wall/vampwall/attackby(obj/item/W, mob/user, params)
-	return
-
-/turf/closed/wall/vampwall/attack_hand(mob/user)
-	return
-
 /turf/closed/wall/vampwall/mouse_drop_receive(atom/dropped, mob/user, params)
 	. = ..()
 	if(!isliving(user))

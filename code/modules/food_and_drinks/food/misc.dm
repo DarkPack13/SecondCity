@@ -421,7 +421,7 @@
 	can_stick = FALSE
 
 /obj/item/food/butter/make_processable()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/butterslice, 3, 3 SECONDS, table_required = TRUE, screentip_verb = "Slice", sound_to_play = SFX_KNIFE_SLICE)
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/butterslice, 3, 3 SECONDS, table_required = TRUE, screentip_verb = "Slice", sound_to_play = /datum/sound_effect/knife_slice)
 
 /obj/item/food/butterslice
 	name = "butter slice"
@@ -581,7 +581,7 @@
 		/datum/reagent/consumable/nutriment/protein = 4,
 	)
 	tastes = list("granola" = 1, "nuts" = 1, "chocolate" = 1, "raisin" = 1)
-	foodtypes = GRAIN|NUTS|FRUIT|SUGAR
+	foodtypes = GRAIN|NUTS|FRUIT|SUGAR|CHOCOLATE //DARKPACK EDIT CHANGE: Chocolate
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_4
 
@@ -875,4 +875,4 @@
 		victim.adjust_temp_blindness_up_to(2.5 SECONDS, 3 SECONDS)
 		victim.adjust_confusion_up_to(2.5 SECONDS, 3 SECONDS)
 	victim.visible_message(span_warning("[victim] is inked by [src]!"), span_userdanger("You've been inked by [src]!"))
-	playsound(victim, SFX_DESECRATION, 50, TRUE)
+	playsound(victim, /datum/sound_effect/desecration, 50, TRUE)

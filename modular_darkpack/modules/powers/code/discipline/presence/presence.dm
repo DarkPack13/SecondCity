@@ -11,9 +11,13 @@
 	icon_state = "presence"
 	power_type = /datum/discipline_power/presence
 
-/datum/discipline/presence/post_gain()
+/datum/discipline/presence/post_gain(post_gain_applied)
 	. = ..()
-	ADD_TRAIT(owner, TRAIT_CHARMER, /datum/discipline/presence)
+	ADD_TRAIT(owner, TRAIT_CHARMER, DISCIPLINE_TRAIT(src))
+
+/datum/discipline/presence/post_loss()
+	REMOVE_TRAIT(owner, TRAIT_CHARMER, DISCIPLINE_TRAIT(src))
+	return ..()
 
 /datum/discipline_power/presence
 	name = "Presence power name"
@@ -38,6 +42,15 @@
 	// Do we have traits to modify our difficulties?
 	if((!(owner.obscured_slots & HIDEFACE))&(HAS_TRAIT(owner, TRAIT_DISFIGURED_APPEARANCE))) // Are we visibly disfigured?
 		theirpower += 2 // Increase the difficulty by two.
+
+	if(HAS_TRAIT(owner, TRAIT_ENCHANTING_VOICE))
+		theirpower -= 2
+
+	if(HAS_TRAIT(target, TRAIT_COLDLY_LOGICAL))
+		theirpower += 1
+
+	if(HAS_TRAIT(target, TRAIT_IN_FRENZY))
+		theirpower += 2
 
 	if(!get_kindred_splat(target)) // Is our target mortal?
 		if(HAS_TRAIT(owner, TRAIT_GRAVE_SMELL)) // Are we stinky?
@@ -88,6 +101,11 @@
 	applicable_stats = list(STAT_CHARISMA, STAT_PERFORMANCE)
 	numerical = TRUE
 
+/datum/storyteller_roll/presence_awe/using_difficulty(mob/living/roller, atom/target)
+	. = ..()
+	if(HAS_TRAIT(roller, TRAIT_ENCHANTING_VOICE))
+		. -= 2
+
 // AWE
 /datum/discipline_power/presence/awe
 	name = "Awe"
@@ -97,11 +115,13 @@
 	check_flags = DISC_CHECK_CAPABLE | DISC_CHECK_SPEAK
 	range = 7
 	multi_activate = FALSE
+	cancelable = TRUE
 	cooldown_length = 15 SECONDS
-	duration_length = 10 SECONDS
+	duration_length = 1 SCENES
 	vitae_cost = 1
 	var/successes = 0
 	var/list/affected_targets = list()
+	frenzy_usable = FALSE
 
 /datum/discipline_power/presence/awe/pre_activation_checks()
 	. = ..()
@@ -137,7 +157,7 @@
 		var/mob/living/carbon/target = potential_targets[i]
 		apply_presence_overlay(target)
 		to_chat(target, span_yellowteamradio("You feel extremely attracted to and persuaded by [owner]'s words, no matter what they're saying!"))
-		target.apply_status_effect(STATUS_EFFECT_AWE)
+		target.apply_status_effect(STATUS_EFFECT_AWE, owner)
 		affected_targets += target
 
 	var/affected_count = length(affected_targets)
@@ -149,6 +169,7 @@
 /datum/discipline_power/presence/awe/deactivate()
 	. = ..()
 	for(var/mob/living/carbon/target in affected_targets)
+		target.remove_status_effect(STATUS_EFFECT_AWE)
 		target.remove_overlay(POWERS_LAYER)
 	affected_targets.Cut()
 
@@ -221,6 +242,7 @@
 	duration_length = 5 SECONDS
 	vitae_cost = 1
 	var/successes = 0
+	frenzy_usable = FALSE
 
 /datum/discipline_power/presence/entrancement/pre_activation_checks(mob/living/target)
 
@@ -265,20 +287,11 @@
 	vitae_cost = 1
 	var/successes = 0
 	var/mob/living/carbon/human/summon_target
+	frenzy_usable = FALSE
 
 /datum/discipline_power/presence/summon/pre_activation_checks(mob/living/target)
-	var/summon_target_name = tgui_input_text(owner, "Summon Target:", "Summon Target")
-	if(!summon_target_name)
-		return FALSE
-	summon_target_name = sanitize_name(summon_target_name)
-
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(H.real_name == summon_target_name)
-			summon_target = H
-			break
-
-	if(!summon_target)
-		to_chat(owner, span_warning("You cannot sense anyone by that name."))
+	var/mob/living/summon_target = owner?.mind?.guestbook.pick_known_guy(owner)
+	if(!istype(summon_target))
 		return FALSE
 
 	//this ability has a difficulty of 4 or 5 or something for people the summoner has met, and 8 for those they've only met briefly.
@@ -335,6 +348,7 @@
 	willpower_cost = 1
 	violates_masquerade = TRUE
 	var/list/affected_targets = list()
+	frenzy_usable = FALSE
 
 /datum/discipline_power/presence/majesty/pre_activation_checks(mob/living/target)
 	return TRUE

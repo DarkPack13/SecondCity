@@ -46,6 +46,7 @@
 	anchored = TRUE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
+	flourescent = FALSE // I dont think they are.
 
 /obj/machinery/light/floor/lamppost/Initialize(mapload)
 	. = ..()
@@ -195,7 +196,7 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 	var/datum/looping_sound/slow_drip/looping_drips
-	var/drip_chance = 5
+	var/drip_chance = 1
 
 /obj/structure/vampipe/Initialize(mapload)
 	. = ..()

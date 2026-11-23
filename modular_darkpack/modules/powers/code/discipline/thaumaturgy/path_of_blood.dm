@@ -12,24 +12,30 @@
 	power_type = /datum/discipline_power/thaumaturgy
 	max_selectable_level = 5
 
-/datum/discipline/thaumaturgy/post_gain()
+/datum/discipline/thaumaturgy/post_gain(post_gain_applied)
 	. = ..()
-	var/datum/action/ritual_drawing/thaumaturgy/thaumaturgy = new()
-	thaumaturgy.Grant(owner)
-	thaumaturgy.level = level
-	add_verb(owner, /mob/living/carbon/human/proc/check_research_points)
+	if(!post_gain_applied)
+		var/datum/action/ritual_drawing/thaumaturgy/thaumaturgy = new()
+		thaumaturgy.Grant(owner)
+		thaumaturgy.level = level
+		add_verb(owner, /mob/living/carbon/human/proc/check_research_points)
 
 /datum/discipline/thaumaturgy/post_loss()
 	. = ..()
 	for(var/datum/action/action as anything in owner.actions)
 		if(istype(action, /datum/action/ritual_drawing/thaumaturgy))
 			qdel(action)
+	remove_verb(owner, /mob/living/carbon/human/proc/check_research_points)
 
 
 /datum/storyteller_roll/thaumaturgy
 	applicable_stats = list(STAT_PERMANENT_WILLPOWER)
 	numerical = TRUE
 
+/datum/storyteller_roll/thaumaturgy/using_difficulty(mob/living/roller, atom/target)
+	. = ..()
+	if(HAS_TRAIT(roller, TRAIT_BLOOD_SORCERY_PRODIGY))
+		. = max(4, . - 1)
 
 /datum/discipline_power/thaumaturgy
 	name = "Thaumaturgy power name"
@@ -86,6 +92,7 @@
 	aggravating = FALSE
 	hostile = FALSE
 	violates_masquerade = FALSE
+	frenzy_usable = FALSE
 
 	grouped_powers = list(
 		/datum/discipline_power/thaumaturgy/blood_rage,
@@ -97,7 +104,7 @@
 /datum/discipline_power/thaumaturgy/a_taste_for_blood/activate(atom/target)
 	if(..())
 		return
-	var/datum/reagent/blood/blood = target.reagents.has_reagent(/datum/reagent/blood) || target.reagents.has_reagent(/datum/reagent/blood/vitae)
+	var/datum/reagent/blood/blood = target.reagents.has_reagent(/datum/reagent/blood, check_subtypes = TRUE)
 	if(!blood)
 		to_chat(owner, span_notice("This blood tastes bland."))
 		return
@@ -163,6 +170,7 @@
 	aggravating = FALSE
 	hostile = FALSE
 	violates_masquerade = FALSE
+	frenzy_usable = FALSE
 
 	grouped_powers = list(
 		/datum/discipline_power/thaumaturgy/a_taste_for_blood,
@@ -199,6 +207,7 @@
 	aggravating = FALSE
 	hostile = FALSE
 	violates_masquerade = FALSE
+	frenzy_usable = FALSE
 
 	grouped_powers = list()
 	var/activated = FALSE
@@ -308,8 +317,8 @@
 	aggravating = TRUE
 	hostile = TRUE
 	violates_masquerade = TRUE
-	var/success_multiplier_npc = 200 // a single success kills an NPC
-	var/success_multiplier_player = 20
+	var/success_multiplier_mortal = 50 // increased lethality against mortals VTM V5 pg. 274
+	var/success_multiplier_supernatural = 20
 
 	grouped_powers = list(
 		/datum/discipline_power/thaumaturgy/a_taste_for_blood,
@@ -324,7 +333,10 @@
 	target.visible_message(span_danger("As [owner] touches [target], their body seems to boil!"), span_userdanger("As [owner] touches you, your body feels like it's boiling in a pool of lava!"))
 	playsound(target, pick('sound/effects/wounds/sizzle1.ogg', 'sound/effects/wounds/sizzle2.ogg'), 50, TRUE)
 	target.adjust_blood_pool(-success_count)
-	if(isnpc(target))
-		target.apply_damage(success_count * success_multiplier_npc + owner.thaum_damage_plus, AGGRAVATED)
+	var/damage_mult = 1
+	if(ismundane(target))
+		if(isnpc(target))
+			damage_mult = 4 // increased damage against npcs so a single success kills an mortal NPC
+		target.apply_damage(success_count * damage_mult * success_multiplier_mortal + owner.thaum_damage_plus, AGGRAVATED)
 	else
-		target.apply_damage(success_count * success_multiplier_player + owner.thaum_damage_plus, AGGRAVATED)
+		target.apply_damage(success_count * damage_mult * success_multiplier_supernatural + owner.thaum_damage_plus, AGGRAVATED)

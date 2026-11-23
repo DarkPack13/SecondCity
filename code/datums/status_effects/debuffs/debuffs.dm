@@ -153,12 +153,15 @@
 /datum/status_effect/knocked_out/on_apply()
 	owner.become_blind(TRAIT_STATUS_EFFECT(id))
 	owner.apply_status_effect(/datum/status_effect/grouped/see_no_names, TRAIT_STATUS_EFFECT(id))
+	owner.apply_status_effect(/datum/status_effect/grouped/static_look, TRAIT_STATUS_EFFECT(id))	//DARKPACK EDIT ADD - Static look on unconscious
 	owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILIZED, TRAIT_BLOCK_SECHUD, TRAIT_BLOCK_MEDHUD, TRAIT_INCAPACITATED, TRAIT_FLOORED), TRAIT_STATUS_EFFECT(id))
 	owner.update_eyes() // updates eyelids
 	RegisterSignal(owner, COMSIG_MOB_STATCHANGE, PROC_REF(on_mob_statchange))
+	/* DARKPACK EDIT REMOVE - Frenzy Additions
 	RegisterSignal(owner, COMSIG_MOB_CLIENT_LOGIN, PROC_REF(show_unconscious_hud))
 	if(GET_CLIENT(owner)) // let's not waste time giving the hud to non-player characters
 		show_unconscious_hud(owner)
+	*/
 	return TRUE
 
 /datum/status_effect/knocked_out/on_creation(mob/living/new_owner, ...)
@@ -171,15 +174,18 @@
 /datum/status_effect/knocked_out/on_remove()
 	owner.cure_blind(TRAIT_STATUS_EFFECT(id))
 	owner.remove_status_effect(/datum/status_effect/grouped/see_no_names, TRAIT_STATUS_EFFECT(id))
+	owner.remove_status_effect(/datum/status_effect/grouped/static_look, TRAIT_STATUS_EFFECT(id))	//DARKPACK EDIT ADD - Static look on unconscious
 	owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILIZED, TRAIT_BLOCK_SECHUD, TRAIT_BLOCK_MEDHUD, TRAIT_INCAPACITATED, TRAIT_FLOORED), TRAIT_STATUS_EFFECT(id))
 	owner.update_eyes() // updates eyelids
-	UnregisterSignal(owner, list(COMSIG_MOB_CLIENT_LOGIN, COMSIG_MOB_STATCHANGE))
-	if(GET_CLIENT(owner))
-		hide_unconscious_hud(owner)
+	UnregisterSignal(owner, list(COMSIG_MOB_STATCHANGE))	//DARKPACK EDIT CHANGE - static_look effect - original: UnregisterSignal(owner, list(COMSIG_MOB_CLIENT_LOGIN, COMSIG_MOB_STATCHANGE))
+	//if(GET_CLIENT(owner)) DARKPACK EDIT REMOVAL - Frenzy Additions
+	//	hide_unconscious_hud(owner) DARKPACK EDIT REMOVAL - Frenzy Additions
+
 
 /datum/status_effect/knocked_out/tick(seconds_between_ticks)
 	owner.adjust_stamina_loss(-3 * seconds_between_ticks)
 
+/* // DARKPACK EDIT REMOVAL  - Frenzy Additions
 /// Global list of images that correspond to a mob's unconscious appearance
 GLOBAL_LIST_EMPTY(unconscious_appearances)
 
@@ -192,6 +198,7 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 	SIGNAL_HANDLER
 
 	source.client?.images -= GLOB.unconscious_appearances
+*/ // DARKPACK EDIT REMOVAL - Frenzy Additions
 
 /datum/status_effect/knocked_out/proc/on_mob_statchange(mob/living/source, ...)
 	SIGNAL_HANDLER
@@ -292,6 +299,10 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 		if(locate(/obj/item/pillow) in owner.loc)
 			sleep_quality += 0.1
 
+		// A nice drink before sleep is always nice
+		if(HAS_TRAIT(owner, TRAIT_HAD_SLEEPY_DRINK))
+			sleep_quality += 0.1
+
 		var/need_mob_update = FALSE
 		if(sleep_quality > 0)
 			if(iscarbon(owner))
@@ -363,25 +374,19 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 	. = ..()
 	if(!.)
 		return
-	owner.add_traits(list(TRAIT_IMMOBILIZED, TRAIT_HANDS_BLOCKED, TRAIT_STASIS, TRAIT_TUMOR_SUPPRESSED), TRAIT_STATUS_EFFECT(id))
+	owner.add_traits(list(TRAIT_IMMOBILIZED, TRAIT_HANDS_BLOCKED, TRAIT_STASIS), TRAIT_STATUS_EFFECT(id))
 	owner.add_filter("stasis_status_ripple", 2, list("type" = "ripple", "flags" = WAVE_BOUNDED, "radius" = 0, "size" = 2))
 	var/filter = owner.get_filter("stasis_status_ripple")
 	animate(filter, radius = 0, time = 0.2 SECONDS, size = 2, easing = JUMP_EASING, loop = -1, flags = ANIMATION_PARALLEL)
 	animate(radius = 32, time = 1.5 SECONDS, size = 0)
-	if(iscarbon(owner))
-		var/mob/living/carbon/carbon_owner = owner
-		carbon_owner.update_bodypart_bleed_overlays()
 
 /datum/status_effect/grouped/stasis/tick(seconds_between_ticks)
 	update_time_of_death()
 
 /datum/status_effect/grouped/stasis/on_remove()
-	owner.remove_traits(list(TRAIT_IMMOBILIZED, TRAIT_HANDS_BLOCKED, TRAIT_STASIS, TRAIT_TUMOR_SUPPRESSED), TRAIT_STATUS_EFFECT(id))
+	owner.remove_traits(list(TRAIT_IMMOBILIZED, TRAIT_HANDS_BLOCKED, TRAIT_STASIS), TRAIT_STATUS_EFFECT(id))
 	owner.remove_filter("stasis_status_ripple")
 	update_time_of_death()
-	if(iscarbon(owner))
-		var/mob/living/carbon/carbon_owner = owner
-		carbon_owner.update_bodypart_bleed_overlays()
 	return ..()
 
 /atom/movable/screen/alert/status_effect/stasis
@@ -409,7 +414,7 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 	alerttooltipstyle = "hisgrace"
 
 /datum/status_effect/his_wrath/tick(seconds_between_ticks)
-	for(var/obj/item/his_grace/HG in owner.held_items)
+	if(owner.is_holding_item_of_type(/obj/item/his_grace))
 		qdel(src)
 		return
 	var/need_mob_update
@@ -539,7 +544,7 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 
 /datum/status_effect/stacking/saw_bleed/threshold_cross_effect()
 	new /obj/effect/temp_visual/bleed/explode(get_turf(owner))
-	playsound(owner, SFX_DESECRATION, 100, TRUE, -1)
+	playsound(owner, /datum/sound_effect/desecration, 100, TRUE, -1)
 	for(var/splatter_dir in GLOB.alldirs)
 		owner.create_splatter(splatter_dir)
 	owner.adjust_brute_loss(bleed_damage)
@@ -1273,6 +1278,31 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 	QDEL_NULL(mob_flare)
 	owner.remove_filter("designated_target")
 	REMOVE_TRAIT(owner, TRAIT_DESIGNATED_TARGET, id)
+
+/datum/status_effect/shadowspeak
+	id = "forced_shadowspeak"
+	alert_type = null
+	remove_on_fullheal = FALSE //Ideally, the fullheal will remove whatever's causing the status effect in the first place.
+	var/shadowspeak_chance
+
+/datum/status_effect/shadowspeak/on_creation(mob/living/new_owner, shadowspeak_chance)
+	src.shadowspeak_chance = shadowspeak_chance
+	return ..()
+
+/datum/status_effect/shadowspeak/on_apply()
+	. = ..()
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(on_spoken))
+
+/datum/status_effect/shadowspeak/on_remove()
+	. = ..()
+	UnregisterSignal(owner, COMSIG_MOB_SAY)
+
+/// When the mob speaks, sometimes put it in a different language
+/datum/status_effect/shadowspeak/proc/on_spoken(mob/living/new_owner, list/speech_args)
+	SIGNAL_HANDLER
+	if (new_owner.has_reagent(/datum/reagent/water/holywater) || prob(shadowspeak_chance))
+		return
+	speech_args[SPEECH_LANGUAGE] = /datum/language/shadowtongue
 
 #undef HEALING_SLEEP_DEFAULT
 #undef HEALING_SLEEP_ORGAN_MULTIPLIER

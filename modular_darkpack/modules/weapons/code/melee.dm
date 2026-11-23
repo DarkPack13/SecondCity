@@ -119,6 +119,7 @@
 	worn_icon = 'modular_darkpack/modules/weapons/icons/worn_melee.dmi'
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/weapons/icons/weapons_onfloor.dmi')
 	icon_state = "rapier"
+	inhand_icon_state = "rapier"
 	// WTA pg. 302
 	force = 2 LETHAL_TTRPG_DAMAGE
 	armour_penetration = 50
@@ -236,6 +237,10 @@
 	slot_flags = ITEM_SLOT_BELT
 	resistance_flags = FIRE_PROOF
 	obj_flags = CONDUCTS_ELECTRICITY
+
+/obj/item/melee/vamp/tire/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/kneecapping)
 
 /obj/item/knife/vamp
 	name = "knife"
@@ -388,6 +393,10 @@
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2)
 	custom_price = 20
 
+/obj/item/melee/baton/vamp/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/kneecapping)
+
 /obj/item/switchblade/vamp
 	name = "switchblade"
 	desc = "A spring-loaded knife. Perfect for stabbing sharks and jets."
@@ -414,6 +423,7 @@
 	// Made up
 	force = 2 TTRPG_DAMAGE
 	throwforce = 2 TTRPG_DAMAGE
+	throw_range = 4
 
 	attack_verb_continuous = list("bludgeons", "bashes", "beats")
 	attack_verb_simple = list("bludgeon", "bash", "beat", "smacks")
@@ -422,6 +432,10 @@
 	//grid_width = 2 GRID_BOXES
 	//grid_height = 1 GRID_BOXES
 	var/broken = FALSE
+
+/obj/item/melee/vamp/brick/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/falling_hazard, damage = 50, wound_bonus = 20, hardhat_safety = TRUE, crushes = FALSE, impact_sound = 'sound/items/weapons/genhit3.ogg')
 
 /obj/item/melee/vamp/brick/after_throw(datum/callback/callback)
 	if(prob(75))

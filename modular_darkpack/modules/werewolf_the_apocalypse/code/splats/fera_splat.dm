@@ -84,15 +84,13 @@
 
 	// incompatible_splats = list(/datum/splat/werewolf/shifter) // TODO: Becoming a shifter should get rid of your kinfolk splat
 
-/datum/splat/werewolf/kinfolk/on_gain() //Currently just for granting language Garou Tongue or High Tongue that Kinfolk can learn.
+/datum/splat/werewolf/kinfolk/on_gain() // Kinfolk can understand High Tongue but it is physically impossible for them to speak it, as it requires partial shifting.
 	. = ..()
-	owner.grant_language(/datum/language/garou_tongue, SPOKEN_LANGUAGE, LANGUAGE_SPLAT) //Separated because Spoken and Hearing Components are separated
 	owner.grant_language(/datum/language/garou_tongue, UNDERSTOOD_LANGUAGE, LANGUAGE_SPLAT)
 
 /datum/splat/werewolf/kinfolk/on_lose_or_destroy()
 	. = ..()
 	if(!QDELING(owner))
-		owner.remove_language(/datum/language/garou_tongue, SPOKEN_LANGUAGE, LANGUAGE_SPLAT) //Separated because Spoken and Hearing Components are separated
 		owner.remove_language(/datum/language/garou_tongue, UNDERSTOOD_LANGUAGE, LANGUAGE_SPLAT)
 
 /datum/splat/werewolf/shifter
@@ -165,8 +163,9 @@
 	var/can_passively_heal = !(is_breed_form() && (get_breed_form_species() != /datum/species/human/shifter/war))
 	if(COOLDOWN_FINISHED(src, passive_healing_cd))
 		if(can_passively_heal)
-			// 2 to represent lethal. Fera passive regen closes burn, but not aggravated damage.
-			owner.heal_storyteller_health(2, heal_aggravated = FALSE, heal_scars = TRUE, heal_blood = TRUE, heal_burn = TRUE)
+			// 2 to represent lethal. Fera passive regen closes burn (if we've the "can heal burn" gift), but not aggravated damage.
+			var/can_heal_burn = !!owner.has_status_effect(/datum/status_effect/master_of_fire)
+			owner.heal_storyteller_health(2, heal_aggravated = FALSE, heal_scars = TRUE, heal_blood = TRUE, heal_burn = can_heal_burn)
 			// Keep organ healing ticking so internal damage recovers even between major regrowth pulses.
 			owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, -0.5 * seconds_per_tick, required_organ_flag = ORGAN_ORGANIC)
 			owner.adjust_organ_loss(ORGAN_SLOT_HEART, -0.5 * seconds_per_tick, required_organ_flag = ORGAN_ORGANIC)

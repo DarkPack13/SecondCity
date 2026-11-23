@@ -13,13 +13,13 @@
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/vicissitude
 
-/datum/discipline/vicissitude/post_gain()
+/datum/discipline/vicissitude/post_gain(post_gain_applied)
 	. = ..()
-	ADD_TRAIT(owner, TRAIT_SELF_SURGERY, /datum/discipline/vicissitude) //Allows people with Vicissitude to perform operations on themselves.
+	ADD_TRAIT(owner, TRAIT_SELF_SURGERY, DISCIPLINE_TRAIT(src)) //Allows people with Vicissitude to perform operations on themselves.
 
 /datum/discipline/vicissitude/post_loss()
 	. = ..()
-	REMOVE_TRAIT(owner, TRAIT_SELF_SURGERY, /datum/discipline/vicissitude) //Removes the trait if you lose Vicissitude.
+	REMOVE_TRAIT(owner, TRAIT_SELF_SURGERY, DISCIPLINE_TRAIT(src)) //Removes the trait if you lose Vicissitude.
 
 /datum/discipline_power/vicissitude
 	name = "Vicissitude power name"
@@ -27,11 +27,13 @@
 
 	var/datum/action/cooldown/mob_cooldown/shapeshift/shapeshift_ability
 
-/datum/discipline_power/vicissitude/post_gain()
+/datum/discipline_power/vicissitude/post_gain(post_gain_applied)
 	if(!shapeshift_ability)
 		shapeshift_ability = new(owner)
 	shapeshift_ability.Grant(owner)
 
+/datum/discipline_power/vicissitude/post_loss()
+	shapeshift_ability.Remove(owner)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -45,6 +47,7 @@
 	cooldown_length = 1 TURNS
 	vitae_cost = 1
 	toggled = FALSE
+	frenzy_usable = FALSE
 
 /datum/discipline_power/vicissitude/malleable_visage/activate(atom/target)
 	. = ..()
@@ -64,16 +67,18 @@
 	range = 1
 	toggled = FALSE
 	cooldown_length = 1 TURNS
+	frenzy_usable = FALSE
 
 /datum/discipline_power/vicissitude/fleshcrafting/activate(atom/movable/target)
 	. = ..()
 	shapeshift_ability.Activate(target)
 	return TRUE
 
-/datum/discipline_power/vicissitude/fleshcrafting/post_gain()
+/datum/discipline_power/vicissitude/fleshcrafting/post_gain(post_gain_applied)
 	. = ..()
-	var/obj/item/organ/cyberimp/arm/toolkit/surgery/vicissitude/surgery_implant = new()
-	surgery_implant.Insert(owner)
+	if(!post_gain_applied)
+		var/obj/item/organ/cyberimp/arm/toolkit/surgery/vicissitude/surgery_implant = new()
+		surgery_implant.Insert(owner)
 	RegisterSignal(owner, COMSIG_LIVING_OPERATING_ON, PROC_REF(add_surgery))
 
 /datum/discipline_power/vicissitude/fleshcrafting/Destroy(force)

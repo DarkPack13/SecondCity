@@ -52,6 +52,7 @@
 
 // Block tied
 #define FEATURE_MUTANT_COLOR "mcolor"
+#define FEATURE_TAIL_FISH_COLOR "fish_tail_color"
 #define FEATURE_EARS "ears"
 #define FEATURE_TAIL_CAT "tail_cat"
 #define FEATURE_TAIL_LIZARD "tail_lizard"
@@ -72,6 +73,7 @@
 #define FEATURE_WINGS_OPEN "wingsopen"
 #define FEATURE_TAIL_MONKEY "tail_monkey"
 #define FEATURE_TAIL_XENO "tail_xeno"
+#define FEATURE_TAIL_MOUSE "tail_mouse"
 #define FEATURE_TAILSPINES "tailspines" // Different from regular spines, these appear on tails
 #define FEATURE_LEGS "legs"
 
@@ -100,6 +102,7 @@
 #define ORGAN_SLOT_BREATHING_TUBE "breathing_tube"
 #define ORGAN_SLOT_EARS "ears"
 #define ORGAN_SLOT_EYES "eye_sight"
+#define ORGAN_SLOT_FANGS "fangs"
 #define ORGAN_SLOT_HEART "heart"
 #define ORGAN_SLOT_HEART_AID "heartdrive"
 #define ORGAN_SLOT_HUD "eye_hud"
@@ -191,6 +194,7 @@ GLOBAL_LIST_INIT(organ_process_order, list(
 	ORGAN_SLOT_XENO_ACIDGLAND,
 	ORGAN_SLOT_XENO_NEUROTOXINGLAND,
 	ORGAN_SLOT_XENO_EGGSAC,
+	ORGAN_SLOT_FANGS,
 ))
 
 // Defines for used in creating "perks" for the species preference pages.

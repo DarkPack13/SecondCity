@@ -30,6 +30,7 @@
 	duration_length = 1 SCENES
 	cooldown_length = 2 SCENES
 	var/datum/proximity_monitor/advanced/silence_of_death/silence_field
+	frenzy_usable = FALSE
 
 /datum/discipline_power/quietus/silence_of_death/activate()
 	. = ..()
@@ -121,7 +122,7 @@
 
 	var/list/marked_targets = list()
 
-/datum/discipline_power/quietus/dagons_call/post_gain()
+/datum/discipline_power/quietus/dagons_call/post_gain(post_gain_applied)
 	. = ..()
 	RegisterSignal(owner, COMSIG_HUMAN_PUNCHED, PROC_REF(on_punch))
 	RegisterSignal(owner, COMSIG_HUMAN_GOT_PUNCHED, PROC_REF(on_punch))
@@ -129,7 +130,7 @@
 	RegisterSignal(owner, COMSIG_CARBON_HELPED, PROC_REF(on_touch))
 
 /datum/discipline_power/quietus/dagons_call/Destroy()
-	UnregisterSignal(owner, list(COMSIG_HUMAN_PUNCHED, COMSIG_CARBON_HELP_ACT, COMSIG_CARBON_HELPED))
+	UnregisterSignal(owner, list(COMSIG_HUMAN_PUNCHED, COMSIG_HUMAN_GOT_PUNCHED, COMSIG_CARBON_HELP_ACT, COMSIG_CARBON_HELPED))
 	marked_targets.Cut()
 	return ..()
 

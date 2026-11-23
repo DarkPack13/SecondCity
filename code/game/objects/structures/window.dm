@@ -28,7 +28,7 @@
 	var/glass_type = /obj/item/stack/sheet/glass
 	var/glass_amount = 1
 	var/real_explosion_block //ignore this, just use explosion_block
-	var/break_sound = SFX_SHATTER
+	var/break_sound = /datum/sound_effect/shatter
 	var/knock_sound = 'sound/effects/glass/glassknock.ogg'
 	var/bash_sound = 'sound/effects/glass/glassbash.ogg'
 	var/hit_sound = 'sound/effects/glass/glasshit.ogg'
@@ -97,7 +97,7 @@
 			. += span_notice("The window is <i>unscrewed</i> but <b>pried</b> into the frame.")
 		if(WINDOW_OUT_OF_FRAME)
 			if (anchored)
-				. += span_notice("The window is <b>screwed</b> to the floor.")
+				. += span_notice("The window is <b>screwed</b> to the floor. It can be <b>pried</b> into a more secure position.")
 			else
 				. += span_notice("The window is <i>unscrewed</i> from the floor, and could be deconstructed by <b>wrenching</b>.")
 
@@ -942,6 +942,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/titanium/spawner, 0
 
 /obj/structure/window/reinforced/survival_pod/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/survival_pod/spawner, 0)
 
@@ -1029,7 +1030,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/survival_pod/spawne
 	can_atmos_pass = ATMOS_PASS_YES
 	resistance_flags = FLAMMABLE
 	armor_type = /datum/armor/none
-	knock_sound = SFX_PAGE_TURN
+	knock_sound = /datum/sound_effect/page_turn
 	bash_sound = 'sound/items/weapons/slashmiss.ogg'
 	break_sound = 'sound/items/poster/poster_ripped.ogg'
 	hit_sound = 'sound/items/weapons/slashmiss.ogg'
