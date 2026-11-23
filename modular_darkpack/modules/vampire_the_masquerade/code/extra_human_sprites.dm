@@ -19,18 +19,13 @@
 			sprite_name = clan.alt_sprite
 			greyscale = clan.alt_sprite_greyscale
 		else
-			reset_body_sprite()
-			return
+			sprite_name = SPECIES_HUMAN
+			greyscale = TRUE
 
 	// Update all limbs to the new sprite and greyscale
 	for (var/obj/item/bodypart/bodypart as anything in bodyparts)
 		var/icon_to_set = greyscale ? DEFAULT_BODYPART_ICON_ORGANIC : bodypart.icon
 		bodypart.change_appearance(icon_to_set, sprite_name, greyscale)
-
-/mob/living/carbon/human/proc/reset_body_sprite()
-	// Update all limbs to the new sprite and greyscale
-	for (var/obj/item/bodypart/bodypart as anything in bodyparts)
-		bodypart.change_appearance(bodypart::icon, bodypart::limb_id, bodypart::should_draw_greyscale)
 
 /**
  * Rots the vampire's body along four stages of decay.
@@ -80,5 +75,5 @@
 			ADD_TRAIT(src, TRAIT_MASQUERADE_VIOLATING_FACE, ROTTEN_TRAIT)
 
 /mob/living/carbon/human/proc/unrot_body()
-	reset_body_sprite()
+	set_body_sprite()
 	REMOVE_TRAIT(src, TRAIT_MASQUERADE_VIOLATING_FACE, ROTTEN_TRAIT)

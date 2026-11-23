@@ -276,7 +276,7 @@
 			REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES, SUBSPLAT_TRAIT)
 		if(original_sprite == "rotten4" || original_sprite == "rotten3")
 			REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, ROTTEN_TRAIT)
-		owner.reset_body_sprite()
+		owner.set_body_sprite(SPECIES_HUMAN, TRUE, TRUE)
 
 	owner.updateappearance(mutcolor_update = TRUE)
 	to_chat(owner, span_notice("You assume the appearance of [target.name]."))
