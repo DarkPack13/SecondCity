@@ -75,7 +75,7 @@
 
 	// Sets the losing_mob back to their default body sprite
 	if (alt_sprite)
-		losing_mob.set_body_sprite(ignore_clan = TRUE)
+		losing_mob.reset_body_sprite()
 
 	clear_old_overlays(losing_mob)
 

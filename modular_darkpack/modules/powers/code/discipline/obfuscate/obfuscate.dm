@@ -275,8 +275,8 @@
 		if(owner_splat.clan && (TRAIT_MASQUERADE_VIOLATING_EYES in owner_splat.clan.subsplat_traits))
 			REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES, SUBSPLAT_TRAIT)
 		if(original_sprite == "rotten4" || original_sprite == "rotten3")
-			REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, MAGIC_TRAIT)
-		owner.set_body_sprite(SPECIES_HUMAN, TRUE, TRUE)
+			REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, ROTTEN_TRAIT)
+		owner.reset_body_sprite()
 
 	owner.updateappearance(mutcolor_update = TRUE)
 	to_chat(owner, span_notice("You assume the appearance of [target.name]."))
@@ -295,7 +295,7 @@
 	if(owner_splat.clan && (TRAIT_MASQUERADE_VIOLATING_EYES in owner_splat.clan.subsplat_traits))
 		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES, SUBSPLAT_TRAIT)
 	if(original_sprite == "rotten4" || original_sprite == "rotten3")
-		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, MAGIC_TRAIT)
+		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, ROTTEN_TRAIT)
 
 	owner.set_body_sprite(original_sprite, original_sprite_greyscale, TRUE)
 	owner.updateappearance(mutcolor_update = TRUE)

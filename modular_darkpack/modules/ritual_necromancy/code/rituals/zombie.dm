@@ -49,7 +49,7 @@
 
 		// Revive the specimen and turn them into a zombie
 		target_body.revive(HEAL_ALL)
-		target_body.apply_status_effect(/datum/status_effect/zombie)
+		target_body.apply_status_effect(/datum/status_effect/daemonic_possession)
 		target_body.real_name = old_name // the ritual for some reason is deleting their old name and replacing it with a random name.
 		target_body.name = old_name
 		target_body.update_name()
@@ -90,3 +90,52 @@
 			zombie.update_name()
 	else
 		return
+
+
+/datum/status_effect/daemonic_possession
+	id = "daemonic_possession"
+	alert_type = null
+	tick_interval = STATUS_EFFECT_NO_TICK
+	/// Biotypes we added (typically just MOB_UNDEAD)
+	VAR_PRIVATE/added_biotypes = NONE
+	/// Biotypes we removed (typically just MOB_ORGANIC)
+	VAR_PRIVATE/removed_biotypes = NONE
+
+/datum/status_effect/daemonic_possession/on_apply()
+	if(!ishuman(owner))
+		return FALSE
+
+	var/mob/living/carbon/human/new_zombie = owner
+
+	add_zombie_biotypes()
+	new_zombie.rot_body(3)
+
+	RegisterSignal(new_zombie, COMSIG_SPECIES_GAIN, PROC_REF(zombie_species_changed))
+
+	return TRUE
+
+/datum/status_effect/daemonic_possession/on_remove()
+	. = ..()
+	var/mob/living/carbon/human/was_zombie = owner
+
+	remove_zombie_biotypes()
+	was_zombie.unrot_body()
+
+	UnregisterSignal(was_zombie, COMSIG_SPECIES_GAIN)
+
+/datum/status_effect/daemonic_possession/proc/zombie_species_changed(mob/living/carbon/human/zombie, ...)
+	SIGNAL_HANDLER
+	add_zombie_biotypes()
+
+/datum/status_effect/daemonic_possession/proc/add_zombie_biotypes()
+	if(!(owner.mob_biotypes & MOB_UNDEAD))
+		owner.mob_biotypes |= MOB_UNDEAD
+		added_biotypes = MOB_UNDEAD
+
+	if(owner.mob_biotypes & MOB_ORGANIC)
+		owner.mob_biotypes &= ~MOB_ORGANIC
+		removed_biotypes = MOB_ORGANIC
+
+/datum/status_effect/daemonic_possession/proc/remove_zombie_biotypes()
+	owner.mob_biotypes &= ~added_biotypes
+	owner.mob_biotypes |= removed_biotypes
