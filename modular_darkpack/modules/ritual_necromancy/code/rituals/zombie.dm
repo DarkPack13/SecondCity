@@ -101,6 +101,27 @@
 	/// Biotypes we removed (typically just MOB_ORGANIC)
 	VAR_PRIVATE/removed_biotypes = NONE
 
+	var/static/list/zombie_traits = list(
+		TRAIT_APATHETIC,
+		TRAIT_NEVER_CONSIDERED_ALIVE,
+		TRAIT_STABLEHEART,
+		TRAIT_STABLELIVER,
+		TRAIT_BLOODY_MESS,
+		TRAIT_COLD_BLOODED,
+		TRAIT_EASILY_WOUNDED,
+		TRAIT_EASYDISMEMBER,
+		TRAIT_FAKEDEATH,
+		TRAIT_LIMBATTACHMENT,
+		TRAIT_LIVERLESS_METABOLISM,
+		TRAIT_NOBREATH,
+		TRAIT_NOHUNGER,
+		TRAIT_RADIMMUNE,
+		TRAIT_RESISTCOLD,
+		TRAIT_RESISTHIGHPRESSURE,
+		TRAIT_RESISTLOWPRESSURE,
+		TRAIT_TOXIMMUNE,
+	)
+
 /datum/status_effect/daemonic_possession/on_apply()
 	if(!ishuman(owner))
 		return FALSE
@@ -109,6 +130,7 @@
 
 	add_zombie_biotypes()
 	new_zombie.rot_body(3)
+	new_zombie.add_traits(zombie_traits, TRAIT_STATUS_EFFECT(id))
 
 	RegisterSignal(new_zombie, COMSIG_SPECIES_GAIN, PROC_REF(zombie_species_changed))
 
@@ -120,6 +142,7 @@
 
 	remove_zombie_biotypes()
 	was_zombie.unrot_body()
+	was_zombie.remove_traits(zombie_traits, TRAIT_STATUS_EFFECT(id))
 
 	UnregisterSignal(was_zombie, COMSIG_SPECIES_GAIN)
 
