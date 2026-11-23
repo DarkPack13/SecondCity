@@ -319,7 +319,8 @@
 	ADD_NEWLINE_IF_NECESSARY(.)
 	if(custom_examine_message)
 		. += span_purple(custom_examine_message)
-	. += flavor_text_creation()
+	if(flavortext_visible(user) && has_examine_panel_info())
+		. += flavor_text_creation(user)
 	// DARKPACK EDIT ADD END
 
 	var/hud_info = get_hud_examine_info(user)

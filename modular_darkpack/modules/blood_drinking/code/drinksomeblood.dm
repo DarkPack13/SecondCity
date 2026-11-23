@@ -23,10 +23,9 @@
 		src.emote("moan")
 		Immobilize(30, TRUE)
 
-	if(isnpc(drunk_from))
-		var/mob/living/carbon/human/npc/NPC = drunk_from
-		NPC.danger_source = null
-		drunk_from.Stun(40) //NPCs don't get to resist
+	drunk_from.ai_controller?.forget_target()
+	if(drunk_from.ai_controller)
+		drunk_from.Stun(1 TURNS) //NPCs don't get to resist
 
 	if(drunk_from.blood_volume <= BLOOD_VOLUME_BAD)
 		to_chat(src, span_warning("Your victim's heart beats only weakly. Death comes for them."))

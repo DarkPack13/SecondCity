@@ -1,11 +1,11 @@
 // alot of these npcs, like 'bacotell' 'bubway' and 'endronsecurity_2' should probably not be available to be taken since they're so specialized.
 GLOBAL_LIST_INIT(prey_exclusion_choice, list(
-	"Middle-income" = /mob/living/carbon/human/npc/incel,
+	"Middle-income" = /mob/living/carbon/human/npc/average,
 	"Police Officers" = /mob/living/carbon/human/npc/police,
 	"Criminals" = /mob/living/carbon/human/npc/bandit,
-	"High income" = /mob/living/carbon/human/npc/business,
+	"High income" = /mob/living/carbon/human/npc/rich,
 	//"Strippers" = /mob/living/carbon/human/npc/stripper, i feel like strippers would be the most powergamed option, keeping it here but commented.
-	"Homeless" = /mob/living/carbon/human/npc/hobo,
+	"Homeless" = /mob/living/carbon/human/npc/poor,
 ))
 
 /datum/quirk/darkpack/prey_exclusion
@@ -24,7 +24,7 @@ GLOBAL_LIST_INIT(prey_exclusion_choice, list(
 	var/prey_exclusion
 
 /datum/quirk/darkpack/prey_exclusion/add(client/client_source)
-	prey_exclusion = GLOB.prey_exclusion_choice[client_source?.prefs.read_preference(/datum/preference/choiced/prey_exclusion)] || /mob/living/carbon/human/npc/hobo
+	prey_exclusion = GLOB.prey_exclusion_choice[client_source?.prefs.read_preference(/datum/preference/choiced/prey_exclusion)] || /mob/living/carbon/human/npc/poor
 
 /datum/quirk_constant_data/prey_exclusion
 	associated_typepath = /datum/quirk/darkpack/prey_exclusion
@@ -52,4 +52,4 @@ GLOBAL_LIST_INIT(prey_exclusion_choice, list(
 	var/datum/quirk/darkpack/prey_exclusion/quirk = target.get_quirk(/datum/quirk/darkpack/prey_exclusion)
 	if(!quirk)
 		return
-	quirk.prey_exclusion = GLOB.prey_exclusion_choice[value] || /mob/living/carbon/human/npc/hobo
+	quirk.prey_exclusion = GLOB.prey_exclusion_choice[value] || /mob/living/carbon/human/npc/poor

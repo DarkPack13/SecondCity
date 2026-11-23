@@ -532,7 +532,7 @@
 		return FALSE
 
 ///Handles all the logic of magazine ejection, if tac_load is set that magazine will be tacloaded in the place of the old eject
-/obj/item/gun/ballistic/proc/eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/tac_load = null)
+/obj/item/gun/ballistic/proc/eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/tac_load = null, mag_retention = TRUE) // DARKPACK EDIT CHANGE
 	if(bolt_type == BOLT_TYPE_OPEN)
 		chambered = null
 	if (magazine.ammo_count())
@@ -546,7 +546,10 @@
 			balloon_alert(user, "[magazine_wording] swapped")
 		else
 			to_chat(user, span_warning("You dropped the old [magazine_wording], but the new one doesn't fit. How embarassing."))
-	user.put_in_hands(old_mag)
+	// DARKPACK EDIT CHANGE START
+	if(mag_retention)
+		user.put_in_hands(old_mag)
+	// DARKPACK EDIT CHANGE END
 	if (display_message)
 		balloon_alert(user, "[magazine_wording] unloaded")
 

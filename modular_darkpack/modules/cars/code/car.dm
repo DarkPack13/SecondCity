@@ -256,8 +256,7 @@
 	if(!locked)
 		to_chat(user, span_warning("The [src] is already unlocked."))
 		return
-	for(var/mob/living/carbon/human/npc/police/P in oviewers(DEFAULT_SIGHT_DISTANCE, src))
-		P.Aggro(user)
+	aggro_police_npcs(user)
 	log_game("[user] tried lockpicking [src]")
 	var/total_lockpicking = user.st_get_stat(STAT_LARCENY)
 	if(CONFIG_GET(flag/punishing_zero_dots) && total_lockpicking < 1)
@@ -310,8 +309,7 @@
 		if(!driver && !length(passengers) && COOLDOWN_FINISHED(src, beep_cooldown) && locked)
 			COOLDOWN_START(src, beep_cooldown, 7 SECONDS)
 			playsound(src, 'modular_darkpack/modules/cars/sounds/signal.ogg', 50, FALSE)
-			for(var/mob/living/carbon/human/npc/police/P in oviewers(DEFAULT_SIGHT_DISTANCE, src))
-				P.Aggro(user)
+			aggro_police_npcs(user)
 
 		if(prob(10) && locked)
 			playsound(src, 'modular_darkpack/modules/cars/sounds/open.ogg', 50, TRUE)
@@ -560,10 +558,6 @@
 		speed = 0
 		COOLDOWN_START(src, impact_delay, 2 SECONDS)
 
-	if(driver && istype(bumped_atom, /mob/living/carbon/human/npc))
-		var/mob/living/carbon/human/npc/NPC = bumped_atom
-		NPC.Aggro(driver, TRUE)
-
 	if(hit_mob)
 		var/hit_dam = impact_damage
 		if(!HAS_TRAIT(hit_mob, TRAIT_TOUGH_FLESH))
@@ -577,6 +571,8 @@
 		dam = round(dam/driver_skill)
 		driver.apply_damage(impact_damage, BRUTE, BODY_ZONE_CHEST)
 	take_damage(dam)
+
+	SEND_SIGNAL(bumped_atom, COMSIG_CAR_IMPACT, src, driver)
 
 /obj/darkpack_car/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
@@ -734,6 +730,9 @@
 			COOLDOWN_START(dodger, car_dodge, 2 SECONDS)
 			if(prob(50))
 				dodger.realistic_say(pick(dodger.socialrole.car_dodged))
+
+			#warn do
+			// SEND_SIGNAL(dodger, COMSIG_MOB_CAR_NEAR_IMPACT, src)
 
 /// Animates the riders' cameras to follow the car, a little ahead of it. from_x/from_y is where the camera was heading last tick, in this tick's tile frame.
 /obj/darkpack_car/proc/update_rider_cameras(seconds, from_x, from_y)

@@ -14,6 +14,7 @@
 	var/movement_type = null
 	/// Tracks the last atom we started moving toward so we can retarget when the key changes.
 	VAR_PRIVATE/atom/tracked_target
+	var/clear_key_on_arrival = FALSE // DARKPACK EDIT ADD
 
 /datum/bt_node/ai_behavior/move_to_target/setup(datum/ai_controller/controller)
 	var/atom/target = controller.blackboard[target_key]
@@ -42,6 +43,10 @@
 	else if(!controller.ai_movement.moving_controllers[controller])
 		controller.ai_movement.start_moving_towards(controller, target, required_dist)
 	if(finish_on_arrival && get_dist(controller.pawn, target) <= required_dist)
+		// DARKPACK EDIT ADD START
+		if(clear_key_on_arrival)
+			controller.clear_blackboard_key(target_key)
+		// DARKPACK EDIT ADD END
 		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED
 	return AI_BEHAVIOR_INSTANT
 

@@ -8,6 +8,7 @@
 
 // City faction
 #define FACTION_CITY "city"
+#define FACTION_NPC "npc"
 
 #define FACTION_GAIA "gaia"
 #define FACTION_PENTEX "pentex"

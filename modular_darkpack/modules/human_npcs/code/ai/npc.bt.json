@@ -1,0 +1,111 @@
+{
+	"dm_type": "/datum/ai_controller/npc",
+	"type": "parallel",
+	"failure_policy": "BT_PARALLEL_FAILURE_CHILD_ONE",
+	"success_policy": "BT_PARALLEL_SUCCESS_CHILD_ONE",
+	"repeat_secondary": true,
+	"finish_on_primary": false,
+	"children": [
+		{
+			"type": "selector",
+			"children": [
+				{
+					"type": "subtree",
+					"subtype": "/datum/bt_node/subtree/escape_captivity"
+				},
+				{
+					"type": "decorator",
+					"decorator": "/datum/bt_node/decorator/bb_key_set",
+					"vars": {
+						"observer_abort": "BT_ABORT_BOTH",
+						"key": "BB_HUMAN_CURRENT_FLEE_TARGET"
+					},
+					"child": {
+						"type": "subtree",
+						"subtype": "/datum/bt_node/subtree/run_away_from_target",
+						"bindings": {
+							"byk9gqj4": "BB_HUMAN_CURRENT_FLEE_TARGET"
+						}
+					}
+				},
+				{
+					"type": "subtree",
+					"subtype": "/datum/bt_node/subtree/npc_combat"
+				},
+				{
+					"type": "leaf",
+					"behavior": "/datum/bt_node/ai_behavior/human_stow_weapon"
+				},
+				{
+					"type": "decorator",
+					"decorator": "/datum/bt_node/decorator/bb_key_set",
+					"vars": {
+						"key": "BB_CURRENT_HOME"
+					},
+					"child": {
+						"type": "leaf",
+						"behavior": "/datum/bt_node/ai_behavior/move_to_target",
+						"vars": {
+							"target_key": "BB_CURRENT_HOME",
+							"required_dist": 0,
+							"finish_on_arrival": false
+						}
+					}
+				},
+				{
+					"type": "decorator",
+					"decorator": "/datum/bt_node/decorator/bb_key_set",
+					"vars": {
+						"key": "BB_TRAVEL_DESTINATION"
+					},
+					"child": {
+						"type": "leaf",
+						"behavior": "/datum/bt_node/ai_behavior/move_to_target",
+						"vars": {
+							"target_key": "BB_TRAVEL_DESTINATION",
+							"required_dist": 0,
+							"movement_type": "/datum/ai_movement/jps",
+							"clear_key_on_arrival": true
+						}
+					}
+				}
+			]
+		},
+		{
+			"type": "parallel",
+			"failure_policy": "BT_PARALLEL_FAILURE_CHILD_ONE",
+			"success_policy": "BT_PARALLEL_SUCCESS_CHILD_ONE",
+			"repeat_secondary": false,
+			"finish_on_primary": false,
+			"children": [
+				{
+					"type": "decorator",
+					"decorator": "/datum/bt_node/decorator/bb_key_set",
+					"vars": {
+						"invert": true,
+						"key": "BB_CURRENT_HOME"
+					},
+					"child": {
+						"type": "leaf",
+						"behavior": "/datum/bt_node/ai_behavior/find_npcbeacon",
+						"vars": {
+							"time_between_perform": "5 SECONDS"
+						}
+					}
+				},
+				{
+					"type": "leaf",
+					"behavior": "/datum/bt_node/ai_behavior/acquire_target/npc_flee_target"
+				},
+				{
+					"type": "leaf",
+					"behavior": "/datum/bt_node/ai_behavior/acquire_target/target_from_retaliate_list",
+					"vars": {
+						"target_key": "BB_CURRENT_TARGET",
+						"hiding_location_key": "BB_CURRENT_TARGET_HIDING_LOCATION"
+					}
+				}
+			]
+		}
+	]
+}
