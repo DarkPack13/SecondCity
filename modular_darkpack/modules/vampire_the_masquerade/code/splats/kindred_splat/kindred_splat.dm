@@ -229,9 +229,6 @@
 		return
 
 	kindred.can_be_embraced = FALSE
-	var/obj/item/organ/brain/brain = kindred.get_organ_slot(ORGAN_SLOT_BRAIN) //NO REVIVAL EVER
-	if(brain)
-		brain.organ_flags |= ORGAN_FAILING
 
 	/*
 	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))
