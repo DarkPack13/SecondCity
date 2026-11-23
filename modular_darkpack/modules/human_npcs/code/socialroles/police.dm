@@ -93,6 +93,11 @@
 		/obj/item/gun/ballistic/automatic/darkpack/ar15 = 10,
 	)
 
+	secondary_weapons = list(
+		/obj/item/melee/baton/vamp = 90,
+		/obj/item/gun/energy/taser/darkpack = 10,
+	)
+
 	male_phrases = list(
 		"I see you.",
 		"Looking suspicious...",

@@ -4,7 +4,7 @@
 /mob/living/carbon/human/npc/stripper/Initialize(mapload)
 	. = ..()
 
-	AssignSocialRole(/datum/socialrole/stripfemale)
+	assign_socialrole(/datum/socialrole/stripfemale)
 
 	underwear = "Nude"
 	undershirt = "Nude"

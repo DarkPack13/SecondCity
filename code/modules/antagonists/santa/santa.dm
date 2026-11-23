@@ -56,21 +56,3 @@
 	santa_objective.completed = TRUE //lets cut our santas some slack.
 	santa_objective.owner = owner
 	objectives |= santa_objective
-
-/proc/main()
-	world.log << capitalize_sentences("test, test Test. test. test! test test. boobs. breasticles.")
-
-/proc/capitalize_sentences(text)
-	var/static/regex/reg
-	if(!reg)
-		reg = regex(@"(^|[.!?]\s*)([a-z])", "g")
-
-	while(reg.Find(text))
-		var/start = reg.index
-		var/matched = reg.match
-		var/prefix = reg.group[1]
-		var/letter = reg.group[2]
-
-		text = copytext(text, 1, start) + prefix + uppertext(letter) + copytext(text, start + length(matched))
-
-	return text

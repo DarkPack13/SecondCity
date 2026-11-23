@@ -1,14 +1,10 @@
-/mob/living/carbon/Initialize(mapload)
-	. = ..()
-	if(!examine_panel_tgui)
-		examine_panel_tgui = new()
-		examine_panel_tgui.holder = src
+/mob/living/carbon/Destroy(force)
+	if(examine_panel_tgui)
+		QDEL_NULL(examine_panel_tgui)
 
-/mob/living/carbon/Destroy()
-	examine_panel_tgui.holder = null
-	QDEL_NULL(examine_panel_tgui)
 	client?.images -= suckbar
 	QDEL_NULL(suckbar)
+
 	GLOB.masquerade_breakers_list -= src
 	return ..()
 

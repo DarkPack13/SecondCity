@@ -6,4 +6,4 @@
 	. = ..()
 
 	var/datum/socialrole/assign_role = pick(/datum/socialrole/poormale, /datum/socialrole/poorfemale)
-	AssignSocialRole(assign_role)
+	assign_socialrole(assign_role)

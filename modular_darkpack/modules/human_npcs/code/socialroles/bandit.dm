@@ -78,6 +78,9 @@
 		/obj/item/gun/ballistic/revolver/darkpack/snub = 33,
 		/obj/item/melee/baseball_bat/vamp = 100,
 	)
+	secondary_weapons = list(
+		/obj/item/knife/vamp = 100,
+	)
 
 	//[Lucia] - this has been edited to have better English because it included slurs, but none of the others have yet
 	male_phrases = list(

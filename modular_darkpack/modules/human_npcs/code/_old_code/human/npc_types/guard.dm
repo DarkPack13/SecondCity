@@ -7,4 +7,4 @@
 /mob/living/carbon/human/npc/guard/Initialize(mapload)
 	. = ..()
 
-	AssignSocialRole(/datum/socialrole/guard)
+	assign_socialrole(/datum/socialrole/guard)

@@ -1,12 +1,21 @@
-/// Gathers weapon upgrade candidates: nearby ground items, then held items of nearby humans.
+/// Gathers weapon upgrade candidates
 /datum/target_source/human_weapon_upgrade
 
 /datum/target_source/human_weapon_upgrade/collect_candidates(mob/living/pawn, datum/ai_controller/controller, range)
 	var/list/candidates = list()
 	for(var/obj/item/ground_item in oview(range, pawn))
 		candidates += ground_item
-	// for(var/mob/living/carbon/human/nearby_human in oview(range, pawn))
-		// candidates += nearby_human.get_held_items()
+
+	for(var/obj/item/worn_item in pawn.get_equipped_items(INCLUDE_POCKETS))
+		candidates |= worn_item
+		if(istype(worn_item, /obj/item/storage/backpack)) // 100% a better way to do this....
+			for(var/obj/item/backpack_content in worn_item.contents)
+				candidates |= backpack_content
+
+	var/offhand = pawn.get_inactive_held_item()
+	if(offhand)
+		candidates += offhand
+
 	return candidates
 
 /// Weapon upgrade candidate: not two-handed, not blacklisted, and hits harder than our brawl.

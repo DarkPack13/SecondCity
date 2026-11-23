@@ -63,6 +63,13 @@
 
 	// pockets = list(/obj/item/vamp/keys/npc, /obj/item/stack/dollar/rand)
 
+	primary_weapons = list(
+		/obj/item/gun/ballistic/automatic/pistol/darkpack/m1911 = 100
+	)
+	secondary_weapons = list(
+		/obj/item/melee/baton/vamp = 100
+	)
+
 	neutral_phrases = list(
 		"No loitering.",
 		"I'm kinda, like, a cop, you know.",

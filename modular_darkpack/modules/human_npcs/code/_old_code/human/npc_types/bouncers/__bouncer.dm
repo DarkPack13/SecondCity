@@ -41,7 +41,7 @@
 	if(mapload && src.type == /mob/living/carbon/human/npc/bouncer)
 		CRASH("Bouncer created using default type, please use a child of this type in mapping.")
 
-	AssignSocialRole(our_role)
+	assign_socialrole(our_role)
 
 	start_turf = get_turf(src)
 
@@ -86,7 +86,7 @@
 	set_is_guarding_true()
 
 
-/mob/living/carbon/human/npc/bouncer/AssignSocialRole(datum/socialrole/bouncer/role, dont_random = FALSE)
+/mob/living/carbon/human/npc/bouncer/assign_socialrole(datum/socialrole/bouncer/role, dont_random = FALSE)
 	. = ..(role, dont_random)
 
 	if(role && ispath(role, /datum/socialrole/bouncer))

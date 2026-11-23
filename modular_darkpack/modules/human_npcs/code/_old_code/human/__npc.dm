@@ -40,7 +40,6 @@
 
 	var/turf/walktarget	//dlya movementa
 
-	var/last_grab = 0
 
 	var/tupik_steps = 0
 	var/tupik_loc
@@ -82,10 +81,6 @@
 	AddElement(/datum/element/relay_attackers)
 	RegisterSignal(src, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(handle_attacked))
 
-	// Annoy the NPC when pushed around
-	RegisterSignal(src, COMSIG_LIVING_MOB_BUMPED, PROC_REF(handle_bumped))
-	// Be annoyed if helped
-	RegisterSignal(src, COMSIG_CARBON_HELP_ACT, PROC_REF(handle_helped))
 	// all npcs are masquerade violators by default so flip it to true
 	toggle_masquerade_sensitivity(TRUE)
 
@@ -166,33 +161,6 @@
 
 //============================================================
 
-
-
-/mob/living/carbon/human/npc/proc/Annoy(atom/source)
-	GLOB.move_manager.stop_looping(src)
-
-	if (!can_npc_move())
-		return
-	if (danger_source)
-		return
-
-	if (!COOLDOWN_FINISHED(src, annoyed_cooldown))
-		return
-	COOLDOWN_START(src, annoyed_cooldown, 5 SECONDS)
-
-	if(source)
-		addtimer(CALLBACK(src, PROC_REF(face_atom), source), rand(0.3 SECONDS, 0.7 SECONDS))
-
-	var/phrase = "Wow."
-	if (prob(50))
-		phrase = pick(socialrole?.neutral_phrases)
-	else
-		if (gender == MALE)
-			phrase = pick(socialrole?.male_phrases)
-		else
-			phrase = pick(socialrole?.female_phrases)
-	realistic_say(phrase)
-
 /mob/living/carbon/human/npc/proc/handle_attacked(datum/source, atom/attacker, attack_flags)
 	// Only aggro nearby npcs if its lethal.
 	if(!(attack_flags & (ATTACKER_STAMINA_ATTACK|ATTACKER_SHOVING)))
@@ -229,9 +197,5 @@
 
 	. = ..()
 
-/mob/living/carbon/human/npc/grabbedby(mob/living/carbon/user, supress_message = FALSE)
-	. = ..()
-
-	last_grab = world.time
 
 

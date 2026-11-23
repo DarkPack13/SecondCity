@@ -731,6 +731,9 @@
 			if(prob(50))
 				dodger.realistic_say(pick(dodger.socialrole.car_dodged))
 
+			#warn do
+			// SEND_SIGNAL(dodger, COMSIG_MOB_CAR_NEAR_IMPACT, src)
+
 /// Animates the riders' cameras to follow the car, a little ahead of it. from_x/from_y is where the camera was heading last tick, in this tick's tile frame.
 /obj/darkpack_car/proc/update_rider_cameras(seconds, from_x, from_y)
 	var/old_lead_x = camera_lead_x

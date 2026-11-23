@@ -1,3 +1,6 @@
+/mob/living/carbon/human/npc/proc/get_socialrole_type()
+	return socialrole_type
+
 /datum/socialrole
 	//For randomizing
 	var/list/s_tones
@@ -21,128 +24,23 @@
 
 	//Hair shit
 	var/list/hair_colors = list(
-		"#040404", 	//Black
-		"#120b05", 	//Dark Brown
-		"#342414",	//Brown
-		"#554433",	//Light Brown
-		"#695c3b",	//Dark Blond
-		"#ad924e",	//Blond
-		"#dac07f",	//Light Blond
-		"#802400",	//Ginger
-		"#a5380e",	//Ginger alt
-		"#ffeace",	//Albino
-		"#650b0b",	//Punk Red
-		"#14350e",	//Punk Green
-		"#080918",   //Punk Blue
+		"#040404", //Black
+		"#120b05", //Dark Brown
+		"#342414", //Brown
+		"#554433", //Light Brown
+		"#695c3b", //Dark Blond
+		"#ad924e", //Blond
+		"#dac07f", //Light Blond
+		"#802400", //Ginger
+		"#a5380e", //Ginger alt
+		"#ffeace", //Albino
+		"#650b0b", //Punk Red
+		"#14350e", //Punk Green
+		"#080918", //Punk Blue
 	)
-	var/list/male_hair = list(
-		"Bald",
-		"Afro",
-		"Afro 2",
-		"Afro (Large)",
-		"Balding Hair",
-		"Bedhead",
-		"Bedhead 2",
-		"Bedhead 3",
-		"Boddicker",
-		"Bowlcut",
-		"Bowlcut 2",
-		"Business Hair",
-		"Business Hair 2",
-		"Business Hair 3",
-		"Business Hair 4",
-		"Bun (Manbun)",
-		"Buzzcut",
-		"Comet",
-		"CIA",
-		"Coffee House",
-		"Combover",
-		"Crewcut",
-		"Father",
-		"Flat Top",
-		"Gelled Back",
-		"Joestar",
-		"Keanu Hair",
-		"Mohawk",
-		"Mohawk (Shaved)",
-		"Mohawk (Unshaven)",
-		"Oxton",
-		"Pompadour",
-		"Ronin",
-		"Shaved",
-	)
-	var/list/male_facial = list(
-		"Beard (Abraham Lincoln)",
-		"Beard (Chinstrap)",
-		"Beard (Dwarf)",
-		"Beard (Full)",
-		"Beard (Cropped Fullbeard)",
-		"Beard (Goatee)",
-		"Beard (Hipster)",
-		"Beard (Neckbeard)",
-		"Beard (Very Long)",
-		"Beard (Martial Artist)",
-		"Beard (Moonshiner)",
-		"Beard (Long)",
-		"Beard (Volaju)",
-		"Beard (Three o Clock Shadow)",
-		"Beard (Five o Clock Shadow)",
-		"Beard (Seven o Clock Shadow)",
-		"Moustache (Fu Manchu)",
-		"Moustache (Hulk Hogan)",
-		"Moustache (Watson)",
-		"Sideburns (Elvis)",
-		"Sideburns (Mutton Chops)",
-		"Sideburns",
-		"Shaved",
-	)
-	var/list/female_hair = list(
-		"Ahoge",
-		"Long Bedhead",
-		"Beehive",
-		"Beehive 2",
-		"Bob Hair",
-		"Bob Hair 2",
-		"Bob Hair 3",
-		"Bob Hair 4",
-		"Bobcurl",
-		"Braided",
-		"Braided Front",
-		"Braid (Short)",
-		"Braid (Low)",
-		"Bun Head",
-		"Bun Head 2",
-		"Bun Head 3",
-		"Bun (Large)",
-		"Bun (Tight)",
-		"Double Bun",
-		"Emo",
-		"Emo Fringe",
-		"Feather",
-		"Gentle",
-		"Long Hair 1",
-		"Long Hair 2",
-		"Long Hair 3",
-		"Long Over Eye",
-		"Long Emo",
-		"Long Fringe",
-		"Ponytail",
-		"Ponytail 2",
-		"Ponytail 3",
-		"Ponytail 4",
-		"Ponytail 5",
-		"Ponytail 6",
-		"Ponytail 7",
-		"Ponytail (High)",
-		"Ponytail (Short)",
-		"Ponytail (Long)",
-		"Ponytail (Country)",
-		"Ponytail (Fringe)",
-		"Poofy",
-		"Short Hair Rosa",
-		"Shoulder-length Hair",
-		"Volaju",
-	)
+	var/list/male_hair
+	var/list/male_facial
+	var/list/female_hair
 
 	// TODO: refactor this into a premade outfit
 	var/list/backpacks = list(
@@ -222,7 +120,16 @@
 
 	// var/is_criminal = FALSE
 
-/mob/living/carbon/human/npc/proc/AssignSocialRole(datum/socialrole/social_role_type, dont_random)
+/datum/socialrole/proc/get_annoyed_phrase(mob/living/speaker)
+	if(prob(50))
+		if(speaker.gender == MALE && length(male_phrases))
+			return pick(male_phrases)
+		else if(speaker.gender == FEMALE && length(female_phrases))
+			return pick(female_phrases)
+	return pick(neutral_phrases)
+
+
+/mob/living/carbon/human/npc/proc/assign_socialrole(datum/socialrole/social_role_type, dont_random)
 	socialrole = GLOB.npc_social_roles[social_role_type]
 
 	fully_replace_character_name(name, real_name)
@@ -235,10 +142,11 @@
 	// is_criminal = socialrole.is_criminal
 
 	if(!dont_random)
-		gender = pick(MALE, FEMALE)
 		if(socialrole.preferred_gender)
 			gender = socialrole.preferred_gender
-		physique = gender
+		else
+			gender = pick(MALE, FEMALE) // Dont we already do this..?
+		physique = gender // Dont we already do this..?
 		var/list/m_names = list()
 		var/list/f_names = list()
 		var/list/s_names = list()
@@ -344,15 +252,30 @@
 	equipOutfit(O)
 	qdel(O)
 
-	bind_weapon(pick_weight(primary_weapons))
-	bind_weapon(pick_weight(secondary_weapons))
+	bind_weapon(pick_weight(socialrole.primary_weapons))
+	bind_weapon(pick_weight(socialrole.secondary_weapons))
 
 	dna.update_dna_identity()
 
 
-/mob/living/carbon/human/npc/proc/bind_weapon(obj/item/weapon_type)
+/mob/living/carbon/human/npc/proc/bind_weapon(obj/item/weapon_type,	extra_loaded_rounds = 6, extra_mags = 2)
 	if(!ispath(weapon_type))
 		return
-	var/obj/item/my_weapon = new(weapon_type)
-	equip_to_appropriate_slot(my_weapon)
-	ai_controller.add_blackboard_key_lazylist(BB_NPC_OWNED_ITEMS, my_weapon)
+	var/obj/item/my_weapon = new weapon_type(src)
+
+	if(!src.put_in_hands(my_weapon))
+		my_weapon.equip_to_best_slot(src)
+
+	ai_controller.add_blackboard_key_lazylist(BB_HUMAN_OWNED_WEAPONS, my_weapon)
+
+	var/obj/item/gun/ballistic/firearm = astype(my_weapon)
+	if(firearm)
+		if(istype(firearm.magazine, /obj/item/ammo_box/magazine/internal))
+			var/obj/item/ammo_box/magazine/internal_mag = firearm.magazine
+			for(var/i in 1 to extra_loaded_rounds)
+				var/obj/item/boolet = new internal_mag.ammo_type(src)
+				equip_to_appropriate_slot(boolet)
+		else
+			for(var/i in 1 to extra_mags)
+				var/obj/item/maggy = new firearm.spawn_magazine_type(src)
+				equip_to_appropriate_slot(maggy)

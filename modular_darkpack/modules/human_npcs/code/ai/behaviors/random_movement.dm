@@ -50,14 +50,14 @@
 /datum/bt_node/ai_behavior/find_npcbeacon
 	/// Blackboard key to store the found landmark.
 	var/target_key = BB_TRAVEL_DESTINATION
-	var/stale_target_key = BB_NPC_STALE_BEACONS
+	var/stale_target_key = BB_HUMAN_STALE_BEACONS
 
 /datum/bt_node/ai_behavior/find_npcbeacon/perform(seconds_per_tick, datum/ai_controller/controller)
 	/*
 	if(controller.blackboard[target_key])
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 	*/
-	if(!prob(controller.get_npc_attribute(BB_NPC_ATTRIBUTE_ENERGY)))
+	if(!prob(controller.get_npc_attribute(BB_HUMAN_ATTRIBUTE_ENERGY)))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
 	var/list/past_destinations = controller.blackboard[stale_target_key]

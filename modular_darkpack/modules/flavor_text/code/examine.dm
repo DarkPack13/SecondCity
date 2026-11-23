@@ -68,24 +68,51 @@
 	data["nsfw_content"] = nsfw_content ? TRUE : FALSE
 	return data
 
-/mob/living/carbon/proc/flavor_text_creation()
-	var/flavor_text_to_show
-
+/mob/living/carbon/proc/flavor_text_creation(mob/reader)
 	var/main_flavor_text_key = EXAMINE_DNA_FLAVOR_TEXT
 	if(iscrinos(src))
 		main_flavor_text_key = EXAMINE_DNA_WAR_FORM_FLAVOR_TEXT
 	else if(ishispo(src) || islupus(src))
 		main_flavor_text_key = EXAMINE_DNA_FERAL_FORM_FLAVOR_TEXT
 
-	var/preview_text = copytext_char(dna.features[main_flavor_text_key], 1, FLAVOR_PREVIEW_LIMIT)
-	// What examine_tgui.dm uses to determine if flavor text appears as "Obscured".
-	var/face_obscured = obscured_slots & HIDEFACE
-	if(!face_obscured || (face_obscured && client?.prefs.read_preference(/datum/preference/toggle/show_identity_when_masked)))
-		flavor_text_to_show = span_notice("[preview_text]... <a href='byond://?src=[REF(src)];view_flavortext=1;'>\[Look closer?\]</a>")
+	var/preview_text
+	if(flavortext_visible(reader))
+		preview_text = copytext_char(dna.features[main_flavor_text_key], 1, FLAVOR_PREVIEW_LIMIT)
+	return span_notice("[preview_text]... <a href='byond://?src=[REF(src)];view_flavortext=1;'>\[Look closer?\]</a>")
 
-	return flavor_text_to_show
+// What examine_tgui.dm uses to determine if flavor text appears as "Obscured".
+/mob/living/carbon/proc/flavortext_visible(mob/user)
+	if(isobserver(user))
+		return TRUE
+	var/face_obscured = obscured_slots & HIDEFACE
+	if(face_obscured && !client?.prefs.read_preference(/datum/preference/toggle/show_identity_when_masked))
+		return FALSE
+	return TRUE
+
+/mob/living/carbon/proc/has_examine_panel_info()
+	var/static/list/all_flavor_text = list(
+		EXAMINE_DNA_FLAVOR_TEXT,
+		EXAMINE_DNA_WAR_FORM_FLAVOR_TEXT,
+		EXAMINE_DNA_FERAL_FORM_FLAVOR_TEXT,
+		EXAMINE_DNA_HEADSHOT,
+		EXAMINE_DNA_NSFW_FLAVOR_TEXT,
+		EXAMINE_DNA_OOC_NOTES,
+		EXAMINE_DNA_CHARACTER_NOTES,
+	)
+
+	if(!dna?.features)
+		return FALSE
+
+	for(var/flavor_text in all_flavor_text)
+		if(length(dna.features[flavor_text]))
+			return TRUE
+
+	return FALSE
 
 /mob/living/carbon/Topic(href, href_list)
 	if(href_list["view_flavortext"])
+		if(!examine_panel_tgui)
+			examine_panel_tgui = new()
+			examine_panel_tgui.holder = src
 		examine_panel_tgui.ui_interact(usr)
 	. = ..()

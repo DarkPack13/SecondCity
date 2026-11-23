@@ -5,7 +5,7 @@
 
 /mob/living/carbon/human/npc/endronsecurity/Initialize(mapload)
 	. = ..()
-	AssignSocialRole(/datum/socialrole/endronsecurity)
+	assign_socialrole(/datum/socialrole/endronsecurity)
 
 /mob/living/carbon/human/npc/endronlabsecurity
 	staying = TRUE
@@ -15,7 +15,7 @@
 
 /mob/living/carbon/human/npc/endronlabsecurity/Initialize(mapload)
 	. = ..()
-	AssignSocialRole(/datum/socialrole/endronlabsecurity)
+	assign_socialrole(/datum/socialrole/endronsecurity/lab)
 
 /mob/living/carbon/human/npc/endronexecsecurity
 	staying = TRUE
@@ -25,4 +25,4 @@
 
 /mob/living/carbon/human/npc/endronexecsecurity/Initialize(mapload)
 	. = ..()
-	AssignSocialRole(/datum/socialrole/endronexecsecurity)
+	assign_socialrole(/datum/socialrole/endronsecurity/exec)

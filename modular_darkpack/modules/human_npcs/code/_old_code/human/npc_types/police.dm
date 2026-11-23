@@ -5,7 +5,7 @@
 /mob/living/carbon/human/npc/police/Initialize(mapload)
 	. = ..()
 
-	AssignSocialRole(/datum/socialrole/police)
+	assign_socialrole(/datum/socialrole/police)
 
 /mob/living/carbon/human/npc/police/Life()
 	. = ..()

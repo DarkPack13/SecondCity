@@ -4,4 +4,4 @@
 /mob/living/carbon/human/npc/illegal/Initialize(mapload)
 	. = ..()
 
-	AssignSocialRole(/datum/socialrole/shop/illegal)
+	assign_socialrole(/datum/socialrole/shop/illegal)
