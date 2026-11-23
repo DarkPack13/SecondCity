@@ -555,7 +555,7 @@
 
 /datum/discipline_power/dominate/autonomic_mastery/pre_activation_checks(mob/living/carbon/human/target)
 
-	var/roll_success = dominate_check(owner, target)
+	var/roll_success = dominate_check(owner, target, list(STAT_MANIPULATION, STAT_INTIMIDATION))
 	if(roll_success)
 		return TRUE
 	else
@@ -571,23 +571,23 @@
 		return
 	switch(order)
 		if("Sleep")
-			owner.say("Sleep")
+			owner.say("Sleep.")
 			target.Sleeping(200)
 			to_chat(target, span_danger("You feel suddenly exhausted"))
 			SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
 		if("Wake")
-			owner.say("Wake")
+			owner.say("Wake.")
 			target.SetSleeping(0)
 			to_chat(target, span_danger("You feel suddenly energetic"))
 			SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
 		if("Heart Attack")
-			owner.say("Die")
+			owner.say("Die.")
 			target.adjust_stamina_loss(60, FALSE)
 			target.set_heartattack(TRUE)
 			to_chat(target, span_danger("You feel a terrible pain in your chest!"))
 			SEND_SOUND(target, sound('modular_darkpack/modules/powers/sounds/dominate.ogg'))
 		if("Revive")
-			owner.say("Live")
+			owner.say("Live.")
 			target.set_heartattack(FALSE)
 			to_chat(target, span_danger("You feel your heart pound!"))
 			target.revive()
