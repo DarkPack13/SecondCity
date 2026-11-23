@@ -276,8 +276,8 @@ Methuselah.”
 
 // Cooldown between ability usage, individual cooldown per caster
 /datum/discipline_power/dementation/eyes_of_chaos/proc/target_cooldown(mob/living/carbon/human/target)
-	ADD_TRAIT(target, TRAIT_CHAOS_EYE_COOLDOWN, WEAKREF(owner))
-	addtimer(TRAIT_CALLBACK_REMOVE(target, TRAIT_CHAOS_EYE_COOLDOWN, WEAKREF(owner)), 5 MINUTES)
+	ADD_TRAIT(target, TRAIT_CHAOS_EYE_COOLDOWN, REF(owner))
+	addtimer(TRAIT_CALLBACK_REMOVE(target, TRAIT_CHAOS_EYE_COOLDOWN, REF(owner)), 5 MINUTES)
 	if (target != owner)
 		to_chat(owner, span_notice("[target]'s mind begins to restructure itself; it shall open to you once more within 5 minutes."))
 
