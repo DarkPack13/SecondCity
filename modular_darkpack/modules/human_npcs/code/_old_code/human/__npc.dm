@@ -4,30 +4,9 @@
 	// NPCs normally walk around slowly
 	move_intent = MOVE_INTENT_WALK
 
-
-
-	/// Until we do a full NPC refactor (see: rewriting every single bit of code)
-	/// use this to determine NPC weapons and their chances to spawn with them -- assuming you want the NPC to do that
-	/// Otherwise just set it under the NPC's type as
-	/// my_weapon = type_path
-	/// my_backup_weapon = type_path
-	/// This only determines my_weapon, you set my_backup_weapon yourself
-	/// The last entry in the list for a type of NPC should always have 100 as the index
-	var/static/list/role_weapons_chances = list(
-		BANDIT_TYPE_NPC = list(
-			/obj/item/gun/ballistic/automatic/pistol/darkpack/deagle = 33,
-			/obj/item/gun/ballistic/revolver/darkpack/snub = 33,
-			/obj/item/melee/baseball_bat/vamp = 100,
-		),
-		POLICE_TYPE_NPC = list(
-			/obj/item/gun/ballistic/revolver/darkpack/magnum = 66,
-			/obj/item/gun/ballistic/automatic/darkpack/ar15 = 100,
-		)
-	)
 	var/datum/socialrole/socialrole
 
 	var/is_talking = FALSE
-	COOLDOWN_DECLARE(annoyed_cooldown)
 	COOLDOWN_DECLARE(car_dodge)
 	var/hostile = FALSE
 	var/aggressive = FALSE

@@ -7,6 +7,9 @@
 	var/speech_type
 
 /datum/bt_node/ai_behavior/realistic_speech/perform(seconds_per_tick, datum/ai_controller/controller)
+	if(HAS_TRAIT_FROM(src, TRAIT_THINKING_IN_CHARACTER, REF(src)))
+		return AI_BEHAVIOR_DELAY
+
 	if(!prob(speech_chance))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
@@ -25,7 +28,7 @@
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /datum/bt_node/ai_behavior/realistic_speech/proc/speak(mob/living/pawn, datum/ai_controller/controller, text)
-	pawn.realistic_say(text)
+	pawn.realistic_say(text, source = REF(src))
 
 /datum/bt_node/ai_behavior/realistic_speech/proc/get_reation(datum/ai_controller/controller)
 	var/datum/socialrole/my_role

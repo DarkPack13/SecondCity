@@ -7671,6 +7671,7 @@
 #include "modular_darkpack\modules\human_npcs\code\npc_speech.dm"
 #include "modular_darkpack\modules\human_npcs\code\_npc.dm"
 #include "modular_darkpack\modules\human_npcs\code\ai\_npc_ai.dm"
+#include "modular_darkpack\modules\human_npcs\code\ai\behaviors\annoyed.dm"
 #include "modular_darkpack\modules\human_npcs\code\ai\behaviors\combat.dm"
 #include "modular_darkpack\modules\human_npcs\code\ai\behaviors\flee_target.dm"
 #include "modular_darkpack\modules\human_npcs\code\ai\behaviors\pickup_item.dm"

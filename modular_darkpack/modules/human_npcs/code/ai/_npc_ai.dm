@@ -22,7 +22,6 @@
 		BB_MONKEY_BLACKLISTITEMS = list(),
 	)
 
-	COOLDOWN_DECLARE(annoyed_cooldown)
 	COOLDOWN_DECLARE(car_dodge)
 
 /datum/ai_controller/npc/PossessPawn(atom/new_pawn)
