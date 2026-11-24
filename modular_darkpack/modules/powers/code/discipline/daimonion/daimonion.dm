@@ -30,6 +30,13 @@
 	vitae_cost = 0
 	frenzy_usable = FALSE
 
+	ttrpg_sources = list(
+		//Percetion + Empathy vs Self Control + Instinct + 4.
+		//Needing 3 successes to see Clans come from the success requirements to see "central derangement or formative trauma from the subject's past",
+		//which we interpret at their Splat & Clan here.
+		/datum/source_book/vtm20 = 445,
+	)
+
 	cancelable = TRUE
 	var/successes
 
@@ -60,15 +67,16 @@
 		to_chat(owner, span_notice("Their body is weak and feeble."))
 	if(target.st_get_stat(STAT_DEXTERITY) <= 2)
 		to_chat(owner, span_notice("They lack coordination."))
-	if(get_garou_splat(target))
-		to_chat(owner, span_notice("Their natural banishment is silver..."))
-	if(!length(target.splats) || (HAS_TRAIT(target, TRAIT_DECEPTIVE_AURA) && successes >= 5))
-		if(HAS_TRAIT(target, TRAIT_PALE_AURA))
-			to_chat(owner, span_notice("[target] is addicted to vampiric vitae, a ghouled human."))
-			return
+
+	if(!length(target.splats) || (HAS_TRAIT(target, TRAIT_DECEPTIVE_AURA) && successes <= 3))
 		to_chat(owner, span_notice("[target] is a feeble worm with no strengths or visible weaknesses, a mere human."))
 		return
-	if(get_kindred_splat(target))
+
+	if(get_garou_splat(target))
+		to_chat(owner, span_notice("Their natural banishment is silver..."))
+	else if(get_shifter_splat(target))
+		to_chat(owner, span_notice("They are closer to animals than humans..."))
+	else if(get_kindred_splat(target))
 		var/datum/subsplat/vampire_clan/target_clan = target.get_clan()
 		if(!target_clan)
 			return
@@ -76,12 +84,14 @@
 		baali_get_stolen_disciplines(target, owner)
 		if(target_sense_the_sin_weakness)
 			to_chat(owner, span_notice("[target.name] [target_sense_the_sin_weakness]"))
-
 	//Ghoul temp stuff while bloodbonds isn't here.
-	if(get_ghoul_splat(target))
+	else if(get_ghoul_splat(target))
 		to_chat(owner, span_notice("[target] is addicted to vampiric vitae, a ghouled human."))
+	else
+		to_chat(owner, span_notice("[target] is a feeble worm with no strengths or visible weaknesses, a mere human."))
+
 	/* DARKPACK TODO - bloodbonds
-	if(isghoul(target))
+	else if(get_ghoul_splat(target))
 		var/mob/living/carbon/human/ghoul = target
 
 		if(ghoul.mind.enslaved_to)
@@ -90,7 +100,7 @@
 			to_chat(owner, span_notice("Victim is addicted to vampiric vitae, but is independent and free."))
 	*/
 	/* DARKPACK TODO : Kuei-Jin
-	if(iscathayan(target))
+	else if(iscathayan(target))
 		if(target.mind.dharma?.Po == "Legalist")
 			to_chat(owner, span_notice("[target] hates to be controlled!"))
 		if(target.mind.dharma?.Po == "Rebel")
@@ -102,8 +112,6 @@
 		if(target.mind.dharma?.Po == "Fool")
 			to_chat(owner, span_notice("[target] doesn't like to be pointed at!"))
 	*/
-	if(!get_kindred_splat(target) && !get_ghoul_splat(target) && !get_shifter_splat(target) /*&& !iscathayan(target)*/)
-		to_chat(owner, span_notice("[target] is a feeble worm with no strengths or visible weaknesses, a mere human."))
 
 /datum/discipline_power/daimonion/sense_the_sin/proc/baali_get_stolen_disciplines(mob/living/target, mob/living/owner)
 	if(!owner || !target)
