@@ -12,18 +12,11 @@
 		/datum/job_department/police,
 	)
 
-	known_contacts = list(
-		JOB_POLICE_CAPTAIN,
-		JOB_FEDERAL_INVESTIGATOR
-	)
-
 	tgui_icon = FA_ICON_USER_SECRET
 
 	allowed_splats = list(SPLAT_NONE)
 	description = "Enforce the Law."
 	minimum_masquerade = 0
-
-	known_contacts = list("Police Captain")
 
 /datum/outfit/job/vampire/fbi
 	name = JOB_FEDERAL_INVESTIGATOR

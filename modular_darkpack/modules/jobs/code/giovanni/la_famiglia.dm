@@ -15,12 +15,6 @@
 
 	tgui_icon = FA_ICON_MONEY_BILL_1_WAVE
 
-	known_contacts = list(
-		JOB_CAPO,
-		JOB_LA_SQUADRA,
-		JOB_LA_FAMIGLIA
-	)
-
 	allowed_splats = list(SPLAT_GHOUL, SPLAT_NONE, SPLAT_KINDRED)
 	allowed_clans = list(VAMPIRE_CLAN_CAITIFF)
 	maximal_generation = 9

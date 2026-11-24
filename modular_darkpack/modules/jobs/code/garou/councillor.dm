@@ -24,14 +24,6 @@
 
 	tgui_icon = FA_ICON_DOG
 
-	known_contacts = list(
-		JOB_GAROU_TRUTHCATCHER,
-		JOB_GAROU_WARDER,
-		JOB_GAROU_WYRMFOE,
-		JOB_GAROU_GUARDIAN,
-		JOB_GAROU_COUNCIL
-	)
-
 /datum/outfit/job/vampire/councillor
 	name = JOB_GAROU_COUNCIL
 	jobtype = /obj/item/card/park_ranger/oversight

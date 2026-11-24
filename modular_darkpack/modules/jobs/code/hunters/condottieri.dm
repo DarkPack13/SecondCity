@@ -18,14 +18,6 @@
 	)
 
 	tgui_icon = FA_ICON_CROSS
-
-	known_contacts = list(
-		JOB_ABBE,
-		JOB_INQUISITOR,
-		JOB_NOVICE,
-		JOB_CONDOTTIERI
-	)
-
 	allowed_splats = list(SPLAT_NONE)
 
 /datum/outfit/job/vampire/condottieri

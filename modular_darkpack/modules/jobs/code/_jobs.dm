@@ -37,9 +37,6 @@
 
 	///If this job requires whitelisting before it can be selected for characters.
 	var/whitelisted = FALSE
-	// Only for display in memories
-	var/list/known_contacts = null
-
 	///Guestbook flags, to establish who knowns who etc
 	var/guestbook_flags = NONE
 

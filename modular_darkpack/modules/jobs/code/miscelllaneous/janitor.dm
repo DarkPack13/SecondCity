@@ -19,10 +19,6 @@
 	maximum_immortal_age = 100
 	minimum_masquerade = 0
 
-	known_contacts = list(
-		JOB_STREET_JANITOR
-	)
-
 /datum/outfit/job/vampire/janitor
 	name = JOB_STREET_JANITOR
 	jobtype = /datum/job/vampire/janitor

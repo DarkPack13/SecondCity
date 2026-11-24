@@ -14,7 +14,7 @@
 	outfit = /datum/outfit/job/vampire/employee
 
 	alt_titles = list(
-		"Endron Employee",
+		JOB_PENTEX_EMPLOYEE,
 		"Endron Janitor",
 		"Endron Secretary",
 		"Endron Researcher",
@@ -32,15 +32,6 @@
 	)
 
 	tgui_icon = FA_ICON_BUSINESS_TIME
-
-	known_contacts = list(
-		JOB_PENTEX_LEAD,
-		JOB_PENTEX_EXEC,
-		JOB_PENTEX_AFFAIRS,
-		JOB_PENTEX_SEC_CHIEF,
-		JOB_PENTEX_SEC,
-		JOB_PENTEX_EMPLOYEE
-	)
 
 	paycheck = PAYCHECK_CREW
 	paycheck_department = ACCOUNT_SEC

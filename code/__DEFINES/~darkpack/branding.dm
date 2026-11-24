@@ -8,7 +8,7 @@
 
 #define EVIL_COMPANY "Pentex Group"
 
-#define MAIN_EVIL_COMPANY EVIL_OIL_COMPANY // Only effects Pentex job slots
+#define MAIN_EVIL_COMPANY "Endron" // Only effects Pentex job slots
 
 // Treated as subsidary of EVIL_COMPANY
 /* MAJOR COMPANIES - Currently or at one time held the Top 21 Company title */

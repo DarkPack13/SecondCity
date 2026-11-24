@@ -21,13 +21,8 @@
 	maximum_immortal_age = 100
 	description = "Be the shepherd of the flock in " + CITY_NAME + ", lead them to salvation, piety and righteousness."
 
-	known_contacts = list(
-		JOB_PRIEST,
-		JOB_PRIMOGEN_LASOMBRA
-	)
-
 	alt_titles = list(
-		"Priest",
+		JOB_PRIEST,
 		"Nun",
 		"Mother",
 		"Father",
