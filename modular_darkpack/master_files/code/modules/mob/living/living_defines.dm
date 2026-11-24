@@ -36,7 +36,7 @@
 	var/blood_efficiency = 1
 	var/thaum_damage_plus = 0
 	// DARKPACK TODO - FRENZY - (This never did FUCK anything.)
-	var/frenzy_chance_boost = 10
+	var/frenzy_chance_boost
 
 	var/resistant_to_disciplines = FALSE
 

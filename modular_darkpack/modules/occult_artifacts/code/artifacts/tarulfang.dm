@@ -6,8 +6,8 @@
 
 /obj/item/occult_artifact/vampire/tarulfang/grant_powers()
 	. = ..()
-	owner.frenzy_chance_boost = 5
+	owner.frenzy_chance_boost += 2
 
 /obj/item/occult_artifact/vampire/tarulfang/ungrant_powers()
 	. = ..()
-	owner.frenzy_chance_boost = 10
+	owner.frenzy_chance_boost -= 2
