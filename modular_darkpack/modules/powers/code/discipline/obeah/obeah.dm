@@ -6,6 +6,7 @@
 ●●● Corpore Sano: No roll
 ●●●● Shepherd's Watch: No roll
 ●●●●● Unburden the Bestial Soul: Intelligence + Empathy (difficulty 8)"}
+	id = DISCIPLINE_OBEAH
 	icon_state = "obeah"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/obeah
@@ -174,6 +175,7 @@
 	var/successes = 0
 	var/datum/storyteller_roll/anesthetic_touch/touch_roll // these are defined in valeren.dm
 	var/datum/storyteller_roll/anesthetic_touch/unwilling/touch_roll_unwilling
+	frenzy_usable = FALSE
 
 /datum/discipline_power/obeah/anesthetic_touch/pre_activation_checks(mob/living/target)
 	. = ..()
@@ -201,7 +203,8 @@
 	var/chosen_option = show_radial_menu(owner, target, choices, radius = 38, require_near = TRUE)
 	switch(chosen_option)
 		if("Soothe Pain")
-			ADD_TRAIT(target, TRAIT_IGNORESLOWDOWN, type)
+			owner.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
+			ADD_TRAIT(target, TRAIT_ANALGESIA, type)
 			addtimer(CALLBACK(src, PROC_REF(end_soothe_pain), target), (successes TURNS) + soothe_duration_length)
 		if("Put To Sleep")
 			if(get_kindred_splat(target))
@@ -212,7 +215,8 @@
 	return TRUE
 
 /datum/discipline_power/obeah/anesthetic_touch/proc/end_soothe_pain(mob/living/target)
-	REMOVE_TRAIT(target, TRAIT_IGNORESLOWDOWN, type)
+	owner.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
+	REMOVE_TRAIT(target, TRAIT_ANALGESIA, type)
 
 /datum/discipline_power/obeah/corpore_sano
 	name = "Corpore Sano"
@@ -222,6 +226,7 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_FREE_HAND | DISC_CHECK_IMMOBILE
 	target_type = TARGET_LIVING
 	range = 1
+	frenzy_usable = FALSE
 
 	violates_masquerade = TRUE
 	cooldown_length = 1 TURNS
@@ -249,6 +254,7 @@
 	willpower_cost = 2
 	cancelable = TRUE
 	var/datum/proximity_monitor/advanced/shepherds_watch/area_of_effect
+	frenzy_usable = FALSE
 
 /datum/discipline_power/obeah/shepherds_watch/activate(atom/target)
 	. = ..()
@@ -282,12 +288,13 @@
 	target_type = TARGET_LIVING
 	range = 1
 	var/datum/storyteller_roll/mens_sana/discipline_roll
+	frenzy_usable = FALSE
 
 /datum/storyteller_roll/mens_sana
 	bumper_text = "mens sana"
 	applicable_stats = list(STAT_INTELLIGENCE, STAT_EMPATHY)
 	difficulty = 8
-	roll_output_type = ROLL_PRIVATE_AND_TARGET
+	roll_output_type = ROLL_FLAG_ROLLER|ROLL_FLAG_TARGET
 
 /datum/discipline_power/obeah/mens_sana/activate(atom/target)
 	. = ..()

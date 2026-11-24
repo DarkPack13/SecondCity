@@ -178,14 +178,16 @@ GLOBAL_VAR(basketball_game)
 
 		var/mob/living/carbon/human/baller = new(get_turf(spawn_landmark))
 
-		if(baller.dna.species.outfit_important_for_life)
-			baller.set_species(/datum/species/human)
+		if(baller.bodyshape & BODYSHAPE_CERULEAN)
+			baller.put_in_wheelchair() //they don't get this in other minigames, but for basketball its just plain cool
+		baller.dna.species.give_important_for_life(baller)
 
 		ADD_TRAIT(baller, TRAIT_NOFIRE, BASKETBALL_MINIGAME_TRAIT)
 		ADD_TRAIT(baller, TRAIT_NOBREATH, BASKETBALL_MINIGAME_TRAIT)
 		ADD_TRAIT(baller, TRAIT_CANNOT_CRYSTALIZE, BASKETBALL_MINIGAME_TRAIT)
 		// this is basketball, not a boxing match
 		ADD_TRAIT(baller, TRAIT_PACIFISM, BASKETBALL_MINIGAME_TRAIT)
+		ADD_TRAIT(baller, TRAIT_NO_CANON, INNATE_TRAIT) // DARKPACK EDIT ADD
 
 		baller.equipOutfit(team_uniform)
 

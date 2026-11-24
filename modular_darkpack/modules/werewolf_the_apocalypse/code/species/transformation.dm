@@ -8,7 +8,7 @@
 	bumper_text = "banned transformation bypass"
 	applicable_stats = list(STAT_PERMANENT_WILLPOWER)
 	difficulty = 8
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_FLAG_ROLLER
 
 // Remeber if you remove homid being species that this will break.
 /datum/splat/werewolf/shifter/proc/transform_fera(datum/species/human/shifter/form_to_transform, costs_rage = FALSE, requires_roll = TRUE, force = FALSE)
@@ -93,7 +93,7 @@
 	ASYNC // We dont return anything important to death and we want to be able to sleep for metamorph
 		if(HAS_TRAIT(owner, TRAIT_METAMORPH))
 			var/datum/storyteller_roll/metamorph/roll_datum = new()
-			if(roll_datum.st_roll(owner, bonus = PRIMAL_URGE_PLACEHOLDER) == ROLL_SUCCESS)
+			if(roll_datum.st_roll(owner, bonus_added = PRIMAL_URGE_PLACEHOLDER) == ROLL_SUCCESS)
 				// First valid use of timeout discovered (we dont want to be able to hold it out)
 				var/choice = tgui_input_list(owner, "Revert to your choosen form", "Metamorph", transformation_list, get_breed_form_species(), 1 TURNS)
 				if(choice in transformation_list)
@@ -103,10 +103,12 @@
 		transform_fera(get_breed_form_species(), force = TRUE)
 
 /datum/splat/werewolf/shifter/proc/transform_finish(form_to_transform, time_taken = DOGGY_ANIMATION_TIME)
-	animate(owner, transform = null, color = "#FFFFFF", time = time_taken * 0.1)
+	var/matrix/ntransform = matrix(owner.transform)
+	ntransform.Scale(1 / 1.1, 1 / 1.1) // only undo the 1.1x size scaling from transform_fera, leaves Glabro/Huge Size scaling alone
+	animate(owner, transform = ntransform, color = "#FFFFFF", time = time_taken * 0.1)
 
-	// Hacky fix for angle getting messed up when transforming into a human while resting
-	if (owner.body_position == LYING_DOWN && ispath(form_to_transform, /datum/species/human/shifter/homid))
+	// Hacky fix to unrotate the old form and then re-rotate the new one
+	if(GET_LYING_ANGLE(owner))
 		var/previous_angle = owner.set_lying_angle(0)
 		owner.set_species(form_to_transform)
 		owner.set_lying_angle(previous_angle)

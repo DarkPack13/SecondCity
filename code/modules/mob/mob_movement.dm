@@ -116,6 +116,7 @@ GAME_VERB_HIDDEN(/client, drop_item, "drop item")
 	//Sometimes you want to look like you're moving with a delay you don't actually have yet
 	visual_delay = 0
 	var/old_dir = mob.dir
+	var/old_loc = mob.loc
 
 	. = ..()
 
@@ -137,7 +138,7 @@ GAME_VERB_HIDDEN(/client, drop_item, "drop item")
 
 		// At this point we've moved the client's attached mob. This is one of the only ways to guess that a move was done
 		// as a result of player input and not because they were pulled or any other magic.
-		SEND_SIGNAL(mob, COMSIG_MOB_CLIENT_MOVED, direct, old_dir)
+		SEND_SIGNAL(mob, COMSIG_MOB_CLIENT_MOVED, direct, old_dir, old_loc)
 
 	var/atom/movable/P = mob.pulling
 	if(P && !ismob(P) && P.density)
@@ -391,6 +392,7 @@ GAME_VERB_HIDDEN(/client, drop_item, "drop item")
  */
 /mob/proc/slip(knockdown_amount, obj/slipped_on, lube_flags, paralyze, daze, force_drop = FALSE)
 	SEND_SIGNAL(src, COMSIG_MOB_SLIPPED, knockdown_amount, slipped_on, lube_flags, paralyze, daze, force_drop)
+	return TRUE
 
 /mob/living/slip(knockdown_amount, obj/slipped_on, lube_flags, paralyze, daze, force_drop = FALSE)
 	add_mob_memory(/datum/memory/was_slipped, antagonist = slipped_on)
@@ -520,16 +522,23 @@ GAME_VERB_HIDDEN_INSTANT(/client, toggle_walk_run, "toggle-walk-run")
 		user_mob.toggle_move_intent()
 
 /**
- * Toggle the move intent of the mob
- *
- * triggers an update the move intent hud as well
+ * Toggles move intent between walk and run, calling set_move_intent.
  */
 /mob/living/proc/toggle_move_intent()
 	if(move_intent == MOVE_INTENT_RUN)
-		move_intent = MOVE_INTENT_WALK
+		set_move_intent(MOVE_INTENT_WALK)
 	else
-		move_intent = MOVE_INTENT_RUN
+		set_move_intent(MOVE_INTENT_RUN)
 
+/**
+ * Sets the move intent of the mob. Triggers an update the move intent hud as well.
+ * Args:
+ * - new_state: The move state we're being set to.
+ */
+/mob/living/proc/set_move_intent(new_state)
+	if(move_intent == new_state)
+		return
+	move_intent = new_state
 	hud_used?.screen_objects[HUD_MOB_MOVE_INTENT]?.update_appearance()
 	update_move_intent_slowdown()
 	SEND_SIGNAL(src, COMSIG_MOVE_INTENT_TOGGLED)
@@ -553,7 +562,7 @@ GAME_VERB_HIDDEN_INSTANT(/client, toggle_walk_run, "toggle-walk-run")
 	if(!can_z_move(UP, current_turf, null, ZMOVE_CAN_FLY_CHECKS|ZMOVE_FEEDBACK))
 		return
 	balloon_alert(src, "moving up...")
-	if(!do_after(src, 1 SECONDS, cog_icon = null))
+	if(!do_after(src, 1 SECONDS, timed_action_flags = HIDE_INTERACTION))
 		return
 	if(zMove(UP, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK))
 		to_chat(src, span_notice("You move upwards."))
@@ -577,7 +586,7 @@ GAME_VERB_HIDDEN_INSTANT(/client, toggle_walk_run, "toggle-walk-run")
 	if(!can_z_move(DOWN, current_turf, null, ZMOVE_CAN_FLY_CHECKS|ZMOVE_FEEDBACK))
 		return
 	balloon_alert(src, "moving down...")
-	if(!do_after(src, 1 SECONDS, cog_icon = null))
+	if(!do_after(src, 1 SECONDS, timed_action_flags = HIDE_INTERACTION))
 		return
 	if(zMove(DOWN, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK))
 		to_chat(src, span_notice("You move down."))

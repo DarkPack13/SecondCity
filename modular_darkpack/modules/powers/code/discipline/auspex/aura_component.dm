@@ -104,6 +104,8 @@
 	switch(current_aura)
 		if(AURA_AFRAID)
 			examine_message = "[parent_mob.p_Their()] aura burns a bright orange, tense and flickering at the edges."
+		if(AURA_CONFIDENCE)
+			examine_message = "[parent_mob.p_Their()] aura radiates a confident yellow."
 		if(AURA_AGGRESSIVE)
 			examine_message = "[parent_mob.p_Their()] aura radiates a deep purple, pulsing like an engine."
 		if(AURA_ANGRY)
@@ -190,6 +192,7 @@
 		aura_appearance = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "aura", ABOVE_MOB_LAYER, parent_mob, ABOVE_GAME_PLANE)
 	else
 		aura_appearance = mutable_appearance('modular_darkpack/modules/powers/icons/auras.dmi', "aura_dead", ABOVE_MOB_LAYER, parent_mob, ABOVE_GAME_PLANE)
+
 	update_aura_colors(aura_appearance, holder)
 	update_aura_overlays(aura_appearance, holder)
 	update_aura_filters(aura_appearance, holder)

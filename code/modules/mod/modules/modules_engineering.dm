@@ -206,7 +206,7 @@
 
 /obj/projectile/tether/fire(setAngle)
 	if(firer)
-		line = firer.Beam(src, "line", 'icons/obj/clothing/modsuit/mod_modules.dmi', emissive = FALSE)
+		line = firer.Beam(src, "line", 'icons/obj/clothing/modsuit/mod_modules.dmi', emissive = NONE)
 	return ..()
 
 /obj/projectile/tether/on_hit(atom/target, blocked = 0, pierce_hit)
@@ -295,11 +295,11 @@
 
 	if(HAS_TRAIT_FROM(user, TRAIT_TETHER_ATTACHED, REF(src)))
 		balloon_alert(user, "already tethered!")
-		return
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if (parent_module && HAS_TRAIT_FROM(user, TRAIT_TETHER_ATTACHED, REF(parent_module)))
 		balloon_alert(user, "already tethered!")
-		return
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	balloon_alert(user, "attached tether")
 	user.AddComponent(/datum/component/tether, src, 7, "tether", tether_trait_source = REF(src))

@@ -62,3 +62,49 @@
 #define ABYSS_TENTACLE_MODE_AGGRESSIVE "Aggressive"
 #define ABYSS_TENTACLE_MODE_CONTROL "Control"
 #define ABYSS_TENTACLE_MODE_PASSIVE "Passive"
+
+// Defines for Discipline budgets
+// Fledgling - immortal age 0-10
+// Neonate - immortal age 11-100
+// Ancillae - immortal age 101-200
+// Elder - immortal age 201+
+#define DISCIPLINE_BUDGET_FLEDGLING 5
+#define DISCIPLINE_BUDGET_NEONATE 10
+#define DISCIPLINE_BUDGET_ANCILLAE 15
+#define DISCIPLINE_BUDGET_ELDER 18
+
+// VtM Discipline IDs for use with sprites and whatnot
+#define DISCIPLINE_ANIMALISM "animalism"
+#define DISCIPLINE_AUSPEX "auspex"
+#define DISCIPLINE_CELERITY "celerity"
+#define DISCIPLINE_DAIMONION "daimonion"
+#define DISCIPLINE_DEMENTATION "dementation"
+#define DISCIPLINE_DOMINATE "dominate"
+#define DISCIPLINE_FORTITUDE "fortitude"
+#define DISCIPLINE_MELPOMINEE "melpominee"
+#define DISCIPLINE_MYTHERCERIA "mytherceria"
+#define DISCIPLINE_NECROMANCY "necromancy"
+#define DISCIPLINE_OBEAH "obeah"
+#define DISCIPLINE_OBFUSCATE "obfuscate"
+#define DISCIPLINE_OBTENEBRATION "obtenebration"
+#define DISCIPLINE_POTENCE "potence"
+#define DISCIPLINE_PRESENCE "presence"
+#define DISCIPLINE_PROTEAN "protean"
+#define DISCIPLINE_QUIETUS "quietus"
+#define DISCIPLINE_SERPENTIS "serpentis"
+#define DISCIPLINE_TEMPORIS "temporis"
+#define DISCIPLINE_THANATOSIS "thanatosis"
+#define DISCIPLINE_THAUMATURGY "thaumaturgy"
+#define DISCIPLINE_VALEREN "valeren"
+#define DISCIPLINE_VICISSITUDE "vicissitude"
+#define DISCIPLINE_VISCERATIKA "visceratika"
+// Paths
+#define PATH_LEVINBOLT "levinbolt"
+#define PATH_LURE_OF_FLAMES "lure_of_flames"
+// Technicality
+#define DISCIPLINE_BLANK "blank_discipline"
+#define DISCIPLINE_BLOODHEAL "bloodheal"
+#define DISCIPLINE_TORPOR "torpor"
+
+
+

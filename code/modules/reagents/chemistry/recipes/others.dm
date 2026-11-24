@@ -1,3 +1,11 @@
+/datum/chemical_reaction/robot_coolant
+	results = list(/datum/reagent/dinitrogen_plasmide = 3)
+	required_reagents = list(/datum/reagent/stable_plasma = 1, /datum/reagent/nitrogen = 2)
+	required_temp = 400
+	optimal_temp = 500
+	overheat_temp = 600
+	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_UNIQUE
+
 
 /datum/chemical_reaction/sterilizine
 	results = list(/datum/reagent/space_cleaner/sterilizine = 3)
@@ -46,7 +54,7 @@
 /datum/chemical_reaction/sodiumchloride
 	results = list(/datum/reagent/consumable/salt = 2)
 	required_reagents = list(/datum/reagent/sodium = 1, /datum/reagent/chlorine = 1) // That's what I said! Sodium Chloride!
-	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_FOOD | REACTION_TAG_COMPONENT
+	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL | REACTION_TAG_COMPONENT
 	thermic_constant = 50
 
 /datum/chemical_reaction/sodiumchloride/pre_reaction_other_checks(datum/reagents/holder)
@@ -668,7 +676,7 @@
 	var/mob/living/carbon/maybe_monkey = holder.my_atom
 	var/location = maybe_monkey.drop_location()
 	if(iscarbon(maybe_monkey))
-		if(ismonkey(maybe_monkey))
+		if(HAS_TRAIT(maybe_monkey, TRAIT_LESSER_HUMANOID))
 			maybe_monkey.gib(DROP_ALL_REMAINS)
 			to_chat(maybe_monkey, span_danger("You body is torn to shreds as a monkey bursts out of you!"))
 		else
@@ -689,7 +697,7 @@
 	var/mob/living/carbon/maybe_monkey = holder.my_atom
 	var/location = maybe_monkey.drop_location()
 	if(iscarbon(maybe_monkey))
-		if(ismonkey(maybe_monkey))
+		if(HAS_TRAIT(maybe_monkey, TRAIT_LESSER_HUMANOID))
 			maybe_monkey.gib(DROP_ALL_REMAINS)
 			to_chat(maybe_monkey, span_danger("You body is torn to shreds as a pissed off monkey bursts out of you!"))
 		else

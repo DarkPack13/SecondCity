@@ -288,7 +288,7 @@
 		INVOKE_ASYNC(src, PROC_REF(move_ore), ore)
 
 	if (ore_found)
-		playsound(mod.wearer, SFX_RUSTLE, 50, TRUE)
+		playsound(mod.wearer, /datum/sound_effect/rustle, 50, TRUE)
 
 /obj/item/mod/module/orebag/proc/move_ore(obj/item/stack/ore)
 	for(var/obj/item/stack/ore/stored_ore as anything in src)
@@ -310,13 +310,13 @@
 	SIGNAL_HANDLER
 	if(istype(arrived, /obj/item/stack/ore) && !dropping_ores && old_loc != mod.wearer)
 		INVOKE_ASYNC(src, PROC_REF(move_ore), arrived)
-		playsound(mod.wearer, SFX_RUSTLE, 50, TRUE)
+		playsound(mod.wearer, /datum/sound_effect/rustle, 50, TRUE)
 
 /obj/item/mod/module/orebag/proc/on_atom_initialized_on(atom/loc, atom/new_atom)
 	SIGNAL_HANDLER
 	if(is_type_in_list(new_atom, /obj/item/stack/ore))
 		INVOKE_ASYNC(src, PROC_REF(move_ore), new_atom)
-		playsound(mod.wearer, SFX_RUSTLE, 50, TRUE)
+		playsound(mod.wearer, /datum/sound_effect/rustle, 50, TRUE)
 
 /obj/item/mod/module/hydraulic
 	name = "\improper MOD loader hydraulic arms module"
@@ -792,3 +792,75 @@
 	lifespan = 1 SECONDS
 	fade = 1 SECONDS
 	spin = generator(GEN_NUM, -20, 20)
+
+/obj/item/mod/module/candela_spool
+	name = "\improper MOD \"Candela\" beacon spool module"
+	desc = "A set of tethers and connectors, capable of automatically deploying \"Candela\" beacons from within a MODsuit."
+	icon_state = "candela_spool"
+	module_type = MODULE_ACTIVE
+	use_energy_cost = DEFAULT_CHARGE_DRAIN
+	incompatible_modules = list(/obj/item/mod/module/candela_spool)
+	cooldown_time = 1 SECONDS
+	required_slots = list(ITEM_SLOT_BACK, ITEM_SLOT_GLOVES)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.75)
+	/// Our network handler datum
+	/// We handle the network separately from the beacons we deploy, and supercede all of its' behaviors
+	var/datum/candela_item_handler/handler = null
+
+/obj/item/mod/module/candela_spool/Initialize(mapload)
+	. = ..()
+	handler = new(src, on_network_cut_callback = CALLBACK(src, PROC_REF(on_network_cut)))
+
+/obj/item/mod/module/candela_spool/Destroy()
+	QDEL_NULL(handler)
+	return ..()
+
+/obj/item/mod/module/candela_spool/on_install()
+	. = ..()
+	RegisterSignal(mod, COMSIG_ATOM_STORED_ITEM, PROC_REF(on_stored_item))
+
+/obj/item/mod/module/candela_spool/on_uninstall(deleting = FALSE)
+	. = ..()
+	UnregisterSignal(mod, COMSIG_ATOM_STORED_ITEM)
+
+/obj/item/mod/module/candela_spool/on_activation(mob/activator)
+	handler.set_owner(activator)
+
+/obj/item/mod/module/candela_spool/on_deactivation(mob/activator, display_message, deleting)
+	handler.set_owner(null)
+
+/obj/item/mod/module/candela_spool/on_select_use(atom/target)
+	. = ..()
+	if(!.)
+		return
+	attempt_deploy(mod.wearer, get_turf(mod.wearer))
+
+/obj/item/mod/module/candela_spool/proc/on_stored_item(datum/source, obj/item/stored, mob/user, force)
+	SIGNAL_HANDLER
+
+	if (!istype(stored, /obj/item/stack/candela_beacon))
+		return
+
+	// When storing linked beacons in our MODsuit, inherit their link for convinience
+	var/obj/item/stack/candela_beacon/beacons = stored
+	if (beacons.handler.network)
+		handler.set_network(beacons.handler.network, beacons.handler.closest_node)
+
+/// Callback to react to breaking LOS/reaching maximum distance with a beacon
+/obj/item/mod/module/candela_spool/proc/on_network_cut(atom/old_loc, old_dir, interrupt)
+	if (mod.wearer && handler.closest_node && !interrupt)
+		return attempt_deploy(mod.wearer, old_loc, silent = TRUE)
+	return FALSE
+
+/// Attempt to deploy a candela beacon at a given location
+/obj/item/mod/module/candela_spool/proc/attempt_deploy(mob/activator, atom/location, silent = FALSE)
+	var/obj/item/stack/candela_beacon/beacons = locate() in mod.atom_storage.real_location
+	if (isnull(beacons))
+		balloon_alert(activator, "no beacons!")
+		return FALSE
+
+	if (!beacons.place_beacon(activator, loc_override = location, handler_override = handler, silent = silent))
+		return FALSE
+
+	drain_power(use_energy_cost)
+	return TRUE

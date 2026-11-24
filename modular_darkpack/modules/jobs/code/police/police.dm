@@ -8,7 +8,6 @@
 	outfit = /datum/outfit/job/vampire/police_officer
 	job_flags = CITY_JOB_FLAGS
 	display_order = JOB_DISPLAY_ORDER_POLICE
-	exp_required_type_department = EXP_TYPE_POLICE
 	departments_list = list(
 		/datum/job_department/police,
 	)
@@ -19,16 +18,22 @@
 		"Senior Police Officer",
 	)
 
+	tgui_icon = FA_ICON_SHIELD_HALVED
+
 	allowed_splats = list(SPLAT_GHOUL, SPLAT_KINFOLK, SPLAT_NONE)
 	splat_slots = list(SPLAT_GHOUL = 2, SPLAT_KINFOLK = 2)
 
 	description = "Enforce the Law."
 	minimum_masquerade = 0
 
-	known_contacts = list("Police Captain")
+	known_contacts = list(
+		JOB_POLICE_CAPTAIN,
+		JOB_POLICE_SERGEANT,
+		JOB_EMERGENCY_DISPATCHER
+	)
 
 /datum/outfit/job/vampire/police_officer
-	name = "Police Officer"
+	name = JOB_POLICE_OFFICER
 	jobtype = /datum/job/vampire/police_officer
 
 	ears = /obj/item/radio/headset/darkpack/police
@@ -37,7 +42,7 @@
 	suit = /obj/item/clothing/suit/vampire/vest/police
 	belt = /obj/item/storage/belt/security/police
 	id = /obj/item/card/police
-	l_pocket = /obj/item/smartphone
+	l_pocket = /obj/item/smartphone/police_officer
 	r_pocket = /obj/item/vamp/keys/police
 	backpack_contents = list(/obj/item/card/credit=1, /obj/item/ammo_box/darkpack/c9mm = 1, /obj/item/storage/medkit/darkpack/ifak = 1, /obj/item/bodycam_upgrade = 1)
 

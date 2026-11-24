@@ -6,6 +6,7 @@
 ●●● Bond with the Mountain: Passive
 ●●●● Armor of Terra: No roll - always active
 ●●●●● Flow Within the Mountain: Passive"}
+	id = DISCIPLINE_VISCERATIKA
 	icon_state = "visceratika"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/visceratika
@@ -16,13 +17,14 @@
 
 	activate_sound = 'modular_darkpack/modules/powers/sounds/visceratika.ogg'
 
-/datum/discipline/visceratika/post_gain()
+/datum/discipline/visceratika/post_gain(post_gain_applied)
 	. = ..()
 	// it is rumored that, if a non-gargoyle kindred were to learn Visceratika, their skin would turn stony
-	owner.skin_tone = "albino"
-	owner.set_body_sprite("gargoyle")
-	owner.update_body_parts()
-	owner.update_body()
+	if(!post_gain_applied)
+		owner.skin_tone = "albino"
+		owner.set_body_sprite("gargoyle")
+		owner.update_body_parts()
+		owner.update_body()
 
 //SKIN OF THE CHAMELEON
 /datum/discipline_power/visceratika/skin_of_the_chameleon
@@ -34,6 +36,7 @@
 	duration_length = 1 SCENES
 	cancelable = TRUE
 	vitae_cost = 1
+	frenzy_usable = FALSE
 
 /datum/discipline_power/visceratika/skin_of_the_chameleon/activate()
 	. = ..()
@@ -66,11 +69,12 @@
 	toggled = TRUE
 	var/datum/storyteller_roll/scry_the_hearthstone/scry_roll
 	var/area/monitoring_area
+	frenzy_usable = FALSE
 
 /datum/storyteller_roll/scry_the_hearthstone
 	bumper_text = "scry the hearthstone"
 	applicable_stats = list(STAT_PERCEPTION, STAT_AWARENESS)
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_FLAG_ROLLER
 
 /datum/discipline_power/visceratika/scry_the_hearthstone/New(datum/discipline/discipline)
 	. = ..()
@@ -185,6 +189,7 @@
 	cooldown_length = 10 SECONDS
 	var/datum/weakref/exit_turf
 	var/datum/weakref/stone_turf
+	frenzy_usable = FALSE
 
 /datum/discipline_power/visceratika/bond_with_the_mountain/pre_activation_checks()
 	. = ..()
@@ -240,16 +245,16 @@
 
 	vitae_cost = 0
 
-/datum/discipline_power/visceratika/armor_of_terra/post_gain()
-	owner.physiology.brute_mod *= 0.8
-	owner.physiology.heat_mod *= 0.5
+/datum/discipline_power/visceratika/armor_of_terra/post_gain(post_gain_applied)
+	MODIFY_PHYSIOLOGY(owner, BRUTE, 0.8)
+	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_HEAT, 0.5)
 	ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, DISCIPLINE_TRAIT(type))
 	if (!owner.is_clan(/datum/subsplat/vampire_clan/gargoyle))
 		ADD_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT(type))
 
 /datum/discipline_power/visceratika/armor_of_terra/post_loss()
-	owner.physiology.brute_mod *= 1.25
-	owner.physiology.heat_mod *= 2
+	MODIFY_PHYSIOLOGY(owner, BRUTE, 1.25)
+	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_HEAT, 2)
 	REMOVE_TRAIT(owner, TRAIT_NOSOFTCRIT, DISCIPLINE_TRAIT(type))
 	REMOVE_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE, DISCIPLINE_TRAIT(type))
 

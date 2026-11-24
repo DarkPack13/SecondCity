@@ -81,6 +81,7 @@
 	ADD_TRAIT(src, TRAIT_ANOSMIA, INNATE_TRAIT)
 	RegisterSignal(src, COMSIG_LIVING_ELECTROCUTE_ACT, PROC_REF(on_silicon_shocked))
 	law_ui = new(src)
+	AddElement(/datum/element/damage_threshold, 8, UNARMED_ATTACK)
 
 /mob/living/silicon/Destroy()
 	QDEL_NULL(radio)
@@ -374,4 +375,4 @@
 		. += borg_laws
 
 /mob/living/silicon/get_access()
-	return REGION_ACCESS_ALL_STATION
+	return SSid_access.accesses_by_region[REGION_ALL_STATION]

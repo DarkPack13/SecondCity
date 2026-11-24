@@ -3,6 +3,7 @@
 
 	power_type = /datum/discipline
 	COOLDOWN_DECLARE(passive_bp_drain_cooldown)
+	COOLDOWN_DECLARE(check_masq_violating_cooldown)
 
 
 /datum/splat/vampire/splat_life(seconds_per_tick)
@@ -10,12 +11,43 @@
 		if(COOLDOWN_FINISHED(src, passive_bp_drain_cooldown))
 			owner.adjust_blood_pool(-1)
 			COOLDOWN_START(src, passive_bp_drain_cooldown, CONFIG_GET(number/passive_bp_drain_timer))
+
+	if(COOLDOWN_FINISHED(src, check_masq_violating_cooldown))
+		if(HAS_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_FACE) && (iscarbon(owner) ? !(owner.obscured_slots & HIDEFACE) : TRUE))
+			SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
+
+		if(HAS_TRAIT(owner, TRAIT_MASQUERADE_VIOLATING_EYES) && (iscarbon(owner) ? !(owner.is_eyes_covered()) : TRUE))
+			SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
+
+		COOLDOWN_START(src, check_masq_violating_cooldown, 1 TURNS)
+
 	return
 
 /datum/splat/vampire/proc/get_discipline_power(datum/discipline_power/discipline_power_type)
 	RETURN_TYPE(/datum/discipline_power)
 
 	return get_discipline(discipline_power_type::discipline)?.get_power(discipline_power_type)
+
+/mob/living/proc/get_active_disciplines()
+	RETURN_TYPE(/datum/discipline)
+
+	var/datum/splat/vampire/vampire = get_splat_with_discipline(src)
+	var/list/current_disciplines = list()
+	for (var/datum/action/discipline/individual_discipline in vampire.powers) // Remove Bloodheal
+		if (istype(individual_discipline.discipline, /datum/discipline/bloodheal))
+			continue
+		current_disciplines += individual_discipline.discipline
+	return current_disciplines
+
+/datum/splat/vampire/proc/get_active_disciplines()
+	RETURN_TYPE(/datum/discipline)
+
+	var/list/current_disciplines = list()
+	for (var/datum/action/discipline/individual_discipline in src.powers) // Remove Bloodheal
+		if (istype(individual_discipline.discipline, /datum/discipline/bloodheal))
+			continue
+		current_disciplines += individual_discipline.discipline
+	return current_disciplines
 
 /datum/splat/vampire/proc/get_discipline(discipline_type)
 	RETURN_TYPE(/datum/discipline)

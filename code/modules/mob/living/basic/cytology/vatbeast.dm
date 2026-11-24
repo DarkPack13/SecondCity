@@ -12,7 +12,7 @@
 	speak_emote = list("roars")
 	health = 250
 	maxHealth = 250
-	damage_coeff = list(BRUTE = 0.7, BURN = 0.7, TOX = 1, STAMINA = 1, OXY = 1)
+	physiology = list(BRUTE = 0.7, BURN = 0.7)
 	melee_damage_lower = 25
 	melee_damage_upper = 25
 	melee_attack_cooldown = CLICK_CD_MELEE
@@ -32,7 +32,7 @@
 	var/static/list/enjoyed_food = list(
 		/obj/item/food/carrotfries,
 		/obj/item/food/cheesyfries,
-		/obj/item/food/cornchips,
+		/obj/item/food/chips/corn,
 		/obj/item/food/fries,
 	)
 

@@ -67,7 +67,7 @@
 	fire_colour = "#bd3f46"
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light/bulb
-	flourescent = FALSE // DARKPACK EDIT ADD - AMBIENCE - (No humminh for small bulbs)
+	flourescent = FALSE // DARKPACK EDIT ADD - AMBIENCE - (No humming for small bulbs)
 
 /obj/machinery/light/small/broken
 	status = LIGHT_BROKEN
@@ -105,6 +105,27 @@
 
 // DARKPACK EDIT CHANGE START
 
+/obj/machinery/light/blue
+	bulb_colour = COLOR_TRUE_BLUE
+	nightshift_allowed = FALSE
+	no_low_power = TRUE
+
+/obj/machinery/light/blue/dim
+	brightness = 4
+	bulb_power = 0.7
+	fire_brightness = 4.5
+
+/obj/machinery/light/small/blue
+	bulb_colour = COLOR_TRUE_BLUE
+	no_low_power = TRUE
+	nightshift_allowed = FALSE
+	fire_colour = "#2CB2E8"
+
+/obj/machinery/light/small/blue/dim
+	brightness = 2
+	bulb_power = 0.8
+	fire_brightness = 2.5
+
 /obj/machinery/light/small/pink
 	bulb_colour = "#DE6EE2"
 	no_low_power = TRUE
@@ -119,9 +140,12 @@
 
 /obj/machinery/light/prince/ghost/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_ATOM_ENTERED, PROC_REF(jumpscare))
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(jumpscare),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
-/obj/machinery/light/prince/ghost/proc/jumpscare(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+/obj/machinery/light/prince/ghost/proc/jumpscare(datum/source, atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	SIGNAL_HANDLER
 
 	if(ishuman(arrived))
@@ -227,7 +251,16 @@ LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/pink)
 LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/prince)
 
 LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/prince/broken)
+
 LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/prince/ghost)
+
+LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/blue)
+
+LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/blue/dim)
+
+LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/blue)
+
+LIGHTING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/blue/dim)
 
 #undef LIGHTING_DIRECTIONAL_HELPERS
 // DARKPACK EDIT CHANGE END

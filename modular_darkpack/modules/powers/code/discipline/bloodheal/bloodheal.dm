@@ -5,6 +5,7 @@
 	name = "Bloodheal"
 	desc = {"Use the power of your Vitae to mend your flesh.
 ● Bloodheal: Stamina + Survival (difficulty 8) - roll only on interrupted cast"}
+	id = DISCIPLINE_BLOODHEAL
 	icon_state = "bloodheal"
 	power_type = /datum/discipline_power/bloodheal
 	selectable = FALSE
@@ -13,7 +14,7 @@
 	bumper_text = "Bloodheal"
 	difficulty = 8
 	applicable_stats = list(STAT_STAMINA, STAT_SURVIVAL)
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_FLAG_ROLLER
 
 /datum/discipline_power/bloodheal
 	name = "Bloodheal power name"
@@ -39,14 +40,16 @@
 		/datum/discipline_power/bloodheal/seven,
 		/datum/discipline_power/bloodheal/eight,
 		/datum/discipline_power/bloodheal/nine,
-		/datum/discipline_power/bloodheal/ten
+		/datum/discipline_power/bloodheal/ten,
 	)
 
 	var/datum/storyteller_roll/bloodheal/bloodheal_roll
 
+#define BLOODHEAL_INTERACTION_KEY "bloodheal_key"
+
 /datum/discipline_power/bloodheal/pre_activation_checks(atom/target)
 	. = ..()
-	if(do_after(owner, 1 TURNS, timed_action_flags = DO_AFTER_CHECK_NEXT_MOVE | IGNORE_INCAPACITATED))
+	if(do_after(owner, 1 TURNS, timed_action_flags = DO_AFTER_CHECK_NEXT_MOVE | IGNORE_INCAPACITATED, interaction_key = BLOODHEAL_INTERACTION_KEY))
 		return TRUE
 	if(!bloodheal_roll)
 		bloodheal_roll = new()
@@ -65,15 +68,17 @@
 			owner.apply_damage(1 TTRPG_DAMAGE, BRUTE)
 			return FALSE
 
+#undef BLOODHEAL_INTERACTION_KEY
+
 /datum/discipline_power/bloodheal/activate()
 	. = ..()
 
 	//normal bashing/lethal damage
 	owner.heal_ordered_damage(HEAL_BASHING_LETHAL_DAMAGE * vitae_cost, list(BRUTE, TOX, OXY, STAMINA))
 
-	if(length(owner.all_wounds))
+	if(iscarbon(owner) && length(owner.all_wounds))
 		for (var/i in 1 to min(vitae_cost, length(owner.all_wounds)))
-			var/datum/wound/wound = owner.all_wounds[i]
+			var/datum/wound/wound = owner.all_wounds[1]
 			wound.remove_wound()
 
 	//aggravated damage
@@ -89,26 +94,32 @@
 			brain.cure_trauma_type(healing_trauma, resilience = TRAUMA_RESILIENCE_WOUND)
 
 	// Let core species logic handle restoring/healing organs so missing eyes are rebuilt correctly.
-	owner.regenerate_organs()
-	var/obj/item/organ/eyes/eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
-	if (!eyes)
-		var/eyes_type = owner.dna?.species?.get_mutant_organ_type_for_slot(ORGAN_SLOT_EYES) || /obj/item/organ/eyes
-		eyes = new eyes_type()
-		eyes.Insert(owner, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+	var/obj/item/organ/eyes/eyes
+	if(iscarbon(owner))
+		owner.regenerate_organs()
+		eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
+		if (!eyes)
+			var/eyes_type = owner.dna?.species?.get_mutant_organ_type_for_slot(ORGAN_SLOT_EYES) || /obj/item/organ/eyes
+			eyes = new eyes_type()
+			eyes.Insert(owner, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 	owner.cure_blind(NO_EYES)
-	if(!owner.has_quirk(/datum/quirk/item_quirk/blindness))
-		owner.cure_blind(QUIRK_TRAIT)
 	owner.cure_blind(EYE_DAMAGE)
-	owner.cure_blind(EYE_SCARRING_TRAIT)
-	owner.cure_nearsighted(QUIRK_TRAIT)
 	owner.cure_nearsighted(EYE_DAMAGE)
-	if (eyes)
-		eyes.fix_scar(LEFT_EYE_SCAR)
-		eyes.fix_scar(RIGHT_EYE_SCAR)
+
+	var/datum/quirk/item_quirk/scarred_eye/scar = owner.get_quirk(/datum/quirk/item_quirk/scarred_eye)
+	if(eyes)
+		if(!scar)
+			eyes.fix_scar(LEFT_EYE_SCAR)
+			eyes.fix_scar(RIGHT_EYE_SCAR)
+		else if(scar.scarring_type == LEFT_EYE_SCAR)
+			eyes.fix_scar(RIGHT_EYE_SCAR)
+		else if(scar.scarring_type == RIGHT_EYE_SCAR)
+			eyes.fix_scar(LEFT_EYE_SCAR)
+
 	owner.remove_status_effect(/datum/status_effect/temporary_blindness)
 	owner.remove_status_effect(/datum/status_effect/eye_blur)
 
-	if(get_kindred_splat(owner) && length(owner.get_missing_limbs()))
+	if(iscarbon(owner) && get_kindred_splat(owner) && length(owner.get_missing_limbs()))
 		owner.regenerate_limbs()
 		violates_masquerade = TRUE
 

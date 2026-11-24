@@ -16,6 +16,10 @@
 	name = "Pen (Fountain)"
 	item_path = /obj/item/pen/fountain
 
+/datum/loadout_item/pocket_items/pen_charcoal
+	name = "Pen (Charcoal)"
+	item_path = /obj/item/pen/charcoal
+
 // Cards
 /datum/loadout_item/pocket_items/card_tarot
 	name = "Deck of Cards (Tarot)"
@@ -32,7 +36,7 @@
 
 /datum/loadout_item/pocket_items/wristwatch
 	name = "Wrist watch"
-	item_path = /obj/item/watch
+	item_path = /obj/item/clothing/watch
 
 /datum/loadout_item/pocket_items/gold_cross
 	name = "Cross (Gold)"

@@ -37,7 +37,7 @@
 	bubble_icon = "machine"
 	initial_language_holder = /datum/language_holder/drone
 	mob_size = MOB_SIZE_SMALL
-	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, STAMINA = 0, OXY = 0)
+	physiology = list(TOX = 0, OXY = 0, STAMINA = 0)
 	hud_possible = list(DIAG_STAT_HUD, DIAG_HUD, ANTAG_HUD)
 	unique_name = TRUE
 	faction = list(FACTION_NEUTRAL,FACTION_SILICON,FACTION_TURRET)
@@ -119,7 +119,7 @@
 
 	if(default_storage)
 		var/obj/item/storage = new default_storage(src)
-		equip_to_slot_or_del(storage, ITEM_SLOT_DEX_STORAGE)
+		equip_to_slot_or_del(storage, ITEM_SLOT_BACK)
 
 	for(var/holiday_name in GLOB.holidays)
 		var/datum/holiday/holiday_today = GLOB.holidays[holiday_name]
@@ -171,18 +171,18 @@
 	return length(lines) ? jointext(lines, "\n") : base_laws
 
 /mob/living/basic/drone/med_hud_set_health()
-	set_hud_image_state(DIAG_HUD, "huddiag[RoundDiagBar(health/maxHealth)]")
+	set_hud_image_state(DIAG_HUD, hud_state = "huddiag[RoundDiagBar(health/maxHealth)]")
 
 /mob/living/basic/drone/med_hud_set_status()
 	if(stat == DEAD)
-		set_hud_image_state(DIAG_STAT_HUD, "huddead2")
+		set_hud_image_state(DIAG_STAT_HUD, hud_state = "huddead2")
 		return
 
 	if(incapacitated)
-		set_hud_image_state(DIAG_STAT_HUD, "hudoffline")
+		set_hud_image_state(DIAG_STAT_HUD, hud_state = "hudoffline")
 		return
 
-	set_hud_image_state(DIAG_STAT_HUD, "hudstat")
+	set_hud_image_state(DIAG_STAT_HUD, hud_state = "hudstat")
 
 /mob/living/basic/drone/Destroy()
 	GLOB.drones_list -= src
@@ -229,10 +229,11 @@
 	. = list()
 
 	//Hands
-	for(var/obj/item/held_thing in held_items)
+	for(var/held_index in get_active_held_indexes())
+		var/obj/item/held_thing = get_item_for_held_index(held_index)
 		if((held_thing.item_flags & (ABSTRACT|HAND_ITEM)) || HAS_TRAIT(held_thing, TRAIT_EXAMINE_SKIP))
 			continue
-		. += "It has [held_thing.examine_title(user)] in its [get_held_index_name(get_held_index_of_item(held_thing))]."
+		. += "It has [held_thing.examine_title(user)] in its [get_held_index_name(held_index)]."
 
 	//Internal storage
 	if(internal_storage && !(internal_storage.item_flags & ABSTRACT))

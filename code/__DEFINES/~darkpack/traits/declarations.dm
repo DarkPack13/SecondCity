@@ -16,7 +16,12 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define STATION_TRAIT_STRAY_MIGRATION "station_trait_stray_migration"
 #define STATION_TRAIT_WILD_MASQUERADE "station_trait_wild_masquerade"
 
+/// Prevents passive fire acts from igniting the ground below it.
+#define TRAIT_ELEVATED_FLAME "elevated_flame" // TURF_FIRE
+
 // Mob traits
+/// Prevent any data being written to pref for this mob
+#define TRAIT_NO_CANON "no_canon"
 
 // If the user is unbondable via blood bonds.
 #define TRAIT_UNBONDABLE "unbondable"
@@ -107,9 +112,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Stepping on glass shards immunity. Currently used for a couple Garou forms but could be used elsewhere.
 #define TRAIT_HARDENED_SOLES "hardened_soles"
 
-
-// Allows the user to pass through doors
 #define TRAIT_IN_FRENZY "in_frenzy"
+
+// Can't examine people
+#define TRAIT_CANNOT_FOCUS "cannot_focus"
 
 // Is the mob silenced (by Quietus 1 for example)
 #define TRAIT_SILENCED "silenced"
@@ -146,6 +152,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NO_LYING_ANGLE "no_lying_angle"
 // Expensive but allows us to ensure there resting gets updated.
 #define TRAIT_TRANSFORM_UPDATES_ICON "transform_updates_icon"
+#define TRAIT_OPENS_MOONGATES "opens_moongates"
+/// Friends and allowed to interact with the main gaian caern
+#define TRAIT_GAIA_CAERN_FRIEND "gaia_caern_friend"
 // Fera both grants a flight ability, and has the sprites to support such a thing. (Presently only designed to supprot feral form.)
 #define TRAIT_FERA_FLIGHT "fera_flight"
 #define TRAIT_SILVER_WEAKNESS "silver_weakness"
@@ -170,16 +179,22 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// If the mob can't have surgery done on it. See: Blood form Tzimisce
 #define TRAIT_SURGERY_INAPPLICABLE "surgery_inapplicable"
 // BELOW ARE ALL MERITS/FLAWS
+#define TRAIT_ABYSSAL_EYES "abyssal_eyes"
 #define TRAIT_ACUTE_HEARING "acute_hearing"
+#define TRAIT_AMBIDEXTROUS "ambidextrous"
 #define TRAIT_ANIMAL_MUSK "animal_musk"
+#define TRAIT_ANTHROPIC_TASTE "anthropic_taste"
 #define TRAIT_BANNED_TRANSFORMATION "banned_transformation"
 #define TRAIT_BEACON_OF_THE_UNHOLY "beacon_of_the_unholy"
 #define TRAIT_BETRAYERS_MARK "betrayers_mark"
+#define TRAIT_BLOOD_SORCERY_PRODIGY "blood_sorcery_prodigy"
 #define TRAIT_CALM_HEART "calm_heart"
+#define TRAIT_COLDLY_LOGICAL "coldly_logical"
 #define TRAIT_DISFIGURED_APPEARANCE "disfigured_appearance"
 #define TRAIT_DULLFANGS "dullfangs"
 #define TRAIT_EAT_FOOD "eat_food"
 #define TRAIT_EFFICIENT_DIGESTION "efficient_digestion"
+#define TRAIT_ENCHANTING_VOICE "enchanting_voice"
 #define TRAIT_FAIR_GLABRO "fair_glabro"
 #define TRAIT_GLOWING_EYES "glowing_eyes"
 #define TRAIT_GRAVE_SMELL "grave_smell"
@@ -187,6 +202,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_HORRIFIC_APPEARANCE "horrific_appearance"
 #define TRAIT_HUGE_SIZE "huge_size"
 #define TRAIT_ILLEGAL_IDENTITY "illegal_identity" // GOVERNMENT
+#define TRAIT_IRON_WILL "iron_will"
 #define TRAIT_MERIT_UNTAMABLE "merit_untamable"
 #define TRAIT_METAMORPH "metamorph"
 #define TRAIT_MONSTROUS "monstrous"

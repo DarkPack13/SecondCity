@@ -8,16 +8,18 @@
 ●●● Ashes to Ashes: Wits + Occult (difficulty 6)
 ●●●● Cold of the Grave: Wits + Occult (difficulty 6)
 ●●●●● Shambling Horde: Wits + Occult (difficulty 6)"}
+	id = DISCIPLINE_NECROMANCY
 	icon_state = "necromancy"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/necromancy
 	signature_clan = VAMPIRE_CLAN_GIOVANNI
 
-/datum/discipline/necromancy/post_gain()
+/datum/discipline/necromancy/post_gain(post_gain_applied)
 	. = ..()
-	var/datum/action/ritual_drawing/necromancy/ritualist = new()
-	ritualist.Grant(owner)
-	ritualist.level = level
+	if(!post_gain_applied)
+		var/datum/action/ritual_drawing/necromancy/ritualist = new()
+		ritualist.Grant(owner)
+		ritualist.level = level
 
 /datum/discipline/necromancy/post_loss()
 	. = ..()
@@ -32,27 +34,26 @@
 /datum/discipline_power/necromancy
 	name = "Necromancy power name"
 	desc = "Necromancy power description"
+	frenzy_usable = FALSE
 
 //SHROUDSIGHT V20 p. 163
 /datum/storyteller_roll/shroudsight
 	bumper_text = "shroudsight"
 	applicable_stats = list(STAT_PERCEPTION, STAT_AWARENESS)
 	difficulty = 7
-	reroll_cooldown = 1 SCENES
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_FLAG_ROLLER
 
 /datum/discipline_power/necromancy/shroudsight
 	name = "Shroudsight"
-	desc = "See in darkness clearly and see ghosts present."
-
+	desc = "See and speak to nearby ghosts."
 	level = 1
 	check_flags = DISC_CHECK_CONSCIOUS
-	vitae_cost = 1
+	vitae_cost = 0
 
 	activate_sound = 'modular_darkpack/modules/ritual_necromancy/sounds/necromancy1on.ogg'
 	deactivate_sound = 'modular_darkpack/modules/ritual_necromancy/sounds/necromancy1off.ogg'
 
-	cooldown_length = 3 SCENES
+	cooldown_length = 10 SECONDS
 	duration_length = 1 SCENES
 
 	var/datum/storyteller_roll/shroudsight/roll_datum
@@ -60,11 +61,12 @@
 /datum/discipline_power/necromancy/shroudsight/pre_activation_checks(mob/living/target)
 	if(!roll_datum)
 		roll_datum = new()
-
 	var/roll_result = roll_datum.st_roll(owner)
-	if(roll_result == ROLL_COOLDOWN)
-		return FALSE
-	return roll_result == ROLL_SUCCESS
+	if(roll_result == ROLL_SUCCESS)
+		return TRUE
+
+	do_cooldown(cooldown_length)
+	return FALSE
 
 /datum/discipline_power/necromancy/shroudsight/activate()
 	. = ..()
@@ -218,7 +220,8 @@
 
 			ADD_TRAIT(corpsebuff, TRAIT_NOSOFTCRIT, NECROMANCY_TRAIT)
 			ADD_TRAIT(corpsebuff, TRAIT_NOHARDCRIT, NECROMANCY_TRAIT)
-			//ADD_TRAIT(corpsebuff, TRAIT_IGNOREDAMAGESLOWDOWN, NECROMANCY_TRAIT)
+			ADD_TRAIT(corpsebuff, TRAIT_ANALGESIA, NECROMANCY_TRAIT)
+			corpsebuff.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 			corpsebuff.add_movespeed_modifier(/datum/movespeed_modifier/corpsebuff)
 			corpsebuff.do_jitter_animation(2 SECONDS)
 		else //everyone else eats tox and CC
@@ -230,7 +233,8 @@
 			corpsebuff.apply_status_effect(/datum/status_effect/confusion, 10 SECONDS)
 
 			corpsebuff.apply_damage(50, TOX)
-			corpsebuff.Stun(3 SECONDS) // ignored by tough flesh and shapeshifted werewolves
+			if(!(HAS_TRAIT(corpsebuff, TRAIT_TOUGH_FLESH) || iscrinos(corpsebuff))) // ignored by tough flesh and shapeshifted werewolves
+				corpsebuff.Stun(3 SECONDS)
 			corpsebuff.add_movespeed_modifier(/datum/movespeed_modifier/corpsenerf)
 			corpsebuff.do_jitter_animation(2 SECONDS)
 
@@ -250,7 +254,8 @@
 				part.brute_modifier = initial(part.brute_modifier)
 			REMOVE_TRAIT(corpsebuff, TRAIT_NOSOFTCRIT, NECROMANCY_TRAIT)
 			REMOVE_TRAIT(corpsebuff, TRAIT_NOHARDCRIT, NECROMANCY_TRAIT)
-			//REMOVE_TRAIT(corpsebuff, TRAIT_IGNOREDAMAGESLOWDOWN, NECROMANCY_TRAIT)
+			REMOVE_TRAIT(corpsebuff, TRAIT_ANALGESIA, NECROMANCY_TRAIT)
+			corpsebuff.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 			corpsebuff.remove_movespeed_modifier(/datum/movespeed_modifier/corpsebuff)
 		else
 			corpsebuff.remove_movespeed_modifier(/datum/movespeed_modifier/corpsenerf)

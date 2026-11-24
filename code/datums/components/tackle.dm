@@ -449,7 +449,8 @@
 
 	if(HAS_TRAIT(sacker, TRAIT_TACKLING_WINGED_ATTACKER))
 		var/obj/item/organ/wings/moth/sacker_moth_wing = sacker.get_organ_slot(ORGAN_SLOT_EXTERNAL_WINGS)
-		if(!sacker_moth_wing || sacker_moth_wing.burnt)
+		//Flight potion wings cannot burn off. Only the moth's natural fragile pair can cost us the bonus
+		if(isnull(sacker_moth_wing) || (istype(sacker_moth_wing) && sacker_moth_wing.burnt))
 			attack_mod -= 2
 	var/obj/item/organ/wings/sacker_wing = sacker.get_organ_slot(ORGAN_SLOT_EXTERNAL_WINGS)
 	if(sacker_wing)
@@ -638,7 +639,7 @@
 /datum/component/tackler/proc/delayedSmash(obj/structure/window/windscreen_casualty)
 	if(windscreen_casualty)
 		windscreen_casualty.atom_destruction()
-		playsound(windscreen_casualty, SFX_SHATTER, 70, TRUE)
+		playsound(windscreen_casualty, /datum/sound_effect/shatter, 70, TRUE)
 
 ///Check to see if we hit a table, and if so, make a big mess!
 /datum/component/tackler/proc/checkObstacle(mob/living/carbon/owner)

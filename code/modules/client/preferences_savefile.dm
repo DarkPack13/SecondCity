@@ -13,7 +13,7 @@
 /// You do not need to raise this if you are adding new values that have sane defaults.
 /// Only raise this value when changing the meaning/format/name/layout of an existing value
 /// where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX 52
+#define SAVEFILE_VERSION_MAX 54
 
 #define IS_DATA_OBSOLETE(version) (version == SAVE_DATA_OBSOLETE)
 #define SHOULD_UPDATE_DATA(version) (version >= SAVE_DATA_NO_ERROR && version < SAVEFILE_VERSION_MAX)
@@ -122,7 +122,16 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if (current_version < 44)
 		update_tts_blip_prefs()
 
+	if(current_version < 53)
+		if("swap_hands" in key_bindings)
+			var/keys = key_bindings["swap_hands"]
+			key_bindings -= "swap_hands"
+			key_bindings["swap_hands_row"] = keys
+
 /datum/preferences/proc/update_character(current_version, list/save_data)
+	if(current_version < 54)
+		migrate_legacy_loadout_items(save_data)
+
 	if (current_version < 41)
 		migrate_character_to_tgui_prefs_menu()
 
@@ -184,6 +193,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 // DARKPACK EDIT ADD START
 /datum/preferences/proc/update_preferences_darkpack(current_version, datum/json_savefile/S)
+	if(load_and_save && current_version < 3)
+		write_preference(GLOB.preference_entries[/datum/preference/toggle/enable_legacy_driving_controls], TRUE)
 
 /datum/preferences/proc/update_character_darkpack(current_version, list/save_data)
 	if (current_version < 2)
@@ -294,8 +305,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if (fexists(bacpath))
 			fdel(bacpath) //only keep 1 version of backup
 		fcopy(savefile.path, bacpath) //byond helpfully lets you use a savefile for the first arg.
-		update_preferences(data_validity_integer, savefile)
-		update_preferences_darkpack(data_validity_integer_darkpack, savefile) // DARKPACK EDIT ADD
+		// DARKPACK EDIT CHANGE START
+		if(SHOULD_UPDATE_DATA(data_validity_integer))
+			update_preferences(data_validity_integer, savefile)
+		if(SHOULD_UPDATE_DATA_DARKPACK(data_validity_integer_darkpack))
+			update_preferences_darkpack(data_validity_integer_darkpack, savefile)
+		// DARKPACK EDIT CHANGE END
 
 	check_keybindings() // this apparently fails every time and overwrites any unloaded prefs with the default values, so don't load anything after this line or it won't actually save
 
@@ -381,6 +396,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			if (preference.savefile_identifier != PREFERENCE_CHARACTER)
 				continue
 			value_cache -= preference.type
+		discipline_levels = list() // DARKPACK EDIT ADD - MERITS_FLAWS
 		return FALSE
 
 	var/data_validity_integer = check_savedata_version(save_data)
@@ -456,7 +472,17 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	all_quirks = SSquirks.filter_invalid_quirks(SANITIZE_LIST(all_quirks))
 
+	// DARKPACK EDIT ADD START - MERITS_FLAWS
+	// Discipline-gated quirks are validated below, so the new slot's disciplines must be loaded first.
+	// Otherwise this validates against whatever slot we switched FROM (or an empty list on first load).
+	discipline_levels = SANITIZE_LIST(save_data?["discipline_levels"]) || list()
+	// DARKPACK EDIT ADD END
+
 	validate_quirks()
+
+	if(isnewplayer(parent?.mob))
+		var/mob/dead/new_player/lobbyguy = parent?.mob
+		lobbyguy.update_ready_report()
 
 	return TRUE
 
@@ -507,7 +533,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	for(var/stat_typepath in stats_list)
 		var/datum/st_stat/stat = stats_list[stat_typepath]
 		new_stats_list[stat_typepath] = list()
-		new_stats_list[stat_typepath][STAT_SCORE] = stat.get_score(include_bonus = FALSE)
+		new_stats_list[stat_typepath][STAT_SCORE] = stat.get_pure_score()
 		new_stats_list[stat_typepath][STAT_POINTS] = stat.get_points()
 		new_stats_list[stat_typepath][STAT_FREEBIE_COST_SPENT] = stat.freebie_cost_spent
 	save_data["preference_storyteller_stats"] = new_stats_list
@@ -552,6 +578,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		stack_trace("remove_current_slot() being called when there are no slots to go to, the client should prevent this")
 		return
 
+	discipline_levels = list() // DARKPACK EDIT ADD - remove disciplines when removing a character slot
 	savefile.remove_entry("character[default_slot]")
 	tainted_character_profiles = TRUE
 	switch_to_slot(closest_slot)

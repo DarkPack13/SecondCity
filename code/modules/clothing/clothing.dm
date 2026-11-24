@@ -14,7 +14,7 @@
 	var/visor_flags_inv = NONE //same as visor_flags, but for flags_inv
 	var/visor_flags_cover = NONE //same as above, but for flags_cover
 	///What to toggle when toggled with adjust_visor()
-	var/visor_vars_to_toggle = VISOR_FLASHPROTECT | VISOR_TINT | VISOR_VISIONFLAGS | VISOR_INVISVIEW
+	var/visor_vars_to_toggle = VISOR_FLASHPROTECT | VISOR_TINT | VISOR_INVISVIEW
 	///Sound this item makes when its visor is flipped down
 	var/visor_toggle_down_sound = null
 	///Sound this item makes when its visor is flipped up
@@ -106,19 +106,20 @@
 		qdel(src)
 
 /obj/item/clothing/attack(mob/living/target, mob/living/user, list/modifiers, list/attack_modifiers)
-	if(user.combat_mode || !HAS_TRAIT(user, TRAIT_CLOTH_EATER) || ispickedupmob(src))
+	if(user.combat_mode || !HAS_TRAIT(user, TRAIT_CLOTH_EATER) || (resistance_flags & INDESTRUCTIBLE))
 		return ..()
-	if((clothing_flags & INEDIBLE_CLOTHING) || (resistance_flags & INDESTRUCTIBLE))
-		return ..()
+	moth_snack ||= create_moth_snack()
 	if(isnull(moth_snack))
-		create_moth_snack()
+		to_chat(user, span_warning("You can't eat [src]!"))
+		return
 	moth_snack.attack(target, user, modifiers)
 
 /// Creates a food object in null space which we can eat and imagine we're eating this pair of shoes
 /obj/item/clothing/proc/create_moth_snack()
-	moth_snack = new
-	moth_snack.name = name
-	moth_snack.clothing = WEAKREF(src)
+	var/obj/item/food/clothing/new_moth_snack = new
+	new_moth_snack.name = name
+	new_moth_snack.clothing = WEAKREF(src)
+	return new_moth_snack
 
 /obj/item/clothing/item_interaction(mob/living/user, obj/item/weapon, list/modifiers)
 	. = NONE
@@ -241,8 +242,7 @@
 	if(!istype(user))
 		return
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-	for(var/trait in clothing_traits)
-		REMOVE_CLOTHING_TRAIT(user, trait)
+	remove_clothing_traits(user)
 	if(iscarbon(user) && tint)
 		var/mob/living/carbon/carbon_user = user
 		carbon_user.update_tint()
@@ -260,8 +260,7 @@
 	if(slot_flags & slot) //Was equipped to a valid slot for this item?
 		if(iscarbon(user) && LAZYLEN(zones_disabled))
 			RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(bristle), override = TRUE)
-		for(var/trait in clothing_traits)
-			ADD_CLOTHING_TRAIT(user, trait)
+		give_clothing_traits(user, slot)
 		if(iscarbon(user) && tint)
 			var/mob/living/carbon/carbon_user = user
 			carbon_user.update_tint()
@@ -270,6 +269,16 @@
 				if(variable in user.vars)
 					LAZYSET(user_vars_remembered, variable, user.vars[variable])
 					user.vv_edit_var(variable, user_vars_to_edit[variable])
+
+/// Gives the wearer all the clothing traits associated with this item
+/obj/item/clothing/proc/give_clothing_traits(mob/living/wearer, slot)
+	for(var/trait in clothing_traits)
+		ADD_CLOTHING_TRAIT(wearer, trait)
+
+/// Removes all the clothing traits associated with this item from the wearer
+/obj/item/clothing/proc/remove_clothing_traits(mob/living/wearer)
+	for(var/trait in clothing_traits)
+		REMOVE_CLOTHING_TRAIT(wearer, trait)
 
 // If the item is a piece of clothing and is being worn, make sure it updates on the player
 /obj/item/clothing/update_greyscale()

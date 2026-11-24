@@ -45,6 +45,18 @@
 /datum/loadout_item/suit/coat/leopardcoat
 	item_path = /obj/item/clothing/suit/vampire/coat/leopard
 
+/datum/loadout_item/suit/jacket/oversizedjacket
+	name = "Oversized Jacket"
+	item_path = /obj/item/clothing/suit/jacket/oversized
+
+/datum/loadout_item/suit/jacket/fancyfurcoat
+	name = "Fancy Fur Coat"
+	item_path = /obj/item/clothing/suit/jacket/fancy
+
+/datum/loadout_item/suit/jacket/trenchcoatalt
+	name = "Trenchcoat (Alt)"
+	item_path = /obj/item/clothing/suit/toggle/jacket/trenchcoat
+
 // Jackets
 /datum/loadout_item/suit/jacket
 	abstract_type = /datum/loadout_item/suit/jacket
@@ -62,8 +74,20 @@
 	item_path = /obj/item/clothing/suit/vampire/fancy_red
 
 /datum/loadout_item/suit/jacket/black_leather
-	name = "Leather Jacket"
+	name = "Leather Jacket (Black)"
 	item_path = /obj/item/clothing/suit/vampire/jacket
+
+/datum/loadout_item/suit/jacket/black_leather_cut
+	name = "Cropped Leather Jacket (Black)"
+	item_path = /obj/item/clothing/suit/vampire/jacket/cropped
+
+/datum/loadout_item/suit/jacket/red_leather
+	name = "Leather Jacket (Red)"
+	item_path = /obj/item/clothing/suit/vampire/jacket/red
+
+/datum/loadout_item/suit/jacket/red_leather_cut
+	name = "Cropped Leather Jacket (Red)"
+	item_path = /obj/item/clothing/suit/vampire/jacket/cropped/red
 
 /datum/loadout_item/suit/jacket/military
 	name = "Jacket (Military)"

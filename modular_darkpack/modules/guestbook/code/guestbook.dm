@@ -8,8 +8,11 @@
 	/// Associative list of known guests, real_name = known_name
 	var/list/known_names
 
+	var/list/datum/known_identity/known_identity_datums
+
 /datum/guestbook/Destroy(force)
-	known_names = null
+	LAZYNULL(known_names)
+	LAZYNULL(known_identity_datums)
 	return ..()
 
 /datum/guestbook/ui_interact(mob/user, datum/tgui/ui)
@@ -163,10 +166,12 @@
 		return FALSE
 	return TRUE
 
-/mob/living/carbon/human/proc/attempt_guestbook_add(datum/source, atom/A)
+/mob/living/proc/attempt_guestbook_add(datum/source, atom/A)
 	SIGNAL_HANDLER
 
-	if(!ishuman(A) || in_range(A, src))
+	if(!ishuman(A) || !mind?.guestbook)
+		return
+	if(in_range(A, src) && get_active_held_item())
 		return
 	var/mob/living/carbon/human/targeted_human = A
 	if(!targeted_human.mind?.guestbook)

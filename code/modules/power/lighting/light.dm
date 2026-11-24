@@ -87,7 +87,7 @@
 	// DARKPACK EDIT ADD START - AMBIENCE
 	var/flourescent = TRUE // Bulbs are flouresenct and likely to hum.
 	var/datum/looping_sound/light_hum/light_hum
-	var/hum_chance = 50
+	var/hum_chance = 5
 	// DARKPACK EDIT ADD END
 
 // create a new lighting fixture
@@ -367,7 +367,7 @@
 		status = LIGHT_BURNED
 		icon_state = "[base_state]-burned"
 		on = FALSE
-		set_light(l_range = 0)
+		update()
 
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
@@ -438,7 +438,7 @@
 		return ITEM_INTERACT_SUCCESS
 
 	// attempt to stick weapon into light socket
-	if(status != LIGHT_EMPTY || user.combat_mode)
+	if(status != LIGHT_EMPTY || user.combat_mode || istype(tool, /obj/item/lightreplacer))
 		return NONE
 
 	if(tool.item_flags & ABSTRACT)
@@ -449,6 +449,7 @@
 		do_sparks(3, TRUE, src)
 		if (prob(75))
 			electrocute_mob(user, get_area(src), src, (rand(7,10) * 0.1), TRUE)
+
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/light/screwdriver_act(mob/living/user, obj/item/tool)
@@ -738,6 +739,20 @@
 	if(explosive)
 		explosion(src, flame_range = 5, adminlog = FALSE)
 		qdel(src)
+
+/obj/machinery/light/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+
+	var/obj/item/stock_parts/power_store/cell_to_emp = get_cell() // initializes mockup cells if needed
+	cell_to_emp?.emp_act(severity)
+
+	if(status != LIGHT_OK) // already broken or empty
+		return
+
+	if(prob(150 / severity))
+		burn_out()
 
 // called when area power state changes
 /obj/machinery/light/power_change()

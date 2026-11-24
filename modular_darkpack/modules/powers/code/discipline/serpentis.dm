@@ -6,6 +6,7 @@
 ●●● The Skin of the Adder: Passive
 ●●●● The Form of the Cobra: Passive
 ●●●●● The Heart of Darkness: Passive"}
+	id = DISCIPLINE_SERPENTIS
 	icon_state = "serpentis"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/serpentis
@@ -31,6 +32,7 @@
 	aggravating = FALSE
 	hostile = FALSE
 	violates_masquerade = TRUE
+	frenzy_usable = FALSE
 
 	multi_activate = TRUE
 	duration_length = 5 SECONDS
@@ -69,7 +71,7 @@
 /datum/discipline_power/serpentis/the_eyes_of_the_serpent/activate(mob/living/target)
 	. = ..()
 	target.face_atom(owner)
-	target.visible_message(span_hypnophrase("<b>[owner] hypnotizes [target] with [owner.p_their()] eyes!</b>"), span_warning("<b>[owner] hypnotizes you! Their words seem to become more convincing and hypnotic...</b>"))
+	target.visible_message(span_hypnophrase("<b>[owner] hypnotizes [target] with [owner.p_their()] eyes!</b>"), span_warning("<b>[owner] hypnotizes you! You can't seem to move or look away...</b>"))
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		H.remove_overlay(POWERS_LAYER)
@@ -152,7 +154,7 @@
 	else
 		owner.st_add_stat_mod(STAT_STAMINA, 2, "Serpentis") // permanently on with no downsides according to dav20. its staying at fort one bro
 	ADD_TRAIT(owner, TRAIT_SERPENTIS_SKIN, DISCIPLINE_TRAIT(type)) //ideally this would either be blatantly obvious or not so much depending on the choice. I guess masq violating face trait will work for obvious.
-	owner.st_add_stat_mod(STAT_APPEARANCE, -(owner.st_get_stat(STAT_APPEARANCE) - 1), "Serpentis")
+	owner.st_add_stat_clamp(STAT_APPEARANCE, 0, "Serpentis")
 	/*
 	owner.Stun(duration_length)
 	owner.petrify(duration_length, "Serpentis")
@@ -167,7 +169,7 @@
 	else
 		owner.st_remove_stat_mod(STAT_STAMINA, 2, "Serpentis")
 	REMOVE_TRAIT(owner, TRAIT_SERPENTIS_SKIN, DISCIPLINE_TRAIT(type))
-	owner.st_remove_stat_mod(STAT_APPEARANCE, "Serpentis")
+	owner.st_remove_stat_clamp(STAT_APPEARANCE, "Serpentis")
 
 
 //THE FORM OF THE COBRA
@@ -237,10 +239,18 @@
 	health = 300
 	melee_damage_lower = 30
 	melee_damage_upper = 30
+
+	var/poison_reagent = /datum/reagent/toxin/viperspider
+	var/venom_dose = 5
+
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/items/weapons/slash.ogg'
 	pixel_w = -8
+
+/mob/living/basic/cobra/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/venomous, poison_reagent, venom_dose)
 
 /mob/living/basic/cobra/typhon
 	name = "Typhonic beast"
@@ -266,6 +276,7 @@
 	vitae_cost = 0
 
 	violates_masquerade = TRUE
+	frenzy_usable = FALSE
 
 	cooldown_length = 20 SECONDS
 

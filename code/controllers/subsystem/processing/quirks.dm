@@ -27,9 +27,13 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/numb, /datum/quirk/selfaware),
 	list(/datum/quirk/empath, /datum/quirk/evil),
 	list(/datum/quirk/keen_nose, /datum/quirk/item_quirk/anosmia),
+	list(/datum/quirk/darkpack/vengeful, /datum/quirk/darkpack/coldly_logical), // DARKPACK EDIT ADD - MERITS_FLAWS
 	list(/datum/quirk/darkpack/weak_willed, /datum/quirk/darkpack/untamable), // DARKPACK EDIT ADD - MERITS_FLAWS
+	list(/datum/quirk/darkpack/weak_willed, /datum/quirk/darkpack/iron_will), // DARKPACK EDIT ADD - MERITS_FLAWS
+	list(/datum/quirk/darkpack/weak_willed, /datum/quirk/darkpack/iron_will/human), // DARKPACK EDIT ADD - MERITS_FLAWS
 	list(/datum/quirk/darkpack/permafangs, /datum/quirk/darkpack/dulled_bite), // DARKPACK EDIT ADD - MERITS_FLAWS
 	list(/datum/quirk/darkpack/grip_of_the_damned, /datum/quirk/darkpack/dulled_bite), // DARKPACK EDIT ADD - MERITS_FLAWS
+	list(/datum/quirk/darkpack/thaumaturgically_inept, /datum/quirk/darkpack/blood_sorcery_prodigy), // DARKPACK EDIT ADD - MERITS_FLAWS
 	list(/datum/quirk/darkpack/thaumaturgically_inept, /datum/quirk/darkpack/mage_blood), // DARKPACK EDIT ADD - MERITS_FLAWS
 	list(/datum/quirk/mute, /datum/quirk/darkpack/the_largest_maw), // DARKPACK EDIT ADD - MERITS_FLAWS
 	list(/datum/quirk/mute, /datum/quirk/darkpack/speech_impediment), // DARKPACK EDIT ADD - MERITS_FLAWS
@@ -39,6 +43,13 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/item_quirk/blindness, /datum/quirk/darkpack/wolf_sight), // DARKPACK EDIT ADD - MERITS_FLAWS - MERITS_FLAWS
 	list(/datum/quirk/darkpack/banned_transformation, /datum/quirk/darkpack/metamorph), // DARKPACK EDIT ADD - MERITS_FLAWS - MERITS_FLAWS
 	list(/datum/quirk/darkpack/thirst_of_ages, /datum/quirk/darkpack/organovore), // DARKPACK EDIT ADD - MERITS_FLAWS - MERITS_FLAWS
+	list(/datum/quirk/darkpack/enchanting_voice, /datum/quirk/darkpack/speech_impediment), // DARKPACK EDIT ADD - MERITS_FLAWS - MERITS_FLAWS
+	list(/datum/quirk/darkpack/thirst_of_ages, /datum/quirk/darkpack/anthropic_taste), // DARKPACK EDIT ADD - MERITS_FLAWS - MERITS_FLAWS
+	list(/datum/quirk/mute, /datum/quirk/darkpack/enchanting_voice), // DARKPACK EDIT ADD - MERITS_FLAWS - MERITS_FLAWS
+	list(/datum/quirk/darkpack/nonviolent, /datum/quirk/darkpack/territorial), // DARKPACK EDIT ADD - MERITS_FLAWS - MERITS_FLAWS
+	list(/datum/quirk/darkpack/nonviolent, /datum/quirk/darkpack/vengeful), // DARKPACK EDIT ADD - MERITS_FLAWS - MERITS_FLAWS
+	list(/datum/quirk/darkpack/short, /datum/quirk/darkpack/huge_size), // DARKPACK EDIT ADD - MERITS_FLAWS - MERITS_FLAWS
+	list(/datum/quirk/darkpack/iron_will/human, /datum/quirk/darkpack/weak_willed), // DARKPACK EDIT ADD - MERITS_FLAWS - MERITS_FLAWS
 ))
 
 GLOBAL_LIST_INIT(quirk_string_blacklist, generate_quirk_string_blacklist())
@@ -211,9 +222,6 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	for (var/quirk_name in quirks)
 		var/datum/quirk/quirk = all_quirks[quirk_name]
 		if (isnull(quirk))
-			continue
-
-		if ((initial(quirk.quirk_flags) & QUIRK_MOODLET_BASED) && CONFIG_GET(flag/disable_human_mood))
 			continue
 
 		var/blacklisted = FALSE

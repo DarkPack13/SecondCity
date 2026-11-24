@@ -79,9 +79,19 @@
 
 	splat_traits = list(
 		TRAIT_FERA_RENOWN,
+		TRAIT_GAIA_CAERN_FRIEND, // Without them having there own tribes or declared alligence. This is the best way to determine.
 	)
 
 	// incompatible_splats = list(/datum/splat/werewolf/shifter) // TODO: Becoming a shifter should get rid of your kinfolk splat
+
+/datum/splat/werewolf/kinfolk/on_gain() // Kinfolk can understand High Tongue but it is physically impossible for them to speak it, as it requires partial shifting.
+	. = ..()
+	owner.grant_language(/datum/language/garou_tongue, UNDERSTOOD_LANGUAGE, LANGUAGE_SPLAT)
+
+/datum/splat/werewolf/kinfolk/on_lose_or_destroy()
+	. = ..()
+	if(!QDELING(owner))
+		owner.remove_language(/datum/language/garou_tongue, UNDERSTOOD_LANGUAGE, LANGUAGE_SPLAT)
 
 /datum/splat/werewolf/shifter
 	abstract_type = /datum/splat/werewolf/shifter
@@ -105,6 +115,7 @@
 	var/list/transformation_list = list()
 	/// Stats added and removed upon gaining the species of the splat. Assoc list indexed by the species ids for each form
 	var/list/transformation_stats
+	var/list/transformation_stat_clamps
 	var/transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/transform.ogg'
 	COOLDOWN_DECLARE(transform_cd)
 	/**
@@ -152,8 +163,9 @@
 	var/can_passively_heal = !(is_breed_form() && (get_breed_form_species() != /datum/species/human/shifter/war))
 	if(COOLDOWN_FINISHED(src, passive_healing_cd))
 		if(can_passively_heal)
-			// 2 to represent lethal. Fera passive regen closes burn, but not aggravated damage.
-			owner.heal_storyteller_health(2, heal_aggravated = FALSE, heal_scars = TRUE, heal_blood = TRUE, heal_burn = TRUE)
+			// 2 to represent lethal. Fera passive regen closes burn (if we've the "can heal burn" gift), but not aggravated damage.
+			var/can_heal_burn = !!owner.has_status_effect(/datum/status_effect/master_of_fire)
+			owner.heal_storyteller_health(2, heal_aggravated = FALSE, heal_scars = TRUE, heal_blood = TRUE, heal_burn = can_heal_burn)
 			// Keep organ healing ticking so internal damage recovers even between major regrowth pulses.
 			owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, -0.5 * seconds_per_tick, required_organ_flag = ORGAN_ORGANIC)
 			owner.adjust_organ_loss(ORGAN_SLOT_HEART, -0.5 * seconds_per_tick, required_organ_flag = ORGAN_ORGANIC)
@@ -224,7 +236,6 @@
 			STAT_STAMINA = 3,
 			STAT_DEXTERITY = 1,
 			STAT_MANIPULATION = -3,
-			// STAT_APPEARANCE = 0 // NOT YET SUPPORTED
 		),
 		SPECIES_FERA_DIRE = list(
 			STAT_STRENGTH = 3,
@@ -238,6 +249,11 @@
 			STAT_DEXTERITY = 2,
 			STAT_MANIPULATION = -3,
 		)
+	)
+	transformation_stat_clamps = list(
+		SPECIES_FERA_WAR = list(
+			STAT_APPEARANCE = 0
+		),
 	)
 	mimmicing_animal = /mob/living/basic/pet/dog/wolf
 
@@ -265,7 +281,6 @@
 			STAT_DEXTERITY = 1,
 			STAT_MANIPULATION = -2,
 			STAT_PERCEPTION = 3,
-			// STAT_APPEARANCE = 0 // NOT YET SUPPORTED
 		),
 		SPECIES_FERA_FERAL = list(
 			STAT_STRENGTH = -1,
@@ -273,6 +288,11 @@
 			STAT_MANIPULATION = -3,
 			STAT_PERCEPTION = 4,
 		)
+	)
+	transformation_stat_clamps = list(
+		SPECIES_FERA_WAR = list(
+			STAT_APPEARANCE = 0
+		),
 	)
 	transform_sound = 'modular_darkpack/modules/werewolf_the_apocalypse/sounds/corax_transform.ogg'
 	mob_icons = list(

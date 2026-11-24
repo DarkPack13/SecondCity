@@ -6,6 +6,7 @@
 ●●● Leaden Moment: Passive
 ●●●● Patience of the Norns: Passive
 ●●●●● Clotho's Gift: Passive"}
+	id = DISCIPLINE_TEMPORIS
 	icon_state = "temporis"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/temporis
@@ -16,6 +17,8 @@
 	desc = "Temporis power description"
 
 	activate_sound = 'modular_darkpack/modules/powers/sounds/temporis/temporis.ogg'
+
+	magic_subtype = MAGIC_SUBTYPE_BLOOD_TIME
 
 /datum/discipline_power/temporis/activate()
 	. = ..()
@@ -42,8 +45,12 @@
 	check_flags = DISC_CHECK_CONSCIOUS
 	vitae_cost = 0
 
-/datum/discipline_power/temporis/hourglass_of_the_mind/post_gain()
+/datum/discipline_power/temporis/hourglass_of_the_mind/post_gain(post_gain_applied)
 	ADD_TRAIT(owner, TRAIT_TIME_SENSE, DISCIPLINE_TRAIT(type))
+
+/datum/discipline_power/temporis/hourglass_of_the_mind/post_loss()
+	REMOVE_TRAIT(owner, TRAIT_TIME_SENSE, DISCIPLINE_TRAIT(type))
+	return ..()
 
 /datum/discipline_power/temporis/hourglass_of_the_mind/activate()
 	. = ..()
@@ -81,6 +88,7 @@
 	vitae_cost = 0 //You *can* spend a BP to boost this, but it'd extend time to hours or a day.
 
 	hostile = TRUE
+	frenzy_usable = FALSE
 
 	cooldown_length = 15 SECONDS
 
@@ -125,6 +133,7 @@
 	check_flags = DISC_CHECK_CONSCIOUS | DISC_CHECK_CAPABLE | DISC_CHECK_IMMOBILE
 
 	violates_masquerade = TRUE
+	frenzy_usable = FALSE
 
 	cancelable = TRUE
 	duration_length = 10 SECONDS

@@ -210,7 +210,7 @@
 		/datum/reagent/consumable/nutriment/vitamin = 2,
 	)
 	tastes = list("biscuit" = 3, "chocolate" = 1)
-	foodtypes = JUNKFOOD|GRAIN|DAIRY|SUGAR
+	foodtypes = JUNKFOOD|GRAIN|DAIRY|SUGAR|CHOCOLATE //DARKPACK EDIT CHANGE: Chocolate
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_3
 
@@ -411,6 +411,7 @@
 	name = "chocolate cone"
 	desc = "Delicious chocolate cone, but no ice cream."
 	icon_state = "icecream_cone_chocolate"
+	foodtypes = CHOCOLATE //DARKPACK EDIT CHANGE: Chocolate
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
 		/datum/reagent/consumable/coco = 1,
@@ -452,7 +453,7 @@
 		/datum/reagent/consumable/nutriment/vitamin = 4,
 	)
 	tastes = list("raw brownie batter" = 1)
-	foodtypes = GRAIN|DAIRY|JUNKFOOD|SUGAR
+	foodtypes = GRAIN|DAIRY|JUNKFOOD|SUGAR|CHOCOLATE //DARKPACK EDIT CHANGE: Chocolate
 	foodtypes_added_when_cooked = BREAKFAST
 	crafting_complexity = FOOD_COMPLEXITY_1
 
@@ -469,12 +470,12 @@
 		/datum/reagent/consumable/sugar = 12,
 	)
 	tastes = list("brownie" = 1, "chocolatey goodness" = 1)
-	foodtypes = GRAIN|DAIRY|JUNKFOOD|SUGAR|BREAKFAST
+	foodtypes = GRAIN|DAIRY|JUNKFOOD|SUGAR|BREAKFAST|CHOCOLATE //DARKPACK EDIT CHANGE: Chocolate
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/brownie_sheet/make_processable()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/brownie, 4, 3 SECONDS, table_required = TRUE,  screentip_verb = "Slice", sound_to_play = SFX_KNIFE_SLICE)
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/brownie, 4, 3 SECONDS, table_required = TRUE,  screentip_verb = "Slice", sound_to_play = /datum/sound_effect/knife_slice)
 
 /obj/item/food/brownie
 	name = "brownie"
@@ -486,7 +487,7 @@
 		/datum/reagent/consumable/sugar = 3,
 	)
 	tastes = list("brownie" = 1, "chocolatey goodness" = 1)
-	foodtypes = GRAIN|DAIRY|JUNKFOOD|SUGAR|BREAKFAST
+	foodtypes = GRAIN|DAIRY|JUNKFOOD|SUGAR|BREAKFAST|CHOCOLATE //DARKPACK EDIT CHANGE: Chocolate
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_2
 
@@ -501,7 +502,7 @@
 		/datum/reagent/consumable/peanut_butter = 4,
 	)
 	tastes = list("raw brownie batter" = 1)
-	foodtypes = GRAIN|DAIRY|JUNKFOOD|SUGAR|NUTS
+	foodtypes = GRAIN|DAIRY|JUNKFOOD|SUGAR|NUTS|CHOCOLATE //DARKPACK EDIT CHANGE: Chocolate
 	foodtypes_added_when_cooked = BREAKFAST
 	crafting_complexity = FOOD_COMPLEXITY_1
 
@@ -519,12 +520,12 @@
 		/datum/reagent/consumable/peanut_butter = 20,
 	)
 	tastes = list("brownie" = 1, "chocolatey goodness" = 1, "peanut butter" = 1)
-	foodtypes = GRAIN|DAIRY|JUNKFOOD|SUGAR|BREAKFAST|NUTS
+	foodtypes = GRAIN|DAIRY|JUNKFOOD|SUGAR|BREAKFAST|NUTS|CHOCOLATE //DARKPACK EDIT CHANGE: Chocolate
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/peanut_butter_brownie_sheet/make_processable()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/peanut_butter_brownie, 4, 3 SECONDS, table_required = TRUE,  screentip_verb = "Slice", sound_to_play = SFX_KNIFE_SLICE)
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/peanut_butter_brownie, 4, 3 SECONDS, table_required = TRUE,  screentip_verb = "Slice", sound_to_play = /datum/sound_effect/knife_slice)
 
 /obj/item/food/peanut_butter_brownie
 	name = "peanut butter brownie"
@@ -537,7 +538,7 @@
 		/datum/reagent/consumable/peanut_butter = 5,
 	)
 	tastes = list("brownie" = 1, "chocolatey goodness" = 1)
-	foodtypes = GRAIN|DAIRY|JUNKFOOD|SUGAR|BREAKFAST|NUTS
+	foodtypes = GRAIN|DAIRY|JUNKFOOD|SUGAR|BREAKFAST|NUTS|CHOCOLATE //DARKPACK EDIT CHANGE: Chocolate
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_3
 
@@ -562,7 +563,7 @@
 	icon_state = "COOKIE!!!"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	tastes = list("soft cookie" = 2, "chocolate" = 3)
-	foodtypes = GRAIN | SUGAR | DAIRY
+	foodtypes = GRAIN | SUGAR | DAIRY | CHOCOLATE //DARKPACK EDIT CHANGE: Chocolate
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_3

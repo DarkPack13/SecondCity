@@ -6,18 +6,25 @@
 		return
 	if(IS_UNCONSCIOUS(src))
 		return
-	add_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA), FRENZY_TRAIT)
+
+	set_jitter_if_lower(1 SCENES)
+
 	message_admins("[ADMIN_LOOKUPFLW(src)] has entered frenzy[target ? " targeting [ADMIN_LOOKUPFLW(target)]": ""]. ([source])")
 	log_combat(src, (src || target), "has frenzied on because of \"[source]\" on")
 
 	if(fleeing)
 		to_chat(src, span_danger("FLEE."))
+		src.balloon_alert(src, "flee!")
+		apply_status_effect(/datum/status_effect/frenzy/flee, target)
 	else
 		to_chat(src, span_bolddanger("FRENZY."))
+		src.balloon_alert(src, "frenzy!")
+		if(get_kindred_splat(src))
+			apply_status_effect(/datum/status_effect/frenzy/vampire_hunger, target)
+		else
+			apply_status_effect(/datum/status_effect/frenzy, target)
 
 	SEND_SOUND(src, sound('modular_darkpack/modules/frenzy/sounds/frenzy.ogg', volume = 50))
-
-	apply_status_effect(/datum/status_effect/frenzy, target)
 
 	// This is assuming no other interaction happens to remove it before this.
 	addtimer(CALLBACK(src, PROC_REF(exit_frenzy_mode)), 1 SCENES)
@@ -25,15 +32,18 @@
 /mob/living/proc/exit_frenzy_mode()
 	if(!HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		return
-	remove_traits(list(TRAIT_IN_FRENZY, TRAIT_NOSOFTCRIT, TRAIT_ANALGESIA), FRENZY_TRAIT)
 	log_message("exited frenzy.", LOG_ATTACK, color="red")
 
-	remove_status_effect(/datum/status_effect/frenzy)
+	var/static/list/frenzy_types
+	if(!frenzy_types)
+		frenzy_types = typecacheof(/datum/status_effect/frenzy)
+	for(var/frenzytype in frenzy_types)
+		remove_status_effect(frenzytype)
 
 /datum/storyteller_roll/frenzy
 	abstract_type = /datum/storyteller_roll/frenzy
 	bumper_text = "frenzy"
-	roll_output_type = ROLL_PRIVATE_AND_TARGET
+	roll_output_type = ROLL_FLAG_ROLLER|ROLL_FLAG_TARGET
 	numerical = TRUE
 
 /datum/storyteller_roll/frenzy/rotschreck
@@ -43,7 +53,7 @@
 /datum/storyteller_roll/frenzy/kindred
 
 // Specificly kindred as I dont really think brujah are meant to rotschreck easier.
-/datum/storyteller_roll/frenzy/kindred/calculate_used_difficulty(mob/living/roller)
+/datum/storyteller_roll/frenzy/kindred/using_difficulty(mob/living/roller, atom/target)
 	. = ..()
 	// V20 p.51
 	if(HAS_TRAIT(roller, TRAIT_DIFFICULT_FRENZY))
@@ -51,14 +61,14 @@
 	if(HAS_TRAIT(roller, TRAIT_UNCONTROLLABLE))
 		. = 10
 
-/datum/storyteller_roll/frenzy/kindred/calculate_used_dice(mob/living/roller, bonus)
+/datum/storyteller_roll/frenzy/kindred/using_bonus(mob/living/roller, atom/target, bonus_added)
 	. = ..()
 	if(HAS_TRAIT(roller, TRAIT_CALM_HEART))
 		. += 2
 
 /datum/storyteller_roll/frenzy/rage
 
-/datum/storyteller_roll/frenzy/rage/calculate_used_difficulty(mob/living/roller)
+/datum/storyteller_roll/frenzy/rage/using_difficulty(mob/living/roller, atom/target)
 	. = ..()
 	if(HAS_TRAIT(roller, TRAIT_DIFFICULT_RAGE))
 		. += 1

@@ -6,6 +6,7 @@
 ●●● Ashes to Ashes: Passive
 ●●●● Withering: Manipulation + Medicine vs. target's Stamina
 ●●●●● Necrosis: Dexterity + Medicine vs. target's Stamina"}
+	id = DISCIPLINE_THANATOSIS
 	icon_state = "thanatosis"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/thanatosis
@@ -29,11 +30,12 @@
 	cancelable = TRUE
 	duration_length = 1 HOURS
 	var/datum/storyteller_roll/hags_wrinkles/hags_wrinkles_roll
+	frenzy_usable = FALSE
 
 /datum/storyteller_roll/hags_wrinkles
 	bumper_text = "hag's wrinkles"
 	applicable_stats = list(STAT_STAMINA, STAT_SUBTERFUGE)
-	roll_output_type = ROLL_PRIVATE
+	roll_output_type = ROLL_FLAG_ROLLER
 
 /obj/item/implant/storage/thanatosis
 	name = "hag's wrinkles"
@@ -83,7 +85,7 @@
 	bumper_text = "putrefaction"
 	applicable_stats = list(STAT_DEXTERITY, STAT_MEDICINE)
 	numerical = TRUE
-	roll_output_type = ROLL_PRIVATE_AND_TARGET
+	roll_output_type = ROLL_FLAG_ROLLER|ROLL_FLAG_TARGET
 
 /datum/discipline_power/thanatosis/putrefaction/pre_activation_checks(mob/living/target)
 	. = ..()
@@ -156,6 +158,7 @@
 	cancelable = TRUE
 	duration_length = 0
 	cooldown_length = 1 TURNS
+	frenzy_usable = FALSE
 
 	var/datum/action/cooldown/spell/shapeshift/samedi_ash/dust_transformation
 
@@ -204,7 +207,7 @@
 	bumper_text = "withering"
 	applicable_stats = list(STAT_MANIPULATION, STAT_MEDICINE)
 	numerical = TRUE
-	roll_output_type = ROLL_PRIVATE_AND_TARGET
+	roll_output_type = ROLL_FLAG_ROLLER|ROLL_FLAG_TARGET
 
 /datum/discipline_power/thanatosis/withering/pre_activation_checks(mob/living/target)
 	. = ..()
@@ -281,7 +284,7 @@
 	bumper_text = "necrosis"
 	applicable_stats = list(STAT_DEXTERITY, STAT_MEDICINE)
 	numerical = TRUE
-	roll_output_type = ROLL_PRIVATE_AND_TARGET
+	roll_output_type = ROLL_FLAG_ROLLER|ROLL_FLAG_TARGET
 
 /datum/discipline_power/thanatosis/necrosis/pre_activation_checks(mob/living/carbon/human/target)
 	. = ..()

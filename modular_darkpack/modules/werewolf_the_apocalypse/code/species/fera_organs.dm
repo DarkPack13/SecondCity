@@ -49,18 +49,39 @@
 /obj/item/bodypart/arm/right/fera/aggravated
 	attack_type = AGGRAVATED
 
+/obj/item/bodypart/arm/left/fera/aggravated/warform/Initialize(mapload)
+	held_hand_offset = new(
+		attached_part = src,
+		feature_key = OFFSET_HELD,
+		offset_x = list("south" = 10 , "north" = 12 , "east" = 16, "west" = -2),
+		offset_y = list("south" = 10, "north" = 16 , "east" = 10 ,"west" = 9),
+	)
+	return ..()
+
+/obj/item/bodypart/arm/right/fera/aggravated/warform/Initialize(mapload)
+	held_hand_offset = new(
+		attached_part = src,
+		feature_key = OFFSET_HELD,
+		offset_x = list("south" = 10 , "north" = 12 , "east" = 18 ,"west" = -2),
+		offset_y = list("south" = 10, "north" = 16 , "east" = 8 ,"west" = 9),
+	)
+	return ..()
+
 /obj/item/bodypart/leg/left/fera
 	unarmed_sharpness = SHARP_EDGED
 	// limb_id = SPECIES_FERA
 	footprint_sprite = FOOTPRINT_SPRITE_CLAWS
-	footstep_type = FOOTSTEP_MOB_CLAW
+
+/obj/item/bodypart/leg/left/fera/heavy
+	special_footstep_sounds = list(list('modular_darkpack/modules/werewolf_the_apocalypse/sounds/hefty_step.ogg'), 60, 15)
 
 /obj/item/bodypart/leg/right/fera
 	unarmed_sharpness = SHARP_EDGED
 	// limb_id = SPECIES_FERA
 	footprint_sprite = FOOTPRINT_SPRITE_CLAWS
-	footstep_type = FOOTSTEP_MOB_CLAW
 
+/obj/item/bodypart/leg/right/fera/heavy
+	special_footstep_sounds = list(list('modular_darkpack/modules/werewolf_the_apocalypse/sounds/hefty_step.ogg'), 60, 15)
 
 // Specificly to restrict use of tools... because that was moved to the brain..
 /obj/item/organ/brain/fera
@@ -74,8 +95,16 @@
 
 /obj/item/organ/tongue/fera
 	name = "exotic tongue"
-	languages_native = list(/datum/language/garou_tongue)
+	languages_native = list(/datum/language/garou_tongue, /datum/language/primal_tongue)
+	disliked_foodtypes = GROSS | CLOTH | BUGS
+	toxic_foodtypes = TOXIC | CHOCOLATE
 
 // Garou tongues can speak all default + garou tongue
 /obj/item/organ/tongue/fera/get_possible_languages()
-	return ..() + /datum/language/garou_tongue
+	return ..() + list(/datum/language/garou_tongue, /datum/language/primal_tongue)
+
+// Stop Lupus and Hispo speaking human languages
+/obj/item/organ/tongue/fera/beast
+
+/obj/item/organ/tongue/fera/beast/get_possible_languages()
+	return list(/datum/language/garou_tongue, /datum/language/primal_tongue)
