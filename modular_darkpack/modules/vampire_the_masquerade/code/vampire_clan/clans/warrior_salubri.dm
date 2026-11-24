@@ -17,4 +17,4 @@
 
 /datum/subsplat/vampire_clan/salubri/warrior/on_join_round(mob/living/carbon/human/joining)
 	. = ..()
-	sense_the_sin_text = "[target] pursues an endless revenge."
+	sense_the_sin_text = "[joining] pursues an endless revenge."
