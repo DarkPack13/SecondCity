@@ -15,7 +15,7 @@
 
 
 /datum/quirk/darkpack/primal_perception/add(client/client_source)
-	quirk_holder.grant_language(/datum/language/primal_tongue, UNDERSTOOD_LANGUAGE, LANGUAGE_SPLAT)
+	quirk_holder.grant_language(/datum/language/primal_tongue, UNDERSTOOD_LANGUAGE, type)
 
 /datum/quirk/darkpack/primal_perception/remove()
-	quirk_holder.remove_language(/datum/language/primal_tongue, UNDERSTOOD_LANGUAGE, LANGUAGE_SPLAT)
+	quirk_holder.remove_language(/datum/language/primal_tongue, UNDERSTOOD_LANGUAGE, type)
