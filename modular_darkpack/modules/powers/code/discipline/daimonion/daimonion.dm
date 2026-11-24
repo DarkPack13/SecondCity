@@ -31,7 +31,7 @@
 	frenzy_usable = FALSE
 
 	cancelable = TRUE
-	var/datum/storyteller_roll/sense_the_sin/sense_the_sin_roll
+	var/successes
 
 /datum/storyteller_roll/sense_the_sin
 	bumper_text = "sense the sin"
@@ -39,14 +39,16 @@
 	roll_output_type = ROLL_FLAG_ROLLER
 
 /datum/discipline_power/daimonion/sense_the_sin/pre_activation_checks(mob/living/target)
-	if(!sense_the_sin_roll)
-		sense_the_sin_roll = new()
-	sense_the_sin_roll.difficulty = max(target.st_get_stat(STAT_SELF_CONTROL), target.st_get_stat(STAT_INSTINCT)) + 4
-	var/roll = sense_the_sin_roll.st_roll(owner, target)
-	if(roll != ROLL_SUCCESS)
+	successes = SSroll.storyteller_roll_datum(
+		owner,
+		target,
+		roll_datum = /datum/storyteller_roll/sense_the_sin,
+		difficulty = (max(target.st_get_stat(STAT_SELF_CONTROL), target.st_get_stat(STAT_INSTINCT)) + 4),
+		numerical = TRUE,
+	)
+	if(successes <= 0)
 		return FALSE
-	else
-		return TRUE
+	return TRUE
 
 /datum/discipline_power/daimonion/sense_the_sin/activate(mob/living/carbon/human/target)
 	. = ..()
@@ -60,6 +62,12 @@
 		to_chat(owner, span_notice("They lack coordination."))
 	if(get_garou_splat(target))
 		to_chat(owner, span_notice("Their natural banishment is silver..."))
+	if(!length(target.splats) || (HAS_TRAIT(target, TRAIT_DECEPTIVE_AURA) && successes >= 5))
+		if(HAS_TRAIT(target, TRAIT_PALE_AURA))
+			to_chat(owner, span_notice("[target] is addicted to vampiric vitae, a ghouled human."))
+			return
+		to_chat(owner, span_notice("[target] is a feeble worm with no strengths or visible weaknesses, a mere human."))
+		return
 	if(get_kindred_splat(target))
 		var/datum/subsplat/vampire_clan/target_clan = target.get_clan()
 		if(!target_clan)
@@ -68,6 +76,10 @@
 		baali_get_stolen_disciplines(target, owner)
 		if(target_sense_the_sin_weakness)
 			to_chat(owner, span_notice("[target.name] [target_sense_the_sin_weakness]"))
+
+	//Ghoul temp stuff while bloodbonds isn't here.
+	if(get_ghoul_splat(target))
+		to_chat(owner, span_notice("[target] is addicted to vampiric vitae, a ghouled human."))
 	/* DARKPACK TODO - bloodbonds
 	if(isghoul(target))
 		var/mob/living/carbon/human/ghoul = target
@@ -92,13 +104,6 @@
 	*/
 	if(!get_kindred_splat(target) && !get_ghoul_splat(target) && !get_shifter_splat(target) /*&& !iscathayan(target)*/)
 		to_chat(owner, span_notice("[target] is a feeble worm with no strengths or visible weaknesses, a mere human."))
-
-
-			/* DARKPACK TODO: Warrior Salubri / Salubri Warrior
-			if(VAMPIRE_CLAN_SALUBRI_WARRIOR)
-				to_chat(owner, span_notice("[target] pursues an endless revenge."))
-				return
-			*/
 
 /datum/discipline_power/daimonion/sense_the_sin/proc/baali_get_stolen_disciplines(mob/living/target, mob/living/owner)
 	if(!owner || !target)
