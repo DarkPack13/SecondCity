@@ -9,6 +9,7 @@
 ●●● Mask of a Thousand Faces: Manipulation + Performance (difficulty 7)
 ●●●● Vanish from the Mind's Eye: Charisma + Stealth (difficulty 6)
 ●●●●● Cloak the Gathering: Passive"}
+	id = DISCIPLINE_OBFUSCATE
 	icon_state = "obfuscate"
 	power_type = /datum/discipline_power/obfuscate
 
@@ -219,7 +220,7 @@
 	// Oh this shit hella hard-dels.
 	LAZYSET(cached_targets, GET_GUESTBOOK_NAME_TRUE(examiner, target), list("image" = target_image, "target" = target))
 
-/datum/discipline_power/obfuscate/mask_of_a_thousand_faces/post_gain()
+/datum/discipline_power/obfuscate/mask_of_a_thousand_faces/post_gain(post_gain_applied)
 	. = ..()
 	RegisterSignal(owner, COMSIG_MOB_EXAMINATE, PROC_REF(store_target_in_list))
 

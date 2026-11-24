@@ -8,16 +8,18 @@
 ●●● Ashes to Ashes: Wits + Occult (difficulty 6)
 ●●●● Cold of the Grave: Wits + Occult (difficulty 6)
 ●●●●● Shambling Horde: Wits + Occult (difficulty 6)"}
+	id = DISCIPLINE_NECROMANCY
 	icon_state = "necromancy"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/necromancy
 	signature_clan = VAMPIRE_CLAN_GIOVANNI
 
-/datum/discipline/necromancy/post_gain()
+/datum/discipline/necromancy/post_gain(post_gain_applied)
 	. = ..()
-	var/datum/action/ritual_drawing/necromancy/ritualist = new()
-	ritualist.Grant(owner)
-	ritualist.level = level
+	if(!post_gain_applied)
+		var/datum/action/ritual_drawing/necromancy/ritualist = new()
+		ritualist.Grant(owner)
+		ritualist.level = level
 
 /datum/discipline/necromancy/post_loss()
 	. = ..()
@@ -43,7 +45,7 @@
 
 /datum/discipline_power/necromancy/shroudsight
 	name = "Shroudsight"
-	desc = "See in darkness clearly and see ghosts present."
+	desc = "See and speak to nearby ghosts."
 	level = 1
 	check_flags = DISC_CHECK_CONSCIOUS
 	vitae_cost = 0
@@ -231,7 +233,8 @@
 			corpsebuff.apply_status_effect(/datum/status_effect/confusion, 10 SECONDS)
 
 			corpsebuff.apply_damage(50, TOX)
-			corpsebuff.Stun(3 SECONDS) // ignored by tough flesh and shapeshifted werewolves
+			if(!(HAS_TRAIT(corpsebuff, TRAIT_TOUGH_FLESH) || iscrinos(corpsebuff))) // ignored by tough flesh and shapeshifted werewolves
+				corpsebuff.Stun(3 SECONDS)
 			corpsebuff.add_movespeed_modifier(/datum/movespeed_modifier/corpsenerf)
 			corpsebuff.do_jitter_animation(2 SECONDS)
 

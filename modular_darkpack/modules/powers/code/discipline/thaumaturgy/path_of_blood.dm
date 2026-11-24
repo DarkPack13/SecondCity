@@ -7,29 +7,36 @@
 ●●● Blood of Potency: Permanent Willpower
 ●●●● Theft of Vitae: Permanent Willpower
 ●●●●● Cauldron of Blood: Permanent Willpower"}
+	id = DISCIPLINE_THAUMATURGY
 	icon_state = "thaumaturgy"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/thaumaturgy
 	max_selectable_level = 5
 
-/datum/discipline/thaumaturgy/post_gain()
+/datum/discipline/thaumaturgy/post_gain(post_gain_applied)
 	. = ..()
-	var/datum/action/ritual_drawing/thaumaturgy/thaumaturgy = new()
-	thaumaturgy.Grant(owner)
-	thaumaturgy.level = level
-	add_verb(owner, /mob/living/carbon/human/proc/check_research_points)
+	if(!post_gain_applied)
+		var/datum/action/ritual_drawing/thaumaturgy/thaumaturgy = new()
+		thaumaturgy.Grant(owner)
+		thaumaturgy.level = level
+		add_verb(owner, /mob/living/carbon/human/proc/check_research_points)
 
 /datum/discipline/thaumaturgy/post_loss()
 	. = ..()
 	for(var/datum/action/action as anything in owner.actions)
 		if(istype(action, /datum/action/ritual_drawing/thaumaturgy))
 			qdel(action)
+	remove_verb(owner, /mob/living/carbon/human/proc/check_research_points)
 
 
 /datum/storyteller_roll/thaumaturgy
 	applicable_stats = list(STAT_PERMANENT_WILLPOWER)
 	numerical = TRUE
 
+/datum/storyteller_roll/thaumaturgy/using_difficulty(mob/living/roller, atom/target)
+	. = ..()
+	if(HAS_TRAIT(roller, TRAIT_BLOOD_SORCERY_PRODIGY))
+		. = max(4, . - 1)
 
 /datum/discipline_power/thaumaturgy
 	name = "Thaumaturgy power name"

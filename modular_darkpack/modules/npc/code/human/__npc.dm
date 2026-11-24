@@ -33,11 +33,11 @@
 	var/is_talking = FALSE
 	COOLDOWN_DECLARE(annoyed_cooldown)
 	COOLDOWN_DECLARE(car_dodge)
+	COOLDOWN_DECLARE(choose_path_cooldown)
 	var/hostile = FALSE
 	var/aggressive = FALSE
 	var/last_antagonised = 0
 	var/mob/living/danger_source
-	var/obj/effect/abstract/turf_fire/afraid_of_fire
 	var/mob/living/last_attacker
 	var/last_health = 100
 	var/mob/living/last_damager
@@ -101,6 +101,9 @@
 	if(country_of_origin == "Canada")
 		preference = GLOB.preference_entries[/datum/preference/choiced/province_of_origin]
 		preference.apply_to_human(src, preference.create_informed_default_value())
+	if(country_of_origin == "United Kingdom")
+		preference = GLOB.preference_entries[/datum/preference/choiced/nation_of_origin]
+		preference.apply_to_human(src, preference.create_informed_default_value())
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -130,7 +133,6 @@
 /mob/living/carbon/human/npc/Destroy()
 	UnregisterSignal(src, list(COMSIG_ATOM_WAS_ATTACKED, COMSIG_LIVING_MOB_BUMPED, COMSIG_CARBON_HELP_ACT))
 	danger_source = null
-	QDEL_NULL(afraid_of_fire)
 	last_attacker = null
 	last_damager = null
 	walktarget = null
@@ -144,7 +146,6 @@
 	GLOB.npc_list -= src
 	GLOB.alive_npc_list -= src
 	SShumannpcpool.currentrun -= src
-	SShumannpcpool.try_repopulate()
 	return ..()
 
 //====================Sticky Item Handling====================
@@ -259,7 +260,7 @@
 	last_grab = world.time
 
 /mob/living/carbon/human/npc/ghoulificate(mob/owner)
-	deadchat_broadcast(span_ghostalert("[owner] is ghoulificating [src]."), owner, src)
+	deadchat_broadcast(" is ghoulificating [src].", owner, src)
 
 	AddComponent(\
 		/datum/component/ghost_direct_control,\

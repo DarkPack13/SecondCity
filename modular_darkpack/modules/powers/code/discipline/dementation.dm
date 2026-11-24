@@ -6,14 +6,16 @@
 ●●● Eyes of Chaos: Perception + Occult
 ●●●● Voice of Madness: Manipulation + Empathy
 ●●●●● Total Insanity: Manipulation + Intimidation"}
+	id = DISCIPLINE_DEMENTATION
 	icon_state = "dementation"
 	clan_restricted = TRUE
 	power_type = /datum/discipline_power/dementation
 	signature_clan = VAMPIRE_CLAN_MALKAVIAN
 
-/datum/discipline/dementation/post_gain()
+/datum/discipline/dementation/post_gain(post_gain_applied)
 	. = ..()
-	owner.add_quirk(/datum/quirk/darkpack/derangement)
+	if(!post_gain_applied)
+		owner.add_quirk(/datum/quirk/darkpack/derangement)
 
 /datum/discipline/dementation/post_loss()
 	owner.remove_quirk(/datum/quirk/darkpack/derangement)

@@ -4,6 +4,8 @@
 	var/name = "Discipline name"
 	///Text description of this Discipline.
 	var/desc = "Discipline description"
+	/// ID for trait sources and whatnot
+	var/id = DISCIPLINE_BLANK
 	///Icon file for this Discipline
 	var/icon = 'modular_darkpack/modules/powers/icons/actions.dmi'
 	///Icon state for this Discipline
@@ -104,8 +106,7 @@
 	for (var/datum/discipline_power/power in known_powers)
 		power.owner = owner
 
-	if (!post_gain_applied)
-		post_gain()
+	post_gain(post_gain_applied)
 	post_gain_applied = TRUE
 
 /**
@@ -128,11 +129,11 @@
  * known (possessed) powers. Meant to be overridden
  * for modular code.
  */
-/datum/discipline/proc/post_gain()
+/datum/discipline/proc/post_gain(post_gain_applied)
 	SHOULD_CALL_PARENT(TRUE)
 
 	for (var/datum/discipline_power/power in known_powers)
-		power.post_gain()
+		power.post_gain(post_gain_applied)
 
 
 /**

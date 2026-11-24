@@ -63,6 +63,7 @@
 	var/cooldown_timer
 	/// If this Discipline is currently in use.
 	var/active = FALSE
+	var/mid_activate = FALSE
 	/// The Discipline that this power is part of.
 	var/datum/discipline/discipline
 	/// The player using this Discipline power.
@@ -569,10 +570,16 @@
  * * target - what the targeted Discipline (null otherwise) is being used on.
  */
 /datum/discipline_power/proc/try_activate(atom/target)
+	if(mid_activate)
+		return FALSE
+
+	mid_activate = TRUE
 	if (can_activate(target, TRUE))
 		pre_activation(target)
+		mid_activate = FALSE
 		return TRUE
 
+	mid_activate = FALSE
 	return FALSE
 
 /**
@@ -702,8 +709,11 @@
 /**
  * Overridable proc that allows for code to affect the power's owner
  * when it is gained. Triggered by parent /datum/discipline/post_gain().
+ * post_gain_applied - Whether this ability was already once given to the mob.
+ * For cases like Signal registration and such, it's important to work regardless of being the first time,
+ * while one-time use stuff like stat buffs should respect this arg.
  */
-/datum/discipline_power/proc/post_gain()
+/datum/discipline_power/proc/post_gain(post_gain_applied)
 	return
 
 /**
@@ -742,7 +752,8 @@
 		to_chat(owner, span_warning("You don't have enough blood to keep [src] active!"))
 		try_deactivate(target)
 
-	SEND_SIGNAL(owner, COMSIG_MASQUERADE_VIOLATION)
+	if(active)
+		do_masquerade_violation(target)
 
 /**
  * Overridable proc that allows for extra modular code
