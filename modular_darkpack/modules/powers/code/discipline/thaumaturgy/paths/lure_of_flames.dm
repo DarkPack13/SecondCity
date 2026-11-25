@@ -14,6 +14,7 @@
 	var/ranged = FALSE
 	var/range_successes
 	var/flames_range
+	frenzy_usable = FALSE
 
 //V20 core rulebook states that lure of flames can only conjure flames so far depending on successes.
 /datum/discipline_power/thaumaturgy/path/flames/pre_activation_checks(atom/target, ranged)
