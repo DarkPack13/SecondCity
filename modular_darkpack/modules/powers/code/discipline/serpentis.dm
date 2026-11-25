@@ -280,7 +280,7 @@
 
 	cooldown_length = 20 SECONDS
 
-	var/obj/item/urn/urn
+	var/obj/item/storage/urn/urn
 
 /datum/discipline_power/serpentis/the_heart_of_darkness/activate()
 	. = ..()
@@ -307,26 +307,36 @@
 		qdel(urn)
 		urn = null
 
-/obj/item/urn
+/obj/item/storage/urn
 	name = "organ urn"
 	desc = "Stores some precious organs..."
 	icon = 'modular_darkpack/modules/powers/icons/serpentis.dmi'
 	icon_state = "urn"
+	storage_type = /datum/storage/urn
 	var/mob/living/own
 
-/obj/item/urn/attackby(obj/item/I, mob/living/user, params)
+/obj/item/storage/urn/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 	qdel(src)
 
-/obj/item/urn/attack_self(mob/user)
+/obj/item/storage/urn/attack_self(mob/user)
 	. = ..()
 	balloon_alert(user, "breaking urn...")
 	if(!do_after(user, 3 SECONDS, src, timed_action_flags = IGNORE_USER_LOC_CHANGE|HIDE_INTERACTION))
 		return
 	qdel(src)
 
-/obj/item/urn/Destroy(force)
+/obj/item/storage/urn/Destroy(force)
 	if(own)
 		own.death()
 	own = null
 	return ..()
+
+///The Urn storage datum, which can hold organs and nothing else.
+/datum/storage/urn
+	max_total_storage = 18
+	max_slots = 6
+
+/datum/storage/urn/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
+	. = ..()
+	set_holdable(/obj/item/organ)
