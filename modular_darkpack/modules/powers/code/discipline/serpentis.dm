@@ -320,9 +320,13 @@
 
 /obj/item/urn/attack_self(mob/user)
 	. = ..()
+	balloon_alert(user, "breaking urn...")
+	if(!do_after(user, 3 SECONDS, src, timed_action_flags = IGNORE_USER_LOC_CHANGE|HIDE_INTERACTION))
+		return
 	qdel(src)
 
-/obj/item/urn/Destroy()
-	. = ..()
+/obj/item/urn/Destroy(force)
 	if(own)
 		own.death()
+	own = null
+	return ..()
