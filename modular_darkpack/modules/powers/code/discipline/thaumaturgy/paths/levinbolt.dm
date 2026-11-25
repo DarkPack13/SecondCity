@@ -14,6 +14,7 @@
 	var/light_power = 0
 	var/light_color = null
 	var/electricity_overlay_state = null
+	frenzy_usable = FALSE
 
 /datum/discipline_power/thaumaturgy/path/levinbolt/activate()
 	. = ..()
