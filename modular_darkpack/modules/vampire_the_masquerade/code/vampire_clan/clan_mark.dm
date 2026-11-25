@@ -29,47 +29,48 @@
 /datum/bodypart_overlay/simple/clan_mark
 	abstract_type = /datum/bodypart_overlay/simple/clan_mark
 	icon = 'modular_darkpack/modules/vampire_the_masquerade/icons/features.dmi'
+	overlay_flags = NONE
 	var/using_limb = BODY_ZONE_CHEST
 
 /datum/bodypart_overlay/simple/clan_mark/beast_legs
 	icon_state = "beast_legs"
-	layers = list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER)
+	layers = list("" = BODY_ADJ_LAYER)
 
 /datum/bodypart_overlay/simple/clan_mark/beast_tail
 	icon_state = "beast_tail"
-	layers = list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER)
+	layers = list("" = BODY_ADJ_LAYER)
 
 /datum/bodypart_overlay/simple/clan_mark/beast_tail_and_legs
 	icon_state = "beast_tail_and_legs"
-	layers = list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER)
+	layers = list("" = BODY_ADJ_LAYER)
 
 
 /datum/bodypart_overlay/simple/clan_mark/nosferatu_ears
 	icon_state = "nosferatu_ears"
-	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER)
+	layers = list("" = BODY_FRONT_LAYER)
 
 
 /datum/bodypart_overlay/simple/clan_mark/fae_ears
 	icon_state = "fae_ears"
-	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER)
+	layers = list("" = BODY_FRONT_LAYER)
 
 
 /datum/bodypart_overlay/simple/clan_mark/spines
 	icon_state = "spines"
-	layers = list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER)
+	layers = list("" = BODY_ADJ_LAYER)
 
 /datum/bodypart_overlay/simple/clan_mark/spines_slim
 	icon_state = "spines_slim"
-	layers = list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER)
+	layers = list("" = BODY_ADJ_LAYER)
 
 /datum/bodypart_overlay/simple/clan_mark/animal_skull
 	icon_state = "animal_skull"
-	layers = list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER)
+	layers = list("" = BODY_ADJ_LAYER)
 	using_limb = BODY_ZONE_HEAD
 
 /datum/bodypart_overlay/simple/clan_mark/gargoyle
 	abstract_type = /datum/bodypart_overlay/simple/clan_mark/gargoyle
-	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER)
+	layers = list("" = BODY_FRONT_LAYER)
 	using_limb = BODY_ZONE_HEAD
 
 /datum/bodypart_overlay/simple/clan_mark/gargoyle/full
@@ -96,5 +97,5 @@
 // Seperate pref but some concept.
 /datum/bodypart_overlay/simple/clan_mark/gargoyle/tail
 	icon_state = "gargoyle_legs_n_tails"
-	layers = list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER)
+	layers = list("" = BODY_ADJ_LAYER)
 	using_limb = BODY_ZONE_CHEST
