@@ -12,7 +12,7 @@
 
 /datum/splat/werewolf/shifter/proc/stash_dedicated_items()
 	for(var/obj/item/worn as anything in owner.get_equipped_items(INCLUDE_POCKETS)) // held items are not included as this is unnecessary and may cause certain shenanigans
-		LAZYSET(dedicated_items, worn, owner.get_slot_by_item(worn)) // records item and slot, creates the list if it is needed
+		LAZYSET(dedicated_items, WEAKREF(worn), owner.get_slot_by_item(worn)) // records item and slot as weakref to avoid harddel badness, creates the list if it is needed
 		owner.temporarilyRemoveItemFromInventory(worn, force = TRUE, idrop = FALSE) // unequip and move into character's contents without dropping it or any dependencies, stashed items are deleted/dropped normally with everything else
 		for(var/atom/movable/stored as anything in worn.get_all_contents()) // close equipped containers such as bags when shifting so they are not accessible when not actually equipped
 			stored.atom_storage?.close_all()
@@ -21,10 +21,12 @@
 	if(!LAZYLEN(dedicated_items) || owner.dna?.species?.no_equip_flags) // do nothing if current form can't equip anything (Lupus, Hispo, Crinos, etc) or if stash is empty
 		return
 	for(var/dependent_pass in list(FALSE, TRUE)) // two passes, first over independent slots (uniform, vest, etc), second over the dependent slots (pockets, suit storage)
-		for(var/obj/item/stashed as anything in dedicated_items)
-			var/slot = dedicated_items[stashed] // grab origin slot of item
-			if(QDELETED(stashed) || (!!(slot & DEDICATION_DEPENDENT_SLOTS) != dependent_pass)) // skip if the item was somehow deleted or slot type isn't included in the current pass
+		for(var/datum/weakref/stashed_ref as anything in dedicated_items)
+			var/slot = dedicated_items[stashed_ref] // grab origin slot of item
+			if(!!(slot & DEDICATION_DEPENDENT_SLOTS) != dependent_pass) // skip if slot type isn't included in the current pass
 				continue
+			var/obj/item/stashed = stashed_ref.resolve()
+			if(!stashed || stashed.loc != owner) // skip if item was deleted or somehow not stashed on mob anymore, so it doesn't get teleported back
 			if(!owner.equip_to_slot_if_possible(stashed, slot, disable_warning = TRUE, bypass_equip_delay_self = TRUE)) // puts back in original slot, ignores unequippable warnings and skips any equip delays, such as for armour
 				stashed.forceMove(owner.drop_location()) // failsafe to drop item on the ground if it can't be automatically re-equipped for some reason.
 	dedicated_items = null
