@@ -113,3 +113,69 @@
   chazzyjazzy:
   - rscadd: humans (characters without a splat) will now always convert aggravated
       damage to brute upon receiving it
+2026-11-22:
+  FalloutFalcon:
+  - bugfix: You cant stack multiple casts of the same discipline using inputs and
+      doafters
+  Magisterium2022:
+  - rscadd: Allowed Ghouls to spawn in without Dormitor clan disciplines as needed,
+      and spawn in with Discipline Dots above 1 if it's set by an Admin.
+  Rhys Mori / Twox:
+  - balance: Quirks which should conflict now actually do.
+  - bugfix: Disciplines missing their rare tag now have it.
+  - qol: Breach words that have English usage have been removed from the list.
+  breadcrombs:
+  - rscadd: Added deadened nerves, tough flesh, and blood magic prodigy as merits
+  - bugfix: shapeshifted werewolves now properly will not get stunned from necro 4
+  - bugfix: fixed being able to take weak willed and non vampire iron will at the
+      same time
+2026-11-23:
+  JohnFulpWillard:
+  - rscadd: The watch now shows time when you hover over it.
+2026-11-24:
+  Absolucy:
+  - qol: You can now properly add people to your guestbook while shapeshifted into
+      a nonhuman (i.e Shape of the Beast)
+  - qol: You can add people right next to you to your guestbook if you have an empty
+      hand, instead of having to step one tile away.
+  - bugfix: phone ringing particles show up again
+  - bugfix: NPCs respawn gradually instead of in a big lag spike, and wander a bit
+      better near map edges
+  Rhys Mori / Twox:
+  - rscadd: "-Promethean Clay now applies as expected to Vicissitude 1 & 2 (self)\
+      \ in addition to 5 \u2014 RP tag removed.\n-Zulo form preferences are now tied\
+      \ to Vicissitude instead of Tzimisce."
+  - qol: 'Vicissitude 1 & 2 usage should be far more smooth now.
+
+      -Vicissitude 1 & 2 no longer have a timer as they were just a radial opener
+      prior.
+
+      -Vicissitude TGUI menus will no longer take screen priority.'
+  - balance: '-Vicissitude 1 & 2 costs are now handled in radial rather than tied
+      to the discipline button.
+
+      -Non-self Vicissitude casting still has a flat 1 BP cost.'
+  - bugfix: '-Vicissitude 2 will no longer incur BP cost on non-applicable targets.
+
+      -Vicissitude radials will now delete themselves when out of range.
+
+      -Vicissitude options now use TGUI colour.'
+  - code_imp: '-All references to Vicissitude Shapeshifting have been converted to
+      Bodycrafting.
+
+      -''get_active_disciplines()'' now exists in vampire_splat.dm and will return
+      a list of the target''s currently active disciplines in a round.
+
+      -IDs & global file for disciplines.'
+  - refactor: '-Framework additions for better functionality regarding Disciplines
+      and Quirks.
+
+      -Autofocus arguments to List and Text TGUI menus.
+
+      -Quirks can now reference the presence of active disciplines.'
+  chazzyjazzy:
+  - bugfix: the sarcophagus cant be opened infinity times with one key
+  - bugfix: the localhost 'start now' button now has paynt again
+2026-11-25:
+  FalloutFalcon:
+  - bugfix: Fix beast mark overlay
