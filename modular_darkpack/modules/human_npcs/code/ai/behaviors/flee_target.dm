@@ -1,5 +1,5 @@
 /datum/bt_node/ai_behavior/acquire_target/npc_flee_target
-	target_key = BB_HUMAN_CURRENT_FLEE_TARGET
+	target_key = BB_CURRENT_FLEE_TARGET
 	target_source = /datum/target_source/oview
 	targeting_strategy = /datum/targeting_strategy/find_flee_target
 	time_between_perform = 1 SECONDS

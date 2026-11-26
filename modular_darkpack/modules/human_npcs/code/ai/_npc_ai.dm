@@ -46,7 +46,6 @@
 	return ..() //Run parent at end
 
 /datum/ai_controller/npc/UnpossessPawn(destroy)
-
 	UnregisterSignal(pawn, list(
 		COMSIG_MOB_MOVESPEED_UPDATED,
 		COMSIG_ATOM_WAS_ATTACKED,
@@ -104,26 +103,12 @@
 
 #warn move to setting bb key and reacting with behavoir node
 /datum/ai_controller/npc/proc/react_annoyed(mob/living/annoyer)
-	var/mob/living/living_pawn = pawn
-
 	if(!able_to_run)
 		return
 
-	GLOB.move_manager.stop_looping(living_pawn)
-
-	if (!COOLDOWN_FINISHED(src, annoyed_cooldown))
-		return
-	COOLDOWN_START(src, annoyed_cooldown, 5 SECONDS)
-
-	if(annoyer)
-		addtimer(CALLBACK(living_pawn, TYPE_PROC_REF(/mob, face_atom), annoyer), rand(0.3 SECONDS, 0.7 SECONDS))
-
-	var/mob/living/carbon/human/npc/npc_pawn = astype(pawn)
-	if(npc_pawn)
-		var/phrase = npc_pawn.socialrole?.get_annoyed_phrase(npc_pawn) || "Wow."
-		npc_pawn.realistic_say(phrase)
-
 	change_npc_reputation(annoyer, -5)
+	set_blackboard_key(BB_LAST_ANNOYED, world.time)
+	set_blackboard_key(BB_CURRENT_ANNOYER, annoyer)
 
 /datum/ai_controller/npc/proc/on_attacked(datum/source, mob/attacker)
 	SIGNAL_HANDLER
