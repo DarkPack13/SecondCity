@@ -1,6 +1,6 @@
 /datum/quirk/darkpack/organovore
-	name = "Organovore"
-	desc = "You can only regain bloodpoints by consuming human flesh. Nagaraja cannot take this trait, as they are already organovores."
+	name = "Conspicuous Consumption"
+	desc = "Blood can not sustain you. You can only regain blood points by devouring human flesh and organs. Nagaraja cannot take this trait, as they are already organovores."
 	value = -5
 	mob_trait = TRAIT_ORGANOVORE
 	gain_text = span_notice("You feel an insatiable taste for flesh.")
