@@ -74,7 +74,7 @@
 		to_chat(owner, span_notice("They lack coordination."))
 
 	var/datum/st_stat/morality_path/morality/stat_morality = target.storyteller_stats[STAT_MORALITY]
-	if(!length(target.splats) || (stat_morality?.morality_path?.alignment == MORALITY_HUMANITY || stat_morality?.get_score() < 9))
+	if(!length(target.splats) || ((stat_morality?.morality_path?.alignment == MORALITY_HUMANITY) && (stat_morality?.get_score() >= 9)))
 		to_chat(owner, span_notice("[target] is a feeble worm with no strengths or visible weaknesses, a mere human."))
 		return
 
