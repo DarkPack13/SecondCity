@@ -6,6 +6,9 @@
 #define BB_CURRENT_FLEE_TARGET "BB_current_flee_target"
 #define BB_HUMAN_STALE_BEACONS "BB_human_stale_beacons"
 
+#define BB_WITNESSED_CRIMINAL "BB_witnessed_criminal"
+#define BB_WITNESSED_CRIME_TYPE "BB_witnessed_crime_type"
+
 #define BB_HUMAN_ATTRIBUTE_AGGRESSION "BB_human_attribute_aggression"
 #define BB_HUMAN_ATTRIBUTE_CONFIDENCE "BB_human_attribute_confidence"
 #define BB_HUMAN_ATTRIBUTE_ENERGY "BB_human_attribute_energy"

@@ -98,30 +98,27 @@
 	SIGNAL_HANDLER
 
 	if(crime == CRIME_EMERGENCY) // Bypasses cooldown because of gameplay reasons.
-		radio.talk_into(radio, span_red("406 - EMERGENCY - BACKUP REQUIRED AT: [english_list(list(location.x, location.y, location.z, get_area_name(location, TRUE)), and_text = ", ")]."), FREQ_POLICE, list(SPAN_ROBOT, SPAN_COMMAND))
-
-		var/datum/signal/subspace/radio/signal = new(FREQ_POLICE, list())
-		INVOKE_ASYNC(signal, TYPE_PROC_REF(/datum/signal/subspace/radio, send_to_receivers))
+		radio.talk_into(src, span_red("406 - EMERGENCY - BACKUP REQUIRED AT: [english_list(list(location.x, location.y, location.z, get_area_name(location, TRUE)), and_text = ", ")]."), FREQ_POLICE, list(SPAN_ROBOT, SPAN_COMMAND))
 		log_message("Emergency alarm triggered at: [english_list(list(location.x, location.y, location.z, get_area_name(location, TRUE)), and_text = ", ")]", LOG_PDA)
 		return
 
 	if(!COOLDOWN_FINISHED(src, crime_reporting_cooldown))
 		return
 	var/area/vtm/crime_area = astype(get_area(location))
-	if(!crime_area || crime_area.zone_type != ZONE_MASQUERADE) // prevents sewer rats from reporting crime
+	if(!crime_area || crime_area.zone_type == ZONE_ELYSIUM) // No thunderdome or places the cammie or dogs would try and block messages getting out.
 		return
-	COOLDOWN_START(src, crime_reporting_cooldown, 10 SECONDS)
+	COOLDOWN_START(src, crime_reporting_cooldown, 5 SECONDS)
 	switch(crime)
 		if(CRIME_GUNSHOTS)
-			radio.talk_into(radio, "Active gunshots have been reported at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
+			radio.talk_into(src, "Active gunshots have been reported at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
 		if(CRIME_FIREFIGHT)
-			radio.talk_into(radio, "An active firefight in progress been reported at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
+			radio.talk_into(src, "An active firefight in progress been reported at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
 		if(CRIME_MURDER)
-			radio.talk_into(radio, "A murder has been reported at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
+			radio.talk_into(src, "A murder has been reported at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
 		if(CRIME_BURGLARY)
-			radio.talk_into(radio, "A burglary has been reported at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
+			radio.talk_into(src, "A burglary has been reported at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
 		if(CRIME_ATM_TAMPERING)
-			radio.talk_into(radio, "An atm was broken into or otherwise tampered with at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
+			radio.talk_into(src, "An atm was broken into or otherwise tampered with at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
 
 /datum/signal/subspace/radio
 
