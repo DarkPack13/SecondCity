@@ -14,7 +14,7 @@
 	// Who owns this phone on initialization?
 	var/datum/weakref/owner_weakref
 	// There's a radio in my phone that calls me stud muffin.
-	var/obj/item/radio/phone_radio
+	var/obj/item/radio/vampire/phone_radio
 	// Cooldown for the phone call sound.
 	COOLDOWN_DECLARE(ringer_cooldown)
 	// Contacts the phone has saved.
@@ -78,7 +78,6 @@
 	irc_channel = new()
 	wiki_book = new()
 	become_hearing_sensitive(ROUNDSTART_TRAIT)
-	RegisterSignal(src, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hearing))
 	phone_background = "BG_[rand(1,18)]" // pick a random phone background when spawned
 
 /obj/item/smartphone/proc/update_initialized_contacts(mob/living/carbon/owner, client/owner_client)

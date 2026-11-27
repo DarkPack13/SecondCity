@@ -6,13 +6,12 @@
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "relay"
 	density = TRUE
-	var/list/saved_logs
+	var/list/saved_logs = list()
 	var/datum/looping_sound/logging_machine/clearing_sound
 	COOLDOWN_DECLARE(printing_noise)
 
 /obj/machinery/logging_machine/Initialize(mapload)
 	. = ..()
-	saved_logs = new()
 	clearing_sound = new(src,  FALSE)
 	GLOB.logging_machines += src
 
