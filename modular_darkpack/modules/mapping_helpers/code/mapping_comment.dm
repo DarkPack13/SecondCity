@@ -6,4 +6,5 @@
 	layer = INFINITY
 
 /obj/effect/mapping_helpers/Mapper_Comment/Initialize(mapload)
+	. = ..()
 	return INITIALIZE_HINT_QDEL
