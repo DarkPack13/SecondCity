@@ -101,6 +101,7 @@
 		"Pervert...",
 		"Can't speak right now.",
 		"Buy yourself a watch",
+		"It's %CURRENT_YEAR%, get over it.",
 		"Hey.",
 		"Go away."
 	)

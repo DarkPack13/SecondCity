@@ -85,6 +85,7 @@
 		"Mgmmph...",
 		"Do I know you?",
 		"I don't have much time.",
+		"It's %CURRENT_YEAR% get over it."
 	)
 	var/list/random_phrases = list(
 		"You a foreigner?...",
@@ -108,7 +109,7 @@
 		"What the hell's going on here!?",
 		"Shoot!!",
 	)
-	var/list/car_dodged = list(
+	var/list/car_dodged_phrases = list(
 		"WOAH!",
 		"Watch where you're going!",
 		"Holy shit!",
@@ -117,6 +118,25 @@
 		"You almost ran me over!",
 		"What the fuck!?",
 	)
+	var/static/list/open_carrying_phrases = list(
+		"Is that...?!",
+		"Are you carrying a weapon?!",
+		"Oh my god, are you carrying a weapon?",
+		"Someone needs to call the police, that's crazy.",
+		"Just rob a bank or something?",
+		"That's illegal, you know.",
+		"Open carrying a weapon in %CURRENT_YEAR% is crazy.",
+		"That's a crime, you know.",
+		"You should put that weapon away.",
+		"Are you crazy? You can't just carry a weapon around like that.",
+		"This is California, psycho. Put the weapon away.",
+		"In what world is it okay to open carry a weapon like that? Put it away.",
+		"It's %CURRENT_YEAR%, not 1816.",
+		"The cops are going to shoot you, dude.",
+		"Crazy. You should put that away before you get shot.",
+		"Holy crap, someone call the cops! That psycho has a weapon!"
+	)
+
 
 	// var/is_criminal = FALSE
 
@@ -128,6 +148,10 @@
 			return pick(female_phrases)
 	return pick(neutral_phrases)
 
+/datum/socialrole/proc/regex_phrase(phrase)
+	phrase = replacetext(phrase, "%CURRENT_YEAR%", CURRENT_STATION_YEAR)
+
+	return phrase
 
 /mob/living/carbon/human/npc/proc/assign_socialrole(datum/socialrole/social_role_type, dont_random)
 	socialrole = GLOB.npc_social_roles[social_role_type]

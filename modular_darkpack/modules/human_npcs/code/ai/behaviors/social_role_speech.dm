@@ -43,4 +43,8 @@
 	if(!my_role.vars.Find(speech_type))
 		return
 
-	return my_role.vars[speech_type]
+	var/phrase = my_role.vars[speech_type]
+	if(phrase)
+		phrase = my_role.regex_phrase(phrase)
+
+	return phrase

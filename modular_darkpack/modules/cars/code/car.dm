@@ -729,7 +729,7 @@
 			step(dodger, angle2dir(pick(dodge_direction)), dodger.cached_multiplicative_slowdown)
 			COOLDOWN_START(dodger, car_dodge, 2 SECONDS)
 			if(prob(50))
-				dodger.realistic_say(pick(dodger.socialrole.car_dodged))
+				dodger.realistic_say(pick(dodger.socialrole.car_dodged_phrases))
 
 			#warn do
 			// SEND_SIGNAL(dodger, COMSIG_MOB_CAR_NEAR_IMPACT, src)

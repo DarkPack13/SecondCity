@@ -20,8 +20,9 @@
 
 	var/phrase = "Wow."
 	var/mob/living/carbon/human/npc/npc_pawn = astype(living_pawn)
-	if(npc_pawn)
-		phrase = npc_pawn.socialrole?.get_annoyed_phrase(npc_pawn) || phrase
+	if(npc_pawn?.socialrole)
+		phrase = npc_pawn.socialrole.get_annoyed_phrase(npc_pawn)
+		phrase = npc_pawn.socialrole.regex_phrase(phrase)
 
 	ADD_TRAIT(living_pawn, TRAIT_THINKING_IN_CHARACTER, REF(src))
 	living_pawn.create_typing_indicator()

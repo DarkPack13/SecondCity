@@ -9,7 +9,7 @@
 
 	var/datum/action/using_action = get_valid_ability(controller)
 	if(QDELETED(using_action))
-		return AI_BEHAVIOR_INSTANT AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
+		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
 	return start_async()
 
 /// Returns the action to trigger, or null if it isn't available. Override to prep the action before it fires.

@@ -95,6 +95,7 @@
 		"I'm late, don't interrupt me.",
 		"Check the bar if you want somebody to bother...",
 		"Can't speak right now.",
+		"It's %CURRENT_YEAR%, get over it.",
 		"Goodnight, I guess?",
 		"Guh...",
 		"I dunno what to say.",
