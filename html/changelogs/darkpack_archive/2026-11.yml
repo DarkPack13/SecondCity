@@ -179,3 +179,8 @@
 2026-11-25:
   FalloutFalcon:
   - bugfix: Fix beast mark overlay
+2026-11-28:
+  AberrantQuerist:
+  - image: old sidewalks now tile correctly
+  JohnFulpWillard:
+  - qol: Bats now cost $50 everywhere instead of only at the general store.
