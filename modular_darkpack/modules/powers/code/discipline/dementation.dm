@@ -374,7 +374,7 @@ Methuselah.”
 		available_options += list(OPTION_COUNTRY_OF_ORIGIN)
 	if (target.client?.prefs && target_kindred) // (Literally just for Immortal Age)
 		available_options += list(OPTION_IMMORTAL_AGE)
-	if (HAS_TRAIT(target, TRAIT_POSSIBLE_WYRM) || (target_kindred && target.st_get_stat(STAT_MORALITY) <= 7))
+	if (HAS_TRAIT(target, TRAIT_POSSIBLE_WYRM) || (target_kindred && target.st_get_stat(STAT_MORALITY) <= 7 && (!HAS_TRAIT(target, TRAIT_HIDDEN_WYRMTAINT))))
 		available_options += list(OPTION_WYRM_TAINTED)
 	if (length(target.get_traumas()))
 		if (target.has_trauma_type(/datum/brain_trauma/severe/split_personality) || target.has_trauma_type(/datum/brain_trauma/special/imaginary_friend))
@@ -387,7 +387,7 @@ Methuselah.”
 		available_options += list(OPTION_BLOOD_BONDED)
 	if (target.current_emotion != initial(target.current_emotion))
 		available_options += list(OPTION_EMOTION)
-	if (HAS_TRAIT(target, TRAIT_FORCED_EMOTION) || target.has_status_effect(/datum/status_effect/awe) || target.has_status_effect(/datum/status_effect/dread_gaze)) //DARKPACK TODO Presence 3-5 do not have tied status effects currently, cannot nicely check for them until that
+	if (HAS_TRAIT(target, TRAIT_FORCED_EMOTION) || target.has_status_effect(/datum/status_effect/awe) || target.has_status_effect(/datum/status_effect/dread_gaze)) // DARKPACK TODO Presence 3-5 do not have tied status effects currently, cannot nicely check for them until that
 		available_options += list(OPTION_IS_INFLUENCED)
 	if (target.possessed == TRUE || target.conditioner)
 		available_options += list(OPTION_IS_DOMINATED)
@@ -534,7 +534,7 @@ Methuselah.”
 						else if (istype(selected_trauma, BRAIN_TRAUMA_MAGIC))
 							message = "[target]'s grey matter has [trauma_name] twinkling something most consider abberant."
 						else if (istype(selected_trauma, BRAIN_TRAUMA_SPECIAL))
-							message = "How did [target]'s brain ever become so riddled with [trauma_name]? This can't be?"
+							message = "How did [target]'s brain ever become so riddled with [trauma_name]? This shouldn't be?"
 					if (OPTION_GENERATION)
 						switch (target.get_generation())
 							if (1 to 7)
@@ -557,25 +557,29 @@ Methuselah.”
 						else
 							message = "[target]'s soul is marked with a grave sin. Stolen essence is devoured within — veins of tar supplying the scourge it inhabits"
 					if (OPTION_HUMANITY)
-						switch (target.st_get_stat(STAT_MORALITY)) // STAT_MORALITY = Humanity
-							if (0)
-								message = "Drooling, gnawing, aching. An emaciated body gorged with stolen life breaks its mind in starvation." // Wight
-							if (1)
-								message = "[target] is savagely hounded by their Beast, one moment away from plunging into the brink of madness"
-							if (2,3)
-								message = "The Beast pounds the mind of [target] day after day; demands ever-made to pervert such fragile humanity with nary a reprive"
-							if (4,5)
-								message = "The reality of undeath has long since sunken in comfortably for [target]. After all, a predator pays no mind to the thought of its prey."
-							if (6)
-								message = "That's that, and this is this. This kindred isn't quite Beast, yet not much closer to a human either."
-							if (7)
-								message = "Stability of the self, [target] manages a connection with their former humanity comparable to the kine they're long since divorced from."
-							if (8)
-								message = "[target] yearns to stay close to a concept long since divorced; careful practice keeps this one close to humanity."
-							if (9)
-								message = "The bleeding heart of [target] weeps for the sins their kind inflicts. A moral pariah to most of Kindred society."
-							if (10)
-								message = "A fragile state of grace held above a pillar to the Heavens; [target] is a saint even amongst the living. Even then, the fragile foundation of principles ever-demand attention"
+						//get_morality_path(target)
+						if (get_morality_path(target).alignment == MORALITY_HUMANITY)
+							switch (target.st_get_stat(STAT_MORALITY)) // STAT_MORALITY = Humanity
+								if (0)
+									message = "Drooling, gnawing, aching. An emaciated body gorged with stolen life breaks its mind in starvation." // Wight
+								if (1)
+									message = "[target] is savagely hounded by their Beast, one moment away from plunging into the brink of madness"
+								if (2,3)
+									message = "The Beast pounds the mind of [target] day after day; demands ever-made to pervert such fragile humanity with nary a reprive"
+								if (4,5)
+									message = "The reality of undeath has long since sunken in comfortably for [target]. After all, a predator pays no mind to the thought of its prey."
+								if (6)
+									message = "That's that, and this is this. This kindred isn't quite inhuman, yet neither entirely human either."
+								if (7)
+									message = "Stability of the self, [target] manages a connection with their former humanity comparable to the kine they're long since divorced from."
+								if (8)
+									message = "[target] yearns to stay close to a concept long since divorced; careful practice keeps this one close to humanity."
+								if (9)
+									message = "The bleeding heart of [target] weeps for the sins their kind inflicts. A moral pariah to most of Kindred society."
+								if (10)
+									message = "A fragile state of grace held above a pillar to the Heavens; [target] is a saint even amongst the living. Even then, the fragile foundation of principles ever-demand attention"
+						else
+							message = "Our [target] is beyond the morality of man, body and beast at behest of something else entirely."
 					if (OPTION_BLOOD_BONDED)
 						if (HAS_TRAIT(target, TRAIT_UNBONDABLE))
 							message = "[target]'s abnormal biology surpasses the bonding nature of vitae; no chains of blood can be placed on them — only the call of addiction."
@@ -583,9 +587,7 @@ Methuselah.”
 							var/datum/status_effect/blood_bond/target_blood_bond = target.has_status_effect(/datum/status_effect/blood_bond) // Lets us access regnant_name here
 							message = "Chains interlock [target]'s blood — binding them to another. the call of [target_blood_bond.regnant_name.real_name] beckons them in some way or form."
 					if (OPTION_WYRM_TAINTED)
-						if (target_kindred && (HAS_TRAIT(target, TRAIT_HIDDEN_WYRMTAINT))) // if Vampire with hidden Wyrmtaint
-							message = "A faint glimmer of decay is embracing [target]."
-						else if (target_kindred) // Vampire with no Hidden Wyrmtaint
+						if (target_kindred) // Vampire with no Hidden Wyrmtaint
 							message = "The Beast of this vampire still gnaws at some recess of their mind, an entropic taint is noticable."
 						else if (HAS_TRAIT(target, TRAIT_WYRMTAINTED_SPRITE)) // Physically appears Wyrmtainted and not a vampire
 							message = "The taint of the Wyrm malforms [target]'s body and mind into a cruel mockery of nature."
@@ -599,6 +601,9 @@ Methuselah.”
 						else if (target_country_of_origin == "Canada") // List province
 							var/target_province_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/province_of_origin)
 							message = "This individual claimed their origin from Canada; [target_province_of_origin] is held close to them."
+						else if (target_country_of_origin == "United Kingdom") // List UK country
+							var/target_nation_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/nation_of_origin)
+							message = "This individual claimed their origin from Canada; [target_nation_of_origin] is held close to them."
 						else
 							message = "Our eyes find this individual to be from [target_country_of_origin] — a distant place now."
 					if (OPTION_CHARACTER_NAME)
@@ -678,7 +683,7 @@ Methuselah.”
 							if (AURA_SAD)
 								message = "Persisent woe covers our target under a blanket of sadness."
 							if (AURA_CALM)
-								message = "Even your fractured psyche is eased by the serenity of this calm mind."
+								message = "The serenity of this calm mind contrasts our fractured psyche."
 							if (AURA_DISTRUSTFUL)
 								message = "This heart is kept under lock and key — hurt far too much as of late to express what is inside."
 							if (AURA_PSYCHOTIC)
@@ -697,7 +702,7 @@ Methuselah.”
 							if (BREED_LUPUS)
 								message = "This true form of this wolf is one of the wild. A beast bestowed the gift of higher thought."
 							if (BREED_CORAX_HOMID)
-								message = "An outsider to the skies imbued with a spirit egg; humanity unshackled by the world below"
+								message = "An outsider to the skies imbued with Gnosis; humanity unshackled by the world below"
 							if (BREED_GAROU_HOMID)
 								message = "Closer to man than beast, [target] has more familiarity with forests of concrete than ones of wood"
 							if (BREED_CRINOS)
@@ -871,13 +876,13 @@ Methuselah.”
 					if (OPTION_PALE_AURA)
 						message = "The mortal before us has a facade most convincing, the essence of the damned in all but body."
 					if (OPTION_DEATH_STILLNESS)
-						message = "Deep-rooted stillness is a comfortable part of the eternal life of this one."
+						message = "Deep-rooted stillness is a comfortable part of this one's undying existence."
 					if (OPTION_SENSITIVE_HUMANITY)
 						message = "Ever-passing days have not crushed this vampire's delicate sense of humanity."
 					if (OPTION_TIME_SENSE)
 						message = "An internal clock always seems to point true within [target]"
 					if (OPTION_VIRTUOSA)
-						message = "Blood-fueled performance entrances all to this virtuoso before you!"
+						message = "Blood-fueled performance entrances all to the virtuoso before you!"
 					if (OPTION_STAKE_RESISTANCE)
 						if (HAS_TRAIT(target, TRAIT_STAKE_RESISTANT))
 							message = "The heart of this Kindred is not one so easily pierced..."
