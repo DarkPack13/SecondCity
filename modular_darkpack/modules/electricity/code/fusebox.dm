@@ -99,6 +99,15 @@ ADMIN_VERB(fix_all_fuseboxes, R_ADMIN|R_DEBUG, "Fix All Fuseboxes", "Repairs eve
 	message_admins("[key_name_admin(user)] fixed all fuseboxes ([fixed] repaired).")
 	BLACKBOX_LOG_ADMIN_VERB("Fix All Fuseboxes")
 
+ADMIN_VERB_ONLY_CONTEXT_MENU(fix_fusebox, R_ADMIN|R_DEBUG, "Fix Fusebox", /obj/fusebox)
+	VERB_ARG_TYPED(fusebox, VERB_ARG_TYPE_OBJ, VERB_ARG_SOURCE_WORLD, /obj/fusebox)
+	if(!istype(fusebox))
+		return
+	fusebox.power_on()
+	log_admin("[key_name(user)] fixed [fusebox] at [AREACOORD(fusebox)].")
+	message_admins("[key_name_admin(user)] fixed [fusebox] at [ADMIN_VERBOSEJMP(fusebox)].")
+	BLACKBOX_LOG_ADMIN_VERB("Fix Fusebox")
+
 /datum/storyteller_roll/fusebox_repair
 	bumper_text = "electrical repair"
 	applicable_stats = list(STAT_INTELLIGENCE, STAT_TECHNOLOGY)
