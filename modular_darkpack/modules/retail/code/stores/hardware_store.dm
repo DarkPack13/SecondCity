@@ -6,7 +6,7 @@
 		new /datum/data/vending_product("respirator", /obj/item/clothing/mask/gas/vampire),
 		new /datum/data/vending_product("gas filter", /obj/item/gas_filter, 20),
 		new /datum/data/vending_product("earmuffs", /obj/item/clothing/ears/earmuffs, 50),
-		new /datum/data/vending_product("baseball bat", /obj/item/melee/baseball_bat/vamp, 200),
+		new /datum/data/vending_product("baseball bat", /obj/item/melee/baseball_bat/vamp),
 		new /datum/data/vending_product("knife", /obj/item/knife/vamp, 100),
 		new /datum/data/vending_product("stake", /obj/item/vampire_stake, 100),
 		new /datum/data/vending_product("scythe", /obj/item/scythe/vamp, 2000),
