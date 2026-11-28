@@ -112,6 +112,14 @@ DISCIPLINE_KEYBINDS
 ## 2 - A player can only teach in clan disciplines (A Gangrel can teach a Tremere Protean, but the Tremere can't teach anyone Protean)
 ## 3 - Discipline teaching is fully disabled (no one will be able to teach anyone anything)
 DISCIPLINE_TEACHING 0
+
+## Flags for how Night Extension votes are held: player-called vote, time-called vote, or disabled.
+## 0 - A Night Extension vote is called manually by a player.
+## 1 - A Night Extension vote is called manually by a player but cannot be called until the first sunrise warning.
+## 2 - A Night Extension vote is called based on City Time.
+## 3 - Night Extension votes are not called.
+NIGHT_EXTENSION_VOTING 0
+
 ## Configs how long between full moons. Defaults to realtime (default: 29.530588)
 LUNAR_CYCLE_INTERVAL 29.530588
 

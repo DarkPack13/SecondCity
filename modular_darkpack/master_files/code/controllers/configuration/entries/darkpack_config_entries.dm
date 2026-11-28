@@ -25,3 +25,14 @@
 	integer = TRUE
 	min_val = DISCIPLINE_TEACHING_FULL
 	max_val = DISCIPLINE_TEACHING_DISABLED
+
+/// Determines if a player can teach another player a discipline
+/// 0 / EXTEND_NIGHT_PLAYER - Extend Night votes are called by players
+/// 1 / EXTEND_NIGHT_PLAYER_TIMELOCKED - Extend Night votes are called by players but cannot be called before the first sunrise warning
+/// 2 / EXTEND_NIGHT_TIME - Extend Night votes are called based on City Time
+/// 3 / EXTEND_NIGHT_DISABLED - Extend Night votes are not called
+/datum/config_entry/number/night_extension_voting
+	default = EXTEND_NIGHT_PLAYER
+	integer = TRUE
+	min_val = EXTEND_NIGHT_PLAYER
+	max_val = EXTEND_NIGHT_DISABLED
