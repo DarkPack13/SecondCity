@@ -1,0 +1,6 @@
+author: "KittyNoodle"
+delete-after: True
+changes:
+  - rscadd: "Vampire organs now appropriately shrivel up into rotten little raisins after final death."
+  - bugfix: "Final death is now completely, undisputably, Final."
+  - bugfix: "Head transplants can no longer cure vampirism."
