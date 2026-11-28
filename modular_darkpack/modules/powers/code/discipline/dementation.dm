@@ -489,7 +489,7 @@ Methuselah.”
 				switch (option)
 					if (OPTION_IMMORTAL_AGE)
 						var/target_immortal_age = target?.client?.prefs.read_preference(/datum/preference/numeric/immortal_age) // Get Immortal Age
-						var/determined_age = "This fledgling has just been thrust into this new world; the pitiable thing is not even past their first year."
+						var/determined_age = "This fledgling has just been thrust into this new world; the pitiable thing is not even past [target.p_their()] first year."
 						if (target_immortal_age < 100)
 							determined_age = "[target] has surpassed their first mortal lifetime; a growing disconnect to the living begins to bloom."
 						else if (target_immortal_age < 200)
@@ -506,9 +506,9 @@ Methuselah.”
 							message = "Blood is thicker than water in this world; the [target.get_clan()] lineage seems to have made [target] their own."
 					if (OPTION_TRIBE) // NOTE - Potentially expand to a unique message for all tribes
 						if (target.get_our_tribe(/datum/subsplat/werewolf/tribe/garou/blackspiraldancers))
-							message = "[target] has peered into the spiraling abyss; coming back changed, twisted... Yet craving more. The madness they've lost themselves to may even outshine ours!"
+							message = "[target] has peered into the spiraling abyss; coming back changed, twisted... Yet craving more. The madness [target.p_theyve()] lost themselves to may even outshine ours!"
 						else if (target.get_our_tribe(/datum/subsplat/werewolf/tribe/garou/ronin))
-							message = "An outcast amongst their kind, [target] finds little solace found in the kin around them — a dire predicament for such a being."
+							message = "An outcast amongst [target.p_their()] kind, [target] finds little solace found in the kin around them — a dire predicament for such a being."
 						else
 							message = "[target] is amongst the [target.get_our_tribe()] through one way or another — faithful to the principles of such a family."
 					if (OPTION_DISCIPLINES)
@@ -598,7 +598,7 @@ Methuselah.”
 							message = "This individual is quite home here in the States; [target_state_of_origin] is held close to them."
 						else if (target_country_of_origin == "Canada") // List province
 							var/target_province_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/province_of_origin)
-							message = "This individual claimed their origin from Canada; [target_province_of_origin] is held close to them."
+							message = "This individual claimed [target.p_their()] origin from Canada; [target_province_of_origin] is held close to them."
 						else
 							message = "Our eyes find this individual to be from [target_country_of_origin] — a distant place now."
 					if (OPTION_CHARACTER_NAME)
@@ -607,7 +607,7 @@ Methuselah.”
 						if (target.has_trauma_type(/datum/brain_trauma/severe/split_personality))
 							message = "The ego of [target] has been split asunder; neither able to hold control."
 						else if (target.has_trauma_type(/datum/brain_trauma/special/imaginary_friend))
-							message = "A splinter of individual consciousness is bound to your target; or perhaps simply a figment of their own imagination."
+							message = "A splinter of individual consciousness is bound to your target; or perhaps simply a figment of [target.p_their()] own imagination."
 					if (OPTION_WILLPOWER)
 						switch (target.st_get_stat(STAT_PERMANENT_WILLPOWER))
 							if (0)
@@ -634,7 +634,7 @@ Methuselah.”
 						else if (get_corax_splat(target))
 							message = "Blessed by both bird and sun - [target] wings carry them through a world full of delectable secrets."
 						else if (get_kinfolk_splat(target))
-							message = "the faint presence of The Emerald Mother can be seen within [target]'s essence — nature is dear to them."
+							message = "the faint presence of The Emerald Mother can be seen within [target]'s essence — nature is dear to [target.p_them()]."
 						else
 							message = "A creature untouched by the deviations of normalcy, not a touch of the supernatural in their being."
 					if (OPTION_EMOTION)
@@ -648,7 +648,7 @@ Methuselah.”
 							if (AURA_DESIROUS)
 								message = "The heart of [target] intensively yearns for something more."
 							if (AURA_DAYDREAMING)
-								message = "Their head is firmly stuck in the clouds."
+								message = "[target.p_Their()] head is firmly stuck in the clouds."
 							if (AURA_DEPRESSED)
 								message = "This sorry soul is falling down a spiral of cruel despair and apathy..."
 							if (AURA_LOVESTRUCK)
@@ -688,7 +688,7 @@ Methuselah.”
 							if (AURA_AFRAID)
 								message = "A shivering, tense body meets your gaze with shaking eyes looking past your own."
 							if (AURA_CONFIDENCE)
-								message = "[target]'s sole is ignited with the flames of ambition!"
+								message = "[target]'s soul is ignited with the flames of ambition!"
 
 					if (OPTION_BREED)
 						switch (get_fera_breed_form(target).name)
@@ -705,7 +705,7 @@ Methuselah.”
 					if (OPTION_AUSPICE)
 						switch (target.get_our_auspice().name)
 							if (AUSPICE_AHROUN)
-								message = "An embodiment of the Moon's rage; battle is ingrained within their very being! Renown and glory are vital parts of themselves."
+								message = "An embodiment of the Moon's rage; battle is ingrained within [target.p_their()] very being! Renown and glory are vital parts of themselves."
 							if (AUSPICE_PHILODOX)
 								message = "A creature of balance and order; a tempered mind able to see both sides — honor and wisdom define them."
 							if (AUSPICE_GALLIARD)
@@ -713,16 +713,16 @@ Methuselah.”
 							if (AUSPICE_THEURGE)
 								message = "Seer, explorer, conduit, [target] is a spiritual guide and healer to their kind. Wisdom and honor guide them true."
 							if (AUSPICE_RAGABASH)
-								message = "The joker of the deck, this individual is the wild card of their group. The aspects that empower them are entirely their own to decide."
+								message = "The joker of the deck, this individual is the wild card of their group. The aspects that empower [target.p_them()] are entirely their own to decide."
 							if (AUSPICE_NONE)
 								message = "This individual has changed far more than any shifter could ever hope... In the most twisted of ways. A stolen gift repurposed for their use — though to what end?"
 					if (OPTION_IS_INFLUENCED)
 						if (HAS_TRAIT(target, TRAIT_FORCED_EMOTION))
-							message = "The emotions [target]'s heart bleeds is not off their own accord — brought on by another artificially."
+							message = "The emotions [target]'s heart bleeds is not of [target.p_their()] own accord — brought on by another artificially."
 						else if (target.has_status_effect(/datum/status_effect/awe))
 							message = "Our target is completely captivated by another!"
 						else if (target.has_status_effect(/datum/status_effect/dread_gaze))
-							message = "[target] has had an unnatural terror instilled deep within them."
+							message = "[target] has had an unnatural terror instilled deep within [target.p_them()]."
 					if (OPTION_IS_DOMINATED)
 						if (target.possessed == TRUE)
 							message = "This individual is merely a puppet of flesh; their ego sealed away within by another."
