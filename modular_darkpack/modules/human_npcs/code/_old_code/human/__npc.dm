@@ -140,14 +140,6 @@
 
 //============================================================
 
-/mob/living/carbon/human/npc/proc/handle_attacked(datum/source, atom/attacker, attack_flags)
-	// Only aggro nearby npcs if its lethal.
-	if(!(attack_flags & (ATTACKER_STAMINA_ATTACK|ATTACKER_SHOVING)))
-		for(var/mob/living/carbon/human/npc/nearby_npcs in oviewers(DEFAULT_SIGHT_DISTANCE, src))
-			nearby_npcs.aggro_npc(attacker)
-		alert_crime_bystanders(CRIME_FIREFIGHT, src, attacker)
-	aggro_npc(attacker, TRUE)
-
 /mob/living/carbon/human/npc/proc/handle_bumped(mob/living/carbon/human/npc/source, mob/living/bumping)
 	SIGNAL_HANDLER
 

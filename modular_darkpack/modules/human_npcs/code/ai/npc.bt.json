@@ -37,6 +37,10 @@
 					"behavior": "/datum/bt_node/ai_behavior/human_stow_weapon"
 				},
 				{
+					"type": "leaf",
+					"behavior": "/datum/bt_node/ai_behavior/human_report_crime"
+				},
+				{
 					"type": "decorator",
 					"decorator": "/datum/bt_node/decorator/bb_key_set",
 					"vars": {

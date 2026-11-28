@@ -70,6 +70,11 @@
 		/obj/item/clothing/neck/vampire/scarf/white
 	)
 
+	pockets = list(
+		/obj/item/vamp/keys/hack,
+		/obj/item/smartphone
+	)
+
 	male_phrases = list(
 		"Fuck, shit, daa-amn...",
 		"We're fucked!",

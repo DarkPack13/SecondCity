@@ -58,5 +58,6 @@
 		balloon_alert(user, "unconnected!")
 		return
 	user.balloon_alert_to_viewers("beep!", "activated!")
-	SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, CRIME_EMERGENCY, get_turf(src))
+	var/datum/crime_report/crime = new(CRIME_EMERGENCY, get_turf(src), victim = user)
+	SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, crime)
 	COOLDOWN_START(src, emergency_cooldown, 30 SECONDS)

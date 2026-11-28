@@ -2,7 +2,8 @@ ADMIN_VERB(report_crime, R_ADMIN, "Report Crime", "Report a crime to be happenin
 	var/answer = tgui_input_list(user, "What kind of crime?", "Crime", list(CRIME_BURGLARY, CRIME_FIREFIGHT, CRIME_GUNSHOTS, CRIME_MURDER, CRIME_EMERGENCY))
 	if(!answer)
 		return
-	SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, answer, get_turf(user))
+	var/datum/crime_report/crime = new(answer, get_turf(user))
+	SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, crime)
 	to_chat(user, span_adminnotice("Crime reported: [answer]!"))
 
 	BLACKBOX_LOG_ADMIN_VERB("Report Crime")

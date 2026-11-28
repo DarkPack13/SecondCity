@@ -73,6 +73,11 @@
 	suits = list(/obj/item/clothing/suit/vampire/coat/alt)
 	hats = list(/obj/item/clothing/head/vampire/beanie/homeless)
 
+	pockets = list(
+		/obj/item/vamp/keys/hack,
+		/obj/item/smartphone
+	)
+
 	female_phrases = list(
 		"Fuck, shit, daa-amn...",
 		"We're fucked!",

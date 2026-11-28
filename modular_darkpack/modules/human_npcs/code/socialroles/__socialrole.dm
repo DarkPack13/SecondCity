@@ -269,7 +269,7 @@
 		O.id = socialrole.id_type
 	if(O.uniform && length(socialrole.pockets))
 		O.l_pocket = pick(socialrole.pockets)
-		if(length(socialrole.pockets) > 1 && prob(50))
+		if(length(socialrole.pockets) > 1 && prob(75))
 			var/list/another_pocket = socialrole.pockets.Copy()
 			another_pocket -= O.l_pocket
 			O.r_pocket = pick(another_pocket)

@@ -26,7 +26,8 @@
 
 /obj/machinery/atm/on_deconstruction(disassembled)
 	dump_cash()
-	SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, CRIME_ATM_TAMPERING, get_turf(src))
+	var/datum/crime_report/crime = new(CRIME_ATM_TAMPERING, get_turf(src))
+	SEND_SIGNAL(SSdcs, COMSIG_GLOB_REPORT_CRIME, crime)
 
 /obj/machinery/atm/examine(mob/user)
 	. = ..()

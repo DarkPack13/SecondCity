@@ -7696,6 +7696,7 @@
 #include "modular_darkpack\modules\human_npcs\code\socialroles\poormale.dm"
 #include "modular_darkpack\modules\human_npcs\code\socialroles\richfemale.dm"
 #include "modular_darkpack\modules\human_npcs\code\socialroles\richmale.dm"
+#include "modular_darkpack\modules\human_npcs\code\socialroles\sabbat.dm"
 #include "modular_darkpack\modules\human_npcs\code\socialroles\stripfemale.dm"
 #include "modular_darkpack\modules\human_npcs\code\socialroles\usualfemale.dm"
 #include "modular_darkpack\modules\human_npcs\code\socialroles\usualmale.dm"

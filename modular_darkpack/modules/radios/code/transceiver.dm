@@ -81,6 +81,7 @@
 	radio_network = NETWORK_POLICE
 	radio_frequency = FREQ_POLICE
 	var/obj/item/radio/headset/darkpack/police/radio
+	var/list/reported_crimes = list() // Primarly here right now to ensure a ref to crimes are held for topic calls.
 	COOLDOWN_DECLARE(crime_reporting_cooldown)
 
 /obj/machinery/radio_tranceiver/police/Initialize(mapload)
@@ -94,10 +95,11 @@
 	QDEL_NULL(radio)
 	return ..()
 
-/obj/machinery/radio_tranceiver/police/proc/crime_reported(datum/source, crime, turf/location)
+/obj/machinery/radio_tranceiver/police/proc/crime_reported(datum/source, datum/crime_report/crime)
 	SIGNAL_HANDLER
+	var/turf/location = crime.crime_location?.resolve()
 
-	if(crime == CRIME_EMERGENCY) // Bypasses cooldown because of gameplay reasons.
+	if(crime.crime_type == CRIME_EMERGENCY) // Bypasses cooldown because of gameplay reasons.
 		radio.talk_into(src, span_red("406 - EMERGENCY - BACKUP REQUIRED AT: [english_list(list(location.x, location.y, location.z, get_area_name(location, TRUE)), and_text = ", ")]."), FREQ_POLICE, list(SPAN_ROBOT, SPAN_COMMAND))
 		log_message("Emergency alarm triggered at: [english_list(list(location.x, location.y, location.z, get_area_name(location, TRUE)), and_text = ", ")]", LOG_PDA)
 		return
@@ -108,39 +110,28 @@
 	if(!crime_area || crime_area.zone_type == ZONE_ELYSIUM) // No thunderdome or places the cammie or dogs would try and block messages getting out.
 		return
 	COOLDOWN_START(src, crime_reporting_cooldown, 5 SECONDS)
-	switch(crime)
+	var/gps = "<a href='byond://?src=[REF(crime)];navigate_to=1'>\[GPS\]</a>"
+	var/description = crime.clothing_desc ? "Suspect last seen wearing [crime.clothing_desc]. " : ""
+	switch(crime.crime_type)
 		if(CRIME_GUNSHOTS)
-			radio.talk_into(src, "Active gunshots have been reported at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
+			radio.talk_into(src, "Active gunshots have been reported [vauge_post_location(location)]. [description][gps]", FREQ_POLICE, list(SPAN_ROBOT))
 		if(CRIME_FIREFIGHT)
-			radio.talk_into(src, "An active firefight in progress been reported at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
+			radio.talk_into(src, "An active firefight in progress been reported [vauge_post_location(location)]. [description][gps]", FREQ_POLICE, list(SPAN_ROBOT))
+		if(CRIME_BATTERY)
+			radio.talk_into(src, "An assault has been reported [vauge_post_location(location)]. [description][gps]", FREQ_POLICE, list(SPAN_ROBOT))
+		if(CRIME_OPEN_CARRYING)
+			radio.talk_into(src, "A brandishing complaint has been reported [vauge_post_location(location)]. [description][gps]", FREQ_POLICE, list(SPAN_ROBOT))
 		if(CRIME_MURDER)
-			radio.talk_into(src, "A murder has been reported at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
+			radio.talk_into(src, "A murder has been reported [vauge_post_location(location)]. [description][gps]", FREQ_POLICE, list(SPAN_ROBOT))
 		if(CRIME_BURGLARY)
-			radio.talk_into(src, "A burglary has been reported at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
+			radio.talk_into(src, "A burglary has been reported [vauge_post_location(location)]. [description][gps]", FREQ_POLICE, list(SPAN_ROBOT))
 		if(CRIME_ATM_TAMPERING)
-			radio.talk_into(src, "An atm was broken into or otherwise tampered with at [get_area_name(location, TRUE)].", FREQ_POLICE, list(SPAN_ROBOT))
+			radio.talk_into(src, "An ATM was tampered with [vauge_post_location(location)]. [description][gps]]", FREQ_POLICE, list(SPAN_ROBOT))
 
-/datum/signal/subspace/radio
+	reported_crimes |= crime
 
-/datum/signal/subspace/radio/New(frequency, data)  // the frequency the signal is taking place on
-	src.frequency = frequency
-	src.data = data
-
-/datum/signal/subspace/radio/broadcast()
-	set waitfor = FALSE
-
-	var/list/radios = list()
-	// Reaches any radios on the levels
-	var/list/all_radios_of_our_frequency = GLOB.all_radios["[frequency]"]
-	if(LAZYLEN(all_radios_of_our_frequency))
-		radios = all_radios_of_our_frequency.Copy()
-
-	for(var/obj/item/radio/subspace_radio in radios)
-		if(!subspace_radio.can_receive(frequency, RADIO_NO_Z_LEVEL_RESTRICTION))
-			radios -= subspace_radio
-
-	for(var/called_radio in radios)
-		playsound(get_turf(called_radio), 'modular_darkpack/modules/radios/sounds/panic.ogg', 50, TRUE)
+/obj/machinery/radio_tranceiver/police/proc/vauge_post_location(turf/location)
+	return "[pick("at", "in the area of", "near")] [get_area_name(location, TRUE)]"
 
 /obj/machinery/radio_tranceiver/clinic
 	radio_network = NETWORK_CLINIC

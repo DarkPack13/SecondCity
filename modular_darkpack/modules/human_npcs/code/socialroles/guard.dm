@@ -60,8 +60,10 @@
 
 	shoes = list(/obj/item/clothing/shoes/vampire)
 	uniforms = list(/obj/item/clothing/under/vampire/guard)
-
-	// pockets = list(/obj/item/vamp/keys/npc, /obj/item/stack/dollar/rand)
+	pockets = list(
+		/obj/item/vamp/keys/npc,
+		/obj/item/smartphone
+	)
 
 	primary_weapons = list(
 		/obj/item/gun/ballistic/automatic/pistol/darkpack/m1911 = 100

@@ -112,11 +112,14 @@
 
 /datum/ai_controller/npc/proc/on_attacked(datum/source, mob/attacker, attack_flags)
 	SIGNAL_HANDLER
-	if(prob(get_npc_attribute(BB_HUMAN_ATTRIBUTE_AGGRESSION) * 1.5))
-		retaliate(attacker)
 
-	if(!(attack_flags & (ATTACKER_STAMINA_ATTACK|ATTACKER_SHOVING)))
-		alert_crime_bystanders(CRIME_FIREFIGHT, src, attacker)
+	if(attack_flags & ATTACKER_DAMAGING_ATTACK)
+		alert_crime_bystanders(CRIME_BATTERY, pawn, attacker)
+		if((get_npc_reputation(attacker) < 100) && prob(get_npc_attribute(BB_HUMAN_ATTRIBUTE_AGGRESSION) * 1.5))
+			retaliate(attacker)
+	else
+		if((get_npc_reputation(attacker) < 75) && prob(get_npc_attribute(BB_HUMAN_ATTRIBUTE_AGGRESSION) * 1.5))
+			retaliate(attacker)
 
 /datum/ai_controller/npc/proc/on_startpulling(datum/source, atom/movable/puller, state, force)
 	SIGNAL_HANDLER

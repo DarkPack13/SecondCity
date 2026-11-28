@@ -59,12 +59,15 @@
 
 	shoes = list(/obj/item/clothing/shoes/vampire/jackboots)
 	uniforms = list(/obj/item/clothing/under/vampire/pentex_turtleneck)
-	pockets = list(/obj/item/vamp/keys/npc, /obj/item/stack/dollar/rand)
 	gloves = list(/obj/item/clothing/gloves/vampire/work)
 	suits = list(/obj/item/clothing/suit/vampire/vest)
 	glasses = list(/obj/item/clothing/glasses/vampire/sun)
 	hats = list(/obj/item/clothing/head/beret/black)
 	masks = list(/obj/item/clothing/mask/vampire/balaclava)
+	pockets = list(
+		/obj/item/vamp/keys/npc,
+		/obj/item/smartphone
+	)
 
 	primary_weapons = list(
 		/obj/item/gun/ballistic/automatic/darkpack/mp5 = 90,
