@@ -153,7 +153,7 @@
 //SHAPE OF THE BEAST
 /datum/discipline_power/protean/shape_of_the_beast
 	name = "Shape of the Beast"
-	desc = "Assume the form of an animal and retain your power."
+	desc = "Assume the form of an animal and retain your power. You can activate twice to skip the timer at the cost of an extra blood point."
 
 	level = 4
 
@@ -165,30 +165,52 @@
 	duration_length = 0
 	cooldown_length = 1 TURNS
 
+	ttrpg_sources = list(
+		//Costs 1BP in 3 Turns to transform, but can use extra BP to speed it up.
+		/datum/source_book/vtm20 = 200,
+		//^ Technically each BP is -1 turn, but it doesn't seem to translate well, so we're taking liberties here.
+		/datum/source_book/homebrew = WE_MADE_IT_UP,
+	)
+
 	grouped_powers = list(
 		/datum/discipline_power/protean/earth_meld,
 		/datum/discipline_power/protean/mist_form
 	)
 
+	///Boolean on whether we've skipped over our do after, using another BP.
+	var/skipped_over = FALSE
 	var/datum/action/cooldown/spell/shapeshift/gangrel/beast_form/gangy_form
 
+#define INTERACTION_KEY_PROTEAN_4 "protean_4"
+
 /datum/discipline_power/protean/shape_of_the_beast/pre_activation_checks(atom/target)
-	. = ..()
-	if(do_after(owner, 3 TURNS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
-		return TRUE
-	else
-		to_chat(owner, span_warning("You are rendered unable to transform!"))
+	//Spending a second bloodpoint to skip the do after, let's hardset so it cant be stacked by repeatedly cancelling.
+	if(LAZYACCESS(owner.do_afters, INTERACTION_KEY_PROTEAN_4))
+		skipped_over = TRUE
+	//Otherwise, 3 TURN wait.
+	else if(!do_after(owner, 3 TURNS, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_HELD_ITEM, \
+			extra_checks = CALLBACK(src, PROC_REF(still_transforming)), interaction_key = INTERACTION_KEY_PROTEAN_4))
 		return FALSE
+
+	if(isnull(gangy_form))
+		gangy_form = new(owner.mind)
+	gangy_form.Grant(owner)
+	//Cancelled player input, cancel the ability.
+	if(!gangy_form.Activate(owner))
+		skipped_over = FALSE
+		QDEL_NULL(gangy_form)
+		return FALSE
+	return ..()
 
 /datum/discipline_power/protean/shape_of_the_beast/activate()
 	. = ..()
-	if(gangy_form)
-		CRASH("[src] somehow already has a spell?")
 	owner.drop_all_held_items()
-	gangy_form = new(owner.mind)
-	gangy_form.Grant(owner)
-	gangy_form.Activate(owner)
+	vitae_cost = 0
 	RegisterSignal(owner, COMSIG_LIVING_RETURNED_FROM_SHAPESHIFT, PROC_REF(deactivate))
+	addtimer(VARSET_CALLBACK(src, vitae_cost, initial(vitae_cost)), 1 SCENES, TIMER_UNIQUE)
+
+/datum/discipline_power/protean/shape_of_the_beast/proc/still_transforming()
+	return !skipped_over
 
 /datum/discipline_power/protean/shape_of_the_beast/deactivate()
 	UnregisterSignal(owner, COMSIG_LIVING_RETURNED_FROM_SHAPESHIFT)
@@ -197,6 +219,9 @@
 	QDEL_NULL(gangy_form)
 	owner.Stun(1 TURNS)
 	owner.do_jitter_animation(15)
+	skipped_over = FALSE
+
+#undef INTERACTION_KEY_PROTEAN_4
 
 //MIST FORM
 /datum/discipline_power/protean/mist_form

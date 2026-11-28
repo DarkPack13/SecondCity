@@ -112,7 +112,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 			continue
 
 		var/datum/quirk/quirk_datum = new type
-		if(!quirk_datum.soure_book_allowed(CONFIG_GET(string/ttrpg_accurate_cuttoff_merits)))
+		if(!quirk_datum.source_book_allowed(CONFIG_GET(string/ttrpg_accurate_cuttoff_merits)))
 			continue
 
 		quirk_prototypes[type] = quirk_datum
