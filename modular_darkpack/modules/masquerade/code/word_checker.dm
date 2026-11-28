@@ -20,16 +20,14 @@
 		SEND_SIGNAL(src, COMSIG_SEEN_MASQUERADE_VIOLATION, speaker)
 	return TRUE
 
-/obj/item/smartphone/proc/handle_hearing(datum/source, list/hearing_args)
-	SIGNAL_HANDLER
-
-	if(current_state == PHONE_IN_CALL)
-		if(istype(hearing_args[HEARING_SPEAKER], /atom/movable/virtualspeaker))
-			return
-		var/message = compose_message(hearing_args[HEARING_SPEAKER], hearing_args[HEARING_LANGUAGE], hearing_args[HEARING_RAW_MESSAGE], hearing_args[HEARING_RADIO_FREQ], hearing_args[HEARING_RADIO_FREQ_NAME], hearing_args[HEARING_RADIO_FREQ_COLOR], hearing_args[HEARING_SPANS], hearing_args[HEARING_MESSAGE_MODE], FALSE)
-		SSmasquerade.log_phone_message(message, source)
-		var/is_breach = MASQUERADE_FILTER_CHECK(LOWER_TEXT(hearing_args[HEARING_RAW_MESSAGE]))
-		if(is_breach)
-			SEND_SIGNAL(src, COMSIG_SEEN_MASQUERADE_VIOLATION, hearing_args[HEARING_SPEAKER])
+/obj/item/radio/vampire/talk_into_impl(atom/movable/talking_movable, message, channel, list/spans, datum/language/language, list/message_mods)
+	. = ..()
+	var/obj/item/smartphone/phone_loc = loc
+	if(!phone_loc.violation_observer) //(phone_loc.current_state == PHONE_IN_CALL) violation_observer is doing this for now, so no point unless someone wants breaches w/o a call (like voice recordings?)
+		return
+	SSmasquerade.log_phone_message(message, phone_loc)
+	var/is_breach = MASQUERADE_FILTER_CHECK(LOWER_TEXT(message))
+	if(is_breach)
+		SEND_SIGNAL(phone_loc, COMSIG_SEEN_MASQUERADE_VIOLATION, talking_movable)
 
 #undef MASQUERADE_FILTER_CHECK
