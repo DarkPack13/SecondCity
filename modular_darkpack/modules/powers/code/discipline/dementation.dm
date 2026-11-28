@@ -603,7 +603,7 @@ Methuselah.”
 							message = "This individual claimed [target.p_their()] origin from Canada; [target_province_of_origin] is held close to them."
 						else if (target_country_of_origin == "United Kingdom") // List UK country
 							var/target_nation_of_origin = target?.client?.prefs.read_preference(/datum/preference/choiced/nation_of_origin)
-							message = "This individual claimed their origin from Canada; [target_nation_of_origin] is held close to them."
+							message = "Our eyes find this individual to be from ; [target_nation_of_origin] — a distant place now."
 						else
 							message = "Our eyes find this individual to be from [target_country_of_origin] — a distant place now."
 					if (OPTION_CHARACTER_NAME)
