@@ -84,6 +84,13 @@
 	number_of_variations = 4
 	base_icon_state = "sidewalk_old"
 
+/turf/open/floor/plating/sidewalk/old/Initialize(mapload)
+	. = ..()
+	if(y%2) // These are designed to tile in blocks of 4, 64x64 resolution, not random picks- causes issues with seams otherwise.
+		icon_state = "[base_icon_state][1+(x%2)]"
+	else
+		icon_state = "[base_icon_state][3+(x%2)]"
+
 /turf/open/floor/plating/roofwalk
 	name = "roof"
 	icon = 'modular_darkpack/modules/walls/icons/floors.dmi'
