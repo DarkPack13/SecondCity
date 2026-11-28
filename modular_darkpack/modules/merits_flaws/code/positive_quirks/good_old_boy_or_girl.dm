@@ -5,7 +5,7 @@
 			(both human and beast) tend to like you	and confide in you.
 			Even lupus Garou may approach you in a friendly manner; something
 			about you just seems trustworthy and inviting."}
-	ttrpg_sources = list(/datum/source_book/wta20/kinfolk_unsung_heroes = 53)
+	ttrpg_sources = list(/datum/source_book/wta_2nd_edition/kinfolk_unsung_heroes = 53)
 	value = 2
 	mob_trait = TRAIT_GOOD_OLD_BOY_OR_GIRL
 	gain_text = span_notice("You feel great empathy for your kin.")

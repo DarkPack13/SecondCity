@@ -3,7 +3,7 @@
 	desc = {"Because of false rumors, an ill-done deed or some other reason, you have a poor
 			reputation among the Kinfolk and Fera. They don't necessarily hurt you, but they
 			let you know you aren't welcome in their camps or homes."}
-	ttrpg_sources = list(/datum/source_book/wta20/kinfolk_unsung_heroes = 52)
+	ttrpg_sources = list(/datum/source_book/wta_2nd_edition/kinfolk_unsung_heroes = 52)
 	value = -2
 	mob_trait = TRAIT_OUTSIDER
 	gain_text = span_notice("You are ostracized from your Kin.")

@@ -6,7 +6,7 @@
 			You do receive a +1 bonus on the Delirium Chart and retain all memories
 			of what you see, but the sight of a Garou in Crinos form still invokes
 			some sort of instinctive, uncontrollable reaction in you."}
-	ttrpg_sources = list(/datum/source_book/wta20/kinfolk_unsung_heroes = 53)
+	ttrpg_sources = list(/datum/source_book/wta_2nd_edition/kinfolk_unsung_heroes = 53)
 	value = -5
 	mob_trait = TRAIT_VEILED
 	gain_text = span_notice("You lose your resistance to the Delirium.")

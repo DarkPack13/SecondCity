@@ -4,7 +4,7 @@
 			While this condition might be an advantage when hiding from predators, it's a disadvantage
 			among werewolves. They might pounce on you, unaware you're Kin. No Gift, such as Scent of
 			the True Form, can detect you as Kinfolk."}
-	ttrpg_sources = list(/datum/source_book/wta20/kinfolk_unsung_heroes = 54)
+	ttrpg_sources = list(/datum/source_book/wta_2nd_edition/kinfolk_unsung_heroes = 54)
 	value = -1
 	mob_trait = TRAIT_UNSCENTED
 	gain_text = span_notice("You notice that your body has no discernable odor.")

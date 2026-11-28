@@ -5,7 +5,7 @@
 			of the enemy's blight. A number of Gifts allow shapechangers to notice
 			your foul stench and most may want to kill you outright. This is a
 			risky Flaw!"}
-	ttrpg_sources = list(/datum/source_book/wta20/kinfolk_unsung_heroes = 53)
+	ttrpg_sources = list(/datum/source_book/wta_2nd_edition/kinfolk_unsung_heroes = 53)
 	value = -4
 	mob_trait = TRAIT_WYRMTAINTED
 	gain_text = span_notice("The Wyrm defiles your essence.")

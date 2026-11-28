@@ -9,7 +9,7 @@
 			attempts of perception to notice which people in the room seem to have that
 			special touch of Rage or wildness that could indicate they are of your
 			Changing Breed."}
-	ttrpg_sources = list(/datum/source_book/wta20/kinfolk_unsung_heroes = 52)
+	ttrpg_sources = list(/datum/source_book/wta_2nd_edition/kinfolk_unsung_heroes = 52)
 	value = 3
 	mob_trait = TRAIT_RECOGNIZE_WEREWOLVES
 	gain_text = span_notice("You percieve intricacies about your kin not many would notice.")
