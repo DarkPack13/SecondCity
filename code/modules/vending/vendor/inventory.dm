@@ -30,11 +30,13 @@
 
 		var/obj/item/temp = typepath
 		// DARKPACK EDIT START - ECONOMY
-		var/datum/data/vending_product/new_record = new /datum/data/vending_product(initial(temp.name), typepath)
+		var/datum/data/vending_product/new_record = new(
+			initial(temp.name),
+			typepath,
+			amount = start_empty ? 0 : amount,
+			max_amount = amount
+		)
 		// DARKPACK EDIT END - ECONOMY
-		if(!start_empty)
-			new_record.amount = amount
-		new_record.max_amount = amount
 
 		///Prices of vending machines are all increased uniformly.
 		var/custom_price = round(initial(temp.custom_price) * inflation_value)
