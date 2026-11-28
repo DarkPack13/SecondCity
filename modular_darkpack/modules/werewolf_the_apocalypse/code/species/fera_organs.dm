@@ -108,3 +108,9 @@
 
 /obj/item/organ/tongue/fera/beast/get_possible_languages()
 	return list(/datum/language/garou_tongue, /datum/language/primal_tongue)
+
+// Corax are able to mimic human speech in corvid, so they are able to speak any known language in that form
+/obj/item/organ/tongue/fera/beast/could_speak_language(datum/language/language_path)
+	if(owner && get_corax_splat(owner))
+		return TRUE // Corax speak anything known
+	return ..() // Everyone else gets normal beast tongue behaviour
