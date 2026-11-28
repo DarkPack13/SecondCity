@@ -39,6 +39,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_STAKE_RESISTANT "stake_resistant"
 #define TRAIT_STAKE_IMMUNE "stake_immune"
 #define TRAIT_STAKED "staked"
+#define TRAIT_DECOMPOSED "decomposed"
 #define TRAIT_LAZY "lazy"
 #define TRAIT_HOMOSEXUAL "homosexual"
 #define TRAIT_HUNTED "hunted"

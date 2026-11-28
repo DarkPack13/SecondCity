@@ -229,15 +229,24 @@
 		return
 
 	kindred.can_be_embraced = FALSE
-	var/obj/item/organ/brain/brain = kindred.get_organ_slot(ORGAN_SLOT_BRAIN) //NO REVIVAL EVER
-	if(brain)
-		brain.organ_flags |= ORGAN_FAILING
 
 	/*
 	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		exit_frenzymod()
 	*/
 	SEND_SOUND(kindred, sound('modular_darkpack/modules/vampire_the_masquerade/sounds/final_death.ogg', volume = 50))
+
+	kindred.ghost()
+	var/mob/dead/observer/erebus_resident = kindred.mind.get_ghost()
+	erebus_resident.mind = null
+
+	ADD_TRAIT(kindred, TRAIT_DECOMPOSED, id)
+
+	for(var/obj/item/organ/raisin as anything in kindred.organs)
+		if(!raisin.decay_factor)
+			continue
+		raisin.damage = raisin.maxHealth
+		raisin.organ_flags |= ORGAN_FAILING
 
 	switch(kindred.chronological_age)
 		if(-INFINITY to 10) //normal corpse
