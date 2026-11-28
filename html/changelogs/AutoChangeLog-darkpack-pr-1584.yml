@@ -1,0 +1,5 @@
+author: "Uristthedorf"
+delete-after: True
+changes:
+  - rscadd: "Security and broadcast cameras now breach the masquerade."
+  - rscadd: "You can now buy camera assemblies from the hardware store."
