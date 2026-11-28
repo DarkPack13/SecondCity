@@ -72,7 +72,7 @@ GLOBAL_LIST_EMPTY(fuseboxes)
 	update_sound_state()
 
 /obj/fusebox/proc/power_on()
-	repair_damage(max_integrity - atom_integrity)
+	repair_damage(max_integrity)
 	var/area/power_area = get_area(src)
 	power_area.power_light = TRUE
 	power_area.power_equip = TRUE
@@ -91,7 +91,7 @@ ADMIN_VERB(fix_all_fuseboxes, R_ADMIN|R_DEBUG, "Fix All Fuseboxes", "Repairs eve
 	var/fixed = 0
 	for(var/obj/fusebox/fusebox as anything in GLOB.fuseboxes)
 		var/area/power_area = get_area(fusebox)
-		if(fusebox.atom_integrity >= fusebox.max_integrity && power_area.power_light && power_area.power_equip && power_area.power_environ)
+		if(fusebox.get_integrity() >= fusebox.max_integrity && power_area.power_light && power_area.power_equip && power_area.power_environ)
 			continue
 		fusebox.power_on()
 		fixed++
