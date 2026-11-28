@@ -498,7 +498,7 @@ Methuselah.”
 							determined_age = "The crushing weight of time is held up by [target]. Further burdened with each passing decade."
 						message = "[determined_age]"
 					if (OPTION_BIOLOGICAL_AGE)
-						message = "We count [target.age] rings within their shell. Each embedded with many stories to tell."
+						message = "We count [target.age] rings within [target.p_their()] shell. Each embedded with many stories to tell."
 					if (OPTION_CLAN) // NOTE - Potentially expand to a unique message for all clans (that might take a while)
 						if (target.is_clan(/datum/subsplat/vampire_clan/caitiff))
 							message = "No bloodline can be distilled out of [target]... An absence of clan in a place where such is ever-important."
