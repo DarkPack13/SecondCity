@@ -1,0 +1,7 @@
+author: "Rhys Mori / Twox"
+delete-after: True
+changes:
+  - rscadd: "New Kinfolk quirks (Unscented, Recognize Werewolves, Outsider, Veiled, Good Old Kin, Wyrmtainted and Primal Perception)."
+  - image: "Ability sprite for 'Detect Werewolves'."
+  - code_imp: "New file Mood_And_Resources and mood and proximity mood content."
+  - spellcheck: "Some gifts referred to specific types of Fera despite being available outside of said type - corrected."
