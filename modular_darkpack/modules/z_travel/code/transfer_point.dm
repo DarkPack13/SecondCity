@@ -63,7 +63,8 @@ GLOBAL_LIST_EMPTY(unallocted_transfer_points)
 	. = ..()
 	if(.)
 		return
-	transfer_atom(user)
+	if(exit)
+		user.forceMove(get_turf(exit))
 
 /obj/transfer_point_vamp/attack_basic_mob(mob/user, list/modifiers)
 	. = ..()
