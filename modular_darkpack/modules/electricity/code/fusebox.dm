@@ -71,6 +71,43 @@ GLOBAL_LIST_EMPTY(fuseboxes)
 	update_icon()
 	update_sound_state()
 
+/obj/fusebox/proc/power_on(repair_amount = max_integrity)
+	repair_damage(repair_amount)
+	var/area/power_area = get_area(src)
+	power_area.power_light = TRUE
+	power_area.power_equip = TRUE
+	power_area.power_environ = TRUE
+	power_area.power_change()
+	if(initial(power_area.fire_controled))
+		power_area.fire_controled = TRUE
+	for(var/obj/machinery/light/L in power_area)
+		L.update(FALSE)
+	update_icon()
+	update_sound_state()
+
+ADMIN_VERB(fix_all_fuseboxes, R_ADMIN|R_DEBUG, "Fix All Fuseboxes", "Repairs every fusebox and restores power to its area.", ADMIN_CATEGORY_SECOND_CITY)
+	if(tgui_alert(user, "Repair every fusebox and restore power to their areas?", "Fix All Fuseboxes", list("Yes", "No")) != "Yes")
+		return
+	var/fixed = 0
+	for(var/obj/fusebox/fusebox as anything in GLOB.fuseboxes)
+		var/area/power_area = get_area(fusebox)
+		if(fusebox.get_integrity() >= fusebox.max_integrity && power_area.power_light && power_area.power_equip && power_area.power_environ)
+			continue
+		fusebox.power_on()
+		fixed++
+	log_admin("[key_name(user)] fixed all fuseboxes ([fixed] repaired).")
+	message_admins("[key_name_admin(user)] fixed all fuseboxes ([fixed] repaired).")
+	BLACKBOX_LOG_ADMIN_VERB("Fix All Fuseboxes")
+
+ADMIN_VERB_ONLY_CONTEXT_MENU(fix_fusebox, R_ADMIN|R_DEBUG, "Fix Fusebox", /obj/fusebox)
+	VERB_ARG_TYPED(fusebox, VERB_ARG_TYPE_OBJ, VERB_ARG_SOURCE_WORLD, /obj/fusebox)
+	if(!istype(fusebox))
+		return
+	fusebox.power_on()
+	log_admin("[key_name(user)] fixed [fusebox] at [AREACOORD(fusebox)].")
+	message_admins("[key_name_admin(user)] fixed [fusebox] at [ADMIN_VERBOSEJMP(fusebox)].")
+	BLACKBOX_LOG_ADMIN_VERB("Fix Fusebox")
+
 /datum/storyteller_roll/fusebox_repair
 	bumper_text = "electrical repair"
 	applicable_stats = list(STAT_INTELLIGENCE, STAT_TECHNOLOGY)
@@ -89,19 +126,8 @@ GLOBAL_LIST_EMPTY(fuseboxes)
 			var/successes = fusebox_roll.st_roll(user, src, using_item = tool)
 			var/repair_amount = successes * 40
 			if(repair_amount > 0)
-				repair_damage(repair_amount)
-				update_icon_state()
-				update_sound_state()
+				power_on(repair_amount)
 				playsound(get_turf(src), 'modular_darkpack/modules/electricity/sounds/fusebox_fix.ogg', 50, FALSE)
-				var/area/power_area = get_area(src)
-				power_area.power_light = TRUE
-				power_area.power_equip = TRUE
-				power_area.power_environ = TRUE
-				power_area.power_change()
-				if(initial(power_area.fire_controled))
-					power_area.fire_controled = TRUE
-				for(var/obj/machinery/light/L in power_area)
-					L.update(FALSE)
 
 				repairing = FALSE
 				return ITEM_INTERACT_SUCCESS
