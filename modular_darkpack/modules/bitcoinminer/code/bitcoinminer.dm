@@ -4,6 +4,7 @@
 	icon = 'modular_darkpack/modules/bitcoinminer/icons/bitcoinminer.dmi'
 	icon_state = "miner_off"
 	density = TRUE
+	taint_weaver = 8
 	var/active = FALSE
 	var/starting = FALSE
 	var/money_stored = 0

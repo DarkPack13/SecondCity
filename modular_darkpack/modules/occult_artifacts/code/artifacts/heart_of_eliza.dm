@@ -3,6 +3,7 @@
 	true_desc = "Melee damage boost."
 	icon_state = "h_eliza"
 	research_value = 30
+	taint_wyrm = 3
 
 /obj/item/occult_artifact/vampire/heart_of_eliza/grant_powers()
 	. = ..()

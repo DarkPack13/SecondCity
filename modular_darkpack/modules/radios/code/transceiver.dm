@@ -160,3 +160,4 @@
 /obj/machinery/radio_tranceiver/endron
 	radio_network = NETWORK_ENDRON
 	radio_frequency = FREQ_ENDRON
+	taint_wyrm = 1

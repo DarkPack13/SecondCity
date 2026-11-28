@@ -29,6 +29,8 @@ GLOBAL_LIST_EMPTY(global_tentacle_grabs)
 
 	ai_controller = /datum/ai_controller/basic_controller/abyss_tentacle
 
+	taint_wyrm = 3
+
 	var/mob/living/carbon/human/owner
 	var/list/recently_released = list()
 	COOLDOWN_DECLARE(grab_cooldown)

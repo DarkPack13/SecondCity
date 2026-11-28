@@ -6,3 +6,4 @@
 	bloodpool = 1
 	maxbloodpool = 1
 	basic_mob_flags = FLAMMABLE_MOB
+	taint_wyld = 1

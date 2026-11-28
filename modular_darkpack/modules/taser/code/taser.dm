@@ -8,7 +8,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode/darkpack)
 	charge_sections = 2
 	custom_price = 50
-
+	taint_weaver = 2
 
 /obj/item/ammo_casing/energy/electrode/darkpack
 	fire_sound = 'modular_darkpack/modules/taser/sounds/tasershock.ogg'

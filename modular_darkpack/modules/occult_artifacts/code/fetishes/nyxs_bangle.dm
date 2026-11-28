@@ -11,6 +11,7 @@
 	subsystem_type = /datum/controller/subsystem/processing/fastprocess
 
 	ungrant_sound = 'sound/effects/hallucinations/growl1.ogg'
+	taint_wyld = 4
 
 /obj/item/occult_artifact/werewolf/nyxs_bangle/identify()
 	. = ..()

@@ -8,6 +8,7 @@
 	panel_type = "panel22"
 	light_mask = "ciggies-light-mask"
 	light_color = COLOR_WHITE
+	taint_wyrm = 2
 
 /obj/machinery/vending/cigarette/shelf/Initialize(mapload)
 	. = ..()

@@ -22,6 +22,7 @@
 	icon_dead = "cat_tzi_dead"
 	unique_pet = TRUE
 	random_cat_color = FALSE
+	taint_wyrm = 7
 
 /mob/living/basic/pet/cat/darkpack/cain
 	name = "Cain"
@@ -29,6 +30,7 @@
 	bloodpool = 10
 	maxbloodpool = 10
 	unique_pet = TRUE
+	taint_wyrm = 10
 
 /mob/living/basic/pet/cat/darkpack/autun
 	name = "Autun"

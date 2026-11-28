@@ -4,7 +4,7 @@
  */
 /obj/item/lazarus_injector/lazadon
 	name = "lazadon injector"
-	desc = "An injector with a cocktail chemicals, able to bring pets back from the brink."
+	desc = "An injector with a cocktail of chemicals, able to bring pets back from the brink."
 	icon = 'modular_darkpack/modules/medical/icons/lazadon_injector.dmi'
 	lefthand_file = 'modular_darkpack/modules/medical/icons/lazadon_lefthand.dmi'
 	righthand_file = 'modular_darkpack/modules/medical/icons/lazadon_righthand.dmi'
@@ -12,3 +12,5 @@
 
 	brand = "magadon"
 	should_tame = FALSE
+	taint_wyrm = 1
+	taint_weaver = 3
