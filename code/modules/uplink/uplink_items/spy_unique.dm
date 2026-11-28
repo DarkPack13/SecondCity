@@ -41,13 +41,11 @@
 	desc = "A pair of Guerrilla gloves. They're insulated AND you can tackle people with it!"
 	item = /obj/item/clothing/gloves/tackler/combat/insulated
 
-/* // DARKPACK EDIT REMOVAL - Kudzu
 /datum/uplink_item/spy_unique/kudzu
 	name = "Kudzu"
 	desc = "A packet of Kudzu - plant and forget, a great distraction."
 	item = /obj/item/seeds/kudzu
 	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
-*/
 
 /datum/uplink_item/spy_unique/big_knife
 	name = "Combat Knife"

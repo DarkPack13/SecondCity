@@ -203,7 +203,7 @@
 		/obj/item/food/grown/banana = 2,
 		/obj/item/food/grown/cherry_bomb = 2,
 		/obj/item/food/grown/mushroom/walkingmushroom = 2,
-		// /obj/item/seeds/kudzu = 1, // DARKPACK EDIT REMOVAL - Kudzu
+		/obj/item/seeds/kudzu = 1,
 	)
 
 /datum/outfit/deathmatch_loadout/battler/northstar
