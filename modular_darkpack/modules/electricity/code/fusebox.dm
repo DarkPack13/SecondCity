@@ -71,6 +71,34 @@ GLOBAL_LIST_EMPTY(fuseboxes)
 	update_icon()
 	update_sound_state()
 
+/obj/fusebox/proc/power_on()
+	repair_damage(max_integrity - atom_integrity)
+	var/area/power_area = get_area(src)
+	power_area.power_light = TRUE
+	power_area.power_equip = TRUE
+	power_area.power_environ = TRUE
+	power_area.power_change()
+	if(initial(power_area.fire_controled))
+		power_area.fire_controled = TRUE
+	for(var/obj/machinery/light/L in power_area)
+		L.update(FALSE)
+	update_icon()
+	update_sound_state()
+
+ADMIN_VERB(fix_all_fuseboxes, R_ADMIN|R_DEBUG, "Fix All Fuseboxes", "Repairs every fusebox and restores power to its area.", ADMIN_CATEGORY_SECOND_CITY)
+	if(tgui_alert(user, "Repair every fusebox and restore power to their areas?", "Fix All Fuseboxes", list("Yes", "No")) != "Yes")
+		return
+	var/fixed = 0
+	for(var/obj/fusebox/fusebox as anything in GLOB.fuseboxes)
+		var/area/power_area = get_area(fusebox)
+		if(fusebox.atom_integrity >= fusebox.max_integrity && power_area.power_light && power_area.power_equip && power_area.power_environ)
+			continue
+		fusebox.power_on()
+		fixed++
+	log_admin("[key_name(user)] fixed all fuseboxes ([fixed] repaired).")
+	message_admins("[key_name_admin(user)] fixed all fuseboxes ([fixed] repaired).")
+	BLACKBOX_LOG_ADMIN_VERB("Fix All Fuseboxes")
+
 /datum/storyteller_roll/fusebox_repair
 	bumper_text = "electrical repair"
 	applicable_stats = list(STAT_INTELLIGENCE, STAT_TECHNOLOGY)
