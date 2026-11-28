@@ -34,3 +34,9 @@ export const fetish_merit: FeatureChoiced = {
   description: 'Choice of fetish.',
   component: FeatureDropdownInput,
 };
+
+export const vampire_artifact_merit: FeatureChoiced = {
+  name: 'Artifact',
+  description: 'Choice of artifact.',
+  component: FeatureDropdownInput,
+};
