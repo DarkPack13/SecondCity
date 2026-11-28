@@ -39,6 +39,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_STAKE_RESISTANT "stake_resistant"
 #define TRAIT_STAKE_IMMUNE "stake_immune"
 #define TRAIT_STAKED "staked"
+#define TRAIT_DECOMPOSED "decomposed"
 #define TRAIT_LAZY "lazy"
 #define TRAIT_HOMOSEXUAL "homosexual"
 #define TRAIT_HUNTED "hunted"
@@ -187,6 +188,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_BANNED_TRANSFORMATION "banned_transformation"
 #define TRAIT_BEACON_OF_THE_UNHOLY "beacon_of_the_unholy"
 #define TRAIT_BETRAYERS_MARK "betrayers_mark"
+#define TRAIT_BLOOD_SORCERY_PRODIGY "blood_sorcery_prodigy"
 #define TRAIT_CALM_HEART "calm_heart"
 #define TRAIT_COLDLY_LOGICAL "coldly_logical"
 #define TRAIT_DISFIGURED_APPEARANCE "disfigured_appearance"
@@ -220,6 +222,12 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_VAMPIRE_TERRITORIAL "territorial"
 #define TRAIT_VICTIM_OF_THE_MASQUERADE "victim_of_the_masquerade"
 #define TRAIT_WEAK_WILLED "weak_willed"
+#define TRAIT_PRIMAL_PERCEPTION "primal_perception"
+#define TRAIT_UNSCENTED "unscented"
+#define TRAIT_RECOGNIZE_WEREWOLVES "recognize_werewolves"
+#define TRAIT_OUTSIDER "outsider"
+#define TRAIT_VEILED "veiled"
+#define TRAIT_GOOD_OLD_BOY_OR_GIRL "good_old_boy_or_girl"
 
 // Below are traits given by items/clothing being equiped or worn
 #define TRAIT_BRASSKNUCKLES "brassknuckles"

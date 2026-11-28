@@ -89,3 +89,98 @@
       types
   cam_dev:
   - rscadd: Added Spirit Speech for corvid-born and Truth of Gaia for homid-born Corax
+2026-11-18:
+  SELFHELL:
+  - bugfix: Gun suppressor oversights
+  Wunderwaffle11:
+  - bugfix: Makes Glabro not permanently increase your Runechat height
+  - bugfix: Makes Huge Size sprite scaling actually work after shifting
+  - bugfix: Corrects rotation behaviour to stop sprites getting stuck in wrong orientation
+      after shifting while horizontal
+  chazzyjazzy:
+  - rscadd: tremeres who do the vaulderie now always get the 'mark of the betrayer'
+      flaw.
+2026-11-20:
+  JohnFulpWillard:
+  - bugfix: You can't spam the battering ram anymore.
+  - bugfix: Matrix'ing now unpublishes your phone number.
+  chazzyjazzy:
+  - bugfix: exit_frenzy_mode will now remove all types of frenzying not just the main
+      general type
+2026-11-21:
+  breadcrombs:
+  - rscadd: Survival stat increases self tend speed with medical items
+  chazzyjazzy:
+  - rscadd: humans (characters without a splat) will now always convert aggravated
+      damage to brute upon receiving it
+2026-11-22:
+  FalloutFalcon:
+  - bugfix: You cant stack multiple casts of the same discipline using inputs and
+      doafters
+  Magisterium2022:
+  - rscadd: Allowed Ghouls to spawn in without Dormitor clan disciplines as needed,
+      and spawn in with Discipline Dots above 1 if it's set by an Admin.
+  Rhys Mori / Twox:
+  - balance: Quirks which should conflict now actually do.
+  - bugfix: Disciplines missing their rare tag now have it.
+  - qol: Breach words that have English usage have been removed from the list.
+  breadcrombs:
+  - rscadd: Added deadened nerves, tough flesh, and blood magic prodigy as merits
+  - bugfix: shapeshifted werewolves now properly will not get stunned from necro 4
+  - bugfix: fixed being able to take weak willed and non vampire iron will at the
+      same time
+2026-11-23:
+  JohnFulpWillard:
+  - rscadd: The watch now shows time when you hover over it.
+2026-11-24:
+  Absolucy:
+  - qol: You can now properly add people to your guestbook while shapeshifted into
+      a nonhuman (i.e Shape of the Beast)
+  - qol: You can add people right next to you to your guestbook if you have an empty
+      hand, instead of having to step one tile away.
+  - bugfix: phone ringing particles show up again
+  - bugfix: NPCs respawn gradually instead of in a big lag spike, and wander a bit
+      better near map edges
+  Rhys Mori / Twox:
+  - rscadd: "-Promethean Clay now applies as expected to Vicissitude 1 & 2 (self)\
+      \ in addition to 5 \u2014 RP tag removed.\n-Zulo form preferences are now tied\
+      \ to Vicissitude instead of Tzimisce."
+  - qol: 'Vicissitude 1 & 2 usage should be far more smooth now.
+
+      -Vicissitude 1 & 2 no longer have a timer as they were just a radial opener
+      prior.
+
+      -Vicissitude TGUI menus will no longer take screen priority.'
+  - balance: '-Vicissitude 1 & 2 costs are now handled in radial rather than tied
+      to the discipline button.
+
+      -Non-self Vicissitude casting still has a flat 1 BP cost.'
+  - bugfix: '-Vicissitude 2 will no longer incur BP cost on non-applicable targets.
+
+      -Vicissitude radials will now delete themselves when out of range.
+
+      -Vicissitude options now use TGUI colour.'
+  - code_imp: '-All references to Vicissitude Shapeshifting have been converted to
+      Bodycrafting.
+
+      -''get_active_disciplines()'' now exists in vampire_splat.dm and will return
+      a list of the target''s currently active disciplines in a round.
+
+      -IDs & global file for disciplines.'
+  - refactor: '-Framework additions for better functionality regarding Disciplines
+      and Quirks.
+
+      -Autofocus arguments to List and Text TGUI menus.
+
+      -Quirks can now reference the presence of active disciplines.'
+  chazzyjazzy:
+  - bugfix: the sarcophagus cant be opened infinity times with one key
+  - bugfix: the localhost 'start now' button now has paynt again
+2026-11-25:
+  FalloutFalcon:
+  - bugfix: Fix beast mark overlay
+2026-11-28:
+  AberrantQuerist:
+  - image: old sidewalks now tile correctly
+  JohnFulpWillard:
+  - qol: Bats now cost $50 everywhere instead of only at the general store.

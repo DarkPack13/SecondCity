@@ -1,0 +1,5 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - admin: "admins can now enforce all members of an ERT to be of the same splat"
+  - bugfix: "saving someones name to your guestbook as an ERT doesnt break your slot's guestbook entries anymore"

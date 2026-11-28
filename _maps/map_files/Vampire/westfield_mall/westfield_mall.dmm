@@ -16004,6 +16004,10 @@
 	},
 /turf/open/floor/plating/sidewalk/poor,
 /area/vtm/interior/sewer)
+"cCq" = (
+/obj/effect/landmark/ert_spawn,
+/turf/open/floor/plating/asphalt,
+/area/vtm/westfield_mall)
 "cER" = (
 /obj/structure/closet/crate/bin{
 	pixel_x = 8
@@ -16041,6 +16045,13 @@
 /obj/effect/landmark/start/darkpack/camarilla/clerk,
 /turf/open/floor/wood/ornate,
 /area/vtm/westfield_mall/interior/camarilla)
+"dkn" = (
+/obj/effect/turf_decal/asphaltline{
+	dir = 8
+	},
+/obj/effect/landmark/ert_spawn,
+/turf/open/floor/plating/asphalt,
+/area/vtm/westfield_mall)
 "dll" = (
 /obj/structure/railing/wooden_fence{
 	dir = 1;
@@ -16279,6 +16290,11 @@
 "eKL" = (
 /turf/open/floor/wood/herring,
 /area/vtm/westfield_mall/interior/law_office)
+"eMo" = (
+/obj/effect/turf_decal/bordur/inverse,
+/obj/effect/landmark/ert_spawn,
+/turf/open/floor/plating/asphalt,
+/area/vtm/westfield_mall)
 "eNH" = (
 /obj/effect/turf_decal/bordur{
 	dir = 1
@@ -41947,11 +41963,11 @@ aSw
 aDq
 aXZ
 aXZ
-aNg
-aXo
-aXo
-alB
-aXo
+eMo
+cCq
+cCq
+dkn
+cCq
 aXo
 aXo
 aMO
@@ -63987,11 +64003,11 @@ aqf
 aXZ
 aXZ
 aXZ
-aNg
-aXo
-aXo
-alB
-aXo
+eMo
+cCq
+cCq
+dkn
+cCq
 aXo
 aXo
 aMO

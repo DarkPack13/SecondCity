@@ -115,6 +115,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, 0)
 /obj/machinery/camera/Initialize(mapload)
 	. = ..()
 
+	toggle_masquerade_sensitivity(TRUE)	//DARKPACK EDIT ADD - SECURITY CAMERAS BREACH MASQUERADE
+
 	for(var/network_name in network)
 		network -= network_name
 		network += LOWER_TEXT(network_name)

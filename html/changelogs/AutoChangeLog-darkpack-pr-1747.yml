@@ -1,0 +1,4 @@
+author: "chazzyjazzy"
+delete-after: True
+changes:
+  - bugfix: "splat slots (such as one ghoul police officer out of 6) now properly decrement when a player of the appropriate splat joins that role, and when matrixing, this slot is incremented so another player of that splat may take it"

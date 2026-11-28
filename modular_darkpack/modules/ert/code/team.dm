@@ -1,5 +1,12 @@
+/datum/ert
+	/// Splat ID every member of this team is forced into on spawn. Null keeps each character's own splat.
+	var/forced_splat
+	/// If TRUE, members are told on spawn that they know about the supernatural.
+	var/supernatural_aware = FALSE
+
 /datum/ert/darkpack
 	abstract_type = /datum/ert/darkpack
+	forced_splat = SPLAT_NONE
 
 /datum/ert/darkpack/swat
 	leader_role = /datum/antagonist/ert/darkpack/swat/leader
@@ -21,6 +28,7 @@
 	rename_team = "First Team"
 	mission = "Liquidate all hostile anomolous entities"
 	polldesc = "an elite FIRST Team"
+	supernatural_aware = TRUE
 
 /datum/ert/darkpack/pentex/budget
 	leader_role = /datum/antagonist/ert/darkpack/pentex/budget_leader
@@ -35,3 +43,13 @@
 	rename_team = "FBI SWAT Unit"
 	mission = "Assess the situation and assist the deployed FBI Special Agents."
 	polldesc = "the FBI's Special Weapons and Tactics Unit"
+
+/datum/ert/proc/apply_forced_splat(mob/living/carbon/human/operative)
+	if(!forced_splat)
+		return
+	ADD_TRAIT(operative, TRAIT_NO_CANON, INNATE_TRAIT)
+	if(forced_splat != SPLAT_NONE && operative.get_splat(GLOB.splat_list[forced_splat]))
+		return
+	QDEL_LAZYLIST(operative.splats)
+	if(forced_splat != SPLAT_NONE)
+		operative.add_splat(GLOB.splat_list[forced_splat])

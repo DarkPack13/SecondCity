@@ -1,0 +1,5 @@
+author: "Wunderwaffle11"
+delete-after: True
+changes:
+  - bugfix: "Makes Autonomic Mastery roll dice"
+  - bugfix: "Tidied up some text"
