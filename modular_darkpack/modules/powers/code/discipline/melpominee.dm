@@ -118,7 +118,7 @@
 
 	cooldown_length = 5 SECONDS
 	// the guys we last talked to
-	var/list/free_speakers
+	var/list/free_speakers = list()
 
 /datum/discipline_power/melpominee/phantom_speaker/activate()
 	. = ..()
@@ -135,25 +135,31 @@
 			targets += character
 
 	var/list/mob/living/listener_list = list()
-	var/mob/living/listener
 
 	if(!HAS_TRAIT_FROM(owner, TRAIT_VIRTUOSA, type))
-		listener = tgui_input_list(owner, "Who will you project your voice to?", "Phantom Speaker", targets)
-		if(!listener)
+		var/mob/living/listener = tgui_input_list(owner, "Who will you project your voice to?", "Phantom Speaker", targets)
+		if(isnull(listener))
 			return
-		listener_list[WEAKREF(listener)] = 0
+		listener_list += listener
 	else // We can talk to mulitple people (Melpominee 5)
-		listener_list = tgui_input_checkboxes(owner, "Who will you project your voice to?", "Phantom Speaker", targets)
+		//DARKPACK TODO: This is not how `tgui_input_checkboxes` works, it returns a list of character names and not the characters.
+		//This doesn't get called anyways beacuse HAS_TRAIT_FROM is like, not possible.
+		var/list/listeners = tgui_input_checkboxes(owner, "Who will you project your voice to?", "Phantom Speaker", targets)
+		for(var/list/listening_list as anything in listeners)
+			var/mob/found_listener = locate(listening_list[1])
+			if(isnull(found_listener))
+				continue
+			listener_list += found_listener
 
 	if(!length(listener_list)) // We didn't pick anyone
 		return
 
-	var/input_message = tgui_input_text(owner, "What message will you project to them?", title = "Phantom Speaker")
+	var/input_message = tgui_input_text(owner, "What message will you project to them?", title = "Phantom Speaker", max_length = MAX_MESSAGE_LEN)
 	if (!input_message)
 		return
 
 	//sanitisation!
-	input_message = trim(copytext_char(sanitize(input_message), 1, MAX_MESSAGE_LEN))
+	input_message = trim(copytext_char(input_message, 1, MAX_MESSAGE_LEN))
 	if(!owner.try_speak(input_message))
 		return
 
@@ -162,7 +168,6 @@
 		return
 
 	var/language = owner.get_selected_language()
-	var/message = owner.compose_message(owner, language, input_message)
 	// Composed message of all the people in listener_list
 	var/those_who_hear = "[english_list(listener_list)]."
 
@@ -195,7 +200,7 @@
 
 	for(var/mob/living/final_listeners in listener_list)
 		to_chat(final_listeners, span_boldannounce("<i>You hear a voice in your head...</i>"))
-		final_listeners.Hear(owner, language, span_purple(message), message_mods = list(MODE_SING))
+		final_listeners.Hear(owner, language, span_purple(input_message), message_mods = list(MODE_SING), message_range = INFINITY)
 
 	to_chat(owner, span_notice("Your voice reaches the ears of [those_who_hear]"))
 
@@ -220,6 +225,12 @@
 	duration_length = 1 SCENES
 	var/list/audience = list()
 
+/datum/storyteller_roll/madrigal
+	bumper_text = "madrigal protection"
+	applicable_stats = list(STAT_WITS, STAT_AWARENESS)
+	roll_output_type = ROLL_FLAG_ROLLER|ROLL_FLAG_TARGET
+	numerical = TRUE
+
 /datum/discipline_power/melpominee/madrigal/activate()
 	. = ..()
 	var/our_difficulty = 7
@@ -233,7 +244,7 @@
 		var/their_difficulty = 7
 		if(HAS_TRAIT(member, TRAIT_COLDLY_LOGICAL))
 			their_difficulty -= 1
-		var/their_power = SSroll.storyteller_roll_datum(member, difficulty = their_difficulty, applic_stats = list(STAT_WITS, STAT_AWARENESS), numerical = TRUE)
+		var/their_power = SSroll.storyteller_roll_datum(member, owner, difficulty = their_difficulty, roll_datum = /datum/storyteller_roll/madrigal)
 		if(our_power > their_power)
 			set_emotion(member, emotion)
 
