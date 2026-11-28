@@ -8,7 +8,12 @@
 	if(async_flags)
 		return async_flags
 
+	var/mob/living/living_pawn = controller.pawn
+
 	if(!controller.blackboard_key_exists(crime_key))
+		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
+
+	if(!length(living_pawn.get_all_contents(/obj/item/smartphone)))
 		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
 
 	return start_async()
