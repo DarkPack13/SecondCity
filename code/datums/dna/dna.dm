@@ -101,6 +101,15 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		if(transfer_flags & COPY_DNA_BLOOD_TYPE)
 			new_dna.blood_type = blood_type
 		// DARKPACK EDIT CHANGE END
+		// DARKPACK EDIT START - Adds country of origin to DNA to fix roundstart item assignment
+		new_dna.country_of_origin = country_of_origin
+		new_dna.state_of_origin = state_of_origin
+		new_dna.organ_donor = organ_donor
+		new_dna.fake_name_identity = fake_name_identity
+		new_dna.fake_age = fake_age
+		new_dna.fake_organ_donor = fake_organ_donor
+		new_dna.fake_gender = fake_gender
+		// DARKPACK EDIT END
 		if(transfer_flags & COPY_DNA_SPECIES)
 			new_dna.species = new species.type
 	if(transfer_flags & COPY_DNA_MUTATIONS && holder?.can_mutate())
