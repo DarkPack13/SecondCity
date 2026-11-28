@@ -119,7 +119,7 @@
 		playsound(loc, 'sound/machines/beep/beep.ogg', get_clamped_volume(), TRUE, -1)
 	if(builtin_bodycamera)
 		builtin_bodycamera.camera_enabled = FALSE
-	wearer.toggle_masquerade_sensitivity(FALSE)
+	wearer?.toggle_masquerade_sensitivity(FALSE)
 	wearer = null
 	log_game("BODYCAM TOGGLE: [(user ? key_name(user) : "SYSTEM")] turned OFF [src] at [loc_name(src)].")
 
