@@ -3,6 +3,8 @@
 /// Trait given by a splat's subsplat
 #define SUBSPLAT_TRAIT "subsplat"
 
+#define ROTTEN_TRAIT "rotten"
+
 #define GIFT_TRAIT "gift"
 
 #define STAKE_TRAIT "stake"
