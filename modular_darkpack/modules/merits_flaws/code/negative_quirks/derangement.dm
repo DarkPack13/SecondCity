@@ -127,13 +127,17 @@ GLOBAL_LIST_INIT(derangement_phrases,list(
 	hallucinator.playsound_local(hallucinator, pick(ambient_sounds), vol = 20, vary = FALSE)
 
 /datum/hallucination/malk/object
-	var/static/list/audible_hallucinations = GLOB.derangement_phrases
 
 /datum/hallucination/malk/object/start()
+	return hallucinator.malkavian_voices()
+
+/// used by both Malkavian Derangement and Dementation 3 "Eyes of Chaos"
+/mob/living/proc/malkavian_voices(dementationtext, range=7)
+	var/static/list/audible_hallucinations = GLOB.derangement_phrases
 	var/list/objects = list()
 
-	for(var/obj/object in view(hallucinator))
-		if((object.invisibility > hallucinator.see_invisible) || !object.loc || !object.name || (object in hallucinator.contents))
+	for(var/obj/object in view(range, src))
+		if((object.invisibility > see_invisible) || !object.loc || !object.name || (object in contents))
 			continue
 		var/weight = 1
 		if(isitem(object))
@@ -147,13 +151,15 @@ GLOBAL_LIST_INIT(derangement_phrases,list(
 		return
 
 	var/obj/speaker = pick_weight(objects)
-	var/speech = spooky_font_replace(pick(audible_hallucinations))
-	var/language = hallucinator.get_random_understood_language()
-	var/message = hallucinator.compose_message(speaker, language, speech)
-	hallucinator.playsound_local(hallucinator, audible_hallucinations[speech], vol = 20, vary = TRUE)
-	if(hallucinator.client.prefs.read_preference(/datum/preference/toggle/see_rc_emotes))
-		hallucinator.create_chat_message(speaker, language, speech, spans = list("italics"))
-	to_chat(hallucinator, span_cult_italic(message))
+	if(!dementationtext)
+		dementationtext = pick(audible_hallucinations)
+		playsound_local(src, audible_hallucinations[dementationtext], vol = 20, vary = TRUE)
+	dementationtext = spooky_font_replace(dementationtext)
+	var/language = get_random_understood_language()
+	var/message = compose_message(speaker, language, dementationtext)
+	if(client.prefs.read_preference(/datum/preference/toggle/see_rc_emotes))
+		create_chat_message(speaker, language, dementationtext, spans = list("italics"))
+	to_chat(src, span_cult_italic(message))
 
 	return TRUE
 
