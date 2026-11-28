@@ -1,8 +1,9 @@
-/datum/data/vending_product/New(name, path, price, amount = -1)
+/datum/data/vending_product/New(name, path, price, amount = -1, max_amount = -1)
 	src.name = name
 	src.product_path = path
 	src.price = price
 	src.amount = amount
+	src.max_amount = max_amount
 
 	var/obj/item/item = product_path
 	if(!item)
