@@ -16,7 +16,7 @@ GLOBAL_LIST_INIT(human_blood_types, list(
 	ONFLOOR_ICON_HELPER('modular_darkpack/modules/vitae/icons/onfloor.dmi')
 	icon_state = "blood100"
 	inhand_icon_state = "blood100"
-	initial_reagent_flags = OPENCONTAINER | NO_SPLASH | REFILLABLE | DRAWABLE
+	initial_reagent_flags = OPENCONTAINER | NO_SPLASH | DRAWABLE
 
 /obj/item/reagent_containers/blood/Initialize(mapload, vol)
 	. = ..()
@@ -53,6 +53,33 @@ GLOBAL_LIST_INIT(human_blood_types, list(
 	update_appearance()
 	// SEND_SIGNAL(interacting_with, COMSIG_MASQUERADE_VIOLATION) - warning, interacting_with is the person who will be breaching, griefing potential here if a player walks up and feeds someone a bloodbag in public causing them to breach. resolve this prior to uncommenting
 	return ITEM_INTERACT_SUCCESS
+
+/obj/item/reagent_containers/blood/interact_with_atom(atom/target, mob/living/user, list/modifiers)
+	. = ..()
+	if(. & ITEM_INTERACT_ANY_BLOCKER)
+		return .
+	if(!is_open_container())
+		return NONE
+
+	if(target.is_refillable()) //Something like a glass. Player probably wants to transfer TO it.
+		return try_refill(target, user)
+
+	if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
+		return try_drain(target, user)
+
+	return NONE
+
+/obj/item/reagent_containers/blood/interact_with_atom_secondary(atom/target, mob/living/user, list/modifiers)
+	. = ..()
+	if(. & ITEM_INTERACT_ANY_BLOCKER)
+		return .
+	if(!is_open_container())
+		return NONE
+
+	if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
+		return try_drain(target, user)
+
+	return NONE
 
 /obj/item/reagent_containers/blood/empty
 	blood_type = null
