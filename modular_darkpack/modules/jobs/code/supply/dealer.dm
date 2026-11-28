@@ -17,16 +17,6 @@
 
 	exp_requirements = EXP_REQ_MINOR
 	exp_required_type_department = EXP_TYPE_WAREHOUSE
-
-	known_contacts = list(
-		JOB_PRINCE,
-		JOB_SENESCHAL,
-		JOB_SHERIFF,
-		JOB_BARON,
-		JOB_SUPPLY_TECH,
-		JOB_HARPY,
-		JOB_EMISSARY
-	)
 	allowed_splats = list(SPLAT_KINDRED, SPLAT_GHOUL, SPLAT_GAROU, SPLAT_NONE)
 	splat_slots = list(SPLAT_NONE = 1)
 	description = "You provide both legal and illegal supplies to those that get busy during the night. You are your own person yet you know people are out for you. Time to buckle in..."

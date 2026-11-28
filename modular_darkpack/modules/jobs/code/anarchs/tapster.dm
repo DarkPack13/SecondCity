@@ -16,21 +16,13 @@
 	tgui_icon = FA_ICON_GLASS_WHISKEY
 
 	alt_titles = list(
+		JOB_TAPSTER,
 		"Bartender",
 		"Barkeeper",
-		"Tapster",
 		"Server",
 		"Soda Jerk", //I always loved this as a title and I am mad it isn't in common use anymore.
 		"Waiter",
 		"Waitress"
-	)
-
-	known_contacts = list(
-		JOB_BARON,
-		JOB_BRUISER,
-		JOB_EMISSARY,
-		JOB_SWEEPER,
-		JOB_TAPSTER
 	)
 	allowed_splats = list(SPLAT_NONE, SPLAT_GHOUL)
 	splat_slots = list(SPLAT_NONE = 2, SPLAT_GHOUL = 2)

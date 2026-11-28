@@ -1,6 +1,6 @@
 /datum/job/vampire/branch_lead
 	title = JOB_PENTEX_LEAD
-	description = "You are the current branch leader for " + MAIN_EVIL_COMPANY + " , operating out of San Francisco. Your job is to fuel production and keep your clowns in line."
+	description = "You are the current branch leader for " + MAIN_EVIL_COMPANY + ", operating out of San Francisco. Your job is to fuel production and keep your clowns in line."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	faction = FACTION_PENTEX
 	total_positions = 1
@@ -15,6 +15,7 @@
 	outfit = /datum/outfit/job/vampire/branch_lead
 
 	alt_titles = list(
+		JOB_PENTEX_LEAD,
 		"Endron Branch Lead",
 		"Endron Branch Director",
 		"Endron Regional Director",
@@ -31,15 +32,6 @@
 	)
 
 	tgui_icon = FA_ICON_VIRUS
-
-	known_contacts = list(
-		JOB_PENTEX_EXEC,
-		JOB_PENTEX_AFFAIRS,
-		JOB_PENTEX_SEC_CHIEF,
-		JOB_PENTEX_EMPLOYEE,
-		JOB_PENTEX_SEC
-	)
-
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_SEC
 

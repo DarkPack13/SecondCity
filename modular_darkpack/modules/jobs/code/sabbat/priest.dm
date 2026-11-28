@@ -20,11 +20,6 @@
 	display_order = JOB_DISPLAY_ORDER_SABBATPRIEST
 	whitelisted = TRUE
 
-	known_contacts = list(
-		JOB_SABBAT_DUCTUS,
-		JOB_SABBAT_PACK
-	)
-
 /datum/outfit/job/vampire/sabbatpriest
 	name = JOB_SABBAT_PRIEST
 	jobtype = /datum/job/vampire/sabbatpriest

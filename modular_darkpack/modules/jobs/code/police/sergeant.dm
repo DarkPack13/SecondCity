@@ -14,7 +14,7 @@
 	)
 
 	alt_titles = list(
-		"Police Sergeant",
+		JOB_POLICE_SERGEANT,
 		"Police Supervisor",
 		"Training Officer",
 		"Detective",
@@ -26,11 +26,6 @@
 
 	description = "Enforce the law. Keep the officers in line. Follow what the Captain says."
 	minimum_masquerade = 0
-
-	known_contacts = list(
-		JOB_POLICE_CAPTAIN,
-		JOB_EMERGENCY_DISPATCHER
-	)
 
 /datum/outfit/job/vampire/police_sergeant
 	name = JOB_POLICE_SERGEANT

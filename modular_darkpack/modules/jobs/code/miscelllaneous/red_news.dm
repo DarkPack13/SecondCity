@@ -16,17 +16,14 @@
 	job_flags = CITY_JOB_FLAGS
 	minimum_masquerade = 0
 	alt_titles = list(
+		JOB_RED_NEWS_REPORTER,
 		"Red News Cameraman",
 		"Red News Talking Head",
 		"Red News Infomercial Salesperson",
 		"Red News Entertainment Host",
-		"Red News Late Night Talkshow Host"
+		"Red News Late Night Talkshow Host",
 	)
 	disallowed_clans = list(VAMPIRE_CLAN_CAPPADOCIAN, VAMPIRE_CLAN_SAMEDI, VAMPIRE_CLAN_GARGOYLE, VAMPIRE_CLAN_KIASYD, VAMPIRE_CLAN_NOSFERATU)
-
-	known_contacts = list(
-		JOB_RED_NEWS_REPORTER
-	)
 
 /datum/outfit/job/vampire/red_news_reporter
 	name = JOB_RED_NEWS_REPORTER

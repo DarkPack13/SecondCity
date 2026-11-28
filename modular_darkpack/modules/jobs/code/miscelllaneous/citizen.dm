@@ -15,7 +15,7 @@
 	maximum_immortal_age = 100
 	minimum_masquerade = 0
 	alt_titles = list(
-		"Citizen",
+		JOB_CITIZEN,
 		"Private Investigator",
 		"Private Security",
 		"Tourist",

@@ -25,13 +25,6 @@
 
 	tgui_icon = FA_ICON_DOG
 
-	known_contacts = list(
-		JOB_GAROU_COUNCIL,
-		JOB_GAROU_TRUTHCATCHER,
-		JOB_GAROU_WYRMFOE,
-		JOB_GAROU_GUARDIAN
-	)
-
 /datum/outfit/job/vampire/warder
 	name = JOB_GAROU_WARDER
 	jobtype = /datum/job/vampire/warder

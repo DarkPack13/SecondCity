@@ -26,14 +26,6 @@
 
 	tgui_icon = FA_ICON_SHIELD_VIRUS
 
-	known_contacts = list(
-		JOB_PENTEX_LEAD,
-		JOB_PENTEX_EXEC,
-		JOB_PENTEX_AFFAIRS,
-		JOB_PENTEX_EMPLOYEE,
-		JOB_PENTEX_SEC
-	)
-
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_SEC
 

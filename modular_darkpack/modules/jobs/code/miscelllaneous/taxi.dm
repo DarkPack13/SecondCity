@@ -15,10 +15,6 @@
 
 	tgui_icon = FA_ICON_CAR
 
-	known_contacts = list(
-		JOB_TAXI_DRIVER
-	)
-
 	description = "Drive people in the city."
 	minimum_masquerade = 0
 	//Not including a max generation for reasons of Caine.

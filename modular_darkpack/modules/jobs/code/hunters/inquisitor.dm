@@ -17,14 +17,6 @@
 	)
 
 	tgui_icon = FA_ICON_CROSS
-
-	known_contacts = list(
-		JOB_ABBE,
-		JOB_CONDOTTIERI,
-		JOB_NOVICE,
-		JOB_INQUISITOR
-	)
-
 	splat_slots = list(SPLAT_GHOUL = 1, SPLAT_KINFOLK = 1, SPLAT_NONE = 3)
 	allowed_splats = list(SPLAT_NONE, SPLAT_GHOUL, SPLAT_KINFOLK) // infiltrators and betrayal arcs
 
