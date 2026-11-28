@@ -62,7 +62,6 @@
 	var/list/conversations = list()
 	var/current_viewed_conversation = null
 	var/phone_background = ""
-	var/custom_background = null // ori's request to add a custom background URL
 	var/endpost_username = null //username for the endpost app
 
 /obj/item/smartphone/Initialize(mapload)
@@ -380,12 +379,16 @@
 				unpublish_number(user, contact, save = (make_persistent == "Remove persistently"))
 				return TRUE
 
+		// ori's request to add a custom background URL
 		if("custom_background")
 			to_chat(user, span_danger("Do NOT use images that can be considered offensive or obscene, or that contain references to something that happened after the year [CURRENT_STATION_YEAR]. Recommended image dimensions: 400x600 "))
-			custom_background = tgui_input_text(user, "Input background image URL", "Custom Background")
+			var/custom_background = tgui_input_text(user, "Input background image URL", "Custom Background")
 			if(!custom_background)
 				to_chat(user, span_danger("You must input a URL to set a custom background."))
 				return
+			if(!validate_allowed_image_url(user, custom_background))
+				return FALSE
+
 			phone_background = custom_background
 			log_phone("[key_name(user)] set a custom background image on [src]: [custom_background]")
 			return TRUE
