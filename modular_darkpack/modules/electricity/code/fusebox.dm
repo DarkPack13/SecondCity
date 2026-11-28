@@ -71,8 +71,8 @@ GLOBAL_LIST_EMPTY(fuseboxes)
 	update_icon()
 	update_sound_state()
 
-/obj/fusebox/proc/power_on()
-	repair_damage(max_integrity)
+/obj/fusebox/proc/power_on(repair_amount = max_integrity)
+	repair_damage(repair_amount)
 	var/area/power_area = get_area(src)
 	power_area.power_light = TRUE
 	power_area.power_equip = TRUE
@@ -117,19 +117,8 @@ ADMIN_VERB(fix_all_fuseboxes, R_ADMIN|R_DEBUG, "Fix All Fuseboxes", "Repairs eve
 			var/successes = fusebox_roll.st_roll(user, src, using_item = tool)
 			var/repair_amount = successes * 40
 			if(repair_amount > 0)
-				repair_damage(repair_amount)
-				update_icon_state()
-				update_sound_state()
+				power_on(repair_amount)
 				playsound(get_turf(src), 'modular_darkpack/modules/electricity/sounds/fusebox_fix.ogg', 50, FALSE)
-				var/area/power_area = get_area(src)
-				power_area.power_light = TRUE
-				power_area.power_equip = TRUE
-				power_area.power_environ = TRUE
-				power_area.power_change()
-				if(initial(power_area.fire_controled))
-					power_area.fire_controled = TRUE
-				for(var/obj/machinery/light/L in power_area)
-					L.update(FALSE)
 
 				repairing = FALSE
 				return ITEM_INTERACT_SUCCESS
