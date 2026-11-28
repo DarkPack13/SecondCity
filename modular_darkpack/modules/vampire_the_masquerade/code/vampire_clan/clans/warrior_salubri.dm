@@ -14,3 +14,7 @@
 	female_clothes = /obj/item/clothing/under/vampire/salubri/female
 	enlightenment = FALSE
 	subsplat_keys = /obj/item/vamp/keys/salubri
+
+/datum/subsplat/vampire_clan/salubri/warrior/on_join_round(mob/living/carbon/human/joining)
+	. = ..()
+	sense_the_sin_text = "[joining] pursues an endless revenge."
